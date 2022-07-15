@@ -15,3 +15,11 @@
     margin:20px auto;
     overflow: hidden;
 }
+.editbtn{
+    border: none;
+    background: transparent;
+}
+.editbtnimg{
+    height: 30px;
+    width: 30px;
+}

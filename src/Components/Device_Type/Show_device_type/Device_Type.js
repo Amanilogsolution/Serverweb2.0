@@ -1,4 +1,5 @@
 import './device_type.css'
+import Editbtn from '../../../img/edit.png'
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../Navbar/Navbar';
 import Footer from '../../Footer/Footer';
@@ -58,8 +59,12 @@ function Device_Type() {
             sortable: false,
             selector: "null",
             cell: (row) => [
-              <a title='View Document' href="EditCustomer">
-                <button className="editbtn btn-success " onClick={() => sessionStorage.setItem('devicetypeSno', `${row.sno}`)} >Edit</button></a>
+              <a title='Edit Device Type' href="#">
+
+                <button className="editbtn " onClick={() => sessionStorage.setItem('devicetypeSno', `${row.sno}`)} >
+                {/* Edit */}
+                <img src={Editbtn} alt='Edit ' className='editbtnimg'/>
+                </button></a>
             ]
           }
       
