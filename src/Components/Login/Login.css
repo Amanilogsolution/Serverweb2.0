@@ -18,7 +18,6 @@
    left: 50%;
    transform: translate(-50%, -50%);
    background: rgba(255, 255, 255, 1);
-   ;
    width: 400px;
    padding: 50px 30px;
    border-radius: 10px;
@@ -27,7 +26,7 @@
 }
 
 #img {
-   height: 110px;
+   height: 70px;
    width: 130px;
    margin-left: 50%;
    transform: translate(-50%);
@@ -52,7 +51,7 @@
    transform: translate(-50%);
 }
 
-@media screen and (max-width:360px) {
+@media screen and (max-width:400px) {
    .formcontainer {
       width: 100%;
    }

@@ -1,6 +1,18 @@
 .nav-logo{
-    width:70px;
-    height:70px;
+    width:100px;
+    height:55px;
     /* border:2px solid red; */
     margin-right: 10px;
+}
+
+.nav-url{
+    margin-left: 10px;
+    font-size: 20px;
+}
+.nav-url2{
+    font-size: 18px;
+}
+
+.logout-btn{
+    font-size: 19px;
 }

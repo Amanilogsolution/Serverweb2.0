@@ -40,13 +40,13 @@ export default function Login() {
         <div className="formcontainer" >
           <div className="login">
             <img className="p-0" id="img" src={Awllogo} alt="awl india" />
-            <h4 className="text-center heading-title" >AWL India Serversite</h4>
+            <h4 className="text-center heading-title mt-2" >AWL India Serversite</h4>
             <div className="control">
               <input type="text" id="username" placeholder="Username" ></input>
               <input type="password" id="password" placeholder="Password" ></input>
               {
                 error?<p>Please Enter Userid & Password ...</p>:null
-              }
+              } 
               <button className="btn btn-primary mt-2 psw-btn" value="Login" onClick={handlelogin}>Login</button>
             </div>
           </div>
