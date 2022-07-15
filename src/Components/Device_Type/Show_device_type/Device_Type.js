@@ -30,28 +30,11 @@ function Device_Type() {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                    <select onChange={e=>console.log(e.target.value)}>
-                       <option hidden >{row.status}</option>
-                        <option>Active</option>
-                        <option>Deactive</option>
-                    </select>
-
-
-
-                // <input type='checkbox' checked={row.status == 'Active'} value={row.status} onClick={async (e) => {
-                //     console.log(e.target.value)
-                //     if (row.status == 'Active') {
-                        // const checkvalue = 'Deactive'
-                        // await DeleteCustomer(row.sno, checkvalue)
-                        // window.location.href = 'TotalCustomer'
-
-                    // }
-                    // else {
-                    //     const checkvalue = 'Active'
-                        // await DeleteCustomer(row.sno, checkvalue)
-                        // window.location.href = 'TotalCustomer'
-                //     }
-                // }} />
+                <select onChange={e => console.log(e.target.value)}>
+                    <option hidden >{row.status}</option>
+                    <option>Active</option>
+                    <option>Deactive</option>
+                </select>
             ],
         },
         {
@@ -59,22 +42,21 @@ function Device_Type() {
             sortable: false,
             selector: "null",
             cell: (row) => [
-              <a title='Edit Device Type' href="#">
+                <a title='Edit Device Type' href="#">
 
-                <button className="editbtn " onClick={() => sessionStorage.setItem('devicetypeSno', `${row.sno}`)} >
-                {/* Edit */}
-                <img src={Editbtn} alt='Edit ' className='editbtnimg'/>
-                </button></a>
+                    <button className="editbtn " onClick={() => sessionStorage.setItem('devicetypeSno', `${row.sno}`)} >
+                        {/* Edit */}
+                        <img src={Editbtn} alt='Edit ' className='editbtnimg' />
+                    </button></a>
             ]
-          }
-      
+        }
+
     ];
 
 
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalDevicetype();
-            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();
@@ -84,16 +66,15 @@ function Device_Type() {
         columns,
         data
     };
+
+
     return (
         <>
-
             <Navbar />
             <div className='deviceid-container' >
                 <div className='deviceid-div' style={{ position: "relative" }}>
-                    <button className='btn btn-success m-0 add-btn' onClick={e=>{e.preventDefault();window.location.href='./AddDevice-type'}}>Add Device</button>
-                    <DataTableExtensions
-                        {...tableData}
-                    >
+                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevice-type' }}>Add Device</button>
+                    <DataTableExtensions {...tableData}> 
                         <DataTable
                             noHeader
                             defaultSortField="id"
@@ -102,58 +83,9 @@ function Device_Type() {
                             highlightOnHover
                         />
                     </DataTableExtensions>
-                    {/* <table className="table table-hover">
-                        <thead>
-                            <tr>
-
-                                <th scope="col">Device Id</th>
-                                <th scope="col">Device Name</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Action</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td><input type='checkbox' /></td>
-                                <th><button className='btn btn-success'>Edit</button></th>
-                            </tr>
-                            <tr>
-
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td><input type='checkbox' /></td>
-                                <th><button className='btn btn-success'>Edit</button></th>
-                            </tr>
-                            <tr>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
-                                <td><input type='checkbox' /></td>
-                                <th><button className='btn btn-success'>Edit</button></th>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <nav aria-label="Page navigation example" style={{ width: "100%", position: "absolute", bottom: "0" }} >
-                        <ul className="pagination justify-content-end">
-                            <li className="page-item disabled">
-                                <a className="page-link" href="#" tabIndex={-1}>Previous</a>
-                            </li>
-                            <li className="page-item"><a className="page-link" href="#">1</a></li>
-                            <li className="page-item"><a className="page-link" href="#">2</a></li>
-                            <li className="page-item"><a className="page-link" href="#">3</a></li>
-                            <li className="page-item">
-                                <a className="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav> */}
-
                 </div>
 
-              
+
             </div>
             {/* <Footer /> */}
         </>
