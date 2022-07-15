@@ -1,56 +1,56 @@
 import './form.css'
 
 function Form() {
-    return (
-        <>
-<div className="" style={{border:"2px solid red"}}>
+  return (
+    <>
+      <div className="" style={{ border: "2px solid red" }}>
 
-            <div className="col " style={{ margin: "75px auto", width: "630px",border:"2px solid red" }}>
-                <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
-                    <header className="card-header" style={{ background: "rgba(0,0,0,0.2)" }}>
-                        <h4 className="card-title mt-2" >Form</h4>
-                    </header>
-                    <article className="card-body" >
-                        <form style={{ margin: "0px 20px 0px 15px" }}>
-                            <br />
+        <div className="col " style={{ margin: "75px auto", width: "630px", border: "2px solid red" }}>
+          <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
+            <header className="card-header" style={{ background: "rgba(0,0,0,0.2)" }}>
+              <h4 className="card-title mt-2" >Form</h4>
+            </header>
+            <article className="card-body" >
+              <form style={{ margin: "0px 20px 0px 15px" }}>
+                <br />
 
-                            <div className="form-group">
-                                <label>Name </label>
-                                <input type="text" className="form-control" id='name' />
-                            </div> <br />
+                <div className="form-group">
+                  <label>Name </label>
+                  <input type="text" className="form-control" id='name' />
+                </div> <br />
 
-                            <div className="form-group " >
-                                <label>Date </label>
-                                <input type="date" className="form-control" id='date' />
-                            </div> <br />
-                            <div className="form-row">
-                                <div className="form-group " >
-                                    <label>Select</label>
-                                    <select className="form-control" id='onSite' style={{ height: "32px" }}>
-                                        <option defaultValue hidden>Choose ...</option>
-                                        <option>Yes</option>
-                                        <option>No</option>
-                                    </select>
-                                </div>
-                            </div> <br />
+                <div className="form-group " >
+                  <label>Date </label>
+                  <input type="date" className="form-control" id='date' />
+                </div> <br />
+                <div className="form-row">
+                  <div className="form-group " >
+                    <label>Select</label>
+                    <select className="form-control" id='onSite' style={{ height: "32px" }}>
+                      <option defaultValue hidden>Choose ...</option>
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                </div> <br />
 
-                            <div className="form-group">
-                                <label>Remarks</label>
-                                <textarea className="form-control" placeholder="Comments" type="text" id='remark' />
-                            </div>
-
-
-
-                            <div className="form-group" >
-                                <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn">Submit</button>
-                                <button type="submit" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                            </div>
-                        </form>
-                    </article>
+                <div className="form-group">
+                  <label>Remarks</label>
+                  <textarea className="form-control" placeholder="Comments" type="text" id='remark' />
                 </div>
-            </div>
-            </div>
-            {/* 
+
+
+
+                <div className="form-group" >
+                  <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn">Submit</button>
+                  <button type="submit" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
+                </div>
+              </form>
+            </article>
+          </div>
+        </div>
+      </div>
+      {/* 
 <main className="my-form">
   <div className="cotainer">
     <div className="justify-content-center main-div" >
@@ -114,8 +114,8 @@ function Form() {
 </main> */}
 
 
-        </>
-    )
+    </>
+  )
 }
 
 export default Form;

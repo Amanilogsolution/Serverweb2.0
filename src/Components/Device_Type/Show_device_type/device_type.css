@@ -1,0 +1,17 @@
+.deviceid-container{
+    height: 100%;
+    padding: 30px;
+}
+
+
+.add-btn{
+    float: right;
+}
+
+.deviceid-div{
+    width: 100%;
+    height: 100%;
+    /* border:2px solid red; */
+    margin:20px auto;
+    overflow: hidden;
+}
