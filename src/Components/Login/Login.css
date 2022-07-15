@@ -13,17 +13,17 @@
 }
 
 .formcontainer {
-   /* color: aliceblue; */
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-   /* background-color: rgba(0, 0, 0, 0.5); */
-   background: rgba(255,255, 255, 1); ;
+   background: rgba(255, 255, 255, 1);
+   ;
    width: 400px;
    padding: 50px 30px;
    border-radius: 10px;
    box-shadow: 5px 5px 25px #000;
+   box-sizing: "border-box"
 }
 
 #img {
@@ -33,12 +33,17 @@
    transform: translate(-50%);
 }
 
+
 .control input {
    width: 99%;
    margin: auto;
    height: 40px;
    padding: 5px;
    box-sizing: border-box;
+   margin-bottom: 30px;
+   background: transparent;
+   border: none;
+   border-bottom: 2px solid #000;
 }
 
 .psw-btn {
@@ -47,14 +52,14 @@
    transform: translate(-50%);
 }
 
-@media screen and (max-width:360px){
-   .formcontainer{
+@media screen and (max-width:360px) {
+   .formcontainer {
       width: 100%;
    }
 }
 
-@media screen and (max-width:250px){
-   .formcontainer{
+@media screen and (max-width:250px) {
+   .formcontainer {
       box-shadow: none;
    }
 }

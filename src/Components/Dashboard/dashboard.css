@@ -1,0 +1,17 @@
+.dashboard-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-div {
+    width: 18rem;
+}
+
+.card-title {
+    background-color: silver;
+    color: black;
+    border-radius: 6px;
+    padding: 0 6px;
+}

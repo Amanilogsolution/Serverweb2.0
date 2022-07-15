@@ -1,18 +1,19 @@
-import Logo from '../../img/awl2.png'
-// import Logo from '../Dashboard/logo.png'
+import Logo from '../../img/awl2.png';
+import React from 'react';
+import './navbar.css'
 function Navbar() {
+    const handlelogout=()=>{
+        sessionStorage.clear();
+        window.location.href='/'
+    }
     return (
         <>
             <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
                 <div className="container-fluid">
                     <img
-                        className="rounded-circle mx-4"
-                        src={Logo}
-                        width="60px"
-                        height="60px"
-
-                    />
-                    <a className="navbar-brand" href="/">
+                        className="nav-logo "
+                        src={Logo} />
+                    <a className="navbar-brand" href="/Dashboard">
                         AWL India
                     </a>
                     <button
@@ -23,13 +24,13 @@ function Navbar() {
                         aria-controls="navbarSupportedContent"
                         aria-expanded="false"
                         aria-label="Toggle navigation">
-                        
+
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="/">
+                                <a className="nav-link active" aria-current="page" href="/Dashboard">
                                     Home
                                 </a>
                             </li>
@@ -70,15 +71,13 @@ function Navbar() {
                                     </li>
                                 </ul>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link disabled">Disabled</a>
-                            </li>
+
                         </ul>
-                        <form className="d-flex" role="search">
-                            <button className="btn btn-outline-info btn-sm" type="submit">
-                                Log Out
-                            </button>
-                        </form>
+
+                        <button className="btn btn-outline-info " type="submit" onClick={handlelogout}>
+                            Log Out
+                        </button>
+
                     </div>
                 </div>
             </nav>
