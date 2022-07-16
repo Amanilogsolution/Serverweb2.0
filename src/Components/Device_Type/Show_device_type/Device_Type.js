@@ -42,7 +42,7 @@ function Device_Type() {
             sortable: false,
             selector: "null",
             cell: (row) => [
-                <a title='Edit Device Type' href="#">
+                <a title='Edit Device Type' href="/EditDeviceType">
 
                     <button className="editbtn " onClick={() => sessionStorage.setItem('devicetypeSno', `${row.sno}`)} >
                         {/* Edit */}
