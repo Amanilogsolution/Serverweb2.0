@@ -84,8 +84,6 @@ function Device_Type() {
                         />
                     </DataTableExtensions>
                 </div>
-
-
             </div>
             {/* <Footer /> */}
         </>

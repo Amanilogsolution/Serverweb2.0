@@ -15,13 +15,10 @@ export default function Login() {
       setError(true)
     }
     else{
-      console.log(username,password)
       const result = await UserLogin(username, password);
       if(!result){
-        // console.log("result",result)
       }
       else{
-        // console.log("result",result)
         sessionStorage.setItem('UserName',result.user_name)
         sessionStorage.setItem('UserId',result.user_id);
         window.location.href='./Dashboard'
@@ -45,7 +42,7 @@ export default function Login() {
               <input type="text" id="username" placeholder="Username" ></input>
               <input type="password" id="password" placeholder="Password" ></input>
               {
-                error?<p>Please Enter Userid & Password ...</p>:null
+                error?<p style={{color:"red"}}>Please Enter Userid & Password ...</p>:null
               } 
               <button className="btn btn-primary mt-2 psw-btn" value="Login" onClick={handlelogin}>Login</button>
             </div>

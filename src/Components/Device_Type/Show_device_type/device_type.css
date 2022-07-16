@@ -1,25 +1,25 @@
-.deviceid-container{
+.deviceid-container {
     height: 100%;
     padding: 30px;
 }
 
-
-.add-btn{
+.add-btn {
     float: right;
 }
 
-.deviceid-div{
+.deviceid-div {
     width: 90%;
     height: 90%;
-    /* border:2px solid red; */
-    margin:20px auto;
+    margin: 20px auto;
     overflow: hidden;
 }
-.editbtn{
+
+.editbtn {
     border: none;
     background: transparent;
 }
-.editbtnimg{
+
+.editbtnimg {
     height: 30px;
     width: 30px;
 }
