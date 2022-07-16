@@ -10,7 +10,6 @@ function EditDevicetype() {
 
     useEffect(() => {
         const fetchdata = async () => {
-
             const snodata = sessionStorage.getItem('devicetypeSno');
             setSno(snodata)
             console.log(snodata)
@@ -19,7 +18,7 @@ function EditDevicetype() {
         }
         fetchdata();
         console.log("test")
-    }, [])
+    },[])
     return (
         <>
             <Navbar />
