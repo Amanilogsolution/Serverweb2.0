@@ -28,6 +28,7 @@ function Navbar() {
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a className="dropdown-item nav-url2" href="/Device-Type">Device Type</a>
                                 <a className="dropdown-item nav-url2" href="#">Device Group</a>
+                                <a className="dropdown-item nav-url2" href="ShowDeviceservices">Device Services</a>
                             </div>
                         </li>
                     </ul>

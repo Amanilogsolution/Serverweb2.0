@@ -7,6 +7,9 @@ import Form from './Components/Form/Form';
 import Device_Type from './Components/Device_Type/Show_device_type/Device_Type';
 import AddDevicetype from './Components/Device_Type/AddDecivetype/AddDevicetype';
 import EditDevicetype from './Components/Device_Type/EditDevicetype/EditDevicetype';
+import ShowDeviceservices from './Components/Device_services/Show_deviceservices';
+import AddDeviceservices from './Components/Device_services/Add_deviceservices';
+import EditDeviceservices from './Components/Device_services/Edit_deviceservices';
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
              <Route path='/Device-type' component={ Device_Type}/>
              <Route path='/AddDevice-type' component={ AddDevicetype}/>
              <Route path='/EditDeviceType' component={ EditDevicetype}/>
+             <Route path='/ShowDeviceservices' component={ShowDeviceservices}/>
+             <Route path='/AddDeviceservices' component={AddDeviceservices}/>
+             <Route path='/EditDeviceservices' component={EditDeviceservices}/>
              <Route path='/form' component={ Form}/>
              <Route path='*' component={ Pagenotfound}/>
             </Switch>
