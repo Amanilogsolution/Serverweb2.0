@@ -16,7 +16,7 @@ export default function Login() {
       const result = await UserLogin(username, password);
       console.log(result.name)
       if(result){
-        sessionStorage.setItem('UserName',result.user_name);
+        sessionStorage.setItem('UserName',result.name);
         sessionStorage.setItem('UserId',result.user_id);
         sessionStorage.setItem('Token',result.token);
         window.location.href='./Dashboard'

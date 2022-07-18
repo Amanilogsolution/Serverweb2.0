@@ -7,7 +7,7 @@ export default function Dashboard() {
   return (
     <div>
       <Navbar />
-      <div className='row dashboard-div' >
+      {/* <div className='row dashboard-div' >
         <div className="card mx-4 my-4 bg-secondary text-light card-div" >
 
           <div className="card-body">
@@ -42,7 +42,7 @@ export default function Dashboard() {
             <a href="/" className="btn btn-info btn-sm">Go somewhere</a>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* <Footer /> */}
     </div>

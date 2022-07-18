@@ -1,36 +1,38 @@
-import './device_type.css'
-import Editbtn from '../../../img/edit.png'
+import Editbtn from '../../../../img/edit.png'
 import React, { useState, useEffect } from 'react';
-import Navbar from '../../Navbar/Navbar';
-import Footer from '../../Footer/Footer';
+import Navbar from '../../../Navbar/Navbar';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import { TotalDevicetype } from '../../../api'
+import { TotalOperatingSystem,OperatingSystemStatus } from '../../../../api'
 
-function Device_Type() {
+function Showoperatingsystem() {
     const [data, setData] = useState([])
     const columns = [
         {
             name: 'Device Id',
-            selector: 'id',
+            selector: row=>row.id,
             sortable: true,
         },
         {
-            name: 'Device Type',
-            selector: 'device_type',
+            name: 'Operating Syatem',
+            selector: row=>row.operating_system,
             sortable: true,
         },
         {
             name: 'Remark',
-            selector: 'remark',
+            selector: row=>row.remark,
             sortable: true,
         },
         {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select onChange={e => console.log(e.target.value)}>
+                <select onChange={async(e) =>{
+                    const status = e.target.value;
+                    await OperatingSystemStatus(status,row.sno)
+                    window.location.reload()
+                }}>
                     <option hidden >{row.status}</option>
                     <option>Active</option>
                     <option>Deactive</option>
@@ -40,11 +42,11 @@ function Device_Type() {
         {
             name: "Actions",
             sortable: false,
-            selector: "null",
+            selector: row=>row.null,
             cell: (row) => [
-                <a title='Edit Device Type' href="/EditDeviceType">
+                <a title='Edit Device Type' href="/editoperatingsystem">
 
-                    <button className="editbtn " onClick={() => sessionStorage.setItem('devicetypeSno', `${row.sno}`)} >
+                    <button className="editbtn " onClick={() => sessionStorage.setItem('OperatingSystemSno', `${row.sno}`)} >
                         {/* Edit */}
                         <img src={Editbtn} alt='Edit ' className='editbtnimg' />
                     </button></a>
@@ -56,7 +58,8 @@ function Device_Type() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalDevicetype();
+            const tabledata = await TotalOperatingSystem();
+            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();
@@ -73,7 +76,8 @@ function Device_Type() {
             <Navbar />
             <div className='deviceid-container' >
                 <div className='deviceid-div' style={{ position: "relative" }}>
-                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevice-type' }}>Add Device</button>
+                <h3 className="text-left ml-5">Total Operating System</h3>
+                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './addoperatingsystem' }}>Add Operating Sysytem</button>
                     <DataTableExtensions {...tableData}> 
                         <DataTable
                             noHeader
@@ -89,4 +93,4 @@ function Device_Type() {
         </>
     )
 }
-export default Device_Type;
+export default Showoperatingsystem;
