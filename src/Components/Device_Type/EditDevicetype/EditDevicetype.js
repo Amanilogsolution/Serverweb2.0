@@ -45,7 +45,8 @@ function EditDevicetype() {
                                     </div>
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn">Submit</button>
-                                        <button type="submit" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
+                                        <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
+                                        <button type="button" onClick={()=>{window.location.href='/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                     </div>
                                 </form>
                             </article>
