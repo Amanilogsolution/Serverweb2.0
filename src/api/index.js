@@ -19,7 +19,7 @@ export const AddDevicetypeapi = async (devicetypeid,device_type,remark,username)
 
 
 export const Getdevicetype= async(sno)=>{
-    console.log(sno)
+    // console.log(sno)
     const url=`http://192.168.146.136:8003/api/getdevicetype`
     return axios.post(url,{sno}).then(response=>response.data).catch(error=>console.log(error));
 }

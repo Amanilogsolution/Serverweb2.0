@@ -6,7 +6,7 @@ import Footer from '../../Footer/Footer';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import { TotalDevicetype } from '../../../api'
+import { TotalDevicetype, Statusdevicetype } from '../../../api'
 
 function Device_Type() {
     const [data, setData] = useState([])
@@ -30,7 +30,11 @@ function Device_Type() {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select onChange={e =>{e.preventDefault();}}>
+                <select onChange={async (e) => {
+                    e.preventDefault();
+                    await Statusdevicetype(e.target.value, row.sno);
+                    window.location.reload();
+                }}>
                     <option hidden >{row.status}</option>
                     <option>Active</option>
                     <option>Deactive</option>
@@ -74,7 +78,7 @@ function Device_Type() {
             <div className='deviceid-container' >
                 <div className='deviceid-div' style={{ position: "relative" }}>
                     <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevice-type' }}>Add Device</button>
-                    <DataTableExtensions {...tableData}> 
+                    <DataTableExtensions {...tableData}>
                         <DataTable
                             noHeader
                             defaultSortField="id"
