@@ -29,6 +29,8 @@ function Navbar() {
                                 <a className="dropdown-item nav-url2" href="/Device-Type">Device Type</a>
                                 <a className="dropdown-item nav-url2" href="#">Device Group</a>
                                 <a className="dropdown-item nav-url2" href="ShowDeviceservices">Device Services</a>
+                                <a className="dropdown-item nav-url2" href="./ShowDevicetask">Device Task </a>
+                                <a className="dropdown-item nav-url2" href="./ShowAgent">Agent master </a>
                             </div>
                         </li>
                     </ul>
