@@ -1,5 +1,5 @@
-import Navbar from '../Navbar/Navbar';
-import {Adddeviceservice} from '../../api'
+import Navbar from '../../Navbar/Navbar';
+import {Adddeviceservice} from '../../../api'
 import React from 'react';
 
 function AddDeviceservices() {

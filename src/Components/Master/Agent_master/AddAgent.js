@@ -1,6 +1,6 @@
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../../Navbar/Navbar';
 import React from 'react';
-import {Addagent} from '../../api'
+import {Addagent} from '../../../api'
 
 function AddAgent() {
 

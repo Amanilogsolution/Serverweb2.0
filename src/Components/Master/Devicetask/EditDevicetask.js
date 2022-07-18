@@ -1,6 +1,6 @@
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../../Navbar/Navbar';
 import React, { useEffect, useState } from 'react';
-import {Getdevicetask,Updatedevicetask} from '../../api'
+import {Getdevicetask,Updatedevicetask} from '../../../api'
 
 function EditDevicetask() {
     const [data, setData] = useState({});
@@ -44,7 +44,9 @@ function EditDevicetask() {
         const updataresult = await Updatedevicetask(sno,devicetypeid,device_task,devicetaskfreq,remark,username);
         if (updataresult === 'Updated') {
             alert("Data updated")
+            sessionStorage.removeItem('devicetaskSno'); 
             window.location.href = './ShowDevicetask';
+            
         }
         else{
             alert("Server not response ...")

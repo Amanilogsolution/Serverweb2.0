@@ -1,27 +1,32 @@
-import Editbtn from '../../img/edit.png'
+import Editbtn from '../../../img/edit.png'
 import React, { useState, useEffect } from 'react';
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../../Navbar/Navbar';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import {Totaldevicetask,Updatestatus} from '../../api'
+import {Totalagent,Updateagentstatus} from '../../../api'
 
-function ShowDevicetask() {
+function ShowAgent() {
     const [data, setData] = useState([])
     const columns = [
         {
-            name: 'Device id',
+            name: 'Id',
             selector: 'id',
             sortable: true,
         },
         {
-            name: 'Device Task',
-            selector: 'device_tasks',
+            name: 'Agent Name',
+            selector: 'agent_name',
             sortable: true,
         },
         {
-            name: 'Device Task Frequency',
-            selector: 'device_tasks_frequency',
+            name: 'Agent Email',
+            selector: 'agent_email',
+            sortable: true,
+        },
+        {
+            name: 'Agent Phone',
+            selector: 'agent_phone',
             sortable: true,
         },
        
@@ -36,7 +41,7 @@ function ShowDevicetask() {
             cell: (row) => [
                 <select onChange={async (e) => {
                     e.preventDefault();
-                    await Updatestatus(e.target.value, row.sno);
+                    await Updateagentstatus(e.target.value, row.sno);
                     window.location.reload();
                 }}>
                     <option hidden >{row.status}</option>
@@ -50,9 +55,9 @@ function ShowDevicetask() {
             sortable: false,
             selector: "null",
             cell: (row) => [
-                <a title='Edit Device Task' href="/EditDevicetask">
+                <a title='Edit Agent master' href="/EditAgent">
 
-                    <button className="editbtn " onClick={() => sessionStorage.setItem('devicetaskSno', `${row.sno}`)} >
+                    <button className="editbtn " onClick={() => sessionStorage.setItem('agentSno', `${row.sno}`)} >
                         {/* Edit */}
                         <img src={Editbtn} alt='Edit ' className='editbtnimg' />
                     </button></a>
@@ -64,8 +69,8 @@ function ShowDevicetask() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await Totaldevicetask();
-            console.log(tabledata)
+            const tabledata = await Totalagent();
+            // console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();
@@ -82,7 +87,7 @@ function ShowDevicetask() {
             <Navbar />
             <div className='deviceid-container' >
                 <div className='deviceid-div' style={{ position: "relative" }}>
-                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevicetask' }}>Add Device Task </button>
+                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddAgent' }}>Add Agent </button>
                     <DataTableExtensions {...tableData}>
                         <DataTable
                             noHeader
@@ -97,4 +102,4 @@ function ShowDevicetask() {
         </>
     )
 }
-export default ShowDevicetask;
+export default ShowAgent;

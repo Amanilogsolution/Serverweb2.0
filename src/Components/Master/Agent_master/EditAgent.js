@@ -1,6 +1,6 @@
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../../Navbar/Navbar';
 import React, { useEffect, useState } from 'react';
-import {Getagent,updateagent} from '../../api'
+import {Getagent,updateagent} from '../../../api'
 
 function EditAgent() {
     const [data, setData] = useState({});

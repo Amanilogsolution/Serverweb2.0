@@ -1,27 +1,24 @@
-import './add_devicetype.css';
-import Navbar from '../../Navbar/Navbar';
-import Footer from '../../Footer/Footer';
-import { AddDevicetypeapi } from '../../../api'
-import React from 'react';
 
-function AddDevicetype() {
+import Navbar from '../../../Navbar/Navbar';
+import {Adddevicegroup} from '../../../../api'
 
-    const handleadddevice = async (e) => {
+function AddDevicegroup() {
+
+    const handleadddevice=async(e)=>{
         e.preventDefault();
-        const deviceid = document.getElementById('deviceid').value;
-        const devicetype = document.getElementById('devicetype').value;
-        const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const deviceid= document.getElementById('deviceid').value;
+        const devicegroup= document.getElementById('devicegroup').value;
+        const remark= document.getElementById('remark').value;
+        const username=sessionStorage.getItem('UserName');
+      
 
-
-        const result = await AddDevicetypeapi(deviceid, devicetype, remark, username);
-        if (result === 'Added') {
-            window.location.href = './Device-type'
+        const result= await Adddevicegroup(deviceid,devicegroup,remark,username);
+        if(result){
+            alert('Added')
+            window.location.href='Showdevicegroup'
         }
-        else {
-            alert("Server Error");
-        }
-
+        console.log(result);
+        
     }
     return (
         <>
@@ -40,8 +37,8 @@ function AddDevicetype() {
                                         <input type="text" className="form-control" id='deviceid' />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Device Type </label>
-                                        <input type="text" className="form-control" id='devicetype' />
+                                        <label>Device Group </label>
+                                        <input type="text" className="form-control" id='devicegroup' />
                                     </div>
                                     <div className="form-group">
                                         <label>Remarks</label>
@@ -50,7 +47,7 @@ function AddDevicetype() {
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                         <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                        <button type="button" onClick={() => { window.location.href = '/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={()=>{window.location.href='/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>
                                 </form>
@@ -64,4 +61,4 @@ function AddDevicetype() {
     )
 }
 
-export default AddDevicetype;
+export default AddDevicegroup;

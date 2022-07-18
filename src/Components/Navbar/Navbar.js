@@ -27,12 +27,23 @@ function Navbar() {
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a className="dropdown-item nav-url2" href="/Device-Type">Device Type</a>
-                                <a className="dropdown-item nav-url2" href="#">Device Group</a>
                                 <a className="dropdown-item nav-url2" href="ShowDeviceservices">Device Services</a>
                                 <a className="dropdown-item nav-url2" href="./ShowDevicetask">Device Task </a>
                                 <a className="dropdown-item nav-url2" href="./ShowAgent">Agent master </a>
+                                <a className="dropdown-item nav-url2" href="/Showdevicegroup">Device Group</a>
+                                <a className="dropdown-item nav-url2" href="/showoperatingsystem">Operating System</a>
+                                <a className="dropdown-item nav-url2" href="/showservicecompliance">Service Compliance</a>
                             </div>
                         </li>
+
+                        <li className="nav-item active">
+                            <a className="nav-link nav-url" href="/AddDevice">Add Device</a>
+                        </li>
+
+                        <li className="nav-item active">
+                            <a className="nav-link nav-url" href="/Dashboard">Device Task & Comp </a>
+                        </li>
+
                     </ul>
                     <button className="btn btn-outline-info logout-btn" type="submit" onClick={handlelogout}>
                         Log Out
