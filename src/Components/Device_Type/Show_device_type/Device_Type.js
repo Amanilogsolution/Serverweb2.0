@@ -30,7 +30,7 @@ function Device_Type() {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select onChange={e => console.log(e.target.value)}>
+                <select onChange={e =>{e.preventDefault();}}>
                     <option hidden >{row.status}</option>
                     <option>Active</option>
                     <option>Deactive</option>

@@ -24,3 +24,9 @@ export const Getdevicetype= async(sno)=>{
     return axios.post(url,{sno}).then(response=>response.data).catch(error=>console.log(error));
 }
 
+
+export const Statusdevicetype= async(status,sno)=>{
+    // console.log(status,sno)
+    const url=`http://192.168.146.136:8003/api/updatetypestatus`
+    return axios.post(url,{status,sno}).then(response=>response.data).catch(error=>console.log(error));
+}
