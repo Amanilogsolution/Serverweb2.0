@@ -6,22 +6,24 @@ import { UserLogin } from '../../api'
 export default function Login() {
   const [error,setError] =useState(false);
 
-
   const handlelogin = async () => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-
     if(!username|| !password){
       setError(true)
     }
     else{
       const result = await UserLogin(username, password);
-      if(!result){
+      console.log(result.name)
+      if(result){
+        sessionStorage.setItem('UserName',result.user_name);
+        sessionStorage.setItem('UserId',result.user_id);
+        sessionStorage.setItem('Token',result.token);
+        window.location.href='./Dashboard'
       }
       else{
-        sessionStorage.setItem('UserName',result.user_name)
-        sessionStorage.setItem('UserId',result.user_id);
-        window.location.href='./Dashboard'
+        alert('Invalid Username and password')
+  
       }
       
     }
