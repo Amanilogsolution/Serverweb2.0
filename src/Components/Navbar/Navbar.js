@@ -11,7 +11,7 @@ function Navbar() {
 
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <img className="nav-logo " src={Logo} />
-                <a className="navbar-brand" href="/Dashboard">IPERISCOPE </a>
+                <a className="navbar-brand org-title" href="/Dashboard">IPERISCOPE </a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon" />
                 </button>
@@ -45,7 +45,7 @@ function Navbar() {
                         </li>
 
                     </ul>
-                    <button className="btn btn-outline-info logout-btn" type="submit" onClick={handlelogout}>
+                    <button className="btn btn-outline-info logout-btn mr-5" type="submit" onClick={handlelogout}>
                         Log Out
                     </button>
                 </div>

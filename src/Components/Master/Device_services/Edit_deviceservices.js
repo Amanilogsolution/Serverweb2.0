@@ -42,6 +42,7 @@ function EditDevicetype() {
             const updataresult = await Updatedeviceservice(sno,deviceserviceid,device_service,remark,username);
             if (updataresult === 'Updated') {
                 alert("Data updated")
+                sessionStorage.removeItem('deviceservicesSno');
                 window.location.href = './ShowDeviceservices';
             }
             else{
