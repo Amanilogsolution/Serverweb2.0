@@ -36,7 +36,8 @@ import EditServiceCompliance from './Components/Master/ServiceCompliance/EditSer
 
 import AddDevice from './Components/Device/AddDevice'
 import AddDeviceTaskComp from './Components/DeviceTaskComp/Devicetask&comp'
-import UpdateDeviceTaskComp from './Components/DeviceTaskComp/Devicetask&comp'
+import UpdateDeviceTaskComp from './Components/DeviceTaskComp/UpdateDevicetask&comp'
+import EditDeviceTaskComp from './Components/DeviceTaskComp/EditDevicetask&comp'
 
 import Totalseries from './Components/Master/Seies/Totalseries'
 import Addseries from './Components/Master/Seies/Addseries'

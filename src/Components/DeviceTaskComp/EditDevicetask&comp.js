@@ -1,9 +1,15 @@
 import Navbar from '../Navbar/Navbar';
 import React, { useEffect,useState } from 'react';
-// import {Adddevicetask} from '../../../api'
-import {ActiveDeviceService,ActiveServiceCompliance,Activedevicetask,Activedevice,Adddevicetaskcompliance} from '../../api/index'
+import {getdevicetaskcomp} from '../../api'
+import {ActiveDeviceService,ActiveServiceCompliance,Activedevicetask,Activedevice,Updatedevicetaskcomp} from '../../api/index'
 
-function AddDeviceTaskComp() {
+function EditDeviceTaskComp() {
+// const [device,setDevice]=useState([]);
+// const [services,setServices]= useState([]);
+// const [compliances,setCompliances]= useState([]);
+// const [task,setTask]= useState([]);
+
+const [data,setData] =useState({});
 
 const [activeservice,setActiveService] = useState([])
 const[activecompliance,setActiveCompliance] = useState([]);
@@ -12,6 +18,10 @@ const[activedevicename,setActiveDeviceName] = useState([]);
 
 useEffect(()=>{
     const fetch = async () => {
+         const getdata= await getdevicetaskcomp(sessionStorage.getItem('devicetaskcompSno'))
+        console.log(getdata)
+        setData(getdata);
+
         const devicename = await Activedevice()
         setActiveDeviceName(devicename)
         console.log(devicename)
@@ -28,6 +38,9 @@ useEffect(()=>{
 },[])
 
 
+const handlechangeremark =(e)=>{
+    setData({...data,remark: e.target.value})
+}
 
     const handleadddevice = async (e) => {
         e.preventDefault();
@@ -37,15 +50,25 @@ useEffect(()=>{
         const task = document.getElementById('task').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
+        const sno = sessionStorage.getItem('devicetaskcompSno')
 
-        console.log(devicename,services,compliances,task ,remark,username)
-        const result = await Adddevicetaskcompliance(devicename,services,compliances,task,remark,username);
-        if (result === 'Added') {
-            window.location.href = './Dashboard'
+ 
+
+        console.log(devicename,services,compliances,task,remark,username)
+
+        // 
+        // console.log(deviceid,devicetask,devicetaskfreq,remark,username)
+        const result = await Updatedevicetaskcomp(sno,devicename,services,compliances,task,remark,username);
+        console.log(result)
+        if (result === 'Updated') {
+            alert("Data Updated");
+            sessionStorage.removeItem('devicetaskcompSno');
+            window.location.href = './UpdateDeviceTask&Compliances'
         }
         else {
             alert("Server Error");
         }
+
     }
 
   
@@ -57,7 +80,7 @@ useEffect(()=>{
                     <div className="col " style={{ margin: "0px auto", width: "630px" }}>
                         <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
                             <header className="card-header" >
-                                <h4 className=" mt-2 text-center" >Add Device Task & Compliances</h4>
+                                <h4 className=" mt-2 text-center" >Edit Device Task & Compliances</h4>
                             </header>
                             <article className="card-body" >
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
@@ -67,7 +90,7 @@ useEffect(()=>{
                                             id="devicename"
                                             className="form-control col-md-12"
                                         >
-                                            <option selected hidden value="India">Choose Device Name</option>
+                                            <option selected hidden >{data.device_name}</option>
                                             {
                                                 activedevicename.map((data, index) => (
                                                     <option key={index} value={data.device_name}>{data.device_name}</option>
@@ -81,7 +104,7 @@ useEffect(()=>{
                                             id="services"
                                             className="form-control col-md-12"
                                         >
-                                            <option selected hidden value="India">Choose Service</option>
+                                            <option selected hidden>{data.services}</option>
                                             {
                                                 activeservice.map((data, index) => (
                                                     <option key={index} value={data.device_services}>{data.device_services}</option>
@@ -95,7 +118,7 @@ useEffect(()=>{
                                             id="compliances"
                                             className="form-control col-md-12"
                                         >
-                                            <option selected hidden value="India">Choose Compliance</option>
+                                            <option selected hidden >{data.add_compliance}</option>
                                             {
                                                 activecompliance.map((data, index) => (
                                                     <option key={index} value={data.services_compliance}>{data.services_compliance}</option>
@@ -109,7 +132,7 @@ useEffect(()=>{
                                             id="task"
                                             className="form-control col-md-12"
                                         >
-                                            <option selected hidden value="India">Choose Task</option>
+                                            <option selected hidden >{data.add_tasks}</option>
                                             {
                                                 activedevicetask.map((data, index) => (
                                                     <option key={index} value={data.device_tasks}>{data.device_tasks}</option>
@@ -119,12 +142,12 @@ useEffect(()=>{
                                     </div>
                                     <div className="form-group">
                                         <label>Remarks</label>
-                                        <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
+                                        <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" value={data.remark} onChange={handlechangeremark}/>
                                     </div>
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                         <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                        <button type="button" onClick={() => { window.location.href = '/Dashboard' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={() => {sessionStorage.removeItem('devicetaskcompSno'); window.location.href = '/Dashboard' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>
                                 </form>
@@ -137,4 +160,4 @@ useEffect(()=>{
     )
 }
 
-export default AddDeviceTaskComp;
+export default EditDeviceTaskComp;
