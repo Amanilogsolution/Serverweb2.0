@@ -1,12 +1,35 @@
 import Navbar from '../Navbar/Navbar';
 import React, { useEffect,useState } from 'react';
 // import {Adddevicetask} from '../../../api'
+import {ActiveDeviceService,ActiveServiceCompliance,Activedevicetask,Activedevice} from '../../api/index'
 
 function AddDeviceTaskComp() {
 const [device,setDevice]=useState([]);
 const [services,setServices]= useState([]);
 const [compliances,setCompliances]= useState([]);
 const [task,setTask]= useState([]);
+
+const [activeservice,setActiveService] = useState([])
+const[activecompliance,setActiveCompliance] = useState([]);
+const [activedevicetask,setActiveDeviceTask] = useState([]);
+const[activedevicename,setActiveDeviceName] = useState([]);
+
+useEffect(()=>{
+    const fetch = async () => {
+        const devicename = await Activedevice()
+        setActiveDeviceName(devicename)
+        console.log(devicename)
+        const result = await ActiveDeviceService()
+        setActiveService(result)
+        const compliance = await ActiveServiceCompliance()
+        setActiveCompliance(compliance)
+        const devicetask = await Activedevicetask()
+        setActiveDeviceTask(devicetask)
+
+    }
+    fetch()
+
+},[])
 
 
 
@@ -50,42 +73,58 @@ const [task,setTask]= useState([]);
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label>Device Name </label>
-                                        <select  className="form-control" id='devicename'>
-                                            <option>Daily</option>
-                                            <option>Weekly</option>
-                                            <option>Monthly</option>
-                                            <option>Quaterly</option>
-                                            <option>Year</option>
+                                        <select
+                                            id="devicegroup"
+                                            className="form-control col-md-12"
+                                        >
+                                            <option selected hidden value="India">Choose Device Name</option>
+                                            {
+                                                activedevicename.map((data, index) => (
+                                                    <option key={index} value={data.device_name}>{data.device_name}</option>
+                                                ))
+                                            }
                                         </select>
                                     </div>
                                     <div className="form-group " >
                                         <label>Select Services </label>
-                                        <select  className="form-control" id='services'>
-                                            <option>Daily</option>
-                                            <option>Weekly</option>
-                                            <option>Monthly</option>
-                                            <option>Quaterly</option>
-                                            <option>Year</option>
+                                        <select
+                                            id="devicegroup"
+                                            className="form-control col-md-12"
+                                        >
+                                            <option selected hidden value="India">Choose Service</option>
+                                            {
+                                                activeservice.map((data, index) => (
+                                                    <option key={index} value={data.device_services}>{data.device_services}</option>
+                                                ))
+                                            }
                                         </select>
                                     </div>
                                     <div className="form-group " >
                                         <label> Compliance </label>
-                                        <select  className="form-control" id='compliances'>
-                                            <option>Daily</option>
-                                            <option>Weekly</option>
-                                            <option>Monthly</option>
-                                            <option>Quaterly</option>
-                                            <option>Year</option>
+                                        <select
+                                            id="devicegroup"
+                                            className="form-control col-md-12"
+                                        >
+                                            <option selected hidden value="India">Choose Compliance</option>
+                                            {
+                                                activecompliance.map((data, index) => (
+                                                    <option key={index} value={data.services_compliance}>{data.services_compliance}</option>
+                                                ))
+                                            }
                                         </select>
                                     </div>
                                     <div className="form-group " >
                                         <label> Task </label>
-                                        <select  className="form-control" id='task'>
-                                            <option>Daily</option>
-                                            <option>Weekly</option>
-                                            <option>Monthly</option>
-                                            <option>Quaterly</option>
-                                            <option>Year</option>
+                                        <select
+                                            id="devicegroup"
+                                            className="form-control col-md-12"
+                                        >
+                                            <option selected hidden value="India">Choose Task</option>
+                                            {
+                                                activedevicetask.map((data, index) => (
+                                                    <option key={index} value={data.device_tasks}>{data.device_tasks}</option>
+                                                ))
+                                            }
                                         </select>
                                     </div>
                                     <div className="form-group">

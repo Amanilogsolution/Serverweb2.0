@@ -125,6 +125,13 @@ export const ServiceComplianceStatus = async (status,sno) => {
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
+export const ActiveServiceCompliance = async () => {
+    const url = `http://192.168.146.136:8003/api/activeservicecompliance`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
+
+
+
 export const Statusdevicetype= async(status,sno)=>{
     // console.log(status,sno)
     const url=`http://192.168.146.136:8003/api/updatetypestatus`
@@ -219,6 +226,11 @@ export const Updatedevicetask= async(sno,devicetaskid,device_tasks,device_tasks_
     return axios.post(url,{sno,devicetaskid,device_tasks,device_tasks_frequency,remark,username}).then(response=>response.data).catch(error=>console.log(error));
 }
 
+export const Activedevicetask= async()=>{
+    const url=`http://192.168.146.136:8003/api/activedevicetask`
+    return axios.get(url).then(response=>response.data).catch(error=>console.log(error));
+}
+
 export const Adddevicetask= async(devicetaskid,device_tasks,device_tasks_frequency,remark,username)=>{
     const url=`http://192.168.146.136:8003/api/adddevicetask`
     return axios.post(url,{devicetaskid,device_tasks,device_tasks_frequency,remark,username}).then(response=>response.data).catch(error=>console.log(error));
@@ -256,6 +268,10 @@ export const Adddevice= async(device_id,device_name,device_type,device_group,dev
     console.log(device_id,device_name,device_type,device_group,device_ip_address,device_host_master,device_os,services,device_creation_date,device_reg_date,agent,remark,username)
     const url=`http://192.168.146.136:8003/api/adddevice`
     return axios.post(url,{device_id,device_name,device_type,device_group,device_ip_address,device_host_master,device_os,services,device_creation_date,device_reg_date,agent,remark,username}).then(response=>response.data).catch(error=>console.log(error));
+}
+export const Activedevice = async () => {
+    const url = `http://192.168.146.136:8003/api/activedevice`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveSeries = async () => {
