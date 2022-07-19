@@ -41,8 +41,16 @@ function Navbar() {
                             <a className="nav-link nav-url" href="/AddDevice">Add Device</a>
                         </li>
 
-                        <li className="nav-item active">
-                            <a className="nav-link nav-url" href="/DeviceTask&Compliances">Device Task & Comp </a>
+                        <li className="nav-item dropdown active">
+                            {/* <a className="nav-link nav-url" href="/DeviceTask&Compliances">Device Task & Comp </a> */}
+                            <a className="nav-link dropdown-toggle nav-url" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Device Task & Comp 
+                            </a>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a className="dropdown-item nav-url2" href="/DeviceTask&Compliances">Device Task & Comp </a>
+                                <a className="dropdown-item nav-url2" href="/UpdateDeviceTask&Compliances">Action</a>
+ 
+                            </div>
                         </li>
 
                     </ul>
