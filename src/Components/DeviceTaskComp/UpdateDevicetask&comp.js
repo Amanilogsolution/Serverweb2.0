@@ -51,7 +51,7 @@ function UpdateDevicetaskcomp() {
             sortable: false,
             selector: "null",
             cell: (row) => [
-                <a title='Edit Agent master' href="/EditAgent">
+                <a title='Edit Agent master' href="/EditDeviceTask&Compliances">
 
                     <button className="editbtn " onClick={() => sessionStorage.setItem('devicetaskcompSno', `${row.sno}`)} >
                         {/* Edit */}
