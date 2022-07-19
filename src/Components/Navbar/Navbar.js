@@ -1,7 +1,14 @@
 import Logo from '../../img/awl2.png';
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import './navbar.css'
 function Navbar() {
+    const [masterToogle,setMasterToogle] = useState(false)
+    useEffect(() => {
+            if(sessionStorage.getItem('Permission')==='allow'){
+                setMasterToogle(true)
+            }
+    },[])
+
     const handlelogout = () => {
         sessionStorage.clear();
         window.location.href = '/'
@@ -20,7 +27,7 @@ function Navbar() {
                         <li className="nav-item active">
                             <a className="nav-link nav-url" href="/Dashboard">Home </a>
                         </li>
-                    
+                    {masterToogle?
                         <li className="nav-item dropdown active">
                             <a className="nav-link dropdown-toggle nav-url" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Master
@@ -35,14 +42,14 @@ function Navbar() {
                                 <a className="dropdown-item nav-url2" href="/showservicecompliance">Service Compliance</a>
                                 <a className="dropdown-item nav-url2" href="/Totalseries">Series</a>
                             </div>
-                        </li>
+                        </li>:null
+}
 
                         <li className="nav-item active">
                             <a className="nav-link nav-url" href="/AddDevice">Add Device</a>
                         </li>
 
                         <li className="nav-item dropdown active">
-                            {/* <a className="nav-link nav-url" href="/DeviceTask&Compliances">Device Task & Comp </a> */}
                             <a className="nav-link dropdown-toggle nav-url" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Device Task & Comp 
                             </a>
