@@ -1,11 +1,28 @@
 import Navbar from '../../../Navbar/Navbar';
-import {AddOperatingsystem} from '../../../../api'
+import {AddOperatingsystem,ActiveSeries,TotalCount} from '../../../../api'
+import React,{useEffect,useState} from 'react'
 
 function AddOperatingSystem() {
+    const [operatingsystemid,setOperatingSystemID] = useState()
+
+    useEffect (async()=>{
+        const series = await ActiveSeries()
+        if(!series){
+            alert('Active Series')
+        }
+        console.log(series)
+        const ser = series.os_id
+        console.log(ser)
+        const count = await TotalCount('tbl_operating_system')
+        let countincrement = count.count+1;
+        let countnum = ''+countincrement;
+        console.log(countnum)
+        setOperatingSystemID(ser+countnum)
+
+    })
 
     const handleadddevice=async(e)=>{
         e.preventDefault();
-        const operatingsystemid= document.getElementById('operatingsystemid').value;
         const operatingsystem= document.getElementById('operatingsystem').value;
         const remark= document.getElementById('remark').value;
         const username=sessionStorage.getItem('UserName');
@@ -30,7 +47,7 @@ function AddOperatingSystem() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label>Operating System ID </label>
-                                        <input type="text" className="form-control" id='operatingsystemid' />
+                                        <input type="text" className="form-control" disabled value={operatingsystemid} />
                                     </div>
                                     <div className="form-group " >
                                         <label>Operating System </label>

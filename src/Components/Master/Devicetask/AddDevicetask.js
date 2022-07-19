@@ -1,22 +1,34 @@
 import Navbar from '../../Navbar/Navbar';
-import React from 'react';
-import {Adddevicetask} from '../../../api'
+import {Adddevicetask,ActiveSeries,TotalCount} from '../../../api';
+import React,{useEffect,useState} from 'react'
+
 
 function AddDevicetask() {
+    const [devicetaskid,setDeviceTaskId] = useState()
+
+    useEffect (async()=>{
+        const series = await ActiveSeries()
+        console.log(series)
+        if(!series){
+            alert('Active Series')
+        }
+        const ser = series.task_id
+        console.log(ser)
+        const count = await TotalCount('tbl_device_tasks')
+        let countincrement = count.count+1;
+        let countnum = ''+countincrement
+        setDeviceTaskId(ser+countnum)
+
+    })
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        const deviceid = document.getElementById('deviceid').value;
         const devicetask = document.getElementById('devicetask').value;
         const devicetaskfreq = document.getElementById('devicetaskfreq').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
- 
-
-        // console.log(deviceid,devicetask,devicetaskfreq,remark,username)
-        // console.log(deviceid,devicetask,devicetaskfreq,remark,username)
-        const result = await Adddevicetask(deviceid,devicetask,devicetaskfreq,remark,username);
+        const result = await Adddevicetask(devicetaskid,devicetask,devicetaskfreq,remark,username);
         if (result === 'Added') {
             window.location.href = './ShowDevicetask'
         }
@@ -39,7 +51,7 @@ function AddDevicetask() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label>Device ID </label>
-                                        <input type="text" className="form-control" id='deviceid' />
+                                        <input type="text" className="form-control" disabled value={devicetaskid} />
                                     </div>
                                     <div className="form-group " >
                                         <label>Device Task </label>

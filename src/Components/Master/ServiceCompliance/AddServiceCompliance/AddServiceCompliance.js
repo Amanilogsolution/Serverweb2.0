@@ -1,28 +1,41 @@
 import Navbar from '../../../Navbar/Navbar';
-import {Addservicecompliance,ActiveDeviceService} from '../../../../api'
+import {Addservicecompliance,ActiveDeviceService,ActiveSeries,TotalCount} from '../../../../api'
 import React,{useEffect,useState} from 'react'
 
 function AddServiceCompliance() {
     const [deviceservice,setDeviceService] = useState([])
+    const [complianceid,setComplianceID] = useState()
 
     useEffect(()=>{
         const fetchdata = async() =>{
             const result = await ActiveDeviceService()
             setDeviceService(result)
             console.log(result)
+
+            const series = await ActiveSeries()
+            if(!series){
+                alert('Active Series')
+            }
+            console.log(series)
+            const ser = series.agent_id
+            console.log(ser)
+            const count = await TotalCount('tbl_agent_master')
+            let countincrement = count.count+1;
+            let countnum = ''+countincrement;
+            console.log(countnum)
+            setComplianceID(ser+countnum)
         } 
         fetchdata();
     },[])
 
     const handleadddevice=async(e)=>{
         e.preventDefault();
-        const servicecomplianceid= document.getElementById('servicecomplianceid').value;
         const DeviceService = document.getElementById('DeviceService').value
         const ServiceCompliance= document.getElementById('servicecompliance').value;
         const remark= document.getElementById('remark').value;
         const username=sessionStorage.getItem('UserName');
       
-        const result= await Addservicecompliance(servicecomplianceid,DeviceService,ServiceCompliance,remark,username);
+        const result= await Addservicecompliance(complianceid,DeviceService,ServiceCompliance,remark,username);
         if (result){
             alert("Added")
             window.location.href='/showservicecompliance'
@@ -42,7 +55,7 @@ function AddServiceCompliance() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label>Service Compliance ID </label>
-                                        <input type="text" className="form-control" id='servicecomplianceid' />
+                                        <input type="text" className="form-control" disabled value={complianceid}/>
                                     </div>
                                     <div className="form-group " >
                                         <label>Device Service</label>

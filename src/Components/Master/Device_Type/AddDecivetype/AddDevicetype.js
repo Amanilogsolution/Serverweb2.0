@@ -1,12 +1,27 @@
 import './add_devicetype.css';
 import Navbar from '../../../Navbar/Navbar';
-import {AddDevicetypeapi} from '../../../../api'
+import {AddDevicetypeapi,ActiveSeries,TotalCount} from '../../../../api'
+import React,{useEffect,useState} from 'react'
 
 function AddDevicetype() {
+    const [deviceid,setDeviceId] = useState()
+
+    useEffect (async()=>{
+        const series = await ActiveSeries()
+        if(!series){
+            alert('Active Series')
+        }
+        const ser = series.type_id
+        console.log(ser)
+        const count = await TotalCount('tbl_device_type')
+        let countincrement = count.count+1;
+        let countnum = ''+countincrement
+        setDeviceId(ser+countnum)
+
+    })
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        const deviceid = document.getElementById('deviceid').value;
         const devicetype = document.getElementById('devicetype').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
@@ -35,7 +50,7 @@ function AddDevicetype() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label>Device ID </label>
-                                        <input type="text" className="form-control" id='deviceid' />
+                                        <input type="text" className="form-control" value={deviceid} disabled />
                                     </div>
                                     <div className="form-group " >
                                         <label>Device Type </label>

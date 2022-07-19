@@ -1,12 +1,28 @@
 import Navbar from '../../Navbar/Navbar';
-import {Adddeviceservice} from '../../../api'
-import React from 'react';
+import {Adddeviceservice,ActiveSeries,TotalCount} from '../../../api'
+import React,{useEffect,useState} from 'react'
 
 function AddDeviceservices() {
+    const [deviceserviceid,setDeviceServiceID] = useState()
+
+    useEffect (async()=>{
+        const series = await ActiveSeries()
+        if(!series){
+            alert('Active Series')
+        }
+        console.log(series)
+        const ser = series.services_id
+        console.log(ser)
+        const count = await TotalCount('tbl_device_services')
+        let countincrement = count.count+1;
+        let countnum = ''+countincrement;
+        console.log(countnum)
+        setDeviceServiceID(ser+countnum)
+
+    })
 
     const handleadddevice=async(e)=>{
         e.preventDefault();
-        const deviceserviceid= document.getElementById('id').value;
         const device_service= document.getElementById('deviceservices').value;
         const remark= document.getElementById('remark').value;
         const username=sessionStorage.getItem('UserName');
@@ -36,7 +52,7 @@ function AddDeviceservices() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label> ID </label>
-                                        <input type="text" className="form-control" id='id' />
+                                        <input type="text" className="form-control" disabled value={deviceserviceid}/>
                                     </div>
                                     <div className="form-group " >
                                         <label>Device Services </label>
