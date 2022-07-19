@@ -292,3 +292,7 @@ export const  Getdevicetaskcompliancebyname= async(name)=>{
     return axios.post(url,{name}).then(response=>response.data).catch(error=>console.log(error));
 }
  
+export const Adddevicetaskcompliance= async(devicename,services,add_compliance,add_tasks,remark,username)=>{
+    const url=`http://192.168.146.136:8003/api/adddeviceTaskcomp`
+    return axios.post(url,{devicename,services,add_compliance,add_tasks,remark,username}).then(response=>response.data).catch(error=>console.log(error));
+}
