@@ -3,11 +3,13 @@ import React, { useEffect,useState } from 'react';
 // import {Adddevicetask} from '../../../api'
 import {ActiveDeviceService,ActiveServiceCompliance,Activedevicetask,Activedevice} from '../../api/index'
 
-function AddDeviceTaskComp() {
-const [device,setDevice]=useState([]);
-const [services,setServices]= useState([]);
-const [compliances,setCompliances]= useState([]);
-const [task,setTask]= useState([]);
+function EditDeviceTaskComp() {
+// const [device,setDevice]=useState([]);
+// const [services,setServices]= useState([]);
+// const [compliances,setCompliances]= useState([]);
+// const [task,setTask]= useState([]);
+
+const [data,setData] =useState({});
 
 const [activeservice,setActiveService] = useState([])
 const[activecompliance,setActiveCompliance] = useState([]);
@@ -16,6 +18,10 @@ const[activedevicename,setActiveDeviceName] = useState([]);
 
 useEffect(()=>{
     const fetch = async () => {
+        //  const result= await (devicetaskcompSno)
+        // console.log(result)
+        // setData(result);
+
         const devicename = await Activedevice()
         setActiveDeviceName(devicename)
         console.log(devicename)
@@ -48,6 +54,7 @@ useEffect(()=>{
         // console.log(deviceid,devicetask,devicetaskfreq,remark,username)
         // const result = await Adddevicetask(deviceid,devicetask,devicetaskfreq,remark,username);
         // if (result === 'Added') {
+            // sessionStorage.removeItem('devicetaskcompSno');
         //     window.location.href = './ShowDevicetask'
         // }
         // else {
@@ -65,7 +72,7 @@ useEffect(()=>{
                     <div className="col " style={{ margin: "0px auto", width: "630px" }}>
                         <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
                             <header className="card-header" >
-                                <h4 className=" mt-2 text-center" >Add Device Task & Compliances</h4>
+                                <h4 className=" mt-2 text-center" >Edit Device Task & Compliances</h4>
                             </header>
                             <article className="card-body" >
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
@@ -75,7 +82,7 @@ useEffect(()=>{
                                             id="devicegroup"
                                             className="form-control col-md-12"
                                         >
-                                            <option selected hidden value="India">Choose Device Name</option>
+                                            <option selected hidden ></option>
                                             {
                                                 activedevicename.map((data, index) => (
                                                     <option key={index} value={data.device_name}>{data.device_name}</option>
@@ -132,7 +139,7 @@ useEffect(()=>{
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                         <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                        <button type="button" onClick={() => { window.location.href = '/Dashboard' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={() => {sessionStorage.removeItem('devicetaskcompSno'); window.location.href = '/Dashboard' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>
                                 </form>
@@ -145,4 +152,4 @@ useEffect(()=>{
     )
 }
 
-export default AddDeviceTaskComp;
+export default EditDeviceTaskComp;

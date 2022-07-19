@@ -284,4 +284,11 @@ export const TotalCount = async(table)=>{
     const url=`http://192.168.146.136:8003/api/totalcount`
     return axios.post(url,{table}).then(response=>response.data).catch(error=>console.log(error));
 }
+
+
+export const  Getdevicetaskcompliancebyname= async(name)=>{
+   console.log(name)
+    const url=`http://192.168.146.136:8003/api/getdevicetaskcompliancebyname`
+    return axios.post(url,{name}).then(response=>response.data).catch(error=>console.log(error));
+}
  

@@ -82,6 +82,7 @@ function ShowDevicetask() {
             <Navbar />
             <div className='deviceid-container' >
                 <div className='deviceid-div' style={{ position: "relative" }}>
+                <h4 className=" mt-2 " >Total Device Task </h4>
                     <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevicetask' }}>Add Device Task </button>
                     <DataTableExtensions {...tableData}>
                         <DataTable

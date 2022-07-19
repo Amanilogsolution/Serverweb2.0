@@ -4,33 +4,28 @@ import Navbar from '../Navbar/Navbar';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-// import {Totalagent,Updateagentstatus} from '../../../api'
+import {Activedevice,Getdevicetaskcompliancebyname} from '../../api'
 
 function UpdateDevicetaskcomp() {
     const [data, setData] = useState([])
-    const [showtable, setShowtable] = useState(false)
+    const [devicename,setDevicename]=useState([]);
+    // const [showtable, setShowtable] = useState(false)
     const columns = [
         {
-            name: 'Id',
-            selector: 'id',
+            name: 'Services',
+            selector: 'services',
             sortable: true,
         },
         {
-            name: 'Agent Name',
-            selector: 'agent_name',
+            name: 'Compliance ',
+            selector: 'add_compliance',
             sortable: true,
         },
         {
-            name: 'Agent Email',
-            selector: 'agent_email',
+            name: 'Tasks',
+            selector: 'add_tasks',
             sortable: true,
         },
-        {
-            name: 'Agent Phone',
-            selector: 'agent_phone',
-            sortable: true,
-        },
-
         {
             name: 'Remark',
             selector: 'remark',
@@ -58,7 +53,7 @@ function UpdateDevicetaskcomp() {
             cell: (row) => [
                 <a title='Edit Agent master' href="/EditAgent">
 
-                    <button className="editbtn " onClick={() => sessionStorage.setItem('agentSno', `${row.sno}`)} >
+                    <button className="editbtn " onClick={() => sessionStorage.setItem('devicetaskcompSno', `${row.sno}`)} >
                         {/* Edit */}
                         <img src={Editbtn} alt='Edit ' className='editbtnimg' />
                     </button></a>
@@ -70,7 +65,9 @@ function UpdateDevicetaskcomp() {
 
     useEffect(() => {
         const fetchdata = async () => {
-          
+          const result= await Activedevice();
+          console.log(result);
+          setDevicename(result)
         }
         fetchdata();
     }, [])
@@ -82,10 +79,13 @@ function UpdateDevicetaskcomp() {
 
 
 
-    const handelselect=async()=>{
-          // const tabledata = await Totalagent();
-            // console.log(tabledata)
-            // setData(tabledata)
+    const handelselect=async(e)=>{
+        console.log(e.target.value)
+          const tabledata = await Getdevicetaskcompliancebyname(e.target.value);
+            console.log(tabledata)
+            // setShowtable(true)
+            setData(tabledata)
+
         
     }
     return (
@@ -99,23 +99,19 @@ function UpdateDevicetaskcomp() {
                     <div className="form-row">
                         <div className="form-group col-md-4" >
                             {/* <label>Select Device</label> */}
-                            <select className="form-control" id='devicename' onSelect={handelselect}>
+                            <select className="form-control" id='devicename' onChange={handelselect}>
                                 <option hidden>Select Device</option>
-                                <option>Daily</option>
-                                <option>Weekly</option>
-                                <option>Monthly</option>
-                                <option>Quaterly</option>
-                                <option>Year</option>
+                               {
+                                devicename.map((item,index)=>
+                                <option key={index}>{item.device_name}</option>)
+                               }
                             </select>
                         </div>
 
                     </div>
 
 
-
-
-
-                    {showtable ?
+                   
                         <DataTableExtensions {...tableData}>
                             <DataTable
                                 noHeader
@@ -124,7 +120,7 @@ function UpdateDevicetaskcomp() {
                                 pagination
                                 highlightOnHover
                             />
-                        </DataTableExtensions> : null}
+                        </DataTableExtensions>
 
                 </div>
             </div>

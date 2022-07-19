@@ -59,7 +59,6 @@ function Show_deviceservices() {
                 <a title='Edit Device Type' href="/EditDeviceservices">
 
                     <button className="editbtn " onClick={() => sessionStorage.setItem('deviceservicesSno', `${row.sno}`)} >
-                        {/* Edit */}
                         <img src={Editbtn} alt='Edit ' className='editbtnimg' />
                     </button></a>
             ]
@@ -79,7 +78,7 @@ function Show_deviceservices() {
             <Navbar />
             <div className='deviceid-container' >
                 <div className='deviceid-div' style={{ position: "relative" }}>
-                 
+                <h4 className=" mt-2 " >Total Device Services </h4>
                     <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceservices' }}>Add Device Services</button>
                     <DataTableExtensions {...tableData}>
                         <DataTable
