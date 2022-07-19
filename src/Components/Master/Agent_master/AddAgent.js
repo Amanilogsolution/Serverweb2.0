@@ -1,12 +1,27 @@
 import Navbar from '../../Navbar/Navbar';
-import React from 'react';
-import {Addagent} from '../../../api'
+import React,{useEffect,useState} from 'react'
+import {Addagent,ActiveSeries,TotalCount} from '../../../api'
 
 function AddAgent() {
+    const [agentid,setAgentID] = useState()
+    useEffect (async()=>{
+        const series = await ActiveSeries()
+        if(!series){
+            alert('Active Series')
+        }
+        console.log(series)
+        const ser = series.agent_id
+        console.log(ser)
+        const count = await TotalCount('tbl_agent_master')
+        let countincrement = count.count+1;
+        let countnum = ''+countincrement;
+        console.log(countnum)
+        setAgentID(ser+countnum)
+
+    })
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        const deviceid = document.getElementById('id').value;
         const agentname = document.getElementById('agentname').value;
         const agentemail = document.getElementById('agentemail').value;
         const agentphone = document.getElementById('agentphone').value;
@@ -14,7 +29,7 @@ function AddAgent() {
         const username = sessionStorage.getItem('UserName');
  
         // console.log(deviceid,agentname,agentemail,agentphone,remark,username)
-        const result = await Addagent(deviceid,agentname,agentemail,agentphone,remark,username);
+        const result = await Addagent(agentid,agentname,agentemail,agentphone,remark,username);
         if (result === 'Added') {
             window.location.href = './ShowAgent'
         }
@@ -37,7 +52,7 @@ function AddAgent() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label> ID </label>
-                                        <input type="text" className="form-control" id='id' />
+                                        <input type="text" className="form-control" disabled value={agentid} />
                                     </div>
                                     <div className="form-group " >
                                         <label> Agent Name </label>

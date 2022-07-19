@@ -1,18 +1,34 @@
-
+import React,{useEffect,useState} from 'react'
 import Navbar from '../../../Navbar/Navbar';
-import {Adddevicegroup} from '../../../../api'
+import {Adddevicegroup,ActiveSeries,TotalCount} from '../../../../api'
 
 function AddDevicegroup() {
+    const [agentgroupid,setAgentGroupID] = useState()
+
+    useEffect (async()=>{
+        const series = await ActiveSeries()
+        if(!series){
+            alert('Active Series')
+        }
+        console.log(series)
+        const ser = series.group_id
+        console.log(ser)
+        const count = await TotalCount('tbl_device_group')
+        let countincrement = count.count+1;
+        let countnum = ''+countincrement;
+        console.log(countnum)
+        setAgentGroupID(ser+countnum)
+
+    })
 
     const handleadddevice=async(e)=>{
         e.preventDefault();
-        const deviceid= document.getElementById('deviceid').value;
         const devicegroup= document.getElementById('devicegroup').value;
         const remark= document.getElementById('remark').value;
         const username=sessionStorage.getItem('UserName');
       
 
-        const result= await Adddevicegroup(deviceid,devicegroup,remark,username);
+        const result= await Adddevicegroup(agentgroupid,devicegroup,remark,username);
         if(result){
             alert('Added')
             window.location.href='Showdevicegroup'
@@ -28,13 +44,13 @@ function AddDevicegroup() {
                     <div className="col " style={{ margin: "0px auto", width: "630px" }}>
                         <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
                             <header className="card-header" >
-                                <h4 className=" mt-2 text-center" >Add Device Type</h4>
+                                <h4 className=" mt-2 text-center" >Add Device Group</h4>
                             </header>
                             <article className="card-body" >
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label>Device ID </label>
-                                        <input type="text" className="form-control" id='deviceid' />
+                                        <input type="text" className="form-control" disabled value={agentgroupid} />
                                     </div>
                                     <div className="form-group " >
                                         <label>Device Group </label>
