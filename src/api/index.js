@@ -197,8 +197,8 @@ export const Totaldevicetask= async()=>{
     return axios.get(url).then(response=>response.data).catch(error=>console.log(error));
 }
 
-export const Updatestatus= async(status,sno)=>{
-    const url=`http://192.168.146.136:8003/api/updatestatus`
+export const Updatedevicetaskstatus= async(status,sno)=>{
+    const url=`http://192.168.146.136:8003/api/updatedevicetaskstatus`
     return axios.post(url,{status,sno}).then(response=>response.data).catch(error=>console.log(error));
 }
 
@@ -219,3 +219,31 @@ export const Adddevicetask= async(devicetaskid,device_tasks,device_tasks_frequen
     return axios.post(url,{devicetaskid,device_tasks,device_tasks_frequency,remark,username}).then(response=>response.data).catch(error=>console.log(error));
 }
 
+export const Totalseriesapi= async()=>{
+    const url=`http://192.168.146.136:8003/api/totalseries`
+    return axios.get(url).then(response=>response.data).catch(error=>console.log(error));
+}
+
+export const Updateseriesstatus= async(status,sno)=>{
+    console.log(status,sno)
+    const url=`http://192.168.146.136:8003/api/updatesseriestatus`
+    return axios.post(url,{status,sno}).then(response=>response.data).catch(error=>console.log(error));
+}
+
+
+export const Addseriesapi= async(type_id,services_id,task_id,agent_id,group_id,os_id,comp_id,device_id,taskandcomp_id,username)=>{
+    const url=`http://192.168.146.136:8003/api/adddevicetask`
+    return axios.post(url,{type_id,services_id,task_id,agent_id,group_id,os_id,comp_id,device_id,taskandcomp_id,username}).then(response=>response.data).catch(error=>console.log(error));
+}
+
+
+export const Getseries= async(sno)=>{
+    const url=`http://192.168.146.136:8003/api/getseries`
+    return axios.post(url,{sno}).then(response=>response.data).catch(error=>console.log(error));
+}
+
+export const Updateseries= async(sno,type_id,services_id,task_id,agent_id,group_id,os_id,comp_id,device_id,taskandcomp_id,username)=>{
+    console.log(sno,type_id,services_id,task_id,agent_id,group_id,os_id,comp_id,device_id,taskandcomp_id,username)
+    const url=`http://192.168.146.136:8003/api/updateseries`
+    return axios.post(url,{sno,type_id,services_id,task_id,agent_id,group_id,os_id,comp_id,device_id,taskandcomp_id,username}).then(response=>response.data).catch(error=>console.log(error));
+}

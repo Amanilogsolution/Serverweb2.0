@@ -34,6 +34,13 @@ import AddServiceCompliance from './Components/Master/ServiceCompliance/AddServi
 import EditServiceCompliance from './Components/Master/ServiceCompliance/EditServiceCompliance/EditServiceCompliance';
 
 import AddDevice from './Components/Device/AddDevice'
+import AddDeviceTaskComp from './Components/DeviceTaskComp/Devicetask&comp'
+import Totalseries from './Components/Master/Seies/Totalseries'
+import Addseries from './Components/Master/Seies/Addseries'
+import Editseries from './Components/Master/Seies/Editseries'
+
+
+
 
 function App() {
   return (
@@ -66,6 +73,15 @@ function App() {
           <Route path='/AddServiceCompliance' component={AddServiceCompliance} />
           <Route path='/EditServiceCompliance' component={EditServiceCompliance} />
           <Route path='/AddDevice' component={AddDevice} />
+          <Route path='/DeviceTask&Compliances' component={AddDeviceTaskComp} />
+
+          <Route path='/Totalseries' component={Totalseries} />
+          <Route path='/Addseries' component={Addseries} />
+          <Route path='/Editseries' component={Editseries} />
+          
+
+          
+          
 
           <Route path='/form' component={Form} />
           <Route path='*' component={Pagenotfound} />

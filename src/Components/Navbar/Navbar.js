@@ -33,6 +33,7 @@ function Navbar() {
                                 <a className="dropdown-item nav-url2" href="/Showdevicegroup">Device Group</a>
                                 <a className="dropdown-item nav-url2" href="/showoperatingsystem">Operating System</a>
                                 <a className="dropdown-item nav-url2" href="/showservicecompliance">Service Compliance</a>
+                                <a className="dropdown-item nav-url2" href="/Totalseries">Series</a>
                             </div>
                         </li>
 
@@ -41,7 +42,7 @@ function Navbar() {
                         </li>
 
                         <li className="nav-item active">
-                            <a className="nav-link nav-url" href="/Dashboard">Device Task & Comp </a>
+                            <a className="nav-link nav-url" href="/DeviceTask&Compliances">Device Task & Comp </a>
                         </li>
 
                     </ul>
