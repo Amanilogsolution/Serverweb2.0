@@ -14,9 +14,7 @@ export default function Login() {
     }
     else {
       const result = await UserLogin(username, password);
-      console.log(result)
       if (result.status==='Success') {
-        console.log("if")
         sessionStorage.setItem('UserName', result.name);
         sessionStorage.setItem('UserId', result.user_id);
         sessionStorage.setItem('Token', result.token);
@@ -24,7 +22,6 @@ export default function Login() {
         window.location.href='./Dashboard'
       }
       else {
-        console.log('else')
         alert(`Invalid Username:-${username} and password:-${password}`);
       }
 
