@@ -65,7 +65,7 @@ function AddDevice() {
             const deviceservice = datas.value
            const result =  await Adddevice(deviceid,devicename,devicetype,devicegroup,deviceipaddr,devicehost,operatingsystem,deviceservice,createdate,registerdate,agent,remark,sessionStorage.getItem('UserName'))
         })
-        window.location.href='/Dashboard'
+        window.location.href='/ShowDevice'
 
     }
     let options = activeservice.map((ele) => {

@@ -69,7 +69,6 @@ function EditDevicetype() {
                                     </div>
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handlesubmitdata}>Submit</button>
-                                        <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
                                         <button type="button" onClick={() => { sessionStorage.removeItem('devicetypeSno'); window.location.href = '/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                     </div>
                                 </form>

@@ -44,19 +44,21 @@ useEffect(()=>{
 
  
 
-        console.log(deviceid,devicetask,devicetaskfreq,remark,username)
-        console.log(deviceid,devicetask,devicetaskfreq,remark,username)
-        const result = await Adddevicetask(deviceid,devicetask,devicetaskfreq,remark,username);
-        if (result === 'Added') {
-            window.location.href = './ShowDevicetask'
-        }
-        else {
-            alert("Server Error");
-        }
+        // console.log(deviceid,devicetask,devicetaskfreq,remark,username)
+        // console.log(deviceid,devicetask,devicetaskfreq,remark,username)
+        // const result = await Adddevicetask(deviceid,devicetask,devicetaskfreq,remark,username);
+        // if (result === 'Added') {
+        //     window.location.href = './ShowDevicetask'
+        // }
+        // else {
+        //     alert("Server Error");
+        // }
 
     }
 
-  
+    useEffect(()=>{
+       
+    },[])
     return (
         <>
             <Navbar />
@@ -72,7 +74,7 @@ useEffect(()=>{
                                     <div className="form-group">
                                         <label>Device Name </label>
                                         <select
-                                            id="devicegroup"
+                                            id="device"
                                             className="form-control col-md-12"
                                         >
                                             <option selected hidden value="India">Choose Device Name</option>

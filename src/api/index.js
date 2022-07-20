@@ -269,6 +269,28 @@ export const Adddevice= async(device_id,device_name,device_type,device_group,dev
     const url=`http://192.168.146.136:8003/api/adddevice`
     return axios.post(url,{device_id,device_name,device_type,device_group,device_ip_address,device_host_master,device_os,services,device_creation_date,device_reg_date,agent,remark,username}).then(response=>response.data).catch(error=>console.log(error));
 }
+export const Totaldevice = async () => {
+    const url = `http://192.168.146.136:8003/api/totaldevice`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
+export const Updatedevicestatus = async (status,sno) => {
+    const url = `http://192.168.146.136:8003/api/updatedevicestatus`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const Getdevice = async (sno) => {
+    const url = `http://192.168.146.136:8003/api/getdevice`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+ 
+export const Updatedevice = async (sno,device_id,device_name,device_type,device_group,device_ip_address,device_host_master,device_os,services,device_creation_date,device_reg_date,agent,remark,username) => {
+   console.log('api',sno,device_id,device_name,device_type,device_group,device_ip_address,device_host_master,device_os,services,device_creation_date,device_reg_date,agent,remark,username)
+    const url = `http://192.168.146.136:8003/api/updatedevice`
+    return axios.post(url,{sno,device_id,device_name,device_type,device_group,device_ip_address,device_host_master,device_os,services,device_creation_date,device_reg_date,agent,remark,username}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+
 export const Activedevice = async () => {
     const url = `http://192.168.146.136:8003/api/activedevice`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));

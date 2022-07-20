@@ -35,6 +35,9 @@ import AddServiceCompliance from './Components/Master/ServiceCompliance/AddServi
 import EditServiceCompliance from './Components/Master/ServiceCompliance/EditServiceCompliance/EditServiceCompliance';
 
 import AddDevice from './Components/Device/AddDevice'
+import ShowDevice from './Components/Device/ShowDevice'
+import EditDevice from './Components/Device/EditDevice'
+
 import AddDeviceTaskComp from './Components/DeviceTaskComp/Devicetask&comp'
 import UpdateDeviceTaskComp from './Components/DeviceTaskComp/UpdateDevicetask&comp'
 import EditDeviceTaskComp from './Components/DeviceTaskComp/EditDevicetask&comp'
@@ -77,6 +80,10 @@ function App() {
           <PrivateRoute path='/AddServiceCompliance' component={AddServiceCompliance} />
           <PrivateRoute path='/EditServiceCompliance' component={EditServiceCompliance} />
           <PrivateRoute path='/AddDevice' component={AddDevice} />
+          <PrivateRoute path='/ShowDevice' component={ShowDevice} />
+          <PrivateRoute path='/EditDevice' component={EditDevice} />
+          
+          
           <PrivateRoute path='/DeviceTask&Compliances' component={AddDeviceTaskComp} />
           <PrivateRoute path='/ UpdateDeviceTask&Compliances' component={ UpdateDeviceTaskComp} />
          

@@ -82,7 +82,6 @@ function EditDevicetask() {
                                     </div>
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handlesubmitdata}>Update</button>
-                                        <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
                                         <button type="button" onClick={() => { sessionStorage.removeItem('devicetaskSno'); window.location.href = '/ShowDevicetask' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                     </div>
                                 </form>
