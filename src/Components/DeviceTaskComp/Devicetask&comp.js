@@ -1,9 +1,13 @@
 import Navbar from '../Navbar/Navbar';
 import React, { useEffect,useState } from 'react';
 // import {Adddevicetask} from '../../../api'
-import {ActiveDeviceService,ActiveServiceCompliance,Activedevicetask,Activedevice,Adddevicetaskcompliance} from '../../api/index'
+import {ActiveDeviceService,ActiveServiceCompliance,Activedevicetask,Activedevice} from '../../api/index'
 
 function AddDeviceTaskComp() {
+const [device,setDevice]=useState([]);
+const [services,setServices]= useState([]);
+const [compliances,setCompliances]= useState([]);
+const [task,setTask]= useState([]);
 
 const [activeservice,setActiveService] = useState([])
 const[activecompliance,setActiveCompliance] = useState([]);
@@ -38,14 +42,18 @@ useEffect(()=>{
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
-        console.log(devicename,services,compliances,task ,remark,username)
-        const result = await Adddevicetaskcompliance(devicename,services,compliances,task,remark,username);
+ 
+
+        console.log(deviceid,devicetask,devicetaskfreq,remark,username)
+        console.log(deviceid,devicetask,devicetaskfreq,remark,username)
+        const result = await Adddevicetask(deviceid,devicetask,devicetaskfreq,remark,username);
         if (result === 'Added') {
-            window.location.href = './Dashboard'
+            window.location.href = './ShowDevicetask'
         }
         else {
             alert("Server Error");
         }
+
     }
 
   
@@ -64,7 +72,7 @@ useEffect(()=>{
                                     <div className="form-group">
                                         <label>Device Name </label>
                                         <select
-                                            id="devicename"
+                                            id="devicegroup"
                                             className="form-control col-md-12"
                                         >
                                             <option selected hidden value="India">Choose Device Name</option>
@@ -78,7 +86,7 @@ useEffect(()=>{
                                     <div className="form-group " >
                                         <label>Select Services </label>
                                         <select
-                                            id="services"
+                                            id="devicegroup"
                                             className="form-control col-md-12"
                                         >
                                             <option selected hidden value="India">Choose Service</option>
@@ -92,7 +100,7 @@ useEffect(()=>{
                                     <div className="form-group " >
                                         <label> Compliance </label>
                                         <select
-                                            id="compliances"
+                                            id="devicegroup"
                                             className="form-control col-md-12"
                                         >
                                             <option selected hidden value="India">Choose Compliance</option>
@@ -106,7 +114,7 @@ useEffect(()=>{
                                     <div className="form-group " >
                                         <label> Task </label>
                                         <select
-                                            id="task"
+                                            id="devicegroup"
                                             className="form-control col-md-12"
                                         >
                                             <option selected hidden value="India">Choose Task</option>
