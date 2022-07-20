@@ -59,7 +59,7 @@ function EditOperatingSystem() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label>Operating System ID </label>
-                                        <input type="text" className="form-control" value={data.id} id='operatingsystemid' onChange={(e) => handleChangeID(e)} />
+                                        <input type="text" className="form-control" disabled value={data.id} id='operatingsystemid' onChange={(e) => handleChangeID(e)} />
                                     </div>
                                     <div className="form-group " >
                                         <label>Operating System </label>

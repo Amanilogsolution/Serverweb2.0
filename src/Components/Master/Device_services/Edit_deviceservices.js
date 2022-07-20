@@ -66,7 +66,7 @@ function EditDevicetype() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label> ID </label>
-                                        <input type="text" className="form-control" id='id' value={data.id} onChange={handlechangedeviceid}/>
+                                        <input type="text" className="form-control" disabled id='id' value={data.id} onChange={handlechangedeviceid}/>
                                     </div>
                                     <div className="form-group " >
                                         <label>Device Services </label>

@@ -66,7 +66,7 @@ function EditDevicetask() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label>Device ID </label>
-                                        <input type="text" className="form-control" id='deviceid' value={data.id} onChange={handlechangedeviceid} />
+                                        <input type="text" className="form-control" id='deviceid' disabled value={data.id} onChange={handlechangedeviceid} />
                                     </div>
                                     <div className="form-group " >
                                         <label>Device Task </label>

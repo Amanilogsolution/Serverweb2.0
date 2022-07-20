@@ -56,7 +56,7 @@ function EditServiceCompliance() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label>Service Compliance ID </label>
-                                        <input type="text" className="form-control" value={data.id} id='servicecomplianceid' onChange={handleChangeid}/>
+                                        <input type="text" className="form-control" disabled value={data.id} id='servicecomplianceid' onChange={handleChangeid}/>
                                     </div>
                                     <div className="form-group " >
                                         <label>Device Service</label>
