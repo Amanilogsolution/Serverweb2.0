@@ -121,9 +121,9 @@ function ShowDevice() {
         <>
             <Navbar />
             <div className='deviceid-container' >
-                <div className='deviceid-div' style={{ position: "relative" }}>
+                <div className='' style={{ position: "relative" }}>
                 <h3 className="text-left ml-5">Total Device</h3>
-                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevice' }}>Add Device</button>
+                    <button className='btn btn-success mr-4 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevice' }}>Add Device</button>
                     <DataTableExtensions {...tableData}>
                         <DataTable
                             noHeader
