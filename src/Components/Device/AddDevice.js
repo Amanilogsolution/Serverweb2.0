@@ -43,9 +43,29 @@ function AddDevice() {
             let countnum = ''+countincrement;
             console.log(countnum)
             setDeviceID(ser+countnum)
+
         }
         fetchdata()
+        Todaydate()
+
     },[])
+
+    const Todaydate = () =>{
+        var date = new Date();
+
+var day = date.getDate();
+var month = date.getMonth() + 1;
+var year = date.getFullYear();
+
+if (month < 10) month = "0" + month;
+if (day < 10) day = "0" + day;
+
+var today = year + "-" + month + "-" + day;       
+document.getElementById("createdate").value = today;
+document.getElementById("registerdate").value = today;
+
+
+    }
 
     const handleadddevice = async (e) => {
         e.preventDefault();

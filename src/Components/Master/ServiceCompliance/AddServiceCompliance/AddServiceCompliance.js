@@ -64,7 +64,7 @@ function AddServiceCompliance() {
                               id="DeviceService"
                               className="form-control col-md-12" 
                             >
-                              <option selected hidden value="India">Choose Country</option>
+                              <option selected hidden value="India">Choose Service</option>
                               {
                                 deviceservice.map((data, index) => (
                                   <option key={index} value={data.device_services}>{data.device_services}</option>

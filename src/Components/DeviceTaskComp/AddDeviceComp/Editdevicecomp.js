@@ -1,7 +1,7 @@
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../../Navbar/Navbar';
 import React, { useEffect,useState } from 'react';
-import {getdevicetaskcomp} from '../../api'
-import {ActiveDeviceService,ActiveServiceCompliance,Activedevicetask,Activedevice,Updatedevicetaskcomp} from '../../api/index'
+import {getdevicetaskcomp} from '../../../api'
+import {ActiveServiceCompliance,Updatedevicetaskcomp} from '../../../api/index'
 
 function EditDeviceTaskComp() {
 // const [device,setDevice]=useState([]);
@@ -11,26 +11,23 @@ function EditDeviceTaskComp() {
 
 const [data,setData] =useState({});
 
-const [activeservice,setActiveService] = useState([])
+
 const[activecompliance,setActiveCompliance] = useState([]);
-const [activedevicetask,setActiveDeviceTask] = useState([]);
-const[activedevicename,setActiveDeviceName] = useState([]);
+
 
 useEffect(()=>{
     const fetch = async () => {
-         const getdata= await getdevicetaskcomp(sessionStorage.getItem('devicetaskcompSno'))
+         const getdata= await getdevicetaskcomp(sessionStorage.getItem('devicecompSno'))
         console.log(getdata)
         setData(getdata);
 
-        const devicename = await Activedevice()
-        setActiveDeviceName(devicename)
-        console.log(devicename)
-        const result = await ActiveDeviceService()
-        setActiveService(result)
+        // const devicename = await Activedevice()
+        // setActiveDeviceName(devicename)
+        // console.log(devicename)
+        // const result = await ActiveDeviceService()
+        // setActiveService(result)
         const compliance = await ActiveServiceCompliance()
         setActiveCompliance(compliance)
-        const devicetask = await Activedevicetask()
-        setActiveDeviceTask(devicetask)
 
     }
     fetch()
@@ -47,18 +44,18 @@ const handlechangeremark =(e)=>{
         const devicename = document.getElementById('devicename').value;
         const services = document.getElementById('services').value;
         const compliances = document.getElementById('compliances').value;
-        const task = document.getElementById('task').value;
+  
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
-        const sno = sessionStorage.getItem('devicetaskcompSno')
+        const sno = sessionStorage.getItem('devicecompSno')
 
  
 
-        console.log(devicename,services,compliances,task,remark,username)
+        console.log(devicename,services,compliances,remark,username)
 
         // 
         // console.log(deviceid,devicetask,devicetaskfreq,remark,username)
-        const result = await Updatedevicetaskcomp(sno,devicename,services,compliances,task,remark,username);
+        const result = await Updatedevicetaskcomp(sno,devicename,services,compliances,remark,username);
         console.log(result)
         if (result === 'Updated') {
             alert("Data Updated");
@@ -80,7 +77,7 @@ const handlechangeremark =(e)=>{
                     <div className="col " style={{ margin: "0px auto", width: "630px" }}>
                         <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
                             <header className="card-header" >
-                                <h4 className=" mt-2 text-center" >Edit Device Task & Compliances</h4>
+                                <h4 className=" mt-2 text-center" >Edit Device Compliance</h4>
                             </header>
                             <article className="card-body" >
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
@@ -88,34 +85,13 @@ const handlechangeremark =(e)=>{
                                         <label>Device Name </label>
 
                                         <input type="text" className="form-control" disabled value={data.device_name}  id="devicename"/>
-                                        {/* <select
-                                            id="devicename"
-                                            className="form-control col-md-12"
-                                        >
-                                            <option selected hidden >{data.device_name}</option>
-                                            {
-                                                activedevicename.map((data, index) => (
-                                                    <option key={index} value={data.device_name}>{data.device_name}</option>
-                                                ))
-                                            }
-                                        </select> */}
+                                 
                                     </div>
                                     <div className="form-group " >
                                         <label>Select Services </label>
 
-                                        <input type="text" className="form-control" disabled value={data.device_services} id="services"/>
+                                        <input type="text" className="form-control" disabled value={data.services} id="services"/>
 
-                                        {/* <select
-                                            id="services"
-                                            className="form-control col-md-12"
-                                        >
-                                            <option selected hidden>{data.services}</option>
-                                            {
-                                                activeservice.map((data, index) => (
-                                                    <option key={index} value={data.device_services}>{data.device_services}</option>
-                                                ))
-                                            }
-                                        </select> */}
                                     </div>
                                     <div className="form-group " >
                                         <label> Compliance </label>
@@ -131,20 +107,7 @@ const handlechangeremark =(e)=>{
                                             }
                                         </select>
                                     </div>
-                                    <div className="form-group " >
-                                        <label> Task </label>
-                                        <select
-                                            id="task"
-                                            className="form-control col-md-12"
-                                        >
-                                            <option selected hidden >{data.add_tasks}</option>
-                                            {
-                                                activedevicetask.map((data, index) => (
-                                                    <option key={index} value={data.device_tasks}>{data.device_tasks}</option>
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
+                            
                                     <div className="form-group">
                                         <label>Remarks</label>
                                         <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" value={data.remark} onChange={handlechangeremark}/>

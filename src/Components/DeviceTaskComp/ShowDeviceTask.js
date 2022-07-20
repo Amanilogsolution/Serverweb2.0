@@ -4,21 +4,25 @@ import Navbar from '../Navbar/Navbar';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import {Activedevice,Getdevicetaskcompliancebyname,Updatedevicecompstatus} from '../../api'
+import {Activedevice,Getdevicetaskbyname,Updatedevicecompstatus} from '../../api'
 
-function UpdateDevicetaskcomp() {
+function ShowdeviceTask() {
     const [data, setData] = useState([])
     const [devicename,setDevicename]=useState([]);
-    // const [showtable, setShowtable] = useState(false)
     const columns = [
         {
-            name: 'Services',
-            selector: 'services',
+            name: 'Task',
+            selector: 'task',
             sortable: true,
         },
         {
-            name: 'Compliance ',
-            selector: 'add_compliance',
+            name: 'Frequency',
+            selector: 'task_frequency',
+            sortable: true,
+        },
+        {
+            name: 'DateofCompleted',
+            selector: 'completion_date',
             sortable: true,
         },
         {
@@ -27,7 +31,7 @@ function UpdateDevicetaskcomp() {
             sortable: true,
         },
         {
-            name: 'Status',
+            name: 'Completed',
             sortable: true,
             cell: (row) => [
                 <select onChange={async (e) => {
@@ -76,7 +80,7 @@ function UpdateDevicetaskcomp() {
 
     const handelselect=async(e)=>{
         console.log(e.target.value)
-          const tabledata = await Getdevicetaskcompliancebyname(e.target.value);
+          const tabledata = await Getdevicetaskbyname(e.target.value);
             console.log(tabledata)
             // setShowtable(true)
             setData(tabledata)
@@ -88,8 +92,8 @@ function UpdateDevicetaskcomp() {
             <Navbar />
             <div className='deviceid-container' >
                 <div className='deviceid-div' style={{ position: "relative" }}>
-                    <h3 className="text-left ml-5"> Device Compliances</h3>
-                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceComp' }}>Add Compliances </button>
+                    <h3 className="text-left ml-2"> Device Task</h3>
+                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './Adddevicetaskes' }}>Add Task </button>
 
                     <div className="form-row">
                         <div className="form-group col-md-4" >
@@ -122,4 +126,4 @@ function UpdateDevicetaskcomp() {
         </>
     )
 }
-export default UpdateDevicetaskcomp;
+export default ShowdeviceTask;

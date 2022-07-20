@@ -1,18 +1,16 @@
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../../Navbar/Navbar';
 import React, { useEffect,useState } from 'react';
 // import {Adddevicetask} from '../../../api'
-import {ActiveDeviceService,ActiveServiceCompliance,Activedevicetask,Activedevice,Adddevicetaskcompliance,Adddevicetaskby} from '../../api/index'
+import {ActiveDeviceService,ActiveServiceCompliance,Activedevice,Adddevicetaskcompliance} from '../../../api/index'
 import Select from 'react-select';
 
 function AddDeviceTaskComp() {
 
 const [activeservice,setActiveService] = useState([])
 const[activecompliance,setActiveCompliance] = useState([]);
-const [activedevicetask,setActiveDeviceTask] = useState([]);
 const[activedevicename,setActiveDeviceName] = useState([]);
 
 const[compliance,setCompliance] = useState([])
-const [task,setTask] = useState([]);
 
 useEffect(()=>{
     const fetch = async () => {
@@ -23,9 +21,7 @@ useEffect(()=>{
         setActiveService(result)
         const compliance = await ActiveServiceCompliance()
         setActiveCompliance(compliance)
-        const devicetask = await Activedevicetask()
-        console.log(devicetask)
-        setActiveDeviceTask(devicetask)
+   
 
     }
     fetch()
@@ -38,19 +34,17 @@ useEffect(()=>{
         e.preventDefault();
         const devicename = document.getElementById('devicename').value;
         const services = document.getElementById('services').value;
-        const completion_date = document.getElementById('completion_date').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
-        task.map((e)=>{
-            const taskes = e.value
-            const result = Adddevicetaskby(devicename,services,taskes,completion_date,remark,username)
-        })
-
+        
         compliance.map((e)=>{
             const compliance = e.value
             const result = Adddevicetaskcompliance(devicename,services,compliance,remark,username)
         })
+        alert('Added')
+        window.location.href='/UpdateDeviceTask&Compliances'
 
+        console.log(devicename,services,compliance,remark,username)
      
     }
 
@@ -58,20 +52,13 @@ useEffect(()=>{
         return { value: ele.services_compliance, label: ele.services_compliance };
     })
 
-    let opt = activedevicetask.map((ele)=>{
-        return { value: ele.device_tasks, label: ele.device_tasks };
 
-    })
 
     const handleChange = (selectedOption) => {
      console.log(selectedOption)
      setCompliance(selectedOption)
     }
-    const handleChangeTAsk =(selectedOption)=>{
-        console.log(selectedOption)
-        setTask(selectedOption)
-
-    }
+  
 
   
     return (
@@ -82,7 +69,7 @@ useEffect(()=>{
                     <div className="col " style={{ margin: "0px auto", width: "630px" }}>
                         <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
                             <header className="card-header" >
-                                <h4 className=" mt-2 text-center" >Add Device Task & Compliances</h4>
+                                <h4 className=" mt-2 text-center" >Add Device Compliances</h4>
                             </header>
                             <article className="card-body" >
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
@@ -123,21 +110,10 @@ useEffect(()=>{
                                             onChange={handleChange}
                                         />
 
-                                  
+                                     
                                     </div>
-                                    <div className="form-group " >
-                                        <label> Task </label>
-                                        <Select
-                                            options={opt}
-                                            isMulti={true}
-                                            onChange={handleChangeTAsk}
-                                        />
-                                    
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Completion Date</label>
-                                        <input className="form-control" type="date" id='completion_date' />
-                                    </div>
+                               
+                                
                                     <div className="form-group">
                                         <label>Remarks</label>
                                         <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
