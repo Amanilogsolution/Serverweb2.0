@@ -1,5 +1,6 @@
 import './App.css';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import PrivateRoute from './Components/HOC/PrivateRoute'
 import Login from './Components/Login/Login';
 import Pagenotfound from './Components/pagenotfound/Pagenotfound'
 import Dashboard from './Components/Dashboard/Dashboard';
@@ -53,43 +54,42 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" restricted={false} component={Login} />
-          <Route path='/Dashboard' component={Dashboard} />
-          <Route path='/ShowDeviceservices' component={ShowDeviceservices} />
-          <Route path='/AddDeviceservices' component={AddDeviceservices} />
-          <Route path='/EditDeviceservices' component={EditDeviceservices} />
-          <Route path='/ShowDevicetask' component={ShowDevicetask} />
-          <Route path='/AddDevicetask' component={AddDevicetask} />
-          <Route path='/EditDevicetask' component={EditDevicetask} />
-          <Route path='/ShowAgent' component={ShowAgent} />
-          <Route path='/AddAgent' component={AddAgent} />
-          <Route path='/EditAgent' component={EditAgent} />
-          <Route path='/Device-type' component={Device_Type} />
-          <Route path='/AddDevice-type' component={AddDevicetype} />
-          <Route path='/EditDeviceType' component={EditDevicetype} />
-          <Route path='/Showdevicegroup' component={Showdevicegroup} />
-          <Route path='/adddevicegroup' component={AddDevicegroup} />
-          <Route path='/editdevicegroup' component={EditDevicegroup} />
-          <Route path='/showoperatingsystem' component={Showoperatingsystem} />
-          <Route path='/addoperatingsystem' component={AddOperatingSystem} />
-          <Route path='/editoperatingsystem' component={EditOperatingSystem} />
-          <Route path='/showservicecompliance' component={Showservicecompliance} />
-          <Route path='/AddServiceCompliance' component={AddServiceCompliance} />
-          <Route path='/EditServiceCompliance' component={EditServiceCompliance} />
-          <Route path='/AddDevice' component={AddDevice} />
-          <Route path='/DeviceTask&Compliances' component={AddDeviceTaskComp} />
-          <Route path='/UpdateDeviceTask&Compliances' component={ UpdateDeviceTaskComp} />
-          <Route path='/EditDeviceTask&Compliances' component={ EditDeviceTaskComp} />
+          <PrivateRoute path='/Dashboard' component={Dashboard} />
+          <PrivateRoute path='/ShowDeviceservices' component={ShowDeviceservices} />
+          <PrivateRoute path='/AddDeviceservices' component={AddDeviceservices} />
+          <PrivateRoute path='/EditDeviceservices' component={EditDeviceservices} />
+          <PrivateRoute path='/ShowDevicetask' component={ShowDevicetask} />
+          <PrivateRoute path='/AddDevicetask' component={AddDevicetask} />
+          <PrivateRoute path='/EditDevicetask' component={EditDevicetask} />
+          <PrivateRoute path='/ShowAgent' component={ShowAgent} />
+          <PrivateRoute path='/AddAgent' component={AddAgent} />
+          <PrivateRoute path='/EditAgent' component={EditAgent} />
+          <PrivateRoute path='/Device-type' component={Device_Type} />
+          <PrivateRoute path='/AddDevice-type' component={AddDevicetype} />
+          <PrivateRoute path='/EditDeviceType' component={EditDevicetype} />
+          <PrivateRoute path='/Showdevicegroup' component={Showdevicegroup} />
+          <PrivateRoute path='/adddevicegroup' component={AddDevicegroup} />
+          <PrivateRoute path='/editdevicegroup' component={EditDevicegroup} />
+          <PrivateRoute path='/showoperatingsystem' component={Showoperatingsystem} />
+          <PrivateRoute path='/addoperatingsystem' component={AddOperatingSystem} />
+          <PrivateRoute path='/editoperatingsystem' component={EditOperatingSystem} />
+          <PrivateRoute path='/showservicecompliance' component={Showservicecompliance} />
+          <PrivateRoute path='/AddServiceCompliance' component={AddServiceCompliance} />
+          <PrivateRoute path='/EditServiceCompliance' component={EditServiceCompliance} />
+          <PrivateRoute path='/AddDevice' component={AddDevice} />
+          <PrivateRoute path='/DeviceTask&Compliances' component={AddDeviceTaskComp} />
+          <PrivateRoute path='/ UpdateDeviceTask&Compliances' component={ UpdateDeviceTaskComp} />
+         
+
+          <PrivateRoute path='/Totalseries' component={Totalseries} />
+          <PrivateRoute path='/Addseries' component={Addseries} />
+          <PrivateRoute path='/Editseries' component={Editseries} />
           
 
-          <Route path='/Totalseries' component={Totalseries} />
-          <Route path='/Addseries' component={Addseries} />
-          <Route path='/Editseries' component={Editseries} />
-          
-
           
           
 
-          <Route path='/form' component={Form} />
+          <PrivateRoute path='/form' component={Form} />
           <Route path='*' component={Pagenotfound} />
         </Switch>
       </Router>
