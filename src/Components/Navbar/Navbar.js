@@ -1,11 +1,17 @@
 import Logo from '../../img/awl2.png';
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import './navbar.css'
 function Navbar() {
+    const [show,setShow] =useState(false);
     const handlelogout = () => {
         sessionStorage.clear();
         window.location.href = '/'
     }
+    useEffect(() =>{
+      if(sessionStorage.getItem('Permission')=== 'allow'){
+        setShow(true)
+      }  
+    } )
     return (
         <>
 
@@ -20,6 +26,7 @@ function Navbar() {
                         <li className="nav-item active">
                             <a className="nav-link nav-url" href="/Dashboard">Home </a>
                         </li>
+                        {show?
                     
                         <li className="nav-item dropdown active">
                             <a className="nav-link dropdown-toggle nav-url" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,7 +46,7 @@ function Navbar() {
                              
                               
                             </div>
-                        </li>
+                        </li>:null}
 
                         <li className="nav-item active">
                             <a className="nav-link nav-url" href="/ShowDevice">Device</a>

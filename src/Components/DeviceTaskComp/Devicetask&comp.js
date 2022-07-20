@@ -1,6 +1,5 @@
 import Navbar from '../Navbar/Navbar';
 import React, { useEffect,useState } from 'react';
-// import {Adddevicetask} from '../../../api'
 import {ActiveDeviceService,ActiveServiceCompliance,Activedevicetask,Activedevice,Adddevicetaskcompliance,Adddevicetaskby} from '../../api/index'
 import Select from 'react-select';
 
@@ -8,7 +7,7 @@ function AddDeviceTaskComp() {
 const [device,setDevice]=useState([]);
 const [services,setServices]= useState([]);
 const [compliances,setCompliances]= useState([]);
-// const [task,setTask]= useState([]);
+
 
 const [activeservice,setActiveService] = useState([])
 const[activecompliance,setActiveCompliance] = useState([]);
@@ -30,7 +29,6 @@ useEffect(()=>{
         const devicetask = await Activedevicetask()
         console.log(devicetask)
         setActiveDeviceTask(devicetask)
-
     }
     fetch()
 
@@ -49,13 +47,10 @@ useEffect(()=>{
             const taskes = e.value
             const result = Adddevicetaskby(devicename,services,taskes,completion_date,remark,username)
         })
-
         compliance.map((e)=>{
             const compliance = e.value
             const result = Adddevicetaskcompliance(devicename,services,compliance,remark,username)
         })
-
-     
     }
 
     let options = activecompliance.map((ele) => {
