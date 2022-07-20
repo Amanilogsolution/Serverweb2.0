@@ -30,6 +30,7 @@ function AddDevicetask() {
 
         const result = await Adddevicetask(devicetaskid,devicetask,devicetaskfreq,remark,username);
         if (result === 'Added') {
+            alert("Data Added")
             window.location.href = './ShowDevicetask'
         }
         else {

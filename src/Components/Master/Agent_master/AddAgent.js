@@ -9,13 +9,10 @@ function AddAgent() {
         if(!series){
             alert('Active Series')
         }
-        console.log(series)
         const ser = series.agent_id
-        console.log(ser)
         const count = await TotalCount('tbl_agent_master')
         let countincrement = count.count+1;
         let countnum = ''+countincrement;
-        console.log(countnum)
         setAgentID(ser+countnum)
 
     })
@@ -31,6 +28,7 @@ function AddAgent() {
         // console.log(deviceid,agentname,agentemail,agentphone,remark,username)
         const result = await Addagent(agentid,agentname,agentemail,agentphone,remark,username);
         if (result === 'Added') {
+            alert('Data Added')
             window.location.href = './ShowAgent'
         }
         else {

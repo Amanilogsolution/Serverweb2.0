@@ -1,48 +1,45 @@
 
 import Navbar from '../../../Navbar/Navbar';
 import { useEffect, useState } from 'react';
-import { Getdevicegroup,Updatedevicegroup } from '../../../../api'
+import { Getdevicegroup, Updatedevicegroup } from '../../../../api'
 
 function EditDevicegroup() {
     const [data, setData] = useState({});
 
     useEffect(() => {
         const fetchdata = async () => {
-      
+
             const getdata = await Getdevicegroup(sessionStorage.getItem('devicegroupSno'));
-            console.log(getdata);
             setData(getdata)
         }
         fetchdata();
-    },[])
+    }, [])
 
-    const handleadddevice=async(e)=>{
+    const handleadddevice = async (e) => {
         e.preventDefault();
-        const deviceid= document.getElementById('deviceid').value;
-        const devicegroup= document.getElementById('devicegroup').value;
-        const remark= document.getElementById('remark').value;
-        const username=sessionStorage.getItem('UserName');
-      
-            console.log(deviceid,devicegroup,remark,username)
-        const result= await Updatedevicegroup(sessionStorage.getItem('devicegroupSno'),deviceid,devicegroup,remark,username);
-        if(result){
+        const deviceid = document.getElementById('deviceid').value;
+        const devicegroup = document.getElementById('devicegroup').value;
+        const remark = document.getElementById('remark').value;
+        const username = sessionStorage.getItem('UserName');
+
+        const result = await Updatedevicegroup(sessionStorage.getItem('devicegroupSno'), deviceid, devicegroup, remark, username);
+        if (result) {
             alert('Updated')
-            localStorage.removeItem('devicegroupSno')
-            window.location.href='Showdevicegroup'
+            sessionStorage.removeItem('devicegroupSno');
+            window.location.href = 'Showdevicegroup'
         }
-        console.log(result);  
     }
 
-    const handleChangeID = (e)=>{
-        setData({...data,id:e.target.value})
+    const handleChangeID = (e) => {
+        setData({ ...data, id: e.target.value })
     }
 
     const handleChangeDeviceGroup = (e) => {
-        setData({...data,device_group:e.target.value})
+        setData({ ...data, device_group: e.target.value })
     }
 
-    const handleChangeRemark = (e) =>{
-        setData({...data,remark:e.target.value})
+    const handleChangeRemark = (e) => {
+        setData({ ...data, remark: e.target.value })
 
     }
     return (
@@ -63,15 +60,15 @@ function EditDevicegroup() {
                                     </div>
                                     <div className="form-group " >
                                         <label>Device Type </label>
-                                        <input type="text" className="form-control" value={data.device_group} id='devicegroup' onChange={(e)=> handleChangeDeviceGroup(e)}/>
+                                        <input type="text" className="form-control" value={data.device_group} id='devicegroup' onChange={(e) => handleChangeDeviceGroup(e)} />
                                     </div>
                                     <div className="form-group">
                                         <label>Remarks</label>
-                                        <textarea className="form-control" placeholder="Comments" value={data.remark} type="text" id='remark' rows="3" onChange={(e)=> handleChangeRemark(e)}/>
+                                        <textarea className="form-control" placeholder="Comments" value={data.remark} type="text" id='remark' rows="3" onChange={(e) => handleChangeRemark(e)} />
                                     </div>
                                     <div className="form-group" >
                                         <button type="button" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
-                                        <button type="button" onClick={()=>{window.location.href='/Showdevicegroup' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={() => { sessionStorage.removeItem('devicegroupSno'); window.location.href = '/Showdevicegroup' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                     </div>
                                 </form>
                             </article>

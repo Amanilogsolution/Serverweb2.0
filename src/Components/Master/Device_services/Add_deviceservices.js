@@ -1,42 +1,39 @@
 import Navbar from '../../Navbar/Navbar';
-import {Adddeviceservice,ActiveSeries,TotalCount} from '../../../api'
-import React,{useEffect,useState} from 'react'
+import { Adddeviceservice, ActiveSeries, TotalCount } from '../../../api'
+import React, { useEffect, useState } from 'react'
 
 function AddDeviceservices() {
-    const [deviceserviceid,setDeviceServiceID] = useState()
+    const [deviceserviceid, setDeviceServiceID] = useState()
 
-    useEffect (async()=>{
+    useEffect(async () => {
         const series = await ActiveSeries()
-        if(!series){
+        if (!series) {
             alert('Active Series')
         }
-        console.log(series)
         const ser = series.services_id
-        console.log(ser)
         const count = await TotalCount('tbl_device_services')
-        let countincrement = count.count+1;
-        let countnum = ''+countincrement;
-        console.log(countnum)
-        setDeviceServiceID(ser+countnum)
+        let countincrement = count.count + 1;
+        let countnum = '' + countincrement;
+        setDeviceServiceID(ser + countnum)
 
     })
 
-    const handleadddevice=async(e)=>{
+    const handleadddevice = async (e) => {
         e.preventDefault();
-        const device_service= document.getElementById('deviceservices').value;
-        const remark= document.getElementById('remark').value;
-        const username=sessionStorage.getItem('UserName');
-      
+        const device_service = document.getElementById('deviceservices').value;
+        const remark = document.getElementById('remark').value;
+        const username = sessionStorage.getItem('UserName');
 
-        const result= await Adddeviceservice(deviceserviceid,device_service,remark,username);
-        if(result==='Added'){
-            window.location.href='./ShowDeviceservices'
+        const result = await Adddeviceservice(deviceserviceid, device_service, remark, username);
+        if (result === 'Added') {
+            alert("Data Added")
+            window.location.href = './ShowDeviceservices'
         }
-        else{
+        else {
             alert("Server Error");
         }
 
-        
+
     }
     return (
         <>
@@ -52,7 +49,7 @@ function AddDeviceservices() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label> ID </label>
-                                        <input type="text" className="form-control" disabled value={deviceserviceid}/>
+                                        <input type="text" className="form-control" disabled value={deviceserviceid} />
                                     </div>
                                     <div className="form-group " >
                                         <label>Device Services </label>
@@ -65,7 +62,7 @@ function AddDeviceservices() {
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                         <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                        <button type="button" onClick={()=>{window.location.href='/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={() => { window.location.href = '/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>
                                 </form>

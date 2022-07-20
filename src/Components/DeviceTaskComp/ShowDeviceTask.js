@@ -11,6 +11,11 @@ function ShowdeviceTask() {
     const [devicename, setDevicename] = useState([]);
     const columns = [
         {
+            name: 'Services',
+            selector: 'services',
+            sortable: true,
+        },
+        {
             name: 'Task',
             selector: 'task',
             sortable: true,

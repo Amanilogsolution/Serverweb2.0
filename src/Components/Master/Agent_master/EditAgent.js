@@ -49,6 +49,7 @@ function EditAgent() {
         const updataresult = await updateagent(sno,id,agentname,agentemail,agentphone,remark,username);
         if (updataresult === 'Updated') {
             alert("Data updated")
+            sessionStorage.removeItem('agentSno');
             window.location.href = './ShowAgent';
         }
         else{

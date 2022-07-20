@@ -24,6 +24,7 @@ function EditDeviceTaskMain() {
             setActiveDeviceTask(task)
 
             const gettask = await GetDevicestask(sessionStorage.getItem('devicetaskmSno'))
+            console.log(gettask)
             setData(gettask)
             setFreq(gettask.task_frequency)
 
@@ -47,12 +48,12 @@ function EditDeviceTaskMain() {
 
         const updatedata = await UpdateDevicetaskes(sno, devicename, services, task, Frequency, completion_date, remark, username)
         if (updatedata === 'Updated') {
-           alert("Data Updated ");
+            alert("Data Updated ");
             sessionStorage.removeItem('devicetaskmSno');
             window.location.href = '/Showdevicetaskes'
         }
         else {
-            alert("Server not Response...") 
+            alert("Server not Response...")
         }
 
     }
@@ -76,6 +77,9 @@ function EditDeviceTaskMain() {
         setData({ remark: e.target.value })
     }
 
+    const handelchangedate = (e) => {
+        setData({ completion_date: e.target.value })
+    }
     return (
         <>
             <Navbar />
@@ -153,7 +157,7 @@ function EditDeviceTaskMain() {
                                     </div>
                                     <div className="form-group">
                                         <label>Completion Date</label>
-                                        <input className="form-control" type="date" id='completion_date' />
+                                        <input className="form-control" type="date" id='completion_date' value={data.completion_date} onChange={handelchangedate} />
                                     </div>
 
                                     <div className="form-group">
