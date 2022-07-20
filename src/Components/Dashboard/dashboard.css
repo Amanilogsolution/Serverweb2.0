@@ -1,6 +1,7 @@
 .dashboard-div {
     width: 100%;
-    height: 90vh;
+    margin-top: -71px;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,9 +21,3 @@
     padding: 0 6px;
 }
 
-@media screen and (min-width:700px) {
-    .dashboard-div {height:89.6vh}
-}
-@media screen and (max-width:481px){
-    .dashboard-div {height:87vh}
-}
