@@ -46,6 +46,7 @@ import AddDeviceComp from './Components/DeviceTaskComp/AddDeviceComp/adddeviceco
 import EditDeviceComp from './Components/DeviceTaskComp/AddDeviceComp/Editdevicecomp'
 import ShowDeviceTaskes from './Components/DeviceTaskComp/ShowDeviceTask';
 import AddDeviceTaskes from './Components/DeviceTaskComp/AddDeviceTask/adddevicetask'
+import EditDeviceTaskMain from './Components/DeviceTaskComp/AddDeviceTask/EditDevicetask'
 
 import Totalseries from './Components/Master/Seies/Totalseries'
 import Addseries from './Components/Master/Seies/Addseries'
@@ -96,7 +97,8 @@ function App() {
           <PrivateRoute path='/EditDeviceComp' component={ EditDeviceComp} />
           <PrivateRoute path='/Showdevicetaskes' component={ ShowDeviceTaskes} />
           <PrivateRoute path='/Adddevicetaskes' component={ AddDeviceTaskes} />
-
+          <PrivateRoute path='/EditDeviceTaskMain' component={ EditDeviceTaskMain} />
+          
 
 
 

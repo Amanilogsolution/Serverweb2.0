@@ -4,11 +4,11 @@ import Navbar from '../Navbar/Navbar';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import {Activedevice,Getdevicetaskbyname,Updatedevicecompstatus} from '../../api'
+import { Activedevice, Getdevicetaskbyname, Updatedevicetaskastatus } from '../../api'
 
 function ShowdeviceTask() {
     const [data, setData] = useState([])
-    const [devicename,setDevicename]=useState([]);
+    const [devicename, setDevicename] = useState([]);
     const columns = [
         {
             name: 'Task',
@@ -36,7 +36,7 @@ function ShowdeviceTask() {
             cell: (row) => [
                 <select onChange={async (e) => {
                     e.preventDefault();
-                    await Updatedevicecompstatus(e.target.value, row.sno);
+                    await Updatedevicetaskastatus(e.target.value, row.sno);
                     window.location.reload();
                 }}>
                     <option hidden >{row.status}</option>
@@ -50,9 +50,9 @@ function ShowdeviceTask() {
             sortable: false,
             selector: "null",
             cell: (row) => [
-                <a title='Edit Agent master' href="/EditDeviceComp">
+                <a title='Edit Device Task ' href="/EditDeviceTaskMain">
 
-                    <button className="editbtn " onClick={() => sessionStorage.setItem('devicecompSno', `${row.sno}`)} >
+                    <button className="editbtn " onClick={() => sessionStorage.setItem('devicetaskmSno', `${row.sno}`)} >
                         {/* Edit */}
                         <img src={Editbtn} alt='Edit ' className='editbtnimg' />
                     </button></a>
@@ -64,9 +64,9 @@ function ShowdeviceTask() {
 
     useEffect(() => {
         const fetchdata = async () => {
-          const result= await Activedevice();
-          console.log(result);
-          setDevicename(result)
+            const result = await Activedevice();
+            console.log(result);
+            setDevicename(result)
         }
         fetchdata();
     }, [])
@@ -78,14 +78,14 @@ function ShowdeviceTask() {
 
 
 
-    const handelselect=async(e)=>{
+    const handelselect = async (e) => {
         console.log(e.target.value)
-          const tabledata = await Getdevicetaskbyname(e.target.value);
-            console.log(tabledata)
-            // setShowtable(true)
-            setData(tabledata)
+        const tabledata = await Getdevicetaskbyname(e.target.value);
+        console.log(tabledata)
+        // setShowtable(true)
+        setData(tabledata)
 
-        
+
     }
     return (
         <>
@@ -100,26 +100,26 @@ function ShowdeviceTask() {
                             {/* <label>Select Device</label> */}
                             <select className="form-control" id='devicename' onChange={handelselect}>
                                 <option hidden>Select Device</option>
-                               {
-                                devicename.map((item,index)=>
-                                <option key={index}>{item.device_name}</option>)
-                               }
+                                {
+                                    devicename.map((item, index) =>
+                                        <option key={index}>{item.device_name}</option>)
+                                }
                             </select>
                         </div>
 
                     </div>
 
 
-                   
-                        <DataTableExtensions {...tableData}>
-                            <DataTable
-                                noHeader
-                                defaultSortField="id"
-                                defaultSortAsc={false}
-                                pagination
-                                highlightOnHover
-                            />
-                        </DataTableExtensions>
+
+                    <DataTableExtensions {...tableData}>
+                        <DataTable
+                            noHeader
+                            defaultSortField="id"
+                            defaultSortAsc={false}
+                            pagination
+                            highlightOnHover
+                        />
+                    </DataTableExtensions>
 
                 </div>
             </div>

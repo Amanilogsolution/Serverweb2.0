@@ -347,3 +347,28 @@ export const  Getdevicetaskbyname= async(name)=>{
      const url=`http://192.168.146.136:8003/api/adddevicetaskes`
      return axios.post(url,{devicename,services,task,completion_date,remark,username}).then(response=>response.data).catch(error=>console.log(error));
  }
+
+ export const  Updatedevicetaskastatus= async(status,sno)=>{
+     const url=`http://192.168.146.136:8003/api/updatedevicetaskastatus`
+     return axios.post(url,{status,sno}).then(response=>response.data).catch(error=>console.log(error));
+ }
+ 
+
+ export const  GetDevicestask= async(sno)=>{
+    const url=`http://192.168.146.136:8003/api/Getdevicestask`
+    return axios.post(url,{sno}).then(response=>response.data).catch(error=>console.log(error));
+}
+
+export const  GetDevicetaskfrequency= async(task)=>{
+    const url=`http://192.168.146.136:8003/api/getdevicetaskfrequency`
+    return axios.post(url,{task}).then(response=>response.data).catch(error=>console.log(error));
+}
+
+export const  UpdateDevicetaskes= async(sno,devicename,services,task,task_frequency,completion_date,remark,username)=>{
+    const url=`http://192.168.146.136:8003/api/updatedevicetaskes`
+    return axios.post(url,{sno,devicename,services,task,task_frequency,completion_date,remark,username}).then(response=>response.data).catch(error=>console.log(error));
+}
+
+
+
+ 

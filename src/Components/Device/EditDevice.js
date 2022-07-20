@@ -1,6 +1,6 @@
 import Navbar from '../Navbar/Navbar';
 import React, { useEffect, useState } from 'react'
-import { ActiveDeviceService, ActiveDevicetype, ActiveDevicegroup, ActiveOperatingSystem, ActiveAgent, Adddevice, ActiveSeries, TotalCount, Getdevice ,Updatedevice} from '../../api/index'
+import { ActiveDeviceService, ActiveDevicetype, ActiveDevicegroup, ActiveOperatingSystem, ActiveAgent, Adddevice, ActiveSeries, TotalCount, Getdevice, Updatedevice } from '../../api/index'
 import Select from 'react-select';
 
 
@@ -52,8 +52,8 @@ function EditDevice() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        const sno= sessionStorage.getItem('deviceSno');
-        const deviceid= document.getElementById('deviceid').value;
+        const sno = sessionStorage.getItem('deviceSno');
+        const deviceid = document.getElementById('deviceid').value;
         const devicename = document.getElementById('devicename').value
         const devicetype = document.getElementById('devicetype').value;
         const devicegroup = document.getElementById('devicegroup').value;
@@ -65,42 +65,42 @@ function EditDevice() {
         const registerdate = document.getElementById('registerdate').value
         const agent = document.getElementById('agent').value
         const remark = document.getElementById('remark').value
-        const username= sessionStorage.getItem('UserName')
+        const username = sessionStorage.getItem('UserName')
 
         // console.log('api',sno,deviceid,devicename,devicetype,devicegroup,deviceipaddr,devicehost,operatingsystem,services,createdate,registerdate,agent,remark,username)
 
-            const result = await Updatedevice(sno,deviceid,devicename,devicetype,devicegroup,deviceipaddr,devicehost,operatingsystem,services,createdate,registerdate,agent,remark,username)
-            console.log(result)
-     
-            if(result==='Updated'){
-                alert('Data Updated')
-   sessionStorage.removeItem('deviceSno');
-        window.location.href = '/ShowDevice'
-            }
-            else{
-                alert("Server not response...")
-            }
-     
+        const result = await Updatedevice(sno, deviceid, devicename, devicetype, devicegroup, deviceipaddr, devicehost, operatingsystem, services, createdate, registerdate, agent, remark, username)
+        console.log(result)
+
+        if (result === 'Updated') {
+            alert('Data Updated')
+            sessionStorage.removeItem('deviceSno');
+            window.location.href = '/ShowDevice'
+        }
+        else {
+            alert("Server not response...")
+        }
+
 
     }
 
 
-     const handlechangedevicename=(e)=>{
+    const handlechangedevicename = (e) => {
         e.preventDefault();
-        setData({device_name:e.target.value})
-     }
-     const handlechangeipadd=(e)=>{
+        setData({ device_name: e.target.value })
+    }
+    const handlechangeipadd = (e) => {
         e.preventDefault();
-        setData({device_ip_address:e.target.value})
-     }
-     const handlechangehost=(e)=>{
+        setData({ device_ip_address: e.target.value })
+    }
+    const handlechangehost = (e) => {
         e.preventDefault();
-        setData({device_host_master:e.target.value})
-     }
-     const handlechangeremark=(e)=>{
+        setData({ device_host_master: e.target.value })
+    }
+    const handlechangeremark = (e) => {
         e.preventDefault();
-        setData({remark:e.target.value})
-     }
+        setData({ remark: e.target.value })
+    }
     // let options = activeservice.map((ele) => {
     //     return { value: ele.device_services, label: ele.device_services };
     // })
@@ -127,7 +127,7 @@ function EditDevice() {
                                     </div>
                                     <div className="form-group">
                                         <label>Device Name </label>
-                                        <input type="text" className="form-control" id='devicename' value={data.device_name} onChange={handlechangedevicename}/>
+                                        <input type="text" className="form-control" id='devicename' value={data.device_name} onChange={handlechangedevicename} />
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group col-md-6" >
@@ -160,11 +160,11 @@ function EditDevice() {
                                     </div>
                                     <div className="form-group " >
                                         <label>Device IP Address</label>
-                                        <input type="text" className="form-control" id='deviceipaddr' value={data.device_ip_address} onChange={handlechangeipadd}/>
+                                        <input type="text" className="form-control" id='deviceipaddr' value={data.device_ip_address} onChange={handlechangeipadd} />
                                     </div>
                                     <div className="form-group " >
                                         <label>Device Host Master</label>
-                                        <input type="text" className="form-control" id='devicehost' value={data.device_host_master} onChange={handlechangehost}/>
+                                        <input type="text" className="form-control" id='devicehost' value={data.device_host_master} onChange={handlechangehost} />
                                     </div>
                                     <div className="form-group " >
                                         <label>Operating System</label>
@@ -222,7 +222,7 @@ function EditDevice() {
                                     </div>
                                     <div className="form-group">
                                         <label>Remarks</label>
-                                        <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" value={data.remark} onChange={handlechangeremark}/>
+                                        <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" value={data.remark} onChange={handlechangeremark} />
                                     </div>
 
                                     <div className="form-group" >
