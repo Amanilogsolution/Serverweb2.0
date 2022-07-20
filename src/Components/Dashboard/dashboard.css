@@ -19,3 +19,10 @@
     border-radius: 6px;
     padding: 0 6px;
 }
+
+@media screen and (max-width:769px) and (min-width:1270px){
+    .dashboard-div {height:91vh}
+}
+@media screen and (max-width:481px) and (min-width:769px){
+    .dashboard-div {height:91vh}
+}
