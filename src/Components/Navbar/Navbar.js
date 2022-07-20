@@ -26,14 +26,18 @@ function Navbar() {
                                 Master
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a className="dropdown-item nav-url2" href="/Totalseries">Series</a>
+
                                 <a className="dropdown-item nav-url2" href="/Device-Type">Device Type</a>
-                                <a className="dropdown-item nav-url2" href="ShowDeviceservices">Device Services</a>
-                                <a className="dropdown-item nav-url2" href="./ShowDevicetask">Device Task </a>
-                                <a className="dropdown-item nav-url2" href="./ShowAgent">Agent master </a>
                                 <a className="dropdown-item nav-url2" href="/Showdevicegroup">Device Group</a>
                                 <a className="dropdown-item nav-url2" href="/showoperatingsystem">Operating System</a>
+                                <a className="dropdown-item nav-url2" href="ShowDeviceservices">Device Services</a>
+
                                 <a className="dropdown-item nav-url2" href="/showservicecompliance">Service Compliance</a>
-                                <a className="dropdown-item nav-url2" href="/Totalseries">Series</a>
+                                <a className="dropdown-item nav-url2" href="./ShowDevicetask">Device Task </a>
+                                <a className="dropdown-item nav-url2" href="./ShowAgent">Agent master </a>
+                             
+                              
                             </div>
                         </li>
 
@@ -47,8 +51,10 @@ function Navbar() {
                             Device Task & Comp 
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a className="dropdown-item nav-url2" href="/DeviceTask&Compliancese">Device Task & Comp </a>
-                                <a className="dropdown-item nav-url2" href="/DeviceTask&Compliances">Action</a>
+                            <a className="dropdown-item nav-url2" href="/UpdateDeviceTask&Compliances">Show Device Comp</a>
+                            <a className="dropdown-item nav-url2" href="/Showdevicetaskes">Show Device Task</a>
+
+                                <a className="dropdown-item nav-url2" href="/DeviceTask&Compliances">Add Device Task & Comp </a>
  
                             </div>
                         </li>

@@ -42,6 +42,11 @@ import AddDeviceTaskComp from './Components/DeviceTaskComp/Devicetask&comp'
 import UpdateDeviceTaskComp from './Components/DeviceTaskComp/UpdateDevicetask&comp'
 import EditDeviceTaskComp from './Components/DeviceTaskComp/EditDevicetask&comp'
 
+import AddDeviceComp from './Components/DeviceTaskComp/AddDeviceComp/adddevicecomp'
+import EditDeviceComp from './Components/DeviceTaskComp/AddDeviceComp/Editdevicecomp'
+import ShowDeviceTaskes from './Components/DeviceTaskComp/ShowDeviceTask';
+import AddDeviceTaskes from './Components/DeviceTaskComp/AddDeviceTask/adddevicetask'
+
 import Totalseries from './Components/Master/Seies/Totalseries'
 import Addseries from './Components/Master/Seies/Addseries'
 import Editseries from './Components/Master/Seies/Editseries'
@@ -85,8 +90,18 @@ function App() {
           
           
           <PrivateRoute path='/DeviceTask&Compliances' component={AddDeviceTaskComp} />
-          <PrivateRoute path='/ UpdateDeviceTask&Compliances' component={ UpdateDeviceTaskComp} />
-         
+          <PrivateRoute path='/UpdateDeviceTask&Compliances' component={ UpdateDeviceTaskComp} />
+          <PrivateRoute path='/EditDeviceTask&Compliances' component={ EditDeviceTaskComp} />
+          <PrivateRoute path='/AddDeviceComp' component={ AddDeviceComp} />
+          <PrivateRoute path='/EditDeviceComp' component={ EditDeviceComp} />
+          <PrivateRoute path='/Showdevicetaskes' component={ ShowDeviceTaskes} />
+          <PrivateRoute path='/Adddevicetaskes' component={ AddDeviceTaskes} />
+
+
+
+
+          
+          
 
           <PrivateRoute path='/Totalseries' component={Totalseries} />
           <PrivateRoute path='/Addseries' component={Addseries} />

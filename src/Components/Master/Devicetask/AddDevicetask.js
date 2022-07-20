@@ -64,7 +64,7 @@ function AddDevicetask() {
                                             <option>Weekly</option>
                                             <option>Monthly</option>
                                             <option>Quaterly</option>
-                                            <option>Year</option>
+                                            <option>Yearly</option>
                                         </select>
                                         {/* <input type="text" className="form-control" id='devicetaskfreq' /> */}
                                     </div>

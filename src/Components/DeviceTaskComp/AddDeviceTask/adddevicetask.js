@@ -1,22 +1,16 @@
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../../Navbar/Navbar';
 import React, { useEffect,useState } from 'react';
 // import {Adddevicetask} from '../../../api'
-import {ActiveDeviceService,ActiveServiceCompliance,Activedevicetask,Activedevice,Adddevicetaskcompliance,Adddevicetaskby} from '../../api/index'
+import {ActiveDeviceService,Activedevicetask,Activedevice,Adddevicetaskby} from '../../../api/index'
 import Select from 'react-select';
 
-function AddDeviceTaskComp() {
-const [device,setDevice]=useState([]);
-const [services,setServices]= useState([]);
-const [compliances,setCompliances]= useState([]);
-// const [task,setTask]= useState([]);
+function AddDeviceTask() {
 
 const [activeservice,setActiveService] = useState([])
-const[activecompliance,setActiveCompliance] = useState([]);
 const [activedevicetask,setActiveDeviceTask] = useState([]);
 const[activedevicename,setActiveDeviceName] = useState([]);
 
-const[compliance,setCompliance] = useState([])
-const [task,setTask] = useState([]);
+const[task,setTaskask] = useState([])
 
 useEffect(()=>{
     const fetch = async () => {
@@ -25,11 +19,9 @@ useEffect(()=>{
         console.log(devicename)
         const result = await ActiveDeviceService()
         setActiveService(result)
-        const compliance = await ActiveServiceCompliance()
-        setActiveCompliance(compliance)
-        const devicetask = await Activedevicetask()
-        console.log(devicetask)
-        setActiveDeviceTask(devicetask)
+        const task = await Activedevicetask()
+        setActiveDeviceTask(task)
+   
 
     }
     fetch()
@@ -45,41 +37,32 @@ useEffect(()=>{
         const completion_date = document.getElementById('completion_date').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
+
         task.map((e)=>{
             const taskes = e.value
             const result = Adddevicetaskby(devicename,services,taskes,completion_date,remark,username)
         })
 
-        compliance.map((e)=>{
-            const compliance = e.value
-            const result = Adddevicetaskcompliance(devicename,services,compliance,remark,username)
-        })
+        window.location.href='/Showdevicetaskes'
+  
 
+        console.log(devicename,services,task,remark,completion_date,username)
      
     }
 
-    let options = activecompliance.map((ele) => {
-        return { value: ele.services_compliance, label: ele.services_compliance };
-    })
-
-    let opt = activedevicetask.map((ele)=>{
+    let options = activedevicetask.map((ele) => {
         return { value: ele.device_tasks, label: ele.device_tasks };
-
     })
+
+
 
     const handleChange = (selectedOption) => {
      console.log(selectedOption)
-     setCompliance(selectedOption)
+     setTaskask(selectedOption)
     }
-    const handleChangeTAsk =(selectedOption)=>{
-        console.log(selectedOption)
-        setTask(selectedOption)
+  
 
-    }
-
-    useEffect(()=>{
-       
-    },[])
+  
     return (
         <>
             <Navbar />
@@ -88,14 +71,14 @@ useEffect(()=>{
                     <div className="col " style={{ margin: "0px auto", width: "630px" }}>
                         <div className="card" style={{ boxShadow: "2px 2px 5px #333" }}>
                             <header className="card-header" >
-                                <h4 className=" mt-2 text-center" >Add Device Task & Compliances</h4>
+                                <h4 className=" mt-2 text-center" >Add Device Task</h4>
                             </header>
                             <article className="card-body" >
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label>Device Name </label>
                                         <select
-                                            id="device"
+                                            id="devicename"
                                             className="form-control col-md-12"
                                         >
                                             <option selected hidden value="India">Choose Device Name</option>
@@ -109,7 +92,7 @@ useEffect(()=>{
                                     <div className="form-group " >
                                         <label>Select Services </label>
                                         <select
-                                            id="devicegroup"
+                                            id="services"
                                             className="form-control col-md-12"
                                         >
                                             <option selected hidden value="India">Choose Service</option>
@@ -121,7 +104,7 @@ useEffect(()=>{
                                         </select>
                                     </div>
                                     <div className="form-group " >
-                                        <label> Compliance </label>
+                                        <label> Task</label>
 
                                         <Select
                                             options={options}
@@ -129,21 +112,13 @@ useEffect(()=>{
                                             onChange={handleChange}
                                         />
 
-                                  
-                                    </div>
-                                    <div className="form-group " >
-                                        <label> Task </label>
-                                        <Select
-                                            options={opt}
-                                            isMulti={true}
-                                            onChange={handleChangeTAsk}
-                                        />
-                                    
+                                     
                                     </div>
                                     <div className="form-group">
                                         <label>Completion Date</label>
                                         <input className="form-control" type="date" id='completion_date' />
                                     </div>
+                                
                                     <div className="form-group">
                                         <label>Remarks</label>
                                         <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
@@ -163,4 +138,4 @@ useEffect(()=>{
     )
 }
 
-export default AddDeviceTaskComp;
+export default AddDeviceTask;
