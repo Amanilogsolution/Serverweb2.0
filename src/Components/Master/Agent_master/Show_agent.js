@@ -70,7 +70,6 @@ function ShowAgent() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await Totalagent();
-            // console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();

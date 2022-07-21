@@ -8,7 +8,7 @@ function AddDeviceservices() {
     useEffect(async () => {
         const series = await ActiveSeries()
         if (!series) {
-            alert('Active Series')
+            alert('Please add/active  the Series')
         }
         const ser = series.services_id
         const count = await TotalCount('tbl_device_services')
@@ -24,16 +24,24 @@ function AddDeviceservices() {
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
-        const result = await Adddeviceservice(deviceserviceid, device_service, remark, username);
-        if (result === 'Added') {
-            alert("Data Added")
-            window.location.href = './ShowDeviceservices'
+
+        if (!device_service) {
+            alert("Please enter Mandatory field")
         }
         else {
-            alert("Server Error");
+            const result = await Adddeviceservice(deviceserviceid, device_service, remark, username);
+            if (result === 'Added') {
+                alert("Data Added")
+                window.location.href = './ShowDeviceservices'
+            }
+            else if (result === 'Already') {
+                alert('This Device Type already Exist');
+            }
+            else {
+                alert("Server Error");
+            }
+
         }
-
-
     }
     return (
         <>
@@ -52,7 +60,7 @@ function AddDeviceservices() {
                                         <input type="text" className="form-control" disabled value={deviceserviceid} />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Device Services </label>
+                                        <label>Device Services<span style={{ color: "red" }}>*</span>  </label>
                                         <input type="text" className="form-control" id='deviceservices' />
                                     </div>
                                     <div className="form-group">
@@ -62,7 +70,7 @@ function AddDeviceservices() {
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                         <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                        <button type="button" onClick={() => { window.location.href = '/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={() => { window.location.href = '/ShowDeviceservices' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>
                                 </form>

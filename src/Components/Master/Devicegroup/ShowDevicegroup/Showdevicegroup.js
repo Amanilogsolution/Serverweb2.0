@@ -59,7 +59,6 @@ function Showdevicegroup() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalDevicegroup();
-            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();
@@ -89,7 +88,6 @@ function Showdevicegroup() {
                     </DataTableExtensions>
                 </div>
             </div>
-            {/* <Footer /> */}
         </>
     )
 }

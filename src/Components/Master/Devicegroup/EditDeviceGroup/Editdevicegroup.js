@@ -8,7 +8,6 @@ function EditDevicegroup() {
 
     useEffect(() => {
         const fetchdata = async () => {
-
             const getdata = await Getdevicegroup(sessionStorage.getItem('devicegroupSno'));
             setData(getdata)
         }
@@ -17,17 +16,26 @@ function EditDevicegroup() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const deviceid = document.getElementById('deviceid').value;
         const devicegroup = document.getElementById('devicegroup').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
-
-        const result = await Updatedevicegroup(sessionStorage.getItem('devicegroupSno'), deviceid, devicegroup, remark, username);
-        if (result) {
-            alert('Updated')
-            sessionStorage.removeItem('devicegroupSno');
-            window.location.href = 'Showdevicegroup'
+        if (!devicegroup) {
+            alert("Please enter the mandatory field")
         }
+        else {
+            const result = await Updatedevicegroup(sessionStorage.getItem('devicegroupSno'), deviceid, devicegroup, remark, username);
+            if (result) {
+                alert('Updated')
+                sessionStorage.removeItem('devicegroupSno');
+                window.location.href = 'Showdevicegroup'
+            }
+            else {
+                alert("Server Error");
+            }
+        }
+
     }
 
     const handleChangeID = (e) => {
@@ -59,7 +67,7 @@ function EditDevicegroup() {
                                         <input type="text" className="form-control" disabled value={data.id} id='deviceid' onChange={(e) => handleChangeID(e)} />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Device Type </label>
+                                        <label>Device Group<span style={{ color: "red" }}>*</span> </label>
                                         <input type="text" className="form-control" value={data.device_group} id='devicegroup' onChange={(e) => handleChangeDeviceGroup(e)} />
                                     </div>
                                     <div className="form-group">
@@ -76,7 +84,6 @@ function EditDevicegroup() {
                     </div>
                 </div>
             </div>
-            {/* <Footer /> */}
         </>
     )
 }

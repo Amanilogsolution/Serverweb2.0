@@ -7,7 +7,7 @@ function AddAgent() {
     useEffect (async()=>{
         const series = await ActiveSeries()
         if(!series){
-            alert('Active Series')
+            alert('Please add/active  the Series')
         }
         const ser = series.agent_id
         const count = await TotalCount('tbl_agent_master')
@@ -19,13 +19,17 @@ function AddAgent() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled=true;
         const agentname = document.getElementById('agentname').value;
         const agentemail = document.getElementById('agentemail').value;
         const agentphone = document.getElementById('agentphone').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
  
-        // console.log(deviceid,agentname,agentemail,agentphone,remark,username)
+        if (!agentname) {
+            alert("Please enter Mandatory field")
+        }
+        else {
         const result = await Addagent(agentid,agentname,agentemail,agentphone,remark,username);
         if (result === 'Added') {
             alert('Data Added')
@@ -34,6 +38,7 @@ function AddAgent() {
         else {
             alert("Server Error");
         }
+    }
 
     }
     return (
@@ -53,7 +58,7 @@ function AddAgent() {
                                         <input type="text" className="form-control" disabled value={agentid} />
                                     </div>
                                     <div className="form-group " >
-                                        <label> Agent Name </label>
+                                        <label> Agent Name <span style={{color:"red"}}>*</span></label>
                                         <input type="text" className="form-control" id='agentname' />
                                     </div>
                                     <div className="form-group " >

@@ -1,32 +1,28 @@
 import Navbar from '../../Navbar/Navbar';
-import React, { useEffect,useState } from 'react';
-// import {Adddevicetask} from '../../../api'
-import {ActiveDeviceService,Activedevicetask,Activedevice,Adddevicetaskby} from '../../../api/index'
+import React, { useEffect, useState } from 'react';
+import { ActiveDeviceService, Activedevicetask, Activedevice, Adddevicetaskby } from '../../../api/index'
 import Select from 'react-select';
 
 function AddDeviceTask() {
 
-const [activeservice,setActiveService] = useState([])
-const [activedevicetask,setActiveDeviceTask] = useState([]);
-const[activedevicename,setActiveDeviceName] = useState([]);
+    const [activeservice, setActiveService] = useState([])
+    const [activedevicetask, setActiveDeviceTask] = useState([]);
+    const [activedevicename, setActiveDeviceName] = useState([]);
 
-const[task,setTaskask] = useState([])
+    const [task, setTaskask] = useState([])
 
-useEffect(()=>{
-    const fetch = async () => {
-        const devicename = await Activedevice()
-        setActiveDeviceName(devicename)
-        console.log(devicename)
-        const result = await ActiveDeviceService()
-        setActiveService(result)
-        const task = await Activedevicetask()
-        setActiveDeviceTask(task)
-   
+    useEffect(() => {
+        const fetch = async () => {
+            const devicename = await Activedevice()
+            setActiveDeviceName(devicename)
+            const result = await ActiveDeviceService()
+            setActiveService(result)
+            const task = await Activedevicetask()
+            setActiveDeviceTask(task)
+        }
+        fetch()
 
-    }
-    fetch()
-
-},[])
+    }, [])
 
 
 
@@ -38,16 +34,28 @@ useEffect(()=>{
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
-        task.map((e)=>{
-            const taskes = e.value
-            const result = Adddevicetaskby(devicename,services,taskes,completion_date,remark,username)
-        })
+        if (!devicename || !services || !task.length || !completion_date) {
+            alert("Please enter Mandatory field")
+        }
+        else {
+            console.log(task.length)
+            const arrresult = [];
+            task.map((e) => {
+                const taskes = e.value
+                const result = Adddevicetaskby(devicename, services, taskes, completion_date, remark, username)
+                arrresult.push(result);
+            })
 
-        window.location.href='/Showdevicetaskes'
-  
+            if (arrresult.length > 0) {
+                alert('Data Added')
+                window.location.href = '/Showdevicetaskes'
+            }
+            else {
+                alert('Server not response')
+            }
 
-        console.log(devicename,services,task,remark,completion_date,username)
-     
+        }
+
     }
 
     let options = activedevicetask.map((ele) => {
@@ -57,12 +65,11 @@ useEffect(()=>{
 
 
     const handleChange = (selectedOption) => {
-     console.log(selectedOption)
-     setTaskask(selectedOption)
+        setTaskask(selectedOption)
     }
-  
 
-  
+
+
     return (
         <>
             <Navbar />
@@ -76,12 +83,12 @@ useEffect(()=>{
                             <article className="card-body" >
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
-                                        <label>Device Name </label>
+                                        <label>Device Name <span style={{ color: "red" }}>*</span></label>
                                         <select
                                             id="devicename"
                                             className="form-control col-md-12"
                                         >
-                                            <option selected hidden value="India">Choose Device Name</option>
+                                            <option defaultValue hidden value=''>Choose Device Name</option>
                                             {
                                                 activedevicename.map((data, index) => (
                                                     <option key={index} value={data.device_name}>{data.device_name}</option>
@@ -90,12 +97,12 @@ useEffect(()=>{
                                         </select>
                                     </div>
                                     <div className="form-group " >
-                                        <label>Select Services </label>
+                                        <label>Select Services <span style={{ color: "red" }}>*</span></label>
                                         <select
                                             id="services"
                                             className="form-control col-md-12"
                                         >
-                                            <option selected hidden value="India">Choose Service</option>
+                                            <option defaultValue hidden value=''>Choose Service</option>
                                             {
                                                 activeservice.map((data, index) => (
                                                     <option key={index} value={data.device_services}>{data.device_services}</option>
@@ -104,21 +111,22 @@ useEffect(()=>{
                                         </select>
                                     </div>
                                     <div className="form-group " >
-                                        <label> Task</label>
+                                        <label> Task<span style={{ color: "red" }}>*</span></label>
 
                                         <Select
                                             options={options}
                                             isMulti={true}
                                             onChange={handleChange}
+                                            defaultInputValue=''
                                         />
 
-                                     
+
                                     </div>
                                     <div className="form-group">
-                                        <label>Completion Date</label>
+                                        <label>Completion Date<span style={{ color: "red" }}>*</span></label>
                                         <input className="form-control" type="date" id='completion_date' />
                                     </div>
-                                
+
                                     <div className="form-group">
                                         <label>Remarks</label>
                                         <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
@@ -126,7 +134,7 @@ useEffect(()=>{
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                         <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                        <button type="button" onClick={() => { window.location.href = '/Dashboard' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={() => { window.location.href = '/Showdevicetaskes' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                     </div>
                                 </form>
                             </article>

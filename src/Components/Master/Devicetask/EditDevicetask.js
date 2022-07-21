@@ -1,6 +1,6 @@
 import Navbar from '../../Navbar/Navbar';
 import React, { useEffect, useState } from 'react';
-import {Getdevicetask,Updatedevicetask} from '../../../api'
+import { Getdevicetask, Updatedevicetask } from '../../../api'
 
 function EditDevicetask() {
     const [data, setData] = useState({});
@@ -9,7 +9,6 @@ function EditDevicetask() {
         const fetchdata = async () => {
             const snodata = sessionStorage.getItem('devicetaskSno');
             const getdata = await Getdevicetask(snodata);
-            console.log(getdata)
             setData(getdata)
         }
         fetchdata();
@@ -26,30 +25,35 @@ function EditDevicetask() {
     const handlechangedevicetaskfreq = (e) => {
         setData({ ...data, device_tasks_frequency: e.target.value })
     }
-    
+
     const handlechangedeviceremark = (e) => {
         setData({ ...data, remark: e.target.value })
     }
 
     const handlesubmitdata = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled=true;
         const sno = sessionStorage.getItem('devicetaskSno');
         const devicetypeid = document.getElementById('deviceid').value;
         const device_task = document.getElementById('devicetask').value;
         const devicetaskfreq = document.getElementById('devicetaskfreq').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
-        console.log(sno,devicetypeid,device_task,devicetaskfreq,remark,username)
 
-        const updataresult = await Updatedevicetask(sno,devicetypeid,device_task,devicetaskfreq,remark,username);
-        if (updataresult === 'Updated') {
-            alert("Data updated")
-            sessionStorage.removeItem('devicetaskSno'); 
-            window.location.href = './ShowDevicetask';
-            
+        if (!device_task || !devicetaskfreq) {
+            alert("Please enter the data")
         }
-        else{
-            alert("Server not response ...")
+        else {
+            const updataresult = await Updatedevicetask(sno, devicetypeid, device_task, devicetaskfreq, remark, username);
+            if (updataresult === 'Updated') {
+                alert("Data updated")
+                sessionStorage.removeItem('devicetaskSno');
+                window.location.href = './ShowDevicetask';
+
+            }
+            else {
+                alert("Server not response ...")
+            }
         }
     }
     return (
@@ -69,11 +73,11 @@ function EditDevicetask() {
                                         <input type="text" className="form-control" id='deviceid' disabled value={data.id} onChange={handlechangedeviceid} />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Device Task </label>
+                                        <label>Device Task <span style={{ color: "red" }}>*</span></label>
                                         <input type="text" className="form-control" id='devicetask' value={data.device_tasks} onChange={handlechangedevicetask} />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Device Task Frequency </label>
+                                        <label>Device Task Frequency<span style={{ color: "red" }}>*</span> </label>
                                         <input type="text" className="form-control" id='devicetaskfreq' value={data.device_tasks_frequency} onChange={handlechangedevicetaskfreq} />
                                     </div>
                                     <div className="form-group">

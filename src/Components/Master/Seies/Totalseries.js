@@ -89,7 +89,6 @@ function Totalseries() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await Totalseriesapi();
-            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();

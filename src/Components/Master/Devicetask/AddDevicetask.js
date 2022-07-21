@@ -1,23 +1,21 @@
 import Navbar from '../../Navbar/Navbar';
-import {Adddevicetask,ActiveSeries,TotalCount} from '../../../api';
-import React,{useEffect,useState} from 'react'
+import { Adddevicetask, ActiveSeries, TotalCount } from '../../../api';
+import React, { useEffect, useState } from 'react'
 
 
 function AddDevicetask() {
-    const [devicetaskid,setDeviceTaskId] = useState()
+    const [devicetaskid, setDeviceTaskId] = useState()
 
-    useEffect (async()=>{
+    useEffect(async () => {
         const series = await ActiveSeries()
-        console.log(series)
-        if(!series){
-            alert('Active Series')
+        if (!series) {
+            alert('Please enter the mandatory field')
         }
         const ser = series.task_id
-        console.log(ser)
         const count = await TotalCount('tbl_device_tasks')
-        let countincrement = count.count+1;
-        let countnum = ''+countincrement
-        setDeviceTaskId(ser+countnum)
+        let countincrement = count.count + 1;
+        let countnum = '' + countincrement
+        setDeviceTaskId(ser + countnum)
 
     })
 
@@ -28,15 +26,22 @@ function AddDevicetask() {
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
-        const result = await Adddevicetask(devicetaskid,devicetask,devicetaskfreq,remark,username);
-        if (result === 'Added') {
-            alert("Data Added")
-            window.location.href = './ShowDevicetask'
+        if (!devicetask || !devicetaskfreq) {
+            alert("Please enter the data")
         }
         else {
-            alert("Server Error");
+            const result = await Adddevicetask(devicetaskid, devicetask, devicetaskfreq, remark, username);
+            if (result === 'Added') {
+                alert("Data Added")
+                window.location.href = './ShowDevicetask'
+            }
+            else if (result === 'Already') {
+                alert('Data already Exist');
+            }
+            else {
+                alert("Server Error");
+            }
         }
-
     }
     return (
         <>
@@ -55,21 +60,20 @@ function AddDevicetask() {
                                         <input type="text" className="form-control" disabled value={devicetaskid} />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Device Task </label>
+                                        <label>Device Task<span style={{color:"red"}}>*</span> </label>
                                         <input type="text" className="form-control" id='devicetask' />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Device Task Frequency </label>
-                                        <select  className="form-control" id='devicetaskfreq'>
+                                        <label>Device Task Frequency <span style={{color:"red"}}>*</span></label>
+                                        <select className="form-control" id='devicetaskfreq'>
                                             <option>Daily</option>
                                             <option>Weekly</option>
                                             <option>Monthly</option>
                                             <option>Quaterly</option>
                                             <option>Yearly</option>
                                         </select>
-                                        {/* <input type="text" className="form-control" id='devicetaskfreq' /> */}
                                     </div>
-                                  
+
                                     <div className="form-group">
                                         <label>Remarks</label>
                                         <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />

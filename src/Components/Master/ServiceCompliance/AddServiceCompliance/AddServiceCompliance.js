@@ -1,44 +1,51 @@
 import Navbar from '../../../Navbar/Navbar';
-import {Addservicecompliance,ActiveDeviceService,ActiveSeries,TotalCount} from '../../../../api'
-import React,{useEffect,useState} from 'react'
+import { Addservicecompliance, ActiveDeviceService, ActiveSeries, TotalCount } from '../../../../api'
+import React, { useEffect, useState } from 'react'
 
 function AddServiceCompliance() {
-    const [deviceservice,setDeviceService] = useState([])
-    const [complianceid,setComplianceID] = useState()
+    const [deviceservice, setDeviceService] = useState([])
+    const [complianceid, setComplianceID] = useState()
 
-    useEffect(()=>{
-        const fetchdata = async() =>{
+    useEffect(() => {
+        const fetchdata = async () => {
             const result = await ActiveDeviceService()
             setDeviceService(result)
-            console.log(result)
 
             const series = await ActiveSeries()
-            if(!series){
-                alert('Active Series')
+            if (!series) {
+                alert('Please add/active  the Series')
             }
-            console.log(series)
             const ser = series.agent_id
-            console.log(ser)
             const count = await TotalCount('tbl_agent_master')
-            let countincrement = count.count+1;
-            let countnum = ''+countincrement;
-            console.log(countnum)
-            setComplianceID(ser+countnum)
-        } 
+            let countincrement = count.count + 1;
+            let countnum = '' + countincrement;
+            setComplianceID(ser + countnum)
+        }
         fetchdata();
-    },[])
+    }, [])
 
-    const handleadddevice=async(e)=>{
+    const handleadddevice = async (e) => {
         e.preventDefault();
         const DeviceService = document.getElementById('DeviceService').value
-        const ServiceCompliance= document.getElementById('servicecompliance').value;
-        const remark= document.getElementById('remark').value;
-        const username=sessionStorage.getItem('UserName');
-      
-        const result= await Addservicecompliance(complianceid,DeviceService,ServiceCompliance,remark,username);
-        if (result){
-            alert("Added")
-            window.location.href='/showservicecompliance'
+        const ServiceCompliance = document.getElementById('servicecompliance').value;
+        const remark = document.getElementById('remark').value;
+        const username = sessionStorage.getItem('UserName');
+
+        if (!DeviceService || !ServiceCompliance) {
+            alert("Please enter Mandatory field")
+        }
+        else {
+            const result = await Addservicecompliance(complianceid, DeviceService, ServiceCompliance, remark, username);
+            if (result === 'Added') {
+                alert("Added")
+                window.location.href = '/showservicecompliance'
+            }
+            else if (result === 'Already') {
+                alert('This Device Type already Exist');
+            }
+            else {
+                alert("Server Error");
+            }
         }
     }
     return (
@@ -55,27 +62,26 @@ function AddServiceCompliance() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label>Service Compliance ID </label>
-                                        <input type="text" className="form-control" disabled value={complianceid}/>
+                                        <input type="text" className="form-control" disabled value={complianceid} />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Device Service</label>
-                                      
-                            <select
-                              id="DeviceService"
-                              className="form-control col-md-12" 
-                            >
-                              <option selected hidden value="India">Choose Service</option>
-                              {
-                                deviceservice.map((data, index) => (
-                                  <option key={index} value={data.device_services}>{data.device_services}</option>
-                                ))
+                                        <label>Device Service <span style={{ color: "red" }}>*</span></label>
 
-                              }
-                            </select>
-                          {/* </div> */}
+                                        <select
+                                            id="DeviceService"
+                                            className="form-control col-md-12"
+                                        >
+                                            <option selected hidden value="India">Choose Service</option>
+                                            {
+                                                deviceservice.map((data, index) => (
+                                                    <option key={index} value={data.device_services}>{data.device_services}</option>
+                                                ))
+
+                                            }
+                                        </select>
                                     </div>
                                     <div className="form-group " >
-                                        <label> Service Compliance</label>
+                                        <label> Service Compliance<span style={{ color: "red" }}>*</span></label>
                                         <input type="text" className="form-control" id='servicecompliance' />
                                     </div>
                                     <div className="form-group">
@@ -85,7 +91,7 @@ function AddServiceCompliance() {
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                         <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                        <button type="button" onClick={()=>{window.location.href='/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={() => { window.location.href = '/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>
                                 </form>
@@ -94,7 +100,6 @@ function AddServiceCompliance() {
                     </div>
                 </div>
             </div>
-            {/* <Footer /> */}
         </>
     )
 }

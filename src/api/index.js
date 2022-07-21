@@ -184,7 +184,6 @@ export const Addagent = async (agentid, agent_name, agent_email, agent_phone, re
 }
 
 export const Getagent = async (sno) => {
-    console.log(sno)
     const url = `http://192.168.146.136:8003/api/getagentmaster`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
@@ -245,7 +244,6 @@ export const Totalseriesapi = async () => {
 }
 
 export const Updateseriesstatus = async (status, sno) => {
-    console.log(status, sno)
     const url = `http://192.168.146.136:8003/api/updatesseriestatus`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
@@ -263,12 +261,10 @@ export const Getseries = async (sno) => {
 }
 
 export const Updateseries = async (sno, type_id, services_id, task_id, agent_id, group_id, os_id, comp_id, device_id, taskandcomp_id, username) => {
-    console.log(sno, type_id, services_id, task_id, agent_id, group_id, os_id, comp_id, device_id, taskandcomp_id, username)
     const url = `http://192.168.146.136:8003/api/updateseries`
     return axios.post(url, { sno, type_id, services_id, task_id, agent_id, group_id, os_id, comp_id, device_id, taskandcomp_id, username }).then(response => response.data).catch(error => console.log(error));
 }
 export const Adddevice = async (device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username) => {
-    console.log(device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username)
     const url = `http://192.168.146.136:8003/api/adddevice`
     return axios.post(url, { device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
@@ -287,7 +283,6 @@ export const Getdevice = async (sno) => {
 }
 
 export const Updatedevice = async (sno, device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username) => {
-    console.log('api', sno, device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username)
     const url = `http://192.168.146.136:8003/api/updatedevice`
     return axios.post(url, { sno, device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
@@ -305,14 +300,12 @@ export const ActiveSeries = async () => {
 }
 
 export const TotalCount = async (table) => {
-    console.log(table)
     const url = `http://192.168.146.136:8003/api/totalcount`
     return axios.post(url, { table }).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const Getdevicetaskcompliancebyname = async (name) => {
-    console.log(name)
     const url = `http://192.168.146.136:8003/api/getdevicetaskcompliancebyname`
     return axios.post(url, { name }).then(response => response.data).catch(error => console.log(error));
 }
@@ -328,25 +321,21 @@ export const getdevicetaskcomp = async (sno) => {
 }
 
 export const Updatedevicetaskcomp = async (sno, devicename, services, add_compliance, remark, username) => {
-    console.log(sno, devicename, services, add_compliance, remark, username)
     const url = `http://192.168.146.136:8003/api/updatedevicetaskcomp`
     return axios.post(url, { sno, devicename, services, add_compliance, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updatedevicecompstatus = async (status, sno) => {
-    console.log(status, sno)
     const url = `http://192.168.146.136:8003/api/updatedevicecompstatus`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Getdevicetaskbyname = async (name) => {
-    console.log(name)
     const url = `http://192.168.146.136:8003/api/getdevicetaskbyname`
     return axios.post(url, { name }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Adddevicetaskby = async (devicename, services, task, completion_date, remark, username) => {
-    console.log(devicename, services, task, completion_date, remark, username)
     const url = `http://192.168.146.136:8003/api/adddevicetaskes`
     return axios.post(url, { devicename, services, task, completion_date, remark, username }).then(response => response.data).catch(error => console.log(error));
 }

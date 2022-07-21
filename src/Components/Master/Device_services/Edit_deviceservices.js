@@ -29,13 +29,14 @@ function EditDevicetype() {
 
     const handlesubmitdata = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled=true;
         const sno = sessionStorage.getItem('deviceservicesSno');
         const deviceserviceid = document.getElementById('id').value;
         const device_service = document.getElementById('deviceservices').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
-        if(!deviceserviceid || !device_service){
+        if(  !device_service){
             alert("Please Enter the ID and Services")
         }
         else{
@@ -69,7 +70,7 @@ function EditDevicetype() {
                                         <input type="text" className="form-control" disabled id='id' value={data.id} onChange={handlechangedeviceid}/>
                                     </div>
                                     <div className="form-group " >
-                                        <label>Device Services </label>
+                                        <label>Device Services <span style={{color:"red"}}>*</span></label>
                                         <input type="text" className="form-control" id='deviceservices' value={data.device_services} onChange={handlechangedeviceservices}/>
                                     </div>
                                     <div className="form-group">

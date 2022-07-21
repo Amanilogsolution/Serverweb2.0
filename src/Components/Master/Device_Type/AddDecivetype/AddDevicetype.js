@@ -1,40 +1,49 @@
 import './add_devicetype.css';
 import Navbar from '../../../Navbar/Navbar';
-import {AddDevicetypeapi,ActiveSeries,TotalCount} from '../../../../api'
-import React,{useEffect,useState} from 'react'
+import { AddDevicetypeapi, ActiveSeries, TotalCount } from '../../../../api'
+import React, { useEffect, useState } from 'react'
 
 function AddDevicetype() {
-    const [deviceid,setDeviceId] = useState()
+    const [deviceid, setDeviceId] = useState()
 
-    useEffect (async()=>{
+    useEffect(async () => {
         const series = await ActiveSeries()
-        if(!series){
-            alert('Active Series')
+        if (!series) {
+            alert('Please add/active  the Series')
         }
         const ser = series.type_id
-        console.log(ser)
         const count = await TotalCount('tbl_device_type')
-        let countincrement = count.count+1;
-        let countnum = ''+countincrement
-        setDeviceId(ser+countnum)
+        let countincrement = count.count + 1;
+        let countnum = '' + countincrement
+        setDeviceId(ser + countnum)
 
     })
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const devicetype = document.getElementById('devicetype').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
-
-        const result = await AddDevicetypeapi(deviceid, devicetype, remark, username);
-        if (result === 'Added') {
-            window.location.href = './Device-type'
+        if (!devicetype) {
+            alert("Please enter Mandatory field")
         }
         else {
-            alert("Server Error");
-        }
 
+            const result = await AddDevicetypeapi(devicetype, remark, username);
+            if (result === 'Added') {
+                alert('Data Added')
+                window.location.href = './Device-Type'
+            }
+            else if (result === 'Already') {
+                alert('Data already Exist');
+            }
+            else {
+                alert("Server Error");
+            }
+
+        }
     }
     return (
         <>
@@ -53,7 +62,7 @@ function AddDevicetype() {
                                         <input type="text" className="form-control" value={deviceid} disabled />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Device Type </label>
+                                        <label>Device Type <span style={{ color: "red" }}>*</span> </label>
                                         <input type="text" className="form-control" id='devicetype' />
                                     </div>
                                     <div className="form-group">
@@ -72,7 +81,6 @@ function AddDevicetype() {
                     </div>
                 </div>
             </div>
-            {/* <Footer /> */}
         </>
     )
 }

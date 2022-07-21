@@ -1,51 +1,59 @@
 import Navbar from '../../Navbar/Navbar';
-import React, { useEffect,useState } from 'react';
-// import {Adddevicetask} from '../../../api'
-import {ActiveDeviceService,ActiveServiceCompliance,Activedevice,Adddevicetaskcompliance} from '../../../api/index'
+import React, { useEffect, useState } from 'react';
+import { ActiveDeviceService, ActiveServiceCompliance, Activedevice, Adddevicetaskcompliance } from '../../../api/index'
 import Select from 'react-select';
 
 function AddDeviceTaskComp() {
 
-const [activeservice,setActiveService] = useState([])
-const[activecompliance,setActiveCompliance] = useState([]);
-const[activedevicename,setActiveDeviceName] = useState([]);
+    const [activeservice, setActiveService] = useState([])
+    const [activecompliance, setActiveCompliance] = useState([]);
+    const [activedevicename, setActiveDeviceName] = useState([]);
 
-const[compliance,setCompliance] = useState([])
+    const [compliance, setCompliance] = useState([])
 
-useEffect(()=>{
-    const fetch = async () => {
-        const devicename = await Activedevice()
-        setActiveDeviceName(devicename)
-        console.log(devicename)
-        const result = await ActiveDeviceService()
-        setActiveService(result)
-        const compliance = await ActiveServiceCompliance()
-        setActiveCompliance(compliance)
-   
+    useEffect(() => {
+        const fetch = async () => {
+            const devicename = await Activedevice()
+            setActiveDeviceName(devicename)
+            const result = await ActiveDeviceService()
+            setActiveService(result)
+            const compliance = await ActiveServiceCompliance()
+            setActiveCompliance(compliance)
+        }
+        fetch()
 
-    }
-    fetch()
-
-},[])
+    }, [])
 
 
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const devicename = document.getElementById('devicename').value;
         const services = document.getElementById('services').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
-        
-        compliance.map((e)=>{
-            const compliance = e.value
-            const result = Adddevicetaskcompliance(devicename,services,compliance,remark,username)
-        })
-        alert('Added')
-        window.location.href='/UpdateDeviceTask&Compliances'
 
-        console.log(devicename,services,compliance,remark,username)
-     
+        if (!devicename || !services || !compliance.length) {
+            alert("Please enter Mandatory field")
+        }
+        else {
+            const arryresult = [];
+            compliance.map((e) => {
+                const compliance = e.value
+                const result = Adddevicetaskcompliance(devicename, services, compliance, remark, username)
+                arryresult.push(result);
+            })
+            if (arryresult.length > 0) {
+                alert('Added');
+                window.location.href = '/UpdateDeviceTask&Compliances'
+            }
+            else {
+                alert('Server not response')
+            }
+
+        }
+
     }
 
     let options = activecompliance.map((ele) => {
@@ -53,14 +61,12 @@ useEffect(()=>{
     })
 
 
-
     const handleChange = (selectedOption) => {
-     console.log(selectedOption)
-     setCompliance(selectedOption)
+        setCompliance(selectedOption)
     }
-  
 
-  
+
+
     return (
         <>
             <Navbar />
@@ -74,7 +80,7 @@ useEffect(()=>{
                             <article className="card-body" >
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
-                                        <label>Device Name </label>
+                                        <label>Device Name<span style={{ color: "red" }}>*</span> </label>
                                         <select
                                             id="devicename"
                                             className="form-control col-md-12"
@@ -88,7 +94,7 @@ useEffect(()=>{
                                         </select>
                                     </div>
                                     <div className="form-group " >
-                                        <label>Select Services </label>
+                                        <label>Select Services <span style={{ color: "red" }}>*</span></label>
                                         <select
                                             id="services"
                                             className="form-control col-md-12"
@@ -102,18 +108,15 @@ useEffect(()=>{
                                         </select>
                                     </div>
                                     <div className="form-group " >
-                                        <label> Compliance </label>
+                                        <label> Compliance<span style={{ color: "red" }}>*</span> </label>
 
                                         <Select
                                             options={options}
                                             isMulti={true}
                                             onChange={handleChange}
                                         />
-
-                                     
                                     </div>
-                               
-                                
+
                                     <div className="form-group">
                                         <label>Remarks</label>
                                         <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
@@ -121,7 +124,7 @@ useEffect(()=>{
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                         <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                        <button type="button" onClick={() => { window.location.href = '/Dashboard' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={() => { window.location.href = '/UpdateDeviceTask&Compliances' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                     </div>
                                 </form>
                             </article>

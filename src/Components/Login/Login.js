@@ -14,12 +14,12 @@ export default function Login() {
     }
     else {
       const result = await UserLogin(username, password);
-      if (result.status==='Success') {
+      if (result.status === 'Success') {
         sessionStorage.setItem('UserName', result.name);
         sessionStorage.setItem('UserId', result.user_id);
         sessionStorage.setItem('Token', result.token);
         sessionStorage.setItem('Permission', result.permission)
-        window.location.href='./Dashboard'
+        window.location.href = './Dashboard'
       }
       else {
         alert(`Invalid Username:-${username} and password:-${password}`);

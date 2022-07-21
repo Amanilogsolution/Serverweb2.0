@@ -1,40 +1,48 @@
-import React,{useEffect,useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../../Navbar/Navbar';
-import {Adddevicegroup,ActiveSeries,TotalCount} from '../../../../api'
+import { Adddevicegroup, ActiveSeries, TotalCount } from '../../../../api'
 
 function AddDevicegroup() {
-    const [agentgroupid,setAgentGroupID] = useState()
+    const [agentgroupid, setAgentGroupID] = useState()
 
-    useEffect (async()=>{
+    useEffect(async () => {
         const series = await ActiveSeries()
-        if(!series){
-            alert('Active Series')
+        if (!series) {
+            alert('Please add/active  the Series')
         }
-        console.log(series)
         const ser = series.group_id
-        console.log(ser)
         const count = await TotalCount('tbl_device_group')
-        let countincrement = count.count+1;
-        let countnum = ''+countincrement;
-        console.log(countnum)
-        setAgentGroupID(ser+countnum)
+        let countincrement = count.count + 1;
+        let countnum = '' + countincrement;
+        setAgentGroupID(ser + countnum)
 
     })
 
-    const handleadddevice=async(e)=>{
+    const handleadddevice = async (e) => {
         e.preventDefault();
-        const devicegroup= document.getElementById('devicegroup').value;
-        const remark= document.getElementById('remark').value;
-        const username=sessionStorage.getItem('UserName');
-      
+        document.getElementById('subnitbtn').disabled=true;
+        const devicegroup = document.getElementById('devicegroup').value;
+        const remark = document.getElementById('remark').value;
+        const username = sessionStorage.getItem('UserName');
 
-        const result= await Adddevicegroup(agentgroupid,devicegroup,remark,username);
-        if(result){
-            alert('Added')
-            window.location.href='Showdevicegroup'
+        if (!devicegroup) {
+            alert('Please enter the mandatory field')
         }
-        console.log(result);
-        
+        else {
+            const result = await Adddevicegroup(agentgroupid, devicegroup, remark, username);
+            if (result === 'Added') {
+                alert('Data Added')
+                window.location.href = 'Showdevicegroup'
+            }
+            else if (result === 'Already') {
+                alert('Device Group already Exist');
+            }
+            else {
+                alert("Server Error");
+            }
+        }
+
+
     }
     return (
         <>
@@ -53,7 +61,7 @@ function AddDevicegroup() {
                                         <input type="text" className="form-control" disabled value={agentgroupid} />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Device Group </label>
+                                        <label>Device Group <span style={{color:"red"}}>*</span></label>
                                         <input type="text" className="form-control" id='devicegroup' />
                                     </div>
                                     <div className="form-group">
@@ -63,7 +71,7 @@ function AddDevicegroup() {
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                         <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                        <button type="button" onClick={()=>{window.location.href='/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={() => { window.location.href = '/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>
                                 </form>
@@ -72,7 +80,6 @@ function AddDevicegroup() {
                     </div>
                 </div>
             </div>
-            {/* <Footer /> */}
         </>
     )
 }

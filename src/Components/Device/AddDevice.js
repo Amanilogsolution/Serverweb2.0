@@ -1,24 +1,24 @@
 import Navbar from '../Navbar/Navbar';
 import React, { useEffect, useState } from 'react'
-import {ActiveDeviceService,ActiveDevicetype,ActiveDevicegroup,ActiveOperatingSystem,ActiveAgent,Adddevice,ActiveSeries,TotalCount} from '../../api/index'
+import { ActiveDeviceService, ActiveDevicetype, ActiveDevicegroup, ActiveOperatingSystem, ActiveAgent, Adddevice, ActiveSeries, TotalCount } from '../../api/index'
 import Select from 'react-select';
 
 
 function AddDevice() {
 
-  const [activeservice,setActiveService] = useState([])
-  const [activedevicetype,setActiveDeviceType] = useState([])
-  const [activedevicegroup,setActiveDevicegroup] = useState([]);
-  const [activeOperatingsystem,setActiveOperatingSystem] = useState([])
-  const [activeagent,setActiveAgent] = useState([])
+    const [activeservice, setActiveService] = useState([])
+    const [activedevicetype, setActiveDeviceType] = useState([])
+    const [activedevicegroup, setActiveDevicegroup] = useState([]);
+    const [activeOperatingsystem, setActiveOperatingSystem] = useState([])
+    const [activeagent, setActiveAgent] = useState([])
 
-  const [selectService,setSelectedService] = useState([]);
+    const [selectService, setSelectedService] = useState([]);
 
-  const [deviceid,setDeviceID] = useState()
+    const [deviceid, setDeviceID] = useState()
 
 
     useEffect(() => {
-        const fetchdata = async() =>{
+        const fetchdata = async () => {
             const result = await ActiveDeviceService()
             setActiveService(result)
             const DeviceType = await ActiveDevicetype()
@@ -28,47 +28,40 @@ function AddDevice() {
             const Operatingsystem = await ActiveOperatingSystem()
             setActiveOperatingSystem(Operatingsystem)
             const Agent = await ActiveAgent()
-            console.log(Agent)
-            setActiveAgent(Agent)   
-            
+            setActiveAgent(Agent)
+
             const series = await ActiveSeries()
-            if(!series){
-                alert('Active Series')
+            if (!series) {
+                alert('Please add/active  the Series')
             }
-            console.log(series)
             const ser = series.device_id
-            console.log(ser)
             const count = await TotalCount('tbl_devices')
-            let countincrement = count.count+1;
-            let countnum = ''+countincrement;
-            console.log(countnum)
-            setDeviceID(ser+countnum)
+            let countincrement = count.count + 1;
+            let countnum = '' + countincrement;
+            setDeviceID(ser + countnum)
 
         }
         fetchdata()
         Todaydate()
 
-    },[])
+    }, [])
 
-    const Todaydate = () =>{
+    const Todaydate = () => {
         var date = new Date();
 
-var day = date.getDate();
-var month = date.getMonth() + 1;
-var year = date.getFullYear();
-
-if (month < 10) month = "0" + month;
-if (day < 10) day = "0" + day;
-
-var today = year + "-" + month + "-" + day;       
-document.getElementById("createdate").value = today;
-document.getElementById("registerdate").value = today;
-
-
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        var today = year + "-" + month + "-" + day;
+        document.getElementById("createdate").value = today;
+        document.getElementById("registerdate").value = today;
     }
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled=true;
         const devicename = document.getElementById('devicename').value
         const devicetype = document.getElementById('devicetype').value;
         const devicegroup = document.getElementById('devicegroup').value;
@@ -79,15 +72,36 @@ document.getElementById("registerdate").value = today;
         const registerdate = document.getElementById('registerdate').value
         const agent = document.getElementById('agent').value
         const remark = document.getElementById('remark').value
-        console.log(devicename,devicetype,devicegroup,deviceipaddr,devicehost,operatingsystem,selectService,createdate,registerdate,agent)
 
-        selectService.forEach(async(datas)=>{
-            const deviceservice = datas.value
-           const result =  await Adddevice(deviceid,devicename,devicetype,devicegroup,deviceipaddr,devicehost,operatingsystem,deviceservice,createdate,registerdate,agent,remark,sessionStorage.getItem('UserName'))
-        })
-        window.location.href='/ShowDevice'
+
+        if (!devicename || !devicetype || !devicegroup || !createdate || !registerdate || !agent) {
+            alert("Please enter Mandatory field")
+        }
+        else {
+           const arryresult= [];
+            selectService.forEach(async (datas) => {
+                const deviceservice = datas.value
+                const result = await Adddevice(deviceid, devicename, devicetype, devicegroup, deviceipaddr, devicehost, operatingsystem, deviceservice, createdate, registerdate, agent, remark, sessionStorage.getItem('UserName'))
+                arryresult.push(result)
+            })
+            setTimeout(() => {
+                if (arryresult.length>0) {
+                    alert('added')
+                    window.location.href = '/ShowDevice'
+                }
+
+                else {
+                    alert("Server Error");
+                }
+            }, 1300)
+
+        }
+
+
+
 
     }
+
     let options = activeservice.map((ele) => {
         return { value: ele.device_services, label: ele.device_services };
     })
@@ -110,39 +124,39 @@ document.getElementById("registerdate").value = today;
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
                                         <label>Device ID </label>
-                                        <input type="text" className="form-control" disabled value={deviceid}/>
+                                        <input type="text" className="form-control" disabled value={deviceid} />
                                     </div>
                                     <div className="form-group">
-                                        <label>Device Name </label>
+                                        <label>Device Name <span style={{ color: "red" }}>*</span> </label>
                                         <input type="text" className="form-control" id='devicename' />
                                     </div>
                                     <div className="form-row">
-                                    <div className="form-group col-md-6" >
-                                        <label>Device Type</label>
-                                        <select id="devicetype" className="form-control col-md-12" >
-                                            <option selected hidden value="India">Choose Type</option>
-                                            {
-                                                activedevicetype.map((data, index) => (
-                                                    <option key={index} value={data.device_type}>{data.device_type}</option>
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
-                                    <div className="form-group col-md-6" >
-                                        <label>Device Group</label>
+                                        <div className="form-group col-md-6" >
+                                            <label>Device Type <span style={{ color: "red" }}>*</span></label>
+                                            <select id="devicetype" className="form-control col-md-12" >
+                                                <option selected hidden value="India">Choose Type</option>
+                                                {
+                                                    activedevicetype.map((data, index) => (
+                                                        <option key={index} value={data.device_type}>{data.device_type}</option>
+                                                    ))
+                                                }
+                                            </select>
+                                        </div>
+                                        <div className="form-group col-md-6" >
+                                            <label>Device Group <span style={{ color: "red" }}>*</span></label>
 
-                                        <select
-                                            id="devicegroup"
-                                            className="form-control col-md-12"
-                                        >
-                                            <option selected hidden value="India">Choose Group</option>
-                                            {
-                                                activedevicegroup.map((data, index) => (
-                                                    <option key={index} value={data.device_group}>{data.device_group}</option>
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
+                                            <select
+                                                id="devicegroup"
+                                                className="form-control col-md-12"
+                                            >
+                                                <option selected hidden value="India">Choose Group</option>
+                                                {
+                                                    activedevicegroup.map((data, index) => (
+                                                        <option key={index} value={data.device_group}>{data.device_group}</option>
+                                                    ))
+                                                }
+                                            </select>
+                                        </div>
                                     </div>
                                     <div className="form-group " >
                                         <label>Device IP Address</label>
@@ -164,7 +178,7 @@ document.getElementById("registerdate").value = today;
                                         </select>
                                     </div>
                                     <div className="form-group " >
-                                        <label>Select Services</label>
+                                        <label>Select Services <span style={{ color: "red" }}>*</span></label>
                                         <Select
                                             options={options}
                                             isMulti={true}
@@ -183,18 +197,18 @@ document.getElementById("registerdate").value = today;
                                     </div>
                                     <div className="form-row">
 
-                                    <div className="form-group col-md-6" >
-                                        <label>Device Creation Date</label>
-                                        <input type="date" className="form-control" id='createdate' />
-                                    </div>
-                                    <div className="form-group col-md-6" >
-                                        <label>Device Registration Date</label>
-                                        <input type="date" className="form-control" id='registerdate' />
-                                    </div>
+                                        <div className="form-group col-md-6" >
+                                            <label>Device Creation Date <span style={{ color: "red" }}>*</span></label>
+                                            <input type="date" className="form-control" id='createdate' />
+                                        </div>
+                                        <div className="form-group col-md-6" >
+                                            <label>Device Registration Date <span style={{ color: "red" }}>*</span></label>
+                                            <input type="date" className="form-control" id='registerdate' />
+                                        </div>
                                     </div>
 
                                     <div className="form-group " >
-                                        <label>Agent</label>
+                                        <label>Agent <span style={{ color: "red" }}>*</span></label>
                                         <select id="agent" className="form-control col-md-12" >
                                             <option selected hidden value="India">Choose Agent</option>
                                             {
@@ -208,11 +222,11 @@ document.getElementById("registerdate").value = today;
                                         <label>Remarks</label>
                                         <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
                                     </div>
-                                 
+
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                         <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                        <button type="button" onClick={() => { window.location.href = '/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={() => { window.location.href = '/ShowDevice' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>
                                 </form>
@@ -221,7 +235,6 @@ document.getElementById("registerdate").value = today;
                     </div>
                 </div>
             </div>
-            {/* <Footer /> */}
         </>
     )
 }

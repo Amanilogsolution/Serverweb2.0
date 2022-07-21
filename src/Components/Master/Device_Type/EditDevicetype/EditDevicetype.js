@@ -1,7 +1,6 @@
-import './editdevicetype.css';
 import Navbar from '../../../Navbar/Navbar';
 import { useEffect, useState } from 'react';
-import { Getdevicetype,Updatedevicetype } from '../../../../api'
+import { Getdevicetype, Updatedevicetype } from '../../../../api'
 
 function EditDevicetype() {
     const [data, setData] = useState({});
@@ -29,18 +28,26 @@ function EditDevicetype() {
 
     const handlesubmitdata = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const sno = sessionStorage.getItem('devicetypeSno');
         const devicetypeid = document.getElementById('deviceid').value;
         const device_type = document.getElementById('devicetype').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
-        const updataresult = await Updatedevicetype(sno, devicetypeid, device_type, remark, username);
-        if (updataresult === 'Updated') {
-            alert("Data updated")
-            sessionStorage.removeItem('devicetypeSno');
-            window.location.href = './Device-Type';
-           
+        if (!device_type) {
+            alert("Please enter Mandatory field")
+        }
+        else {
+            const updataresult = await Updatedevicetype(sno, devicetypeid, device_type, remark, username);
+            if (updataresult === 'Updated') {
+                alert("Data updated")
+                sessionStorage.removeItem('devicetypeSno');
+                window.location.href = './Device-Type';
+            }
+            else {
+                alert("Server Error");
+            }
         }
     }
     return (
@@ -60,7 +67,7 @@ function EditDevicetype() {
                                         <input type="text" className="form-control" disabled id='deviceid' value={data.id} onChange={handlechangedeviceid} />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Device Type </label>
+                                        <label>Device Type  <span style={{ color: "red" }}>*</span></label>
                                         <input type="text" className="form-control" id='devicetype' value={data.device_type} onChange={handlechangedevicetype} />
                                     </div>
                                     <div className="form-group">
@@ -77,7 +84,6 @@ function EditDevicetype() {
                     </div>
                 </div>
             </div>
-            {/* <Footer /> */}
         </>
     )
 }

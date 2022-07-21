@@ -16,19 +16,26 @@ function EditOperatingSystem() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled=true;
         const operatingsystemid = document.getElementById('operatingsystemid').value;
         const operatingsystem = document.getElementById('operatingsystem').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
-        const result = await EditOperatingsystem(sessionStorage.getItem('OperatingSystemSno'), operatingsystemid, operatingsystem, remark, username);
-        if (result) {
-            alert('Updated')
-            localStorage.removeItem('OperatingSystemSno')
-            window.location.href = 'showoperatingsystem'
+
+        if (!operatingsystem) {
+            alert("Please enter the mandatory Field")
         }
         else {
-            alert('server not response')
+            const result = await EditOperatingsystem(sessionStorage.getItem('OperatingSystemSno'), operatingsystemid, operatingsystem, remark, username);
+            if (result) {
+                alert('Updated')
+                localStorage.removeItem('OperatingSystemSno')
+                window.location.href = 'showoperatingsystem'
+            }
+            else {
+                alert('server not response')
+            }
         }
     }
 
@@ -61,7 +68,7 @@ function EditOperatingSystem() {
                                         <input type="text" className="form-control" disabled value={data.id} id='operatingsystemid' onChange={(e) => handleChangeID(e)} />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Operating System </label>
+                                        <label>Operating System <span style={{border:"2px solid red"}}>*</span> </label>
                                         <input type="text" className="form-control" value={data.operating_system} id='operatingsystem' onChange={(e) => handleChangeOperatingSystem(e)} />
                                     </div>
                                     <div className="form-group">
@@ -78,7 +85,6 @@ function EditOperatingSystem() {
                     </div>
                 </div>
             </div>
-            {/* <Footer /> */}
         </>
     )
 }

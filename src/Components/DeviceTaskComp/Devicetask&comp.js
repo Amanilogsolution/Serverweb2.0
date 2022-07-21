@@ -1,80 +1,111 @@
 import Navbar from '../Navbar/Navbar';
-import React, { useEffect,useState } from 'react';
-import {ActiveDeviceService,ActiveServiceCompliance,Activedevicetask,Activedevice,Adddevicetaskcompliance,Adddevicetaskby} from '../../api/index'
+import React, { useEffect, useState } from 'react';
+import { ActiveDeviceService, ActiveServiceCompliance, Activedevicetask, Activedevice, Adddevicetaskcompliance, Adddevicetaskby } from '../../api/index'
 import Select from 'react-select';
 
 function AddDeviceTaskComp() {
-const [device,setDevice]=useState([]);
-const [services,setServices]= useState([]);
-const [compliances,setCompliances]= useState([]);
+    // const [device, setDevice] = useState([]);
+    // const [services, setServices] = useState([]);
+    // const [compliances, setCompliances] = useState([]);
 
+    const [mindate, setMindate] = useState(0)
+    const [activeservice, setActiveService] = useState([])
+    const [activecompliance, setActiveCompliance] = useState([]);
+    const [activedevicetask, setActiveDeviceTask] = useState([]);
+    const [activedevicename, setActiveDeviceName] = useState([]);
 
-const [activeservice,setActiveService] = useState([])
-const[activecompliance,setActiveCompliance] = useState([]);
-const [activedevicetask,setActiveDeviceTask] = useState([]);
-const[activedevicename,setActiveDeviceName] = useState([]);
+    const [compliance, setCompliance] = useState([])
+    const [task, setTask] = useState([]);
 
-const[compliance,setCompliance] = useState([])
-const [task,setTask] = useState([]);
+    useEffect(() => {
+        const fetch = async () => {
+            const devicename = await Activedevice()
+            setActiveDeviceName(devicename)
+            const result = await ActiveDeviceService()
+            setActiveService(result)
+            const compliance = await ActiveServiceCompliance()
+            setActiveCompliance(compliance)
+            const devicetask = await Activedevicetask()
+            setActiveDeviceTask(devicetask)
+        }
+        fetch();
+        Todaydate()
 
-useEffect(()=>{
-    const fetch = async () => {
-        const devicename = await Activedevice()
-        setActiveDeviceName(devicename)
-        console.log(devicename)
-        const result = await ActiveDeviceService()
-        setActiveService(result)
-        const compliance = await ActiveServiceCompliance()
-        setActiveCompliance(compliance)
-        const devicetask = await Activedevicetask()
-        console.log(devicetask)
-        setActiveDeviceTask(devicetask)
-    }
-    fetch()
-
-},[])
+    }, [])
 
 
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const devicename = document.getElementById('devicename').value;
         const services = document.getElementById('services').value;
         const completion_date = document.getElementById('completion_date').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
-        task.map((e)=>{
-            const taskes = e.value
-            const result = Adddevicetaskby(devicename,services,taskes,completion_date,remark,username)
-        })
-        compliance.map((e)=>{
-            const compliance = e.value
-            const result = Adddevicetaskcompliance(devicename,services,compliance,remark,username)
-        })
+
+        if (!devicename || !services || !completion_date) {
+            alert('Please enter the mandatory field')
+        }
+        else {
+            const arryresult = [];
+            task.map((e) => {
+                const taskes = e.value
+                const result = Adddevicetaskby(devicename, services, taskes, completion_date, remark, username);
+                arryresult.push(result);
+            })
+            compliance.map((e) => {
+                const compliance = e.value
+                const result = Adddevicetaskcompliance(devicename, services, compliance, remark, username)
+                arryresult.push(result);
+            })
+
+            setTimeout(() => {
+                if (arryresult.length > 0) {
+                    alert('Data added')
+                    window.location.href = '/Dashboard'
+                }
+                else {
+                    alert('server error');
+                }
+            }, 2000)
+        }
+
     }
 
     let options = activecompliance.map((ele) => {
         return { value: ele.services_compliance, label: ele.services_compliance };
     })
 
-    let opt = activedevicetask.map((ele)=>{
+    let opt = activedevicetask.map((ele) => {
         return { value: ele.device_tasks, label: ele.device_tasks };
 
     })
 
     const handleChange = (selectedOption) => {
-     console.log(selectedOption)
-     setCompliance(selectedOption)
+        setCompliance(selectedOption)
     }
-    const handleChangeTAsk =(selectedOption)=>{
-        console.log(selectedOption)
+    const handleChangeTAsk = (selectedOption) => {
         setTask(selectedOption)
+    }
+
+
+    const Todaydate = () => {
+        var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+        document.getElementById("completion_date").value = today;
+        setMindate(today);
 
     }
 
-    useEffect(()=>{
-       
-    },[])
     return (
         <>
             <Navbar />
@@ -124,7 +155,7 @@ useEffect(()=>{
                                             onChange={handleChange}
                                         />
 
-                                  
+
                                     </div>
                                     <div className="form-group " >
                                         <label> Task </label>
@@ -133,11 +164,11 @@ useEffect(()=>{
                                             isMulti={true}
                                             onChange={handleChangeTAsk}
                                         />
-                                    
+
                                     </div>
                                     <div className="form-group">
                                         <label>Completion Date</label>
-                                        <input className="form-control" type="date" id='completion_date' />
+                                        <input className="form-control" type="date" id='completion_date' min={mindate} />
                                     </div>
                                     <div className="form-group">
                                         <label>Remarks</label>

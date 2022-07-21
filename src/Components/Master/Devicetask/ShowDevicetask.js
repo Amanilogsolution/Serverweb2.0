@@ -65,7 +65,6 @@ function ShowDevicetask() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await Totaldevicetask();
-            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();

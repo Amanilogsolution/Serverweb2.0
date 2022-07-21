@@ -13,7 +13,6 @@ function Show_deviceservices() {
     useEffect(()=>{
         const fetchdata=async ()=>{
             const getdeviceservices= await Totaldeviceservices();
-            console.log(getdeviceservices[0])
             setData(getdeviceservices);
 
         }

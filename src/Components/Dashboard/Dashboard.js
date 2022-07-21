@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './dashboard.css'
 import Navbar from "../Navbar/Navbar";
+import {ActiveSeries} from '../../api'
 
 export default function Dashboard() {
+
+  useEffect(()=>{
+   const  fetchdata=async()=>{
+    const series= await ActiveSeries();
+    if(!series){
+      alert ("Please start the series master");
+      window.location.href='/Totalseries'
+    }
+    }
+
+    fetchdata();
+  })
   return (
     <div >
       <Navbar />

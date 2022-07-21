@@ -59,7 +59,6 @@ function Showoperatingsystem() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalOperatingSystem();
-            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();

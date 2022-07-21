@@ -9,7 +9,6 @@ function EditAgent() {
         const fetchdata = async () => {
             const snodata = sessionStorage.getItem('agentSno');
             const getdata = await Getagent(snodata);
-            console.log(getdata)
             setData(getdata)
         }
         fetchdata();
@@ -36,6 +35,7 @@ function EditAgent() {
     
     const handlesubmitdata = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled=true;
         const sno = sessionStorage.getItem('agentSno');
         const id = document.getElementById('id').value;
         const agentname = document.getElementById('agentname').value;
@@ -44,8 +44,10 @@ function EditAgent() {
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
-        // console.log(sno,id,agentname,agentemail,agentphone,remark,username)
-
+        if (!agentname) {
+            alert("Please enter Mandatory field")
+        }
+        else {
         const updataresult = await updateagent(sno,id,agentname,agentemail,agentphone,remark,username);
         if (updataresult === 'Updated') {
             alert("Data updated")
@@ -55,6 +57,7 @@ function EditAgent() {
         else{
             alert('Server error ...')
         }
+    }
     }
     return (
         <>
@@ -73,7 +76,7 @@ function EditAgent() {
                                         <input type="text" className="form-control" disabled id='id' value={data.id} onChange={handlechangedeviceid} />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Agent Name </label>
+                                        <label>Agent Name<span style={{color:"red"}}>*</span> </label>
                                         <input type="text" className="form-control" id='agentname' value={data.agent_name} onChange={handlechangeagentname} />
                                     </div>
                                     <div className="form-group " >
