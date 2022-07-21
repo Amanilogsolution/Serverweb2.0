@@ -88,7 +88,7 @@ function UpdateDevicetaskcomp() {
             <Navbar />
             <div className='deviceid-container' >
                 <div className='deviceid-div' style={{ position: "relative" }}>
-                    <h3 className="text-left ml-5"> Device Compliances</h3>
+                    <h3 className="text-left "> Device Compliances</h3>
                     <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceComp' }}>Add Compliances </button>
 
                     <div className="form-row">

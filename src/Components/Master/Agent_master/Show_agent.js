@@ -4,7 +4,7 @@ import Navbar from '../../Navbar/Navbar';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import {Totalagent,Updateagentstatus} from '../../../api'
+import { Totalagent, Updateagentstatus } from '../../../api'
 
 function ShowAgent() {
     const [data, setData] = useState([])
@@ -29,7 +29,7 @@ function ShowAgent() {
             selector: 'agent_phone',
             sortable: true,
         },
-       
+
         {
             name: 'Remark',
             selector: 'remark',
@@ -85,9 +85,11 @@ function ShowAgent() {
         <>
             <Navbar />
             <div className='deviceid-container' >
-                <div className='deviceid-div' style={{ position: "relative" }}>
-                <h3 className="text-left ml-5">Total Agent</h3>
-                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddAgent' }}>Add Agent </button>
+                <div className='deviceid-div' >
+                    <div className='headwithbtn'>
+                        <h3 className="text-left ">Total Agent</h3>
+                        <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddAgent' }}>Add Agent </button>
+                    </div>
                     <DataTableExtensions {...tableData}>
                         <DataTable
                             noHeader

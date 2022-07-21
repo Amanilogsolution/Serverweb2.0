@@ -4,7 +4,7 @@ import Navbar from '../Navbar/Navbar';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import {Totaldevice,Updatedevicestatus} from '../../api'
+import { Totaldevice, Updatedevicestatus } from '../../api'
 function ShowDevice() {
     const [data, setData] = useState([])
     const columns = [
@@ -101,7 +101,7 @@ function ShowDevice() {
 
 
     useEffect(() => {
-     
+
         fetchdata();
     }, [])
 
@@ -121,9 +121,11 @@ function ShowDevice() {
         <>
             <Navbar />
             <div className='deviceid-container' >
-                <div className='' style={{ position: "relative" }}>
-                <h3 className="text-left ml-5">Total Device</h3>
-                    <button className='btn btn-success mr-4 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevice' }}>Add Device</button>
+                <div className='deviceid-div ' >
+                    <div className='headwithbtn'>
+                        <h3 className="text-left " >Total Device</h3>
+                        <button className='btn btn-success mr-4 add-btn ' onClick={e => { e.preventDefault(); window.location.href = './AddDevice' }}>Add Device</button>
+                    </div>
                     <DataTableExtensions {...tableData}>
                         <DataTable
                             noHeader

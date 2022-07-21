@@ -4,7 +4,7 @@ import Navbar from '../../Navbar/Navbar';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import { Totalseriesapi,Updateseriesstatus } from '../../../api'
+import { Totalseriesapi, Updateseriesstatus } from '../../../api'
 
 function Totalseries() {
     const [data, setData] = useState([])
@@ -60,7 +60,7 @@ function Totalseries() {
             cell: (row) => [
                 <select onChange={async (e) => {
                     const status = e.target.value;
-                    await Updateseriesstatus(status,row.sno)
+                    await Updateseriesstatus(status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden >{row.status}</option>
@@ -104,9 +104,11 @@ function Totalseries() {
         <>
             <Navbar />
             <div className='deviceid-container' >
-                <div className='deviceid-div' style={{ position: "relative" }}>
-                    <h3 className="text-left ml-5">Total Series</h3>
-                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './Addseries' }}>Add Series</button>
+                <div className='deviceid-div' >
+                    <div className='headwithbtn'>
+                        <h3 className="text-left ">Total Series</h3>
+                        <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './Addseries' }}>Add Series</button>
+                    </div>
                     <DataTableExtensions {...tableData}>
                         <DataTable
                             noHeader

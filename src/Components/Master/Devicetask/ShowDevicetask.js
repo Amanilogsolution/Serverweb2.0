@@ -4,7 +4,7 @@ import Navbar from '../../Navbar/Navbar';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import {Totaldevicetask,Updatedevicetaskstatus} from '../../../api'
+import { Totaldevicetask, Updatedevicetaskstatus } from '../../../api'
 
 function ShowDevicetask() {
     const [data, setData] = useState([])
@@ -24,7 +24,7 @@ function ShowDevicetask() {
             selector: 'device_tasks_frequency',
             sortable: true,
         },
-       
+
         {
             name: 'Remark',
             selector: 'remark',
@@ -80,9 +80,11 @@ function ShowDevicetask() {
         <>
             <Navbar />
             <div className='deviceid-container' >
-                <div className='deviceid-div' style={{ position: "relative" }}>
-                <h4 className=" mt-2 " >Total Device Task </h4>
-                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevicetask' }}>Add Device Task </button>
+                <div className='deviceid-div' >
+                    <div className='headwithbtn'>
+                        <h3 className="text-left  " >Total Device Task </h3>
+                        <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevicetask' }}>Add Device Task </button>
+                    </div>
                     <DataTableExtensions {...tableData}>
                         <DataTable
                             noHeader

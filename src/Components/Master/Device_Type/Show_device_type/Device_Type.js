@@ -74,9 +74,11 @@ function Device_Type() {
         <>
             <Navbar />
             <div className='deviceid-container' >
-                <div className='deviceid-div' style={{ position: "relative" }}>
-                    <h3 className="text-left ml-5">Total Device Type</h3>
-                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevice-type' }}>Add Device</button>
+                <div className='deviceid-div' >
+                    <div className='headwithbtn'>
+                        <h3 className="text-left ">Total Device Type</h3>
+                        <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevice-type' }}>Add Device</button>
+                    </div>
                     <DataTableExtensions {...tableData}>
                         <DataTable
                             noHeader

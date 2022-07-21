@@ -97,7 +97,7 @@ function ShowdeviceTask() {
             <Navbar />
             <div className='deviceid-container' >
                 <div className='deviceid-div' style={{ position: "relative" }}>
-                    <h3 className="text-left ml-2"> Device Task</h3>
+                    <h3 className="text-left "> Device Task</h3>
                     <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './Adddevicetaskes' }}>Add Task </button>
 
                     <div className="form-row">

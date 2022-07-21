@@ -18,7 +18,7 @@
 }
 
 
-@media screen and (max-width:330px){
+@media screen and (max-width:350px){
     .org-title{
         display: none;
     }

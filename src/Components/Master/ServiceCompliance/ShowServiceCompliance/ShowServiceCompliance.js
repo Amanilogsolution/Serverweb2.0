@@ -4,38 +4,38 @@ import Navbar from '../../../Navbar/Navbar';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import { TotalServiceCompliance,ServiceComplianceStatus } from '../../../../api'
+import { TotalServiceCompliance, ServiceComplianceStatus } from '../../../../api'
 
 function Showservicecompliance() {
     const [data, setData] = useState([])
     const columns = [
         {
             name: 'Device Id',
-            selector: row=>row.id,
+            selector: row => row.id,
             sortable: true,
         },
         {
             name: 'Device Service',
-            selector: row=>row.device_services,
+            selector: row => row.device_services,
             sortable: true,
         },
         {
             name: 'Service Compliance',
-            selector: row=>row.services_compliance,
+            selector: row => row.services_compliance,
             sortable: true,
         },
         {
             name: 'Remark',
-            selector: row=>row.remark,
+            selector: row => row.remark,
             sortable: true,
         },
         {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select onChange={async(e) =>{
+                <select onChange={async (e) => {
                     const status = e.target.value;
-                    await ServiceComplianceStatus(status,row.sno)
+                    await ServiceComplianceStatus(status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden >{row.status}</option>
@@ -47,7 +47,7 @@ function Showservicecompliance() {
         {
             name: "Actions",
             sortable: false,
-            selector: row=>row.null,
+            selector: row => row.null,
             cell: (row) => [
                 <a title='Edit Device Type' href="/EditServiceCompliance">
 
@@ -80,10 +80,12 @@ function Showservicecompliance() {
         <>
             <Navbar />
             <div className='deviceid-container' >
-                <div className='deviceid-div' style={{ position: "relative" }}>
-                <h3 className="text-left ml-5">Total Service Compliance</h3>
-                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddServiceCompliance' }}>Add Compliance</button>
-                    <DataTableExtensions {...tableData}> 
+                <div className='deviceid-div'>
+                    <div className='headwithbtn'>
+                        <h3 className="text-left ">Total Service Compliance</h3>
+                        <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddServiceCompliance' }}>Add Compliance</button>
+                    </div>
+                    <DataTableExtensions {...tableData}>
                         <DataTable
                             noHeader
                             defaultSortField="id"
