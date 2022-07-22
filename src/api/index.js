@@ -250,7 +250,7 @@ export const Updateseriesstatus = async (status, sno) => {
 
 
 export const Addseriesapi = async (type_id, services_id, task_id, agent_id, group_id, os_id, comp_id, device_id, taskandcomp_id, username) => {
-    const url = `http://182.76.62.178:8114/api/adddevicetask`
+    const url = `http://182.76.62.178:8114/api/addseries`
     return axios.post(url, { type_id, services_id, task_id, agent_id, group_id, os_id, comp_id, device_id, taskandcomp_id, username }).then(response => response.data).catch(error => console.log(error));
 }
 

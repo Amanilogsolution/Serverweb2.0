@@ -45,17 +45,17 @@ function Addseries() {
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
-                                            <label> Type ID </label>
+                                            <label>Device Type ID </label>
                                             <input type="text" className="form-control" id='typeid' />
                                         </div>
                                         <div className="form-group col-md-6" >
-                                            <label> Series ID </label>
+                                        <label>Device Services ID </label>
                                             <input type="text" className="form-control" id='seriesid' />
                                         </div>
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group col-md-6" >
-                                            <label>Task ID</label>
+                                            <label>Device Task ID</label>
                                             <input type="text" className="form-control" id='taskid' />
                                         </div>
                                         <div className="form-group col-md-6" >
