@@ -60,7 +60,7 @@ function AddOperatingSystem() {
                                         <input type="text" className="form-control" disabled value={operatingsystemid} />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Operating System <span style={{border:"2px solid red"}}>*</span></label>
+                                        <label>Operating System <span style={{color:"red"}}>*</span></label>
                                         <input type="text" className="form-control" id='operatingsystem' />
                                     </div>
                                     <div className="form-group">
