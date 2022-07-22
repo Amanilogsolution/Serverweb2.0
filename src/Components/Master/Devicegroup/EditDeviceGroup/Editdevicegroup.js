@@ -75,7 +75,7 @@ function EditDevicegroup() {
                                         <textarea className="form-control" placeholder="Comments" value={data.remark} type="text" id='remark' rows="3" onChange={(e) => handleChangeRemark(e)} />
                                     </div>
                                     <div className="form-group" >
-                                        <button type="button" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
+                                        <button type="button" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
                                         <button type="button" onClick={() => { sessionStorage.removeItem('devicegroupSno'); window.location.href = '/Showdevicegroup' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                     </div>
                                 </form>

@@ -68,7 +68,7 @@ function EditOperatingSystem() {
                                         <input type="text" className="form-control" disabled value={data.id} id='operatingsystemid' onChange={(e) => handleChangeID(e)} />
                                     </div>
                                     <div className="form-group " >
-                                        <label>Operating System <span style={{border:"2px solid red"}}>*</span> </label>
+                                        <label>Operating System <span style={{color:"red"}}>*</span> </label>
                                         <input type="text" className="form-control" value={data.operating_system} id='operatingsystem' onChange={(e) => handleChangeOperatingSystem(e)} />
                                     </div>
                                     <div className="form-group">
@@ -76,7 +76,7 @@ function EditOperatingSystem() {
                                         <textarea className="form-control" placeholder="Comments" value={data.remark} type="text" id='remark' rows="3" onChange={(e) => handleChangeRemark(e)} />
                                     </div>
                                     <div className="form-group" >
-                                        <button type="button" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
+                                        <button type="button" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
                                         <button type="button" onClick={() => { sessionStorage.removeItem('OperatingSystemSno'); window.location.href = '/Showdevicegroup' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                     </div>
                                 </form>

@@ -31,7 +31,7 @@ function AddDevicetype() {
         }
         else {
 
-            const result = await AddDevicetypeapi(devicetype, remark, username);
+            const result = await AddDevicetypeapi(deviceid,devicetype, remark, username);
             if (result === 'Added') {
                 alert('Data Added')
                 window.location.href = './Device-Type'
@@ -71,7 +71,7 @@ function AddDevicetype() {
                                     </div>
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
-                                        <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
+                                        <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
                                         <button type="button" onClick={() => { window.location.href = '/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>

@@ -78,7 +78,7 @@ function EditDevicetype() {
                                         <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3"  value={data.remark} onChange={handlechangedeviceremark}/>
                                     </div>
                                     <div className="form-group" >
-                                        <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handlesubmitdata}>Submit</button>
+                                        <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handlesubmitdata}>Update</button>
                                         <button type="button" onClick={() => { sessionStorage.removeItem('deviceservicesSno'); window.location.href = '/ShowDeviceservices' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                     </div>
                                 </form>
