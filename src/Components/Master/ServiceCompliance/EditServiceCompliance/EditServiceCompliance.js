@@ -25,11 +25,17 @@ function EditServiceCompliance() {
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
-        const result = await Updateservicecompliance(sessionStorage.getItem('ServiceComplianceSno'), servicecomplianceid, DeviceService, ServiceCompliance, remark, username);
-        if (result) {
-            alert("Update")
-            sessionStorage.removeItem('ServiceComplianceSno');
-            window.location.href = '/showservicecompliance'
+        if (!DeviceService || !ServiceCompliance) {
+            alert('Please enter mandatory field')
+        }
+        else {
+
+            const result = await Updateservicecompliance(sessionStorage.getItem('ServiceComplianceSno'), servicecomplianceid, DeviceService, ServiceCompliance, remark, username);
+            if (result) {
+                alert("Update")
+                sessionStorage.removeItem('ServiceComplianceSno');
+                window.location.href = '/showservicecompliance'
+            }
         }
     }
     const handleChangeid = (e) => {
@@ -84,7 +90,7 @@ function EditServiceCompliance() {
                                         <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" onChange={handleChangeremark} value={data.remark} />
                                     </div>
                                     <div className="form-group" >
-                                        <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
+                                        <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
                                         <button type="button" onClick={() => { sessionStorage.removeItem('ServiceComplianceSno'); window.location.href = '/showservicecompliance' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>

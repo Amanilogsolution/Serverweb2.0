@@ -71,7 +71,7 @@ function AddServiceCompliance() {
                                             id="DeviceService"
                                             className="form-control col-md-12"
                                         >
-                                            <option selected hidden value="India">Choose Service</option>
+                                            <option selected hidden value="">Choose Service</option>
                                             {
                                                 deviceservice.map((data, index) => (
                                                     <option key={index} value={data.device_services}>{data.device_services}</option>
@@ -90,7 +90,7 @@ function AddServiceCompliance() {
                                     </div>
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
-                                        <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
+                                        <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
                                         <button type="button" onClick={() => { window.location.href = '/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>

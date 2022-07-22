@@ -8,7 +8,7 @@ export default function Dashboard() {
   useEffect(()=>{
    const  fetchdata=async()=>{
     const series= await ActiveSeries();
-    if(!series){
+    if(!series && sessionStorage.getItem('Permission')==='allow'){
       alert ("Please start the series master");
       window.location.href='/Totalseries'
     }

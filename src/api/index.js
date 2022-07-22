@@ -43,6 +43,7 @@ export const TotalDevicegroup = async () => {
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 export const Adddevicegroup = async (devicegroupid, device_group, remark, username) => {
+    console.log(devicegroupid, device_group, remark, username)
     const url = `http://192.168.146.136:8003/api/adddevicegroupmaster`
     return axios.post(url, { devicegroupid, device_group, remark, username }).then(response => response.data).catch(error => console.log(error));
 }

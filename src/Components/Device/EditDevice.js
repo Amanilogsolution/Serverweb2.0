@@ -226,7 +226,7 @@ function EditDevice() {
                                     </div>
 
                                     <div className="form-group" >
-                                        <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
+                                        <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
                                         <button type="button" onClick={() => { sessionStorage.removeItem('deviceSno'); window.location.href = '/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>
