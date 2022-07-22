@@ -96,10 +96,11 @@ function ShowdeviceTask() {
         <>
             <Navbar />
             <div className='deviceid-container' >
-                <div className='deviceid-div' style={{ position: "relative" }}>
-                    <h3 className="text-left "> Device Task</h3>
-                    <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './Adddevicetaskes' }}>Add Task </button>
-
+                <div className='deviceid-div' >
+                    <div className='headwithbtn'>
+                        <h3 className="text-left "> Device Task</h3>
+                        <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './Adddevicetaskes' }}>Add Task </button>
+                    </div>
                     <div className="form-row">
                         <div className="form-group col-md-4" >
                             {/* <label>Select Device</label> */}

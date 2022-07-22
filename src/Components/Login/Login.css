@@ -18,7 +18,7 @@
    transform: translate(-50%, -50%);
    background: rgba(255, 255, 255, 1);
    width: 400px;
-   padding: 50px 30px;
+   padding: 70px 30px;
    border-radius: 10px;
    box-shadow: 5px 5px 25px #000;
    box-sizing: "border-box"
@@ -50,14 +50,40 @@
    transform: translate(-50%);
 }
 
+
+.passworddiv {
+   padding: 0;
+}
+
+.passworddiv .passworffield {
+   width: 90%;
+   margin: 0;
+}
+
+.eyebtn {
+   padding: 3px;
+   height: 40px;
+   margin: 0;
+   cursor: pointer;
+}
+
 @media screen and (max-width:400px) {
    .formcontainer {
       width: 100%;
    }
+
+   .passworddiv .passworffield {
+      width: 85%;
+   }
 }
 
-@media screen and (max-width:250px) {
+@media screen and (max-width:260px) {
    .formcontainer {
       box-shadow: none;
+      width: 98%;
+   }
+
+   .passworddiv .passworffield {
+      width: 80%;
    }
 }
