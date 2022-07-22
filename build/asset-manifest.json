@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.18a88d46.css",
+    "main.js": "/static/js/main.787d2afc.js",
+    "static/js/787.e1a5c0bd.chunk.js": "/static/js/787.e1a5c0bd.chunk.js",
+    "static/media/awlbg.jpg": "/static/media/awlbg.a41e5ea4b294216fb75d.jpg",
+    "static/media/awl2.png": "/static/media/awl2.31cdf6c9d8dabb9342c3.png",
+    "index.html": "/index.html",
+    "main.18a88d46.css.map": "/static/css/main.18a88d46.css.map",
+    "main.787d2afc.js.map": "/static/js/main.787d2afc.js.map",
+    "787.e1a5c0bd.chunk.js.map": "/static/js/787.e1a5c0bd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.18a88d46.css",
+    "static/js/main.787d2afc.js"
+  ]
+}
