@@ -61,7 +61,7 @@ function AddDevice() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        document.getElementById('subnitbtn').disabled=true;
+        // document.getElementById('subnitbtn').disabled=true;
         const devicename = document.getElementById('devicename').value
         const devicetype = document.getElementById('devicetype').value;
         const devicegroup = document.getElementById('devicegroup').value;

@@ -20,7 +20,7 @@ function AddDevicegroup() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        document.getElementById('subnitbtn').disabled=true;
+        // document.getElementById('subnitbtn').disabled=true;
         const devicegroup = document.getElementById('devicegroup').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');

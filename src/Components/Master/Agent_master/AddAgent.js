@@ -19,7 +19,7 @@ function AddAgent() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        document.getElementById('subnitbtn').disabled=true;
+        // document.getElementById('subnitbtn').disabled=true;
         const agentname = document.getElementById('agentname').value;
         const agentemail = document.getElementById('agentemail').value;
         const agentphone = document.getElementById('agentphone').value;

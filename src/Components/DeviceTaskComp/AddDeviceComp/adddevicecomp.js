@@ -28,7 +28,7 @@ function AddDeviceTaskComp() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        document.getElementById('subnitbtn').disabled = true;
+        // document.getElementById('subnitbtn').disabled = true;
         const devicename = document.getElementById('devicename').value;
         const services = document.getElementById('services').value;
         const remark = document.getElementById('remark').value;
