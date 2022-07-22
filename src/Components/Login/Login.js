@@ -47,14 +47,14 @@ export default function Login() {
             <h4 className="text-center heading-title mt-2" >AWL India <b>IPERISCOPE</b></h4>
             <div className="control">
               <input type="text" id="username" placeholder="Username" ></input>
-              <div className="form-row">
+              <div className="form-row passworddiv">
 
-                <input type={toggleeye?'password':'text'} id="password" placeholder="Password" className="form-group col-md-11" ></input>
+                <input type={toggleeye ? 'password' : 'text'} id="password" placeholder="Password" className="form-group passworffield" ></input>
                 {
                   toggleeye ?
-                    <span className="material-symbols-outlined form-group col-md-1 mt-2 eyebtn" onClick={togglefun}>
+                    <span className="material-symbols-outlined form-group  eyebtn" onClick={togglefun} >
                       visibility_off
-                    </span> : <span className="material-symbols-outlined form-group col-md-1 mt-2 eyebtn" onClick={togglefun}>
+                    </span> : <span className="material-symbols-outlined form-group  eyebtn" onClick={togglefun}>
                       visibility
                     </span>
                 }
@@ -62,10 +62,10 @@ export default function Login() {
 
 
               </div>
-              { 
+              {
                 error ? <p style={{ color: "red" }}>Please Enter Userid & Password ...</p> : null
               }
-              <button className="btn btn-primary mt-2 psw-btn" value="Login" onClick={handlelogin}>Login</button>
+              <button className="btn btn-primary mt-3 psw-btn" value="Login" onClick={handlelogin}>Login</button>
             </div>
           </div>
         </div>
