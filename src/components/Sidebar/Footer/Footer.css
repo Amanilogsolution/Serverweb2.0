@@ -1,0 +1,14 @@
+.footer {
+    height: 40px;
+    background-color: #fff;
+    margin-top: 10px;
+    padding-top: 10px;
+    box-shadow: -3px -3px 10px gray;
+    border-radius: 10px 0px 0px 0px;
+}
+
+.footer .footer-head {
+    font-size: 18px;
+    font-weight: 600;
+
+}

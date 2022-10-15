@@ -1,125 +1,94 @@
+import React from 'react';
 import './App.css';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import PrivateRoute from './Components/HOC/PrivateRoute'
-import Login from './Components/Login/Login';
-import Pagenotfound from './Components/pagenotfound/Pagenotfound'
-import Dashboard from './Components/Dashboard/Dashboard';
-import Form from './Components/Form/Form';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './components/LandingPage/Login/Login'
+import Signup from './components/LandingPage/Resister/Resister'
+import LandingPage from './components/LandingPage/LandingPageHome/LandingPage'
 
 
-import ShowDeviceservices from './Components/Master/Device_services/Show_deviceservices';
-import AddDeviceservices from './Components/Master/Device_services/Add_deviceservices';
-import EditDeviceservices from './Components/Master/Device_services/Edit_deviceservices';
-import ShowDevicetask from './Components/Master/Devicetask/ShowDevicetask';
-import AddDevicetask from './Components/Master/Devicetask/AddDevicetask';
-import EditDevicetask from './Components/Master/Devicetask/EditDevicetask';
-import ShowAgent from './Components/Master/Agent_master/Show_agent';
-import AddAgent from './Components/Master/Agent_master/AddAgent';
-import EditAgent from './Components/Master/Agent_master/EditAgent';
+import Dashboard from './components/pages/Dashboard/Dashboard.js';
 
+import Totalseries from './components/pages/IperiscopeMaster/Series/Totalseries';
+import Addseries from './components/pages/IperiscopeMaster/Series/Addseries';
+import Editseries from './components/pages/IperiscopeMaster/Series/Editseries';
 
-import Device_Type from './Components/Master/Device_Type/Show_device_type/Device_Type';
-import AddDevicetype from './Components/Master/Device_Type/AddDecivetype/AddDevicetype';
-import EditDevicetype from './Components/Master/Device_Type/EditDevicetype/EditDevicetype';
+import TotalDeviceType from './components/pages/IperiscopeMaster/Device_Type/ShowDevice_Type';
+import AddDevicetype from './components/pages/IperiscopeMaster/Device_Type/AddDevicetype';
+import EditDevicetype from './components/pages/IperiscopeMaster/Device_Type/EditDevicetype';
 
-import Showdevicegroup from './Components/Master/Devicegroup/ShowDevicegroup/Showdevicegroup'
-import AddDevicegroup from './Components/Master/Devicegroup/AddDeviceGroup/Adddevicegroup'
-import EditDevicegroup from './Components/Master/Devicegroup/EditDeviceGroup/Editdevicegroup'
+import Showdevicegroup from './components/pages/IperiscopeMaster/Devicegroup/Showdevicegroup';
+import AddDevicegroup from './components/pages/IperiscopeMaster/Devicegroup/AddDevicegroup';
+import EditDevicegroup from './components/pages/IperiscopeMaster/Devicegroup/EditDevicegroup';
 
-import Showoperatingsystem from './Components/Master/OperatingSystem/ShowOperatingSystem/ShowOperatingSystem';
-import AddOperatingSystem from './Components/Master/OperatingSystem/AddOperatingSystem/AddOperatingSystem';
-import EditOperatingSystem from './Components/Master/OperatingSystem/EditOperatingSystem/EditOperatingSystem';
+import TotalOperatingSystem from './components/pages/IperiscopeMaster/OperatingSystem/TotalOperatingSystem';
+import AddOperatingSystem from './components/pages/IperiscopeMaster/OperatingSystem/AddOperatingSystem';
+import EditOperatingSystem from './components/pages/IperiscopeMaster/OperatingSystem/EditOperatingSystem';
 
-import Showservicecompliance from './Components/Master/ServiceCompliance/ShowServiceCompliance/ShowServiceCompliance';
-import AddServiceCompliance from './Components/Master/ServiceCompliance/AddServiceCompliance/AddServiceCompliance';
-import EditServiceCompliance from './Components/Master/ServiceCompliance/EditServiceCompliance/EditServiceCompliance';
+import ShowDeviceservices from './components/pages/IperiscopeMaster/Device_services/Show_deviceservices';
+import AddDeviceservices from './components/pages/IperiscopeMaster/Device_services/Add_deviceservices';
+import EditDeviceServices from './components/pages/IperiscopeMaster/Device_services/Edit_deviceservices';
 
-import AddDevice from './Components/Device/AddDevice'
-import ShowDevice from './Components/Device/ShowDevice'
-import EditDevice from './Components/Device/EditDevice'
+import TotalServicecompliance from './components/pages/IperiscopeMaster/ServiceCompliance/TotalServiceCompliance';
+import AddServicecompliance from './components/pages/IperiscopeMaster/ServiceCompliance/AddServiceCompliance';
+import EditServiceCompliance from './components/pages/IperiscopeMaster/ServiceCompliance/EditServiceCompliance';
 
-import AddDeviceTaskComp from './Components/DeviceTaskComp/Devicetask&comp'
-import UpdateDeviceTaskComp from './Components/DeviceTaskComp/UpdateDevicetask&comp'
-import EditDeviceTaskComp from './Components/DeviceTaskComp/EditDevicetask&comp'
+import TotalDeviceTask from './components/pages/IperiscopeMaster/Devicetask/TotalDevicetask';
+import AddDevicetask from './components/pages/IperiscopeMaster/Devicetask/AddDevicetask';
+import EditDevicetask from './components/pages/IperiscopeMaster/Devicetask/EditDevicetask';
 
-import AddDeviceComp from './Components/DeviceTaskComp/AddDeviceComp/adddevicecomp'
-import EditDeviceComp from './Components/DeviceTaskComp/AddDeviceComp/Editdevicecomp'
-import ShowDeviceTaskes from './Components/DeviceTaskComp/ShowDeviceTask';
-import AddDeviceTaskes from './Components/DeviceTaskComp/AddDeviceTask/adddevicetask'
-import EditDeviceTaskMain from './Components/DeviceTaskComp/AddDeviceTask/EditDevicetask'
-
-import Totalseries from './Components/Master/Seies/Totalseries'
-import Addseries from './Components/Master/Seies/Addseries'
-import Editseries from './Components/Master/Seies/Editseries'
+import TotalAgent from './components/pages/IperiscopeMaster/Agent_master/TotalAgentmaster';
+import AddAgent from './components/pages/IperiscopeMaster/Agent_master/AddAgent';
+import EditAgent from './components/pages/IperiscopeMaster/Agent_master/EditAgent';
 
 
 
-
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <BrowserRouter>
+      <Routes>
 
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/Signin" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
 
-      <Router>
-        <Switch>
-          <Route exact path="/" restricted={false} component={Login} />
-          <PrivateRoute path='/Dashboard' component={Dashboard} />
-          <PrivateRoute path='/ShowDeviceservices' component={ShowDeviceservices} />
-          <PrivateRoute path='/AddDeviceservices' component={AddDeviceservices} />
-          <PrivateRoute path='/EditDeviceservices' component={EditDeviceservices} />
-          <PrivateRoute path='/ShowDevicetask' component={ShowDevicetask} />
-          <PrivateRoute path='/AddDevicetask' component={AddDevicetask} />
-          <PrivateRoute path='/EditDevicetask' component={EditDevicetask} />
-          <PrivateRoute path='/ShowAgent' component={ShowAgent} />
-          <PrivateRoute path='/AddAgent' component={AddAgent} />
-          <PrivateRoute path='/EditAgent' component={EditAgent} />
-          <PrivateRoute path='/Device-type' component={Device_Type} />
-          <PrivateRoute path='/AddDevice-type' component={AddDevicetype} />
-          <PrivateRoute path='/EditDeviceType' component={EditDevicetype} />
-          <PrivateRoute path='/Showdevicegroup' component={Showdevicegroup} />
-          <PrivateRoute path='/adddevicegroup' component={AddDevicegroup} />
-          <PrivateRoute path='/editdevicegroup' component={EditDevicegroup} />
-          <PrivateRoute path='/showoperatingsystem' component={Showoperatingsystem} />
-          <PrivateRoute path='/addoperatingsystem' component={AddOperatingSystem} />
-          <PrivateRoute path='/editoperatingsystem' component={EditOperatingSystem} />
-          <PrivateRoute path='/showservicecompliance' component={Showservicecompliance} />
-          <PrivateRoute path='/AddServiceCompliance' component={AddServiceCompliance} />
-          <PrivateRoute path='/EditServiceCompliance' component={EditServiceCompliance} />
-          <PrivateRoute path='/AddDevice' component={AddDevice} />
-          <PrivateRoute path='/ShowDevice' component={ShowDevice} />
-          <PrivateRoute path='/EditDevice' component={EditDevice} />
-          
-          
-          <PrivateRoute path='/DeviceTask&Compliances' component={AddDeviceTaskComp} />
-          <PrivateRoute path='/UpdateDeviceTask&Compliances' component={ UpdateDeviceTaskComp} />
-          <PrivateRoute path='/EditDeviceTask&Compliances' component={ EditDeviceTaskComp} />
-          <PrivateRoute path='/AddDeviceComp' component={ AddDeviceComp} />
-          <PrivateRoute path='/EditDeviceComp' component={ EditDeviceComp} />
-          <PrivateRoute path='/Showdevicetaskes' component={ ShowDeviceTaskes} />
-          <PrivateRoute path='/Adddevicetaskes' component={ AddDeviceTaskes} />
-          <PrivateRoute path='/EditDeviceTaskMain' component={ EditDeviceTaskMain} />
-          
+        <Route path="/dashboard" element={<Dashboard />} />
 
+        <Route path="/Totalseries" element={<Totalseries />} />
+        <Route path="/Addseries" element={<Addseries />} />
+        <Route path="/Editseries" element={<Editseries />} />
 
+        <Route path="/TotalDeviceType" element={<TotalDeviceType />} />
+        <Route path="/AddDevicetype" element={<AddDevicetype />} />
+        <Route path="/EditDevicetype" element={<EditDevicetype />} />
 
-          
-          
+        <Route path="/Showdevicegroup" element={<Showdevicegroup />} />
+        <Route path="/AddDevicegroup" element={<AddDevicegroup />} />
+        <Route path="/EditDevicegroup" element={<EditDevicegroup />} />
 
-          <PrivateRoute path='/Totalseries' component={Totalseries} />
-          <PrivateRoute path='/Addseries' component={Addseries} />
-          <PrivateRoute path='/Editseries' component={Editseries} />
-          
+        <Route path="/TotalOperatingSystem" element={<TotalOperatingSystem />} />
+        <Route path="/AddOperatingSystem" element={<AddOperatingSystem />} />
+        <Route path="/EditOperatingSystem" element={<EditOperatingSystem />} />
 
-          
-          
+        <Route path="/ShowDeviceservices" element={<ShowDeviceservices />} />
+        <Route path="/AddDeviceservices" element={<AddDeviceservices />} />
+        <Route path="/EditDeviceServices" element={<EditDeviceServices />} />
+        
+        <Route path="/TotalServicecompliance" element={<TotalServicecompliance />} />
+        <Route path="/AddServicecompliance" element={<AddServicecompliance />} />
+        <Route path="/EditServiceCompliance" element={<EditServiceCompliance />} />
 
-          <PrivateRoute path='/form' component={Form} />
-          <Route path='*' component={Pagenotfound} />
-        </Switch>
-      </Router>
+        <Route path="/TotalDeviceTask" element={<TotalDeviceTask />} />
+        <Route path="/AddDevicetask" element={<AddDevicetask />} />
+        <Route path="/EditDevicetask" element={<EditDevicetask />} />
 
-    </div>
+        <Route path="/TotalAgent" element={<TotalAgent />} />
+        <Route path="/AddAgent" element={<AddAgent />} />
+        <Route path="/EditAgent" element={<EditAgent />} />
+        
+      </Routes>
+
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
