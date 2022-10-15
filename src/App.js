@@ -92,5 +92,3 @@ const App = () => {
 };
 
 export default App;
-
-// njnjknd
