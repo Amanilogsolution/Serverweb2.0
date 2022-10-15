@@ -37,7 +37,7 @@ function AddDeviceTaskComp() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        document.getElementById('subnitbtn').disabled = true;
+        // document.getElementById('subnitbtn').disabled = true;
         const devicename = document.getElementById('devicename').value;
         const services = document.getElementById('services').value;
         const completion_date = document.getElementById('completion_date').value;
@@ -51,6 +51,7 @@ function AddDeviceTaskComp() {
             const arryresult = [];
             task.map((e) => {
                 const taskes = e.value
+                console.log(devicename, services, taskes, completion_date, remark, username)
                 const result = Adddevicetaskby(devicename, services, taskes, completion_date, remark, username);
                 arryresult.push(result);
             })
@@ -121,10 +122,10 @@ function AddDeviceTaskComp() {
                                     <div className="form-group">
                                         <label>Device Name </label>
                                         <select
-                                            id="device"
+                                            id="devicename"
                                             className="form-control col-md-12"
                                         >
-                                            <option selected hidden value="India">Choose Device Name</option>
+                                            <option selected hidden value="">Choose Device Name</option>
                                             {
                                                 activedevicename.map((data, index) => (
                                                     <option key={index} value={data.device_name}>{data.device_name}</option>
@@ -135,10 +136,10 @@ function AddDeviceTaskComp() {
                                     <div className="form-group " >
                                         <label>Select Services </label>
                                         <select
-                                            id="devicegroup"
+                                            id="services"
                                             className="form-control col-md-12"
                                         >
-                                            <option selected hidden value="India">Choose Service</option>
+                                            <option selected hidden value="">Choose Service</option>
                                             {
                                                 activeservice.map((data, index) => (
                                                     <option key={index} value={data.device_services}>{data.device_services}</option>
@@ -176,7 +177,7 @@ function AddDeviceTaskComp() {
                                     </div>
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
-                                        <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
+                                        <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
                                         <button type="button" onClick={() => { window.location.href = '/Dashboard' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                     </div>
                                 </form>
