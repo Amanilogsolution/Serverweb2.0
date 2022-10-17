@@ -21,8 +21,8 @@
 
  .main_container {
      background: #fff;
-     min-height: 82vh;
-     max-width: calc(100%-50px);
+     min-height: 77.5vh;
+     max-width: 100%;
      box-shadow: 2px 1px 10px gray,-3px -3px 10px gray;
      border-radius: 10px 0px 0px 10px;
  }
@@ -55,7 +55,7 @@
      }
 
      .main_container {
-         min-height: 89vh;
+         min-height: 87.3vh;
      }
  }
 
@@ -92,6 +92,9 @@
          width: 65px;
          padding-left: 8px;
      }
+     .main_container {
+        min-height: 85.3vh;
+    }
  }
 
  /* Button End*/
