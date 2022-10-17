@@ -129,22 +129,19 @@ function EditDeviceServiceTask() {
                                             className="form-control col-md-12"
                                             onChange={hangelgetfreq}
                                         >
-                                            <option selected hidden >{data.task}</option>
+                                            <option value={data.task} hidden >{data.task}</option>
                                             {
                                                 activedevicetask.map((data, index) => (
                                                     <option key={index} value={data.device_tasks}>{data.device_tasks}</option>
                                                 ))
                                             }
                                         </select>
-
-
                                         {/* <Select
                                             options={options}
                                             isMulti={false}
                                             placeholder={data.task}
                                             onChange={handleChange}
                                         /> */}
-
 
                                     </div>
                                     <div className="form-group " >
