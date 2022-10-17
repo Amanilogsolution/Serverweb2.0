@@ -167,10 +167,10 @@ export const ServiceComplianceStatus = async (status, sno) => {
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-// export const ActiveServiceCompliance = async () => {
-//     const url = `http://182.76.62.178:8114/api/activeservicecompliance`
-//     return axios.get(url).then(response => response.data).catch(error => console.log(error));
-// }
+export const ActiveServiceCompliance = async () => {
+    const url = `http://182.76.62.178:8114/api/activeservicecompliance`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
 
 
 // // Device Services
@@ -311,40 +311,40 @@ export const Updatedevice = async (sno, device_id, device_name, device_type, dev
 
 
 
-// export const Activedevice = async () => {
-//     const url = `http://182.76.62.178:8114/api/activedevice`
-//     return axios.get(url).then(response => response.data).catch(error => console.log(error));
-// }
+export const Activedevice = async () => {
+    const url = `http://182.76.62.178:8114/api/activedevice`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
 
 
 
 
 
 
-// export const Getdevicetaskcompliancebyname = async (name) => {
-//     const url = `http://182.76.62.178:8114/api/getdevicetaskcompliancebyname`
-//     return axios.post(url, { name }).then(response => response.data).catch(error => console.log(error));
-// }
+export const Getdevicetaskcompliancebyname = async (name) => {
+    const url = `http://182.76.62.178:8114/api/getdevicetaskcompliancebyname`
+    return axios.post(url, { name }).then(response => response.data).catch(error => console.log(error));
+}
 
-// export const Adddevicetaskcompliance = async (devicename, services, add_compliance, remark, username) => {
-//     const url = `http://182.76.62.178:8114/api/adddeviceTaskcomp`
-//     return axios.post(url, { devicename, services, add_compliance, remark, username }).then(response => response.data).catch(error => console.log(error));
-// }
+export const AddDevicetaskCompliance = async (devicename, services, add_compliance, remark, username) => {
+    const url = `http://182.76.62.178:8114/api/adddeviceTaskcomp`
+    return axios.post(url, { devicename, services, add_compliance, remark, username }).then(response => response.data).catch(error => console.log(error));
+}
 
-// export const getdevicetaskcomp = async (sno) => {
-//     const url = `http://182.76.62.178:8114/api/getdevicetaskcomp`
-//     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
-// }
+export const getdevicetaskcomp = async (sno) => {
+    const url = `http://182.76.62.178:8114/api/getdevicetaskcomp`
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
+}
 
-// export const Updatedevicetaskcomp = async (sno, devicename, services, add_compliance, remark, username) => {
-//     const url = `http://182.76.62.178:8114/api/updatedevicetaskcomp`
-//     return axios.post(url, { sno, devicename, services, add_compliance, remark, username }).then(response => response.data).catch(error => console.log(error));
-// }
+export const Updatedevicetaskcomp = async (sno, devicename, services, add_compliance, remark, username) => {
+    const url = `http://182.76.62.178:8114/api/updatedevicetaskcomp`
+    return axios.post(url, { sno, devicename, services, add_compliance, remark, username }).then(response => response.data).catch(error => console.log(error));
+}
 
-// export const Updatedevicecompstatus = async (status, sno) => {
-//     const url = `http://182.76.62.178:8114/api/updatedevicecompstatus`
-//     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
-// }
+export const Updatedevicecompstatus = async (status, sno) => {
+    const url = `http://182.76.62.178:8114/api/updatedevicecompstatus`
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
+}
 
 // export const Getdevicetaskbyname = async (name) => {
 //     const url = `http://182.76.62.178:8114/api/getdevicetaskbyname`

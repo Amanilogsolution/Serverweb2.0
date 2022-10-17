@@ -45,6 +45,9 @@ import TotalDevice from './components/pages/Device/TotalDevice';
 import AddDevice from './components/pages/Device/AddDevice';
 import EditDevice from './components/pages/Device/EditDevice';
 
+import TotalDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/TotalDeviceComp';
+import AddDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/AddDeviceComp';
+import EditDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/Editdevicecomp';
 
 const App = () => {
   return (
@@ -92,6 +95,11 @@ const App = () => {
         <Route path="/TotalDevice" element={<TotalDevice />} />
         <Route path="/AddDevice" element={<AddDevice />} />
         <Route path="/EditDevice" element={<EditDevice />} />
+
+
+        <Route path="/TotalDeviceComp" element={<TotalDeviceComp />} />
+        <Route path="/AddDeviceComp" element={<AddDeviceComp />} />
+        <Route path="/EditDeviceComp" element={<EditDeviceComp />} />
 
 
       </Routes>
