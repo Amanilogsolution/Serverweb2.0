@@ -41,6 +41,18 @@ import AddAgent from './components/pages/IperiscopeMaster/Agent_master/AddAgent'
 import EditAgent from './components/pages/IperiscopeMaster/Agent_master/EditAgent';
 
 
+import TotalDevice from './components/pages/Device/TotalDevice';
+import AddDevice from './components/pages/Device/AddDevice';
+import EditDevice from './components/pages/Device/EditDevice';
+
+import TotalDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/TotalDeviceComp';
+import AddDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/AddDeviceComp';
+import EditDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/Editdevicecomp';
+
+import TotalDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/TotalDeviceTask';
+import AddDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/AddDeviceServiceTask';
+import EditDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/EditDeviceServiceTask';
+
 
 const App = () => {
   return (
@@ -72,7 +84,7 @@ const App = () => {
         <Route path="/ShowDeviceservices" element={<ShowDeviceservices />} />
         <Route path="/AddDeviceservices" element={<AddDeviceservices />} />
         <Route path="/EditDeviceServices" element={<EditDeviceServices />} />
-        
+
         <Route path="/TotalServicecompliance" element={<TotalServicecompliance />} />
         <Route path="/AddServicecompliance" element={<AddServicecompliance />} />
         <Route path="/EditServiceCompliance" element={<EditServiceCompliance />} />
@@ -84,6 +96,19 @@ const App = () => {
         <Route path="/TotalAgent" element={<TotalAgent />} />
         <Route path="/AddAgent" element={<AddAgent />} />
         <Route path="/EditAgent" element={<EditAgent />} />
+
+        <Route path="/TotalDevice" element={<TotalDevice />} />
+        <Route path="/AddDevice" element={<AddDevice />} />
+        <Route path="/EditDevice" element={<EditDevice />} />
+
+
+        <Route path="/TotalDeviceComp" element={<TotalDeviceComp />} />
+        <Route path="/AddDeviceComp" element={<AddDeviceComp />} />
+        <Route path="/EditDeviceComp" element={<EditDeviceComp />} />
+
+        <Route path="/TotalDeviceServiceTask" element={<TotalDeviceServiceTask />} />
+        <Route path="/AddDeviceServiceTask" element={<AddDeviceServiceTask />} />
+        <Route path="/EditDeviceServiceTask" element={<EditDeviceServiceTask />} />
         
       </Routes>
 
