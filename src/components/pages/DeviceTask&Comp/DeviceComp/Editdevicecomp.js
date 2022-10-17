@@ -10,8 +10,6 @@ function EditDeviceComp() {
     // const [task,setTask]= useState([]);
 
     const [data, setData] = useState({});
-
-
     const [activecompliance, setActiveCompliance] = useState([]);
 
 
@@ -30,7 +28,6 @@ function EditDeviceComp() {
 
         }
         fetch()
-
     }, [])
 
 
@@ -43,7 +40,6 @@ function EditDeviceComp() {
         const devicename = document.getElementById('devicename').value;
         const services = document.getElementById('services').value;
         const compliances = document.getElementById('compliances').value;
-
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
         const sno = sessionStorage.getItem('devicecompSno')

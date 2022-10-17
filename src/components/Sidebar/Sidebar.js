@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import {
     FaTh,
     FaUserAlt,
-    FaRegChartBar,
-    FaCommentAlt,
+    FaTasks,
     FaShoppingBag,
     FaThList
 } from "react-icons/fa";
 
 import { IoIosArrowDown, IoMdLogOut } from 'react-icons/io'
-import { MdOutlineDoubleArrow } from 'react-icons/md'
+import { MdOutlineDoubleArrow,MdDevicesOther } from 'react-icons/md'
 import { NavLink } from 'react-router-dom';
 import Footer from './Footer/Footer';
 import Navbar from './Navbar.js';
@@ -166,29 +165,29 @@ const Sidebar = ({ children }) => {
                     </li>
                     <li title='Device'>
                         <NavLink to='/TotalDevice' className="link navlink"  >
-                            <div className="icon"><FaRegChartBar /></div>
+                            <div className="icon"><MdDevicesOther /></div>
                             <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Device</div>
                         </NavLink>
                     </li>
 
                     <li title='Comment'>
-                        <NavLink to='/comment' className="link navlink" activeclassname="sidebaractive">
-                            <div className="icon"><FaCommentAlt /></div>
-                            <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Comment</div>
+                        <NavLink to='/TotalDeviceComp' className="link navlink" activeclassname="sidebaractive">
+                            <div className="icon"><FaThList /></div>
+                            <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Device Compliances</div>
                         </NavLink>
                     </li>
                     <li title='Product'>
-                        <NavLink to='/product' className="link" activeclassname="sidebaractive">
-                            <div className="icon"><FaShoppingBag /></div>
-                            <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Product</div>
+                        <NavLink to='/TotalDeviceServiceTask' className="link" activeclassname="sidebaractive">
+                            <div className="icon"><FaTasks /></div>
+                            <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Device Task</div>
                         </NavLink>
                     </li>
-                    <li title='Product List'>
+                    {/* <li title='Product List'>
                         <NavLink to='/productList' className="link navlink" activeclassname="sidebaractive">
                             <div className="icon"><FaThList /></div>
                             <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Product List</div>
                         </NavLink>
-                    </li>
+                    </li> */}
 
                 </ul>
                 <div className="footer_section" title='Logout' >
