@@ -45,6 +45,14 @@ import TotalDevice from './components/pages/Device/TotalDevice';
 import AddDevice from './components/pages/Device/AddDevice';
 import EditDevice from './components/pages/Device/EditDevice';
 
+import TotalDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/TotalDeviceComp';
+import AddDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/AddDeviceComp';
+import EditDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/Editdevicecomp';
+
+import TotalDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/TotalDeviceTask';
+import AddDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/AddDeviceServiceTask';
+import EditDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/EditDeviceServiceTask';
+
 
 const App = () => {
   return (
@@ -94,6 +102,14 @@ const App = () => {
         <Route path="/EditDevice" element={<EditDevice />} />
 
 
+        <Route path="/TotalDeviceComp" element={<TotalDeviceComp />} />
+        <Route path="/AddDeviceComp" element={<AddDeviceComp />} />
+        <Route path="/EditDeviceComp" element={<EditDeviceComp />} />
+
+        <Route path="/TotalDeviceServiceTask" element={<TotalDeviceServiceTask />} />
+        <Route path="/AddDeviceServiceTask" element={<AddDeviceServiceTask />} />
+        <Route path="/EditDeviceServiceTask" element={<EditDeviceServiceTask />} />
+        
       </Routes>
 
     </BrowserRouter>
