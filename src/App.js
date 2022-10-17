@@ -82,8 +82,8 @@ const App = () => {
         <Route path="/EditDevicetask" element={<EditDevicetask />} />
 
         <Route path="/TotalAgent" element={<TotalAgent />} />
-        <Route path="/AddAgent" element={<AddAgent />} />
-        <Route path="/EditAgent" element={<EditAgent />} />
+        {/* <Route path="/AddAgent" element={<AddAgent />} /> */}
+        {/* <Route path="/EditAgent" element={<EditAgent />} /> */}
         
       </Routes>
 
