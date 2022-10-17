@@ -164,8 +164,8 @@ const Sidebar = ({ children }) => {
                             </li>
                         </ul>
                     </li>
-                    <li title='Analytics'>
-                        <NavLink to='/analytics' className="link navlink"  >
+                    <li title='Device'>
+                        <NavLink to='/TotalDevice' className="link navlink"  >
                             <div className="icon"><FaRegChartBar /></div>
                             <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Device</div>
                         </NavLink>
