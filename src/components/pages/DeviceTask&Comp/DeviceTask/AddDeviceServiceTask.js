@@ -78,8 +78,7 @@ function AddDeviceServiceTask() {
                                     <label htmlFor='devicename'>Device Name <span style={{ color: "red" }}>*</span></label>
                                     <select
                                         id="devicename"
-                                        className="form-control col-md-12"
-                                    >
+                                        className="form-control col-md-12">
                                         <option hidden value=''>Choose Device Name</option>
                                         {
                                             activedevicename.map((data, index) => (
