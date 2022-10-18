@@ -343,3 +343,27 @@ CREATE TABLE tbl_vendor_contract_master (
                 status nvarchar(30) NULL,
                 vendor_contract_uuid nvarchar(350) NULL
 )
+
+CREATE TABLE tbl_drizzle_agent_master (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                employee_name nvarchar(100) NULL,
+                mark_as_agent nvarchar(150) NULL,
+                allocate_company nvarchar(300) NULL ,
+                agent_email_id nvarchar(300) NULL ,
+                agent_contact_number nvarchar(300) NULL ,
+                allocate_location nvarchar(300) NULL ,
+                agent_role nvarchar(300) NULL ,
+                reporting_to nvarchar(300) NULL ,
+             
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                drizzle_agent_uuid nvarchar(350) NULL
+)
