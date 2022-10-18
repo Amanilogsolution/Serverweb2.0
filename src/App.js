@@ -109,6 +109,7 @@ const App = () => {
         <Route path="/TotalDeviceServiceTask" element={<TotalDeviceServiceTask />} />
         <Route path="/AddDeviceServiceTask" element={<AddDeviceServiceTask />} />
         <Route path="/EditDeviceServiceTask" element={<EditDeviceServiceTask />} />
+
         
       </Routes>
 

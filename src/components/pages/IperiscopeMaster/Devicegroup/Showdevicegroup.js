@@ -4,6 +4,38 @@ import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { TotalDevicegroup, DeviceGroupStatus } from '../../../../api'
+import { AiFillEdit } from 'react-icons/ai';
+
+const customStyles = {
+    title: {
+      style: {
+        fontColor: 'red',
+        fontWeight: '900',
+      }
+    },
+    rows: {
+      style: {
+        minHeight: '35px'
+      }
+    },
+    headCells: {
+      style: {
+        fontSize: '15px',
+        background:'rgb(105,59,233)',
+        color:'white',
+        paddingLeft:"5%"
+      },
+    },
+    cells: {
+      style: {
+        fontSize: '15px',
+        // fontWeight:'600',
+        background:'rgb(242,242,242)	',
+        borderBottom:"1px solid silver",
+        paddingLeft:"5%"
+      },
+    },
+  };
 
 function Showdevicegroup() {
     const [data, setData] = useState([])
@@ -27,7 +59,7 @@ function Showdevicegroup() {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select onChange={async (e) => {
+                <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
                     const status = e.target.value;
                     await DeviceGroupStatus(status, row.sno)
                     window.location.reload()
@@ -44,9 +76,9 @@ function Showdevicegroup() {
             selector: row => row.null,
             cell: (row) => [
                 <a title='Edit Device Type' href="/EditDevicegroup">
-                    <button className="btn btn-success " onClick={() => sessionStorage.setItem('devicegroupSno', `${row.sno}`)} >
-                        Edit
-                    </button></a>
+                    <p onClick={() => sessionStorage.setItem('devicegroupSno', `${row.sno}`)} >
+                    <AiFillEdit style={{fontSize:"20px",marginBottom:"-13px"}}/>
+                    </p></a>
             ]
         }
 
@@ -74,7 +106,7 @@ function Showdevicegroup() {
                     <div className='innermain_container m-auto'>
                     <div className='d-flex justify-content-between pt-4'>
                         <h3>Total Device Group</h3>
-                        <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDevicegroup' }}>Add Group</button>
+                        <button className='btn btn-voilet btn-sm' onClick={e => { e.preventDefault(); window.location.href = './AddDevicegroup' }}>Add Group</button>
                     </div>
                     <DataTableExtensions {...tableData}>
                         <DataTable
@@ -83,6 +115,7 @@ function Showdevicegroup() {
                             defaultSortAsc={false}
                             pagination
                             highlightOnHover
+                            customStyles={customStyles} 
                         />
                     </DataTableExtensions>
                 </div>

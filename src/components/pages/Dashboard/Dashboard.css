@@ -1,0 +1,27 @@
+.home_container{
+
+        min-height: 77.5vh;
+        max-width: 100%;
+        box-shadow: 2px 1px 10px gray,-3px -3px 10px gray;
+        border-radius: 10px 0px 0px 10px;
+        background-size: 100% 100%;
+
+}
+@media screen and (min-width:750px) {
+    .home_container{
+       background:url("../../../image/homebg.jpg");
+       background-size: 100% 100%;
+}
+}
+@media screen and (min-width:488px) and (max-width:750px){
+    .home_container{
+       background:url("../../../image/homebg2.jpg");
+       background-size: 100% 100%;
+}
+}
+@media screen and (min-width:0px) and (max-width:488px){
+    .home_container{
+       background:url("../../../image/homebg3.jpg");
+       background-size: 100% 100%;
+}
+}

@@ -28,8 +28,8 @@
  }
 
  .card-div {
-     width: 50%;
-     margin: auto;
+     width: 60%;
+     margin:20px auto;
  }
 
  .innermain_container {
@@ -56,6 +56,7 @@
 
      .main_container {
          min-height: 87.3vh;
+
      }
  }
 
@@ -64,6 +65,10 @@
          width: 90%;
          margin: auto;
      }
+     .main_container {
+        min-height: 87.3vh;
+
+    }
  }
 
  @media screen and (max-width:400px) {
