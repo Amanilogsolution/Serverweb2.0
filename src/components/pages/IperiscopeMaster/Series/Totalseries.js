@@ -4,8 +4,39 @@ import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { Totalseriesapi, Updateseriesstatus } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
+import { AiFillEdit } from 'react-icons/ai';
 
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+
+const customStyles = {
+    title: {
+      style: {
+        fontColor: 'red',
+        fontWeight: '900',
+      }
+    },
+    rows: {
+      style: {
+        minHeight: '35px'
+      }
+    },
+    headCells: {
+      style: {
+        fontSize: '14px',
+        background:'rgb(105,59,233)',
+        color:'white',
+      },
+    },
+    cells: {
+      style: {
+        fontSize: '14px',
+        // fontWeight:'600',
+        background:'rgb(242,242,242)	',
+        borderBottom:"1px solid silver"
+      },
+    },
+  };
+  
 
 function Totalseries() {
     const [data, setData] = useState([])
@@ -59,7 +90,7 @@ function Totalseries() {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select onChange={async (e) => {
+                <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
                     const status = e.target.value;
                     await Updateseriesstatus(status, row.sno)
                     window.location.reload()
@@ -75,10 +106,10 @@ function Totalseries() {
             sortable: false,
             selector: row => row.null,
             cell: (row) => [
-                <a title='Edit Device Type' href="/Editseries">
-                    <button className=" btn btn-success" onClick={() => sessionStorage.setItem('seriessno', `${row.sno}`)} >
-                        Edit
-                    </button></a>
+                <a title='Edit Series' href="/Editseries">
+                    <p onClick={() => sessionStorage.setItem('seriessno', `${row.sno}`)} >
+                    <AiFillEdit style={{fontSize:"20px",marginBottom:"-13px"}}/>
+                    </p></a>
             ]
         }
 
@@ -104,7 +135,7 @@ function Totalseries() {
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
                             <h2><span style={{ color: "rgb(123,108,200)" }}>Series</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Series</span> </h2>
-                            <button className='btn btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './Addseries' }} >Add Series <MdAdd /></button>
+                            <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './Addseries' }} >Add Series <MdAdd /></button>
                         </div>
                         <div >
                             <DataTableExtensions {...tableData}  >
@@ -114,6 +145,7 @@ function Totalseries() {
                                     defaultSortAsc={false}
                                     pagination
                                     highlightOnHover
+                                    customStyles={customStyles}
                                 />
                             </DataTableExtensions>
                         </div>

@@ -1,6 +1,8 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AddDevicetypeapi, ActiveSeries, TotalCount } from '../../../../api'
 import React, { useEffect, useState } from 'react'
+import './AddDeviceType.css'
+import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
 
 function AddDevicetype() {
     const [deviceid, setDeviceId] = useState()
@@ -50,11 +52,12 @@ function AddDevicetype() {
     return (
         <>
             <Sidebar>
-                <div className='main_container' >
-                    <div className="card card-div" >
-                        <header className="card-header" >
-                            <h4 className=" mt-2 text-center" >Add Device Type</h4>
-                        </header>
+                <div className='main_container' id="main">
+                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{color:"rgb(123,108,200)"}}>Series</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Device Type</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalDeviceType'  }} >Back <MdOutlineArrowForward/></button>
+                    </div>
+                    <div className="card add_dev_type" >
                         <article className="card-body" >
                             <form style={{ margin: "0px 20px 0px 15px" }}>
                                 <div className="form-group">
@@ -72,7 +75,6 @@ function AddDevicetype() {
                                 <div className="form-group" >
                                     <button type="submit" className="btn btn-voilet  mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                     <button type="reset" className="btn btn-secondary  mb-4 mt-3" style={{margin :"0px 5px"}}>Reset</button>
-                                    <button type="button" onClick={() => { window.location.href = '/TotalDeviceType' }} className="btn btn-secondary mb-4 mt-3">Cancel</button>
 
                                 </div>
                             </form>
