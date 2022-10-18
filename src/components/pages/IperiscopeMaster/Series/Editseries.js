@@ -2,6 +2,7 @@ import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
 import { Getseries, Updateseries } from '../../../../api'
 import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
+import './Editseries.css'
 
 function Editseries() {
     const [data, setData] = useState({});
@@ -76,7 +77,7 @@ function Editseries() {
     return (
         <>
             <Sidebar >
-                <div className='main_container' >
+                <div className='main_container' id="main">
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{color:"rgb(123,108,200)"}}>Series</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Edit Series</span> </h2>
                         <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries'  }} >Back <MdOutlineArrowForward/></button>
@@ -85,7 +86,7 @@ function Editseries() {
                         {/* <header className="card-header" >
                             <h4 className=" mt-2 text-center" >Edit Series</h4>
                         </header> */}
-                        <article className="card-body">
+                        <article className="card-body" id="card_body">
                             <form style={{ margin: "0px 20px 0px 15px" }}>
                                 <div className="row">
                                     <div className="form-group col-md-6">
@@ -133,7 +134,7 @@ function Editseries() {
                                 </div>
 
                                 <div className="form-group" >
-                                    <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
+                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
                                     {/* <button type="button" onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button> */}
 
                                 </div>
