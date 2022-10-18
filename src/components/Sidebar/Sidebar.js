@@ -142,24 +142,90 @@ const Sidebar = ({ children }) => {
                         <ul id='masterdrizellsubdiv' className='inneruldiv'>
                             <li className='innerlink'>
                                 <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
-                                    <div style={{ display: isOpen ? "block" : "none" }} >Master</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Location</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
-                                    <div style={{ display: isOpen ? "block" : "none" }} >Master</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Employee</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
-                                    <div style={{ display: isOpen ? "block" : "none" }} >Master</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Agent</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
-                                    <div style={{ display: isOpen ? "block" : "none" }} >Master</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Asset Type</div>
                                 </NavLink>
                             </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Asset Status</div>
+                                </NavLink>
+                            </li> 
+                             <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Manufacturer</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Software</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Issue Type</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Purchase Type</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Contract Type</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Priority</div>
+                                </NavLink>
+                            </li>
+                              <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Ticket Status</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Billing Frequency</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Vendor Category</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Vendor Sub Category</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Service Action Type</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Service Group Type</div>
+                                </NavLink>
+                            </li>
+                            
                         </ul>
                     </li>
                     <li title='Device'>
