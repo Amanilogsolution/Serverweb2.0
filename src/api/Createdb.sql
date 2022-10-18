@@ -144,3 +144,202 @@ CREATE TABLE tbl_contract_type_master (
                 status nvarchar(30) NULL,
                 contract_uuid nvarchar(350) NULL
 )
+CREATE TABLE tbl_priority_master (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                priority_id nvarchar(100) NULL,
+                priority_type nvarchar(200) NULL,
+                priority_description nvarchar(300) NULL ,
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                priority_uuid nvarchar(350) NULL
+)
+
+
+CREATE TABLE tbl_ticket_status_master (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                ticket_id nvarchar(100) NULL,
+                ticket_status nvarchar(200) NULL,
+                ticket_description nvarchar(300) NULL ,
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                ticket_uuid nvarchar(350) NULL
+)
+
+
+CREATE TABLE tbl_billing_freq_master (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                billing_freq_id nvarchar(100) NULL,
+                billing_freq nvarchar(200) NULL,
+               billing_freq_description nvarchar(300) NULL ,
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                billing_freq_uuid nvarchar(350) NULL
+)
+
+CREATE TABLE tbl_vendor_category_master (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                vendor_category_id nvarchar(100) NULL,
+                vendor_category nvarchar(200) NULL,
+                vendor_category_description nvarchar(300) NULL ,
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                vendor_category_uuid nvarchar(350) NULL
+)
+
+CREATE TABLE tbl_vendor_sub_category_master (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                vendor_sub_category_id nvarchar(100) NULL,
+                vendor_category nvarchar(200) NULL,
+                vendor_sub_category nvarchar(100) NULL,
+                vendor_sub_category_description nvarchar(300) NULL ,
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                vendor_sub_category_uuid nvarchar(350) NULL
+)
+CREATE TABLE tbl_service_action_type_master (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                service_action_id nvarchar(100) NULL,
+                service_action_type nvarchar(200) NULL,
+                service_action_type_description nvarchar(300) NULL ,
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                service_action_type_uuid nvarchar(350) NULL
+)
+
+
+
+CREATE TABLE tbl_service_group_master (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                service_group_id nvarchar(100) NULL,
+                service_group_type nvarchar(200) NULL,
+                service_group_description nvarchar(300) NULL ,
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                service_group_uuid nvarchar(350) NULL
+)
+
+CREATE TABLE tbl_vendor_code_master (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                vendor_code_id nvarchar(100) NULL,
+                vendor_code nvarchar(200) NULL,
+                vendor_name nvarchar(300) NULL ,
+                company_address_line1 nvarchar(300) NULL ,
+                company_address_line2 nvarchar(300) NULL ,
+                company_city nvarchar(100) NULL ,
+                company_state nvarchar(100) NULL,
+                company_pin_code nvarchar(100) NULL ,
+                company_gst nvarchar(100) NULL ,
+                company_website nvarchar(100) NULL ,
+                company_email nvarchar(100) NULL ,
+                venodr_portal nvarchar(100) NULL ,
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                vendor_code_uuid nvarchar(350) NULL
+)
+
+CREATE TABLE tbl_vendor_contract_master (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                vendor_contract_id nvarchar(100) NULL,
+                vendor nvarchar(150) NULL,
+                company_address_line1 nvarchar(300) NULL ,
+                company_address_line2 nvarchar(300) NULL ,
+                company_city nvarchar(100) NULL ,
+                company_state nvarchar(50) NULL,
+                company_pin_code bigint NULL ,
+                company_gst nvarchar(30) NULL ,
+                company_website nvarchar(100) NULL ,
+                company_email nvarchar(100) NULL ,
+                type_of_contract nvarchar(100) NULL ,
+                
+                major_category nvarchar(100) NULL ,
+                sub_category nvarchar(100) NULL,
+                location nvarchar(150) NULL ,
+                company nvarchar(100) NULL ,
+                customer_account_no nvarchar(100) NULL ,
+                reference_no nvarchar(100) NULL ,
+                contatct_plain_details nvarchar(100) NULL ,
+                
+                 rate_per_month nvarchar(50) NULL,
+                contract_start_date nvarchar(20) NULL ,
+                invoice_generation_date nvarchar(30) NULL ,
+                billling_freq nvarchar(100) NULL ,
+                payee_name nvarchar(100) NULL ,
+                tds nvarchar(100) NULL ,
+                
+                link_id_no nvarchar(50) NULL ,
+                help_desk_no nvarchar(50) NULL ,
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                vendor_contract_uuid nvarchar(350) NULL
+)
