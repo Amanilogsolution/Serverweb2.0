@@ -402,7 +402,9 @@ export const GetLocation = async (sno) => {
 }
 
 export const UpdateLocation = async (sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id) => {
-    console.log(sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id)
+    // console.log(sno,company_name,location_code,location_name,location_address_line1,
+    //     location_address_line2,location_city,location_state,location_pin_code,location_gst,
+    //     contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id)
     const url = ` https://drizzlebackend.awlworldwide.com/api/insertLocation`
     return axios.post(url,{sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
 }
