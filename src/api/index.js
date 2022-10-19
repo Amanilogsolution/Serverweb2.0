@@ -373,5 +373,34 @@ export const TotalOrganization = async () => {
 }
 
 
+//Employee
+
+export const TotalEmployees = async () => {
+    const url = `http://localhost:8007/api/totalEmployee`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const AddEmployees = async (employee_id,employee_name,location,employee_email,employee_number,company,user_id) => {
+    const url = `http://localhost:8007/api/insertEmployee`
+    return axios.post(url,{employee_id,employee_name,location,employee_email,employee_number,company,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+export const GetEmployees = async (sno) => {
+    const url = `http://localhost:8007/api/getEmployee`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DeleteEmployees = async (status,sno) => {
+    console.log(status,sno)
+    const url = `http://localhost:8007/api/deleteEmployee`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateEmployees = async (sno,employee_name,location,employee_email,employee_number,company,user_id) => {
+    const url = `http://localhost:8007/api/updateEmployee`
+    return axios.post(url,{sno,employee_name,location,employee_email,employee_number,company,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+
 
 

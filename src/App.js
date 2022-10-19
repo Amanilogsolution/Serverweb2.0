@@ -55,6 +55,11 @@ import EditDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask
 
 import  TotalOrganization  from './components/pages/DrizzleMaster/organization/Totalorganization'
 
+import  TotalEmployee  from './components/pages/DrizzleMaster/Employee/TotalEmployee'
+import AddEmployee from './components/pages/DrizzleMaster/Employee/AddEmployee'
+import EditEmployee from './components/pages/DrizzleMaster/Employee/Editemployee';
+
+
 
 const App = () => {
   return (
@@ -114,7 +119,11 @@ const App = () => {
 
         <Route path="/TotalOrganization" element={<TotalOrganization />} />
 
-        
+        <Route path="/TotalEmployee" element={<TotalEmployee />} />
+        <Route path="/AddEmployee" element={<AddEmployee />} />
+        <Route path="/EditEmployee" element={<EditEmployee />} />
+
+
 
       </Routes>
 
