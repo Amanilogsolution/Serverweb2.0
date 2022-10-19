@@ -30,14 +30,13 @@
 .sidebaropen {
     background: #fff;
     color: #000;
-   min-height: 100vh;
+    min-height: 100vh;
     position: fixed;
     transition: all 0.5s;
     width: 240px;
     box-shadow: 2px 0px 10px gray;
     border-radius: 0px 10px 10px 0px ;
     z-index: 10000;
-
 }
 
 .sidebarcontainer ul {

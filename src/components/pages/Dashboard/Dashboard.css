@@ -1,6 +1,5 @@
 .home_container{
-
-        min-height: 77.5vh;
+        min-height: 80vh;
         max-width: 100%;
         box-shadow: 2px 1px 10px gray,-3px -3px 10px gray;
         border-radius: 10px 0px 0px 10px;
