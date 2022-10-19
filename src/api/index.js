@@ -365,6 +365,9 @@ export const UpdateDevicetaskes = async (sno, devicename, services, task, task_f
     return axios.post(url, { sno, devicename, services, task, task_frequency, completion_date, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
+
+
+// Drizzle Master
 //Organization
 
 export const TotalOrganization = async () => {
@@ -374,4 +377,32 @@ export const TotalOrganization = async () => {
 
 
 
+//  Location Master
 
+export const TotalLocation = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalLocation`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+
+export const UpdateLocationStatus = async (status,sno) => {
+    const url = ` https://drizzlebackend.awlworldwide.com/api/deleteLocation`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const AddLocationapi = async (location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id) => {
+    console.log(location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id)
+    const url = ` https://drizzlebackend.awlworldwide.com/api/insertLocation`
+    return axios.post(url,{location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetLocation = async (sno) => {
+    const url = ` https://drizzlebackend.awlworldwide.com/api/getLocation`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateLocation = async (sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id) => {
+    console.log(sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id)
+    const url = ` https://drizzlebackend.awlworldwide.com/api/insertLocation`
+    return axios.post(url,{sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
+}

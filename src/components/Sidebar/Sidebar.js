@@ -145,7 +145,7 @@ const Sidebar = ({ children }) => {
 
                         <ul id='masterdrizellsubdiv' className='inneruldiv'>
                             <li className='innerlink'>
-                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                <NavLink to='/TotalLocations' className='navlink' activeclassname="sidebaractive">
                                     <div style={{ display: isOpen ? "block" : "none" }} >Location</div>
                                 </NavLink>
                             </li>

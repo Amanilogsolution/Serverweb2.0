@@ -56,6 +56,11 @@ import EditDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask
 import  TotalOrganization  from './components/pages/DrizzleMaster/organization/Totalorganization'
 
 
+import TotalLocations from './components/pages/DrizzleMaster/Location/TotalLocation';
+import AddLocation from './components/pages/DrizzleMaster/Location/AddLocation';
+import EditLocation from './components/pages/DrizzleMaster/Location/EditLocation';
+
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -114,6 +119,11 @@ const App = () => {
 
         <Route path="/TotalOrganization" element={<TotalOrganization />} />
 
+
+
+        <Route path="/TotalLocations" element={<TotalLocations />} />
+        <Route path="/AddLocation" element={<AddLocation />} />
+        <Route path="/EditLocation" element={<EditLocation />} />
         
 
       </Routes>
