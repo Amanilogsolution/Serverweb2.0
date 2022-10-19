@@ -54,7 +54,7 @@ function AddDevicetype() {
             <Sidebar>
                 <div className='main_container pb-2'>
                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Series</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Device Type</span> </h2>
+                        <h2><span style={{color:"rgb(123,108,200)"}}>Device Type</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Device Type</span> </h2>
                         <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalDeviceType'  }} >Back <MdOutlineArrowForward/></button>
                     </div>
                     <div className="card card-div" style={{width:"50%"}}>
