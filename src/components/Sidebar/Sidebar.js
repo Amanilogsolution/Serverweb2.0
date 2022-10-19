@@ -185,7 +185,7 @@ const Sidebar = ({ children }) => {
                                     <div style={{ display: isOpen ? "block" : "none" }} >Purchase Type</div>
                                 </NavLink>
                             </li>
-                            <li className='innerlink'>
+                            {/* <li className='innerlink'>
                                 <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
                                     <div style={{ display: isOpen ? "block" : "none" }} >Contract Type</div>
                                 </NavLink>
@@ -199,8 +199,8 @@ const Sidebar = ({ children }) => {
                                 <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
                                     <div style={{ display: isOpen ? "block" : "none" }} >Ticket Status</div>
                                 </NavLink>
-                            </li>
-                            <li className='innerlink'>
+                            </li> */}
+                            {/* <li className='innerlink'>
                                 <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
                                     <div style={{ display: isOpen ? "block" : "none" }} >Billing Frequency</div>
                                 </NavLink>
@@ -224,8 +224,8 @@ const Sidebar = ({ children }) => {
                                 <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
                                     <div style={{ display: isOpen ? "block" : "none" }} >Service Group Type</div>
                                 </NavLink>
-                            </li>
-                            
+                            </li> */}
+
                         </ul>
                     </li>
                     <li title='Device'>
