@@ -53,6 +53,8 @@ import TotalDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTas
 import AddDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/AddDeviceServiceTask';
 import EditDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/EditDeviceServiceTask';
 
+import  TotalOrganization  from './components/pages/DrizzleMaster/organization/Totalorganization'
+
 
 const App = () => {
   return (
@@ -110,7 +112,10 @@ const App = () => {
         <Route path="/AddDeviceServiceTask" element={<AddDeviceServiceTask />} />
         <Route path="/EditDeviceServiceTask" element={<EditDeviceServiceTask />} />
 
+        <Route path="/TotalOrganization" element={<TotalOrganization />} />
+
         
+
       </Routes>
 
     </BrowserRouter>
