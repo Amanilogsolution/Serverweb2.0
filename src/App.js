@@ -66,6 +66,11 @@ import EditAssetType from './components/pages/DrizzleMaster/AssetTypeMaster/Edit
 import TotalAssetStatus from './components/pages/DrizzleMaster/AssetStatusMaster/TotalAssetStatus';
 
 
+import TotalLocations from './components/pages/DrizzleMaster/Location/TotalLocation';
+import AddLocation from './components/pages/DrizzleMaster/Location/AddLocation';
+import EditLocation from './components/pages/DrizzleMaster/Location/EditLocation';
+
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -124,6 +129,12 @@ const App = () => {
 
         <Route path="/TotalOrganization" element={<TotalOrganization />} />
 
+
+
+        <Route path="/TotalLocations" element={<TotalLocations />} />
+        <Route path="/AddLocation" element={<AddLocation />} />
+        <Route path="/EditLocation" element={<EditLocation />} />
+        
         <Route path="/TotalEmployee" element={<TotalEmployee />} />
         <Route path="/AddEmployee" element={<AddEmployee />} />
         <Route path="/EditEmployee" element={<EditEmployee />} />

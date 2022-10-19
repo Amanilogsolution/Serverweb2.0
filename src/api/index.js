@@ -365,6 +365,9 @@ export const UpdateDevicetaskes = async (sno, devicename, services, task, task_f
     return axios.post(url, { sno, devicename, services, task, task_frequency, completion_date, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
+
+
+// Drizzle Master
 //Organization
 
 export const TotalOrganization = async () => {
@@ -376,57 +379,83 @@ export const TotalOrganization = async () => {
 //Employee
 
 export const TotalEmployees = async () => {
-    const url = `http://localhost:8007/api/totalEmployee`
+    const url = `http://192.168.146.136:8007/api/totalEmployee`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddEmployees = async (employee_id,employee_name,location,employee_email,employee_number,company,user_id) => {
-    const url = `http://localhost:8007/api/insertEmployee`
+    const url = `http://192.168.146.136:8007/api/insertEmployee`
     return axios.post(url,{employee_id,employee_name,location,employee_email,employee_number,company,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 export const GetEmployees = async (sno) => {
-    const url = `http://localhost:8007/api/getEmployee`
+    const url = `http://192.168.146.136:8007/api/getEmployee`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteEmployees = async (status,sno) => {
     console.log(status,sno)
-    const url = `http://localhost:8007/api/deleteEmployee`
+    const url = `http://192.168.146.136:8007/api/deleteEmployee`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateEmployees = async (sno,employee_name,location,employee_email,employee_number,company,user_id) => {
-    const url = `http://localhost:8007/api/updateEmployee`
+    const url = `http://192.168.146.136:8007/api/updateEmployee`
     return axios.post(url,{sno,employee_name,location,employee_email,employee_number,company,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 //Assets Type
 export const TotalAssetTypeapi = async () => {
-    const url = `http://localhost:8007/api/totalAssetType`
+    const url = `http://192.168.146.136:8007/api/totalAssetType`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddAssetTypeapi = async (asset_type_id,asset_type,asset_description,user_id) => {
-    const url = `http://localhost:8007/api/insertAssetType`
+    const url = `http://192.168.146.136:8007/api/insertAssetType`
     return axios.post(url,{asset_type_id,asset_type,asset_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetAssetTypeapi = async (sno) => {
-    const url = `http://localhost:8007/api/getAssetType`
+    const url = `http://192.168.146.136:8007/api/getAssetType`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteAssetTypeapi = async (status,sno) => {
-    const url = `http://localhost:8007/api/deleteAssetType`
+    const url = `http://192.168.146.136:8007/api/deleteAssetType`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateAssettypeapi = async (sno,asset_type,asset_description,user_id) => {
-    const url = `http://localhost:8007/api/updateAssetType`
+    const url = `http://192.168.146.136:8007/api/updateAssetType`
     return axios.post(url,{sno,asset_type,asset_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 
 
 
+//  Location Master
 
+export const TotalLocation = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalLocation`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+
+export const UpdateLocationStatus = async (status,sno) => {
+    const url = ` https://drizzlebackend.awlworldwide.com/api/deleteLocation`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const AddLocationapi = async (location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id) => {
+    const url = ` https://drizzlebackend.awlworldwide.com/api/insertLocation`
+    return axios.post(url,{location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetLocation = async (sno) => {
+    const url = ` https://drizzlebackend.awlworldwide.com/api/getLocation`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateLocation = async (sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id) => {
+    const url = ` https://drizzlebackend.awlworldwide.com/api/insertLocation`
+    return axios.post(url,{sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
+}

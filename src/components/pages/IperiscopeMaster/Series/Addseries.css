@@ -1,4 +1,4 @@
-.add_series_container{
+/* .add_series_container{
     min-height: 79vh;
 }
 #main{
@@ -9,8 +9,7 @@
 .add-card-div {
     width: 60%;
     margin:10px auto 10px;
-    background: rgb(227, 227, 229);
-    box-shadow: 1px 1px 5px 1px rgb(104, 103, 103);
+    background: rgb(242,242,242);
     border-radius:5px ;
 
 }
@@ -34,4 +33,4 @@
         width: 85%;
         margin:20px auto;
     }
-}
+} */

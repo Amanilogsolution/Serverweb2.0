@@ -8,29 +8,44 @@
  }
 
  /* Chrome, Safari, Edge, Opera */
- input::-webkit-outer-spin-button,
+ /* input::-webkit-outer-spin-button,
  input::-webkit-inner-spin-button {
      -webkit-appearance: none;
      margin: 0;
- }
+ } */
 
  /* Firefox */
- input[type=number] {
+ /* input[type=number] {
      -moz-appearance: textfield;
- }
+ } */
 
 
  .main_container {
      background: #fff;
+     background: url("./image/themeimg.jpg");
+     background-size: 100% 100%;
      min-height: 77.5vh;
      max-width: 100%;
-     box-shadow: 2px 1px 10px gray,-3px -3px 10px gray;
+     box-shadow: 2px 1px 10px gray, -3px -3px 10px gray;
      border-radius: 10px 0px 0px 10px;
  }
 
  .card-div {
      width: 60%;
-     margin:20px auto;
+     margin: 20px auto;
+     background: rgb(227, 227, 229);
+     box-shadow: 1px 1px 5px 1px rgb(104, 103, 103);
+     border-radius: 5px;
+ }
+
+ .card-div input {
+     border: none;
+     border-bottom: 2px solid rgb(130, 121, 177);
+     background: none;
+ }
+
+ .card-div input:focus {
+     background: none;
  }
 
  .innermain_container {
@@ -46,6 +61,12 @@
  @media screen and (min-height:1000px) {
      .main_container {
          min-height: 87vh;
+     }
+ }
+
+ @media screen and (min-height:735px) {
+     .main_container {
+        min-height: 81vh;
      }
  }
 
@@ -66,10 +87,11 @@
          width: 90%;
          margin: auto;
      }
-     .main_container {
-        min-height: 87.3vh;
 
-    }
+     .main_container {
+         min-height: 87.3vh;
+
+     }
  }
 
  @media screen and (max-width:400px) {
@@ -98,9 +120,10 @@
          width: 65px;
          padding-left: 8px;
      }
+
      .main_container {
-        min-height: 85.3vh;
-    }
+         min-height: 85.3vh;
+     }
  }
 
  /* Button End*/

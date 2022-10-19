@@ -1,7 +1,7 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React from 'react';
 import { AddEmployees } from '../../../../api'
-import './Addemployee.css'
+// import './Addemployee.css'
 import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
 
 
@@ -36,14 +36,14 @@ function AddEmployee() {
     return (
         <>
             <Sidebar >
-             <div className='add_series_container' id="main" >
+             <div className='main_container pb-2'  >
                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Series</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Employee</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries'  }} >Back <MdOutlineArrowForward/></button>
+                        <h2><span style={{color:"rgb(123,108,200)"}}>Employee</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Employee</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => {  window.location.href = '/TotalEmployee'  }} >Back <MdOutlineArrowForward/></button>
                     </div>
-                        <div className="card add-card-div">
+                        <div className="card card-div">
                             <article className="card-body" >
-                                <form style={{ margin: "0px 20px 0px 15px" }}>
+                                <form  className='px-3'  autoComplete='off'>
                                     <div className="row">
                                         <div className="col-md-6">
                                             <label htmlFor='typeid'>Employee ID </label>
