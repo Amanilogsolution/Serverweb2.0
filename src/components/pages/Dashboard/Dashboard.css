@@ -1,27 +1,58 @@
 .home_container{
-
-        min-height: 77.5vh;
+        min-height: 80vh;
         max-width: 100%;
         box-shadow: 2px 1px 10px gray,-3px -3px 10px gray;
         border-radius: 10px 0px 0px 10px;
         background-size: 100% 100%;
-
+        padding: 70px 30px;
+}
+.home_logo{
+    width: 300px;
+}
+.home_container p{
+    width: 55%;
+    margin: 20px 30px;
+}
+.home_container h1{
+    margin: 20px 30px; 
 }
 @media screen and (min-width:750px) {
     .home_container{
-       background:url("../../../image/homebg.jpg");
+       background:url("../../../image/homebgnew.jpg");
        background-size: 100% 100%;
 }
 }
 @media screen and (min-width:488px) and (max-width:750px){
     .home_container{
-       background:url("../../../image/homebg2.jpg");
+       background:url("../../../image/homebgnew2.jpg");
        background-size: 100% 100%;
+       
+    }
+    .home_container p{
+        width: 95%;
+        margin: 20px 30px;
+    }
+    .home_container{
+        padding: 18px 5px;
+}
+.home_logo{
+    width: 200px;
 }
 }
 @media screen and (min-width:0px) and (max-width:488px){
     .home_container{
-       background:url("../../../image/homebg3.jpg");
+       background:url("../../../image/homebgnew3.jpg");
        background-size: 100% 100%;
 }
+.home_container p{
+    width: 80%;
+    margin: 10px 30px;
+}
+.home_container{
+    padding: 10px 5px;
+}
+.home_logo{
+width: 150px;
+}
+
 }

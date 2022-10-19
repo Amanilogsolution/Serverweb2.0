@@ -17,7 +17,7 @@ const Navbar = () => {
     return (
         <>
             <div className="navbarcontainer bg-white mb-3 d-flex " style={navheight}>
-                <h2 style={{ color: "#603AE9" }}>Drizzle</h2>
+                <h5 style={{ color: "#603AE9",margin:"7px" }}>Drizlle</h5>
                 <BiUserCircle style={profile} />
                 {/* <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Sidebar from '../../../Sidebar/Sidebar';
 import { Getdevicegroup, Updatedevicegroup } from '../../../../api'
+import './EditDeviceGroup.css'
+import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
 
 function EditDevicegroup() {
     const [data, setData] = useState({});
@@ -53,11 +55,12 @@ function EditDevicegroup() {
     return (
         <>
             <Sidebar>
-            <div className='main_container' >
-                        <div className="card card-div">
-                            <header className="card-header" >
-                                <h4 className=" mt-2 text-center" >Edit Device Group</h4>
-                            </header>
+            <div className='main_container' id="main" >
+            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{color:"rgb(123,108,200)"}}>Series</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Edit Device Group</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Showdevicegroup'}} >Back <MdOutlineArrowForward/></button>
+                    </div>
+                        <div className="card edit_dev_group">
                             <article className="card-body" >
                                 <form style={{ margin: "0px 20px 0px 15px" }}>
                                     <div className="form-group">
@@ -74,7 +77,6 @@ function EditDevicegroup() {
                                     </div>
                                     <div className="form-group" >
                                         <button type="button" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
-                                        <button type="button" onClick={() => { sessionStorage.removeItem('devicegroupSno'); window.location.href = '/Showdevicegroup' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                     </div>
                                 </form>
                             </article>

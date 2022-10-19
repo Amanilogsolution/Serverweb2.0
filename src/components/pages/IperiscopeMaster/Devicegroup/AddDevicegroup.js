@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar';
+import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
 import { Adddevicegroup, ActiveSeries, TotalCount } from '../../../../api'
+import './AddDeviceGroup.css'
 
 function AddDevicegroup() {
     const [agentgroupid, setAgentGroupID] = useState()
@@ -47,11 +49,13 @@ function AddDevicegroup() {
     return (
         <>
             <Sidebar>
-                <div className='main_container' >
-                    <div className="card card-div">
-                        <header className="card-header" >
-                            <h4 className=" mt-2 text-center" >Add Device Group</h4>
-                        </header>
+                <div className='main_container' id='main' >
+                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{color:"rgb(123,108,200)"}}>Series</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Device Group</span> </h2>
+                        <button className='btn btn-secondary btn btn-sm' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Showdevicegroup'  }} >Back <MdOutlineArrowForward/></button>
+                    </div>
+                    <div className="card add_dev_group">
+
                         <article className="card-body" >
                             <form style={{ margin: "0px 20px 0px 15px" }}>
                                 <div className="form-group">
@@ -67,9 +71,8 @@ function AddDevicegroup() {
                                     <textarea className="form-control" placeholder="Comments" id='remark' rows="3" />
                                 </div>
                                 <div className="form-group" >
-                                    <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
-                                    <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                    <button type="button" onClick={() => { window.location.href = '/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3 " id="subnitbtn" onClick={handleadddevice}>Submit</button>
+                                    <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mx-2 mt-3">Reset</button>
                                 </div>
                             </form>
                         </article>

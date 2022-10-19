@@ -1,29 +1,28 @@
-/* .edit_dev_type {
+.add_dev_group{
     width: 60%;
     margin:10px auto 10px;
     background: rgb(242,242,242);
     box-shadow: 1px 1px 5px 1px rgb(104, 103, 103);
     border-radius:5px ;
-
 }
-.edit_dev_type input{
+.add_dev_group input{
     border: none;
     border-bottom: 2px solid rgb(130, 121, 177);
     background: none;
 }
-.edit_dev_type input:focus{
+.add_dev_group input:focus{
     background:none;
 }
-.edit_dev_type textarea{
+.add_dev_group textarea{
     border-bottom: 2px solid rgb(130, 121, 177);
     background: none;
 }
-.edit_dev_type textarea:focus{
+.add_dev_group textarea:focus{
     background: none;
 }
 @media screen and (max-width:800px) {
-    .edit_dev_type {
+    .add_dev_group {
         width: 85%;
         margin:20px auto;
     }
-} */
+}

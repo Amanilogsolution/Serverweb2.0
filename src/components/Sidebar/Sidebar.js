@@ -13,6 +13,7 @@ import { NavLink } from 'react-router-dom';
 import Footer from './Footer/Footer';
 import Navbar from './Navbar.js';
 import './Sidebar.css'
+import logo from '../../image/drizzle_logo.jpg'
 
 
 const Sidebar = ({ children }) => {
@@ -29,7 +30,7 @@ const Sidebar = ({ children }) => {
 
     const icononstyle = {
         transform: "rotate(-180deg)",
-        marginLeft: "60%"
+        marginLeft: "40%"
     }
     const iconoffstyle = {
         marginLeft: "0%"
@@ -72,7 +73,7 @@ const Sidebar = ({ children }) => {
         <div className="sidebarcontainer">
             <div className={isOpen ? 'sidebaropen' : 'sidebar'}>
                 <div className="top_section">
-                    <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">Logo </h1>
+                    <img style={{width:"110px",display: isOpen ? "block" : "none"}} src={logo}/>
                     <div style={isOpen ? icononstyle : iconoffstyle} className="bars">
                         <MdOutlineDoubleArrow onClick={toggle} />
                     </div>

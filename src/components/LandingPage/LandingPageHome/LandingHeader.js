@@ -1,12 +1,13 @@
 import './landing.css'
 import {Link} from 'react-router-dom'
+import logo from '../../../image/drizzle_logo.jpg'
 
 const LandingHeader = () => {
     return (
         <>
             <div className="landingnav">
                     <div className='brand_name'>
-                        <h2 className='nav_title'>Drizzle</h2>
+                    <img style={{width:"120px"}} src={logo}/>
                     </div>
                     <ul className='nav-list'>
                         <li>
