@@ -59,6 +59,9 @@ import  TotalEmployee  from './components/pages/DrizzleMaster/Employee/TotalEmpl
 import AddEmployee from './components/pages/DrizzleMaster/Employee/AddEmployee'
 import EditEmployee from './components/pages/DrizzleMaster/Employee/Editemployee';
 
+import TotalAssetType from './components/pages/DrizzleMaster/AssetTypeMaster/TotalAssetType';
+import AddAssetType from './components/pages/DrizzleMaster/AssetTypeMaster/AddAssetType';
+import EditAssetType from './components/pages/DrizzleMaster/AssetTypeMaster/EditAssetType';
 
 
 const App = () => {
@@ -123,7 +126,16 @@ const App = () => {
         <Route path="/AddEmployee" element={<AddEmployee />} />
         <Route path="/EditEmployee" element={<EditEmployee />} />
 
+        <Route path="/TotalAssetType" element={<TotalAssetType />} />
+        <Route path="/AddAssetType" element={<AddAssetType />} />
+        <Route path="/EditAssetType" element={<EditAssetType />} />
 
+
+
+
+        
+
+        
 
       </Routes>
 

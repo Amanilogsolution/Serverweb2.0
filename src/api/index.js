@@ -400,6 +400,32 @@ export const UpdateEmployees = async (sno,employee_name,location,employee_email,
     return axios.post(url,{sno,employee_name,location,employee_email,employee_number,company,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
+//Assets Type
+export const TotalAssetTypeapi = async () => {
+    const url = `http://localhost:8007/api/totalAssetType`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const AddAssetTypeapi = async (asset_type_id,asset_type,asset_description,user_id) => {
+    const url = `http://localhost:8007/api/insertAssetType`
+    return axios.post(url,{asset_type_id,asset_type,asset_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetAssetTypeapi = async (sno) => {
+    const url = `http://localhost:8007/api/getAssetType`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DeleteAssetTypeapi = async (status,sno) => {
+    const url = `http://localhost:8007/api/deleteAssetType`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateAssettypeapi = async (sno,asset_type,asset_description,user_id) => {
+    const url = `http://localhost:8007/api/updateAssetType`
+    return axios.post(url,{sno,asset_type,asset_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
 
 
 
