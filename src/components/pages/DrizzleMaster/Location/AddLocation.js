@@ -47,14 +47,14 @@ function AddLocation() {
     return (
         <>
             <Sidebar >
-                <div className='add_series_container' id="main" >
+                <div className='main_container pb-2'>
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Locations</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Location</span> </h2>
                         <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalLocations' }} >Back <MdOutlineArrowForward /></button>
                     </div>
-                    <div className="card add-card-div">
+                    <div className="card card-div">
                         <article className="card-body" >
-                            <form style={{ margin: "0px 20px 0px 15px" }} autoComplete='off'>
+                            <form className='px-3'  autoComplete='off'>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <label htmlFor='company'>Select Company </label>
