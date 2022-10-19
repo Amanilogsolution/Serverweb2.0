@@ -3,16 +3,16 @@ import {
     FaTh,
     FaUserAlt,
     FaTasks,
-    FaShoppingBag,
     FaThList
 } from "react-icons/fa";
 
 import { IoIosArrowDown, IoMdLogOut } from 'react-icons/io'
-import { MdOutlineDoubleArrow,MdDevicesOther } from 'react-icons/md'
+import { MdOutlineDoubleArrow, MdDevicesOther } from 'react-icons/md'
 import { NavLink } from 'react-router-dom';
 import Footer from './Footer/Footer';
 import Navbar from './Navbar.js';
 import './Sidebar.css'
+import logo from '../../image/drizzle_logo.jpg'
 
 
 const Sidebar = ({ children }) => {
@@ -22,13 +22,14 @@ const Sidebar = ({ children }) => {
     const toggle = () => {
         setIsOpen(!isOpen)
         if (isOpen) {
-            document.getElementById('mastersubdiv').style.display = "none"
+            document.getElementById('mastersubdiv').style.display = "none";
+            document.getElementById('masterdrizellsubdiv').style.display = "none"
         }
     };
 
     const icononstyle = {
         transform: "rotate(-180deg)",
-        marginLeft: "60%"
+        marginLeft: "40%"
     }
     const iconoffstyle = {
         marginLeft: "0%"
@@ -36,10 +37,11 @@ const Sidebar = ({ children }) => {
 
 
     const handlesubmaster = () => {
-        if (!submasterOpen) {
+        if (!submasterOpen && isOpen) {
             document.getElementById('mastersubdiv').style.display = "block"
             document.getElementById('mastertitlelink').style.background = "#603AE9"
             document.getElementById('mastertitlelink').style.color = "#fff"
+            document.getElementById('footerdivsection').style.background = "#fff"
 
         }
         else {
@@ -51,10 +53,11 @@ const Sidebar = ({ children }) => {
         setSubmasterOpen(!submasterOpen)
     }
     const handlesubdrizell = () => {
-        if (!subdrizelmaster) {
+        if (!subdrizelmaster  && isOpen) {
             document.getElementById('masterdrizellsubdiv').style.display = "block"
             document.getElementById('masterdrizelltitlelink').style.background = "#603AE9"
             document.getElementById('masterdrizelltitlelink').style.color = "#fff"
+            document.getElementById('footerdivsection').style.background = "#fff"
 
         }
         else {
@@ -69,11 +72,12 @@ const Sidebar = ({ children }) => {
         <div className="sidebarcontainer">
             <div className={isOpen ? 'sidebaropen' : 'sidebar'}>
                 <div className="top_section">
-                    <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">Logo </h1>
+                    <img style={{width:"110px",display: isOpen ? "block" : "none"}} src={logo}/>
                     <div style={isOpen ? icononstyle : iconoffstyle} className="bars">
                         <MdOutlineDoubleArrow onClick={toggle} />
                     </div>
                 </div>
+                <div className='internalsidebar'>
                 <ul>
                     <li >
                         <NavLink to='/Dashboard' className="link navlink" title='Dashboard'>
@@ -132,9 +136,9 @@ const Sidebar = ({ children }) => {
                         </ul>
                     </li>
                     <li title='Drizell Master'>
-                        <div className="link" id='masterdrizelltitlelink' style={{ cursor: "pointer" }}>
+                        <div className="link" id='masterdrizelltitlelink' style={{ cursor: "pointer" }} onClick={handlesubdrizell}>
                             <div className="icon" onClick={toggle}><FaUserAlt /></div>
-                            <span style={{ display: "flex" }} onClick={handlesubdrizell}>
+                            <span style={{ display: "flex" }} >
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text ">Drizell Master</div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
                             </span>
@@ -143,24 +147,90 @@ const Sidebar = ({ children }) => {
                         <ul id='masterdrizellsubdiv' className='inneruldiv'>
                             <li className='innerlink'>
                                 <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
-                                    <div style={{ display: isOpen ? "block" : "none" }} >Master</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Location</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
-                                    <div style={{ display: isOpen ? "block" : "none" }} >Master</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Employee</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
-                                    <div style={{ display: isOpen ? "block" : "none" }} >Master</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Agent</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
-                                    <div style={{ display: isOpen ? "block" : "none" }} >Master</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Asset Type</div>
                                 </NavLink>
                             </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Asset Status</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Manufacturer</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Software</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Issue Type</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Purchase Type</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Contract Type</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Priority</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Ticket Status</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Billing Frequency</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Vendor Category</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Vendor Sub Category</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Service Action Type</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink'>
+                                <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <div style={{ display: isOpen ? "block" : "none" }} >Service Group Type</div>
+                                </NavLink>
+                            </li>
+
                         </ul>
                     </li>
                     <li title='Device'>
@@ -182,15 +252,16 @@ const Sidebar = ({ children }) => {
                             <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Device Task</div>
                         </NavLink>
                     </li>
-                    {/* <li title='Product List'>
+                    <li title='Product List'>
                         <NavLink to='/productList' className="link navlink" activeclassname="sidebaractive">
                             <div className="icon"><FaThList /></div>
                             <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Product List</div>
                         </NavLink>
-                    </li> */}
+                    </li>
 
                 </ul>
-                <div className="footer_section" title='Logout' >
+                </div>
+                <div className="footer_section" title='Logout' id='footerdivsection'>
                     <a className="link" activeclassname="sidebaractive" style={{ borderTop: "1px solid #333" }}>
                         <div className="icon" onClick={toggle}><IoMdLogOut /></div>
                         <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text">Logout</div>

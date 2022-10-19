@@ -49,7 +49,7 @@ function EditDeviceServiceTask() {
         if (updatedata === 'Updated') {
             alert("Data Updated ");
             sessionStorage.removeItem('devicetaskmSno');
-            window.location.href = '/Showdevicetaskes'
+            window.location.href = '/TotalDeviceServiceTask'
         }
         else {
             alert("Server not Response...")
@@ -160,7 +160,7 @@ function EditDeviceServiceTask() {
                                     </div>
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
-                                        <button type="button" onClick={() => { sessionStorage.removeItem('devicetaskmSno'); window.location.href = '/Dashboard' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={() => { sessionStorage.removeItem('TotalDeviceServiceTask'); window.location.href = '/Dashboard' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                     </div>
                                 </form>
                             </article>

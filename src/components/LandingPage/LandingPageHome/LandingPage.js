@@ -69,7 +69,7 @@ const LandingPage = () => {
                     </section>
 
                     <section className='about pt-5' id='about' >
-                        <header className="abouthead pt-2" >
+                        <header className="abouthead pt-2">
                             <div className="container px-0" >
                                 <div className="row align-items-center pb-3" >
                                     <div className="col-lg-5">
