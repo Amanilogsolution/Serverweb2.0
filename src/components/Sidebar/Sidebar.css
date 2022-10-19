@@ -8,7 +8,7 @@
     background: #eee;
     width: 100vw;
     height: 100vh;
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 
@@ -28,7 +28,7 @@
 }
 
 .sidebaropen {
-    background: #fff;
+    /* background: #fff;
     color: #000;
     min-height: 100vh;
     position: fixed;
@@ -36,9 +36,26 @@
     width: 240px;
     box-shadow: 2px 0px 10px gray;
     border-radius: 0px 10px 10px 0px;
+    z-index: 10000; */
+
+    background: #fff;
+    color: #000;
+    min-height: 100vh;
+    max-height: 100vh;
+    position: fixed;
+    transition: all 0.5s;
+    width: 240px;
+    box-shadow: 2px 0px 10px gray;
+    border-radius: 0px 10px 10px 0px;
     z-index: 10000;
+    overflow: hidden;
 }
 
+.internalsidebar {
+    overflow: auto;
+    height: 90vh;
+    position: relative;
+}
 .sidebarcontainer ul {
     padding: 0%;
 }
