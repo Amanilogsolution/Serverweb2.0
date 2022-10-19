@@ -146,11 +146,6 @@ const App = () => {
 
 
 
-
-        
-
-        
-
       </Routes>
 
     </BrowserRouter>
