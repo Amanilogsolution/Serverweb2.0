@@ -10,7 +10,6 @@ function EditAssetType() {
     useEffect(() => {
         const fetchdata = async () => {
             const result = await GetAssetTypeapi(sessionStorage.getItem('assettypesno'))
-            console.log(result)
             setData(result[0]);
         }
         fetchdata()
@@ -50,17 +49,15 @@ function EditAssetType() {
     return (
         <>
             <Sidebar >
-                <div className='main_container' id="main">
+                <div className='main_container pb-2'>
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{color:"rgb(123,108,200)"}}>Series</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Edit Asset Type</span> </h2>
-                        <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries'  }} >Back <MdOutlineArrowForward/></button>
+                        <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('assettypesno'); window.location.href = '/TotalAssetType'  }} >Back <MdOutlineArrowForward/></button>
                     </div>
-                    <div className="card " style={{width:"80%",margin:"auto"}}>
-                        {/* <header className="card-header" >
-                            <h4 className=" mt-2 text-center" >Edit Series</h4>
-                        </header> */}
-                        <article className="card-body" id="card_body">
-                            <form style={{ margin: "0px 20px 0px 15px" }}>
+                    <div className="card card-div" style={{width:"50%"}}>
+                       
+                        <article className="card-body" >
+                            <form className='px-3'  autoComplete='off'>
                                 <div className="row">
                                     <div className="form-group col-md-6">
                                         <label htmlFor='typeid'> Asset Type ID </label>

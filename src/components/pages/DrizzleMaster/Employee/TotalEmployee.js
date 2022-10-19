@@ -74,9 +74,7 @@ function TotalEmployee() {
             cell: (row) => [
                 <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
                     const status = e.target.value;
-                    console.log(status)
                     const result = await DeleteEmployees(status, row.sno)
-                    console.log(result)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -102,7 +100,6 @@ function TotalEmployee() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalEmployees();
-            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();
@@ -119,7 +116,7 @@ function TotalEmployee() {
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Series</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Employee</span> </h2>
+                            <h2><span style={{ color: "rgb(123,108,200)" }}>Employee</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Employee</span> </h2>
                             <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddEmployee' }} >Add Employee <MdAdd /></button>
                         </div>
                         <div >

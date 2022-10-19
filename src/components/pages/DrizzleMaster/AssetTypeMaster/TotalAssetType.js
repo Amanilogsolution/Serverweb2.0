@@ -110,7 +110,7 @@ function TotalAssetType() {
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Series</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Asset Type</span> </h2>
+                            <h2><span style={{ color: "rgb(123,108,200)" }}>Asset Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Asset Type</span> </h2>
                             <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddAssetType' }} >Add Asset Type <MdAdd /></button>
                         </div>
                         <div >
