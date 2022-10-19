@@ -365,5 +365,13 @@ export const UpdateDevicetaskes = async (sno, devicename, services, task, task_f
     return axios.post(url, { sno, devicename, services, task, task_frequency, completion_date, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
+//Organization
+
+export const TotalOrganization = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalorganization`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+
 
 
