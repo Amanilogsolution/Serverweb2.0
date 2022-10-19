@@ -63,6 +63,8 @@ import TotalAssetType from './components/pages/DrizzleMaster/AssetTypeMaster/Tot
 import AddAssetType from './components/pages/DrizzleMaster/AssetTypeMaster/AddAssetType';
 import EditAssetType from './components/pages/DrizzleMaster/AssetTypeMaster/EditAssetType';
 
+import TotalAssetStatus from './components/pages/DrizzleMaster/AssetStatusMaster/TotalAssetStatus';
+
 
 const App = () => {
   return (
@@ -130,7 +132,9 @@ const App = () => {
         <Route path="/AddAssetType" element={<AddAssetType />} />
         <Route path="/EditAssetType" element={<EditAssetType />} />
 
+        <Route path="/TotalAssetStatus" element={<TotalAssetStatus />} />
 
+        
 
 
         
