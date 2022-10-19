@@ -52,6 +52,7 @@ import EditDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/Editde
 import TotalDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/TotalDeviceTask';
 import AddDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/AddDeviceServiceTask';
 import EditDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/EditDeviceServiceTask';
+import { PageNotFound } from './components/404/404';
 
 
 const App = () => {
@@ -110,6 +111,8 @@ const App = () => {
         <Route path="/AddDeviceServiceTask" element={<AddDeviceServiceTask />} />
         <Route path="/EditDeviceServiceTask" element={<EditDeviceServiceTask />} />
 
+        <Route path="/*" element={<PageNotFound />} />
+        
         
       </Routes>
 
