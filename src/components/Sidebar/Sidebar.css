@@ -127,8 +127,10 @@
 }
 
 .innerlink:hover {
-    background: #603AE9;
+    background: #B0AEF3;
     color: #603AE9;
+    /* color: black; */
+
     font-weight: 700;
     transition: all 0.7s;
 }
@@ -137,7 +139,7 @@
     overflow: hidden;
     display: none;
     width: 100%;
-    background: #B0AEF3;
+    /* background: #B0AEF3; */
     transition: all 1.7s;
 
 }
