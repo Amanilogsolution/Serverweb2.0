@@ -54,6 +54,21 @@ import AddDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/
 import EditDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/EditDeviceServiceTask';
 import { PageNotFound } from './components/404/404';
 
+import  TotalOrganization  from './components/pages/DrizzleMaster/organization/Totalorganization'
+
+import  TotalEmployee  from './components/pages/DrizzleMaster/Employee/TotalEmployee'
+import AddEmployee from './components/pages/DrizzleMaster/Employee/AddEmployee'
+import EditEmployee from './components/pages/DrizzleMaster/Employee/Editemployee';
+
+import TotalAssetType from './components/pages/DrizzleMaster/AssetTypeMaster/TotalAssetType';
+import AddAssetType from './components/pages/DrizzleMaster/AssetTypeMaster/AddAssetType';
+import EditAssetType from './components/pages/DrizzleMaster/AssetTypeMaster/EditAssetType';
+
+
+import TotalLocations from './components/pages/DrizzleMaster/Location/TotalLocation';
+import AddLocation from './components/pages/DrizzleMaster/Location/AddLocation';
+import EditLocation from './components/pages/DrizzleMaster/Location/EditLocation';
+
 
 const App = () => {
   return (
@@ -113,7 +128,29 @@ const App = () => {
 
         <Route path="/*" element={<PageNotFound />} />
         
+        <Route path="/TotalOrganization" element={<TotalOrganization />} />
+
+
+
+        <Route path="/TotalLocations" element={<TotalLocations />} />
+        <Route path="/AddLocation" element={<AddLocation />} />
+        <Route path="/EditLocation" element={<EditLocation />} />
         
+        <Route path="/TotalEmployee" element={<TotalEmployee />} />
+        <Route path="/AddEmployee" element={<AddEmployee />} />
+        <Route path="/EditEmployee" element={<EditEmployee />} />
+
+        <Route path="/TotalAssetType" element={<TotalAssetType />} />
+        <Route path="/AddAssetType" element={<AddAssetType />} />
+        <Route path="/EditAssetType" element={<EditAssetType />} />
+
+
+
+
+        
+
+        
+
       </Routes>
 
     </BrowserRouter>

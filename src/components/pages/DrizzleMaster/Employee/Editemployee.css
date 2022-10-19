@@ -1,10 +1,14 @@
-/* 
-.main_container #card_body{
-    background: rgb(242,242,242);
+/* #main{
+    min-height: 79vh;
+
+} */
+/* .main_container .card #card_body{
+    background: rgb(227, 227, 229);
     box-shadow: 1px 1px 5px 1px rgb(104, 103, 103);
-    height: 61vh;
+
     border-radius:5px ;
     margin-top: -10px;
+    border: 2px solid red;
 }
 .main_container #card_body input{
     border: none;

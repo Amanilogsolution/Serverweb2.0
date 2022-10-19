@@ -1,28 +1,39 @@
-/* .edit_dev_type {
-    width: 60%;
-    margin:10px auto 10px;
-    background: rgb(242,242,242);
-    box-shadow: 1px 1px 5px 1px rgb(104, 103, 103);
-    border-radius:5px ;
+/* .add_series_container{
+    min-height: 79vh;
 
 }
-.edit_dev_type input{
+#main{
+    background: url("../../../../image/themeimg.jpg");
+    background-size: 100% 100%;
+}
+
+.add-card-div {
+    width: 60%;
+    margin:10px auto 10px;
+    background: rgb(227, 227, 229);
+    box-shadow: 1px 1px 5px 1px rgb(104, 103, 103);
+    border-radius:5px ;
+   
+
+
+}
+.add-card-div input{
     border: none;
     border-bottom: 2px solid rgb(130, 121, 177);
     background: none;
 }
-.edit_dev_type input:focus{
+.add-card-div input:focus{
     background:none;
 }
-.edit_dev_type textarea{
+.add-card-div textarea{
     border-bottom: 2px solid rgb(130, 121, 177);
     background: none;
 }
-.edit_dev_type textarea:focus{
+.add-card-div textarea:focus{
     background: none;
 }
 @media screen and (max-width:800px) {
-    .edit_dev_type {
+    .add-card-div {
         width: 85%;
         margin:20px auto;
     }
