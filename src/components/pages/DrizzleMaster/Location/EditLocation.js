@@ -2,7 +2,6 @@ import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
 import { GetLocation, UpdateLocation } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
-// import './EditLocation.css'
 
 function EditLocation() {
     const [data, setData] = useState({});

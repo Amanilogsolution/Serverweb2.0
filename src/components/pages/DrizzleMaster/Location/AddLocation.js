@@ -1,7 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React from 'react';
 import { AddLocationapi } from '../../../../api'
-// import './AddLocation.css'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 
