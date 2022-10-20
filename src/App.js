@@ -69,6 +69,13 @@ import TotalLocations from './components/pages/DrizzleMaster/Location/TotalLocat
 import AddLocation from './components/pages/DrizzleMaster/Location/AddLocation';
 import EditLocation from './components/pages/DrizzleMaster/Location/EditLocation';
 
+import TotalManufacturer from './components/pages/DrizzleMaster/ManufacturerMaster/TotalManufacturer';
+import EditManufacturer from './components/pages/DrizzleMaster/ManufacturerMaster/EditManufacturer';
+import AddManufacturer from './components/pages/DrizzleMaster/ManufacturerMaster/AddManufacturer';
+
+import TotalIssueType from './components/pages/DrizzleMaster/IssueType/TotalIssueType';
+import EditIssueType from './components/pages/DrizzleMaster/IssueType/EditIssueType';
+import AddIssueType from './components/pages/DrizzleMaster/IssueType/AddIssueType';
 
 const App = () => {
   return (
@@ -144,7 +151,14 @@ const App = () => {
         <Route path="/AddAssetType" element={<AddAssetType />} />
         <Route path="/EditAssetType" element={<EditAssetType />} />
 
+        <Route path="/TotalManufacturer" element={<TotalManufacturer />} />
+        <Route path="/AddManufacturer" element={<AddManufacturer />} />
+        <Route path="/EditManufacturer" element={<EditManufacturer />} />
 
+        <Route path="/TotalIssueType" element={<TotalIssueType />} />
+        <Route path="/AddIssueType" element={<AddIssueType />} />
+        <Route path="/EditIssueType" element={<EditIssueType />} />
+        
 
       </Routes>
 

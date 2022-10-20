@@ -28,6 +28,8 @@ const Login = () => {
     }
     else {
       const result = await UserLogin(user_id, password);
+      console.log(result)
+      console.log(user_id, password)
       if (result.status === 'Success') {
         sessionStorage.setItem('UserName', result.name);
         sessionStorage.setItem('UserId', result.user_id);
