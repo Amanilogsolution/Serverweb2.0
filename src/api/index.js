@@ -505,12 +505,10 @@ export const UpdateIssueTypeStatus = async (status,sno) => {
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
-
 export const InsertIssueType = async (issue_id,issue_type,issue_description,user_id) => {
     const url = `http://192.168.146.136:8007/api/insertIssueType`
     return axios.post(url,{issue_id,issue_type,issue_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
-
 
 export const GetIssueType = async (sno) => {
     const url = ` http://192.168.146.136:8007/api/getIssueType`
@@ -520,4 +518,59 @@ export const GetIssueType = async (sno) => {
 export const UpdateIssueType = async (sno,issue_type,issue_description,user_id) => {
     const url = `http://192.168.146.136:8007/api/updateIssueType`
     return axios.post(url,{sno,issue_type,issue_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+// Contract Type Master
+
+export const TotalContractTypeapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalContractType`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateContractTypeStatus = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteContractType`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const InsertContractType = async (contract_id,contract_type,contract_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertContractType`
+    return axios.post(url,{contract_id,contract_type,contract_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetContractType= async (sno) => {
+    const url = ` http://192.168.146.136:8007/api/getContractType`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateContractType = async (sno,contract_type,contract_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateContractType`
+    return axios.post(url,{sno,contract_type,contract_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+// Ticket Status Master
+
+export const TotalTicketstatusapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalTicketStatus`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateTicketstatusActive = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteTicketStatus`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const InsertTicketstatus = async (ticket_id,ticket_status,ticket_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertTicketStatus`
+    return axios.post(url,{ticket_id,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetTicketstatus= async (sno) => {
+    const url = ` http://192.168.146.136:8007/api/getTicketStatus`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateTicketstatus = async (sno,ticket_status,ticket_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateTicketStatus`
+    return axios.post(url,{sno,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }

@@ -77,6 +77,14 @@ import TotalIssueType from './components/pages/DrizzleMaster/IssueType/TotalIssu
 import EditIssueType from './components/pages/DrizzleMaster/IssueType/EditIssueType';
 import AddIssueType from './components/pages/DrizzleMaster/IssueType/AddIssueType';
 
+import TotalContractType from './components/pages/DrizzleMaster/ContractType/TotalContractType';
+import EditContractType from './components/pages/DrizzleMaster/ContractType/EditContractType';
+import AddContractType from './components/pages/DrizzleMaster/ContractType/AddContractType';
+
+import TotalTicketStatus from './components/pages/DrizzleMaster/TicketStatus/TotalTicketStatus';
+import EditTicketStatus from './components/pages/DrizzleMaster/TicketStatus/EditTicketStatus';
+import AddTicketStatus from './components/pages/DrizzleMaster/TicketStatus/AddTicketStatus';
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -159,7 +167,15 @@ const App = () => {
         <Route path="/AddIssueType" element={<AddIssueType />} />
         <Route path="/EditIssueType" element={<EditIssueType />} />
         
+        <Route path="/TotalContractType" element={<TotalContractType />} />
+        <Route path="/AddContractType" element={<AddContractType />} />
+        <Route path="/EditContractType" element={<EditContractType />} />
+        
 
+        <Route path="/TotalTicketStatus" element={<TotalTicketStatus />} />
+        <Route path="/AddTicketStatus" element={<AddTicketStatus />} />
+        <Route path="/EditTicketStatus" element={<EditTicketStatus />} />
+        
       </Routes>
 
     </BrowserRouter>
