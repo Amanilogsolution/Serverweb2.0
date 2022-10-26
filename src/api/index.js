@@ -1,13 +1,14 @@
 import axios from 'axios';
 
 export const UserLogin = async (userid, password) => {
+    console.log(userid,password)
     const url = `http://192.168.146.136:8007/api/login`
     return axios.post(url, { userid, password }).then(response => response.data).catch(error => console.log(error));
 }
 
 //  Iperioscope Series start
 export const Totalseriesapi = async () => {
-    const url = `http://182.76.62.178:8114/api/totalseries`
+    const url = `http://192.168.146.136:8007/api/totalseries`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
