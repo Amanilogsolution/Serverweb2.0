@@ -64,7 +64,24 @@ import AddAssetType from './components/pages/DrizzleMaster/AssetTypeMaster/AddAs
 import EditAssetType from './components/pages/DrizzleMaster/AssetTypeMaster/EditAssetType';
 
 import TotalAssetStatus from './components/pages/DrizzleMaster/AssetStatusMaster/TotalAssetStatus';
+import AddAssetStatus from './components/pages/DrizzleMaster/AssetStatusMaster/AddAssetStatus';
+import EditAssetStatus from './components/pages/DrizzleMaster/AssetStatusMaster/EditAssetStatus';
 
+import TotalSoftware from './components/pages/DrizzleMaster/SoftwareMaster/TotalSoftware'
+import AddSoftware from './components/pages/DrizzleMaster/SoftwareMaster/AddSoftware';
+import EditSoftware from './components/pages/DrizzleMaster/SoftwareMaster/EditSoftware';
+
+import TotalPurchaseType from './components/pages/DrizzleMaster/PurchaseTypeMaster/TotalIPurchaseType';
+import AddPurchaseType from './components/pages/DrizzleMaster/PurchaseTypeMaster/AddPurchaseType';
+import EditPurchaseType from './components/pages/DrizzleMaster/PurchaseTypeMaster/EditPurchaseType';
+
+import TotalPriority from './components/pages/DrizzleMaster/PriorityMaster/TotalPriority';
+import AddPriority from './components/pages/DrizzleMaster/PriorityMaster/AddPriority';
+import EditPriority from './components/pages/DrizzleMaster/PriorityMaster/EditPriority';
+
+import TotalBillingFreq from './components/pages/DrizzleMaster/BillingFrequency/Totalbillingfreq';
+import AddBillingFreq from './components/pages/DrizzleMaster/BillingFrequency/AddBillingfreq';
+import EditBillingFreq from './components/pages/DrizzleMaster/BillingFrequency/EditBillingfreq';
 
 import TotalLocations from './components/pages/DrizzleMaster/Location/TotalLocation';
 import AddLocation from './components/pages/DrizzleMaster/Location/AddLocation';
@@ -144,6 +161,26 @@ const App = () => {
         <Route path="/EditAssetType" element={<EditAssetType />} />
 
         <Route path="/TotalAssetStatus" element={<TotalAssetStatus />} />
+        <Route path="/AddAssetStatus" element={<AddAssetStatus />} />
+        <Route path="/EditAssetStatus" element={<EditAssetStatus />} />
+
+
+        <Route path="/TotalSoftware" element={<TotalSoftware />} />
+        <Route path="/AddSoftware" element={<AddSoftware />} />
+        <Route path="/EditSoftware" element={<EditSoftware />} />
+
+        <Route path="/TotalPurchaseType" element={<TotalPurchaseType />} />
+        <Route path="/AddPurchaseType" element={<AddPurchaseType />} />
+        <Route path="/EditPurchaseType" element={<EditPurchaseType />} />
+
+        <Route path="/TotalPriority" element={<TotalPriority />} />
+        <Route path="/AddPriority" element={<AddPriority />} />
+        <Route path="/EditPriority" element={<EditPriority />} />
+
+        <Route path="/TotalBillingFreq" element={<TotalBillingFreq />} />
+        <Route path="/AddBillingFreq" element={<AddBillingFreq />} />
+        <Route path="/EditBillingFreq" element={<EditBillingFreq />} />
+
 
         
 
@@ -151,6 +188,8 @@ const App = () => {
         
 
         
+        
+
 
       </Routes>
 

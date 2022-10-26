@@ -168,7 +168,7 @@ const Sidebar = ({ children }) => {
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalAssetStatus' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Asset Status</div>
                                     </NavLink>
                                 </li>
@@ -178,7 +178,7 @@ const Sidebar = ({ children }) => {
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalSoftware' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Software</div>
                                     </NavLink>
                                 </li>
@@ -188,7 +188,7 @@ const Sidebar = ({ children }) => {
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalPurchaseType' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Purchase Type</div>
                                     </NavLink>
                                 </li>
@@ -198,7 +198,7 @@ const Sidebar = ({ children }) => {
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalPriority' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Priority</div>
                                     </NavLink>
                                 </li>
@@ -208,7 +208,7 @@ const Sidebar = ({ children }) => {
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalBillingFreq' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Billing Frequency</div>
                                     </NavLink>
                                 </li>
