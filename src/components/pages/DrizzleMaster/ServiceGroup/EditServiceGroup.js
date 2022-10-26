@@ -14,7 +14,7 @@ function EditServiceGroup() {
         fetchdata()
     }, [])
 
-    const handleUpdateServiceActionType = async (e) => {
+    const handleUpdateServiceGroupType = async (e) => {
         e.preventDefault();
         const service_group_type = document.getElementById('service_group_type').value;
         const remark = document.getElementById('remark').value;
@@ -82,7 +82,7 @@ function EditServiceGroup() {
                                 </div>
 
                                 <div className="form-group" >
-                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleUpdateServiceActionType}>Update</button>
+                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleUpdateServiceGroupType}>Update</button>
                                 </div>
                             </form>
                         </article>
