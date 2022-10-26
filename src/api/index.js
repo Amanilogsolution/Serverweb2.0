@@ -780,10 +780,10 @@ export const DeleteServiceActionTypeStatus = async (status,sno) => {
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
-export const InsertServiceActionType = async (service_action_id,service_action_type,service_action__description,user_id) => {
-    console.log(service_action_id,service_action_type,service_action__description,user_id)
+export const InsertServiceActionType = async (service_action_id,service_action_type,service_action_type_description,user_id) => {
+    console.log(service_action_id,service_action_type,service_action_type_description,user_id)
     const url = `http://192.168.146.136:8007/api/insertServiceAction`
-    return axios.post(url,{service_action_id,service_action_type,service_action__description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url,{service_action_id,service_action_type,service_action_type_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetServiceActionType= async (sno) => {
@@ -791,7 +791,7 @@ export const GetServiceActionType= async (sno) => {
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateServiceActionType = async (sno,service_action_type,service_action__description,user_id) => {
+export const UpdateServiceActionType = async (sno,service_action_type,service_action_type_description,user_id) => {
     const url = `http://192.168.146.136:8007/api/updateServiceAction`
-    return axios.post(url,{sno,service_action_type,service_action__description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url,{sno,service_action_type,service_action_type_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }

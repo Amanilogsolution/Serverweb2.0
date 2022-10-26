@@ -8,7 +8,7 @@ function AddVendorSubCategory() {
 
     const handleinsertdata = async (e) => {
         e.preventDefault();
-        const service_action_id ='';
+        const service_action_id ='sasaas';
         const service_action=  document.getElementById('service_action').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
