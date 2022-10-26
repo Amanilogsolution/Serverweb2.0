@@ -105,9 +105,13 @@ import EditTicketStatus from './components/pages/DrizzleMaster/TicketStatus/Edit
 import AddTicketStatus from './components/pages/DrizzleMaster/TicketStatus/AddTicketStatus';
 
 import TotalVendSubCate from './components/pages/DrizzleMaster/VendSubCategory/TotalVendSubCate';
-// import EditTicketStatus from './components/pages/DrizzleMaster/TicketStatus/EditTicketStatus';
-// import AddTicketStatus from './components/pages/DrizzleMaster/TicketStatus/AddTicketStatus';
+import EditVendorSubCategory from './components/pages/DrizzleMaster/VendSubCategory/EditVendSubCate';
+import AddVendorSubCategory from './components/pages/DrizzleMaster/VendSubCategory/AddVendSubCate';
 
+
+import TotalServiceActionType from './components/pages/DrizzleMaster/ServiceActionType/TotalServiceActionType';
+import EditServiceActionType from './components/pages/DrizzleMaster/ServiceActionType/EditServiceActionType';
+import AddServiceActionType from './components/pages/DrizzleMaster/ServiceActionType/AddServiceActionType';
 
 const App = () => {
   return (
@@ -225,10 +229,12 @@ const App = () => {
 
         
         <Route path="/TotalVendSubCate" element={<TotalVendSubCate />} />
-        {/* <Route path="/AddTicketStatus" element={<AddTicketStatus />} /> */}
-        {/* <Route path="/EditTicketStatus" element={<EditTicketStatus />} /> */}
+        <Route path="/AddVendorSubCategory" element={<AddVendorSubCategory />} />
+        <Route path="/EditVendorSubCategory" element={<EditVendorSubCategory />} />
         
-        
+        <Route path="/TotalServiceActionType" element={<TotalServiceActionType />} />
+        <Route path="/EditServiceActionType" element={<EditServiceActionType />} />
+        <Route path="/AddServiceActionType" element={<AddServiceActionType />} />
 
 
       </Routes>

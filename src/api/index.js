@@ -714,29 +714,58 @@ export const UpdateTicketstatus = async (sno,ticket_status,ticket_description,us
 
 
 
-// Ticket Status Master
+// Vendor Sub Category Master
 
 export const TotalVendSubCateapi = async () => {
     const url = `http://192.168.146.136:8007/api/totalVendorSubCategory`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateVendSubCateStatus = async (status,sno) => {
-    const url = `http://192.168.146.136:8007/api/deleteTicketStatus`
+export const DeleteVendSubCateStatus = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteVendorSubCategory`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
-export const InsertVendSubCate = async (ticket_id,ticket_status,ticket_description,user_id) => {
-    const url = `http://192.168.146.136:8007/api/insertTicketStatus`
-    return axios.post(url,{ticket_id,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
+export const InsertVendSubCate = async (vendor_sub_category_id,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertVendorSubCategory`
+    return axios.post(url,{vendor_sub_category_id,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetVendSubCate= async (sno) => {
-    const url = ` http://192.168.146.136:8007/api/getTicketStatus`
+    const url = ` http://192.168.146.136:8007/api/getVendorSubCategory`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateVendSubCate = async (sno,ticket_status,ticket_description,user_id) => {
-    const url = `http://192.168.146.136:8007/api/updateTicketStatus`
-    return axios.post(url,{sno,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
+export const UpdateVendSubCate = async (sno,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateVendorSubCategory`
+    return axios.post(url,{sno,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+// Service Action Type Master
+
+export const TotalServiceActionTypeapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalServiceAction`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DeleteServiceActionTypeStatus = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteServiceAction`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const InsertServiceActionType = async (service_action_id,service_action_type,service_action__description,user_id) => {
+    console.log(service_action_id,service_action_type,service_action__description,user_id)
+    const url = `http://192.168.146.136:8007/api/insertServiceAction`
+    return axios.post(url,{service_action_id,service_action_type,service_action__description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetServiceActionType= async (sno) => {
+    const url = ` http://192.168.146.136:8007/api/getServiceAction`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateServiceActionType = async (sno,service_action_type,service_action__description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateServiceAction`
+    return axios.post(url,{sno,service_action_type,service_action__description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
