@@ -117,6 +117,11 @@ import TotalServiceActionType from './components/pages/DrizzleMaster/ServiceActi
 import EditServiceActionType from './components/pages/DrizzleMaster/ServiceActionType/EditServiceActionType';
 import AddServiceActionType from './components/pages/DrizzleMaster/ServiceActionType/AddServiceActionType';
 
+import TotalServiceGroup from './components/pages/DrizzleMaster/ServiceGroup/TotalServiceGroup';
+import EditServiceGroup from './components/pages/DrizzleMaster/ServiceGroup/EditServiceGroup';
+import AddServiceGroup from './components/pages/DrizzleMaster/ServiceGroup/AddServiceGroup';
+
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -248,7 +253,12 @@ const App = () => {
         <Route path="/EditServiceActionType" element={<EditServiceActionType />} />
         <Route path="/AddServiceActionType" element={<AddServiceActionType />} />
 
+        <Route path="/TotalServiceGroup" element={<TotalServiceGroup />} />
+        <Route path="/EditServiceGroup" element={<EditServiceGroup />} />
+        <Route path="/AddServiceGroup" element={<AddServiceGroup />} />
 
+
+        
       </Routes>
 
     </BrowserRouter>

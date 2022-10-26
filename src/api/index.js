@@ -781,7 +781,6 @@ export const DeleteServiceActionTypeStatus = async (status,sno) => {
 }
 
 export const InsertServiceActionType = async (service_action_id,service_action_type,service_action_type_description,user_id) => {
-    console.log(service_action_id,service_action_type,service_action_type_description,user_id)
     const url = `http://192.168.146.136:8007/api/insertServiceAction`
     return axios.post(url,{service_action_id,service_action_type,service_action_type_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
@@ -794,4 +793,32 @@ export const GetServiceActionType= async (sno) => {
 export const UpdateServiceActionType = async (sno,service_action_type,service_action_type_description,user_id) => {
     const url = `http://192.168.146.136:8007/api/updateServiceAction`
     return axios.post(url,{sno,service_action_type,service_action_type_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+// Service Group Master
+
+export const TotalServiceGroupapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalServiceGroup`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DeleteServiceGroupStatus = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteServiceGroup`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const InsertServiceGroup = async (service_group_id,service_group_type,service_group_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertServiceGroup`
+    return axios.post(url,{service_group_id,service_group_type,service_group_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetServiceGroup= async (sno) => {
+    const url = ` http://192.168.146.136:8007/api/getServiceGroup`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateServiceGroup = async (sno,service_group_type,service_group_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateServiceGroup`
+    return axios.post(url,{sno,service_group_type,service_group_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
