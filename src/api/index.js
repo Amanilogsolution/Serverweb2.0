@@ -572,6 +572,27 @@ export const TotalVendorCategoryapi = async () => {
     const url = `http://192.168.146.136:8007/api/totalVendorCategory`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
+export const DeleteVendorCategoryapi = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteVendorCategory`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const AddVendorCategoryapi = async (vendor_category_id,vendor_category,vendor_category_description,user_id) => {
+    const url = ` http://192.168.146.136:8007/api/insertVendorCategory`
+    return axios.post(url,{vendor_category_id,vendor_category,vendor_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetVendorCategoryapi = async (sno) => {
+    console.log(sno)
+    const url = `http://192.168.146.136:8007/api/getVendorCategory`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateVendorCategoryapi = async (sno,vendor_category,vendor_category_description,user_id) => {
+    console.log(sno,vendor_category)
+    const url = `http://192.168.146.136:8007/api/updateVendorCategory`
+    return axios.post(url,{sno,vendor_category,vendor_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
 
 
 
@@ -581,7 +602,6 @@ export const TotalLocation = async () => {
     const url = `https://192.168.146.136:8007/api/totalLocation`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
-
 
 export const UpdateLocationStatus = async (status,sno) => {
     const url = ` https://192.168.146.136:8007/api/deleteLocation`

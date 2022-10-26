@@ -89,6 +89,8 @@ import AddLocation from './components/pages/DrizzleMaster/Location/AddLocation';
 import EditLocation from './components/pages/DrizzleMaster/Location/EditLocation';
 
 import TotalVendorCategory from './components/pages/DrizzleMaster/VendorCategoryMaster/TotalVendorcategory';
+import AddVendorCategory from './components/pages/DrizzleMaster/VendorCategoryMaster/AddVendorcategory';
+import EditVendorcategory from './components/pages/DrizzleMaster/VendorCategoryMaster/EditVebdorcategory'
 
 import TotalManufacturer from './components/pages/DrizzleMaster/ManufacturerMaster/TotalManufacturer';
 import EditManufacturer from './components/pages/DrizzleMaster/ManufacturerMaster/EditManufacturer';
@@ -219,8 +221,14 @@ const App = () => {
         <Route path="/EditBillingFreq" element={<EditBillingFreq />} />
 
         <Route path="/TotalVendorCategory" element={<TotalVendorCategory />} />
+        <Route path="/AddVendorCategory" element={<AddVendorCategory />} />
+        <Route path="/EditVendorcategory" element={<EditVendorcategory />} />
 
 
+
+        
+
+        
         
         
         <Route path="/TotalTicketStatus" element={<TotalTicketStatus />} />

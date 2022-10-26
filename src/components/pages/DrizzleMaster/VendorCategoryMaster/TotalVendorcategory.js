@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import { TotalVendorCategoryapi, DeleteBillingFreqapi } from '../../../../api'
+import { TotalVendorCategoryapi, DeleteVendorCategoryapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 
@@ -42,18 +42,18 @@ function TotalVendorCategory() {
     const [data, setData] = useState([])
     const columns = [
         {
-            name: 'Billing Frequency Id',
-            selector: row => row.billing_freq_id,
+            name: 'Vendor Category Id',
+            selector: row => row.vendor_category_id,
             sortable: true,
         },
         {
-            name: 'Billing Frequency',
-            selector: row => row.billing_freq,
+            name: 'Vendor Category',
+            selector: row => row.vendor_category,
             sortable: true,
         },
         {
-            name: 'Billing Frequency Description',
-            selector: row => row.billing_freq_description,
+            name: 'Vendor Category Description',
+            selector: row => row.vendor_category_description,
             sortable: true,
         },
        
@@ -64,7 +64,7 @@ function TotalVendorCategory() {
                 <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
                     const status = e.target.value;
                     console.log(status)
-                    const result = await DeleteBillingFreqapi(status, row.sno)
+                    const result = await DeleteVendorCategoryapi(status, row.sno)
                     console.log(result)
                     window.location.reload()
                 }}>
@@ -79,8 +79,8 @@ function TotalVendorCategory() {
             sortable: false,
             selector: row => row.null,
             cell: (row) => [
-                <a title='Edit Series' href="/EditBillingFreq">
-                    <p onClick={() => sessionStorage.setItem('billingfreqsno', `${row.sno}`)} >
+                <a title='Edit Series' href="/EditVendorcategory">
+                    <p onClick={() => sessionStorage.setItem('vendorcatsno', `${row.sno}`)} >
                     <AiFillEdit style={{fontSize:"20px",marginBottom:"-13px"}}/>
                     </p></a>
             ]
@@ -109,7 +109,7 @@ function TotalVendorCategory() {
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
                             <h2><span style={{ color: "rgb(123,108,200)" }}>Series</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Vendor Category</span> </h2>
-                            <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddBillingFreq' }} >Add Billing Frequency <MdAdd /></button>
+                            <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorCategory' }} >Add Vendor Category <MdAdd /></button>
                         </div>
                         <div >
                             <DataTableExtensions {...tableData}  >
