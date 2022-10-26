@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const UserLogin = async (userid, password) => {
-    console.log(userid,password)
     const url = `http://192.168.146.136:8007/api/login`
     return axios.post(url, { userid, password }).then(response => response.data).catch(error => console.log(error));
 }
@@ -430,6 +429,143 @@ export const UpdateAssettypeapi = async (sno,asset_type,asset_description,user_i
     return axios.post(url,{sno,asset_type,asset_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
+//Asset Status
+
+export const TotalAssetStatusapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalAssetStatus`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const AddAssetStatusapi = async (asset_status_id,asset_status,asset_status_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertAssetStatus`
+    return axios.post(url,{asset_status_id,asset_status,asset_status_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DeleteAssetStatusapi = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteAssetStatus`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetAssetStatusapi = async (sno) => {
+    const url = `http://192.168.146.136:8007/api/getAssetStatus`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateAssetStatusapi = async (sno,asset_status,asset_status_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateAssetStatus`
+    return axios.post(url,{sno,asset_status,asset_status_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+// Software Master
+
+export const TotalSoftwareapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalSoftware`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const AddSoftwareapi = async (software_id,software_name,software_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertSoftware`
+    return axios.post(url,{software_id,software_name,software_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DeleteSoftwaresapi = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteSoftware`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetSoftwareapi = async (sno) => {
+    const url = `http://192.168.146.136:8007/api/getSoftware`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateSoftwareapi = async (sno,software_name,software_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateSoftware`
+    return axios.post(url,{sno,software_name,software_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+// Purchase Master
+
+export const TotalPurchaseTypeapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalPurchaseType`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const AddPurchaseTypeeapi = async (purchase_id,purchase_type,purchase_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertPurchaseType`
+    return axios.post(url,{purchase_id,purchase_type,purchase_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DeletePurchaseTypeapi = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deletePurchaseType`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetPurchaseTypeapi = async (sno) => {
+    console.log(sno)
+    const url = `http://192.168.146.136:8007/api/getPurchaseType`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdatePurchaseapi = async (sno,purchase_type,purchase_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updatePurchaseType`
+    return axios.post(url,{sno,purchase_type,purchase_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+// Priority Master
+
+export const TotalPriorityapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalPriority`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const AddPriorityapi = async (priority_id,priority_type,priority_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertPriority`
+    return axios.post(url,{priority_id,priority_type,priority_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+export const DeletePriorityapi = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deletePriority`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetPriorityapi = async (sno) => {
+    console.log(sno)
+    const url = `http://192.168.146.136:8007/api/getPriority`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+export const UpdatePriorityapi = async (sno,priority_type,priority_description,user_id) => {
+    console.log(sno,priority_type)
+    const url = `http://192.168.146.136:8007/api/updatePriority`
+    return axios.post(url,{sno,priority_type,priority_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+// Billing Frequency
+export const TotalBillingFreqapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalBillingFrequency`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DeleteBillingFreqapi = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteBillingFrequency`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+export const AddBillingFreqapi = async (billing_freq_id,billing_freq,billing_freq_description,user_id) => {
+    const url = ` http://192.168.146.136:8007/api/insertBillingFrequency`
+    return axios.post(url,{billing_freq_id,billing_freq,billing_freq_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+export const GetBillingFreqapi = async (sno) => {
+    console.log(sno)
+    const url = `http://192.168.146.136:8007/api/getBillingFrequency`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateBillingFreqapi = async (sno,billing_freq,billing_freq_description,user_id) => {
+    console.log(sno,billing_freq)
+    const url = `http://192.168.146.136:8007/api/updateBillingFrequency`
+    return axios.post(url,{sno,billing_freq,billing_freq_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
 
 
 
