@@ -7,7 +7,7 @@ export const UserLogin = async (userid, password) => {
 
 //  Iperioscope Series start
 export const Totalseriesapi = async () => {
-    const url = `http://182.76.62.178:8114/api/totalseries`
+    const url = `http://192.168.146.136:8007/api/totalseries`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -371,7 +371,7 @@ export const UpdateDevicetaskes = async (sno, devicename, services, task, task_f
 //Organization
 
 export const TotalOrganization = async () => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/totalorganization`
+    const url = `https://192.168.146.136:8007/api/totalorganization`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -578,27 +578,171 @@ export const TotalVendorCategoryapi = async () => {
 //  Location Master
 
 export const TotalLocation = async () => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/totalLocation`
+    const url = `https://192.168.146.136:8007/api/totalLocation`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const UpdateLocationStatus = async (status,sno) => {
-    const url = ` https://drizzlebackend.awlworldwide.com/api/deleteLocation`
+    const url = ` https://192.168.146.136:8007/api/deleteLocation`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddLocationapi = async (location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id) => {
-    const url = ` https://drizzlebackend.awlworldwide.com/api/insertLocation`
+    const url = ` https://192.168.146.136:8007/api/insertLocation`
     return axios.post(url,{location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetLocation = async (sno) => {
-    const url = ` https://drizzlebackend.awlworldwide.com/api/getLocation`
+    const url = ` https://192.168.146.136:8007/api/getLocation`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateLocation = async (sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id) => {
-    const url = ` https://drizzlebackend.awlworldwide.com/api/insertLocation`
+    const url = ` https://192.168.146.136:8007/api/insertLocation`
     return axios.post(url,{sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+// Manufacturer Master
+
+export const TotalManufacturerapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalManufacturer`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+
+export const UpdateManufacturerStatus = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteManufacturer`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+export const InsertManufacturer = async (manufacturer_id,manufacturer_name,manufacturer_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertManufacturer`
+    return axios.post(url,{manufacturer_id,manufacturer_name,manufacturer_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+export const GetManufacturer = async (sno) => {
+    const url = ` http://192.168.146.136:8007/api/getManufacturer`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateManufacturer = async (sno,manufacturer_name,manufacturer_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateManufacturer`
+    return axios.post(url,{sno,manufacturer_name,manufacturer_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+// Issue Type Master
+
+export const TotalIssueTypeapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalIssueType`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+
+export const UpdateIssueTypeStatus = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteIssueType`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const InsertIssueType = async (issue_id,issue_type,issue_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertIssueType`
+    return axios.post(url,{issue_id,issue_type,issue_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetIssueType = async (sno) => {
+    const url = ` http://192.168.146.136:8007/api/getIssueType`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateIssueType = async (sno,issue_type,issue_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateIssueType`
+    return axios.post(url,{sno,issue_type,issue_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+// Contract Type Master
+
+export const TotalContractTypeapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalContractType`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateContractTypeStatus = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteContractType`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const InsertContractType = async (contract_id,contract_type,contract_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertContractType`
+    return axios.post(url,{contract_id,contract_type,contract_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetContractType= async (sno) => {
+    const url = ` http://192.168.146.136:8007/api/getContractType`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateContractType = async (sno,contract_type,contract_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateContractType`
+    return axios.post(url,{sno,contract_type,contract_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+// Ticket Status Master
+
+export const TotalTicketstatusapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalTicketStatus`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateTicketstatusActive = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteTicketStatus`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const InsertTicketstatus = async (ticket_id,ticket_status,ticket_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertTicketStatus`
+    return axios.post(url,{ticket_id,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetTicketstatus= async (sno) => {
+    const url = ` http://192.168.146.136:8007/api/getTicketStatus`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateTicketstatus = async (sno,ticket_status,ticket_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateTicketStatus`
+    return axios.post(url,{sno,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+
+// Ticket Status Master
+
+export const TotalVendSubCateapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalVendorSubCategory`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateVendSubCateStatus = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteTicketStatus`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const InsertVendSubCate = async (ticket_id,ticket_status,ticket_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertTicketStatus`
+    return axios.post(url,{ticket_id,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetVendSubCate= async (sno) => {
+    const url = ` http://192.168.146.136:8007/api/getTicketStatus`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateVendSubCate = async (sno,ticket_status,ticket_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateTicketStatus`
+    return axios.post(url,{sno,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }

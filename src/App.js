@@ -52,6 +52,7 @@ import EditDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/Editde
 import TotalDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/TotalDeviceTask';
 import AddDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/AddDeviceServiceTask';
 import EditDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/EditDeviceServiceTask';
+import { PageNotFound } from './components/404/404';
 
 import  TotalOrganization  from './components/pages/DrizzleMaster/organization/Totalorganization'
 
@@ -88,6 +89,26 @@ import AddLocation from './components/pages/DrizzleMaster/Location/AddLocation';
 import EditLocation from './components/pages/DrizzleMaster/Location/EditLocation';
 
 import TotalVendorCategory from './components/pages/DrizzleMaster/VendorCategoryMaster/TotalVendorcategory';
+
+import TotalManufacturer from './components/pages/DrizzleMaster/ManufacturerMaster/TotalManufacturer';
+import EditManufacturer from './components/pages/DrizzleMaster/ManufacturerMaster/EditManufacturer';
+import AddManufacturer from './components/pages/DrizzleMaster/ManufacturerMaster/AddManufacturer';
+
+import TotalIssueType from './components/pages/DrizzleMaster/IssueType/TotalIssueType';
+import EditIssueType from './components/pages/DrizzleMaster/IssueType/EditIssueType';
+import AddIssueType from './components/pages/DrizzleMaster/IssueType/AddIssueType';
+
+import TotalContractType from './components/pages/DrizzleMaster/ContractType/TotalContractType';
+import EditContractType from './components/pages/DrizzleMaster/ContractType/EditContractType';
+import AddContractType from './components/pages/DrizzleMaster/ContractType/AddContractType';
+
+import TotalTicketStatus from './components/pages/DrizzleMaster/TicketStatus/TotalTicketStatus';
+import EditTicketStatus from './components/pages/DrizzleMaster/TicketStatus/EditTicketStatus';
+import AddTicketStatus from './components/pages/DrizzleMaster/TicketStatus/AddTicketStatus';
+
+import TotalVendSubCate from './components/pages/DrizzleMaster/VendSubCategory/TotalVendSubCate';
+// import EditTicketStatus from './components/pages/DrizzleMaster/TicketStatus/EditTicketStatus';
+// import AddTicketStatus from './components/pages/DrizzleMaster/TicketStatus/AddTicketStatus';
 
 
 const App = () => {
@@ -146,6 +167,8 @@ const App = () => {
         <Route path="/AddDeviceServiceTask" element={<AddDeviceServiceTask />} />
         <Route path="/EditDeviceServiceTask" element={<EditDeviceServiceTask />} />
 
+        <Route path="/*" element={<PageNotFound />} />
+        
         <Route path="/TotalOrganization" element={<TotalOrganization />} />
 
 
@@ -162,6 +185,18 @@ const App = () => {
         <Route path="/AddAssetType" element={<AddAssetType />} />
         <Route path="/EditAssetType" element={<EditAssetType />} />
 
+        <Route path="/TotalManufacturer" element={<TotalManufacturer />} />
+        <Route path="/AddManufacturer" element={<AddManufacturer />} />
+        <Route path="/EditManufacturer" element={<EditManufacturer />} />
+
+        <Route path="/TotalIssueType" element={<TotalIssueType />} />
+        <Route path="/AddIssueType" element={<AddIssueType />} />
+        <Route path="/EditIssueType" element={<EditIssueType />} />
+        
+        <Route path="/TotalContractType" element={<TotalContractType />} />
+        <Route path="/AddContractType" element={<AddContractType />} />
+        <Route path="/EditContractType" element={<EditContractType />} />
+        
         <Route path="/TotalAssetStatus" element={<TotalAssetStatus />} />
         <Route path="/AddAssetStatus" element={<AddAssetStatus />} />
         <Route path="/EditAssetStatus" element={<EditAssetStatus />} />
@@ -188,9 +223,14 @@ const App = () => {
 
         
         
+        <Route path="/TotalTicketStatus" element={<TotalTicketStatus />} />
+        <Route path="/AddTicketStatus" element={<AddTicketStatus />} />
+        <Route path="/EditTicketStatus" element={<EditTicketStatus />} />
 
         
-
+        <Route path="/TotalVendSubCate" element={<TotalVendSubCate />} />
+        {/* <Route path="/AddTicketStatus" element={<AddTicketStatus />} /> */}
+        {/* <Route path="/EditTicketStatus" element={<EditTicketStatus />} /> */}
         
         
 
