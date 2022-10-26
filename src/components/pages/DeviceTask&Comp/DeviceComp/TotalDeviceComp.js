@@ -81,7 +81,7 @@ function UpdateDevicetaskcomp() {
                     <div className='innermain_container m-auto' >
                         <div className='d-flex justify-content-between pt-4'>
                             <h3> Device Compliances</h3>
-                            <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceComp' }}>Add Compliances </button>
+                            <button className='btn btn-voilet m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceComp' }}>Add Compliances </button>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-4" >

@@ -282,7 +282,7 @@ export const Adddevice = async (device_id, device_name, device_type, device_grou
 }
 
 export const Totaldeviceapi = async () => {
-    const url = `http://182.76.62.178:8114/api/totaldevice`
+    const url = `http://192.168.146.136:8007/api/totaldevice`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -301,20 +301,13 @@ export const Updatedevice = async (sno, device_id, device_name, device_type, dev
     return axios.post(url, { sno, device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
-
-
 export const Activedevice = async () => {
-    const url = `http://182.76.62.178:8114/api/activedevice`
+    const url = `http://192.168.146.136:8007/api/activedevice`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
-
-
-
-
-
 export const Getdevicetaskcompliancebyname = async (name) => {
-    const url = `http://182.76.62.178:8114/api/getdevicetaskcompliancebyname`
+    const url = `http://192.168.146.136:8007/api/getdevicetaskcompliancebyname`
     return axios.post(url, { name }).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -554,7 +547,6 @@ export const AddBillingFreqapi = async (billing_freq_id,billing_freq,billing_fre
     return axios.post(url,{billing_freq_id,billing_freq,billing_freq_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 export const GetBillingFreqapi = async (sno) => {
-    console.log(sno)
     const url = `http://192.168.146.136:8007/api/getBillingFrequency`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }

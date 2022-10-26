@@ -54,7 +54,7 @@ function Show_deviceservices() {
             sortable: false,
             selector: "null",
             cell: (row) => [
-                <a title='Edit Device Type' href="/EditDeviceServices">
+                <a title='Edit Device Services' href="/EditDeviceServices">
                     <button className="btn btn-success " onClick={() => sessionStorage.setItem('deviceservicesSno', `${row.sno}`)} >
                         Edit
                     </button></a>
@@ -77,7 +77,7 @@ function Show_deviceservices() {
                     <div className='innermain_container m-auto' >
                         <div className=' d-flex justify-content-between pt-4'>
                             <h3 >Total Device Services </h3>
-                            <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceservices' }}>Add Device Services</button>
+                            <button className='btn btn-voilet m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceservices' }}>Add Device Services</button>
                         </div>
                         <DataTableExtensions {...tableData}>
                             <DataTable

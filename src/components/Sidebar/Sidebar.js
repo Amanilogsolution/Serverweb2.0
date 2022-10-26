@@ -254,12 +254,7 @@ const Sidebar = ({ children }) => {
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Device Task</div>
                             </NavLink>
                         </li>
-                        <li title='Product List'>
-                            <NavLink to='/productList' className="link navlink" activeclassname="sidebaractive">
-                                <div className="icon"><FaThList /></div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Product List</div>
-                            </NavLink>
-                        </li>
+                       
 
                     </ul>
                 </div>

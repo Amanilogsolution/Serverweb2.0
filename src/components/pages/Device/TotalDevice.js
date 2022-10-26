@@ -89,7 +89,6 @@ function TotalDevice() {
             selector: "null",
             cell: (row) => [
                 <a title='Edit Agent master' href="/EditDevice">
-
                     <button className="btn btn-success " onClick={() => sessionStorage.setItem('deviceSno', `${row.sno}`)} >
                         Edit
                     </button></a>
@@ -123,7 +122,7 @@ function TotalDevice() {
                     <div className='innermain_container m-auto ' >
                         <div className='d-flex justify-content-between pt-4'>
                             <h3>Total Device</h3>
-                            <button className='btn btn-success mr-4 add-btn ' onClick={e => { e.preventDefault(); window.location.href = './AddDevice' }}>Add Device</button>
+                            <button className='btn btn-voilet mr-4 add-btn ' onClick={e => { e.preventDefault(); window.location.href = './AddDevice' }}>Add Device</button>
                         </div>
                         <DataTableExtensions {...tableData}>
                             <DataTable
