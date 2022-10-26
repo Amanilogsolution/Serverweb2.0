@@ -85,6 +85,11 @@ import TotalTicketStatus from './components/pages/DrizzleMaster/TicketStatus/Tot
 import EditTicketStatus from './components/pages/DrizzleMaster/TicketStatus/EditTicketStatus';
 import AddTicketStatus from './components/pages/DrizzleMaster/TicketStatus/AddTicketStatus';
 
+import TotalVendSubCate from './components/pages/DrizzleMaster/VendSubCategory/TotalVendSubCate';
+// import EditTicketStatus from './components/pages/DrizzleMaster/TicketStatus/EditTicketStatus';
+// import AddTicketStatus from './components/pages/DrizzleMaster/TicketStatus/AddTicketStatus';
+
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -175,6 +180,11 @@ const App = () => {
         <Route path="/TotalTicketStatus" element={<TotalTicketStatus />} />
         <Route path="/AddTicketStatus" element={<AddTicketStatus />} />
         <Route path="/EditTicketStatus" element={<EditTicketStatus />} />
+
+        
+        <Route path="/TotalVendSubCate" element={<TotalVendSubCate />} />
+        {/* <Route path="/AddTicketStatus" element={<AddTicketStatus />} /> */}
+        {/* <Route path="/EditTicketStatus" element={<EditTicketStatus />} /> */}
         
       </Routes>
 

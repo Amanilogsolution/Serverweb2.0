@@ -575,3 +575,32 @@ export const UpdateTicketstatus = async (sno,ticket_status,ticket_description,us
     const url = `http://192.168.146.136:8007/api/updateTicketStatus`
     return axios.post(url,{sno,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
+
+
+
+// Ticket Status Master
+
+export const TotalVendSubCateapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalVendorSubCategory`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateVendSubCateStatus = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteTicketStatus`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const InsertVendSubCate = async (ticket_id,ticket_status,ticket_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/insertTicketStatus`
+    return axios.post(url,{ticket_id,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetVendSubCate= async (sno) => {
+    const url = ` http://192.168.146.136:8007/api/getTicketStatus`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateVendSubCate = async (sno,ticket_status,ticket_description,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateTicketStatus`
+    return axios.post(url,{sno,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
