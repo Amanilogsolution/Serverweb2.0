@@ -567,6 +567,12 @@ export const UpdateBillingFreqapi = async (sno,billing_freq,billing_freq_descrip
     return axios.post(url,{sno,billing_freq,billing_freq_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
+// Vendor Category
+export const TotalVendorCategoryapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalVendorCategory`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
 
 
 //  Location Master

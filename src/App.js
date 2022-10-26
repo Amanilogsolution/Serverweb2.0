@@ -87,6 +87,8 @@ import TotalLocations from './components/pages/DrizzleMaster/Location/TotalLocat
 import AddLocation from './components/pages/DrizzleMaster/Location/AddLocation';
 import EditLocation from './components/pages/DrizzleMaster/Location/EditLocation';
 
+import TotalVendorCategory from './components/pages/DrizzleMaster/VendorCategoryMaster/TotalVendorcategory';
+
 
 const App = () => {
   return (
@@ -181,9 +183,11 @@ const App = () => {
         <Route path="/AddBillingFreq" element={<AddBillingFreq />} />
         <Route path="/EditBillingFreq" element={<EditBillingFreq />} />
 
+        <Route path="/TotalVendorCategory" element={<TotalVendorCategory />} />
+
 
         
-
+        
 
         
 
