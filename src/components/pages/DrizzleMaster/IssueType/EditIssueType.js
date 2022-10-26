@@ -19,7 +19,7 @@ function EditIssueType() {
         const issue_type = document.getElementById('issue_type').value;
         const remark = document.getElementById('remark').value;
 
-        const username = sessionStorage.getItem('UserName');
+        const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('IssueTypesno')
 
         if (!issue_type) {

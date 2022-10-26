@@ -30,8 +30,7 @@ const customStyles = {
     cells: {
       style: {
         fontSize: '14px',
-        // fontWeight:'600',
-        background:'rgb(242,242,242)	',
+        background:'rgb(242,242,242)',
         borderBottom:"1px solid silver"
       },
     },
@@ -56,18 +55,13 @@ function TotalSoftware() {
             selector: row => row.software_description,
             sortable: true,
         },
-       
-     
-      
         {
             name: 'Status',
             sortable: true,
             cell: (row) => [
                 <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
                     const status = e.target.value;
-                    console.log(status)
                     const result = await DeleteSoftwaresapi(status, row.sno)
-                    console.log(result)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -81,7 +75,7 @@ function TotalSoftware() {
             sortable: false,
             selector: row => row.null,
             cell: (row) => [
-                <a title='Edit Series' href="/EditSoftware">
+                <a title='Edit Software' href="/EditSoftware">
                     <p onClick={() => sessionStorage.setItem('softwaresno', `${row.sno}`)} >
                     <AiFillEdit style={{fontSize:"20px",marginBottom:"-13px"}}/>
                     </p></a>
@@ -93,7 +87,6 @@ function TotalSoftware() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalSoftwareapi();
-            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();
@@ -110,7 +103,7 @@ function TotalSoftware() {
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Series</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Software</span> </h2>
+                            <h2><span style={{ color: "rgb(123,108,200)" }}>Software</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Software</span> </h2>
                             <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddSoftware' }} >Add Software <MdAdd /></button>
                         </div>
                         <div >

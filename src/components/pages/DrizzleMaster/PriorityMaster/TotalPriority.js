@@ -5,38 +5,37 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { TotalPriorityapi, DeletePriorityapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
-
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 const customStyles = {
     title: {
-      style: {
-        fontColor: 'red',
-        fontWeight: '900',
-      }
+        style: {
+            fontColor: 'red',
+            fontWeight: '900',
+        }
     },
     rows: {
-      style: {
-        minHeight: '35px'
-      }
+        style: {
+            minHeight: '35px'
+        }
     },
     headCells: {
-      style: {
-        fontSize: '14px',
-        background:'rgb(105,59,233)',
-        color:'white',
-      },
+        style: {
+            fontSize: '14px',
+            background: 'rgb(105,59,233)',
+            color: 'white',
+        },
     },
     cells: {
-      style: {
-        fontSize: '14px',
-        // fontWeight:'600',
-        background:'rgb(242,242,242)	',
-        borderBottom:"1px solid silver"
-      },
+        style: {
+            fontSize: '14px',
+            // fontWeight:'600',
+            background: 'rgb(242,242,242)	',
+            borderBottom: "1px solid silver"
+        },
     },
-  };
-  
+};
+
 
 function TotalPriority() {
     const [data, setData] = useState([])
@@ -56,18 +55,13 @@ function TotalPriority() {
             selector: row => row.priority_description,
             sortable: true,
         },
-       
-     
-      
         {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
+                <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    console.log(status)
                     const result = await DeletePriorityapi(status, row.sno)
-                    console.log(result)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -83,7 +77,7 @@ function TotalPriority() {
             cell: (row) => [
                 <a title='Edit Series' href="/EditPriority">
                     <p onClick={() => sessionStorage.setItem('prioritysno', `${row.sno}`)} >
-                    <AiFillEdit style={{fontSize:"20px",marginBottom:"-13px"}}/>
+                        <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>
             ]
         }
@@ -93,7 +87,6 @@ function TotalPriority() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalPriorityapi();
-            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();
@@ -110,7 +103,7 @@ function TotalPriority() {
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Series</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Priority</span> </h2>
+                            <h2><span style={{ color: "rgb(123,108,200)" }}>Priority</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Priority</span> </h2>
                             <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddPriority' }} >Add Priority <MdAdd /></button>
                         </div>
                         <div >

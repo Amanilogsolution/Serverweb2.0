@@ -1,7 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React from 'react';
 import { AddAssetStatusapi } from '../../../../api'
-// import './Addemployee.css'
 import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
 
 
@@ -12,9 +11,8 @@ function AddAssetStatus() {
         const assetstatus_id = document.getElementById('assetstatus_id').value;
         const asset_status = document.getElementById('asset_status').value;
         const asset_status_desc = document.getElementById('asset_status_desc').value;
-       
 
-        const username = sessionStorage.getItem('UserName');
+        const username = sessionStorage.getItem('UserId');
 
         if (!assetstatus_id || !asset_status || !asset_status_desc) {
             alert("All field are mandatory...")
@@ -36,8 +34,8 @@ function AddAssetStatus() {
             <Sidebar >
              <div className='main_container pb-2' >
                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Asset Type</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Asset Type</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssetType'  }} >Back <MdOutlineArrowForward/></button>
+                        <h2><span style={{color:"rgb(123,108,200)"}}>Asset Status</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Asset Status</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssetStatus'  }} >Back <MdOutlineArrowForward/></button>
                     </div>
                         <div className="card card-div" style={{width:"50%"}}>
                             <article className="card-body" >

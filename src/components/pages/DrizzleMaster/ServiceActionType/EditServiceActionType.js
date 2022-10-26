@@ -53,7 +53,7 @@ function EditServiceActionType() {
             <Sidebar >
                 <div className='main_container pb-2'>
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{ color: "rgb(123,108,200)" }}>Service Action Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Service Action Type</span> </h2>
+                        <h3><span style={{ color: "rgb(123,108,200)" }}>Service Action Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Edit Service Action Type</span> </h3>
                         <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('serviceactiontypesno'); window.location.href = '/TotalServiceActionType' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div" style={{ width: "50%" }}>
@@ -69,7 +69,7 @@ function EditServiceActionType() {
                                 <div className="row">
                                     <div className="form-group col-md" >
                                         <label htmlFor='remark'>Description</label>
-                                        <textarea type="text" className="form-control" id='remark' value={data.service_action_type_description} onChange={handleChangeRemark} />
+                                        <textarea type="text" className="form-control" id='remark' rows='3' value={data.service_action_type_description} onChange={handleChangeRemark} />
                                     </div>
                                 </div>
 

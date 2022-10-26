@@ -30,8 +30,7 @@ const customStyles = {
     cells: {
       style: {
         fontSize: '14px',
-        // fontWeight:'600',
-        background:'rgb(242,242,242)	',
+        background:'rgb(242,242,242)',
         borderBottom:"1px solid silver"
       },
     },
@@ -40,6 +39,7 @@ const customStyles = {
 
 function TotalVendSubCate() {
     const [data, setData] = useState([])
+
     const columns = [
         {
             name: 'Vendor Category',
@@ -56,7 +56,6 @@ function TotalVendSubCate() {
             selector: row => row.vendor_sub_category_description,
             sortable: true,
         },
-      
         {
             name: 'Status',
             sortable: true,
@@ -105,7 +104,7 @@ function TotalVendSubCate() {
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Sub Category</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Vendor Sub Category</span> </h2>
+                            <h3><span style={{ color: "rgb(123,108,200)" }}>Vendor Sub Category</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Total Vendor Sub Category</span> </h3>
                             <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorSubCategory' }} >Add Vendor Sub Category<MdAdd /></button>
                         </div>
                         <div >

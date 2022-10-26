@@ -25,7 +25,7 @@ function AddLocation() {
         const latitude = document.getElementById('latitude').value;
         const longitude = document.getElementById('longitude').value;
 
-        const username = sessionStorage.getItem('UserName');
+        const username = sessionStorage.getItem('UserId');
 
         if (!company || !locationcode || !locationname || !address1 || !address2 || !city || !state || !pincode || !gstno || !contactpersonname || !email || !contNum || !latitude || !longitude) {
             alert("All field are mandatory...")

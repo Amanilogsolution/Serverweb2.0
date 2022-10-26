@@ -30,7 +30,6 @@ const customStyles = {
     cells: {
       style: {
         fontSize: '14px',
-        // fontWeight:'600',
         background:'rgb(242,242,242)	',
         borderBottom:"1px solid silver"
       },
@@ -46,13 +45,11 @@ function TotalServiceGroup() {
             selector: row => row.service_group_type,
             sortable: true,
         },
-     
         {
             name: 'Description',
             selector: row => row.service_group_description,
             sortable: true,
         },
-      
         {
             name: 'Status',
             sortable: true,
@@ -85,7 +82,6 @@ function TotalServiceGroup() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalServiceGroupapi();
-            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();

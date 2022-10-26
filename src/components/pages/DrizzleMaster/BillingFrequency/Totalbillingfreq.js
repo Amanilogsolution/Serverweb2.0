@@ -5,7 +5,6 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { TotalBillingFreqapi, DeleteBillingFreqapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
-
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 const customStyles = {
@@ -63,9 +62,7 @@ function TotalBillingFreq() {
             cell: (row) => [
                 <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
                     const status = e.target.value;
-                    console.log(status)
                     const result = await DeleteBillingFreqapi(status, row.sno)
-                    console.log(result)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -79,7 +76,7 @@ function TotalBillingFreq() {
             sortable: false,
             selector: row => row.null,
             cell: (row) => [
-                <a title='Edit Series' href="/EditBillingFreq">
+                <a title='Edit BillingFreq' href="/EditBillingFreq">
                     <p onClick={() => sessionStorage.setItem('billingfreqsno', `${row.sno}`)} >
                     <AiFillEdit style={{fontSize:"20px",marginBottom:"-13px"}}/>
                     </p></a>
@@ -91,7 +88,6 @@ function TotalBillingFreq() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalBillingFreqapi();
-            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();
@@ -108,8 +104,8 @@ function TotalBillingFreq() {
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Series</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Billing Frequency</span> </h2>
-                            <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddBillingFreq' }} >Add Billing Frequency <MdAdd /></button>
+                            <h2><span style={{ color: "rgb(123,108,200)" }}>Billing Frequency</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Billing Frequency</span> </h2>
+                            <button className='btn btn-sm btn-voilet' onClick={e => { e.preventDefault(); window.location.href = './AddBillingFreq' }} >Add Billing Frequency <MdAdd /></button>
                         </div>
                         <div >
                             <DataTableExtensions {...tableData}  >

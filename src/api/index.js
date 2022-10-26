@@ -502,7 +502,6 @@ export const DeletePurchaseTypeapi = async (status,sno) => {
 }
 
 export const GetPurchaseTypeapi = async (sno) => {
-    console.log(sno)
     const url = `http://192.168.146.136:8007/api/getPurchaseType`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
@@ -536,7 +535,6 @@ export const GetPriorityapi = async (sno) => {
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 export const UpdatePriorityapi = async (sno,priority_type,priority_description,user_id) => {
-    console.log(sno,priority_type)
     const url = `http://192.168.146.136:8007/api/updatePriority`
     return axios.post(url,{sno,priority_type,priority_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
@@ -599,27 +597,30 @@ export const UpdateVendorCategoryapi = async (sno,vendor_category,vendor_categor
 //  Location Master
 
 export const TotalLocation = async () => {
-    const url = `https://192.168.146.136:8007/api/totalLocation`
+    const url = `http://192.168.146.136:8007/api/totalLocation`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateLocationStatus = async (status,sno) => {
-    const url = ` https://192.168.146.136:8007/api/deleteLocation`
+    const url = ` http://192.168.146.136:8007/api/deleteLocation`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddLocationapi = async (location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id) => {
-    const url = ` https://192.168.146.136:8007/api/insertLocation`
+    const url = `http://192.168.146.136:8007/api/insertLocation`
     return axios.post(url,{location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetLocation = async (sno) => {
-    const url = ` https://192.168.146.136:8007/api/getLocation`
+    const url = ` http://192.168.146.136:8007/api/getLocation`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateLocation = async (sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id) => {
-    const url = ` https://192.168.146.136:8007/api/insertLocation`
+    console.log(sno,company_name,location_code,location_name,location_address_line1,location_address_line2,
+        location_city,location_state,location_pin_code,location_gst,contact_person,
+        contact_person_email,contact_person_number,location_latitude,location_longitude,user_id)
+    const url = ` http://192.168.146.136:8007/api/updateLocation`
     return axios.post(url,{sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 

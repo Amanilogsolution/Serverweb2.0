@@ -22,7 +22,6 @@ function EditVendorSubCategory() {
         const UserId = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('vendsubcatesno')
 
-        // sno,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id
         const result = await UpdateVendSubCate(sno,vendor_category,vendor_sub_category,remark,UserId);
 
         if (result === 'Updated') {
@@ -52,7 +51,7 @@ function EditVendorSubCategory() {
             <Sidebar >
                 <div className='main_container pb-2'>
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Vendor Sub Category</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Edit Vendor Sub Category</span> </h2>
+                        <h3><span style={{color:"rgb(123,108,200)"}}>Vendor Sub Category</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"22px"}}>Edit Vendor Sub Category</span> </h3>
                         <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('vendsubcatesno'); window.location.href = '/TotalVendSubCate'  }} >Back <MdOutlineArrowForward/></button>
                     </div>
                     <div className="card card-div" style={{width:"50%"}}>
@@ -79,8 +78,6 @@ function EditVendorSubCategory() {
                            
                                 <div className="form-group" >
                                     <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
-                                    {/* <button type="button" onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button> */}
-
                                 </div>
                             </form>
                         </article>

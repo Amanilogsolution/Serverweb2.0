@@ -17,7 +17,6 @@ function EditLocation() {
 
     const handleUpdateLocation = async (e) => {
         e.preventDefault();
-        const location_id = '';
         const company = document.getElementById('company').value;
         const locationcode = document.getElementById('locationcode').value;
         const locationname = document.getElementById('locationname').value;
@@ -34,20 +33,16 @@ function EditLocation() {
         const latitude = document.getElementById('latitude').value;
         const longitude = document.getElementById('longitude').value;
 
-        const username = sessionStorage.getItem('UserName');
+        const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('locationsno')
-
-console.log(sno, company, locationcode, locationname, address1, address2, city, state, pincode, gstno,
-    contactpersonname, email, contNum, latitude, longitude, username)
 
         const result = await UpdateLocation(sno, company, locationcode, locationname, address1, address2, city, state, pincode, gstno,
             contactpersonname, email, contNum, latitude, longitude, username);
-        console.log(result)
 
         if (result === 'Updated') {
             alert('Data Updated')
             sessionStorage.removeItem('seriessno');
-            window.location.href = './Totalseries'
+            window.location.href = './TotalLocations'
         }
         else {
             alert("Server Error");
@@ -110,9 +105,9 @@ console.log(sno, company, locationcode, locationname, address1, address2, city, 
                         <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalLocations' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div" >
-                      
+
                         <article className="card-body" >
-                            <form className='px-3'  autoComplete='off'>
+                            <form className='px-3' autoComplete='off'>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <label htmlFor='company'>Select Company </label>
@@ -194,7 +189,7 @@ console.log(sno, company, locationcode, locationname, address1, address2, city, 
                                 <div className="form-group" >
                                     <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleUpdateLocation}>Submit</button>
                                     <button type="reset" className="btn btn-secondary ml-2 mb-4 mt-3" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
-                                    {/* <button type="button" onClick={() => { window.location.href = '/Totalseries' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button> */}
+                                    {/* <button type="button" onClick={() => { window.location.href = '/TotalLocations' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button> */}
 
                                 </div>
                             </form>

@@ -33,7 +33,7 @@ function AddVendorSubCategory() {
             <Sidebar >
              <div className='main_container pb-2' >
                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Service Action Type</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Service Action Type</span> </h2>
+                        <h3><span style={{color:"rgb(123,108,200)"}}>Service Action Type</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"22px"}}>Add Service Action Type</span> </h3>
                         <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalServiceActionType'  }} >Back <MdOutlineArrowForward/></button>
                     </div>
                         <div className="card card-div" style={{width:"50%"}}>

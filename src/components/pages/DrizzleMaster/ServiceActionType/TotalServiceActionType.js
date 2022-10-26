@@ -30,8 +30,7 @@ const customStyles = {
     cells: {
       style: {
         fontSize: '14px',
-        // fontWeight:'600',
-        background:'rgb(242,242,242)	',
+        background:'rgb(242,242,242)',
         borderBottom:"1px solid silver"
       },
     },
@@ -52,7 +51,6 @@ function TotalServiceActionType() {
             selector: row => row.service_action_type_description,
             sortable: true,
         },
-      
         {
             name: 'Status',
             sortable: true,
@@ -85,7 +83,6 @@ function TotalServiceActionType() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalServiceActionTypeapi();
-            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();
@@ -102,7 +99,7 @@ function TotalServiceActionType() {
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Service Action Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Service Action Type</span> </h2>
+                            <h3><span style={{ color: "rgb(123,108,200)" }}>Service Action Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Total Service Action Type</span> </h3>
                             <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddServiceActionType' }} >Add Service Action Type<MdAdd /></button>
                         </div>
                         <div >

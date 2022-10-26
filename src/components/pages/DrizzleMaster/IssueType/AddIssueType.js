@@ -11,7 +11,7 @@ function AddIssueType() {
         const issue_type_id='';
         const issue_type = document.getElementById('issue_type').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = sessionStorage.getItem('UserId');
 
         if (!issue_type) {
             alert('Please Enter Mandatory Field')

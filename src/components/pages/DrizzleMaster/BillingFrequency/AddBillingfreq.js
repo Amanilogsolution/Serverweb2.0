@@ -1,7 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React from 'react';
 import { AddBillingFreqapi } from '../../../../api'
-// import './Addemployee.css'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 
@@ -12,8 +11,7 @@ function AddBillingFreq() {
         const billing_freq = document.getElementById('billing_freq').value;
         const billing_freq_desc = document.getElementById('billing_freq_desc').value;
 
-
-        const username = sessionStorage.getItem('UserName');
+        const username = sessionStorage.getItem('UserId');
 
         if (!billing_freq_id || !billing_freq || !billing_freq_desc) {
             alert("All field are mandatory...")
@@ -35,8 +33,8 @@ function AddBillingFreq() {
             <Sidebar >
                 <div className='main_container pb-2' >
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{ color: "rgb(123,108,200)" }}>Asset Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Purchase Type</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssetType' }} >Back <MdOutlineArrowForward /></button>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Billing Frequency</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Billing Frequency</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalBillingFreq' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div" style={{ width: "50%" }}>
                         <article className="card-body" >

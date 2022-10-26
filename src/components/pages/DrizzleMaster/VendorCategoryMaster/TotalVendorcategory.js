@@ -30,7 +30,6 @@ const customStyles = {
     cells: {
       style: {
         fontSize: '14px',
-        // fontWeight:'600',
         background:'rgb(242,242,242)	',
         borderBottom:"1px solid silver"
       },
@@ -63,9 +62,7 @@ function TotalVendorCategory() {
             cell: (row) => [
                 <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
                     const status = e.target.value;
-                    console.log(status)
                     const result = await DeleteVendorCategoryapi(status, row.sno)
-                    console.log(result)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -79,7 +76,7 @@ function TotalVendorCategory() {
             sortable: false,
             selector: row => row.null,
             cell: (row) => [
-                <a title='Edit Series' href="/EditVendorcategory">
+                <a title='Edit Vendor Category' href="/EditVendorcategory">
                     <p onClick={() => sessionStorage.setItem('vendorcatsno', `${row.sno}`)} >
                     <AiFillEdit style={{fontSize:"20px",marginBottom:"-13px"}}/>
                     </p></a>
@@ -91,7 +88,6 @@ function TotalVendorCategory() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalVendorCategoryapi();
-            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();
@@ -108,7 +104,7 @@ function TotalVendorCategory() {
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Series</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Vendor Category</span> </h2>
+                            <h3><span style={{ color: "rgb(123,108,200)" }}>Vendor Category</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "21px" }}>Total Vendor Category</span> </h3>
                             <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorCategory' }} >Add Vendor Category <MdAdd /></button>
                         </div>
                         <div >
