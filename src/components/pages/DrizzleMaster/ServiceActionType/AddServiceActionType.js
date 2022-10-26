@@ -1,6 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React from 'react';
-import { InsertVendSubCate } from '../../../../api'
+import { InsertServiceActionType } from '../../../../api'
 import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
 
 
@@ -8,20 +8,21 @@ function AddVendorSubCategory() {
 
     const handleinsertdata = async (e) => {
         e.preventDefault();
-        const vend_sub_cate_id ='';
-        const vendor_category=  document.getElementById('vendor_category').value;
-        const vendor_sub_category = document.getElementById('vendor_sub_category').value;
+        const service_action_id ='';
+        const service_action=  document.getElementById('service_action').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
 
-        if (!vendor_category || !vendor_sub_category ) {
+        if (!service_action  ) {
             alert("All field are mandatory...")
         }
         else {
-            const result = await InsertVendSubCate(vend_sub_cate_id,vendor_category,vendor_sub_category,remark,username);
+            // service_action_id,service_action_type,service_action__description,user_id
+            console.log(service_action_id,service_action,remark,username)
+            const result = await InsertServiceActionType(service_action_id,service_action,remark,username);
             if (result === 'Added') {
                 alert('Data Added ')
-                window.location.href = './TotalVendSubCate'
+                // window.location.href = './TotalServiceActionType'
             }
             else {
                 alert("Server Error");
@@ -34,21 +35,18 @@ function AddVendorSubCategory() {
             <Sidebar >
              <div className='main_container pb-2' >
                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Vendor Sub Category</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Vendor Sub Category</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendSubCate'  }} >Back <MdOutlineArrowForward/></button>
+                        <h2><span style={{color:"rgb(123,108,200)"}}>Service Action Type</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Service Action Type</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalServiceActionType'  }} >Back <MdOutlineArrowForward/></button>
                     </div>
                         <div className="card card-div" style={{width:"50%"}}>
                             <article className="card-body" >
                                 <form className='px-3'  autoComplete='off'>
                                     <div className="row">
-                                        <div className="col-md-6">
-                                            <label htmlFor='vendor_category'>Select Vendor Category </label>
-                                            <input type="text" className="form-control" id='vendor_category' />
+                                        <div className="col">
+                                            <label htmlFor='service_action'>Service Action </label>
+                                            <input type="text" className="form-control" id='service_action' />
                                         </div>
-                                        <div className="col-md-6" >
-                                            <label htmlFor='vendor_sub_category'>Vendor Sub Category </label>
-                                            <input type="text" className="form-control" id='vendor_sub_category' />
-                                        </div>
+                                       
                                     </div>
                                     <div className="form-row">
                                         <div className="col-md" >

@@ -1,15 +1,14 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
-import { GetAssetTypeapi, UpdateAssettypeapi } from '../../../../api'
+import { GetVendSubCate, UpdateVendSubCate } from '../../../../api'
 import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
-// import './Editemployee.css'
 
-function EditAssetType() {
+function EditVendorSubCategory() {
     const [data, setData] = useState({});
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetAssetTypeapi(sessionStorage.getItem('assettypesno'))
+            const result = await GetVendSubCate(sessionStorage.getItem('vendsubcatesno'))
             setData(result[0]);
         }
         fetchdata()
@@ -17,17 +16,19 @@ function EditAssetType() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        const asset_type = document.getElementById('asset_type').value;
-        const asset_type_desc = document.getElementById('asset_type_desc').value;
-        const username = sessionStorage.getItem('UserName');
-        const sno = sessionStorage.getItem('assettypesno')
+        const vendor_category = document.getElementById('vendor_category').value;
+        const vendor_sub_category = document.getElementById('vendor_sub_category').value;
+        const remark = document.getElementById('remark').value;
+        const UserId = sessionStorage.getItem('UserId');
+        const sno = sessionStorage.getItem('vendsubcatesno')
 
-        const result = await UpdateAssettypeapi(sno,asset_type,asset_type_desc,username);
+        // sno,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id
+        const result = await UpdateVendSubCate(sno,vendor_category,vendor_sub_category,remark,UserId);
 
         if (result === 'Updated') {
             alert('Data Updated')
-            sessionStorage.removeItem('assettypesno');
-            window.location.href = './TotalAssetType'
+            sessionStorage.removeItem('vendsubcatesno');
+            window.location.href = './TotalVendSubCate'
         }
         else {
             alert("Server Error");
@@ -35,15 +36,15 @@ function EditAssetType() {
 
     }
 
-
-    const handlechangeassettype = (e) => {
-        setData({ ...data, asset_type: e.target.value })
+    const handleChangeVendCate = (e) => {
+        setData({ ...data, vendor_category: e.target.value })
     }
-    const handlechangeassettypedesc = (e) => {
-        setData({ ...data, asset_description: e.target.value })
+    const handleChangeVendSubCate = (e) => {
+        setData({ ...data, vendor_sub_category: e.target.value })
     }
-   
- 
+    const handleChangeRemark = (e) => {
+        setData({ ...data, vendor_sub_category_description: e.target.value })
+    }
 
 
     return (
@@ -51,8 +52,8 @@ function EditAssetType() {
             <Sidebar >
                 <div className='main_container pb-2'>
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Series</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Edit Asset Type</span> </h2>
-                        <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('assettypesno'); window.location.href = '/TotalAssetType'  }} >Back <MdOutlineArrowForward/></button>
+                        <h2><span style={{color:"rgb(123,108,200)"}}>Vendor Sub Category</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Edit Vendor Sub Category</span> </h2>
+                        <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('vendsubcatesno'); window.location.href = '/TotalVendSubCate'  }} >Back <MdOutlineArrowForward/></button>
                     </div>
                     <div className="card card-div" style={{width:"50%"}}>
                        
@@ -60,25 +61,22 @@ function EditAssetType() {
                             <form className='px-3'  autoComplete='off'>
                                 <div className="row">
                                     <div className="form-group col-md-6">
-                                        <label htmlFor='typeid'> Asset Type ID </label>
-                                        <input type="text" className="form-control" id='assettype_id' disabled value={data.asset_type_id} />
+                                        <label htmlFor='vendor_category'> Select Vendor Category </label>
+                                        <input type="text" className="form-control" id='vendor_category' value={data.vendor_category} onChange={handleChangeVendCate}/>
                                     </div>
                                     <div className="form-group col-md-6" >
-                                        <label htmlFor='seriesid'> Asset Type </label>
-                                        <input type="text" className="form-control" id='asset_type' value={data.asset_type} onChange={handlechangeassettype} />
+                                        <label htmlFor='vendor_sub_category'> Vendor Sub Category </label>
+                                        <input type="text" className="form-control" id='vendor_sub_category' value={data.vendor_sub_category} onChange={handleChangeVendSubCate} />
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="form-group col-md" >
-                                        <label htmlFor='taskid'>Description</label>
-                                        <textarea type="text" className="form-control" id='asset_type_desc' value={data.asset_description} onChange={handlechangeassettypedesc} />
+                                        <label htmlFor='remark'>Description</label>
+                                        <textarea type="text" className="form-control" id='remark' value={data.vendor_sub_category_description} onChange={handleChangeRemark} />
                                     </div>
                                    
                                 </div>
                            
-                             
-                               
-
                                 <div className="form-group" >
                                     <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
                                     {/* <button type="button" onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button> */}
@@ -93,4 +91,4 @@ function EditAssetType() {
     )
 }
 
-export default EditAssetType;
+export default EditVendorSubCategory;

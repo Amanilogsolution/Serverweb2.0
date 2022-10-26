@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import { TotalVendSubCateapi, DeleteVendSubCateStatus } from '../../../../api'
+import { TotalServiceActionTypeapi, DeleteServiceActionTypeStatus } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 
@@ -38,22 +38,18 @@ const customStyles = {
   };
   
 
-function TotalVendSubCate() {
+function TotalServiceActionType() {
     const [data, setData] = useState([])
     const columns = [
         {
-            name: 'Vendor Category',
-            selector: row => row.vendor_category,
+            name: 'Service Action Type',
+            selector: row => row.service_action_type,
             sortable: true,
         },
+     
         {
-            name: 'Vendor Sub_category',
-            selector: row => row.vendor_sub_category,
-            sortable: true,
-        },
-        {
-            name: 'Vendor Sub Category Description',
-            selector: row => row.vendor_sub_category_description,
+            name: 'Service Action Type Description',
+            selector: row => row.service_action_type_description,
             sortable: true,
         },
       
@@ -63,7 +59,7 @@ function TotalVendSubCate() {
             cell: (row) => [
                 <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
                     const status = e.target.value;
-                    const result = await DeleteVendSubCateStatus(status, row.sno)
+                    const result = await DeleteServiceActionTypeStatus(status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -77,8 +73,8 @@ function TotalVendSubCate() {
             sortable: false,
             selector: row => row.null,
             cell: (row) => [
-                <a title='Edit Vendor Sub Category' href="/EditVendorSubCategory">
-                    <p onClick={() => sessionStorage.setItem('vendsubcatesno', `${row.sno}`)} >
+                <a title='Edit ServiceActionType' href="/EditServiceActionType">
+                    <p onClick={() => sessionStorage.setItem('serviceactiontypesno', `${row.sno}`)} >
                     <AiFillEdit style={{fontSize:"20px",marginBottom:"-13px"}}/>
                     </p></a>
             ]
@@ -88,7 +84,8 @@ function TotalVendSubCate() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalVendSubCateapi();
+            const tabledata = await TotalServiceActionTypeapi();
+            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();
@@ -105,8 +102,8 @@ function TotalVendSubCate() {
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Sub Category</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Vendor Sub Category</span> </h2>
-                            <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorSubCategory' }} >Add Vendor Sub Category<MdAdd /></button>
+                            <h2><span style={{ color: "rgb(123,108,200)" }}>Service Action Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Service Action Type</span> </h2>
+                            <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddServiceActionType' }} >Add Service Action Type<MdAdd /></button>
                         </div>
                         <div >
                             <DataTableExtensions {...tableData}  >
@@ -126,4 +123,4 @@ function TotalVendSubCate() {
         </>
     )
 }
-export default TotalVendSubCate;
+export default TotalServiceActionType;

@@ -223,7 +223,7 @@ const Sidebar = ({ children }) => {
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalServiceActionType' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Service Action Type</div>
                                     </NavLink>
                                 </li>
