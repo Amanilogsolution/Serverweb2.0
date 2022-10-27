@@ -815,3 +815,33 @@ export const UpdateServiceGroup = async (sno,service_group_type,service_group_de
     const url = `http://192.168.146.136:8007/api/updateServiceGroup`
     return axios.post(url,{sno,service_group_type,service_group_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
+
+
+
+// Vendor Code Master
+
+export const TotalVendorCodeapi = async () => {
+    const url = `http://192.168.146.136:8007/api/totalVendorCode`
+    return axios.post(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DeleteVendorCode = async (status,sno) => {
+    const url = `http://192.168.146.136:8007/api/deleteVendorCode`
+    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const InsertVendorCode = async (vendor_code_id,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,vendor_portal,user_id) => {
+    console.log(vendor_portal)
+    const url = `http://192.168.146.136:8007/api/insertVendorCode`
+    return axios.post(url,{vendor_code_id,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,vendor_portal,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetVendorCode= async (sno) => {
+    const url = ` http://192.168.146.136:8007/api/getVendorCode`
+    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateVendorCode = async (sno,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,vendor_portal,user_id) => {
+    const url = `http://192.168.146.136:8007/api/updateVendorCode`
+    return axios.post(url,{sno,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,vendor_portal,user_id}).then(response => response.data).catch(error => console.log(error));
+}
