@@ -121,6 +121,11 @@ import TotalServiceGroup from './components/pages/DrizzleMaster/ServiceGroup/Tot
 import EditServiceGroup from './components/pages/DrizzleMaster/ServiceGroup/EditServiceGroup';
 import AddServiceGroup from './components/pages/DrizzleMaster/ServiceGroup/AddServiceGroup';
 
+import TotalVendorCode from './components/pages/DrizzleMain/VendorCode/TotalVendorCode';
+import EditVendorCode from './components/pages/DrizzleMain/VendorCode/EditVendorCode';
+import AddVendorCode from './components/pages/DrizzleMain/VendorCode/AddVendorCode';
+
+
 
 const App = () => {
   return (
@@ -256,6 +261,10 @@ const App = () => {
         <Route path="/TotalServiceGroup" element={<TotalServiceGroup />} />
         <Route path="/EditServiceGroup" element={<EditServiceGroup />} />
         <Route path="/AddServiceGroup" element={<AddServiceGroup />} />
+
+        <Route path="/TotalVendorCode" element={<TotalVendorCode />} />
+        <Route path="/EditVendorCode" element={<EditVendorCode />} />
+        <Route path="/AddVendorCode" element={<AddVendorCode />} />
 
 
         
