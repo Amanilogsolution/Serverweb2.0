@@ -4,7 +4,37 @@ import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { Totaldeviceapi, Updatedevicestatus } from '../../../api'
+import { AiFillEdit } from 'react-icons/ai';
 
+
+const customStyles = {
+    title: {
+        style: {
+            fontColor: 'red',
+            fontWeight: '900',
+        }
+    },
+    rows: {
+        style: {
+            minHeight: '35px'
+        }
+    },
+    headCells: {
+        style: {
+            fontSize: '14px',
+            background: 'rgb(105,59,233)',
+            color: 'white',
+        },
+    },
+    cells: {
+        style: {
+            fontSize: '14px',
+            // fontWeight:'600',
+            background: 'rgb(242,242,242)',
+            borderBottom: "1px solid silver"
+        },
+    },
+};
 function TotalDevice() {
     const [data, setData] = useState([])
     const columns = [
@@ -88,10 +118,14 @@ function TotalDevice() {
             sortable: false,
             selector: "null",
             cell: (row) => [
-                <a title='Edit Agent master' href="/EditDevice">
-                    <button className="btn btn-success " onClick={() => sessionStorage.setItem('deviceSno', `${row.sno}`)} >
+                <a title='Edit Device' href="/EditDevice">
+                 <p onClick={() => sessionStorage.setItem('deviceSno', `${row.sno}`)} >
+                    <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+                </p>
+                    {/* <button className="btn btn-success " onClick={() => sessionStorage.setItem('deviceSno', `${row.sno}`)} >
                         Edit
-                    </button></a>
+                    </button> */}
+                    </a>
             ]
         }
 
@@ -131,6 +165,7 @@ function TotalDevice() {
                                 defaultSortAsc={false}
                                 pagination
                                 highlightOnHover
+                                customStyles={customStyles}
                             />
                         </DataTableExtensions>
                     </div>
