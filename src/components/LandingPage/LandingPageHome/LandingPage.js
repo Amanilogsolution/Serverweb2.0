@@ -61,9 +61,9 @@ const LandingPage = () => {
                     <section className='portfoliodiv' >
                         <div className="comp_name" >
                             <div className="comp1 text-center "><h3>AWL</h3></div>
-                            <div className="comp2 text-center "><h3>ilogsolution</h3></div>
+                            <div className="comp2 text-center "><h3>ILOGSOLUTION</h3></div>
                             <div className="comp3 text-center "><h3>Dox and Box</h3></div>
-                            <div className="comp4 text-center "><h3>ilogsolution</h3></div>
+                            <div className="comp4 text-center "><h3>ILOGSOLUTION</h3></div>
                         </div>
 
                     </section>
