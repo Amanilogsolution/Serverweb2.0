@@ -62,7 +62,6 @@
 
 .sidebarcontainer ul li {
     list-style: none;
-
 }
 
 .navlink {
@@ -95,10 +94,10 @@
 
 }
 
-.logo {
+/* .logo {
     font-size: 1.6rem;
     transition: all 0.7s;
-}
+} */
 
 .bars {
     display: flex;
@@ -122,14 +121,14 @@
 .link:hover {
     background: #c6b6f3;
     color: #603AE9;
-    font-weight: 700;
+    /* font-weight: 700; */
     transition: all 0.7s;
 }
 
 .active {
     background: #603AE9;
     color: #fff;
-    font-weight: 700;
+    /* font-weight: 700; */
 }
 
 .innerlink {
@@ -148,7 +147,7 @@
     color: #603AE9;
     /* color: black; */
 
-    font-weight: 700;
+    /* font-weight: 700; */
     transition: all 0.7s;
 }
 

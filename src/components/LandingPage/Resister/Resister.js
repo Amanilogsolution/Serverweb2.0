@@ -4,11 +4,24 @@ import './Resister.css'
 import React, { useState } from 'react'
 import { CgOrganisation } from 'react-icons/cg';
 import { BsPersonCircle } from 'react-icons/bs';
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 
 export default function Resister() {
+    const [verified, setVerified] = useState(false)
     const [currentStep, setStep] = useState(1);
+
+    //recaptcha function
+    function captchaChange(value) {
+        if(value.length>10){
+            setVerified(true)
+        }
+        else{
+            alert("CAPTCHA Invalid")
+        }
+        
+    }
     // =============================================== STEP 1 =======================================================
     const Step1 = () => {
 
@@ -155,8 +168,14 @@ export default function Resister() {
                                         </div>
                                     </div>
 
+
+                                    <ReCAPTCHA 
+                                        className='mt-3'
+                                        sitekey="6LfhsLgiAAAAAAGeb1jYsf0mBw6rzfJJaZ-iVYNJ"
+                                        onChange={captchaChange}
+                                    />,
                                     <button type="submit" onClick={() => setStep(1)} className="btn btn-secondary my-3">Back</button>
-                                    <button type="submit" className="btn btn-voilet mx-2">Submit</button>
+                                    <button type="submit" className="btn btn-voilet mx-2" disabled={!verified}>Submit</button>
                                 </form>
                             </article>
                         </div>
@@ -164,7 +183,7 @@ export default function Resister() {
                             <BsPersonCircle id="organisation" /><br />
                             <h5 style={{ textAlign: "center", fontSize: "25px" }}>Personal Profile</h5>
                             <p className='mx-3 my-5 text-center'>Fill out the form here for your complete details about personal. You can always edit these details</p>
-                            <h6 className='pagechange text-center text-white'>2</h6>
+                            <h6 style={{marginTop:"180px"}} className='pagechange text-center text-white'>2</h6>
                         </div>
                     </div>
                 </div>

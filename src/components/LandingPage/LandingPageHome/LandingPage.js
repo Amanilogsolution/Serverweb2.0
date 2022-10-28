@@ -19,7 +19,6 @@ const LandingPage = () => {
         }
     }
 
-
     return (
         <>
             <div className='landingContainer'>
@@ -178,7 +177,7 @@ const LandingPage = () => {
                                             </ul>
                                         </div>
                                         <div className="card-footer">
-                                            <button className='btn btn-voilet'>Start Now</button>
+                                            <button className='btn btn-voilet btn-sm'>Start Now</button>
                                         </div>
                                     </div>
 
@@ -196,7 +195,7 @@ const LandingPage = () => {
                                             </ul>
                                         </div>
                                         <div className="card-footer">
-                                            <button className='btn btn-voilet'>Upgrad Now</button>
+                                            <button className='btn btn-voilet btn-sm'>Upgrad Now</button>
                                         </div>
                                     </div>
 
@@ -214,7 +213,7 @@ const LandingPage = () => {
                                             </ul>
                                         </div>
                                         <div className="card-footer">
-                                            <button className='btn btn-voilet'>Upgrad Now</button>
+                                            <button className='btn btn-voilet btn-sm'>Upgrad Now</button>
                                         </div>
                                     </div>
                                 </div>
