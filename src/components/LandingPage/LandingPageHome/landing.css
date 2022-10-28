@@ -65,7 +65,8 @@
 
 .portfoliodiv {
     min-height: 70px;
-    background-color: #bcb9f3aa;
+    background-color: rgb(164,43,122);
+    color: white;
 
 }
 
@@ -73,8 +74,8 @@
     min-height: 70px;
     display: grid;
     align-items: center;
-    color: #5953c0;
-
+    color: white;
+   
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 24px;
@@ -156,8 +157,8 @@
 }
 
 .pricing .pricinghead .container .pricing_cards .pricing_card .card-header {
-    background-color: #5853c07f;
-    font-weight: 600;
+    background-color: #a4a4f8;
+   /* font-weight: 600; */
 }
 
 .pricing .pricinghead .container .pricing_cards .pricing_card .card-body ul li {
@@ -188,7 +189,7 @@
 
 .landingfooter {
     height: 60px;
-    background-color: #5853c092;
+    background-color: rgb(164,43,122);
     /* #d6d5f0f7 */
     z-index: 1000;
     display: flex;

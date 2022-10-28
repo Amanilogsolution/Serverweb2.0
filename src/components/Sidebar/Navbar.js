@@ -1,7 +1,10 @@
-import { BiUserCircle } from 'react-icons/bi'
-
+import { FaUserCircle } from 'react-icons/fa'
+import { useState } from 'react'
+import './Navbar.css'
 
 const Navbar = () => {
+    const [profileOpen,setProfileOpen] = useState(false);
+    
     const navheight = {
         height: "60px",
         padding: "10px 0px 0px 15px ",
@@ -12,13 +15,39 @@ const Navbar = () => {
     const profile = {
         position: "absolute",
         right: "5%",
-        fontSize: "40px"
+        fontSize: "38px",
+        color:"rgb(164,43,122)",
+        cursor:"pointer"
+    }
+    const openProfile = () =>{
+        setProfileOpen(!profileOpen)
     }
     return (
         <>
             <div className="navbarcontainer bg-white mb-3 d-flex " style={navheight}>
                 <h5 style={{ color: "#603AE9",margin:"7px" }}>Drizlle</h5>
-                <BiUserCircle style={profile} />
+                <span onClick={openProfile}>
+                <FaUserCircle style={profile} />
+                </span>
+                {
+                  profileOpen && (
+                    <div className="menu">
+                      <div class="card-body">
+                        <h5>Hello</h5>
+                        <li>
+                          <a>View</a>
+                        </li>
+                        <li>
+                          <a>Update</a>
+                        </li>
+                        <hr style={{margin:"9px 0 5px 0"}}/>
+                        <li>
+                          <a>Logout</a>
+                        </li>
+                      </div>
+                    </div>
+                  )
+                }
                 {/* <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Dropdown button
