@@ -886,11 +886,6 @@ export const InsertVendorContract = async (vendor_contract_id,vendor,company_add
     major_category,sub_category,location,company,customer_account_no,reference_no,contact_plain_details,
     rate_per_month,contract_start_date,invoice_generation_date,billing_freq,payee_name,tds,link_id_no,
     help_desk_no,user_id) => {
-        console.log('api',vendor_contract_id,vendor,company_address_line1,company_address_line2,
-            company_city,company_state,company_pin_code,company_gst,company_website,company_email,type_of_contract,
-            major_category,sub_category,location,company,customer_account_no,reference_no,contact_plain_details,
-            rate_per_month,contract_start_date,invoice_generation_date,billing_freq,payee_name,tds,link_id_no,
-            help_desk_no,user_id)
     const url = `http://192.168.145.48:8007/api/insertVendorContract`
     return axios.post(url,{vendor_contract_id,vendor,company_address_line1,company_address_line2,
         company_city,company_state,company_pin_code,company_gst,company_website,company_email,type_of_contract,
