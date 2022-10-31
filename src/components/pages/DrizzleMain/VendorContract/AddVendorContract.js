@@ -1,41 +1,41 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React,{useState,useEffect} from 'react';
-import { InsertVendorCode,ActiveLocation ,ActiveContractType,ActiveVendorCategory,ActiveVendorCode,ActiveVendSubCate} from '../../../../api'
+import React, { useState, useEffect } from 'react';
+import { InsertVendorContract, ActiveLocation, ActiveContractType, ActiveVendorCategory, ActiveVendorCode, ActiveVendSubCate } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import './vendorcontract.css'
 
 function AddVendorContract() {
-    const [refferenceno,setRefferenceno]= useState(false)
-    const [locationlist,setLocationlist]= useState([])
-    const [contractlist,setContractlist]= useState([])
-    const [vendorcatlist,setVendorcatlist]= useState([])
-    const [vendorsubcatlist,setVendorsubcatlist]= useState([])
-    const [vendorlist,setVendorlist]= useState([])
-    const [pincodeCount,setPincodeCount]= useState()
-   
+    const [refferenceno, setRefferenceno] = useState(false)
+    const [locationlist, setLocationlist] = useState([])
+    const [contractlist, setContractlist] = useState([])
+    const [vendorcatlist, setVendorcatlist] = useState([])
+    const [vendorsubcatlist, setVendorsubcatlist] = useState([])
+    const [vendorlist, setVendorlist] = useState([])
+    const [pincodeCount, setPincodeCount] = useState()
 
-    useEffect(()=>{
-        const fetchdata=async()=>{
-            const tablelocation=await ActiveLocation();
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            const tablelocation = await ActiveLocation();
             setLocationlist(tablelocation)
 
-            const contract= await ActiveContractType();
+            const contract = await ActiveContractType();
             setContractlist(contract)
 
-            const vendorCategory= await ActiveVendorCategory()
+            const vendorCategory = await ActiveVendorCategory()
             setVendorcatlist(vendorCategory)
 
-            const vendorall= await ActiveVendorCode();
+            const vendorall = await ActiveVendorCode();
             console.log(vendorall)
             setVendorlist(vendorall)
         }
         fetchdata();
 
-        document.getElementById('ref_no').checked=true;
+        document.getElementById('ref_no').checked = true;
         document.getElementById('ref_no_input').style.display = "none"
-        document.getElementById('link_id_div').style.display='none'
+        // document.getElementById('link_id_div').style.display = 'none'
 
-    },[])
+    }, [])
 
     const togglerecurrngdiv = (e) => {
         if (e.target.value === 'Recurring') {
@@ -45,13 +45,13 @@ function AddVendorContract() {
             document.getElementById('recurringdiv').style.display = "none"
         }
     }
-    const handleChangeRef=()=>{
+    const handleChangeRef = () => {
 
-        if(!refferenceno){
+        if (!refferenceno) {
             document.getElementById('ref_no_input').style.display = "flex"
             document.getElementById('ref_no_lable').style.display = "none"
         }
-        else{
+        else {
             document.getElementById('ref_no_input').style.display = "none"
             document.getElementById('ref_no_lable').style.display = "flex"
 
@@ -59,59 +59,99 @@ function AddVendorContract() {
         setRefferenceno(!refferenceno)
     }
 
-    const handleChangeCategory=async(e)=>{
-       
-        console.log(e.target.value)
-        const val=e.target.value;
+    const handleChangeCategory = async (e) => {
 
-        if( val==='Internet' ){
+        const val = e.target.value;
+
+        if (val === 'Internet' || val === 'Data' || val === 'Telecom') {
             console.log('if',)
-            document.getElementById('link_id_div').style.display='block'
+            document.getElementById('link_id_div').style.display = 'block'
         }
-        else{
+        else {
             console.log('inELse')
-            document.getElementById('link_id_div').style.display='none'
+            document.getElementById('link_id_div').style.display = 'none'
 
         }
-        const subcate= await ActiveVendSubCate(e.target.value);
+        const subcate = await ActiveVendSubCate(e.target.value);
         setVendorsubcatlist(subcate)
     }
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        const vendor_code_id = '001';
-        const vendor_code = document.getElementById('vendor_code').value;
-        const vendor_name = document.getElementById('vendor_name').value;
-        const comp_addr1 = document.getElementById('comp_addr1').value;
+        const vendor_contract_id = 'vendId';
+        const vendor = document.getElementById('vendor').value;
+        const company_address_line1 = document.getElementById('comp_addr1').value;
+        const company_address_line2 = document.getElementById('comp_addr2').value;
+        const company_city = document.getElementById('company_city').value;
+        const company_state = document.getElementById('company_state').value;
+        const company_pin_code = document.getElementById('comp_pincode').value;
+        const company_gst = document.getElementById('comp_gst').value;
+        const company_website = document.getElementById('comp_website').value;
+        const company_email = document.getElementById('comp_email').value;
+        const type_of_contract = document.getElementById('contract_type').value;
+        const major_category = document.getElementById('vendor_category').value;
+        const sub_category = document.getElementById('vendor_sub_category').value;
+        const location = document.getElementById('location').value;
+        const company = document.getElementById('company').value;
+        const customer_account_no = document.getElementById('cust_ac_no').value;
+        const reference_no = document.getElementById('ref_no_input').value;
+        const contact_plain_details = document.getElementById('contact_plan_detail').value;
+        const rate_per_month = document.getElementById('rate_per_month').value;
+        const contract_start_date = document.getElementById('contract_start_date').value;
+        const invoice_generation_date = document.getElementById('invoice_generation_date').value;
+        const billing_freq = document.getElementById('billing_freq').value;
+        const payee_name = document.getElementById('payee_name').value;
+        const tds = document.getElementById('tds').checked ? true : false;
+        const link_id_no = document.getElementById('link_id_no').value;
+        const help_desk_no = document.getElementById('help_desk_no').value;
+        const user_id = sessionStorage.getItem('UserId')
 
 
-        const comp_addr2 = document.getElementById('comp_addr2').value;
-        const comp_city = document.getElementById('comp_city').value;
-        const comp_state = document.getElementById('comp_state').value;
 
-        const comp_pincode = document.getElementById('comp_pincode').value;
-        const comp_gst = document.getElementById('comp_gst').value;
-        const comp_website = document.getElementById('comp_website').value;
-        const comp_email = document.getElementById('comp_email').value;
-        const vendor_portal = document.getElementById('vendor_portal').checked ? true : false;
+        // console.log(vendor_contract_id, vendor, company_address_line1, company_address_line2,
+        //     company_city, company_state, company_pin_code, company_gst, company_website, company_email, type_of_contract,
+        //     major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
+        //     rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
+        //     help_desk_no, user_id)
 
-        const user_id = sessionStorage.getItem('UserId');
 
-        if (!vendor_code || !vendor_name || !comp_addr1 || !comp_city || !comp_state || !comp_pincode || !comp_email) {
-            alert("All field are mandatory...")
+        if (!vendor || !company_address_line1 || !company_city || !company_state || !company_pin_code || !company_email ||
+            !type_of_contract || !major_category || !sub_category || !customer_account_no || !payee_name || !tds || !help_desk_no) {
+            alert('In if')
+
         }
         else {
-            const result = await InsertVendorCode(vendor_code_id, vendor_code, vendor_name, comp_addr1, comp_addr2,
-                comp_city, comp_state, comp_pincode, comp_gst, comp_website, comp_email, vendor_portal, user_id);
+            const refno = document.getElementById('ref_no').checked ? true : false;
+            let errorcount = 0;
 
-            if (result === 'Added') {
-                alert('Data Added ')
-                window.location.href = './TotalVendorContract'
+            if (type_of_contract === 'Recurring') {
+                if (!contact_plain_details || !rate_per_month || !contract_start_date || !invoice_generation_date || !billing_freq) {
+                    errorcount = errorcount + 1
+                    alert('In else if if Recurring')
+                }
             }
-            else {
-                alert("Server Error");
+            if (!refno) {
+                if (!reference_no) {
+                    errorcount = errorcount + 1
+                    alert('In else if if reference_no ')
+                }
             }
+            if (major_category === 'Internet' || major_category === 'Data' || major_category === 'Telecom') {
+                if (!link_id_no) {
+                    errorcount = errorcount + 1
+                    alert('In else if if major_category')
+                }
+            }
+
+            if (errorcount === 0) {
+                const callapi = await InsertVendorContract(vendor_contract_id, vendor, company_address_line1, company_address_line2,
+                    company_city, company_state, company_pin_code, company_gst, company_website, company_email, type_of_contract,
+                    major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
+                    rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
+                    help_desk_no, user_id)
+                    console.log('callapi',callapi)
+            }
+
         }
-
     }
     return (
         <>
@@ -131,8 +171,8 @@ function AddVendorContract() {
                                         <select className="form-select" id='vendor'>
                                             <option value='' hidden>Select Vendor</option>
                                             {
-                                                vendorlist.map((item,index)=>
-                                                <option key={index} value={item.vendor_name}>{item.vendor_name}</option>)
+                                                vendorlist.map((item, index) =>
+                                                    <option key={index} value={item.vendor_name}>{item.vendor_name}</option>)
                                             }
                                         </select>
 
@@ -146,12 +186,12 @@ function AddVendorContract() {
                                     <div className="col-md-4">
                                         <label htmlFor='location'>Location</label>
                                         <select className="form-select" id='location' required >
-                                        <option value='' hidden>Select Location</option>
-                                        {
-                                            locationlist.map((item,index)=>
-                                            <option key={index}>{item.location_name}</option>
-                                            )
-                                        }
+                                            <option value='' hidden>Select Location</option>
+                                            {
+                                                locationlist.map((item, index) =>
+                                                    <option key={index}>{item.location_name}</option>
+                                                )
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -166,8 +206,8 @@ function AddVendorContract() {
                                     </div>
                                     <div className="col-md-4">
                                         <label htmlFor='comp_pincode'>Company pincode <span className='text-danger'>*</span></label>
-                                        <input type="number" className="form-control" id='comp_pincode' value={pincodeCount} onChange={(e)=>{
-                                            if(e.target.value.length===7) return false;else{setPincodeCount(e.target.value)}
+                                        <input type="number" className="form-control" id='comp_pincode' value={pincodeCount} onChange={(e) => {
+                                            if (e.target.value.length === 7) return false; else { setPincodeCount(e.target.value) }
                                         }} required />
                                     </div>
                                 </div>
@@ -187,7 +227,7 @@ function AddVendorContract() {
                                 </div>
                                 <div className="row pt-2">
                                     <div className="col">
-                                        <label htmlFor='comp_addr1'>Company Address Line 1</label>
+                                        <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
                                         <input type="text" className="form-control" id='comp_addr1' required />
                                     </div>
                                     <div className="col">
@@ -205,39 +245,40 @@ function AddVendorContract() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <label htmlFor='contract_type'>Type of Contract <span className='text-danger'>*</span></label>
-                                        <select className="form-select" id='contract_type'  onChange={togglerecurrngdiv}>
+                                        <select className="form-select" id='contract_type' onChange={togglerecurrngdiv}>
                                             <option hidden>Select Contract Type</option>
-                                        {
-                                            contractlist.map((item,index)=>
-                                            <option key={index} value={item.contract_type}>{item.contract_type}</option>)
-                                        }
+                                            {
+                                                contractlist.map((item, index) =>
+                                                    <option key={index} value={item.contract_type}>{item.contract_type}</option>)
+                                            }
                                         </select>
                                     </div>
                                     <div className="col-md-4">
                                         <label htmlFor='vendor_category'>Vendor Category <span className='text-danger'>*</span></label>
-                                        <select type="text" className="form-select" id='vendor_category' required  onChange={handleChangeCategory}>
-                                        <option value='' hidden>Select Category</option>
-                                        <option >Internet</option>
-                                        <option >Abc</option>
-                                        <option >Telecome</option>
-                                        {
-                                            vendorcatlist.map((item,index)=>
-                                            <option key={index} value={item.vendor_category}>{item.vendor_category}</option>)
-                                        }
+                                        <select type="text" className="form-select" id='vendor_category' required onChange={handleChangeCategory}>
+                                            <option value='' hidden>Select Category</option>
+                                            <option >Internet</option>
+                                            <option >Abc</option>
+                                            <option >Telecome</option>
+                                            {
+                                                vendorcatlist.map((item, index) =>
+                                                    <option key={index} value={item.vendor_category}>{item.vendor_category}</option>)
+                                            }
                                         </select>
                                     </div>
                                     <div className="col-md-4" >
                                         <label htmlFor='vendor_sub_category'>Vendor Sub Category <span className='text-danger'>*</span></label>
                                         <select type="text" className="form-select" id='vendor_sub_category' required >
-                                        <option value='' hidden>Select Sub Category</option>
+                                            <option value='' hidden>Select Sub Category</option>
+                                            <option value='abc' >Abc</option>
                                             {
-                                                vendorsubcatlist.map((item,index)=>
-                                                <option key={index} value={item.vendor_sub_category}>{item.vendor_sub_category}</option>)
+                                                vendorsubcatlist.map((item, index) =>
+                                                    <option key={index} value={item.vendor_sub_category}>{item.vendor_sub_category}</option>)
                                             }
                                         </select>
                                     </div>
                                 </div>
-                                <div className='mt-2' id='recurringdiv' style={{display:"none"}}>
+                                <div className='mt-2' id='recurringdiv' style={{ display: "none" }}>
                                     <div className="row ">
                                         <div className="col-md-4">
                                             <label htmlFor='contact_plan_detail'>Contact Plan Detail <span className='text-danger'>*</span></label>
@@ -271,11 +312,11 @@ function AddVendorContract() {
                                     </div>
                                     <div className="col-md-6 d-flex align-items-center" >
                                         <label htmlFor='ref_no' className='col-md-4' >Reference Number <span className='text-danger'>*</span></label>
-                                        <input title='Click if Reference Number is same as Account no' type="checkbox" className="" id='ref_no'  required style={{ height: "20px", width: "20px", marginRight: "20px" }}  onChange={handleChangeRef}/>
+                                        <input title='Click if Reference Number is same as Account no' type="checkbox" className="" id='ref_no' required style={{ height: "20px", width: "20px", marginRight: "20px" }} onChange={handleChangeRef} />
 
                                         <div className="col-md-7" >
-                                        <p className='col text-danger' id='ref_no_lable'>Same as Account number </p>
-                                            <input type="text" className="form-control" id='ref_no_input' required placeholder='Reference no.'/>
+                                            <p className='col text-danger' id='ref_no_lable'>Same as Account number </p>
+                                            <input type="text" className="form-control" id='ref_no_input' required placeholder='Reference no.' />
                                         </div>
                                     </div>
                                 </div>
@@ -294,7 +335,7 @@ function AddVendorContract() {
                                         <input type="checkbox" className="" id='tds' style={{ height: "20px", width: "20px" }} />
                                     </div>
                                 </div>
-                                <div className="row " id='link_id_div'>
+                                <div className="row " id='link_id_div' style={{display:"none"}}>
                                     <div className="col-md-4" >
                                         <label htmlFor='link_id_no'>Link Id No <span className='text-danger'>*</span></label>
                                         <input type="text" className="form-control" id='link_id_no' required />

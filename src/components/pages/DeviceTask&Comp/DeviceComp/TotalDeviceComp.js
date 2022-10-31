@@ -96,15 +96,18 @@ function UpdateDevicetaskcomp() {
 
                         </div>
 
-                        <DataTableExtensions {...tableData}>
-                            <DataTable
-                                noHeader
-                                defaultSortField="id"
-                                defaultSortAsc={false}
-                                pagination
-                                highlightOnHover
-                            />
-                        </DataTableExtensions>
+                        {
+                            data.length>0 ? <DataTableExtensions {...tableData}>
+                                <DataTable
+                                    noHeader
+                                    defaultSortField="id"
+                                    defaultSortAsc={false}
+                                    pagination
+                                    highlightOnHover
+                                />
+                            </DataTableExtensions> : null
+                        }
+
 
                     </div>
                 </div>

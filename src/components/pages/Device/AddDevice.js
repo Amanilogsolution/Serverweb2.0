@@ -85,7 +85,7 @@ function AddDevice() {
             setTimeout(() => {
                 if (arryresult.length>0) {
                     alert('added')
-                    window.location.href = '/ShowDevice'
+                    window.location.href = '/TotalDevice'
                 }
 
                 else {
@@ -222,7 +222,7 @@ function AddDevice() {
                                     <div className="form-group" >
                                         <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                         <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                        <button type="button" onClick={() => { window.location.href = '/ShowDevice' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                        <button type="button" onClick={() => { window.location.href = '/TotalDevice' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
 
                                     </div>
                                 </form>

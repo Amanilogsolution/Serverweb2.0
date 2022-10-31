@@ -8,23 +8,23 @@
  }
 
  /* Chrome, Safari, Edge, Opera */
- /* input::-webkit-outer-spin-button,
+ input::-webkit-outer-spin-button,
  input::-webkit-inner-spin-button {
      -webkit-appearance: none;
      margin: 0;
- } */
+ }
 
  /* Firefox */
- /* input[type=number] {
+ input[type=number] {
      -moz-appearance: textfield;
- } */
+ }
 
 
  .main_container {
      background: #fff;
      background: url("./image/themeimg.jpg");
      background-size: 100% 100%;
-     min-height: 77.5vh;
+     min-height: 77vh;
      max-width: 100%;
      box-shadow: 2px 1px 10px gray, -3px -3px 10px gray;
      border-radius: 10px 0px 0px 10px;

@@ -70,7 +70,7 @@ function EditDevice() {
         if (result === 'Updated') {
             alert('Data Updated')
             sessionStorage.removeItem('deviceSno');
-            window.location.href = '/ShowDevice'
+            window.location.href = '/TotalDevice'
         }
         else {
             alert("Server not response...")

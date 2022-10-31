@@ -47,7 +47,7 @@ function EditDeviceComp() {
         const result = await Updatedevicetaskcomp(sno, devicename, services, compliances, remark, username);
         if (result === 'Updated') {
             alert("Data Updated");
-            sessionStorage.removeItem('devicetaskcompSno');
+            sessionStorage.removeItem('devicecompSno');
             window.location.href = './TotalDeviceComp'
         }
         else {
@@ -99,7 +99,7 @@ function EditDeviceComp() {
                                 <div className="form-group" >
                                     <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
                                     {/* <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button> */}
-                                    <button type="button" onClick={() => { sessionStorage.removeItem('devicetaskcompSno'); window.location.href = '/TotalDeviceComp' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                    <button type="button" onClick={() => { sessionStorage.removeItem('devicecompSno'); window.location.href = '/TotalDeviceComp' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                 </div>
                             </form>
                         </article>
