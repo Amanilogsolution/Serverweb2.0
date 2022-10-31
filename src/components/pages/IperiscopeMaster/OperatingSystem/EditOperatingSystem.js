@@ -1,6 +1,8 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import { useEffect, useState } from 'react';
 import { GetOperatingSystem, EditOperatingsystem } from '../../../../api'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+
 
 function EditOperatingSystem() {
     const [data, setData] = useState({});
@@ -15,7 +17,7 @@ function EditOperatingSystem() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        document.getElementById('subnitbtn').disabled=true;
+        document.getElementById('subnitbtn').disabled = true;
         const operatingsystemid = document.getElementById('operatingsystemid').value;
         const operatingsystem = document.getElementById('operatingsystem').value;
         const remark = document.getElementById('remark').value;
@@ -28,7 +30,7 @@ function EditOperatingSystem() {
             const result = await EditOperatingsystem(sessionStorage.getItem('OperatingSystemSno'), operatingsystemid, operatingsystem, remark, username);
             if (result) {
                 alert('Updated')
-                localStorage.removeItem('OperatingSystemSno')
+                sessionStorage.removeItem('OperatingSystemSno')
                 window.location.href = '/TotalOperatingSystem'
             }
             else {
@@ -52,33 +54,33 @@ function EditOperatingSystem() {
     return (
         <>
             <Sidebar>
-            <div className='main_container' >
-                        <div className="card card-div" >
-                            <header className="card-header" >
-                                <h4 className=" mt-2 text-center" >Edit Operating System</h4>
-                            </header>
-                            <article className="card-body" >
-                                <form style={{ margin: "0px 20px 0px 15px" }}>
-                                    <div className="form-group">
-                                        <label htmlFor='operatingsystemid'>Operating System ID </label>
-                                        <input type="text" className="form-control" disabled value={data.id} id='operatingsystemid' onChange={(e) => handleChangeID(e)} />
-                                    </div>
-                                    <div className="form-group " >
-                                        <label htmlFor='operatingsystem'>Operating System  </label>
-                                        <input type="text" className="form-control" value={data.operating_system} id='operatingsystem' onChange={(e) => handleChangeOperatingSystem(e)} />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor='remark'>Remarks (Optional)</label>
-                                        <textarea className="form-control" placeholder="Comments" value={data.remark} id='remark' rows="3" onChange={(e) => handleChangeRemark(e)} />
-                                    </div>
-                                    <div className="form-group" >
-                                        <button type="button" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
-                                        <button type="button" onClick={() => { sessionStorage.removeItem('OperatingSystemSno'); window.location.href = '/TotalOperatingSystem' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
-                                    </div>
-                                </form>
-                            </article>
-                        </div>
+                <div className='main_container pb-2' >
+                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Operating System</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Operating System</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('OperatingSystemSno'); window.location.href = '/TotalOperatingSystem' }} >Back <MdOutlineArrowForward /></button>
                     </div>
+                    <div className="card card-div" >
+
+                        <article className="card-body" >
+                            <form className='px-3' autoComplete='off'>
+                                <div className="form-group">
+                                    <label htmlFor='operatingsystemid'>Operating System ID </label>
+                                    <input type="text" className="form-control" disabled value={data.id} id='operatingsystemid' onChange={(e) => handleChangeID(e)} />
+                                </div>
+                                <div className="form-group " >
+                                    <label htmlFor='operatingsystem'>Operating System  </label>
+                                    <input type="text" className="form-control" value={data.operating_system} id='operatingsystem' onChange={(e) => handleChangeOperatingSystem(e)} />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor='remark'>Remarks (Optional)</label>
+                                    <textarea className="form-control" placeholder="Comments" value={data.remark} id='remark' rows="3" onChange={(e) => handleChangeRemark(e)} />
+                                </div>
+                                    <button type="button" className="btn btn-voilet mt-2 " id="subnitbtn" onClick={handleadddevice}>Update</button>
+                                    <button type="button" className="btn btn-secondary mt-2 ml-3" onClick={() => { sessionStorage.removeItem('OperatingSystemSno'); window.location.href = '/TotalOperatingSystem' }} >Cancel</button>
+                            </form>
+                        </article>
+                    </div>
+                </div>
             </Sidebar>
         </>
     )
