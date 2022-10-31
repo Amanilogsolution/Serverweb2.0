@@ -125,6 +125,10 @@ import TotalVendorCode from './components/pages/DrizzleMain/VendorCode/TotalVend
 import EditVendorCode from './components/pages/DrizzleMain/VendorCode/EditVendorCode';
 import AddVendorCode from './components/pages/DrizzleMain/VendorCode/AddVendorCode';
 
+import TotalVendorContract from './components/pages/DrizzleMain/VendorContract/TotalVendorContract';
+import EditVendorContract from './components/pages/DrizzleMain/VendorContract/EditVendorContract';
+import AddVendorContract from './components/pages/DrizzleMain/VendorContract/AddVendorContract';
+
 
 
 const App = () => {
@@ -266,6 +270,9 @@ const App = () => {
         <Route path="/EditVendorCode" element={<EditVendorCode />} />
         <Route path="/AddVendorCode" element={<AddVendorCode />} />
 
+        <Route path="/TotalVendorContract" element={<TotalVendorContract />} />
+        <Route path="/EditVendorContract" element={<EditVendorContract />} />
+        <Route path="/AddVendorContract" element={<AddVendorContract />} />
 
         
       </Routes>

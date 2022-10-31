@@ -579,9 +579,13 @@ export const GetVendorCategoryapi = async (sno) => {
 }
 
 export const UpdateVendorCategoryapi = async (sno,vendor_category,vendor_category_description,user_id) => {
-    console.log(sno,vendor_category)
     const url = `http://192.168.145.48:8007/api/updateVendorCategory`
     return axios.post(url,{sno,vendor_category,vendor_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const ActiveVendorCategory = async () => {
+    const url = `http://192.168.145.48:8007/api/getallvendorcategory`
+    return axios.post(url,{}).then(response => response.data).catch(error => console.log(error));
 }
 
 
@@ -614,6 +618,11 @@ export const UpdateLocation = async (sno,company_name,location_code,location_nam
         contact_person_email,contact_person_number,location_latitude,location_longitude,user_id)
     const url = ` http://192.168.145.48:8007/api/updateLocation`
     return axios.post(url,{sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const ActiveLocation = async () => {
+    const url = `http://192.168.145.48:8007/api/getalllocation`
+    return axios.post(url,{}).then(response => response.data).catch(error => console.log(error));
 }
 
 
@@ -703,6 +712,11 @@ export const UpdateContractType = async (sno,contract_type,contract_description,
     const url = `http://192.168.145.48:8007/api/updateContractType`
     return axios.post(url,{sno,contract_type,contract_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
+export const ActiveContractType = async () => {
+    const url = `http://192.168.145.48:8007/api/getallcontracttype`
+    return axios.post(url,{}).then(response => response.data).catch(error => console.log(error));
+}
+
 
 // Ticket Status Master
 
@@ -759,7 +773,11 @@ export const UpdateVendSubCate = async (sno,vendor_category,vendor_sub_category,
     const url = `http://192.168.145.48:8007/api/updateVendorSubCategory`
     return axios.post(url,{sno,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
-
+export const ActiveVendSubCate = async (vendor_category) => {
+    console.log(vendor_category)
+    const url = `http://192.168.145.48:8007/api/getvendorsubcategorybyvend`
+    return axios.post(url,{vendor_category}).then(response => response.data).catch(error => console.log(error));
+}
 
 // Service Action Type Master
 
@@ -843,6 +861,11 @@ export const GetVendorCode= async (sno) => {
 export const UpdateVendorCode = async (sno,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,venodr_portal,user_id) => {
     const url = `http://192.168.145.48:8007/api/updateVendorCode`
     return axios.post(url,{sno,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,venodr_portal,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const ActiveVendorCode = async () => {
+    const url = `http://192.168.145.48:8007/api/getallvendor`
+    return axios.post(url,{}).then(response => response.data).catch(error => console.log(error));
 }
 
 

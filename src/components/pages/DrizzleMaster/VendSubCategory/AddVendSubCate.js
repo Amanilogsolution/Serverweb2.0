@@ -1,10 +1,22 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React from 'react';
-import { InsertVendSubCate } from '../../../../api'
+import React, { useState, useEffect } from 'react';
+import { InsertVendSubCate, ActiveVendorCategory } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 
 function AddVendorSubCategory() {
+    const [vendorcatlist, setVendorcatlist] = useState([])
+
+
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            const vendorCategory = await ActiveVendorCategory()
+            setVendorcatlist(vendorCategory)
+
+        }
+        fetchdata();
+    }, [])
 
     const handleinsertdata = async (e) => {
         e.preventDefault();
@@ -43,7 +55,13 @@ function AddVendorSubCategory() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <label htmlFor='vendor_category'> Vendor Category </label>
-                                        <input type="text" className="form-control" id='vendor_category' />
+                                        <select type="text" className="form-select" id='vendor_category' >
+                                            <option value='' hidden>Select Vendor Category</option>
+                                            {
+                                                vendorcatlist.map((item, index) =>
+                                                    <option key={index} value={item.vendor_category}>{item.vendor_category}</option>)
+                                            }
+                                        </select>
                                     </div>
                                     <div className="col-md-6" >
                                         <label htmlFor='vendor_sub_category'>Vendor Sub Category </label>
@@ -55,7 +73,6 @@ function AddVendorSubCategory() {
                                         <label htmlFor='remark'>Description</label>
                                         <textarea className="form-control" id='remark' rows='3' />
                                     </div>
-
                                 </div>
 
                                 <div className="form-group" >

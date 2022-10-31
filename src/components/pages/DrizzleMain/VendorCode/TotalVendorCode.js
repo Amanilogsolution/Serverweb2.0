@@ -97,6 +97,7 @@ function TotalVendorCode() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalVendorCodeapi();
+            console.log(tabledata)
             setData(tabledata)
         }
         fetchdata();

@@ -260,6 +260,13 @@ const Sidebar = ({ children }) => {
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Code</div>
                             </NavLink>
                         </li>
+                        <li title='Product'>
+                            <NavLink to='/TotalVendorContract' className="link" activeclassname="sidebaractive">
+                                <div className="icon"><FaTasks /></div>
+                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Contract</div>
+                            </NavLink>
+                        </li>
+                        
                         
 
                     </ul>
