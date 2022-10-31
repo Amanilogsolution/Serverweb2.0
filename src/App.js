@@ -244,11 +244,6 @@ const App = () => {
 
 
 
-        
-
-        
-        
-        
         <Route path="/TotalTicketStatus" element={<TotalTicketStatus />} />
         <Route path="/AddTicketStatus" element={<AddTicketStatus />} />
         <Route path="/EditTicketStatus" element={<EditTicketStatus />} />

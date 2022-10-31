@@ -1,8 +1,7 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
 import { Getseries, Updateseries } from '../../../../api'
-import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
-// import './Editseries.css'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 function Editseries() {
     const [data, setData] = useState({});
@@ -79,13 +78,13 @@ function Editseries() {
             <Sidebar >
                 <div className='main_container pb-2'>
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Series</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Edit Series</span> </h2>
-                        <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries'  }} >Back <MdOutlineArrowForward/></button>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Series</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Series</span> </h2>
+                        <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div" >
-                        
+
                         <article className="card-body" >
-                            <form className='px-3'  autoComplete='off'>
+                            <form className='px-3' autoComplete='off'>
                                 <div className="row">
                                     <div className="form-group col-md-6">
                                         <label htmlFor='typeid'> Type ID </label>
@@ -133,8 +132,6 @@ function Editseries() {
 
                                 <div className="form-group" >
                                     <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
-                                    {/* <button type="button" onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button> */}
-
                                 </div>
                             </form>
                         </article>

@@ -1,6 +1,7 @@
 import { AddOperatingsystem, ActiveSeries, TotalCount } from '../../../../api'
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar';
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 
 function AddOperatingSystem() {
@@ -50,7 +51,11 @@ function AddOperatingSystem() {
     return (
         <>
             <Sidebar>
-                <div className='main_container' >
+                <div className='main_container pb-2' >
+                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Device Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device Type</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalDeviceType' }} >Back <MdOutlineArrowForward /></button>
+                    </div>
                     <div className="card card-div">
                         <header className="card-header" >
                             <h4 className=" mt-2 text-center" >Add Operating System</h4>

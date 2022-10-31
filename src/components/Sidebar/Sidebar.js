@@ -110,7 +110,7 @@ const Sidebar = ({ children }) => {
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/Showoperatingsystem' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalOperatingSystem' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Operating System</div>
                                     </NavLink>
                                 </li>

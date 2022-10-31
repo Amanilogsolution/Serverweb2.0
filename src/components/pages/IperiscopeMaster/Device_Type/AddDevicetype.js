@@ -1,8 +1,7 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AddDevicetypeapi, ActiveSeries, TotalCount } from '../../../../api'
 import React, { useEffect, useState } from 'react'
-// import './AddDeviceType.css'
-import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 function AddDevicetype() {
     const [deviceid, setDeviceId] = useState()
@@ -53,13 +52,13 @@ function AddDevicetype() {
         <>
             <Sidebar>
                 <div className='main_container pb-2'>
-                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Device Type</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Device Type</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalDeviceType'  }} >Back <MdOutlineArrowForward/></button>
+                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Device Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device Type</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalDeviceType' }} >Back <MdOutlineArrowForward /></button>
                     </div>
-                    <div className="card card-div" style={{width:"50%"}}>
+                    <div className="card card-div" style={{ width: "50%" }}>
                         <article className="card-body" >
-                            <form className='px-3'  autoComplete='off'>
+                            <form className='px-3' autoComplete='off'>
                                 <div className="form-group">
                                     <label htmlFor='devicetypeid'>Device ID </label>
                                     <input type="text" className="form-control" id='devicetypeid' value={deviceid} disabled />
@@ -74,7 +73,7 @@ function AddDevicetype() {
                                 </div>
                                 <div className="form-group" >
                                     <button type="submit" className="btn btn-voilet  mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
-                                    <button type="reset" className="btn btn-secondary  mb-4 mt-3" style={{margin :"0px 5px"}}>Reset</button>
+                                    <button type="reset" className="btn btn-secondary  mb-4 mt-3" style={{ margin: "0px 5px" }}>Reset</button>
 
                                 </div>
                             </form>

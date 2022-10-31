@@ -1,8 +1,7 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import { useEffect, useState } from 'react';
 import { Getdevicetype, Updatedevicetype } from '../../../../api'
-import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
-// import './EditDeviceType.css'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 function EditDevicetype() {
     const [data, setData] = useState({});
@@ -56,14 +55,13 @@ function EditDevicetype() {
         <>
             <Sidebar>
                 <div className='main_container pb-2'  >
-                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Series</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Edit Device Type</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalDeviceType'  }} >Back <MdOutlineArrowForward/></button>
+                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Device Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Device Type</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalDeviceType' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div">
-                  
                         <article className="card-body" >
-                            <form className='px-3'  autoComplete='off'>
+                            <form className='px-3' autoComplete='off'>
                                 <div className="form-group">
                                     <label htmlFor='deviceid'>Device ID </label>
                                     <input type="text" className="form-control" disabled id='deviceid' value={data.id} onChange={handlechangedeviceid} />

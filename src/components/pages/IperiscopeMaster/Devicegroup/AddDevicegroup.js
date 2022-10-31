@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar';
-import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import { Adddevicegroup, ActiveSeries, TotalCount } from '../../../../api'
-import './AddDeviceGroup.css'
+// import './AddDeviceGroup.css'
 
 function AddDevicegroup() {
     const [agentgroupid, setAgentGroupID] = useState()
@@ -24,13 +24,15 @@ function AddDevicegroup() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        // document.getElementById('subnitbtn').disabled=true;
+        document.getElementById('subnitbtn').disabled = true;
         const devicegroup = document.getElementById('devicegroup').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
         if (!devicegroup) {
             alert('Please enter the mandatory field')
+            document.getElementById('subnitbtn').disabled = false;
+
         }
         else {
             const result = await Adddevicegroup(agentgroupid, devicegroup, remark, username);
@@ -42,6 +44,8 @@ function AddDevicegroup() {
                 alert('Device Group already Exist');
             }
             else {
+                document.getElementById('subnitbtn').disabled = false;
+
                 alert("Server Error");
             }
         }
@@ -49,15 +53,15 @@ function AddDevicegroup() {
     return (
         <>
             <Sidebar>
-                <div className='main_container' id='main' >
-                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Series</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Device Group</span> </h2>
-                        <button className='btn btn-secondary btn btn-sm' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Showdevicegroup'  }} >Back <MdOutlineArrowForward/></button>
+                <div className='main_container pb-2' >
+                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Device Group</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device Group</span> </h2>
+                        <button className='btn btn-secondary btn btn-sm' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Showdevicegroup' }} >Back <MdOutlineArrowForward /></button>
                     </div>
-                    <div className="card add_dev_group">
+                    <div className="card card-div">
 
                         <article className="card-body" >
-                            <form style={{ margin: "0px 20px 0px 15px" }}>
+                            <form  className='px-3' autoComplete='off'>
                                 <div className="form-group">
                                     <label htmlFor='devicegroupid'>Device ID </label>
                                     <input type="text" className="form-control" id='devicegroupid' disabled value={agentgroupid} />

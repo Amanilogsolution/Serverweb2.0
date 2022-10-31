@@ -30,7 +30,6 @@ const customStyles = {
     cells: {
         style: {
             fontSize: '15px',
-            // fontWeight:'600',
             background: 'rgb(242,242,242)	',
             borderBottom: "1px solid silver",
             paddingLeft: "5%"
@@ -105,7 +104,7 @@ function TotalDevice_Type() {
             <Sidebar>
                 <div className='main_container' >
                     <div className='innermain_container m-auto'>
-                       
+
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                             <h2><span style={{ color: "rgb(123,108,200)" }}>Device Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Device Type</span> </h2>
                             <button className='btn btn-voilet ' onClick={(e) => { e.preventDefault(); window.location.href = '/AddDevicetype' }} >Add Device Type <MdAdd /></button>

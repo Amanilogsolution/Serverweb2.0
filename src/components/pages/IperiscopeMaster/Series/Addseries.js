@@ -1,8 +1,7 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React from 'react';
 import { Addseriesapi } from '../../../../api'
-// import './Addseries.css'
-import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 
 function Addseries() {
@@ -39,69 +38,67 @@ function Addseries() {
         <>
             <Sidebar >
                 <div className='main_container pb-2' >
-                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Series</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Series</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries'  }} >Back <MdOutlineArrowForward/></button>
+                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Series</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Series</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries' }} >Back <MdOutlineArrowForward /></button>
                     </div>
-                        <div className="card card-div">
-                            <article className="card-body" >
-                                <form className='px-3'  autoComplete='off'>
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <label htmlFor='typeid'>Device Type ID </label>
-                                            <input type="text" className="form-control" id='typeid' />
-                                        </div>
-                                        <div className="col-md-6" >
-                                            <label htmlFor='seriesid'>Device Services ID </label>
-                                            <input type="text" className="form-control" id='seriesid' />
-                                        </div>
+                    <div className="card card-div">
+                        <article className="card-body" >
+                            <form className='px-3' autoComplete='off'>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label htmlFor='typeid'>Device Type ID </label>
+                                        <input type="text" className="form-control" id='typeid' />
                                     </div>
-                                    <div className="row">
-                                        <div className="col-md-6" >
-                                            <label htmlFor='taskid'>Device Task ID</label>
-                                            <input type="text" className="form-control" id='taskid' />
-                                        </div>
-                                        <div className="col-md-6" >
-                                            <label htmlFor='agentid'>Agent ID</label>
-                                            <input type="text" className="form-control" id='agentid' max={10} />
-                                        </div>
+                                    <div className="col-md-6" >
+                                        <label htmlFor='seriesid'>Device Services ID </label>
+                                        <input type="text" className="form-control" id='seriesid' />
                                     </div>
-                                    <div className="row">
-                                        <div className="col-md-6" >
-                                            <label htmlFor='groupid'>Group ID</label>
-                                            <input type="text" className="form-control" id='groupid' />
-                                        </div>
-                                        <div className="col-md-6" >
-                                            <label htmlFor='osid'>OS ID</label>
-                                            <input type="text" className="form-control" id='osid' max={10} />
-                                        </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6" >
+                                        <label htmlFor='taskid'>Device Task ID</label>
+                                        <input type="text" className="form-control" id='taskid' />
                                     </div>
-                                    <div className="row">
-                                        <div className="col-md-4" >
-                                            <label htmlFor='compid'>Compliance ID</label>
-                                            <input type="text" className="form-control" id='compid' />
-                                        </div>
-                                        <div className="col-md-4" >
-                                            <label htmlFor='deviceid'>Device ID</label>
-                                            <input type="text" className="form-control" id='deviceid' max={10} />
-                                        </div>
-                                        <div className="col-md-4" >
+                                    <div className="col-md-6" >
+                                        <label htmlFor='agentid'>Agent ID</label>
+                                        <input type="text" className="form-control" id='agentid' max={10} />
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6" >
+                                        <label htmlFor='groupid'>Group ID</label>
+                                        <input type="text" className="form-control" id='groupid' />
+                                    </div>
+                                    <div className="col-md-6" >
+                                        <label htmlFor='osid'>OS ID</label>
+                                        <input type="text" className="form-control" id='osid' max={10} />
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-4" >
+                                        <label htmlFor='compid'>Compliance ID</label>
+                                        <input type="text" className="form-control" id='compid' />
+                                    </div>
+                                    <div className="col-md-4" >
+                                        <label htmlFor='deviceid'>Device ID</label>
+                                        <input type="text" className="form-control" id='deviceid' max={10} />
+                                    </div>
+                                    <div className="col-md-4" >
                                         <label htmlFor='taskcompid'>Task & Compliance ID</label>
                                         <input type="text" className="form-control" id='taskcompid' />
                                     </div>
-                                    </div>
-                                    
+                                </div>
 
-                                    <div className="form-group" >
-                                        <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleaddinsert}>Submit</button>
-                                        <button type="reset" className="btn btn-secondary ml-2 mb-4 mt-3" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
-                                        {/* <button type="button" onClick={() => { window.location.href = '/Totalseries' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button> */}
 
-                                    </div>
-                                </form>
-                            </article>
-                        </div>
+                                <div className="form-group" >
+                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleaddinsert}>Submit</button>
+                                    <button type="reset" className="btn btn-secondary ml-2 mb-4 mt-3" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                </div>
+                            </form>
+                        </article>
                     </div>
+                </div>
             </Sidebar>
         </>
     )
