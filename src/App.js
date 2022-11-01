@@ -128,6 +128,7 @@ import AddVendorCode from './components/pages/DrizzleMain/VendorCode/AddVendorCo
 import TotalVendorContract from './components/pages/DrizzleMain/VendorContract/TotalVendorContract';
 import EditVendorContract from './components/pages/DrizzleMain/VendorContract/EditVendorContract';
 import AddVendorContract from './components/pages/DrizzleMain/VendorContract/AddVendorContract';
+import AddTicket from './components/pages/HelpDesk/Tickets/AddTicket';
 
 
 
@@ -268,6 +269,8 @@ const App = () => {
         <Route path="/TotalVendorContract" element={<TotalVendorContract />} />
         <Route path="/EditVendorContract" element={<EditVendorContract />} />
         <Route path="/AddVendorContract" element={<AddVendorContract />} />
+
+        <Route path="/AddTickets" element={<AddTicket/>} />
 
         
       </Routes>
