@@ -3,12 +3,13 @@ import {
     FaTh,
     FaUserAlt,
     FaTasks,
-    FaThList,FaFileContract
+    FaThList, FaFileContract
 } from "react-icons/fa";
 
 import { IoIosArrowDown, IoMdLogOut } from 'react-icons/io'
-import { MdOutlineDoubleArrow, MdDevicesOther } from 'react-icons/md'
+import { MdOutlineDoubleArrow, MdDevicesOther,MdLiveHelp } from 'react-icons/md'
 import { BsJournalCode } from 'react-icons/bs'
+import { HiTicket } from 'react-icons/hi'
 
 import { VscLocation } from 'react-icons/vsc'
 import { NavLink } from 'react-router-dom';
@@ -22,11 +23,13 @@ const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [submasterOpen, setSubmasterOpen] = useState(false);
     const [subdrizelmaster, setSubdrizelmaster] = useState(false);
+    const [helpdeskmaster, setHelpdeskmaster] = useState(false);
     const toggle = () => {
         setIsOpen(!isOpen)
         if (isOpen) {
             document.getElementById('mastersubdiv').style.display = "none";
             document.getElementById('masterdrizellsubdiv').style.display = "none"
+            document.getElementById('masterhelpdesk').style.display = "none"
         }
     };
 
@@ -37,10 +40,10 @@ const Sidebar = ({ children }) => {
     const iconoffstyle = {
         marginLeft: "0%"
     }
-    const handleLogout=()=>{
+    const handleLogout = () => {
         sessionStorage.clear()
-        window.location.href='/'
-      }
+        window.location.href = '/'
+    }
 
     const handlesubmaster = () => {
         if (!submasterOpen && isOpen) {
@@ -74,6 +77,23 @@ const Sidebar = ({ children }) => {
         }
         setSubdrizelmaster(!subdrizelmaster)
     }
+    const handleHelpDesk = () => {
+        if (!helpdeskmaster && isOpen) {
+            document.getElementById('masterhelpdesk').style.display = "block"
+            document.getElementById('helpdesktitlelink').style.background = "#603AE9"
+            document.getElementById('helpdesktitlelink').style.color = "#fff"
+            document.getElementById('footerdivsection').style.background = "#fff"
+
+        }
+        else {
+            document.getElementById('masterhelpdesk').style.display = "none"
+            document.getElementById('helpdesktitlelink').style.background = "#fff"
+            document.getElementById('helpdesktitlelink').style.color = "#000"
+
+        }
+        setHelpdeskmaster(!helpdeskmaster)
+    }
+    
     return (
         <div className="sidebarcontainer">
             <div className={isOpen ? 'sidebaropen' : 'sidebar'} onMouseEnter={() => setIsOpen(true)}
@@ -273,8 +293,28 @@ const Sidebar = ({ children }) => {
                         </li>
 
 
+                        <li title='Help Desk'>
+                            <div className="link" id='helpdesktitlelink' style={{ cursor: "pointer" }} onClick={handleHelpDesk}>
+                                <div className="icon" onClick={toggle}><MdLiveHelp /></div>
+                                <span style={{ display: "flex" }} >
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text ">Help Desk</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
+                                </span>
+                            </div>
+
+                            <ul id='masterhelpdesk' className='inneruldiv'>
+                                <li className='innerlink'>
+                                    <NavLink to='/AddTickets' className='navlink d-flex' activeclassname="sidebaractive">
+                                        <HiTicket />
+                                        <div style={{ display: isOpen ? "block" : "none" }} > Ticket</div>
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </li>
 
                     </ul>
+
+
                 </div>
                 <div className="footer_section" title='Logout' id='footerdivsection'>
                     <a className="link" activeclassname="sidebaractive" style={{ borderTop: "1px solid #333" }}>
@@ -285,7 +325,7 @@ const Sidebar = ({ children }) => {
             </div>
 
             <div className={isOpen ? "mainopen" : "main"}>
-                <Navbar isOpen={isOpen}/>
+                <Navbar isOpen={isOpen} />
                 {children}
                 <Footer />
             </div>
