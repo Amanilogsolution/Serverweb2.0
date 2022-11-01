@@ -30,7 +30,7 @@ const Navbar = () => {
     return (
         <>
             <div className="navbarcontainer bg-white mb-3 d-flex " style={navheight}>
-                <h5 style={{ color: "#603AE9",margin:"7px" }}>Drizlle</h5>
+                <h5 style={{ color: "#603AE9",margin:"7px" }}>Drizzle</h5>
                 <span onClick={openProfile}>
                 <FaUserCircle style={profile} />
                 </span>
