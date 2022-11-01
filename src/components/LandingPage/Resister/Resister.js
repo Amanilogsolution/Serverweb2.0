@@ -91,7 +91,7 @@ export default function Resister() {
                                     <div className="row mb-3" id='gstno-div' style={{ display: "none" }}>
                                         <div className="form-group col-md-5">
                                             <label htmlFor='gstno'>Gst no :-</label>
-                                            <input type='text' id="gstno" className="form-control col" placeholder='	XXXXXXXXXXXXXXX' />
+                                            <input type='text' id="gstno" className="form-control col" placeholder='XXXXXXXXXXXXXXX'/>
                                         </div>
                                     </div>
 
