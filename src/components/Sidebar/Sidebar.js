@@ -8,7 +8,7 @@ import {
 
 import { IoIosArrowDown, IoMdLogOut } from 'react-icons/io'
 import { MdOutlineDoubleArrow, MdDevicesOther } from 'react-icons/md'
-import {VscLocation} from 'react-icons/vsc'
+import { VscLocation } from 'react-icons/vsc'
 import { NavLink } from 'react-router-dom';
 import Footer from './Footer/Footer';
 import Navbar from './Navbar.js';
@@ -35,7 +35,6 @@ const Sidebar = ({ children }) => {
     const iconoffstyle = {
         marginLeft: "0%"
     }
-
 
 
     const handlesubmaster = () => {
@@ -72,9 +71,10 @@ const Sidebar = ({ children }) => {
     }
     return (
         <div className="sidebarcontainer">
-            <div className={isOpen ? 'sidebaropen' : 'sidebar'} onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
+            <div className={isOpen ? 'sidebaropen' : 'sidebar'} onMouseEnter={() => setIsOpen(true)}
+                onMouseLeave={toggle}>
                 <div className="top_section">
-                    <img style={{width:"110px",display: isOpen ? "block" : "none"}} src={logo}/>
+                    <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} />
                     <div style={isOpen ? icononstyle : iconoffstyle} className="bars">
                         <MdOutlineDoubleArrow onClick={toggle} />
                     </div>
@@ -149,8 +149,8 @@ const Sidebar = ({ children }) => {
                             <ul id='masterdrizellsubdiv' className='inneruldiv'>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalLocations' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <VscLocation />
-                                        <div style={{ display: isOpen ? "block" : "none"}} > Location</div>
+                                        <VscLocation />
+                                        <div style={{ display: isOpen ? "block" : "none" }} > Location</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
@@ -267,8 +267,8 @@ const Sidebar = ({ children }) => {
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Contract</div>
                             </NavLink>
                         </li>
-                        
-                        
+
+
 
                     </ul>
                 </div>
