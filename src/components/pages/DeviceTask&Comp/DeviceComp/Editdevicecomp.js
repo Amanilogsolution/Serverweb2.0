@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../../../Sidebar/Sidebar';
 import { getdevicetaskcomp } from '../../../../api'
 import { ActiveServiceCompliance, Updatedevicetaskcomp } from '../../../../api/index'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 function EditDeviceComp() {
     // const [device,setDevice]=useState([]);
@@ -37,6 +38,8 @@ function EditDeviceComp() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
+
         const devicename = document.getElementById('devicename').value;
         const services = document.getElementById('services').value;
         const compliances = document.getElementById('compliances').value;
@@ -44,14 +47,22 @@ function EditDeviceComp() {
         const username = sessionStorage.getItem('UserName');
         const sno = sessionStorage.getItem('devicecompSno')
 
-        const result = await Updatedevicetaskcomp(sno, devicename, services, compliances, remark, username);
-        if (result === 'Updated') {
-            alert("Data Updated");
-            sessionStorage.removeItem('devicecompSno');
-            window.location.href = './TotalDeviceComp'
+        if (!devicename || !services || !compliances.length) {
+            alert("Please enter Mandatory field")
+            document.getElementById('subnitbtn').disabled = false;
+
         }
         else {
-            alert("Server Error");
+            const result = await Updatedevicetaskcomp(sno, devicename, services, compliances, remark, username);
+            if (result === 'Updated') {
+                alert("Data Updated");
+                sessionStorage.removeItem('devicecompSno');
+                window.location.href = './TotalDeviceComp'
+            }
+            else {
+                alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
+            }
         }
 
     }
@@ -61,6 +72,10 @@ function EditDeviceComp() {
         <>
             <Sidebar>
                 <div className='main_container' >
+                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Device Compliances</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device Compliances</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => {sessionStorage.removeItem('devicecompSno'); window.location.href = '/TotalDeviceComp' }} >Back <MdOutlineArrowForward /></button>
+                    </div>
                     <div className="card card-div" >
                         <header className="card-header" >
                             <h4 className=" mt-2 text-center" >Edit Device Compliance</h4>
@@ -81,7 +96,7 @@ function EditDeviceComp() {
                                     <label htmlFor='compliances'> Compliance </label>
                                     <select
                                         id="compliances"
-                                        className="form-control col-md-12"
+                                        className="form-select col-md-12"
                                     >
                                         <option value={data.add_compliance} hidden >{data.add_compliance}</option>
                                         {
@@ -96,10 +111,8 @@ function EditDeviceComp() {
                                     <label htmlFor='remark'>Remarks</label>
                                     <textarea className="form-control" placeholder="Comments" id='remark' rows="3" value={data.remark} onChange={handlechangeremark} />
                                 </div>
-                                <div className="form-group" >
-                                    <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
-                                    {/* <button type="button" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button> */}
-                                    <button type="button" onClick={() => { sessionStorage.removeItem('devicecompSno'); window.location.href = '/TotalDeviceComp' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                <div className="form-group mt-3" >
+                                    <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleadddevice}>Update</button>
                                 </div>
                             </form>
                         </article>

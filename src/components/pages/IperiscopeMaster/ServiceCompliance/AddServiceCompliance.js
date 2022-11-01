@@ -1,6 +1,7 @@
 import { Addservicecompliance, ActiveDeviceService, ActiveSeries, TotalCount } from '../../../../api'
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar';
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 
 function AddServiceCompliance() {
@@ -27,6 +28,7 @@ function AddServiceCompliance() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const DeviceService = document.getElementById('DeviceService').value
         const ServiceCompliance = document.getElementById('servicecompliance').value;
         const remark = document.getElementById('remark').value;
@@ -34,18 +36,24 @@ function AddServiceCompliance() {
 
         if (!DeviceService || !ServiceCompliance) {
             alert("Please enter Mandatory field")
+            document.getElementById('subnitbtn').disabled = false;
+
         }
         else {
             const result = await Addservicecompliance(complianceid, DeviceService, ServiceCompliance, remark, username);
             if (result === 'Added') {
                 alert("Added")
-                window.location.href = '/showservicecompliance'
+                window.location.href = '/TotalServicecompliance'
             }
             else if (result === 'Already') {
                 alert('This Device Type already Exist');
+                document.getElementById('subnitbtn').disabled = false;
+
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
+
             }
         }
     }
@@ -53,10 +61,12 @@ function AddServiceCompliance() {
         <>
             <Sidebar>
                 <div className='main_container' >
+                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Service Compliance</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Service Compliance</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalServicecompliance' }} >Back <MdOutlineArrowForward /></button>
+                    </div>
                     <div className="card card-div" >
-                        <header className="card-header" >
-                            <h4 className=" mt-2 text-center" >Add Service Compliance</h4>
-                        </header>
+
                         <article className="card-body" >
                             <form style={{ margin: "0px 20px 0px 15px" }}>
                                 <div className="form-group">
@@ -65,17 +75,14 @@ function AddServiceCompliance() {
                                 </div>
                                 <div className="form-group " >
                                     <label>Device Service <span style={{ color: "red" }}>*</span></label>
-
                                     <select
                                         id="DeviceService"
-                                        className="form-control col-md-12"
-                                    >
-                                        <option selected hidden value="">Choose Service</option>
+                                        className="form-select ">
+                                        <option hidden value="">Choose Service</option>
                                         {
                                             deviceservice.map((data, index) => (
                                                 <option key={index} value={data.device_services}>{data.device_services}</option>
                                             ))
-
                                         }
                                     </select>
                                 </div>
@@ -88,10 +95,8 @@ function AddServiceCompliance() {
                                     <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
                                 </div>
                                 <div className="form-group" >
-                                    <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
+                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button> &nbsp;
                                     <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                    <button type="button" onClick={() => { window.location.href = '/Device-Type' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
-
                                 </div>
                             </form>
                         </article>

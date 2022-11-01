@@ -1,6 +1,7 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import { GetServiceCompliance, ActiveDeviceService, Updateservicecompliance } from '../../../../api'
 import React, { useEffect, useState } from 'react'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 function EditServiceCompliance() {
     const [deviceservice, setDeviceService] = useState([])
@@ -18,6 +19,7 @@ function EditServiceCompliance() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const servicecomplianceid = document.getElementById('servicecomplianceid').value;
         const DeviceService = document.getElementById('DeviceService').value
         const ServiceCompliance = document.getElementById('servicecompliance').value;
@@ -26,14 +28,21 @@ function EditServiceCompliance() {
 
         if (!DeviceService || !ServiceCompliance) {
             alert('Please enter mandatory field')
+            document.getElementById('subnitbtn').disabled = false;
+
         }
         else {
 
             const result = await Updateservicecompliance(sessionStorage.getItem('ServiceComplianceSno'), servicecomplianceid, DeviceService, ServiceCompliance, remark, username);
-            if (result) {
-                alert("Update")
+            if (result==='Updated') {
+                alert("Data Update")
                 sessionStorage.removeItem('ServiceComplianceSno');
-                window.location.href = '/showservicecompliance'
+                window.location.href = '/TotalServicecompliance'
+            }
+            else {
+                alert('Server not response')
+                document.getElementById('subnitbtn').disabled = false;
+
             }
         }
     }
@@ -52,10 +61,12 @@ function EditServiceCompliance() {
         <>
             <Sidebar>
                 <div className='main_container' >
+                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Service Compliance</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Service Compliance</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('ServiceComplianceSno'); window.location.href = '/TotalServicecompliance' }} >Back <MdOutlineArrowForward /></button>
+                    </div>
                     <div className="card card-div" >
-                        <header className="card-header" >
-                            <h4 className=" mt-2 text-center" >Edit Service Compliance</h4>
-                        </header>
+
                         <article className="card-body" >
                             <form style={{ margin: "0px 20px 0px 15px" }}>
                                 <div className="form-group">
@@ -67,7 +78,7 @@ function EditServiceCompliance() {
 
                                     <select
                                         id="DeviceService"
-                                        className="form-control col-md-12">
+                                        className="form-select col-md-12">
                                         <option hidden value={data.device_services}>{data.device_services}</option>
                                         {
                                             deviceservice.map((data, index) => (
@@ -86,9 +97,7 @@ function EditServiceCompliance() {
                                     <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" onChange={handleChangeremark} value={data.remark} />
                                 </div>
                                 <div className="form-group" >
-                                    <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
-                                    <button type="button" onClick={() => { sessionStorage.removeItem('ServiceComplianceSno'); window.location.href = '/showservicecompliance' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
-
+                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
                                 </div>
                             </form>
                         </article>

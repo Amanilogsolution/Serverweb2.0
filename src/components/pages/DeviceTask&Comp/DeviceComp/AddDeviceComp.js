@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../../../Sidebar/Sidebar';
 import { ActiveDeviceService, ActiveServiceCompliance, Activedevice, AddDevicetaskCompliance } from '../../../../api/index'
 import Select from 'react-select';
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+
 
 function AddDeviceComp() {
 
     const [activeservice, setActiveService] = useState([])
     const [activecompliance, setActiveCompliance] = useState([]);
     const [activedevicename, setActiveDeviceName] = useState([]);
-
     const [compliance, setCompliance] = useState([])
 
     useEffect(() => {
@@ -28,7 +29,7 @@ function AddDeviceComp() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        // document.getElementById('subnitbtn').disabled = true;
+        document.getElementById('subnitbtn').disabled = true;
         const devicename = document.getElementById('devicename').value;
         const services = document.getElementById('services').value;
         const remark = document.getElementById('remark').value;
@@ -36,6 +37,8 @@ function AddDeviceComp() {
 
         if (!devicename || !services || !compliance.length) {
             alert("Please enter Mandatory field")
+            document.getElementById('subnitbtn').disabled = false;
+
         }
         else {
             const arryresult = [];
@@ -50,6 +53,8 @@ function AddDeviceComp() {
             }
             else {
                 alert('Server not response')
+                document.getElementById('subnitbtn').disabled = false;
+
             }
 
         }
@@ -71,17 +76,21 @@ function AddDeviceComp() {
         <>
             <Sidebar>
                 <div className='main_container' >
+                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Device Compliances</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device Compliances</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalDeviceComp' }} >Back <MdOutlineArrowForward /></button>
+                    </div>
                     <div className="card  card-div">
-                        <header className="card-header" >
+                        {/* <header className="card-header" >
                             <h4 className=" mt-2 text-center" >Add Device Compliances</h4>
-                        </header>
+                        </header> */}
                         <article className="card-body" >
                             <form style={{ margin: "0px 20px 0px 15px" }}>
                                 <div className="form-group">
                                     <label>Device Name<span style={{ color: "red" }}>*</span> </label>
                                     <select
                                         id="devicename"
-                                        className="form-control col-md-12"
+                                        className="form-select"
                                     >
                                         <option hidden value="">Choose Device Name</option>
                                         {
@@ -95,7 +104,7 @@ function AddDeviceComp() {
                                     <label>Select Services <span style={{ color: "red" }}>*</span></label>
                                     <select
                                         id="services"
-                                        className="form-control col-md-12"
+                                        className="form-select"
                                     >
                                         <option hidden value=" ">Choose Service</option>
                                         {
@@ -119,10 +128,9 @@ function AddDeviceComp() {
                                     <label>Remarks</label>
                                     <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
                                 </div>
-                                <div className="form-group" >
-                                    <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
-                                    <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                    <button type="button" onClick={() => { window.location.href = '/TotalDeviceComp' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                <div className="form-group mt-3" >
+                                    <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleadddevice}>Submit</button>&nbsp;
+                                    <button type="reset" className="btn btn-secondary">Reset</button>
                                 </div>
                             </form>
                         </article>

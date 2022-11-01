@@ -4,7 +4,38 @@ import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { Activedevice, Getdevicetaskcompliancebyname, Updatedevicecompstatus } from '../../../../api'
+import { AiFillEdit } from 'react-icons/ai';
+import { MdAdd } from 'react-icons/md';
 
+
+const customStyles = {
+    title: {
+        style: {
+            fontColor: 'red',
+            fontWeight: '900',
+        }
+    },
+    rows: {
+        style: {
+            minHeight: '35px'
+        }
+    },
+    headCells: {
+        style: {
+            fontSize: '14px',
+            background: 'rgb(105,59,233)',
+            color: 'white',
+        },
+    },
+    cells: {
+        style: {
+            fontSize: '14px',
+            // fontWeight:'600',
+            background: 'rgb(242,242,242)',
+            borderBottom: "1px solid silver"
+        },
+    },
+};
 function UpdateDevicetaskcomp() {
     const [data, setData] = useState([])
     const [devicename, setDevicename] = useState([]);
@@ -46,9 +77,11 @@ function UpdateDevicetaskcomp() {
             selector: "null",
             cell: (row) => [
                 <a title='Edit Agent master' href="/EditDeviceComp">
-                    <button className="btn btn-success" onClick={() => sessionStorage.setItem('devicecompSno', `${row.sno}`)} >
-                        Edit
-                    </button></a>
+                    <p onClick={() => sessionStorage.setItem('devicecompSno', `${row.sno}`)} >
+                        {/* Edit */}
+                        <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+
+                    </p></a>
             ]
         }
 
@@ -81,11 +114,11 @@ function UpdateDevicetaskcomp() {
                     <div className='innermain_container m-auto' >
                         <div className='d-flex justify-content-between pt-4'>
                             <h3> Device Compliances</h3>
-                            <button className='btn btn-voilet m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceComp' }}>Add Compliances </button>
+                            <button className='btn btn-voilet m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceComp' }}>Add Compliances <MdAdd/></button>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-4" >
-                                <select className="form-control" id='devicename' onChange={handelselect}>
+                                <select className="form-select" id='devicename' onChange={handelselect}>
                                     <option value='' hidden>Select Device</option>
                                     {
                                         devicename.map((item, index) =>
@@ -97,15 +130,19 @@ function UpdateDevicetaskcomp() {
                         </div>
 
                         {
-                            data.length>0 ? <DataTableExtensions {...tableData}>
+                            data.length > 0 ? <DataTableExtensions {...tableData}>
                                 <DataTable
                                     noHeader
                                     defaultSortField="id"
                                     defaultSortAsc={false}
                                     pagination
                                     highlightOnHover
+                                    customStyles={customStyles}
                                 />
-                            </DataTableExtensions> : null
+                            </DataTableExtensions>
+                                : <div>
+                                    <h2 className='text-center'>Select Device</h2>
+                                </div>
                         }
 
 

@@ -4,6 +4,38 @@ import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { TotalServiceCompliance, ServiceComplianceStatus } from '../../../../api'
+import { AiFillEdit } from 'react-icons/ai';
+import { MdOutlineKeyboardArrowRight,MdAdd } from 'react-icons/md';
+
+
+const customStyles = {
+    title: {
+        style: {
+            fontColor: 'red',
+            fontWeight: '900',
+        }
+    },
+    rows: {
+        style: {
+            minHeight: '35px'
+        }
+    },
+    headCells: {
+        style: {
+            fontSize: '14px',
+            background: 'rgb(105,59,233)',
+            color: 'white',
+        },
+    },
+    cells: {
+        style: {
+            fontSize: '14px',
+            // fontWeight:'600',
+            background: 'rgb(242,242,242)',
+            borderBottom: "1px solid silver"
+        },
+    },
+};
 
 function TotalServicecompliance() {
     const [data, setData] = useState([])
@@ -50,9 +82,10 @@ function TotalServicecompliance() {
             cell: (row) => [
                 <a title='Edit Device Type' href="/EditServiceCompliance">
 
-                    <button className="btn btn-success " onClick={() => sessionStorage.setItem('ServiceComplianceSno', `${row.sno}`)} >
-                        Edit
-                    </button></a>
+                    <p  onClick={() => sessionStorage.setItem('ServiceComplianceSno', `${row.sno}`)} >
+                        {/* Edit */}
+                    <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+                    </p></a>
             ]
         }
 
@@ -79,8 +112,8 @@ function TotalServicecompliance() {
                 <div className='main_container' >
                     <div className='innermain_container m-auto'>
                         <div className='d-flex justify-content-between pt-4'>
-                            <h3>Total Service Compliance</h3>
-                            <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddServicecompliance' }}>Add Compliance</button>
+                            <h2><span style={{ color: "rgb(123,108,200)" }}>Service Compliance</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Service Compliance</span> </h2>
+                            <button className='btn btn-voilet mr-5 add-btn ' onClick={e => { e.preventDefault(); window.location.href = './AddServicecompliance' }}>Add Service Compliance<MdAdd/></button>
                         </div>
                         <DataTableExtensions {...tableData}>
                             <DataTable
@@ -89,6 +122,7 @@ function TotalServicecompliance() {
                                 defaultSortAsc={false}
                                 pagination
                                 highlightOnHover
+                                customStyles={customStyles}
                             />
                         </DataTableExtensions>
                     </div>
