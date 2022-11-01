@@ -72,6 +72,7 @@ function AddVendorContract() {
     }
     const handleaddinsert = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const vendor_contract_id = 'vendId';
         const vendor = document.getElementById('vendor').value;
         const company_address_line1 = document.getElementById('comp_addr1').value;
@@ -102,8 +103,8 @@ function AddVendorContract() {
 
         if (!vendor || !company_address_line1 || !company_city || !company_state || !company_pin_code || !company_email ||
             !type_of_contract || !major_category || !sub_category || !customer_account_no || !payee_name || !tds || !help_desk_no) {
-            alert('In if')
-
+            alert('Please Fill the Mandatory Field')
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const refno = document.getElementById('ref_no').checked ? true : false;
@@ -112,7 +113,8 @@ function AddVendorContract() {
             if (type_of_contract === 'Recurring') {
                 if (!contact_plain_details || !rate_per_month || !contract_start_date || !invoice_generation_date || !billing_freq) {
                     errorcount = errorcount + 1
-                    alert('In else if if Recurring')
+                    alert('Please fill the Contract Detail')
+                    document.getElementById('subnitbtn').disabled = false;
                 }
             }
             else {
@@ -125,16 +127,18 @@ function AddVendorContract() {
             if (!refno) {
                 if (!reference_no) {
                     errorcount = errorcount + 1
-                    alert('In else if if reference_no ')
+                    alert('Please Enter the Reference no')
+                    document.getElementById('subnitbtn').disabled = false;
                 }
             }
             else {
-                reference_no = ''
+                reference_no = customer_account_no;
             }
             if (major_category === 'Internet' || major_category === 'Data' || major_category === 'Telecom') {
                 if (!link_id_no) {
                     errorcount = errorcount + 1
-                    alert('In else if if major_category')
+                    alert('Please Enter the Link id no')
+                    document.getElementById('subnitbtn').disabled = false;
                 }
             }
             else { link_id_no = '' }
@@ -149,6 +153,10 @@ function AddVendorContract() {
                 if (callapi === 'Added') {
                     alert('Data Added');
                     window.location.href = './TotalVendorContract'
+                }
+                else {
+                    alert('Server not Response')
+                    document.getElementById('subnitbtn').disabled = false;
                 }
             }
 
@@ -335,7 +343,7 @@ function AddVendorContract() {
                                             <input type="number" className="form-control" id='help_desk_no' required />
                                         </div>
                                         <div className="col-md-3 mt-3 d-flex align-items-center" >
-                                            <label htmlFor='tds' className='col-md-3' >TDS <span className='text-danger'>*</span></label>
+                                            <label htmlFor='tds' className='col-md-3' >TDS </label>
                                             <input type="checkbox" className="" id='tds' style={{ height: "20px", width: "20px" }} />
                                         </div>
                                     </div>
