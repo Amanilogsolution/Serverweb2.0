@@ -5,6 +5,8 @@ import Login from './components/LandingPage/Login/Login'
 import Signup from './components/LandingPage/Resister/Resister'
 import LandingPage from './components/LandingPage/LandingPageHome/LandingPage'
 
+import PrivatRoute from './components/HOC/PrivateRoutes';
+
 import Dashboard from './components/pages/Dashboard/Dashboard.js';
 
 import Totalseries from './components/pages/IperiscopeMaster/Series/Totalseries';
@@ -53,9 +55,9 @@ import AddDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/
 import EditDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/EditDeviceServiceTask';
 
 
-import  TotalOrganization  from './components/pages/DrizzleMaster/organization/Totalorganization'
+import TotalOrganization from './components/pages/DrizzleMaster/organization/Totalorganization'
 
-import  TotalEmployee  from './components/pages/DrizzleMaster/Employee/TotalEmployee'
+import TotalEmployee from './components/pages/DrizzleMaster/Employee/TotalEmployee'
 import AddEmployee from './components/pages/DrizzleMaster/Employee/AddEmployee'
 import EditEmployee from './components/pages/DrizzleMaster/Employee/Editemployee';
 
@@ -129,7 +131,7 @@ import EditVendorContract from './components/pages/DrizzleMain/VendorContract/Ed
 import AddVendorContract from './components/pages/DrizzleMain/VendorContract/AddVendorContract';
 import AddTicket from './components/pages/HelpDesk/Tickets/AddTicket';
 
-import  PageNotFound  from './components/404/404';
+import PageNotFound from './components/404/404';
 
 const App = () => {
   return (
@@ -139,127 +141,129 @@ const App = () => {
         <Route path="/Signin" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
 
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route element={<PrivatRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
 
-        <Route path="/Totalseries" element={<Totalseries />} />
-        <Route path="/Addseries" element={<Addseries />} />
-        <Route path="/Editseries" element={<Editseries />} />
+          <Route path="/Totalseries" element={<Totalseries />} />
+          <Route path="/Addseries" element={<Addseries />} />
+          <Route path="/Editseries" element={<Editseries />} />
 
-        <Route path="/TotalDeviceType" element={<TotalDeviceType />} />
-        <Route path="/AddDevicetype" element={<AddDevicetype />} />
-        <Route path="/EditDevicetype" element={<EditDevicetype />} />
+          <Route path="/TotalDeviceType" element={<TotalDeviceType />} />
+          <Route path="/AddDevicetype" element={<AddDevicetype />} />
+          <Route path="/EditDevicetype" element={<EditDevicetype />} />
 
-        <Route path="/Showdevicegroup" element={<Showdevicegroup />} />
-        <Route path="/AddDevicegroup" element={<AddDevicegroup />} />
-        <Route path="/EditDevicegroup" element={<EditDevicegroup />} />
+          <Route path="/Showdevicegroup" element={<Showdevicegroup />} />
+          <Route path="/AddDevicegroup" element={<AddDevicegroup />} />
+          <Route path="/EditDevicegroup" element={<EditDevicegroup />} />
 
-        <Route path="/TotalOperatingSystem" element={<TotalOperatingSystem />} />
-        <Route path="/AddOperatingSystem" element={<AddOperatingSystem />} />
-        <Route path="/EditOperatingSystem" element={<EditOperatingSystem />} />
+          <Route path="/TotalOperatingSystem" element={<TotalOperatingSystem />} />
+          <Route path="/AddOperatingSystem" element={<AddOperatingSystem />} />
+          <Route path="/EditOperatingSystem" element={<EditOperatingSystem />} />
 
-        <Route path="/ShowDeviceservices" element={<ShowDeviceservices />} />
-        <Route path="/AddDeviceservices" element={<AddDeviceservices />} />
-        <Route path="/EditDeviceServices" element={<EditDeviceServices />} />
+          <Route path="/ShowDeviceservices" element={<ShowDeviceservices />} />
+          <Route path="/AddDeviceservices" element={<AddDeviceservices />} />
+          <Route path="/EditDeviceServices" element={<EditDeviceServices />} />
 
-        <Route path="/TotalServicecompliance" element={<TotalServicecompliance />} />
-        <Route path="/AddServicecompliance" element={<AddServicecompliance />} />
-        <Route path="/EditServiceCompliance" element={<EditServiceCompliance />} />
+          <Route path="/TotalServicecompliance" element={<TotalServicecompliance />} />
+          <Route path="/AddServicecompliance" element={<AddServicecompliance />} />
+          <Route path="/EditServiceCompliance" element={<EditServiceCompliance />} />
 
-        <Route path="/TotalDeviceTask" element={<TotalDeviceTask />} />
-        <Route path="/AddDevicetask" element={<AddDevicetask />} />
-        <Route path="/EditDevicetask" element={<EditDevicetask />} />
+          <Route path="/TotalDeviceTask" element={<TotalDeviceTask />} />
+          <Route path="/AddDevicetask" element={<AddDevicetask />} />
+          <Route path="/EditDevicetask" element={<EditDevicetask />} />
 
-        <Route path="/TotalAgent" element={<TotalAgent />} />
-        <Route path="/AddAgent" element={<AddAgent />} />
-        <Route path="/EditAgent" element={<EditAgent />} />
+          <Route path="/TotalAgent" element={<TotalAgent />} />
+          <Route path="/AddAgent" element={<AddAgent />} />
+          <Route path="/EditAgent" element={<EditAgent />} />
 
-        <Route path="/TotalDevice" element={<TotalDevice />} />
-        <Route path="/AddDevice" element={<AddDevice />} />
-        <Route path="/EditDevice" element={<EditDevice />} />
+          <Route path="/TotalDevice" element={<TotalDevice />} />
+          <Route path="/AddDevice" element={<AddDevice />} />
+          <Route path="/EditDevice" element={<EditDevice />} />
 
-        <Route path="/TotalDeviceComp" element={<TotalDeviceComp />} />
-        <Route path="/AddDeviceComp" element={<AddDeviceComp />} />
-        <Route path="/EditDeviceComp" element={<EditDeviceComp />} />
+          <Route path="/TotalDeviceComp" element={<TotalDeviceComp />} />
+          <Route path="/AddDeviceComp" element={<AddDeviceComp />} />
+          <Route path="/EditDeviceComp" element={<EditDeviceComp />} />
 
-        <Route path="/TotalDeviceServiceTask" element={<TotalDeviceServiceTask />} />
-        <Route path="/AddDeviceServiceTask" element={<AddDeviceServiceTask />} />
-        <Route path="/EditDeviceServiceTask" element={<EditDeviceServiceTask />} />
+          <Route path="/TotalDeviceServiceTask" element={<TotalDeviceServiceTask />} />
+          <Route path="/AddDeviceServiceTask" element={<AddDeviceServiceTask />} />
+          <Route path="/EditDeviceServiceTask" element={<EditDeviceServiceTask />} />
 
-        <Route path="/TotalOrganization" element={<TotalOrganization />} />
+          <Route path="/TotalOrganization" element={<TotalOrganization />} />
 
-        <Route path="/TotalLocations" element={<TotalLocations />} />
-        <Route path="/AddLocation" element={<AddLocation />} />
-        <Route path="/EditLocation" element={<EditLocation />} />
-        
-        <Route path="/TotalEmployee" element={<TotalEmployee />} />
-        <Route path="/AddEmployee" element={<AddEmployee />} />
-        <Route path="/EditEmployee" element={<EditEmployee />} />
+          <Route path="/TotalLocations" element={<TotalLocations />} />
+          <Route path="/AddLocation" element={<AddLocation />} />
+          <Route path="/EditLocation" element={<EditLocation />} />
 
-        <Route path="/TotalAssetType" element={<TotalAssetType />} />
-        <Route path="/AddAssetType" element={<AddAssetType />} />
-        <Route path="/EditAssetType" element={<EditAssetType />} />
+          <Route path="/TotalEmployee" element={<TotalEmployee />} />
+          <Route path="/AddEmployee" element={<AddEmployee />} />
+          <Route path="/EditEmployee" element={<EditEmployee />} />
 
-        <Route path="/TotalManufacturer" element={<TotalManufacturer />} />
-        <Route path="/AddManufacturer" element={<AddManufacturer />} />
-        <Route path="/EditManufacturer" element={<EditManufacturer />} />
+          <Route path="/TotalAssetType" element={<TotalAssetType />} />
+          <Route path="/AddAssetType" element={<AddAssetType />} />
+          <Route path="/EditAssetType" element={<EditAssetType />} />
 
-        <Route path="/TotalIssueType" element={<TotalIssueType />} />
-        <Route path="/AddIssueType" element={<AddIssueType />} />
-        <Route path="/EditIssueType" element={<EditIssueType />} />
-        
-        <Route path="/TotalContractType" element={<TotalContractType />} />
-        <Route path="/AddContractType" element={<AddContractType />} />
-        <Route path="/EditContractType" element={<EditContractType />} />
-        
-        <Route path="/TotalAssetStatus" element={<TotalAssetStatus />} />
-        <Route path="/AddAssetStatus" element={<AddAssetStatus />} />
-        <Route path="/EditAssetStatus" element={<EditAssetStatus />} />
+          <Route path="/TotalManufacturer" element={<TotalManufacturer />} />
+          <Route path="/AddManufacturer" element={<AddManufacturer />} />
+          <Route path="/EditManufacturer" element={<EditManufacturer />} />
 
-        <Route path="/TotalSoftware" element={<TotalSoftware />} />
-        <Route path="/AddSoftware" element={<AddSoftware />} />
-        <Route path="/EditSoftware" element={<EditSoftware />} />
+          <Route path="/TotalIssueType" element={<TotalIssueType />} />
+          <Route path="/AddIssueType" element={<AddIssueType />} />
+          <Route path="/EditIssueType" element={<EditIssueType />} />
 
-        <Route path="/TotalPurchaseType" element={<TotalPurchaseType />} />
-        <Route path="/AddPurchaseType" element={<AddPurchaseType />} />
-        <Route path="/EditPurchaseType" element={<EditPurchaseType />} />
+          <Route path="/TotalContractType" element={<TotalContractType />} />
+          <Route path="/AddContractType" element={<AddContractType />} />
+          <Route path="/EditContractType" element={<EditContractType />} />
 
-        <Route path="/TotalPriority" element={<TotalPriority />} />
-        <Route path="/AddPriority" element={<AddPriority />} />
-        <Route path="/EditPriority" element={<EditPriority />} />
+          <Route path="/TotalAssetStatus" element={<TotalAssetStatus />} />
+          <Route path="/AddAssetStatus" element={<AddAssetStatus />} />
+          <Route path="/EditAssetStatus" element={<EditAssetStatus />} />
 
-        <Route path="/TotalBillingFreq" element={<TotalBillingFreq />} />
-        <Route path="/AddBillingFreq" element={<AddBillingFreq />} />
-        <Route path="/EditBillingFreq" element={<EditBillingFreq />} />
+          <Route path="/TotalSoftware" element={<TotalSoftware />} />
+          <Route path="/AddSoftware" element={<AddSoftware />} />
+          <Route path="/EditSoftware" element={<EditSoftware />} />
 
-        <Route path="/TotalVendorCategory" element={<TotalVendorCategory />} />
-        <Route path="/AddVendorCategory" element={<AddVendorCategory />} />
-        <Route path="/EditVendorcategory" element={<EditVendorcategory />} />
+          <Route path="/TotalPurchaseType" element={<TotalPurchaseType />} />
+          <Route path="/AddPurchaseType" element={<AddPurchaseType />} />
+          <Route path="/EditPurchaseType" element={<EditPurchaseType />} />
 
-        <Route path="/TotalTicketStatus" element={<TotalTicketStatus />} />
-        <Route path="/AddTicketStatus" element={<AddTicketStatus />} />
-        <Route path="/EditTicketStatus" element={<EditTicketStatus />} />
-        
-        <Route path="/TotalVendSubCate" element={<TotalVendSubCate />} />
-        <Route path="/AddVendorSubCategory" element={<AddVendorSubCategory />} />
-        <Route path="/EditVendorSubCategory" element={<EditVendorSubCategory />} />
-        
-        <Route path="/TotalServiceActionType" element={<TotalServiceActionType />} />
-        <Route path="/EditServiceActionType" element={<EditServiceActionType />} />
-        <Route path="/AddServiceActionType" element={<AddServiceActionType />} />
+          <Route path="/TotalPriority" element={<TotalPriority />} />
+          <Route path="/AddPriority" element={<AddPriority />} />
+          <Route path="/EditPriority" element={<EditPriority />} />
 
-        <Route path="/TotalServiceGroup" element={<TotalServiceGroup />} />
-        <Route path="/EditServiceGroup" element={<EditServiceGroup />} />
-        <Route path="/AddServiceGroup" element={<AddServiceGroup />} />
+          <Route path="/TotalBillingFreq" element={<TotalBillingFreq />} />
+          <Route path="/AddBillingFreq" element={<AddBillingFreq />} />
+          <Route path="/EditBillingFreq" element={<EditBillingFreq />} />
 
-        <Route path="/TotalVendorCode" element={<TotalVendorCode />} />
-        <Route path="/EditVendorCode" element={<EditVendorCode />} />
-        <Route path="/AddVendorCode" element={<AddVendorCode />} />
+          <Route path="/TotalVendorCategory" element={<TotalVendorCategory />} />
+          <Route path="/AddVendorCategory" element={<AddVendorCategory />} />
+          <Route path="/EditVendorcategory" element={<EditVendorcategory />} />
 
-        <Route path="/TotalVendorContract" element={<TotalVendorContract />} />
-        <Route path="/EditVendorContract" element={<EditVendorContract />} />
-        <Route path="/AddVendorContract" element={<AddVendorContract />} />
+          <Route path="/TotalTicketStatus" element={<TotalTicketStatus />} />
+          <Route path="/AddTicketStatus" element={<AddTicketStatus />} />
+          <Route path="/EditTicketStatus" element={<EditTicketStatus />} />
 
-        <Route path="/AddTickets" element={<AddTicket/>} />
+          <Route path="/TotalVendSubCate" element={<TotalVendSubCate />} />
+          <Route path="/AddVendorSubCategory" element={<AddVendorSubCategory />} />
+          <Route path="/EditVendorSubCategory" element={<EditVendorSubCategory />} />
+
+          <Route path="/TotalServiceActionType" element={<TotalServiceActionType />} />
+          <Route path="/EditServiceActionType" element={<EditServiceActionType />} />
+          <Route path="/AddServiceActionType" element={<AddServiceActionType />} />
+
+          <Route path="/TotalServiceGroup" element={<TotalServiceGroup />} />
+          <Route path="/EditServiceGroup" element={<EditServiceGroup />} />
+          <Route path="/AddServiceGroup" element={<AddServiceGroup />} />
+
+          <Route path="/TotalVendorCode" element={<TotalVendorCode />} />
+          <Route path="/EditVendorCode" element={<EditVendorCode />} />
+          <Route path="/AddVendorCode" element={<AddVendorCode />} />
+
+          <Route path="/TotalVendorContract" element={<TotalVendorContract />} />
+          <Route path="/EditVendorContract" element={<EditVendorContract />} />
+          <Route path="/AddVendorContract" element={<AddVendorContract />} />
+
+          <Route path="/AddTickets" element={<AddTicket />} />
+        </Route>
 
         <Route path="/*" element={<PageNotFound />} />
       </Routes>

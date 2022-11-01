@@ -3,11 +3,13 @@ import {
     FaTh,
     FaUserAlt,
     FaTasks,
-    FaThList
+    FaThList,FaFileContract
 } from "react-icons/fa";
 
 import { IoIosArrowDown, IoMdLogOut } from 'react-icons/io'
 import { MdOutlineDoubleArrow, MdDevicesOther } from 'react-icons/md'
+import { BsJournalCode } from 'react-icons/bs'
+
 import { VscLocation } from 'react-icons/vsc'
 import { NavLink } from 'react-router-dom';
 import Footer from './Footer/Footer';
@@ -245,27 +247,27 @@ const Sidebar = ({ children }) => {
                             </NavLink>
                         </li>
 
-                        <li title='Comment'>
+                        <li title='Device Compliances'>
                             <NavLink to='/TotalDeviceComp' className="link navlink" activeclassname="sidebaractive">
                                 <div className="icon"><FaThList /></div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Device Compliances</div>
                             </NavLink>
                         </li>
-                        <li title='Product'>
+                        <li title='Device Task'>
                             <NavLink to='/TotalDeviceServiceTask' className="link" activeclassname="sidebaractive">
                                 <div className="icon"><FaTasks /></div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Device Task</div>
                             </NavLink>
                         </li>
-                        <li title='Product'>
+                        <li title='Vendor Code'>
                             <NavLink to='/TotalVendorCode' className="link" activeclassname="sidebaractive">
-                                <div className="icon"><FaTasks /></div>
+                                <div className="icon"><BsJournalCode /></div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Code</div>
                             </NavLink>
                         </li>
-                        <li title='Product'>
+                        <li title='Vendor Contract'>
                             <NavLink to='/TotalVendorContract' className="link" activeclassname="sidebaractive">
-                                <div className="icon"><FaTasks /></div>
+                                <div className="icon"><FaFileContract /></div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Contract</div>
                             </NavLink>
                         </li>
