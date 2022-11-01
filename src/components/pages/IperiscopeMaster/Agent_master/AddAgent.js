@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { Addagent, ActiveSeries, TotalCount } from '../../../../api'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 function AddAgent() {
     const [agentid, setAgentID] = useState();
@@ -24,7 +25,7 @@ function AddAgent() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        // document.getElementById('subnitbtn').disabled=true;
+        document.getElementById('subnitbtn').disabled = true;
         const agentname = document.getElementById('agentname').value;
         const agentemail = document.getElementById('agentemail').value;
         const agentphone = document.getElementById('agentphone').value;
@@ -33,6 +34,8 @@ function AddAgent() {
 
         if (!agentname || !agentemail || !agentphone) {
             alert("Please enter Mandatory field")
+            document.getElementById('subnitbtn').disabled = false;
+
         }
         else {
             const result = await Addagent(agentid, agentname, agentemail, agentphone, remark, username);
@@ -42,19 +45,25 @@ function AddAgent() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
+
             }
         }
     }
     return (
         <>
             <Sidebar>
-                <div className='main_container' >
+                <div className='main_container pb-2' >
+                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Agent</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Agent</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAgent' }} >Back <MdOutlineArrowForward /></button>
+                    </div>
                     <div className="card card-div">
-                        <header className="card-header" >
+                        {/* <header className="card-header" >
                             <h4 className=" mt-2 text-center" >Add Agent</h4>
-                        </header>
+                        </header> */}
                         <article className="card-body" >
-                            <form style={{ margin: "0px 20px 0px 15px" }}>
+                            <form className='px-3' autoComplete='off'>
                                 <div className="form-group">
                                     <label htmlFor='agentid'> ID </label>
                                     <input type="text" className="form-control" id='agentid' value={agentid} disabled />
@@ -76,11 +85,9 @@ function AddAgent() {
                                     <label htmlFor='remark'>Remarks (Optional)</label>
                                     <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
                                 </div>
-                                <div className="form-group" >
-                                    <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
-                                    <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                    <button type="button" onClick={() => { window.location.href = '/TotalAgent' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
-
+                                <div className="form-group mt-3" >
+                                    <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleadddevice}>Submit</button>
+                                    <button type="reset" className="btn btn-secondary ml-2">Reset</button>
                                 </div>
                             </form>
                         </article>

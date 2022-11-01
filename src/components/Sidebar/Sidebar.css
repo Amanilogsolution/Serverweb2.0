@@ -87,6 +87,10 @@
     text-decoration: none;
 }
 
+.navlink:active{
+  background: #603AE9;
+  color:#000;
+}
 .main {
     max-width: 96.5%;
     width: 100%;
@@ -153,6 +157,7 @@
     color: #fff;
     /* font-weight: 700; */
 }
+
 
 .innerlink {
     margin-left: 10%;

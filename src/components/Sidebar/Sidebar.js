@@ -163,7 +163,7 @@ const Sidebar = ({ children }) => {
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalAgent' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Agent</div>
                                     </NavLink>
                                 </li>
@@ -285,7 +285,7 @@ const Sidebar = ({ children }) => {
             </div>
 
             <div className={isOpen ? "mainopen" : "main"}>
-                <Navbar />
+                <Navbar isOpen={isOpen}/>
                 {children}
                 <Footer />
             </div>

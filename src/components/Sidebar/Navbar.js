@@ -1,10 +1,11 @@
 import { FaUserCircle } from 'react-icons/fa'
 import { useState } from 'react'
 import './Navbar.css'
+import DrizzleLogo from '../../image/drizzle_logo.jpg'
 
-const Navbar = () => {
+const Navbar = (propes) => {
     const [profileOpen,setProfileOpen] = useState(false);
-    
+
     const navheight = {
         height: "60px",
         padding: "10px 0px 0px 15px ",
@@ -30,14 +31,16 @@ const Navbar = () => {
     return (
         <>
             <div className="navbarcontainer bg-white mb-3 d-flex " style={navheight}>
-                <h5 style={{ color: "#603AE9",margin:"7px" }}>Drizzle</h5>
+                <h5 style={{ color: "#603AE9",margin:"7px" }}>
+                {propes.isOpen?'Drizzle':<img src={DrizzleLogo} style={{height:"100%",}}/>}</h5>
                 <span onClick={openProfile}>
-                <FaUserCircle style={profile} />
+                <FaUserCircle style={profile} 
+                />
                 </span>
                 {
                   profileOpen && (
                     <div className="menu">
-                      <div class="card-body">
+                      <div className="card-body">
                         <h5>Hello</h5>
                         <li>
                           <a>View</a>
@@ -53,22 +56,62 @@ const Navbar = () => {
                     </div>
                   )
                 }
-                {/* <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown button
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div> */}
+
             </div>
         </>
     )
 }
 
 export default Navbar;
+
+
+// import { FaUserCircle } from 'react-icons/fa'
+// import { useState } from 'react'
+// import './Navbar.css'
+// import DrizzleLogo from '../../image/drizzle_logo.jpg'
+
+
+// const Navbar = (propes) => {
+
+//   const navheight = {
+//     height: "60px",
+//     padding: "10px 0px 0px 15px ",
+//     boxShadow: "3px 3px 10px gray",
+//     borderRadius: "10px 0px 0px 10px",
+//     position: "relative"
+//   }
+//   return (
+//     <>
+//       <div className="navbarcontainer bg-white mb-3 d-flex " style={navheight}>
+//         <ul className='navbar-nav'>
+
+//           <li className="nav-item d-none d-sm-inline-block">
+//             <a href="/home" className="nav-link">
+//               Home
+//             </a>
+//           </li>
+//         </ul>
+
+        
+//       </div>
+//     </>
+//   )
+
+// }
+
+// export default Navbar;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // import './Navbar.css';
