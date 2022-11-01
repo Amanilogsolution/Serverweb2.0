@@ -1,100 +1,100 @@
 import axios from 'axios';
 
 export const UserLogin = async (userid, password) => {
-    const url = `http://192.168.145.48:8007/api/login`
+    const url = `https://drizzlebackend.awlworldwide.com/api/login`
     return axios.post(url, { userid, password }).then(response => response.data).catch(error => console.log(error));
 }
 
 //  Iperioscope Series start
 export const Totalseriesapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalseries`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalseries`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updateseriesstatus = async (status, sno) => {
-    const url = `http://192.168.145.48:8007/api/updatesseriestatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatesseriestatus`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Addseriesapi = async (type_id, services_id, task_id, agent_id, group_id, os_id, comp_id, device_id, taskandcomp_id, username) => {
-    const url = `http://192.168.145.48:8007/api/addseries`
+    const url = `https://drizzlebackend.awlworldwide.com/api/addseries`
     return axios.post(url, { type_id, services_id, task_id, agent_id, group_id, os_id, comp_id, device_id, taskandcomp_id, username }).then(response => response.data).catch(error => console.log(error));
 }
 export const Getseries = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getseries`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getseries`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updateseries = async (sno, type_id, services_id, task_id, agent_id, group_id, os_id, comp_id, device_id, taskandcomp_id, username) => {
-    const url = `http://192.168.145.48:8007/api/updateseries`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateseries`
     return axios.post(url, { sno, type_id, services_id, task_id, agent_id, group_id, os_id, comp_id, device_id, taskandcomp_id, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveSeries = async () => {
-    const url = `http://192.168.145.48:8007/api/activeseriesmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/activeseriesmaster`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 //  Iperioscope Series End
 
 export const TotalCount = async (table) => {
-    const url = `http://192.168.145.48:8007/api/totalcount`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalcount`
     return axios.post(url, { table }).then(response => response.data).catch(error => console.log(error));
 }
 
 //Device Type 
 export const TotalDevicetype = async () => {
-    const url = `http://192.168.145.48:8007/api/totaldevicetypemaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totaldevicetypemaster`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 export const Statusdevicetype = async (status, sno) => {
-    const url = `http://192.168.145.48:8007/api/updatetypestatusmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatetypestatusmaster`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddDevicetypeapi = async (devicetypeid, device_type, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/adddevicetypemaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/adddevicetypemaster`
     return axios.post(url, { devicetypeid, device_type, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 export const Getdevicetype = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getdevicetypemaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getdevicetypemaster`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const Updatedevicetype = async (sno, devicetypeid, device_type, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/updatedevicetypemaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatedevicetypemaster`
     return axios.post(url, { sno, devicetypeid, device_type, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveDevicetype = async () => {
-    const url = `http://192.168.145.48:8007/api/activedevicetype`
+    const url = `https://drizzlebackend.awlworldwide.com/api/activedevicetype`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 
 //   Device Group Start
 export const TotalDevicegroup = async () => {
-    const url = `http://192.168.145.48:8007/api/totaldevicegroupmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totaldevicegroupmaster`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeviceGroupStatus = async (status, sno) => {
-    const url = `http://192.168.145.48:8007/api/updategroupstatusmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updategroupstatusmaster`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Adddevicegroup = async (devicegroupid, device_group, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/adddevicegroupmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/adddevicegroupmaster`
     return axios.post(url, { devicegroupid, device_group, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 export const Getdevicegroup = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getdevicegroupmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getdevicegroupmaster`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updatedevicegroup = async (sno, devicegroupid, device_group, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/updatedevicegroupmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatedevicegroupmaster`
     return axios.post(url, { sno, devicegroupid, device_group, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -102,7 +102,7 @@ export const Updatedevicegroup = async (sno, devicegroupid, device_group, remark
 
 
 export const ActiveDevicegroup = async () => {
-    const url = `http://192.168.145.48:8007/api/activedevicegroup`
+    const url = `https://drizzlebackend.awlworldwide.com/api/activedevicegroup`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -110,31 +110,31 @@ export const ActiveDevicegroup = async () => {
 // //os Master
 
 export const TotalOperatingSystemapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totaloperatingsystemmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totaloperatingsystemmaster`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddOperatingsystem = async (operatingsystemid, operatingsystem, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/addoperatingsystemmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/addoperatingsystemmaster`
     return axios.post(url, { operatingsystemid, operatingsystem, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetOperatingSystem = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getoperatingsystemmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getoperatingsystemmaster`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const EditOperatingsystem = async (sno, operatingsystemid, operatingsystem, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/updateoperatingsystemmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateoperatingsystemmaster`
     return axios.post(url, { sno, operatingsystemid, operatingsystem, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const OperatingSystemStatus = async (status, sno) => {
-    const url = `http://192.168.145.48:8007/api/updateoperatingstatusstatusmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateoperatingstatusstatusmaster`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 export const ActiveOperatingSystem = async () => {
-    const url = `http://192.168.145.48:8007/api/activeoperatingsystem`
+    const url = `https://drizzlebackend.awlworldwide.com/api/activeoperatingsystem`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -143,32 +143,32 @@ export const ActiveOperatingSystem = async () => {
 // // Device Services Compliance 
 
 export const TotalServiceCompliance = async () => {
-    const url = `http://192.168.145.48:8007/api/totalservicecompliancemaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalservicecompliancemaster`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Addservicecompliance = async (servicecomplianceid, device_service, services_compliance, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/addservicecompliancemaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/addservicecompliancemaster`
     return axios.post(url, { servicecomplianceid, device_service, services_compliance, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetServiceCompliance = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getservicecompliancemaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getservicecompliancemaster`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updateservicecompliance = async (sno, servicecomplianceid, device_service, services_compliance, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/updateservicecompliancemaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateservicecompliancemaster`
     return axios.post(url, { sno, servicecomplianceid, device_service, services_compliance, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ServiceComplianceStatus = async (status, sno) => {
-    const url = `http://192.168.145.48:8007/api/updateservicecompliancestatusmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateservicecompliancestatusmaster`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveServiceCompliance = async () => {
-    const url = `http://192.168.145.48:8007/api/activeservicecompliance`
+    const url = `https://drizzlebackend.awlworldwide.com/api/activeservicecompliance`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -176,31 +176,31 @@ export const ActiveServiceCompliance = async () => {
 // // Device Services
 
 export const Totaldeviceservices = async () => {
-    const url = `http://192.168.145.48:8007/api/totaldeviceservicesmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totaldeviceservicesmaster`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 export const Adddeviceservice = async (deviceserviceid, device_service, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/adddeviceservicemaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/adddeviceservicemaster`
     return axios.post(url, { deviceserviceid, device_service, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updatestatusdeviceservices = async (status, sno) => {
-    const url = `http://192.168.145.48:8007/api/updatedeviceservicestatusmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatedeviceservicestatusmaster`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Getdeviceservicesdata = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getdeviceservicemaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getdeviceservicemaster`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updatedeviceservice = async (sno, deviceserviceid, device_service, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/updatedeviceservicemaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatedeviceservicemaster`
     return axios.post(url, { sno, deviceserviceid, device_service, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveDeviceService = async () => {
-    const url = `http://192.168.145.48:8007/api/activedeviceservice`
+    const url = `https://drizzlebackend.awlworldwide.com/api/activedeviceservice`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -208,153 +208,153 @@ export const ActiveDeviceService = async () => {
 
 // // Agent Master
 export const Totalagent = async () => {
-    const url = `http://192.168.145.48:8007/api/totalagentmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalagentmaster`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updateagentstatus = async (status, sno) => {
-    const url = `http://192.168.145.48:8007/api/updateagentstatusmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateagentstatusmaster`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const Addagent = async (agentid, agent_name, agent_email, agent_phone, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/addagentmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/addagentmaster`
     return axios.post(url, { agentid, agent_name, agent_email, agent_phone, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Getagent = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getagentmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getagentmaster`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const updateagent = async (sno, agentid, agent_name, agent_email, agent_phone, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/updateagentmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateagentmaster`
     return axios.post(url, { sno, agentid, agent_name, agent_email, agent_phone, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveAgent = async () => {
-    const url = `http://192.168.145.48:8007/api/activeagent`
+    const url = `https://drizzlebackend.awlworldwide.com/api/activeagent`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 // Device Task
 export const Totaldevicetask = async () => {
-    const url = `http://192.168.145.48:8007/api/totaldevicetaskmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totaldevicetaskmaster`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updatedevicetaskstatus = async (status, sno) => {
-    const url = `http://192.168.145.48:8007/api/updatedevicetaskstatusmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatedevicetaskstatusmaster`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Getdevicetask = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getdevicetaskmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getdevicetaskmaster`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 export const AddDevicetaskapi = async (devicetaskid, device_tasks, device_tasks_frequency, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/adddevicetaskmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/adddevicetaskmaster`
     return axios.post(url, { devicetaskid, device_tasks, device_tasks_frequency, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const Updatedevicetask = async (sno, devicetaskid, device_tasks, device_tasks_frequency, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/updatedevicetaskmaster`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatedevicetaskmaster`
     return axios.post(url, { sno, devicetaskid, device_tasks, device_tasks_frequency, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Activedevicetask = async () => {
-    const url = `http://192.168.145.48:8007/api/activedevicetask`
+    const url = `https://drizzlebackend.awlworldwide.com/api/activedevicetask`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetDevicetaskfrequency = async (task) => {
-    const url = `http://192.168.145.48:8007/api/getdevicetaskfrequency`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getdevicetaskfrequency`
     return axios.post(url, { task }).then(response => response.data).catch(error => console.log(error));
 }
 
 
 
 export const Adddevice = async (device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/adddevice`
+    const url = `https://drizzlebackend.awlworldwide.com/api/adddevice`
     return axios.post(url, { device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Totaldeviceapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totaldevice`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totaldevice`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updatedevicestatus = async (status, sno) => {
-    const url = `http://192.168.145.48:8007/api/updatedevicestatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatedevicestatus`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Getdevice = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getdevice`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getdevice`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updatedevice = async (sno, device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/updatedevice`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatedevice`
     return axios.post(url, { sno, device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Activedevice = async () => {
-    const url = `http://192.168.145.48:8007/api/activedevice`
+    const url = `https://drizzlebackend.awlworldwide.com/api/activedevice`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Getdevicetaskcompliancebyname = async (name) => {
-    const url = `http://192.168.145.48:8007/api/getdevicetaskcompliancebyname`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getdevicetaskcompliancebyname`
     return axios.post(url, { name }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddDevicetaskCompliance = async (devicename, services, add_compliance, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/adddeviceTaskcomp`
+    const url = `https://drizzlebackend.awlworldwide.com/api/adddeviceTaskcomp`
     return axios.post(url, { devicename, services, add_compliance, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const getdevicetaskcomp = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getdevicetaskcomp`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getdevicetaskcomp`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updatedevicetaskcomp = async (sno, devicename, services, add_compliance, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/updatedevicetaskcomp`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatedevicetaskcomp`
     return axios.post(url, { sno, devicename, services, add_compliance, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updatedevicecompstatus = async (status, sno) => {
-    const url = `http://192.168.145.48:8007/api/updatedevicecompstatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatedevicecompstatus`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Getdevicetaskbyname = async (name) => {
-    const url = `http://192.168.145.48:8007/api/getdevicetaskbyname`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getdevicetaskbyname`
     return axios.post(url, { name }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Adddevicetaskby = async (devicename, services, task, completion_date, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/adddevicetaskes`
+    const url = `https://drizzlebackend.awlworldwide.com/api/adddevicetaskes`
     return axios.post(url, { devicename, services, task, completion_date, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Updatedevicetaskastatus = async (status, sno) => {
-    const url = `http://192.168.145.48:8007/api/updatedevicetaskastatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatedevicetaskastatus`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const GetDevicestask = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/Getdevicestask`
+    const url = `https://drizzlebackend.awlworldwide.com/api/Getdevicestask`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const UpdateDevicetaskes = async (sno, devicename, services, task, task_frequency, completion_date, remark, username) => {
-    const url = `http://192.168.145.48:8007/api/updatedevicetaskes`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatedevicetaskes`
     return axios.post(url, { sno, devicename, services, task, task_frequency, completion_date, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -364,7 +364,7 @@ export const UpdateDevicetaskes = async (sno, devicename, services, task, task_f
 //Organization
 
 export const TotalOrganization = async () => {
-    const url = `https://192.168.145.48:8007/api/totalorganization`
+    const url = `hhttps://drizzlebackend.awlworldwide.com/api/totalorganization`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -372,80 +372,80 @@ export const TotalOrganization = async () => {
 //Employee
 
 export const TotalEmployees = async () => {
-    const url = `http://192.168.145.48:8007/api/totalEmployee`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalEmployee`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddEmployees = async (employee_id,employee_name,location,employee_email,employee_number,company,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertEmployee`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertEmployee`
     return axios.post(url,{employee_id,employee_name,location,employee_email,employee_number,company,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 export const GetEmployees = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getEmployee`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getEmployee`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteEmployees = async (status,sno) => {
     console.log(status,sno)
-    const url = `http://192.168.145.48:8007/api/deleteEmployee`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteEmployee`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateEmployees = async (sno,employee_name,location,employee_email,employee_number,company,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateEmployee`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateEmployee`
     return axios.post(url,{sno,employee_name,location,employee_email,employee_number,company,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 //Assets Type
 export const TotalAssetTypeapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalAssetType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalAssetType`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddAssetTypeapi = async (asset_type_id,asset_type,asset_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertAssetType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertAssetType`
     return axios.post(url,{asset_type_id,asset_type,asset_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetAssetTypeapi = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getAssetType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getAssetType`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteAssetTypeapi = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteAssetType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteAssetType`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateAssettypeapi = async (sno,asset_type,asset_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateAssetType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateAssetType`
     return axios.post(url,{sno,asset_type,asset_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 //Asset Status
 
 export const TotalAssetStatusapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalAssetStatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalAssetStatus`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddAssetStatusapi = async (asset_status_id,asset_status,asset_status_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertAssetStatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertAssetStatus`
     return axios.post(url,{asset_status_id,asset_status,asset_status_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteAssetStatusapi = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteAssetStatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteAssetStatus`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetAssetStatusapi = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getAssetStatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getAssetStatus`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateAssetStatusapi = async (sno,asset_status,asset_status_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateAssetStatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateAssetStatus`
     return axios.post(url,{sno,asset_status,asset_status_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -453,138 +453,138 @@ export const UpdateAssetStatusapi = async (sno,asset_status,asset_status_descrip
 // Software Master
 
 export const TotalSoftwareapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalSoftware`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalSoftware`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddSoftwareapi = async (software_id,software_name,software_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertSoftware`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertSoftware`
     return axios.post(url,{software_id,software_name,software_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteSoftwaresapi = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteSoftware`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteSoftware`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetSoftwareapi = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getSoftware`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getSoftware`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateSoftwareapi = async (sno,software_name,software_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateSoftware`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateSoftware`
     return axios.post(url,{sno,software_name,software_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 // Purchase Master
 
 export const TotalPurchaseTypeapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalPurchaseType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalPurchaseType`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddPurchaseTypeeapi = async (purchase_id,purchase_type,purchase_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertPurchaseType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertPurchaseType`
     return axios.post(url,{purchase_id,purchase_type,purchase_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeletePurchaseTypeapi = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deletePurchaseType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deletePurchaseType`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetPurchaseTypeapi = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getPurchaseType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getPurchaseType`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdatePurchaseapi = async (sno,purchase_type,purchase_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updatePurchaseType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatePurchaseType`
     return axios.post(url,{sno,purchase_type,purchase_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 // Priority Master
 
 export const TotalPriorityapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalPriority`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalPriority`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddPriorityapi = async (priority_id,priority_type,priority_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertPriority`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertPriority`
     return axios.post(url,{priority_id,priority_type,priority_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const DeletePriorityapi = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deletePriority`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deletePriority`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetPriorityapi = async (sno) => {
     console.log(sno)
-    const url = `http://192.168.145.48:8007/api/getPriority`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getPriority`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 export const UpdatePriorityapi = async (sno,priority_type,priority_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updatePriority`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updatePriority`
     return axios.post(url,{sno,priority_type,priority_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 // Billing Frequency
 export const TotalBillingFreqapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalBillingFrequency`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalBillingFrequency`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteBillingFreqapi = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteBillingFrequency`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteBillingFrequency`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 export const AddBillingFreqapi = async (billing_freq_id,billing_freq,billing_freq_description,user_id) => {
-    const url = ` http://192.168.145.48:8007/api/insertBillingFrequency`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/insertBillingFrequency`
     return axios.post(url,{billing_freq_id,billing_freq,billing_freq_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 export const GetBillingFreqapi = async (sno) => {
-    const url = `http://192.168.145.48:8007/api/getBillingFrequency`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getBillingFrequency`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateBillingFreqapi = async (sno,billing_freq,billing_freq_description,user_id) => {
     console.log(sno,billing_freq)
-    const url = `http://192.168.145.48:8007/api/updateBillingFrequency`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateBillingFrequency`
     return axios.post(url,{sno,billing_freq,billing_freq_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 // Vendor Category
 export const TotalVendorCategoryapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalVendorCategory`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalVendorCategory`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 export const DeleteVendorCategoryapi = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteVendorCategory`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteVendorCategory`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddVendorCategoryapi = async (vendor_category_id,vendor_category,vendor_category_description,user_id) => {
-    const url = ` http://192.168.145.48:8007/api/insertVendorCategory`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/insertVendorCategory`
     return axios.post(url,{vendor_category_id,vendor_category,vendor_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetVendorCategoryapi = async (sno) => {
     console.log(sno)
-    const url = `http://192.168.145.48:8007/api/getVendorCategory`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getVendorCategory`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateVendorCategoryapi = async (sno,vendor_category,vendor_category_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateVendorCategory`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateVendorCategory`
     return axios.post(url,{sno,vendor_category,vendor_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveVendorCategory = async () => {
-    const url = `http://192.168.145.48:8007/api/getallvendorcategory`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getallvendorcategory`
     return axios.post(url,{}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -593,22 +593,22 @@ export const ActiveVendorCategory = async () => {
 //  Location Master
 
 export const TotalLocation = async () => {
-    const url = `http://192.168.145.48:8007/api/totalLocation`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalLocation`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateLocationStatus = async (status,sno) => {
-    const url = ` http://192.168.145.48:8007/api/deleteLocation`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/deleteLocation`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const AddLocationapi = async (location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertLocation`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertLocation`
     return axios.post(url,{location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetLocation = async (sno) => {
-    const url = ` http://192.168.145.48:8007/api/getLocation`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/getLocation`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -616,12 +616,12 @@ export const UpdateLocation = async (sno,company_name,location_code,location_nam
     console.log(sno,company_name,location_code,location_name,location_address_line1,location_address_line2,
         location_city,location_state,location_pin_code,location_gst,contact_person,
         contact_person_email,contact_person_number,location_latitude,location_longitude,user_id)
-    const url = ` http://192.168.145.48:8007/api/updateLocation`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/updateLocation`
     return axios.post(url,{sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveLocation = async () => {
-    const url = `http://192.168.145.48:8007/api/getalllocation`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getalllocation`
     return axios.post(url,{}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -629,30 +629,30 @@ export const ActiveLocation = async () => {
 // Manufacturer Master
 
 export const TotalManufacturerapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalManufacturer`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalManufacturer`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const UpdateManufacturerStatus = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteManufacturer`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteManufacturer`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const InsertManufacturer = async (manufacturer_id,manufacturer_name,manufacturer_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertManufacturer`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertManufacturer`
     return axios.post(url,{manufacturer_id,manufacturer_name,manufacturer_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const GetManufacturer = async (sno) => {
-    const url = ` http://192.168.145.48:8007/api/getManufacturer`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/getManufacturer`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateManufacturer = async (sno,manufacturer_name,manufacturer_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateManufacturer`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateManufacturer`
     return axios.post(url,{sno,manufacturer_name,manufacturer_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -660,28 +660,28 @@ export const UpdateManufacturer = async (sno,manufacturer_name,manufacturer_desc
 // Issue Type Master
 
 export const TotalIssueTypeapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalIssueType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalIssueType`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const UpdateIssueTypeStatus = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteIssueType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteIssueType`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const InsertIssueType = async (issue_id,issue_type,issue_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertIssueType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertIssueType`
     return axios.post(url,{issue_id,issue_type,issue_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetIssueType = async (sno) => {
-    const url = ` http://192.168.145.48:8007/api/getIssueType`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/getIssueType`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateIssueType = async (sno,issue_type,issue_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateIssueType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateIssueType`
     return axios.post(url,{sno,issue_type,issue_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -689,31 +689,31 @@ export const UpdateIssueType = async (sno,issue_type,issue_description,user_id) 
 // Contract Type Master
 
 export const TotalContractTypeapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalContractType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalContractType`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateContractTypeStatus = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteContractType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteContractType`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const InsertContractType = async (contract_id,contract_type,contract_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertContractType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertContractType`
     return axios.post(url,{contract_id,contract_type,contract_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetContractType= async (sno) => {
-    const url = ` http://192.168.145.48:8007/api/getContractType`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/getContractType`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateContractType = async (sno,contract_type,contract_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateContractType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateContractType`
     return axios.post(url,{sno,contract_type,contract_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 export const ActiveContractType = async () => {
-    const url = `http://192.168.145.48:8007/api/getallcontracttype`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getallcontracttype`
     return axios.post(url,{}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -721,27 +721,27 @@ export const ActiveContractType = async () => {
 // Ticket Status Master
 
 export const TotalTicketstatusapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalTicketStatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalTicketStatus`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateTicketstatusActive = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteTicketStatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteTicketStatus`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const InsertTicketstatus = async (ticket_id,ticket_status,ticket_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertTicketStatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertTicketStatus`
     return axios.post(url,{ticket_id,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetTicketstatus= async (sno) => {
-    const url = ` http://192.168.145.48:8007/api/getTicketStatus`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/getTicketStatus`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateTicketstatus = async (sno,ticket_status,ticket_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateTicketStatus`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateTicketStatus`
     return axios.post(url,{sno,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -750,59 +750,59 @@ export const UpdateTicketstatus = async (sno,ticket_status,ticket_description,us
 // Vendor Sub Category Master
 
 export const TotalVendSubCateapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalVendorSubCategory`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalVendorSubCategory`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteVendSubCateStatus = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteVendorSubCategory`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteVendorSubCategory`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const InsertVendSubCate = async (vendor_sub_category_id,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertVendorSubCategory`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertVendorSubCategory`
     return axios.post(url,{vendor_sub_category_id,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetVendSubCate= async (sno) => {
-    const url = ` http://192.168.145.48:8007/api/getVendorSubCategory`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/getVendorSubCategory`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateVendSubCate = async (sno,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateVendorSubCategory`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateVendorSubCategory`
     return axios.post(url,{sno,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 export const ActiveVendSubCate = async (vendor_category) => {
     console.log(vendor_category)
-    const url = `http://192.168.145.48:8007/api/getvendorsubcategorybyvend`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getvendorsubcategorybyvend`
     return axios.post(url,{vendor_category}).then(response => response.data).catch(error => console.log(error));
 }
 
 // Service Action Type Master
 
 export const TotalServiceActionTypeapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalServiceAction`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalServiceAction`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteServiceActionTypeStatus = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteServiceAction`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteServiceAction`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const InsertServiceActionType = async (service_action_id,service_action_type,service_action_type_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertServiceAction`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertServiceAction`
     return axios.post(url,{service_action_id,service_action_type,service_action_type_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetServiceActionType= async (sno) => {
-    const url = ` http://192.168.145.48:8007/api/getServiceAction`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/getServiceAction`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateServiceActionType = async (sno,service_action_type,service_action_type_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateServiceAction`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateServiceAction`
     return axios.post(url,{sno,service_action_type,service_action_type_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -810,27 +810,27 @@ export const UpdateServiceActionType = async (sno,service_action_type,service_ac
 // Service Group Master
 
 export const TotalServiceGroupapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalServiceGroup`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalServiceGroup`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteServiceGroupStatus = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteServiceGroup`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteServiceGroup`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const InsertServiceGroup = async (service_group_id,service_group_type,service_group_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertServiceGroup`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertServiceGroup`
     return axios.post(url,{service_group_id,service_group_type,service_group_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetServiceGroup= async (sno) => {
-    const url = ` http://192.168.145.48:8007/api/getServiceGroup`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/getServiceGroup`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateServiceGroup = async (sno,service_group_type,service_group_description,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateServiceGroup`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateServiceGroup`
     return axios.post(url,{sno,service_group_type,service_group_description,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -839,32 +839,32 @@ export const UpdateServiceGroup = async (sno,service_group_type,service_group_de
 // Vendor Code Master
 
 export const TotalVendorCodeapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalVendorCode`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalVendorCode`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteVendorCode = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteVendorCode`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteVendorCode`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const InsertVendorCode = async (vendor_code_id,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,venodr_portal,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertVendorCode`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertVendorCode`
     return axios.post(url,{vendor_code_id,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,venodr_portal,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetVendorCode= async (sno) => {
-    const url = ` http://192.168.145.48:8007/api/getVendorCode`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/getVendorCode`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateVendorCode = async (sno,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,venodr_portal,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateVendorCode`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateVendorCode`
     return axios.post(url,{sno,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,venodr_portal,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveVendorCode = async () => {
-    const url = `http://192.168.145.48:8007/api/getallvendor`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getallvendor`
     return axios.post(url,{}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -872,12 +872,12 @@ export const ActiveVendorCode = async () => {
 // Vendor Contract Master
 
 export const TotalVendorContractapi = async () => {
-    const url = `http://192.168.145.48:8007/api/totalVendorContract`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalVendorContract`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteVendorContract = async (status,sno) => {
-    const url = `http://192.168.145.48:8007/api/deleteVendorContract`
+    const url = `https://drizzlebackend.awlworldwide.com/api/deleteVendorContract`
     return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -886,7 +886,7 @@ export const InsertVendorContract = async (vendor_contract_id,vendor,company_add
     major_category,sub_category,location,company,customer_account_no,reference_no,contact_plain_details,
     rate_per_month,contract_start_date,invoice_generation_date,billing_freq,payee_name,tds,link_id_no,
     help_desk_no,user_id) => {
-    const url = `http://192.168.145.48:8007/api/insertVendorContract`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertVendorContract`
     return axios.post(url,{vendor_contract_id,vendor,company_address_line1,company_address_line2,
         company_city,company_state,company_pin_code,company_gst,company_website,company_email,type_of_contract,
         major_category,sub_category,location,company,customer_account_no,reference_no,contact_plain_details,
@@ -895,7 +895,7 @@ export const InsertVendorContract = async (vendor_contract_id,vendor,company_add
 }
 
 export const GetVendorContract= async (sno) => {
-    const url = ` http://192.168.145.48:8007/api/getVendorContract`
+    const url = ` https://drizzlebackend.awlworldwide.com/api/getVendorContract`
     return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -904,7 +904,7 @@ export const UpdateVendorContract = async (sno,vendor,company_address_line1,comp
     major_category,sub_category,location,company,customer_account_no,reference_no,contact_plain_details,
     rate_per_month,contract_start_date,invoice_generation_date,billing_freq,payee_name,tds,link_id_no,
     help_desk_no,user_id) => {
-    const url = `http://192.168.145.48:8007/api/updateVendorContract`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateVendorContract`
     return axios.post(url,{sno,vendor,company_address_line1,company_address_line2,company_city,
         company_state,company_pin_code,company_gst,company_website,company_email,type_of_contract,
         major_category,sub_category,location,company,customer_account_no,reference_no,contact_plain_details,
