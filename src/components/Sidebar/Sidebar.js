@@ -36,6 +36,9 @@ const Sidebar = ({ children }) => {
         marginLeft: "0%"
     }
 
+    // const mousedata= document.getElementsByClassName('bars');
+    // mousedata.addEventListener()
+
 
     const handlesubmaster = () => {
         if (!submasterOpen && isOpen) {
