@@ -22,6 +22,11 @@ const Navbar = () => {
     const openProfile = () =>{
         setProfileOpen(!profileOpen)
     }
+
+    const handleLogout=()=>{
+      sessionStorage.clear()
+      window.location.href='/'
+    }
     return (
         <>
             <div className="navbarcontainer bg-white mb-3 d-flex " style={navheight}>
@@ -42,7 +47,7 @@ const Navbar = () => {
                         </li>
                         <hr style={{margin:"9px 0 5px 0"}}/>
                         <li>
-                          <a>Logout</a>
+                          <a onClick={handleLogout}>Logout</a>
                         </li>
                       </div>
                     </div>

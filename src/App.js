@@ -5,7 +5,6 @@ import Login from './components/LandingPage/Login/Login'
 import Signup from './components/LandingPage/Resister/Resister'
 import LandingPage from './components/LandingPage/LandingPageHome/LandingPage'
 
-
 import Dashboard from './components/pages/Dashboard/Dashboard.js';
 
 import Totalseries from './components/pages/IperiscopeMaster/Series/Totalseries';
@@ -52,7 +51,7 @@ import EditDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/Editde
 import TotalDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/TotalDeviceTask';
 import AddDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/AddDeviceServiceTask';
 import EditDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/EditDeviceServiceTask';
-import { PageNotFound } from './components/404/404';
+
 
 import  TotalOrganization  from './components/pages/DrizzleMaster/organization/Totalorganization'
 
@@ -130,13 +129,12 @@ import EditVendorContract from './components/pages/DrizzleMain/VendorContract/Ed
 import AddVendorContract from './components/pages/DrizzleMain/VendorContract/AddVendorContract';
 import AddTicket from './components/pages/HelpDesk/Tickets/AddTicket';
 
-
+import  PageNotFound  from './components/404/404';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route path="/" element={<LandingPage />} />
         <Route path="/Signin" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
@@ -179,7 +177,6 @@ const App = () => {
         <Route path="/AddDevice" element={<AddDevice />} />
         <Route path="/EditDevice" element={<EditDevice />} />
 
-
         <Route path="/TotalDeviceComp" element={<TotalDeviceComp />} />
         <Route path="/AddDeviceComp" element={<AddDeviceComp />} />
         <Route path="/EditDeviceComp" element={<EditDeviceComp />} />
@@ -188,11 +185,7 @@ const App = () => {
         <Route path="/AddDeviceServiceTask" element={<AddDeviceServiceTask />} />
         <Route path="/EditDeviceServiceTask" element={<EditDeviceServiceTask />} />
 
-        <Route path="/*" element={<PageNotFound />} />
-        
         <Route path="/TotalOrganization" element={<TotalOrganization />} />
-
-
 
         <Route path="/TotalLocations" element={<TotalLocations />} />
         <Route path="/AddLocation" element={<AddLocation />} />
@@ -222,7 +215,6 @@ const App = () => {
         <Route path="/AddAssetStatus" element={<AddAssetStatus />} />
         <Route path="/EditAssetStatus" element={<EditAssetStatus />} />
 
-
         <Route path="/TotalSoftware" element={<TotalSoftware />} />
         <Route path="/AddSoftware" element={<AddSoftware />} />
         <Route path="/EditSoftware" element={<EditSoftware />} />
@@ -243,12 +235,9 @@ const App = () => {
         <Route path="/AddVendorCategory" element={<AddVendorCategory />} />
         <Route path="/EditVendorcategory" element={<EditVendorcategory />} />
 
-
-
         <Route path="/TotalTicketStatus" element={<TotalTicketStatus />} />
         <Route path="/AddTicketStatus" element={<AddTicketStatus />} />
         <Route path="/EditTicketStatus" element={<EditTicketStatus />} />
-
         
         <Route path="/TotalVendSubCate" element={<TotalVendSubCate />} />
         <Route path="/AddVendorSubCategory" element={<AddVendorSubCategory />} />
@@ -272,7 +261,7 @@ const App = () => {
 
         <Route path="/AddTickets" element={<AddTicket/>} />
 
-        
+        <Route path="/*" element={<PageNotFound />} />
       </Routes>
 
     </BrowserRouter>

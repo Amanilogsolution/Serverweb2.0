@@ -35,7 +35,10 @@ const Sidebar = ({ children }) => {
     const iconoffstyle = {
         marginLeft: "0%"
     }
-
+    const handleLogout=()=>{
+        sessionStorage.clear()
+        window.location.href='/'
+      }
 
     const handlesubmaster = () => {
         if (!submasterOpen && isOpen) {
@@ -91,7 +94,6 @@ const Sidebar = ({ children }) => {
                             <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
                                 <div className="icon" onClick={toggle}><FaUserAlt /></div>
                                 <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text ">Iperiscope Master<span className="icon"><IoIosArrowDown /></span> </div>
-                                {/* <div style={{ display: isOpen ? "block" : "none" }} className="icon"></div> */}
                             </div>
 
                             <ul id='mastersubdiv' className='inneruldiv' >
@@ -275,7 +277,7 @@ const Sidebar = ({ children }) => {
                 <div className="footer_section" title='Logout' id='footerdivsection'>
                     <a className="link" activeclassname="sidebaractive" style={{ borderTop: "1px solid #333" }}>
                         <div className="icon" onClick={toggle}><IoMdLogOut /></div>
-                        <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text">Logout</div>
+                        <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text" onClick={handleLogout}>Logout</div>
                     </a>
                 </div>
             </div>
