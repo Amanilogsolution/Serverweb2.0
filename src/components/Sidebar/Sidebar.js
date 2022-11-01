@@ -36,8 +36,6 @@ const Sidebar = ({ children }) => {
         marginLeft: "0%"
     }
 
-    // const mousedata= document.getElementsByClassName('bars');
-    // mousedata.addEventListener()
 
 
     const handlesubmaster = () => {
@@ -74,7 +72,7 @@ const Sidebar = ({ children }) => {
     }
     return (
         <div className="sidebarcontainer">
-            <div className={isOpen ? 'sidebaropen' : 'sidebar'}>
+            <div className={isOpen ? 'sidebaropen' : 'sidebar'} onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
                 <div className="top_section">
                     <img style={{width:"110px",display: isOpen ? "block" : "none"}} src={logo}/>
                     <div style={isOpen ? icononstyle : iconoffstyle} className="bars">
