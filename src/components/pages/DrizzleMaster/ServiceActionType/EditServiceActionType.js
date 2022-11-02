@@ -16,6 +16,7 @@ function EditServiceActionType() {
 
     const handleUpdateServiceActionType = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const service_action_type = document.getElementById('service_action_type').value;
         const remark = document.getElementById('remark').value;
         const UserId = sessionStorage.getItem('UserId');
@@ -23,6 +24,7 @@ function EditServiceActionType() {
 
         if (!service_action_type) {
             alert('Please fill the Mandatory Field!')
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await UpdateServiceActionType(sno, service_action_type, remark, UserId);
@@ -34,6 +36,7 @@ function EditServiceActionType() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
         }
 

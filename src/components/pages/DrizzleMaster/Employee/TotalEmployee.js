@@ -41,11 +41,11 @@ const customStyles = {
 function TotalEmployee() {
     const [data, setData] = useState([])
     const columns = [
-        {
-            name: 'Employee ID',
-            selector: row => row.employee_id,
-            sortable: true,
-        },
+        // {
+        //     name: 'Employee ID',
+        //     selector: row => row.employee_id,
+        //     sortable: true,
+        // },
         {
             name: 'Employee Name',
             selector: row => row.employee_name,

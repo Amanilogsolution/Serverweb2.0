@@ -8,14 +8,16 @@ function AddSoftware() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        const software_id = document.getElementById('software_id').value;
+        document.getElementById('subnitbtn').disabled = true;
         const software = document.getElementById('software').value;
+        const software_id =software.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const software_desc = document.getElementById('software_desc').value;
 
         const username = sessionStorage.getItem('UserId');
 
-        if (!software_id || !software || !software_desc) {
+        if ( !software ) {
             alert("All field are mandatory...")
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await AddSoftwareapi(software_id,software,software_desc,username);
@@ -25,6 +27,7 @@ function AddSoftware() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
         }
     }
@@ -40,26 +43,23 @@ function AddSoftware() {
                             <article className="card-body" >
                                 <form className='px-3'  autoComplete='off'>
                                     <div className="row">
-                                        <div className="col-md-6">
-                                            <label htmlFor='typeid'>Software ID </label>
-                                            <input type="text" className="form-control" id='software_id' />
-                                        </div>
+                                      
                                         <div className="col-md-6" >
                                             <label htmlFor='seriesid'>Software </label>
                                             <input type="text" className="form-control" id='software' />
                                         </div>
                                     </div>
-                                    <div className="row">
+                                    <div className="row mt-3">
                                         <div className="col-md" >
-                                            <label htmlFor='taskid'>Description</label>
+                                            <label htmlFor='taskid'>Description (Optional)</label>
                                             <textarea type="email" className="form-control" id='software_desc' />
                                         </div>
                                        
                                     </div>
                                 
-                                    <div className="form-group" >
-                                        <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleaddinsert}>Submit</button>
-                                        <button type="reset" className="btn btn-secondary ml-2 mb-4 mt-3" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                    <div className="form-group mt-3" >
+                                        <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleaddinsert}>Submit</button>
+                                        <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
                                     </div>
                                 </form>
                             </article>

@@ -16,6 +16,7 @@ function EditPriority() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const priority = document.getElementById('priority').value;
         const priority_desc = document.getElementById('priority_desc').value;
         const username = sessionStorage.getItem('UserId');
@@ -23,6 +24,7 @@ function EditPriority() {
 
         if (!priority) {
             alert('Please Enter the Priority Type')
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await UpdatePriorityapi(sno, priority, priority_desc, username);
@@ -34,6 +36,7 @@ function EditPriority() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
 
         }
@@ -54,17 +57,14 @@ function EditPriority() {
                 <div className='main_container pb-2'>
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Priority</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Priority Type</span> </h2>
-                        <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('prioritysno'); window.location.href = '/TotalPurchaseType' }} >Back <MdOutlineArrowForward /></button>
+                        <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('prioritysno'); window.location.href = '/TotalPriority' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div" style={{ width: "50%" }}>
                         <article className="card-body" >
                             <form className='px-3' autoComplete='off'>
                                 <div className="row">
-                                    <div className="form-group col-md-6">
-                                        <label htmlFor='typeid'>Priority ID </label>
-                                        <input type="text" className="form-control" id='purchase_id' disabled value={data.priority_id} />
-                                    </div>
-                                    <div className="form-group col-md-6" >
+                                    
+                                    <div className="form-group col" >
                                         <label htmlFor='seriesid'>Priority Type</label>
                                         <input type="text" className="form-control" id='priority' value={data.priority_type} onChange={handlechangeassetstatus} />
                                     </div>

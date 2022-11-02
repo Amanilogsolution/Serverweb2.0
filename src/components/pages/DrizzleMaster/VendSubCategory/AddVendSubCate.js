@@ -20,14 +20,16 @@ function AddVendorSubCategory() {
 
     const handleinsertdata = async (e) => {
         e.preventDefault();
-        const vend_sub_cate_id = '';
+        document.getElementById('subnitbtn').disabled = true;
         const vendor_category = document.getElementById('vendor_category').value;
+        const vend_sub_cate_id =vend_sub_cate_id.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const vendor_sub_category = document.getElementById('vendor_sub_category').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
 
         if (!vendor_category || !vendor_sub_category) {
             alert("All field are mandatory...")
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await InsertVendSubCate(vend_sub_cate_id, vendor_category, vendor_sub_category, remark, username);
@@ -37,6 +39,7 @@ function AddVendorSubCategory() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
         }
 

@@ -8,13 +8,15 @@ function AddContractType() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        const contract_type_id = '';
+        document.getElementById('subnitbtn').disabled = true;
         const contract_type = document.getElementById('contract_type').value;
+        const contract_type_id = contract_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
 
         if (!contract_type) {
             alert('Please Enter Mandatory Field')
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await InsertContractType(contract_type_id, contract_type, remark, username);
@@ -24,6 +26,7 @@ function AddContractType() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
         }
     }
@@ -43,7 +46,7 @@ function AddContractType() {
                                     <label htmlFor='contract_type'>Contract Type</label>
                                     <input type="text" className="form-control" id='contract_type' />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group mt-3">
                                     <label htmlFor='remark'>Remarks (Optional)</label>
                                     <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
                                 </div>

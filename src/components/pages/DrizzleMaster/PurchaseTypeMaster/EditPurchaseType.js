@@ -16,19 +16,27 @@ function EditPurchaseType() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const purchase_type = document.getElementById('purchase_type').value;
         const purchase_type_desc = document.getElementById('purchase_type_desc').value;
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('purchasesno')
 
-        const result = await UpdatePurchaseapi(sno, purchase_type, purchase_type_desc, username);
-        if (result === 'Updated') {
-            alert('Data Updated')
-            sessionStorage.removeItem('purchasesno');
-            window.location.href = './TotalPurchaseType'
+        if (!purchase_type) {
+            alert("All field are mandatory...")
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
-            alert("Server Error");
+            const result = await UpdatePurchaseapi(sno, purchase_type, purchase_type_desc, username);
+            if (result === 'Updated') {
+                alert('Data Updated')
+                sessionStorage.removeItem('purchasesno');
+                window.location.href = './TotalPurchaseType'
+            }
+            else {
+                alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
+            }
         }
 
     }
@@ -53,11 +61,8 @@ function EditPurchaseType() {
                         <article className="card-body" >
                             <form className='px-3' autoComplete='off'>
                                 <div className="row">
-                                    <div className="form-group col-md-6">
-                                        <label htmlFor='purchase_id'>Purchae Type ID </label>
-                                        <input type="text" className="form-control" id='purchase_id' disabled value={data.purchase_id} />
-                                    </div>
-                                    <div className="form-group col-md-6" >
+
+                                    <div className="form-group col" >
                                         <label htmlFor='purchase_type'>Purchase Type </label>
                                         <input type="text" className="form-control" id='purchase_type' value={data.purchase_type} onChange={handlechangeassetstatus} />
                                     </div>

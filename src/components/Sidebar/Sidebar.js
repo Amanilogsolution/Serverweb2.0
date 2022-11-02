@@ -182,11 +182,11 @@ const Sidebar = ({ children }) => {
                                         <div style={{ display: isOpen ? "block" : "none" }} >Employee</div>
                                     </NavLink>
                                 </li>
-                                <li className='innerlink'>
+                                {/* <li className='innerlink'>
                                     <NavLink to='/TotalAgent' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Agent</div>
                                     </NavLink>
-                                </li>
+                                </li> */}
                                 <li className='innerlink'>
                                     <NavLink to='/TotalAssetType' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Asset Type</div>

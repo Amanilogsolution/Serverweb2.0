@@ -1,17 +1,19 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React from 'react';
+import React, { useState } from 'react';
 import { AddLocationapi } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 
 function AddLocation() {
+    const [numcount, setNumcount] = useState();
+    const [pincount, setPincount] = useState();
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        const location_id = '';
         const company = document.getElementById('company').value;
         const locationcode = document.getElementById('locationcode').value;
         const locationname = document.getElementById('locationname').value;
+        const location_id = locationname.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const address1 = document.getElementById('address1').value;
         const address2 = document.getElementById('address2').value;
         const city = document.getElementById('city').value;
@@ -46,14 +48,15 @@ function AddLocation() {
     return (
         <>
             <Sidebar >
-                <div className='main_container pb-2'>
-                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                <div className='main_container pb-3'>
+                    <div className=' d-flex justify-content-between mx-5 pt-4 '>
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Locations</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Location</span> </h2>
                         <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalLocations' }} >Back <MdOutlineArrowForward /></button>
                     </div>
-                    <div className="card card-div">
+                    <div className="card card-div" style={{ width: "90%" }}>
+                        <div className='card-header'>Add Location:</div>
                         <article className="card-body" >
-                            <form className='px-3'  autoComplete='off'>
+                            <form className='px-3' autoComplete='off'>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <label htmlFor='company'>Select Company </label>
@@ -63,64 +66,63 @@ function AddLocation() {
                                         </select> */}
                                     </div>
                                     <div className="col-md-6" >
-                                        <label htmlFor='locationcode'>Location Code </label>
-                                        <input type="text" className="form-control" id='locationcode' />
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6" >
                                         <label htmlFor='locationname'>Location Name</label>
                                         <input type="text" className="form-control" id='locationname' />
                                     </div>
-                                    <div className="col-md-6" >
+                                </div>
+                                <div className="row mt-3">
+                                    <div className="col-md-4" >
                                         <label htmlFor='address1'>Address Line 1</label>
                                         <input type="text" className="form-control" id='address1' />
                                     </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6" >
+                                    <div className="col-md-4" >
                                         <label htmlFor='address2'>Address Line 2</label>
                                         <input type="text" className="form-control" id='address2' />
                                     </div>
-                                    <div className="col-md-6" >
+                                    <div className="col-md-4" >
                                         <label htmlFor='city'>City</label>
                                         <input type="text" className="form-control" id='city' max={10} />
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="col-md-6" >
+                                <div className="row mt-3">
+                                    <div className="col-md-4" >
                                         <label htmlFor='state'>State</label>
                                         <input type="text" className="form-control" id='state' />
                                     </div>
-                                    <div className="col-md-6" >
+                                    <div className="col-md-4" >
                                         <label htmlFor='pincode'>Pincode</label>
-                                        <input type="number" className="form-control" id='pincode' />
+                                        <input type="number" className="form-control" id='pincode'
+                                            value={pincount}
+                                            onChange={(e) => { if (e.target.value.length === 11) return false; else { setPincount(e.target.value) } }}
+                                        />
                                     </div>
-
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6" >
+                                    <div className="col-md-4" >
                                         <label htmlFor='gstno'>GST No</label>
                                         <input type="text" className="form-control" id='gstno' />
                                     </div>
-                                    <div className="col-md-6" >
+
+                                </div>
+                                <div className="row mt-3">
+
+                                    <div className="col-md-4" >
                                         <label htmlFor='contactpersonname'>Contact Person Name</label>
                                         <input type="text" className="form-control" id='contactpersonname' />
                                     </div>
-                                </div>
 
-                                <div className="row">
-                                    <div className="col-md-6" >
+                                    <div className="col-md-4" >
                                         <label htmlFor='email'>Contact Email</label>
                                         <input type="email" className="form-control" id='email' />
                                     </div>
-                                    <div className="col-md-6" >
+                                    <div className="col-md-4" >
                                         <label htmlFor='contNum'>Contact Number</label>
-                                        <input type="number" className="form-control" id='contNum' />
+                                        <input type="number" className="form-control" id='contNum'
+                                            value={numcount}
+                                            onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumcount(e.target.value) } }}
+                                        />
                                     </div>
                                 </div>
 
-                                <div className="row">
+                                <div className="row mt-3">
                                     <div className="col-md-6" >
                                         <label htmlFor='latitude'>Latitude</label>
                                         <input type="text" className="form-control" id='latitude' />

@@ -1,28 +1,39 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React from 'react';
-import { AddEmployees } from '../../../../api'
-// import './Addemployee.css'
-import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
+import React, { useState, useEffect } from 'react';
+import { AddEmployees, ActiveLocation } from '../../../../api'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 
 function AddEmployee() {
+    const [locationlist, setLocationlist] = useState([])
+    const [numcount, setNumcount] = useState()
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            const tablelocation = await ActiveLocation();
+            setLocationlist(tablelocation)
+        }
+        fetchdata();
+
+    }, [])
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        const employee_id = document.getElementById('employee_id').value;
+
         const employee_name = document.getElementById('employee_name').value;
+        const employee_id = employee_name.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const employee_email = document.getElementById('employee_email').value;
         const employee_number = document.getElementById('employee_number').value;
         const company = document.getElementById('company').value;
-        const location=document.getElementById('location').value;
+        const location = document.getElementById('location').value;
 
         const username = sessionStorage.getItem('UserName');
 
-        if (!employee_id || !employee_name || !employee_email) {
+        if (!employee_number || !location || !employee_name || !employee_email) {
             alert("All field are mandatory...")
         }
         else {
-            const result = await AddEmployees(employee_id,employee_name,location,employee_email,employee_number,company,username);
+            const result = await AddEmployees(employee_id, employee_name, location, employee_email, employee_number, company, username);
             if (result === 'Added') {
                 alert('Data Added ')
                 window.location.href = './TotalEmployee'
@@ -36,59 +47,79 @@ function AddEmployee() {
     return (
         <>
             <Sidebar >
-             <div className='main_container pb-2'  >
-                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Employee</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Add Employee</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => {  window.location.href = '/TotalEmployee'  }} >Back <MdOutlineArrowForward/></button>
+                <div className='main_container pb-2'  >
+                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Employee</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Employee</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalEmployee' }} >Back <MdOutlineArrowForward /></button>
                     </div>
-                        <div className="card card-div">
-                            <article className="card-body" >
-                                <form  className='px-3'  autoComplete='off'>
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <label htmlFor='typeid'>Employee ID </label>
-                                            <input type="text" className="form-control" id='employee_id' />
-                                        </div>
-                                        <div className="col-md-6" >
-                                            <label htmlFor='seriesid'>Employee Name </label>
-                                            <input type="text" className="form-control" id='employee_name' />
-                                        </div>
+                    <div className="card card-div">
+                        <article className="card-body" >
+                            <form className='px-3' autoComplete='off'>
+                                <div className="row">
+                                    {/* <div className="col-md-6">
+                                        <label htmlFor='employee_id'>Employee ID </label>
+                                        <input type="text" className="form-control" id='employee_id' />
+                                    </div> */}
+                                    <div className="col-md-6" >
+                                        <label htmlFor='employee_name'>Employee Name </label>
+                                        <input type="text" className="form-control" id='employee_name' />
                                     </div>
-                                    <div className="row">
-                                        <div className="col-md-6" >
-                                            <label htmlFor='taskid'>Employee Email</label>
-                                            <input type="email" className="form-control" id='employee_email' />
-                                        </div>
-                                        <div className="col-md-6" >
-                                            <label htmlFor='groupid'>Employee Number</label>
-                                            <input type="number" className="form-control" id='employee_number' />
-                                        </div>
-                                       
+                                    <div className="col-md-6" >
+                                        <label htmlFor='location'>Location</label>
+                                        <select className="form-select" id='location' required >
+                                            <option value='' hidden>Select Location</option>
+                                            {
+                                                locationlist.map((item, index) =>
+                                                    <option key={index}>{item.location_name}</option>
+                                                )
+                                            }
+                                        </select>
                                     </div>
-                                
-                                    <div className="row">
-                                        <div className="col-md-6" >
-                                            <label htmlFor='compid'>Company</label>
-                                            <input type="text" className="form-control" id='company' />
-                                        </div>
-                                        <div className="col-md-6" >
-                                            <label htmlFor='deviceid'>Location</label>
-                                            <input type="text" className="form-control" id='location'/>
-                                        </div>
-                                   
+                                </div>
+                                <div className="row mt-2">
+                                    <div className="col-md-6" >
+                                        <label htmlFor='employee_email'>Employee Email</label>
+                                        <input type="email" className="form-control" id='employee_email' />
                                     </div>
-                                    
+                                    <div className="col-md-6" >
+                                        <label htmlFor='employee_number'>Phone Number</label>
+                                        <input type="number" className="form-control" id='employee_number' value={numcount}
+                                            onChange={(e) => {
+                                                if (e.target.value.length === 11) return false; else { setNumcount(e.target.value) }
+                                            }}
+                                        />
+                                    </div>
 
-                                    <div className="form-group" >
-                                        <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleaddinsert}>Submit</button>
-                                        <button type="reset" className="btn btn-secondary ml-2 mb-4 mt-3" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
-                                        {/* <button type="button" onClick={() => { window.location.href = '/Totalseries' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button> */}
+                                </div>
 
+                                <div className="row mt-2">
+                                    <div className="col-md-6" >
+                                        <label htmlFor='company'>Company</label>
+                                        <input type="text" className="form-control" id='company' />
                                     </div>
-                                </form>
-                            </article>
-                        </div>
+                                    {/* <div className="col-md-6" >
+                                        <label htmlFor='location'>Location</label>
+                                        <select className="form-select" id='location' required >
+                                            <option value='' hidden>Select Location</option>
+                                            {
+                                                locationlist.map((item, index) =>
+                                                    <option key={index}>{item.location_name}</option>
+                                                )
+                                            }
+                                        </select>
+                                    </div> */}
+
+                                </div>
+
+
+                                <div className="form-group mt-3" >
+                                    <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Submit</button>&nbsp;
+                                    <button type="reset" className="btn btn-secondary ">Reset</button>
+                                </div>
+                            </form>
+                        </article>
                     </div>
+                </div>
             </Sidebar>
         </>
     )

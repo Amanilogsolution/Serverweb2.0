@@ -9,7 +9,6 @@ function EditLocation() {
     useEffect(() => {
         const fetchdata = async () => {
             const result = await GetLocation(sessionStorage.getItem('locationsno'))
-            console.log(result)
             setData(result);
         }
         fetchdata()
@@ -104,8 +103,8 @@ function EditLocation() {
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Location</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Location</span> </h2>
                         <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalLocations' }} >Back <MdOutlineArrowForward /></button>
                     </div>
-                    <div className="card card-div" >
-
+                    <div className="card card-div" style={{ width: "90%" }}>
+                        <div className='card-header'>Edit Location:</div>
                         <article className="card-body" >
                             <form className='px-3' autoComplete='off'>
                                 <div className="row">
