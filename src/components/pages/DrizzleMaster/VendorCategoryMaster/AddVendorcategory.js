@@ -7,14 +7,16 @@ import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/
 function AddVendorCategory() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        const vendor_category_id = document.getElementById('vendor_category_id').value;
+        document.getElementById('subnitbtn').disabled = true;
         const vendor_category = document.getElementById('vendor_category').value;
+        const vendor_category_id = vendor_category.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const vendor_category_description = document.getElementById('vendor_category_description').value;
 
         const username = sessionStorage.getItem('UserId');
 
-        if (!vendor_category_id || !vendor_category || !vendor_category_description) {
+        if ( !vendor_category ) {
             alert("All field are mandatory...")
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await AddVendorCategoryapi(vendor_category_id, vendor_category, vendor_category_description, username);
@@ -24,6 +26,7 @@ function AddVendorCategory() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
         }
 
@@ -40,11 +43,8 @@ function AddVendorCategory() {
                         <article className="card-body" >
                             <form className='px-3' autoComplete='off'>
                                 <div className="row">
-                                    <div className="col-md-6">
-                                        <label htmlFor='typeid'>Vendor Category ID </label>
-                                        <input type="text" className="form-control" id='vendor_category_id' />
-                                    </div>
-                                    <div className="col-md-6" >
+                                  
+                                    <div className="col" >
                                         <label htmlFor='seriesid'>Vendor Category  </label>
                                         <input type="text" className="form-control" id='vendor_category' />
                                     </div>

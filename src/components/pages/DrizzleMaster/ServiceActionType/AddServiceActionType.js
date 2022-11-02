@@ -8,13 +8,15 @@ function AddVendorSubCategory() {
 
     const handleinsertdata = async (e) => {
         e.preventDefault();
-        const service_action_id ='sasaas';
+        document.getElementById('subnitbtn').disabled = true;
         const service_action=  document.getElementById('service_action').value;
+        const service_action_id =service_action.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
 
         if (!service_action  ) {
             alert("All field are mandatory...")
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await InsertServiceActionType(service_action_id,service_action,remark,username);
@@ -24,6 +26,7 @@ function AddVendorSubCategory() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
         }
 

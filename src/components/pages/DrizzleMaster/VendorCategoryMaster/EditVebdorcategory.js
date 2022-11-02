@@ -16,11 +16,17 @@ function EditVendorcategory() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const vendor_category = document.getElementById('vendor_category').value;
         const vendor_category_description = document.getElementById('vendor_category_description').value;
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('vendorcatsno')
 
+        if ( !vendor_category ) {
+            alert("All field are mandatory...")
+            document.getElementById('subnitbtn').disabled = false;
+        }
+        else {
         const result = await UpdateVendorCategoryapi(sno,vendor_category,vendor_category_description,username);
 
         if (result === 'Updated') {
@@ -30,7 +36,9 @@ function EditVendorcategory() {
         }
         else {
             alert("Server Error");
+            document.getElementById('subnitbtn').disabled = false;
         }
+    }
 
     }
 
@@ -56,11 +64,8 @@ function EditVendorcategory() {
                         <article className="card-body" >
                             <form className='px-3'  autoComplete='off'>
                                 <div className="row">
-                                    <div className="form-group col-md-6">
-                                        <label htmlFor='typeid'>Vendor Category ID </label>
-                                        <input type="text" className="form-control" id='billing_freq_id' disabled value={data.vendor_category_id} />
-                                    </div>
-                                    <div className="form-group col-md-6" >
+                            
+                                    <div className="form-group col" >
                                         <label htmlFor='seriesid'>Vendor Category  </label>
                                         <input type="text" className="form-control" id='vendor_category' value={data.vendor_category} onChange={handlechangeassetstatus} />
                                     </div>

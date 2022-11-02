@@ -8,14 +8,16 @@ function AddPriority() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        const priority_id = document.getElementById('priority_id').value;
+        document.getElementById('subnitbtn').disabled = true;
         const priority = document.getElementById('priority').value;
+        const priority_id =  priority.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const priority_desc = document.getElementById('priority_desc').value;
        
         const username = sessionStorage.getItem('UserId');
 
         if (!priority_id || !priority || !priority_desc) {
             alert("All field are mandatory...")
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await AddPriorityapi(priority_id,priority,priority_desc,username);
@@ -25,6 +27,7 @@ function AddPriority() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
         }
     }
@@ -41,11 +44,8 @@ function AddPriority() {
                             <article className="card-body" >
                                 <form className='px-3'  autoComplete='off'>
                                     <div className="row">
-                                        <div className="col-md-6">
-                                            <label htmlFor='typeid'>Priority ID </label>
-                                            <input type="text" className="form-control" id='priority_id' />
-                                        </div>
-                                        <div className="col-md-6" >
+                                       
+                                        <div className="col" >
                                             <label htmlFor='seriesid'>Priority Type</label>
                                             <input type="text" className="form-control" id='priority' />
                                         </div>

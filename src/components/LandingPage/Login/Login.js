@@ -14,17 +14,21 @@ const Login = () => {
     e.preventDefault()
     setPasswordshow(!passwordshow)
   }
-  
+
   const handleChangeInputval = (e) => {
-    document.getElementById('emptyVal').style.display='none'
+    document.getElementById('emptyVal').style.display = 'none'
+    document.getElementById('validVal').style.display = 'none'
   }
 
   const handlelogin = async (e) => {
     e.preventDefault();
+    document.getElementById('subBtn').disabled = true;
     const user_id = document.getElementById('user-id').value;
     const password = document.getElementById('password').value;
     if (!user_id || !password) {
-      document.getElementById('emptyVal').style.display='flex'
+      document.getElementById('emptyVal').style.display = 'flex'
+      document.getElementById('subBtn').disabled = false;
+
     }
     else {
       const result = await UserLogin(user_id, password);
@@ -37,7 +41,11 @@ const Login = () => {
         window.location.href = './Dashboard'
       }
       else {
-        alert(`Invalid Username:-${user_id} and password:-${password}`);
+        document.getElementById('validVal').style.display = 'flex'
+
+        // alert(`Invalid Username:-${user_id} and password:-${password}`);
+        document.getElementById('subBtn').disabled = false;
+
       }
 
     }
@@ -63,7 +71,7 @@ const Login = () => {
                 </div>
                 <div className="form-outline mb-4">
                   <label className="form-label" htmlFor="user-id">User Id</label>
-                  <input type="text" id="user-id" className="form-control form-control-lg" onChange={handleChangeInputval} placeholder="Enter a valid user id" required/>
+                  <input type="text" id="user-id" className="form-control form-control-lg" onChange={handleChangeInputval} placeholder="Enter a valid user id" required />
                 </div>
                 <div className="form-outline mb-3">
                   <label className="form-label" htmlFor="password">Password</label>
@@ -85,9 +93,9 @@ const Login = () => {
                   <a href="#!" className="text-body">Forgot password?</a>
                 </div>
                 <div className="text-center text-lg-start pt-2">
-                  <button type="submit" className="btn btn-voilet btn-lg" style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }} onClick={handlelogin}>Login</button>
-                  <small id='emptyVal' className='mt-3 text-danger font-weight-bold' style={{display:"none"}}> &nbsp;Please Enter the userId or Password</small>
-                  <small id='validVal' className='mt-3 text-danger font-weight-bold' style={{display:"none"}}> &nbsp;Please Enter the Valid userId or Password</small>
+                  <button type="submit" id='subBtn' className="btn btn-voilet btn-lg" style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }} onClick={handlelogin}>Login</button>
+                  <small id='emptyVal' className='mt-3 text-danger font-weight-bold' style={{ display: "none" }}> &nbsp;Please Enter the userId or Password</small>
+                  <small id='validVal' className='mt-3 text-danger font-weight-bold' style={{ display: "none" }}> &nbsp;Please Enter the Valid userId or Password</small>
                   <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <Link to="/signup" className="link-danger">Sign up</Link></p>
                 </div>
               </form>

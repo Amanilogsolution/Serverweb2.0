@@ -13,6 +13,7 @@ function AddOperatingSystem() {
             const series = await ActiveSeries()
             if (!series) {
                 alert('Please add/active  the Series')
+
             }
             const ser = series.os_id
             const count = await TotalCount('tbl_operating_system')
@@ -25,13 +26,15 @@ function AddOperatingSystem() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        // document.getElementById('subnitbtn').disabled=true;
+        document.getElementById('subnitbtn').disabled = true;
         const operatingsystem = document.getElementById('operatingsystem').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
         if (!operatingsystem) {
             alert("Please enter the mandatory Field")
+            document.getElementById('subnitbtn').disabled = false;
+
         }
         else {
             const result = await AddOperatingsystem(operatingsystemid, operatingsystem, remark, username);
@@ -52,16 +55,14 @@ function AddOperatingSystem() {
         <>
             <Sidebar>
                 <div className='main_container pb-2' >
-                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{ color: "rgb(123,108,200)" }}>Device Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device Type</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalDeviceType' }} >Back <MdOutlineArrowForward /></button>
+                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Operating System</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Operating System</span> </h2>
+                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalOperatingSystem' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div">
-                        <header className="card-header" >
-                            <h4 className=" mt-2 text-center" >Add Operating System</h4>
-                        </header>
+
                         <article className="card-body" >
-                            <form style={{ margin: "0px 20px 0px 15px" }}>
+                            <form className='px-3' autoComplete='off'>
                                 <div className="form-group">
                                     <label htmlFor='ossystemid'>Operating System ID </label>
                                     <input type="text" className="form-control" id='ossystemid' disabled value={operatingsystemid} />
@@ -75,10 +76,8 @@ function AddOperatingSystem() {
                                     <textarea className="form-control" placeholder="Comments" id='remark' rows="3" />
                                 </div>
                                 <div className="form-group" >
-                                    <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
+                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
                                     <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                    <button type="button" onClick={() => { window.location.href = '/TotalOperatingSystem' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
-
                                 </div>
                             </form>
                         </article>

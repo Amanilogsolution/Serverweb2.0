@@ -1,7 +1,7 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
 import { GetSoftwareapi, UpdateSoftwareapi } from '../../../../api'
-import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 function EditSoftware() {
     const [data, setData] = useState({});
@@ -16,20 +16,28 @@ function EditSoftware() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const software = document.getElementById('software').value;
         const software_desc = document.getElementById('software_desc').value;
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('softwaresno')
 
-        const result = await UpdateSoftwareapi(sno,software,software_desc,username);
-
-        if (result === 'Updated') {
-            alert('Data Updated')
-            sessionStorage.removeItem('softwaresno');
-            window.location.href = './TotalSoftware'
+        if (!software) {
+            alert("All field are mandatory...")
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
-            alert("Server Error");
+            const result = await UpdateSoftwareapi(sno, software, software_desc, username);
+
+            if (result === 'Updated') {
+                alert('Data Updated')
+                sessionStorage.removeItem('softwaresno');
+                window.location.href = './TotalSoftware'
+            }
+            else {
+                alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
+            }
         }
 
     }
@@ -41,26 +49,25 @@ function EditSoftware() {
     const handlechangeassetstatusdesc = (e) => {
         setData({ ...data, software_description: e.target.value })
     }
-   
+
     return (
         <>
             <Sidebar >
                 <div className='main_container pb-2'>
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{color:"rgb(123,108,200)"}}>Software</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Edit Software</span> </h2>
-                        <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('softwaresno'); window.location.href = '/TotalSoftware'  }} >Back <MdOutlineArrowForward/></button>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Software</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Software</span> </h2>
+                        <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('softwaresno'); window.location.href = '/TotalSoftware' }} >Back <MdOutlineArrowForward /></button>
                     </div>
-                    <div className="card card-div" style={{width:"50%"}}>
-                       
+                    <div className="card card-div" style={{ width: "50%" }}>
                         <article className="card-body" >
-                            <form className='px-3'  autoComplete='off'>
+                            <form className='px-3' autoComplete='off'>
                                 <div className="row">
-                                    <div className="form-group col-md-6">
+                                    {/* <div className="form-group col-md-6">
                                         <label htmlFor='typeid'> Asset Status ID </label>
                                         <input type="text" className="form-control" id='software_id' disabled value={data.software_id} />
-                                    </div>
-                                    <div className="form-group col-md-6" >
-                                        <label htmlFor='seriesid'> Asset Status </label>
+                                    </div> */}
+                                    <div className="form-group col" >
+                                        <label htmlFor='seriesid'> Software </label>
                                         <input type="text" className="form-control" id='software' value={data.software_name} onChange={handlechangeassetstatus} />
                                     </div>
                                 </div>
@@ -69,9 +76,9 @@ function EditSoftware() {
                                         <label htmlFor='taskid'>Description</label>
                                         <textarea type="text" className="form-control" id='software_desc' value={data.software_description} onChange={handlechangeassetstatusdesc} />
                                     </div>
-                                   
+
                                 </div>
-                           
+
                                 <div className="form-group" >
                                     <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
                                 </div>

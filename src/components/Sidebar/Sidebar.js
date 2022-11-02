@@ -3,12 +3,15 @@ import {
     FaTh,
     FaUserAlt,
     FaTasks,
-    FaThList
+    FaThList, FaFileContract
 } from "react-icons/fa";
 
 import { IoIosArrowDown, IoMdLogOut } from 'react-icons/io'
-import { MdOutlineDoubleArrow, MdDevicesOther } from 'react-icons/md'
-import {VscLocation} from 'react-icons/vsc'
+import { MdOutlineDoubleArrow, MdDevicesOther,MdLiveHelp } from 'react-icons/md'
+import { BsJournalCode } from 'react-icons/bs'
+import { HiTicket } from 'react-icons/hi'
+
+import { VscLocation } from 'react-icons/vsc'
 import { NavLink } from 'react-router-dom';
 import Footer from './Footer/Footer';
 import Navbar from './Navbar.js';
@@ -20,11 +23,13 @@ const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [submasterOpen, setSubmasterOpen] = useState(false);
     const [subdrizelmaster, setSubdrizelmaster] = useState(false);
+    const [helpdeskmaster, setHelpdeskmaster] = useState(false);
     const toggle = () => {
         setIsOpen(!isOpen)
         if (isOpen) {
             document.getElementById('mastersubdiv').style.display = "none";
             document.getElementById('masterdrizellsubdiv').style.display = "none"
+            document.getElementById('masterhelpdesk').style.display = "none"
         }
     };
 
@@ -35,7 +40,10 @@ const Sidebar = ({ children }) => {
     const iconoffstyle = {
         marginLeft: "0%"
     }
-
+    const handleLogout = () => {
+        sessionStorage.clear()
+        window.location.href = '/'
+    }
 
     const handlesubmaster = () => {
         if (!submasterOpen && isOpen) {
@@ -69,11 +77,29 @@ const Sidebar = ({ children }) => {
         }
         setSubdrizelmaster(!subdrizelmaster)
     }
+    const handleHelpDesk = () => {
+        if (!helpdeskmaster && isOpen) {
+            document.getElementById('masterhelpdesk').style.display = "block"
+            document.getElementById('helpdesktitlelink').style.background = "#603AE9"
+            document.getElementById('helpdesktitlelink').style.color = "#fff"
+            document.getElementById('footerdivsection').style.background = "#fff"
+
+        }
+        else {
+            document.getElementById('masterhelpdesk').style.display = "none"
+            document.getElementById('helpdesktitlelink').style.background = "#fff"
+            document.getElementById('helpdesktitlelink').style.color = "#000"
+
+        }
+        setHelpdeskmaster(!helpdeskmaster)
+    }
+    
     return (
         <div className="sidebarcontainer">
-            <div className={isOpen ? 'sidebaropen' : 'sidebar'}>
+            <div className={isOpen ? 'sidebaropen' : 'sidebar'} onMouseEnter={() => setIsOpen(true)}
+                onMouseLeave={toggle}>
                 <div className="top_section">
-                    <img style={{width:"110px",display: isOpen ? "block" : "none"}} src={logo}/>
+                    <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} />
                     <div style={isOpen ? icononstyle : iconoffstyle} className="bars">
                         <MdOutlineDoubleArrow onClick={toggle} />
                     </div>
@@ -90,7 +116,6 @@ const Sidebar = ({ children }) => {
                             <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
                                 <div className="icon" onClick={toggle}><FaUserAlt /></div>
                                 <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text ">Iperiscope Master<span className="icon"><IoIosArrowDown /></span> </div>
-                                {/* <div style={{ display: isOpen ? "block" : "none" }} className="icon"></div> */}
                             </div>
 
                             <ul id='mastersubdiv' className='inneruldiv' >
@@ -148,8 +173,8 @@ const Sidebar = ({ children }) => {
                             <ul id='masterdrizellsubdiv' className='inneruldiv'>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalLocations' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <VscLocation />
-                                        <div style={{ display: isOpen ? "block" : "none"}} > Location</div>
+                                        <VscLocation />
+                                        <div style={{ display: isOpen ? "block" : "none" }} > Location</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
@@ -157,11 +182,11 @@ const Sidebar = ({ children }) => {
                                         <div style={{ display: isOpen ? "block" : "none" }} >Employee</div>
                                     </NavLink>
                                 </li>
-                                <li className='innerlink'>
-                                    <NavLink to='/about' className='navlink' activeclassname="sidebaractive">
+                                {/* <li className='innerlink'>
+                                    <NavLink to='/TotalAgent' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Agent</div>
                                     </NavLink>
-                                </li>
+                                </li> */}
                                 <li className='innerlink'>
                                     <NavLink to='/TotalAssetType' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Asset Type</div>
@@ -242,45 +267,65 @@ const Sidebar = ({ children }) => {
                             </NavLink>
                         </li>
 
-                        <li title='Comment'>
+                        <li title='Device Compliances'>
                             <NavLink to='/TotalDeviceComp' className="link navlink" activeclassname="sidebaractive">
                                 <div className="icon"><FaThList /></div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Device Compliances</div>
                             </NavLink>
                         </li>
-                        <li title='Product'>
+                        <li title='Device Task'>
                             <NavLink to='/TotalDeviceServiceTask' className="link" activeclassname="sidebaractive">
                                 <div className="icon"><FaTasks /></div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Device Task</div>
                             </NavLink>
                         </li>
-                        <li title='Product'>
+                        <li title='Vendor Code'>
                             <NavLink to='/TotalVendorCode' className="link" activeclassname="sidebaractive">
-                                <div className="icon"><FaTasks /></div>
+                                <div className="icon"><BsJournalCode /></div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Code</div>
                             </NavLink>
                         </li>
-                        <li title='Product'>
+                        <li title='Vendor Contract'>
                             <NavLink to='/TotalVendorContract' className="link" activeclassname="sidebaractive">
-                                <div className="icon"><FaTasks /></div>
+                                <div className="icon"><FaFileContract /></div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Contract</div>
                             </NavLink>
                         </li>
-                        
-                        
+
+
+                        <li title='Help Desk'>
+                            <div className="link" id='helpdesktitlelink' style={{ cursor: "pointer" }} onClick={handleHelpDesk}>
+                                <div className="icon" onClick={toggle}><MdLiveHelp /></div>
+                                <span style={{ display: "flex" }} >
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text ">Help Desk</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
+                                </span>
+                            </div>
+
+                            <ul id='masterhelpdesk' className='inneruldiv'>
+                                <li className='innerlink'>
+                                    <NavLink to='/AddTickets' className='navlink d-flex' activeclassname="sidebaractive">
+                                        <HiTicket />
+                                        <div style={{ display: isOpen ? "block" : "none" }} > Ticket</div>
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </li>
 
                     </ul>
+
+
                 </div>
                 <div className="footer_section" title='Logout' id='footerdivsection'>
                     <a className="link" activeclassname="sidebaractive" style={{ borderTop: "1px solid #333" }}>
                         <div className="icon" onClick={toggle}><IoMdLogOut /></div>
-                        <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text">Logout</div>
+                        <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text" onClick={handleLogout}>Logout</div>
                     </a>
                 </div>
             </div>
 
             <div className={isOpen ? "mainopen" : "main"}>
-                <Navbar />
+                <Navbar isOpen={isOpen} />
                 {children}
                 <Footer />
             </div>

@@ -8,13 +8,15 @@ function AddManufacturer() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        const manufacturer_id='';
+        document.getElementById('subnitbtn').disabled = true;
         const manufacturername = document.getElementById('manufacturername').value;
+        const manufacturer_id=manufacturername.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
 
         if (!manufacturername) {
             alert('Please Enter Mandatory Field')
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await InsertManufacturer(manufacturer_id, manufacturername, remark, username);
@@ -25,6 +27,7 @@ function AddManufacturer() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
         }
     }
@@ -46,7 +49,7 @@ function AddManufacturer() {
                                             <label htmlFor='manufacturername'>Manufacturer Name</label>
                                             <input type="text" className="form-control" id='manufacturername' />
                                         </div>
-                                        <div className="form-group">
+                                        <div className="form-group mt-3">
                                             <label htmlFor='remark'>Remarks (Optional)</label>
                                             <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3"/>
                                         </div>

@@ -16,6 +16,7 @@ function EditManufacturer() {
 
     const handleUpdateManufacturer = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const manufacturername = document.getElementById('manufacturername').value;
         const remark = document.getElementById('remark').value;
 
@@ -24,6 +25,7 @@ function EditManufacturer() {
 
         if (!manufacturername) {
             alert('Please Enter Mandatory Field')
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await UpdateManufacturer(sno, manufacturername, remark, username);
@@ -34,6 +36,7 @@ function EditManufacturer() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
         }
 
@@ -66,7 +69,7 @@ function EditManufacturer() {
                                     <label htmlFor='manufacturername'>Manufacturer Name</label>
                                     <input type="text" className="form-control" id='manufacturername' value={data.manufacturer_name} onChange={handlechangeManufacturerName} />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group mt-3">
                                     <label htmlFor='remark'>Remarks (Optional)</label>
                                     <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" value={data.manufacturer_description} onChange={handleChangeRemark} />
                                 </div>

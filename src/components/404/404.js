@@ -2,7 +2,7 @@ import React from 'react'
 import './404.css'
 import logo from '../../image/404.png'
 
-export const PageNotFound = () => {
+ const PageNotFound = () => {
   return (
     <>
     <div className='pnf'>
@@ -12,3 +12,5 @@ export const PageNotFound = () => {
     </>
   )
 }
+
+export default PageNotFound;

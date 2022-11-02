@@ -4,7 +4,38 @@ import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { Activedevice, Getdevicetaskbyname, Updatedevicetaskastatus } from '../../../../api'
+import { AiFillEdit } from 'react-icons/ai';
+import { MdAdd } from 'react-icons/md';
 
+
+const customStyles = {
+    title: {
+        style: {
+            fontColor: 'red',
+            fontWeight: '900',
+        }
+    },
+    rows: {
+        style: {
+            minHeight: '35px'
+        }
+    },
+    headCells: {
+        style: {
+            fontSize: '14px',
+            background: 'rgb(105,59,233)',
+            color: 'white',
+        },
+    },
+    cells: {
+        style: {
+            fontSize: '14px',
+            // fontWeight:'600',
+            background: 'rgb(242,242,242)',
+            borderBottom: "1px solid silver"
+        },
+    },
+};
 function TotaldeviceTask() {
     const [data, setData] = useState([])
     const [devicename, setDevicename] = useState([]);
@@ -56,9 +87,11 @@ function TotaldeviceTask() {
             cell: (row) => [
                 <a title='Edit Device Task ' href="/EditDeviceServiceTask">
 
-                    <button className="btn btn-success " onClick={() => sessionStorage.setItem('devicetaskmSno', `${row.sno}`)} >
-                        Edit
-                    </button></a>
+                    <p onClick={() => sessionStorage.setItem('devicetaskmSno', `${row.sno}`)} >
+                        {/* Edit */}
+                        <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+
+                    </p></a>
             ]
         }
 
@@ -81,51 +114,54 @@ function TotaldeviceTask() {
 
 
     const handelselect = async (e) => {
-        console.log(e.target.value)
         const tabledata = await Getdevicetaskbyname(e.target.value);
-        console.log(tabledata)
         // setShowtable(true)
         setData(tabledata)
-
-
     }
     return (
         <>
             <Sidebar>
-            <div className='main_container' >
-                <div className='innermain_container m-auto' >
-                    <div className='d-flex justify-content-between pt-4'>
-                        <h3> Device Task</h3>
-                        <button className='btn btn-success m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceServiceTask' }}>Add Task </button>
-                    </div>
-                    <div className="form-row">
-                        <div className="form-group col-md-4" >
-                            {/* <label>Select Device</label> */}
-                            <select className="form-control" id='devicename' onChange={handelselect}>
-                                <option hidden>Select Device</option>
-                                {
-                                    devicename.map((item, index) =>
-                                        <option key={index}>{item.device_name}</option>)
-                                }
-                            </select>
+                <div className='main_container' >
+                    <div className='innermain_container m-auto' >
+                        <div className='d-flex justify-content-between pt-4'>
+                            <h3> Device Task</h3>
+                            <button className='btn btn-voilet m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceServiceTask' }}>Add Task<MdAdd/> </button>
+                        </div>
+                        <div className="form-row">
+                            <div className="form-group col-md-4" >
+                                {/* <label>Select Device</label> */}
+                                <select className="form-select" id='devicename' onChange={handelselect}>
+                                    <option hidden>Select Device</option>
+                                    {
+                                        devicename.map((item, index) =>
+                                            <option key={index}>{item.device_name}</option>)
+                                    }
+                                </select>
+                            </div>
+
                         </div>
 
+
+
+                        {
+                            data.length > 0 ? <DataTableExtensions {...tableData}>
+                                <DataTable
+                                    noHeader
+                                    defaultSortField="id"
+                                    defaultSortAsc={false}
+                                    pagination
+                                    highlightOnHover
+                                    customStyles={customStyles}
+                                />
+                            </DataTableExtensions>
+                                : <div>
+                                    <h2 className='text-center'>Select Device</h2>
+                                </div>
+                        }
+
+
                     </div>
-
-
-
-                    <DataTableExtensions {...tableData}>
-                        <DataTable
-                            noHeader
-                            defaultSortField="id"
-                            defaultSortAsc={false}
-                            pagination
-                            highlightOnHover
-                        />
-                    </DataTableExtensions>
-
                 </div>
-            </div>
             </Sidebar>
         </>
     )

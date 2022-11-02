@@ -16,6 +16,7 @@ function EditBillingFreq() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = true;
         const billing_freq = document.getElementById('billing_freq').value;
         const billing_freq_desc = document.getElementById('billing_freq_desc').value;
         const username = sessionStorage.getItem('UserId');
@@ -23,6 +24,7 @@ function EditBillingFreq() {
 
         if (!billing_freq) {
             alert('Please Enter the Billing Frequency')
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await UpdateBillingFreqapi(sno, billing_freq, billing_freq_desc, username);
@@ -34,6 +36,7 @@ function EditBillingFreq() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
         }
 
@@ -63,11 +66,8 @@ function EditBillingFreq() {
                         <article className="card-body" >
                             <form className='px-3' autoComplete='off'>
                                 <div className="row">
-                                    <div className="form-group col-md-6">
-                                        <label htmlFor='billing_freq_id'>Billing Frequency ID </label>
-                                        <input type="text" className="form-control" id='billing_freq_id' disabled value={data.billing_freq_id} />
-                                    </div>
-                                    <div className="form-group col-md-6" >
+                                   
+                                    <div className="form-group col" >
                                         <label htmlFor='billing_freq'>Billing Frequency  </label>
                                         <input type="text" className="form-control" id='billing_freq' value={data.billing_freq} onChange={handlechangeassetstatus} />
                                     </div>

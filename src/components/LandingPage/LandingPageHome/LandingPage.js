@@ -33,7 +33,7 @@ const LandingPage = () => {
                                             <h3 className="display-3 lh-1 mb-3">Assets management System.</h3>
                                             <p className="lead fw-normal text-muted mb-5">Launch your mobile app landing page faster with this free, open source theme from Start Bootstrap!</p>
                                             <div className="d-flex flex-column flex-lg-row align-items-center">
-                                                <button className='btn btn-voilet'>Get Start</button>
+                                                <button className='btn btn-voilet' onClick={()=>{window.location.href='./signup'}}>Get Start</button>
                                             </div>
                                         </div>
                                     </div>

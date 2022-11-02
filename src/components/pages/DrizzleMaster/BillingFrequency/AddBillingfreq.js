@@ -7,14 +7,16 @@ import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/
 function AddBillingFreq() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        const billing_freq_id = document.getElementById('billing_freq_id').value;
+        document.getElementById('subnitbtn').disabled = true;
         const billing_freq = document.getElementById('billing_freq').value;
+        const billing_freq_id = billing_freq.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const billing_freq_desc = document.getElementById('billing_freq_desc').value;
 
         const username = sessionStorage.getItem('UserId');
 
-        if (!billing_freq_id || !billing_freq || !billing_freq_desc) {
+        if ( !billing_freq ) {
             alert("All field are mandatory...")
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await AddBillingFreqapi(billing_freq_id, billing_freq, billing_freq_desc, username);
@@ -24,6 +26,7 @@ function AddBillingFreq() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
         }
 
@@ -40,11 +43,8 @@ function AddBillingFreq() {
                         <article className="card-body" >
                             <form className='px-3' autoComplete='off'>
                                 <div className="row">
-                                    <div className="col-md-6">
-                                        <label htmlFor='typeid'>Billing Frequency ID </label>
-                                        <input type="text" className="form-control" id='billing_freq_id' />
-                                    </div>
-                                    <div className="col-md-6" >
+                                    
+                                    <div className="col" >
                                         <label htmlFor='seriesid'>Billing Frequency  </label>
                                         <input type="text" className="form-control" id='billing_freq' />
                                     </div>

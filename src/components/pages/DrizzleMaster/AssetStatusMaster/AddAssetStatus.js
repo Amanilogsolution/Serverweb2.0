@@ -8,14 +8,16 @@ function AddAssetStatus() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        const assetstatus_id = document.getElementById('assetstatus_id').value;
+        document.getElementById('subnitbtn').disabled = true;
         const asset_status = document.getElementById('asset_status').value;
+        const assetstatus_id =asset_status.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const asset_status_desc = document.getElementById('asset_status_desc').value;
 
         const username = sessionStorage.getItem('UserId');
 
-        if (!assetstatus_id || !asset_status || !asset_status_desc) {
+        if ( !asset_status ) {
             alert("All field are mandatory...")
+            document.getElementById('subnitbtn').disabled = false;
         }
         else {
             const result = await AddAssetStatusapi(assetstatus_id,asset_status,asset_status_desc,username);
@@ -25,6 +27,7 @@ function AddAssetStatus() {
             }
             else {
                 alert("Server Error");
+                document.getElementById('subnitbtn').disabled = false;
             }
         }
 
@@ -41,29 +44,28 @@ function AddAssetStatus() {
                             <article className="card-body" >
                                 <form className='px-3'  autoComplete='off'>
                                     <div className="row">
-                                        <div className="col-md-6">
+                                        {/* <div className="col-md-6">
                                             <label htmlFor='typeid'>Asset Status ID </label>
                                             <input type="text" className="form-control" id='assetstatus_id' />
-                                        </div>
+                                        </div> */}
                                         <div className="col-md-6" >
-                                            <label htmlFor='seriesid'>Asset Status </label>
+                                            <label htmlFor='asset_status'>Asset Status </label>
                                             <input type="text" className="form-control" id='asset_status' />
                                         </div>
                                     </div>
-                                    <div className="row">
+                                    <div className="row mt-2">
                                         <div className="col-md" >
-                                            <label htmlFor='taskid'>Description</label>
-                                            <textarea type="email" className="form-control" id='asset_status_desc' />
+                                            <label htmlFor='asset_status_desc'>Description</label>
+                                            <textarea  className="form-control" id='asset_status_desc' />
                                         </div>
                                        
                                     </div>
                                 
                                     
 
-                                    <div className="form-group" >
-                                        <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleaddinsert}>Submit</button>
-                                        <button type="reset" className="btn btn-secondary ml-2 mb-4 mt-3" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
-                                        {/* <button type="button" onClick={() => { window.location.href = '/Totalseries' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button> */}
+                                    <div className="form-group mt-3" >
+                                        <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Submit</button>&nbsp;
+                                        <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
 
                                     </div>
                                 </form>
