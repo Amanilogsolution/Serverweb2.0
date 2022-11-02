@@ -94,7 +94,7 @@ export default function AddTicket() {
                         </div>
 
                         <div className="form-group" >
-                            <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn">Add Contract</button>
+                            <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn">Add Tickets</button>
                         </div>
                     </div>
                 </div>
