@@ -94,7 +94,7 @@ function EditVendorSubCategory() {
                                         </div>
                                         <div className="form-group col-md mt-3" >
                                             <label htmlFor='remark'>Description</label>
-                                            <textarea type="text" className="form-control" id='remark' value={data.vendor_sub_category_description} onChange={handleChangeRemark} />
+                                            <textarea  className="form-control" id='remark' rows='3' value={data.vendor_sub_category_description} onChange={handleChangeRemark} />
                                         </div>
 
 
