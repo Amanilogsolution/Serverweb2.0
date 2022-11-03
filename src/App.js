@@ -132,6 +132,7 @@ import AddVendorContract from './components/pages/DrizzleMain/VendorContract/Add
 import AddTicket from './components/pages/HelpDesk/Tickets/AddTicket';
 
 import PageNotFound from './components/404/404';
+import VendorInvoice from './components/pages/HelpDesk/Transaction/Vendor Invoice/VendorInvoice';
 
 const App = () => {
   return (
@@ -263,6 +264,7 @@ const App = () => {
           <Route path="/AddVendorContract" element={<AddVendorContract />} />
 
           <Route path="/AddTickets" element={<AddTicket />} />
+          <Route path="/VendorInvoice" element={<VendorInvoice />} />
         </Route>
 
         <Route path="/*" element={<PageNotFound />} />
