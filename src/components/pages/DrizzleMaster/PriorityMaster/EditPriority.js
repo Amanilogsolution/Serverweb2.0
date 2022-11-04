@@ -67,18 +67,14 @@ function EditPriority() {
                             <div className="card card-div" style={{ width: "50%" }}>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-                                        <div className="row">
 
-                                            <div className="form-group col" >
-                                                <label htmlFor='priority'>Priority Type <small className='text-danger'>*</small></label>
-                                                <input type="text" className="form-control" id='priority' value={data.priority_type} onChange={handlechangeassetstatus} />
-                                            </div>
+                                        <div className="form-group col" >
+                                            <label htmlFor='priority'>Priority Type <small className='text-danger'>*</small></label>
+                                            <input type="text" className="form-control" id='priority' value={data.priority_type} onChange={handlechangeassetstatus} />
                                         </div>
-                                        <div className="row mt-3">
-                                            <div className="form-group col-md" >
-                                                <label htmlFor='priority_desc'>Description</label>
-                                                <textarea type="text" className="form-control" id='priority_desc' value={data.priority_description} onChange={handlechangeassetstatusdesc} />
-                                            </div>
+                                        <div className="form-group col-md mt-3" >
+                                            <label htmlFor='priority_desc'>Remarks</label>
+                                            <textarea type="text" className="form-control" id='priority_desc' value={data.priority_description} onChange={handlechangeassetstatusdesc} />
                                         </div>
 
                                         <div className="form-group mt-3" >

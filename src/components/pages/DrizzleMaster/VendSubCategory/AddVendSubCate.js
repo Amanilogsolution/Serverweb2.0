@@ -76,7 +76,7 @@ function AddVendorSubCategory() {
                                             </div>
                                         </div>
                                         <div className="col-md mt-3" >
-                                            <label htmlFor='remark'>Description</label>
+                                            <label htmlFor='remark'>Remarks</label>
                                             <textarea className="form-control" id='remark' rows='3' placeholder='Comments' />
                                         </div>
 

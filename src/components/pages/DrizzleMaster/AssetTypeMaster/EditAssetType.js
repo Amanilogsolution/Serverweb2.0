@@ -66,19 +66,15 @@ function EditAssetType() {
 
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-                                        <div className="row">
-                                            <div className="form-group col" >
-                                                <label htmlFor='asset_type'> Asset Type </label>
-                                                <input type="text" className="form-control" id='asset_type' value={data.asset_type} onChange={handlechangeassettype} />
-                                            </div>
+                                        <div className="form-group col" >
+                                            <label htmlFor='asset_type'> Asset Type </label>
+                                            <input type="text" className="form-control" id='asset_type' value={data.asset_type} onChange={handlechangeassettype} />
                                         </div>
-                                        <div className="row">
-                                            <div className="form-group col-md" >
-                                                <label htmlFor='asset_type_desc'>Description</label>
-                                                <textarea className="form-control" id='asset_type_desc' value={data.asset_description} onChange={handlechangeassettypedesc} />
-                                            </div>
+                                        <div className="form-group col-md mt-3" >
+                                            <label htmlFor='asset_type_desc'>Remarks</label>
+                                            <textarea className="form-control" id='asset_type_desc' value={data.asset_description} onChange={handlechangeassettypedesc} />
+                                        </div>
 
-                                        </div>
 
                                         <div className="form-group" >
                                             <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>

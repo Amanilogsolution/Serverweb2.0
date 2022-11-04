@@ -66,20 +66,16 @@ function EditPurchaseType() {
 
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-                                        <div className="row">
 
-                                            <div className="form-group col" >
-                                                <label htmlFor='purchase_type'>Purchase Type <small className='text-danger'>*</small></label>
-                                                <input type="text" className="form-control" id='purchase_type' value={data.purchase_type} onChange={handlechangeassetstatus} />
-                                            </div>
+                                        <div className="form-group col" >
+                                            <label htmlFor='purchase_type'>Purchase Type <small className='text-danger'>*</small></label>
+                                            <input type="text" className="form-control" id='purchase_type' value={data.purchase_type} onChange={handlechangeassetstatus} />
                                         </div>
-                                        <div className="row mt-3">
-                                            <div className="form-group col-md" >
-                                                <label htmlFor='purchase_type_desc'>Description</label>
-                                                <textarea type="text" className="form-control" id='purchase_type_desc' value={data.purchase_description} onChange={handlechangeassetstatusdesc} />
-                                            </div>
+                                        <div className="form-group col-md mt-3" >
+                                            <label htmlFor='purchase_type_desc'>Remarks</label>
+                                            <textarea type="text" className="form-control" id='purchase_type_desc' value={data.purchase_description} onChange={handlechangeassetstatusdesc} />
+                                        </div>
 
-                                        </div>
 
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleadddevice}>Update</button>

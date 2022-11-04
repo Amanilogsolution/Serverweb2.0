@@ -46,20 +46,16 @@ function AddSoftware() {
                             <div className="card card-div" style={{ width: "50%" }}>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-                                        
-                                        <div className="row">
-                                            <div className="col" >
-                                                <label htmlFor='seriesid'>Software <small className='text-danger'>*</small></label>
-                                                <input type="text" className="form-control" id='software' />
-                                            </div>
-                                        </div>
-                                        <div className="row mt-3">
-                                            <div className="col-md" >
-                                                <label htmlFor='taskid'>Description </label>
-                                                <textarea type="email" className="form-control" id='software_desc' />
-                                            </div>
 
+                                        <div className="col" >
+                                            <label htmlFor='software'>Software <small className='text-danger'>*</small></label>
+                                            <input type="text" className="form-control" id='software' />
                                         </div>
+                                        <div className="col-md mt-3" >
+                                            <label htmlFor='software_desc'>Remarks </label>
+                                            <textarea className="form-control" id='software_desc' rows='3'/>
+                                        </div>
+
 
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleaddinsert}>Add Software</button>

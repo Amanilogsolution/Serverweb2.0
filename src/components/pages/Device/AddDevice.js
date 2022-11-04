@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react'
 import Sidebar from '../../Sidebar/Sidebar';
 import { ActiveDeviceService, ActiveDevicetype, ActiveDevicegroup, ActiveOperatingSystem, ActiveAgent, Adddevice, ActiveSeries, TotalCount } from '../../../api/index'
 import Select from 'react-select';
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import LoadingPage from '../../LoadingPage/LoadingPage';
 
 
 function AddDevice() {
+    const [loading, setLoading] = useState(false)
 
     const [activeservice, setActiveService] = useState([])
     const [activedevicetype, setActiveDeviceType] = useState([])
@@ -32,11 +35,13 @@ function AddDevice() {
             if (!series) {
                 alert('Please add/active  the Series')
             }
+            setLoading(true)
             const ser = series.device_id
             const count = await TotalCount('tbl_devices')
             let countincrement = count.count + 1;
             let countnum = '' + countincrement;
             setDeviceID(ser + countnum)
+
 
         }
         fetchdata()
@@ -59,7 +64,7 @@ function AddDevice() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        // document.getElementById('subnitbtn').disabled=true;
+        setLoading(false)
         const devicename = document.getElementById('devicename').value
         const devicetype = document.getElementById('devicetype').value;
         const devicegroup = document.getElementById('devicegroup').value;
@@ -74,22 +79,26 @@ function AddDevice() {
 
         if (!devicename || !devicetype || !devicegroup || !createdate || !registerdate || !agent) {
             alert("Please enter Mandatory field")
+            setLoading(true)
+
         }
         else {
-           const arryresult= [];
+            const arryresult = [];
             selectService.forEach(async (datas) => {
                 const deviceservice = datas.value
-                const result = await Adddevice(deviceid, devicename, devicetype, devicegroup, deviceipaddr, devicehost, operatingsystem, deviceservice, createdate, registerdate, agent, remark, sessionStorage.getItem('UserName'))
+                const result = await Adddevice(deviceid, devicename, devicetype, devicegroup, deviceipaddr, devicehost, operatingsystem, deviceservice, createdate, registerdate, agent, remark, sessionStorage.getItem('UserId'))
                 arryresult.push(result)
             })
             setTimeout(() => {
-                if (arryresult.length>0) {
+                if (arryresult.length > 0) {
                     alert('added')
                     window.location.href = '/TotalDevice'
                 }
 
                 else {
                     alert("Server Error");
+                    setLoading(true)
+
                 }
             }, 1300)
 
@@ -110,79 +119,85 @@ function AddDevice() {
 
     return (
         <>
-            <Sidebar>
-            <div className='main_container' >
-                        <div className="card card-div" >
-                            <header className="card-header" >
-                                <h4 className=" mt-2 text-center" >Add Device</h4>
-                            </header>
-                            <article className="card-body" >
-                                <form style={{ margin: "0px 20px 0px 15px" }}>
-                                    <div className="form-group">
-                                        <label>Device ID </label>
-                                        <input type="text" className="form-control" disabled value={deviceid} />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Device Name <span style={{ color: "red" }}>*</span> </label>
-                                        <input type="text" className="form-control" id='devicename' />
-                                    </div>
-                                    <div className="form-row">
-                                        <div className="form-group col-md-6" >
-                                            <label>Device Type <span style={{ color: "red" }}>*</span></label>
-                                            <select id="devicetype" className="form-control col-md-12" >
-                                                <option selected hidden value="India">Choose Type</option>
+            {
+                loading ?
+                    <Sidebar>
+                        <div className='main_container pb-2' >
+                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                                <h2><span style={{ color: "rgb(123,108,200)" }}>Device</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device</span> </h2>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalDevice' }} >Back <MdOutlineArrowForward /></button>
+                            </div>
+                            <div className="card card-div" >
+                                {/* <header className="card-header" >
+                                    <h4 className=" mt-2 text-center" >Add Device</h4>
+                                </header> */}
+                                <article className="card-body" >
+                                    <form className='px-3' autoComplete='off'>
+                                        <div className="form-group">
+                                            <label>Device ID </label>
+                                            <input type="text" className="form-control" disabled value={deviceid} />
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Device Name <span className='text-danger'>*</span> </label>
+                                            <input type="text" className="form-control" id='devicename' />
+                                        </div>
+                                        <div className="form-row">
+                                            <div className="form-group col-md-6" >
+                                                <label>Device Type <span className='text-danger'>*</span></label>
+                                                <select id="devicetype" className="form-control col-md-12" >
+                                                    <option hidden value="">Choose Type</option>
+                                                    {
+                                                        activedevicetype.map((data, index) => (
+                                                            <option key={index} value={data.device_type}>{data.device_type}</option>
+                                                        ))
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div className="form-group col-md-6" >
+                                                <label>Device Group <span className='text-danger'>*</span></label>
+
+                                                <select
+                                                    id="devicegroup"
+                                                    className="form-control col-md-12"
+                                                >
+                                                    <option hidden value="">Choose Group</option>
+                                                    {
+                                                        activedevicegroup.map((data, index) => (
+                                                            <option key={index} value={data.device_group}>{data.device_group}</option>
+                                                        ))
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="form-group " >
+                                            <label>Device IP Address</label>
+                                            <input type="text" className="form-control" id='deviceipaddr' />
+                                        </div>
+                                        <div className="form-group " >
+                                            <label>Device Host Master</label>
+                                            <input type="text" className="form-control" id='devicehost' />
+                                        </div>
+                                        <div className="form-group " >
+                                            <label>Operating System</label>
+                                            <select id="operatingsystem" className="form-control col-md-12" >
+                                                <option hidden value="">Choose Operating System</option>
                                                 {
-                                                    activedevicetype.map((data, index) => (
-                                                        <option key={index} value={data.device_type}>{data.device_type}</option>
+                                                    activeOperatingsystem.map((data, index) => (
+                                                        <option key={index} value={data.operating_system}>{data.operating_system}</option>
                                                     ))
                                                 }
                                             </select>
                                         </div>
-                                        <div className="form-group col-md-6" >
-                                            <label>Device Group <span style={{ color: "red" }}>*</span></label>
-
-                                            <select
-                                                id="devicegroup"
-                                                className="form-control col-md-12"
-                                            >
-                                                <option selected hidden value="India">Choose Group</option>
-                                                {
-                                                    activedevicegroup.map((data, index) => (
-                                                        <option key={index} value={data.device_group}>{data.device_group}</option>
-                                                    ))
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="form-group " >
-                                        <label>Device IP Address</label>
-                                        <input type="text" className="form-control" id='deviceipaddr' />
-                                    </div>
-                                    <div className="form-group " >
-                                        <label>Device Host Master</label>
-                                        <input type="text" className="form-control" id='devicehost' />
-                                    </div>
-                                    <div className="form-group " >
-                                        <label>Operating System</label>
-                                        <select id="operatingsystem" className="form-control col-md-12" >
-                                            <option selected hidden value="India">Choose Operating System</option>
-                                            {
-                                                activeOperatingsystem.map((data, index) => (
-                                                    <option key={index} value={data.operating_system}>{data.operating_system}</option>
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
-                                    <div className="form-group " >
-                                        <label>Select Services <span style={{ color: "red" }}>*</span></label>
-                                        <Select
-                                            options={options}
-                                            isMulti={true}
-                                            onChange={handleChange}
-                                        />
+                                        <div className="form-group " >
+                                            <label>Select Services <span className='text-danger'>*</span></label>
+                                            <Select
+                                                options={options}
+                                                isMulti={true}
+                                                onChange={handleChange}
+                                            />
 
 
-                                        {/* <select id="deviceservice" className="form-control col-md-12" >
+                                            {/* <select id="deviceservice" className="form-control col-md-12" >
                                             <option selected hidden value="India">Choose Service</option>
                                             {
                                                 activeservice.map((data, index) => (
@@ -190,46 +205,46 @@ function AddDevice() {
                                                 ))
                                             }
                                         </select> */}
-                                    </div>
-                                    <div className="form-row">
-
-                                        <div className="form-group col-md-6" >
-                                            <label>Device Creation Date <span style={{ color: "red" }}>*</span></label>
-                                            <input type="date" className="form-control" id='createdate' />
                                         </div>
-                                        <div className="form-group col-md-6" >
-                                            <label>Device Registration Date <span style={{ color: "red" }}>*</span></label>
-                                            <input type="date" className="form-control" id='registerdate' />
+                                        <div className="form-row">
+
+                                            <div className="form-group col-md-6" >
+                                                <label>Device Creation Date <span className='text-danger'>*</span></label>
+                                                <input type="date" className="form-control" id='createdate' />
+                                            </div>
+                                            <div className="form-group col-md-6" >
+                                                <label>Device Registration Date <span className='text-danger'>*</span></label>
+                                                <input type="date" className="form-control" id='registerdate' />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div className="form-group " >
-                                        <label>Agent <span style={{ color: "red" }}>*</span></label>
-                                        <select id="agent" className="form-control col-md-12" >
-                                            <option selected hidden value="India">Choose Agent</option>
-                                            {
-                                                activeagent.map((data, index) => (
-                                                    <option key={index} value={data.agent_name}>{data.agent_name}</option>
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Remarks</label>
-                                        <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
-                                    </div>
+                                        <div className="form-group " >
+                                            <label>Agent <span className='text-danger'>*</span></label>
+                                            <select id="agent" className="form-control col-md-12" >
+                                                <option hidden value="">Select Agent</option>
+                                                {
+                                                    activeagent.map((data, index) => (
+                                                        <option key={index} value={data.agent_name}>{data.agent_name}</option>
+                                                    ))
+                                                }
+                                            </select>
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Remarks</label>
+                                            <textarea className="form-control" placeholder="Comments" id='remark' rows="3" />
+                                        </div>
 
-                                    <div className="form-group" >
-                                        <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Submit</button>
-                                        <button type="reset" className="btn btn-secondary mr-4 float-right mb-4 mt-3">Reset</button>
-                                        <button type="button" onClick={() => { window.location.href = '/TotalDevice' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
-
-                                    </div>
-                                </form>
-                            </article>
+                                        <div className="form-group mt-3" >
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleadddevice}>Submit</button>&nbsp;
+                                            <button type="reset" className="btn btn-secondary ">Reset</button>
+                                        </div>
+                                    </form>
+                                </article>
+                            </div>
                         </div>
-                    </div>
-            </Sidebar>
+                    </Sidebar>
+                    : <LoadingPage />
+            }
         </>
     )
 }

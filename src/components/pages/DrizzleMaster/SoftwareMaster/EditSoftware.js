@@ -67,20 +67,14 @@ function EditSoftware() {
                             <div className="card card-div" style={{ width: "50%" }}>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-                                        <div className="row">
-                                            <div className="form-group col" >
-                                                <label htmlFor='seriesid'> Software <small className='text-danger'>*</small></label>
-                                                <input type="text" className="form-control" id='software' value={data.software_name} onChange={handlechangeassetstatus} />
-                                            </div>
+                                        <div className="form-group col" >
+                                            <label htmlFor='seriesid'> Software <small className='text-danger'>*</small></label>
+                                            <input type="text" className="form-control" id='software' value={data.software_name} onChange={handlechangeassetstatus} />
                                         </div>
-                                        <div className="row mt-3">
-                                            <div className="form-group col-md" >
-                                                <label htmlFor='taskid'>Description</label>
-                                                <textarea type="text" className="form-control" id='software_desc' value={data.software_description} onChange={handlechangeassetstatusdesc} />
-                                            </div>
-
+                                        <div className="form-group col-md mt-3" >
+                                            <label htmlFor='software_desc'>Remarks</label>
+                                            <textarea  className="form-control" id='software_desc' rows='3' value={data.software_description} onChange={handlechangeassetstatusdesc} />
                                         </div>
-
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleadddevice}>Update</button>
                                         </div>

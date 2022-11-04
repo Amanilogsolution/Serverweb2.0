@@ -81,7 +81,7 @@ function EditBillingFreq() {
                                             </div>
                                         </div>
                                         <div className="form-group col-md mt-3" >
-                                            <label htmlFor='billing_freq_desc'>Description</label>
+                                            <label htmlFor='billing_freq_desc'>Remarks</label>
                                             <textarea className="form-control" id='billing_freq_desc' rows='3' value={data.billing_freq_description} onChange={handlechangeassetstatusdesc} />
                                         </div>
 

@@ -47,20 +47,16 @@ function AddAssetStatus() {
                             <div className="card card-div" style={{ width: "50%" }}>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-                                        <div className="row">
 
                                             <div className="col" >
                                                 <label htmlFor='asset_status'>Asset Status  <small className='text-danger'>*</small></label>
                                                 <input type="text" className="form-control" id='asset_status' />
-                                            </div>
-                                        </div>
-                                        <div className="row mt-2">
-                                            <div className="col-md" >
-                                                <label htmlFor='asset_status_desc'>Description</label>
+                                            </div> 
+                                            <div className="col-md mt-3" >
+                                                <label htmlFor='asset_status_desc'>Remarks</label>
                                                 <textarea className="form-control" id='asset_status_desc' />
                                             </div>
 
-                                        </div>
 
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Status</button>&nbsp;

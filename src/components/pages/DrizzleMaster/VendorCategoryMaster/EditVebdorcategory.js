@@ -77,7 +77,7 @@ function EditVendorcategory() {
                                             </div>
                                         </div>
                                             <div className="form-group col-md mt-3" >
-                                                <label htmlFor='vendor_category_description'>Description</label>
+                                                <label htmlFor='vendor_category_description'>Remarks</label>
                                                 <textarea type="text" className="form-control" id='vendor_category_description' value={data.vendor_category_description} onChange={handlechangeassetstatusdesc} />
                                             </div>
 

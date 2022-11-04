@@ -55,7 +55,7 @@ function AddVendorCategory() {
                                             </div>
                                         </div>
                                         <div className="col-md mt-3" >
-                                            <label htmlFor='vendor_category_description'>Description</label>
+                                            <label htmlFor='vendor_category_description'>Remarks</label>
                                             <textarea className="form-control" rows='3' id='vendor_category_description' placeholder='Comments'/>
                                         </div>
                                         <div className="form-group mt-3" >

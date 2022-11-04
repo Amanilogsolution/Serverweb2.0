@@ -55,7 +55,7 @@ function AddBillingFreq() {
                                             </div>
                                         </div>
                                         <div className="col-md mt-3" >
-                                            <label htmlFor='billing_freq_desc'>Description</label>
+                                            <label htmlFor='billing_freq_desc'>Remarks</label>
                                             <textarea type="email" className="form-control" id='billing_freq_desc' placeholder='Comments'/>
                                         </div>
                                         <div className="form-group mt-3" >
