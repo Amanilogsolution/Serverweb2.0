@@ -6,6 +6,7 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { Activedevice, Getdevicetaskbyname, Updatedevicetaskastatus } from '../../../../api'
 import { AiFillEdit } from 'react-icons/ai';
 import { MdAdd } from 'react-icons/md';
+import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 
 const customStyles = {
@@ -38,6 +39,7 @@ const customStyles = {
 };
 function TotaldeviceTask() {
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
     const [devicename, setDevicename] = useState([]);
     const columns = [
         {
@@ -102,6 +104,8 @@ function TotaldeviceTask() {
         const fetchdata = async () => {
             const result = await Activedevice();
             setDevicename(result)
+            setLoading(true)
+
         }
         fetchdata();
     }, [])
@@ -114,55 +118,62 @@ function TotaldeviceTask() {
 
 
     const handelselect = async (e) => {
+        setLoading(false)
         const tabledata = await Getdevicetaskbyname(e.target.value);
         // setShowtable(true)
         setData(tabledata)
+        setLoading(true)
+
     }
     return (
         <>
-            <Sidebar>
-                <div className='main_container' >
-                    <div className='innermain_container m-auto' >
-                        <div className='d-flex justify-content-between pt-4'>
-                            <h3> Device Task</h3>
-                            <button className='btn btn-voilet m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceServiceTask' }}>Add Task<MdAdd/> </button>
-                        </div>
-                        <div className="form-row">
-                            <div className="form-group col-md-4" >
-                                {/* <label>Select Device</label> */}
-                                <select className="form-select" id='devicename' onChange={handelselect}>
-                                    <option hidden>Select Device</option>
-                                    {
-                                        devicename.map((item, index) =>
-                                            <option key={index}>{item.device_name}</option>)
-                                    }
-                                </select>
-                            </div>
-
-                        </div>
-
-
-
-                        {
-                            data.length > 0 ? <DataTableExtensions {...tableData}>
-                                <DataTable
-                                    noHeader
-                                    defaultSortField="id"
-                                    defaultSortAsc={false}
-                                    pagination
-                                    highlightOnHover
-                                    customStyles={customStyles}
-                                />
-                            </DataTableExtensions>
-                                : <div>
-                                    <h2 className='text-center'>Select Device</h2>
+            {
+                loading ?
+                    <Sidebar>
+                        <div className='main_container' >
+                            <div className='innermain_container m-auto' >
+                                <div className='d-flex justify-content-between pt-4'>
+                                    <h3> Device Task</h3>
+                                    <button className='btn btn-voilet m-0 add-btn' onClick={e => { e.preventDefault(); window.location.href = './AddDeviceServiceTask' }}>Add Task<MdAdd /> </button>
                                 </div>
-                        }
+                                <div className="form-row">
+                                    <div className="form-group col-md-4" >
+                                        {/* <label>Select Device</label> */}
+                                        <select className="form-select" id='devicename' onChange={handelselect}>
+                                            <option hidden>Select Device</option>
+                                            {
+                                                devicename.map((item, index) =>
+                                                    <option key={index}>{item.device_name}</option>)
+                                            }
+                                        </select>
+                                    </div>
+
+                                </div>
 
 
-                    </div>
-                </div>
-            </Sidebar>
+
+                                {
+                                    data.length > 0 ? <DataTableExtensions {...tableData}>
+                                        <DataTable
+                                            noHeader
+                                            defaultSortField="id"
+                                            defaultSortAsc={false}
+                                            pagination
+                                            highlightOnHover
+                                            customStyles={customStyles}
+                                        />
+                                    </DataTableExtensions>
+                                        : <div>
+                                            <h2 className='text-center'>Select Device</h2>
+                                        </div>
+                                }
+
+
+                            </div>
+                        </div>
+                    </Sidebar>
+                    : <LoadingPage />
+            }
         </>
     )
 }

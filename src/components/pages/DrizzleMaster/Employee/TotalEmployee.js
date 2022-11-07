@@ -5,6 +5,7 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { TotalEmployees, DeleteEmployees } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
+import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
@@ -40,6 +41,8 @@ const customStyles = {
 
 function TotalEmployee() {
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+
     const columns = [
         // {
         //     name: 'Employee ID',
@@ -101,6 +104,8 @@ function TotalEmployee() {
         const fetchdata = async () => {
             const tabledata = await TotalEmployees();
             setData(tabledata)
+            setLoading(true)
+
         }
         fetchdata();
     }, [])
@@ -112,6 +117,8 @@ function TotalEmployee() {
 
     return (
         <>
+         {
+                loading ?
             <Sidebar>
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
@@ -134,6 +141,8 @@ function TotalEmployee() {
                     </div>
                 </div>
             </Sidebar>
+            : <LoadingPage />
+            }
         </>
     )
 }

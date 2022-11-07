@@ -57,7 +57,7 @@ const LandingPage = () => {
 
 
 
-                    <section className='portfoliodiv' >
+                    <section className='portfoliodiv'>
                         <div className="comp_name" >
                             <div className="comp1 text-center "><h3>AWL</h3></div>
                             <div className="comp2 text-center "><h3>ILOGSOLUTION</h3></div>

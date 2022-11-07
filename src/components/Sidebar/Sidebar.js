@@ -178,7 +178,8 @@ const Sidebar = ({ children }) => {
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/TotalEmployee' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalEmployee' className='navlink d-flex' activeclassname="sidebaractive">
+                                    <VscLocation />
                                         <div style={{ display: isOpen ? "block" : "none" }} >Employee</div>
                                     </NavLink>
                                 </li>

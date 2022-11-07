@@ -6,6 +6,7 @@ import { TotalPriorityapi, DeletePriorityapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 const customStyles = {
     title: {
@@ -39,12 +40,10 @@ const customStyles = {
 
 function TotalPriority() {
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+
     const columns = [
-        {
-            name: 'Priority Id',
-            selector: row => row.priority_id,
-            sortable: true,
-        },
+
         {
             name: 'Priority Type',
             selector: row => row.priority_type,
@@ -88,6 +87,8 @@ function TotalPriority() {
         const fetchdata = async () => {
             const tabledata = await TotalPriorityapi();
             setData(tabledata)
+            setLoading(true)
+
         }
         fetchdata();
     }, [])
@@ -99,28 +100,32 @@ function TotalPriority() {
 
     return (
         <>
-            <Sidebar>
-                <div className='main_container' >
-                    <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
-                        <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Priority</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Priority</span> </h2>
-                            <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddPriority' }} >Add Priority <MdAdd /></button>
+            {
+                loading ?
+                    <Sidebar>
+                        <div className='main_container' >
+                            <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
+                                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
+                                    <h2><span style={{ color: "rgb(123,108,200)" }}>Priority</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Priority</span> </h2>
+                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddPriority' }} >Add Priority <MdAdd /></button>
+                                </div>
+                                <div >
+                                    <DataTableExtensions {...tableData}  >
+                                        <DataTable
+                                            noHeader
+                                            defaultSortField="id"
+                                            defaultSortAsc={false}
+                                            pagination
+                                            highlightOnHover
+                                            customStyles={customStyles}
+                                        />
+                                    </DataTableExtensions>
+                                </div>
+                            </div>
                         </div>
-                        <div >
-                            <DataTableExtensions {...tableData}  >
-                                <DataTable
-                                    noHeader
-                                    defaultSortField="id"
-                                    defaultSortAsc={false}
-                                    pagination
-                                    highlightOnHover
-                                    customStyles={customStyles}
-                                />
-                            </DataTableExtensions>
-                        </div>
-                    </div>
-                </div>
-            </Sidebar>
+                    </Sidebar>
+                    : <LoadingPage />
+            }
         </>
     )
 }

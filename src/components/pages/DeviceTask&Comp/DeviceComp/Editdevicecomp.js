@@ -3,6 +3,7 @@ import Sidebar from '../../../Sidebar/Sidebar';
 import { getdevicetaskcomp } from '../../../../api'
 import { ActiveServiceCompliance, Updatedevicetaskcomp } from '../../../../api/index'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 function EditDeviceComp() {
     // const [device,setDevice]=useState([]);
@@ -11,6 +12,8 @@ function EditDeviceComp() {
     // const [task,setTask]= useState([]);
 
     const [data, setData] = useState({});
+    const [loading, setLoading] = useState(false)
+
     const [activecompliance, setActiveCompliance] = useState([]);
 
 
@@ -26,7 +29,7 @@ function EditDeviceComp() {
             // setActiveService(result)
             const compliance = await ActiveServiceCompliance()
             setActiveCompliance(compliance)
-
+            setLoading(true)
         }
         fetch()
     }, [])
@@ -38,7 +41,7 @@ function EditDeviceComp() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        document.getElementById('subnitbtn').disabled = true;
+        setLoading(false)
 
         const devicename = document.getElementById('devicename').value;
         const services = document.getElementById('services').value;
@@ -48,8 +51,8 @@ function EditDeviceComp() {
         const sno = sessionStorage.getItem('devicecompSno')
 
         if (!devicename || !services || !compliances.length) {
-            alert("Please enter Mandatory field")
-            document.getElementById('subnitbtn').disabled = false;
+            alert("All field are mandatory...")
+            setLoading(true)
 
         }
         else {
@@ -61,7 +64,7 @@ function EditDeviceComp() {
             }
             else {
                 alert("Server Error");
-                document.getElementById('subnitbtn').disabled = false;
+                setLoading(true)
             }
         }
 
@@ -70,10 +73,12 @@ function EditDeviceComp() {
 
     return (
         <>
+         {
+                loading ?
             <Sidebar>
                 <div className='main_container' >
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{ color: "rgb(123,108,200)" }}>Device Compliances</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device Compliances</span> </h2>
+                        <h2><span style={{ color: "rgb(123,108,200)" }}>Device Compliances</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Device Compliances</span> </h2>
                         <button className='btn btn-secondary btn ' onClick={() => {sessionStorage.removeItem('devicecompSno'); window.location.href = '/TotalDeviceComp' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div" >
@@ -119,6 +124,8 @@ function EditDeviceComp() {
                     </div>
                 </div>
             </Sidebar>
+            : <LoadingPage />
+            }
         </>
     )
 }
