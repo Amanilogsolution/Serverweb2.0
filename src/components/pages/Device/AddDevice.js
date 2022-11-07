@@ -165,7 +165,7 @@ function AddDevice() {
                                             </div>
                                             <div className='row mt-3'>
                                                 <div className="form-group col-md-4" >
-                                                    <label htmlfor='devicegroup'>Device Group <span className='text-danger'>*</span></label>
+                                                    <label htmlFor='devicegroup'>Device Group <span className='text-danger'>*</span></label>
                                                     <select
                                                         id="devicegroup"
                                                         className="form-select col-md-12">

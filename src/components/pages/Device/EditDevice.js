@@ -57,6 +57,8 @@ function EditDevice() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
+        setLoading(false)
+
         const sno = sessionStorage.getItem('deviceSno');
         const deviceid = document.getElementById('deviceid').value;
         const devicename = document.getElementById('devicename').value
@@ -72,16 +74,22 @@ function EditDevice() {
         const remark = document.getElementById('remark').value
         const username = sessionStorage.getItem('UserName')
 
-        const result = await Updatedevice(sno, deviceid, devicename, devicetype, devicegroup, deviceipaddr, devicehost, operatingsystem, services, createdate, registerdate, agent, remark, username)
-        if (result === 'Updated') {
-            alert('Data Updated')
-            sessionStorage.removeItem('deviceSno');
-            window.location.href = '/TotalDevice'
+        if (!devicename || !devicetype || !devicegroup || !createdate || !registerdate || !agent) {
+            alert("Please enter Mandatory field")
+            setLoading(true)
         }
         else {
-            alert("Server not response...")
-            setLoading(true)
+            const result = await Updatedevice(sno, deviceid, devicename, devicetype, devicegroup, deviceipaddr, devicehost, operatingsystem, services, createdate, registerdate, agent, remark, username)
+            if (result === 'Updated') {
+                alert('Data Updated')
+                sessionStorage.removeItem('deviceSno');
+                window.location.href = '/TotalDevice'
+            }
+            else {
+                alert("Server not response...")
+                setLoading(true)
 
+            }
         }
 
 
@@ -119,7 +127,7 @@ function EditDevice() {
                     <Sidebar>
                         <div className='main_container' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Device</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device</span> </h2>
+                                <h2><span style={{ color: "rgb(123,108,200)" }}>Device</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Device</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('deviceSno'); window.location.href = '/TotalDevice' }} >Back <MdOutlineArrowForward /></button>
                             </div>
 
@@ -190,11 +198,11 @@ function EditDevice() {
                                                 </div>
                                                 <div className="form-group col-md-4" >
                                                     <label>Device Creation Date</label>
-                                                    <input type="date" className="form-control" id='createdate' />
+                                                    <input type="date" className="form-control" id='createdate' defaultValue={data.device_creation_date} />
                                                 </div>
                                                 <div className="form-group col-md-4" >
                                                     <label>Device Registration Date</label>
-                                                    <input type="date" className="form-control" id='registerdate' />
+                                                    <input type="date" className="form-control" id='registerdate' defaultValue={data.device_reg_date} />
                                                 </div>
                                             </div>
                                             <div className='row mt-3'>
