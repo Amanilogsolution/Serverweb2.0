@@ -78,7 +78,7 @@ function EditVendorSubCategory() {
                                     <form className='px-3' autoComplete='off'>
                                         <div className="row">
                                             <div className="form-group col-md-6">
-                                                <label htmlFor='vendor_category'> Select Vendor Category <small className='text-danger'>*</small></label>
+                                                <label htmlFor='vendor_category'> Select Vendor Category <span className='text-danger'>*</span></label>
                                                 <select type="text" className="form-select" id='vendor_category' onChange={handleChangeVendCate}>
                                                     <option value={data.vendor_category} hidden>{data.vendor_category} </option>
                                                     {
@@ -88,7 +88,7 @@ function EditVendorSubCategory() {
                                                 </select>
                                             </div>
                                             <div className="form-group col-md-6" >
-                                                <label htmlFor='vendor_sub_category'> Vendor Sub Category <small className='text-danger'>*</small></label>
+                                                <label htmlFor='vendor_sub_category'> Vendor Sub Category <span className='text-danger'>*</span></label>
                                                 <input type="text" className="form-control" id='vendor_sub_category' value={data.vendor_sub_category} onChange={handleChangeVendSubCate} />
                                             </div>
                                         </div>

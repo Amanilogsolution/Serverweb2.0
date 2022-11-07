@@ -48,7 +48,7 @@ function AddPriority() {
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="col" >
-                                            <label htmlFor='priority'>Priority Type <small className='text-danger'>*</small></label>
+                                            <label htmlFor='priority'>Priority Type <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='priority' />
                                         </div>
                                         <div className="col-md mt-3" >

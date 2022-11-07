@@ -69,7 +69,7 @@ function EditServiceActionType() {
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="form-group col">
-                                            <label htmlFor='service_action_type'> Service Action Type <small className='text-danger'>*</small></label>
+                                            <label htmlFor='service_action_type'> Service Action Type <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='service_action_type' value={data.service_action_type} onChange={handleChangeServiceAction} />
                                         </div>
 

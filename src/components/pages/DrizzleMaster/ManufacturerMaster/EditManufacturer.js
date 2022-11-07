@@ -72,11 +72,11 @@ function EditManufacturer() {
                         <article className="card-body" >
                             <form className='px-3' autoComplete='off'>
                                 <div className="form-group">
-                                    <label htmlFor='manufacturername'>Manufacturer Name <small className='text-danger'>*</small></label>
+                                    <label htmlFor='manufacturername'>Manufacturer Name <span className='text-danger'>*</span></label>
                                     <input type="text" className="form-control" id='manufacturername' value={data.manufacturer_name} onChange={handlechangeManufacturerName} />
                                 </div>
                                 <div className="form-group mt-3">
-                                    <label htmlFor='remark'>Remarks (Optional)</label>
+                                    <label htmlFor='remark'>Remarks</label>
                                     <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" value={data.manufacturer_description} onChange={handleChangeRemark} />
                                 </div>
                                 <div className="form-group mt-3" >

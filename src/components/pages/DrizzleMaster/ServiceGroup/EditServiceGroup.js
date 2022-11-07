@@ -69,7 +69,7 @@ function EditServiceGroup() {
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="form-group col">
-                                            <label htmlFor='service_group_type'> Service Group Type <small className='text-danger'>*</small></label>
+                                            <label htmlFor='service_group_type'> Service Group Type <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='service_group_type' value={data.service_group_type} onChange={handleChangeGroup} />
                                         </div>
 

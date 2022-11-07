@@ -72,16 +72,14 @@ function EditVendorcategory() {
                                         <div className="row">
 
                                             <div className="form-group col" >
-                                                <label htmlFor='vendor_category'>Vendor Category   <small className='text-danger'>*</small></label>
+                                                <label htmlFor='vendor_category'>Vendor Category  <span className='text-danger'>*</span></label>
                                                 <input type="text" className="form-control" id='vendor_category' value={data.vendor_category} onChange={handlechangeassetstatus} />
                                             </div>
                                         </div>
-                                            <div className="form-group col-md mt-3" >
-                                                <label htmlFor='vendor_category_description'>Remarks</label>
-                                                <textarea type="text" className="form-control" id='vendor_category_description' value={data.vendor_category_description} onChange={handlechangeassetstatusdesc} />
-                                            </div>
-
-
+                                        <div className="form-group col-md mt-3" >
+                                            <label htmlFor='vendor_category_description'>Remarks</label>
+                                            <textarea type="text" className="form-control" id='vendor_category_description' value={data.vendor_category_description} onChange={handlechangeassetstatusdesc} />
+                                        </div>
 
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleadddevice}>Update</button>

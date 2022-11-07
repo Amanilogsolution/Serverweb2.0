@@ -50,13 +50,13 @@ function AddBillingFreq() {
                                         <div className="row">
 
                                             <div className="col" >
-                                                <label htmlFor='billing_freq'>Billing Frequency  <small className='text-danger'>*</small></label>
+                                                <label htmlFor='billing_freq'>Billing Frequency  <span className='text-danger'>*</span></label>
                                                 <input type="text" className="form-control" id='billing_freq' />
                                             </div>
                                         </div>
                                         <div className="col-md mt-3" >
                                             <label htmlFor='billing_freq_desc'>Remarks</label>
-                                            <textarea type="email" className="form-control" id='billing_freq_desc' placeholder='Comments'/>
+                                            <textarea className="form-control" id='billing_freq_desc' placeholder='Comments'/>
                                         </div>
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Frequency</button>

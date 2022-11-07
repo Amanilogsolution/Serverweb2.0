@@ -337,6 +337,7 @@ export const Getdevicetaskbyname = async (name) => {
 }
 
 export const Adddevicetaskby = async (devicename, services, task, completion_date, remark, username) => {
+    console.log(devicename, services, task, completion_date, remark, username)
     const url = `https://drizzlebackend.awlworldwide.com/api/adddevicetaskes`
     return axios.post(url, { devicename, services, task, completion_date, remark, username }).then(response => response.data).catch(error => console.log(error));
 }

@@ -68,7 +68,7 @@ function EditSoftware() {
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="form-group col" >
-                                            <label htmlFor='seriesid'> Software <small className='text-danger'>*</small></label>
+                                            <label htmlFor='seriesid'> Software <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='software' value={data.software_name} onChange={handlechangeassetstatus} />
                                         </div>
                                         <div className="form-group col-md mt-3" >

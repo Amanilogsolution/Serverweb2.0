@@ -48,7 +48,7 @@ function AddSoftware() {
                                     <form className='px-3' autoComplete='off'>
 
                                         <div className="col" >
-                                            <label htmlFor='software'>Software <small className='text-danger'>*</small></label>
+                                            <label htmlFor='software'>Software <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='software' />
                                         </div>
                                         <div className="col-md mt-3" >

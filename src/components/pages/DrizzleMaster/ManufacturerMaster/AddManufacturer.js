@@ -49,7 +49,7 @@ function AddManufacturer() {
                                         <article className="card-body" >
                                             <form className='px-3' autoComplete='off'>
                                                 <div className="form-group">
-                                                    <label htmlFor='manufacturername'>Manufacturer Name   <small className='text-danger'>*</small></label>
+                                                    <label htmlFor='manufacturername'>Manufacturer Name   <span className='text-danger'>*</span></label>
                                                     <input type="text" className="form-control" id='manufacturername' />
                                                 </div>
                                                 <div className="form-group mt-3">

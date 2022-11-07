@@ -61,7 +61,7 @@ function AddVendorSubCategory() {
                                     <form className='px-3' autoComplete='off'>
                                         <div className="row">
                                             <div className="col-md-6">
-                                                <label htmlFor='vendor_category'> Vendor Category <small className='text-danger'>*</small></label>
+                                                <label htmlFor='vendor_category'> Vendor Category <span className='text-danger'>*</span></label>
                                                 <select type="text" className="form-select" id='vendor_category' >
                                                     <option value='' hidden>Select Vendor Category</option>
                                                     {
@@ -71,7 +71,7 @@ function AddVendorSubCategory() {
                                                 </select>
                                             </div>
                                             <div className="col-md-6" >
-                                                <label htmlFor='vendor_sub_category'>Vendor Sub Category <small className='text-danger'>*</small></label>
+                                                <label htmlFor='vendor_sub_category'>Vendor Sub Category <span className='text-danger'>*</span></label>
                                                 <input type="text" className="form-control" id='vendor_sub_category' />
                                             </div>
                                         </div>

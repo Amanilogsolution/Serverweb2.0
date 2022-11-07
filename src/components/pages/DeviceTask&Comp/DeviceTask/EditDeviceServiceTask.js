@@ -104,10 +104,15 @@ function EditDeviceServiceTask() {
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Device Task</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Device Task</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('devicetaskmSno'); window.location.href = '/TotalDeviceServiceTask' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div mb-2"  >
+                            <div className="contract-div" style={{ width: "90%" }} >
+                            <div className="card inner-card">
+                                    <header className="card-header" >
+                                        <h5 >Edit Device Task</h5>
+                                    </header>
                                 <article className="card-body " >
                                     <form style={{ margin: "0px 20px 0px 15px" }}>
-                                        <div className="form-group">
+                                    <div className="row">
+                                                <div className="form-group col-md-6">
                                             <label htmlFor='devicename'>Device Name </label>
                                             <input className="form-control" type="text" id='devicename' disabled value={data.device_name} />
                                             {/* <select
@@ -123,7 +128,8 @@ function EditDeviceServiceTask() {
                                             }
                                         </select> */}
                                         </div>
-                                        <div className="form-group mt-2" >
+                                       
+                                        <div className="form-group col-md-6" >
                                             <label htmlFor='services'>Select Services </label>
                                             <input className="form-control" type="text" id='services' disabled value={data.services} />
                                             {/* <select
@@ -138,8 +144,10 @@ function EditDeviceServiceTask() {
                                                 ))
                                             }
                                         </select> */}
+                                        </div> 
                                         </div>
-                                        <div className="form-group mt-2" >
+                                        <div className="row mt-3">
+                                                <div className="form-group col-md-6" >
                                             <label htmlFor='devicetask'> Task</label>
 
                                             <select
@@ -162,17 +170,17 @@ function EditDeviceServiceTask() {
                                         /> */}
 
                                         </div>
-                                        <div className="form-group mt-2" >
+                                        <div className="form-group col-md-6" >
                                             <label htmlFor='devicetaskfreq'> Task Frequency</label>
                                             <input className="form-control" type="text" id='devicetaskfreq' disabled value={freq} />
-
                                         </div>
-                                        <div className="form-group mt-2">
+                                        </div>
+                                        <div className="form-group mt-2 col-md-6">
                                             <label htmlFor='completion_date'>Completion Date</label>
                                             <input className="form-control" type="date" id='completion_date' value={data.completion_date} onChange={handelchangedate} />
                                         </div>
 
-                                        <div className="form-group mt-2">
+                                        <div className="form-group mt-3">
                                             <label htmlFor='remark'>Remarks</label>
                                             <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" value={data.remark} onChange={handlechangeremark} />
                                         </div>
@@ -181,6 +189,7 @@ function EditDeviceServiceTask() {
                                         </div>
                                     </form>
                                 </article>
+                            </div>
                             </div>
                         </div>
                     </Sidebar>

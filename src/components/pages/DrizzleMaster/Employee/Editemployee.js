@@ -93,7 +93,7 @@ function EditEmployee() {
                                             </div>
 
                                             <div className="form-group col-md-6" >
-                                                <label htmlFor='osid'>Location <small className='text-danger'>*</small></label>
+                                                <label htmlFor='osid'>Location <span className='text-danger'>*</span></label>
                                                 <select className="form-select" id='location' required onChange={handlechangelocation}>
                                                     <option value={data.location} hidden>{data.location}</option>
                                                     {
@@ -106,11 +106,11 @@ function EditEmployee() {
                                         </div>
                                         <div className="row mt-3">
                                             <div className="form-group col-md-6" >
-                                                <label htmlFor='seriesid'> Employee Name <small className='text-danger'>*</small></label>
+                                                <label htmlFor='seriesid'> Employee Name <span className='text-danger'>*</span></label>
                                                 <input type="text" className="form-control" id='employee_name' value={data.employee_name} onChange={handlechangeempname} />
                                             </div>
                                             <div className="form-group col-md-6" >
-                                                <label htmlFor='taskid'>Employee Email <small className='text-danger'>*</small></label>
+                                                <label htmlFor='taskid'>Employee Email <span className='text-danger'>*</span></label>
                                                 <input type="email" className="form-control" id='employee_email' value={data.employee_email} onChange={handlechangeempemail} />
                                             </div>
                                         </div>

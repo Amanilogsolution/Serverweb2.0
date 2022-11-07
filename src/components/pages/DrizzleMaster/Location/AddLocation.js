@@ -67,21 +67,21 @@ function AddLocation() {
                                 <form className='px-3' autoComplete='off'>
                                     <div className="row">
                                         <div className="col-md-4">
-                                            <label htmlFor='company'> Company <small className='text-danger'>*</small></label>
+                                            <label htmlFor='company'> Company <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='company' />
                                         </div>
                                         <div className="col-md-4" >
-                                            <label htmlFor='locationcode'>Location Code <small className='text-danger'>*</small></label>
+                                            <label htmlFor='locationcode'>Location Code <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='locationcode' />
                                         </div>
                                         <div className="col-md-4" >
-                                            <label htmlFor='locationname'>Location Name <small className='text-danger'>*</small></label>
+                                            <label htmlFor='locationname'>Location Name <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='locationname' />
                                         </div>
                                     </div>
                                     <div className="row mt-3">
                                         <div className="col-md-4" >
-                                            <label htmlFor='address1'>Address Line 1 <small className='text-danger'>*</small></label>
+                                            <label htmlFor='address1'>Address Line 1 <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='address1' />
                                         </div>
                                         <div className="col-md-4" >
@@ -89,17 +89,17 @@ function AddLocation() {
                                             <input type="text" className="form-control" id='address2' />
                                         </div>
                                         <div className="col-md-4" >
-                                            <label htmlFor='city'>City <small className='text-danger'>*</small></label>
+                                            <label htmlFor='city'>City <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='city' max={10} />
                                         </div>
                                     </div>
                                     <div className="row mt-3">
                                         <div className="col-md-4" >
-                                            <label htmlFor='state'>State <small className='text-danger'>*</small></label>
+                                            <label htmlFor='state'>State <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='state' />
                                         </div>
                                         <div className="col-md-4" >
-                                            <label htmlFor='pincode'>Pincode <small className='text-danger'>*</small></label>
+                                            <label htmlFor='pincode'>Pincode <span className='text-danger'>*</span></label>
                                             <input type="number" className="form-control" id='pincode'
                                                 value={pincount}
                                                 onChange={(e) => { if (e.target.value.length === 7) return false; else { setPincount(e.target.value) } }}
@@ -114,16 +114,16 @@ function AddLocation() {
                                     <div className="row mt-3">
 
                                         <div className="col-md-4" >
-                                            <label htmlFor='contactpersonname'>Contact Person Name <small className='text-danger'>*</small></label>
+                                            <label htmlFor='contactpersonname'>Contact Person Name <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='contactpersonname' />
                                         </div>
 
                                         <div className="col-md-4" >
-                                            <label htmlFor='email'>Contact Email <small className='text-danger'>*</small></label>
+                                            <label htmlFor='email'>Contact Email <span className='text-danger'>*</span></label>
                                             <input type="email" className="form-control" id='email' />
                                         </div>
                                         <div className="col-md-4" >
-                                            <label htmlFor='contNum'>Contact Number <small className='text-danger'>*</small></label>
+                                            <label htmlFor='contNum'>Contact Number <span className='text-danger'>*</span></label>
                                             <input type="number" className="form-control" id='contNum'
                                                 value={numcount}
                                                 onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumcount(e.target.value) } }}

@@ -76,7 +76,7 @@ function EditBillingFreq() {
                                         <div className="row">
 
                                             <div className="form-group col" >
-                                                <label htmlFor='billing_freq'>Billing Frequency  <small className='text-danger'>*</small></label>
+                                                <label htmlFor='billing_freq'>Billing Frequency  <span className='text-danger'>*</span></label>
                                                 <input type="text" className="form-control" id='billing_freq' value={data.billing_freq} onChange={handlechangeassetstatus} />
                                             </div>
                                         </div>

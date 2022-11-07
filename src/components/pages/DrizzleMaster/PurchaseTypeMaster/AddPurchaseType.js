@@ -51,12 +51,12 @@ function AddPurchaseType() {
                                     <form className='px-3' autoComplete='off'>
 
                                         <div className="col" >
-                                            <label htmlFor='seriesid'>Purchase Type <small className='text-danger'>*</small></label>
+                                            <label htmlFor='seriesid'>Purchase Type <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='purchase_type' />
                                         </div>
                                         <div className="col-md mt-3" >
                                             <label htmlFor='taskid'>Remarks</label>
-                                            <textarea type="email" className="form-control" id='purchase_type_desc' />
+                                            <textarea type="email" className="form-control" id='purchase_type_desc' rows='3'/>
                                         </div>
 
                                         <div className="form-group mt-3" >

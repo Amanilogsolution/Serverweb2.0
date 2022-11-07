@@ -68,12 +68,12 @@ function EditPurchaseType() {
                                     <form className='px-3' autoComplete='off'>
 
                                         <div className="form-group col" >
-                                            <label htmlFor='purchase_type'>Purchase Type <small className='text-danger'>*</small></label>
+                                            <label htmlFor='purchase_type'>Purchase Type <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='purchase_type' value={data.purchase_type} onChange={handlechangeassetstatus} />
                                         </div>
                                         <div className="form-group col-md mt-3" >
                                             <label htmlFor='purchase_type_desc'>Remarks</label>
-                                            <textarea type="text" className="form-control" id='purchase_type_desc' value={data.purchase_description} onChange={handlechangeassetstatusdesc} />
+                                            <textarea type="text" className="form-control" id='purchase_type_desc' rows='3' value={data.purchase_description} onChange={handlechangeassetstatusdesc} />
                                         </div>
 
 

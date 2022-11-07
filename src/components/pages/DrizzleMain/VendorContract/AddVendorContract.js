@@ -1,17 +1,21 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect } from 'react';
-import { InsertVendorContract, ActiveLocation, ActiveContractType, ActiveVendorCategory, ActiveVendorCode, ActiveVendSubCate } from '../../../../api'
+import { InsertVendorContract, ActiveLocation, ActiveContractType, ActiveVendorCategory, ActiveVendorCode, ActiveVendSubCate, GetVendorCode } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import './vendorcontract.css'
+import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 function AddVendorContract() {
+    const [loading, setLoading] = useState(false)
+
     const [refferenceno, setRefferenceno] = useState(false)
     const [locationlist, setLocationlist] = useState([])
     const [contractlist, setContractlist] = useState([])
     const [vendorcatlist, setVendorcatlist] = useState([])
     const [vendorsubcatlist, setVendorsubcatlist] = useState([])
     const [vendorlist, setVendorlist] = useState([])
-    const [pincodeCount, setPincodeCount] = useState()
+    const [vendordetail, setVendordetail] = useState([])
+    // const [pincodeCount, setPincodeCount] = useState()
 
 
     useEffect(() => {
@@ -26,13 +30,18 @@ function AddVendorContract() {
             setVendorcatlist(vendorCategory)
 
             const vendorall = await ActiveVendorCode();
+            console.log(vendorall)
             setVendorlist(vendorall)
+
+
         }
         fetchdata();
-
-        document.getElementById('ref_no').checked = true;
-        document.getElementById('ref_no_input').style.display = "none"
-        // document.getElementById('link_id_div').style.display = 'none'
+        setLoading(true)
+        setTimeout(() => {
+            document.getElementById('ref_no').checked = true;
+            document.getElementById('ref_no_input').style.display = "none"
+            // document.getElementById('link_id_div').style.display = 'none'},1000)
+        })
 
     }, [])
 
@@ -70,11 +79,24 @@ function AddVendorContract() {
         const subcate = await ActiveVendSubCate(e.target.value);
         setVendorsubcatlist(subcate)
     }
+
+    const handleChnageVendorDetail = async (e) => {
+        const val = e.target.value
+        let result = val.indexOf("sno");
+        let result2 = val.substring(result + 3);
+        const vendsubdetail = await GetVendorCode(result2)
+        console.log(vendsubdetail)
+        setVendordetail(vendsubdetail[0])
+    }
+
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        document.getElementById('subnitbtn').disabled = true;
-        const vendor_contract_id = 'vendId';
-        const vendor = document.getElementById('vendor').value;
+        setLoading(false)
+        let vendor = document.getElementById('vendor').value;
+        let vendorlast = vendor.indexOf("sno");
+        vendorlast = vendorlast - 1
+        vendor = vendor.slice(0, vendorlast)
+        const vendor_contract_id = vendor.substring(0, 3).toUpperCase() + 'Cont' + Math.floor(Math.random() * 10000);
         const company_address_line1 = document.getElementById('comp_addr1').value;
         const company_address_line2 = document.getElementById('comp_addr2').value;
         const company_city = document.getElementById('company_city').value;
@@ -103,8 +125,8 @@ function AddVendorContract() {
 
         if (!vendor || !company_address_line1 || !company_city || !company_state || !company_pin_code || !company_email ||
             !type_of_contract || !major_category || !sub_category || !customer_account_no || !payee_name || !tds || !help_desk_no) {
-            alert('Please Fill the Mandatory Field')
-            document.getElementById('subnitbtn').disabled = false;
+            alert("Please enter Mandatory field")
+            setLoading(true)
         }
         else {
             const refno = document.getElementById('ref_no').checked ? true : false;
@@ -114,7 +136,7 @@ function AddVendorContract() {
                 if (!contact_plain_details || !rate_per_month || !contract_start_date || !invoice_generation_date || !billing_freq) {
                     errorcount = errorcount + 1
                     alert('Please fill the Contract Detail')
-                    document.getElementById('subnitbtn').disabled = false;
+                    setLoading(true)
                 }
             }
             else {
@@ -128,7 +150,7 @@ function AddVendorContract() {
                 if (!reference_no) {
                     errorcount = errorcount + 1
                     alert('Please Enter the Reference no')
-                    document.getElementById('subnitbtn').disabled = false;
+                    setLoading(true)
                 }
             }
             else {
@@ -138,7 +160,7 @@ function AddVendorContract() {
                 if (!link_id_no) {
                     errorcount = errorcount + 1
                     alert('Please Enter the Link id no')
-                    document.getElementById('subnitbtn').disabled = false;
+                    setLoading(true)
                 }
             }
             else { link_id_no = '' }
@@ -156,7 +178,7 @@ function AddVendorContract() {
                 }
                 else {
                     alert('Server not Response')
-                    document.getElementById('subnitbtn').disabled = false;
+                    setLoading(true)
                 }
             }
 
@@ -164,204 +186,207 @@ function AddVendorContract() {
     }
     return (
         <>
-            <Sidebar >
-                <div className='main_container pb-2' >
-                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Contract</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Contract</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorContract' }} >Back <MdOutlineArrowForward /></button>
-                    </div>
-                    <div className="contract-div" style={{ width: "90%" }}>
-                        <div className="card inner-card">
-                            <div className='card-header'>Vendor Company Details:</div>
-                            <article className="card-body" >
-                                <form className='px-3' autoComplete='off'>
-                                    <div className="row">
-                                        <div className="col-md-4">
-                                            <label htmlFor='vendor'>Vendor <span className='text-danger'>*</span></label>
-                                            <select className="form-select" id='vendor'>
-                                                <option value='' hidden>Select Vendor</option>
-                                                {
-                                                    vendorlist.map((item, index) =>
-                                                        <option key={index} value={item.vendor_name}>{item.vendor_name}</option>)
-                                                }
-                                            </select>
+            {
+                loading ?
+                    <Sidebar >
+                        <div className='main_container pb-2' >
+                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Contract</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Contract</span> </h2>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorContract' }} >Back <MdOutlineArrowForward /></button>
+                            </div>
+                            <div className="contract-div" style={{ width: "90%" }}>
+                                <div className="card inner-card">
+                                    <div className='card-header'>Vendor Company Details:</div>
+                                    <article className="card-body" >
+                                        <form className='px-3' autoComplete='off'>
+                                            <div className="row">
+                                                <div className="col-md-4">
+                                                    <label htmlFor='vendor'>Vendor <span className='text-danger'>*</span></label>
+                                                    <select className="form-select" id='vendor' onChange={handleChnageVendorDetail}>
+                                                        <option value='' hidden>Select Vendor</option>
+                                                        {
+                                                            vendorlist.map((item, index) =>
+                                                                <option key={index} value={[`${item.vendor_name},sno${item.sno}`]}>{item.vendor_name}</option>)
+                                                        }
+                                                    </select>
 
-                                        </div>
+                                                </div>
 
-                                        <div className="col-md-4" >
-                                            <label htmlFor='company'>Company</label>
-                                            <select className="form-select" id='company' required >
-                                            </select>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <label htmlFor='location'>Location</label>
-                                            <select className="form-select" id='location' required >
-                                                <option value='' hidden>Select Location</option>
-                                                {
-                                                    locationlist.map((item, index) =>
-                                                        <option key={index}>{item.location_name}</option>
-                                                    )
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="row mt-2">
-                                        <div className="col-md-4" >
-                                            <label htmlFor='company_city'>Company City <span className='text-danger'>*</span></label>
-                                            <input type="text" className="form-control" id='company_city' required />
-                                        </div>
-                                        <div className="col-md-4" >
-                                            <label htmlFor='company_state'>Company State <span className='text-danger'>*</span></label>
-                                            <input type="text" className="form-control" id='company_state' required />
-                                        </div>
-                                        <div className="col-md-4">
-                                            <label htmlFor='comp_pincode'>Company pincode <span className='text-danger'>*</span></label>
-                                            <input type="number" className="form-control" id='comp_pincode' value={pincodeCount} onChange={(e) => {
-                                                if (e.target.value.length === 7) return false; else { setPincodeCount(e.target.value) }
-                                            }} required />
-                                        </div>
-                                    </div>
-                                    <div className="row mt-2">
-                                        <div className="col-md-4" >
-                                            <label htmlFor='comp_gst'>Company GST no.</label>
-                                            <input type="text" className="form-control" id='comp_gst' />
-                                        </div>
-                                        <div className="col-md-4">
-                                            <label htmlFor='comp_website'>Company website</label>
-                                            <input type="url" className="form-control" id='comp_website' required />
-                                        </div>
-                                        <div className="col-md-4" >
-                                            <label htmlFor='comp_email'>Company Email Id <span className='text-danger'>*</span></label>
-                                            <input type="email" className="form-control" id='comp_email' required />
-                                        </div>
-                                    </div>
-                                    <div className="row pt-2">
-                                        <div className="col">
-                                            <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
-                                            <input type="text" className="form-control" id='comp_addr1' required />
-                                        </div>
-                                        <div className="col">
-                                            <label htmlFor='comp_addr2'>Company Address Line 2 </label>
-                                            <input type="text" className="form-control" id='comp_addr2' />
-                                        </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='company'>Company</label>
+                                                    <select className="form-select" id='company' required >
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <label htmlFor='location'>Location</label>
+                                                    <select className="form-select" id='location' required >
+                                                        <option value='' hidden>Select Location</option>
+                                                        {
+                                                            locationlist.map((item, index) =>
+                                                                <option key={index}>{item.location_name}</option>
+                                                            )
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="row mt-2">
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='company_city'>Company City <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='company_city' defaultValue={vendordetail.company_city} required />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='company_state'>Company State <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='company_state' defaultValue={vendordetail.company_state} required />
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <label htmlFor='comp_pincode'>Company pincode <span className='text-danger'>*</span></label>
+                                                    <input type="number" className="form-control" id='comp_pincode' value={vendordetail.company_pin_code} onChange={(e) => {
+                                                        if (e.target.value.length === 7) return false; else { setVendordetail({ ...vendordetail, company_pin_code: e.target.value }) }
+                                                    }} required />
+                                                </div>
+                                            </div>
+                                            <div className="row mt-2">
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='comp_gst'>Company GST no.</label>
+                                                    <input type="text" className="form-control" id='comp_gst' defaultValue={vendordetail.company_gst} />
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <label htmlFor='comp_website'>Company website</label>
+                                                    <input type="url" className="form-control" id='comp_website' required defaultValue={vendordetail.company_website} />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='comp_email'>Company Email Id <span className='text-danger'>*</span></label>
+                                                    <input type="email" className="form-control" id='comp_email' required defaultValue={vendordetail.company_email} />
+                                                </div>
+                                            </div>
+                                            <div className="row pt-2">
+                                                <div className="col">
+                                                    <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='comp_addr1' defaultValue={vendordetail.company_address_line1} required />
+                                                </div>
+                                                <div className="col">
+                                                    <label htmlFor='comp_addr2'>Company Address Line 2 </label>
+                                                    <input type="text" className="form-control" defaultValue={vendordetail.company_address_line2} id='comp_addr2' />
+                                                </div>
 
-                                    </div>
-                                </form>
-                            </article>
+                                            </div>
+                                        </form>
+                                    </article>
+                                </div>
+
+                                <div className="card mt-3 inner-card">
+                                    <div className='card-header'>Other Details:</div>
+                                    <article className="card-body" >
+                                        <form className='px-3' autoComplete='off'>
+                                            <div className="row">
+                                                <div className="col-md-4">
+                                                    <label htmlFor='contract_type'>Type of Contract <span className='text-danger'>*</span></label>
+                                                    <select className="form-select" id='contract_type' onChange={togglerecurrngdiv}>
+                                                        <option  value='' hidden>Select Contract Type</option>
+                                                        {
+                                                            contractlist.map((item, index) =>
+                                                                <option key={index} value={item.contract_type}>{item.contract_type}</option>)
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <label htmlFor='vendor_category'>Vendor Category <span className='text-danger'>*</span></label>
+                                                    <select type="text" className="form-select" id='vendor_category' required onChange={handleChangeCategory}>
+                                                        <option value='' hidden>Select Category</option>
+                                                        <option >Internet</option>
+                                                        <option >Abc</option>
+                                                        <option >Telecome</option>
+                                                        {
+                                                            vendorcatlist.map((item, index) =>
+                                                                <option key={index} value={item.vendor_category}>{item.vendor_category}</option>)
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='vendor_sub_category'>Vendor Sub Category <span className='text-danger'>*</span></label>
+                                                    <select type="text" className="form-select" id='vendor_sub_category' required >
+                                                        <option value='' hidden>Select Sub Category</option>
+                                                        {
+                                                            vendorsubcatlist.map((item, index) =>
+                                                                <option key={index} value={item.vendor_sub_category}>{item.vendor_sub_category}</option>)
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className='mt-2' id='recurringdiv' style={{ display: "none" }}>
+                                                <div className="row ">
+                                                    <div className="col-md-4">
+                                                        <label htmlFor='contact_plan_detail'>Contact Plan Detail <span className='text-danger'>*</span></label>
+                                                        <input type="text" className="form-control" id='contact_plan_detail' required />
+                                                    </div>
+                                                    <div className="col-md-4" >
+                                                        <label htmlFor='rate_per_month'>Rate Per Month <span className='text-danger'>*</span></label>
+                                                        <input type="number" className="form-control" id='rate_per_month' required />
+                                                    </div>
+                                                    <div className="col-md-4" >
+                                                        <label htmlFor='contract_start_date'>Contract Start Date <span className='text-danger'>*</span></label>
+                                                        <input type="date" className="form-control" id='contract_start_date' required />
+                                                    </div>
+                                                </div>
+
+                                                <div className="row mt-2">
+                                                    <div className="col-md-4" >
+                                                        <label htmlFor='invoice_generation_date'>Invoice Generation Date <span className='text-danger'>*</span></label>
+                                                        <input type="date" className="form-control" id='invoice_generation_date' required />
+                                                    </div>
+                                                    <div className="col-md-4" >
+                                                        <label htmlFor='billing_freq'>Billing Frequency <span className='text-danger'>*</span></label>
+                                                        <input type="text" className="form-control" id='billing_freq' required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="row mt-2">
+                                                <div className="col-md-4">
+                                                    <label htmlFor='cust_ac_no'>Customer Account No <span className='text-danger'>*</span></label>
+                                                    <input type="number" className="form-control" id='cust_ac_no' required />
+                                                </div>
+                                                <div className="col-md-6 d-flex align-items-center" >
+                                                    <label htmlFor='ref_no' className='col-md-4' >Reference Number <span className='text-danger'>*</span></label>
+                                                    <input title='Click if Reference Number is same as Account no' type="checkbox" className="" id='ref_no' required style={{ height: "20px", width: "20px", marginRight: "20px" }} onChange={handleChangeRef} />
+
+                                                    <div className="col-md-7" >
+                                                        <p className='col text-danger' id='ref_no_lable'>Same as Account number </p>
+                                                        <input type="text" className="form-control" id='ref_no_input' required placeholder='Reference no.' />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="row mt-2">
+
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='payee_name'>Payee Name <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='payee_name' required />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='help_desk_no'>HelpDesk Number <span className='text-danger'>*</span></label>
+                                                    <input type="number" className="form-control" id='help_desk_no' required />
+                                                </div>
+                                                <div className="col-md-3 mt-3 d-flex align-items-center" >
+                                                    <label htmlFor='tds' className='col-md-3' >TDS </label>
+                                                    <input type="checkbox" className="" id='tds' style={{ height: "20px", width: "20px" }} />
+                                                </div>
+                                            </div>
+                                            <div className="row " id='link_id_div' style={{ display: "none" }}>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='link_id_no'>Link Id No <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='link_id_no' required />
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </article>
+                                </div>
+                                <div className="form-group" >
+                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleaddinsert}>Add Contract</button>
+                                </div>
+                            </div>
                         </div>
-
-                        <div className="card mt-3 inner-card">
-                            <div className='card-header'>Other Details:</div>
-                            <article className="card-body" >
-                                <form className='px-3' autoComplete='off'>
-                                    <div className="row">
-                                        <div className="col-md-4">
-                                            <label htmlFor='contract_type'>Type of Contract <span className='text-danger'>*</span></label>
-                                            <select className="form-select" id='contract_type' onChange={togglerecurrngdiv}>
-                                                <option hidden>Select Contract Type</option>
-                                                {
-                                                    contractlist.map((item, index) =>
-                                                        <option key={index} value={item.contract_type}>{item.contract_type}</option>)
-                                                }
-                                            </select>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <label htmlFor='vendor_category'>Vendor Category <span className='text-danger'>*</span></label>
-                                            <select type="text" className="form-select" id='vendor_category' required onChange={handleChangeCategory}>
-                                                <option value='' hidden>Select Category</option>
-                                                <option >Internet</option>
-                                                <option >Abc</option>
-                                                <option >Telecome</option>
-                                                {
-                                                    vendorcatlist.map((item, index) =>
-                                                        <option key={index} value={item.vendor_category}>{item.vendor_category}</option>)
-                                                }
-                                            </select>
-                                        </div>
-                                        <div className="col-md-4" >
-                                            <label htmlFor='vendor_sub_category'>Vendor Sub Category <span className='text-danger'>*</span></label>
-                                            <select type="text" className="form-select" id='vendor_sub_category' required >
-                                                <option value='' hidden>Select Sub Category</option>
-                                                <option value='abc' >Abc</option>
-                                                {
-                                                    vendorsubcatlist.map((item, index) =>
-                                                        <option key={index} value={item.vendor_sub_category}>{item.vendor_sub_category}</option>)
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className='mt-2' id='recurringdiv' style={{ display: "none" }}>
-                                        <div className="row ">
-                                            <div className="col-md-4">
-                                                <label htmlFor='contact_plan_detail'>Contact Plan Detail <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='contact_plan_detail' required />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='rate_per_month'>Rate Per Month <span className='text-danger'>*</span></label>
-                                                <input type="number" className="form-control" id='rate_per_month' required />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='contract_start_date'>Contract Start Date <span className='text-danger'>*</span></label>
-                                                <input type="date" className="form-control" id='contract_start_date' required />
-                                            </div>
-                                        </div>
-
-                                        <div className="row mt-2">
-                                            <div className="col-md-4" >
-                                                <label htmlFor='invoice_generation_date'>Invoice Generation Date <span className='text-danger'>*</span></label>
-                                                <input type="date" className="form-control" id='invoice_generation_date' required />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='billing_freq'>Billing Frequency <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='billing_freq' required />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row mt-2">
-                                        <div className="col-md-4">
-                                            <label htmlFor='cust_ac_no'>Customer Account No <span className='text-danger'>*</span></label>
-                                            <input type="number" className="form-control" id='cust_ac_no' required />
-                                        </div>
-                                        <div className="col-md-6 d-flex align-items-center" >
-                                            <label htmlFor='ref_no' className='col-md-4' >Reference Number <span className='text-danger'>*</span></label>
-                                            <input title='Click if Reference Number is same as Account no' type="checkbox" className="" id='ref_no' required style={{ height: "20px", width: "20px", marginRight: "20px" }} onChange={handleChangeRef} />
-
-                                            <div className="col-md-7" >
-                                                <p className='col text-danger' id='ref_no_lable'>Same as Account number </p>
-                                                <input type="text" className="form-control" id='ref_no_input' required placeholder='Reference no.' />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row mt-2">
-
-                                        <div className="col-md-4" >
-                                            <label htmlFor='payee_name'>Payee Name <span className='text-danger'>*</span></label>
-                                            <input type="text" className="form-control" id='payee_name' required />
-                                        </div>
-                                        <div className="col-md-4" >
-                                            <label htmlFor='help_desk_no'>HelpDesk Number <span className='text-danger'>*</span></label>
-                                            <input type="number" className="form-control" id='help_desk_no' required />
-                                        </div>
-                                        <div className="col-md-3 mt-3 d-flex align-items-center" >
-                                            <label htmlFor='tds' className='col-md-3' >TDS </label>
-                                            <input type="checkbox" className="" id='tds' style={{ height: "20px", width: "20px" }} />
-                                        </div>
-                                    </div>
-                                    <div className="row " id='link_id_div' style={{ display: "none" }}>
-                                        <div className="col-md-4" >
-                                            <label htmlFor='link_id_no'>Link Id No <span className='text-danger'>*</span></label>
-                                            <input type="text" className="form-control" id='link_id_no' required />
-                                        </div>
-                                    </div>
-                                </form>
-                            </article>
-                        </div>
-                        <div className="form-group" >
-                            <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleaddinsert}>Add Contract</button>
-                        </div>
-                    </div>
-                </div>
-            </Sidebar>
+                    </Sidebar>
+                    : <LoadingPage />
+            }
         </>
     )
 }

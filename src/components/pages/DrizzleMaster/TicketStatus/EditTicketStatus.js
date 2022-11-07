@@ -72,7 +72,7 @@ function EditTicketStatus() {
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="form-group">
-                                            <label htmlFor='ticket_status'>Ticket Status <small className='text-danger'>*</small></label>
+                                            <label htmlFor='ticket_status'>Ticket Status <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='ticket_status' value={data.ticket_status} onChange={handlechangeTicketStatus} />
                                         </div>
                                         <div className="form-group mt-3">

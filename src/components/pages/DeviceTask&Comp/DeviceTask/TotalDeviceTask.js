@@ -41,6 +41,8 @@ function TotaldeviceTask() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const [devicename, setDevicename] = useState([]);
+    const [text, setText] = useState('Select Device');
+    
     const columns = [
         {
             name: 'Services',
@@ -52,11 +54,11 @@ function TotaldeviceTask() {
             selector: 'task',
             sortable: true,
         },
-        {
-            name: 'Frequency',
-            selector: 'task_frequency',
-            sortable: true,
-        },
+        // {
+        //     name: 'Frequency',
+        //     selector: 'task_frequency',
+        //     sortable: true,
+        // },
         {
             name: 'DateofCompleted',
             selector: 'completion_date',
@@ -105,7 +107,6 @@ function TotaldeviceTask() {
             const result = await Activedevice();
             setDevicename(result)
             setLoading(true)
-
         }
         fetchdata();
     }, [])
@@ -122,8 +123,9 @@ function TotaldeviceTask() {
         const tabledata = await Getdevicetaskbyname(e.target.value);
         // setShowtable(true)
         setData(tabledata)
+        console.log(tabledata)
+        setText('Data not Found')
         setLoading(true)
-
     }
     return (
         <>
@@ -153,7 +155,8 @@ function TotaldeviceTask() {
 
 
                                 {
-                                    data.length > 0 ? <DataTableExtensions {...tableData}>
+                                    data.length > 0 ? 
+                                    <DataTableExtensions {...tableData}>
                                         <DataTable
                                             noHeader
                                             defaultSortField="id"
@@ -164,7 +167,7 @@ function TotaldeviceTask() {
                                         />
                                     </DataTableExtensions>
                                         : <div>
-                                            <h2 className='text-center'>Select Device</h2>
+                                            <h2 className='text-center'>{text}</h2>
                                         </div>
                                 }
 

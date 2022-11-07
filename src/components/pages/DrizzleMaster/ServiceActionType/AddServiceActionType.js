@@ -47,7 +47,7 @@ function AddVendorSubCategory() {
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="col">
-                                            <label htmlFor='service_action'>Service Action <small className='text-danger'>*</small></label>
+                                            <label htmlFor='service_action'>Service Action <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='service_action' />
                                         </div>
 
