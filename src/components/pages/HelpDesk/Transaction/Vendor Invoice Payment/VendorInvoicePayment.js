@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import Sidebar from '../../../../Sidebar/Sidebar'
-import './VendorInvoice.css'
+import './VendorInvoicePayment.css'
 
 
-export default function VendorInvoice() {
+export default function VendorInvoicePayment() {
 
     return (
         <>
             <Sidebar>
-                <div className='Vendor_invoice'>
+                <div className='Vendor_invoice_payment'>
                     <div className='my-3 card d-flex justify-content-center'>
                         <div className='row '>
                             <div class="col-sm-2 mb-3">
@@ -34,40 +34,26 @@ export default function VendorInvoice() {
                                 <input type="text" class="form-control" required />
 
                             </div>
-
-                        </div>
-                        
-                        <div className='row row2'>
                             <div class="col-sm-2 mb-3">
-                                <label for="validationCustom05">Country</label>
+                                <label for="validationCustom05">Zip Code</label>
                                 <input type="text" class="form-control" required />
 
                             </div>
                             <div class="col-sm-2 mb-3">
-                                <label for="validationCustom05">State</label>
+                                <label for="validationCustom05">Zip Code</label>
                                 <input type="text" class="form-control" required />
 
                             </div>
                             <div class="col-sm-2 mb-3">
-                                <label for="validationCustom05">Asset Type</label>
-                                <input type="text" class="form-control" required />
-
-                            </div>
-                            <div class="col-sm-2 mb-3">
-                                <label for="validationCustom05">Working</label>
-                                <input type="text" class="form-control" required />
-
-                            </div>
-                            <div class="col-sm-2 mb-3">
-                                <label for="validationCustom05">City</label>
-                                <input type="text" class="form-control" required />
-
-                            </div>
-                        </div>
-                        <div className='btn_div '>
+                             
+                            <div className='btn_div mt-4'>
                             <button className='btn btn-primary'>Add</button>
                             <button className='btn btn-secondary mx-2'>Cancel</button>
                         </div>
+                            </div>
+
+                        </div>
+                        
                     </div>
                     
                     

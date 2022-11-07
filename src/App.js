@@ -133,6 +133,7 @@ import AddTicket from './components/pages/HelpDesk/Tickets/AddTicket';
 
 import PageNotFound from './components/404/404';
 import VendorInvoice from './components/pages/HelpDesk/Transaction/Vendor Invoice/VendorInvoice';
+import VendorInvoicePayment from './components/pages/HelpDesk/Transaction/Vendor Invoice Payment/VendorInvoicePayment';
 
 const App = () => {
   return (
@@ -265,6 +266,7 @@ const App = () => {
 
           <Route path="/AddTickets" element={<AddTicket />} />
           <Route path="/VendorInvoice" element={<VendorInvoice />} />
+          <Route path="/VendorInvoicePayment" element={<VendorInvoicePayment/>} />
         </Route>
 
         <Route path="/*" element={<PageNotFound />} />
