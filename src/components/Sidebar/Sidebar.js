@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 
 import { IoIosArrowDown, IoMdLogOut } from 'react-icons/io'
-import { MdOutlineDoubleArrow, MdDevicesOther,MdLiveHelp } from 'react-icons/md'
+import { MdOutlineDoubleArrow, MdDevicesOther,MdLiveHelp,MdAttachMoney } from 'react-icons/md'
 import { BsJournalCode } from 'react-icons/bs'
 import { HiTicket } from 'react-icons/hi'
 
@@ -24,12 +24,14 @@ const Sidebar = ({ children }) => {
     const [submasterOpen, setSubmasterOpen] = useState(false);
     const [subdrizelmaster, setSubdrizelmaster] = useState(false);
     const [helpdeskmaster, setHelpdeskmaster] = useState(false);
+    const [transactionmaster, setTransactionmaster] = useState(false);
     const toggle = () => {
         setIsOpen(!isOpen)
         if (isOpen) {
             document.getElementById('mastersubdiv').style.display = "none";
             document.getElementById('masterdrizellsubdiv').style.display = "none"
             document.getElementById('masterhelpdesk').style.display = "none"
+            document.getElementById('mastertransaction').style.display = "none"
         }
     };
 
@@ -92,6 +94,23 @@ const Sidebar = ({ children }) => {
 
         }
         setHelpdeskmaster(!helpdeskmaster)
+    }
+
+    const handleTransaction=()=>{
+        if (!transactionmaster && isOpen) {
+            document.getElementById('mastertransaction').style.display = "block"
+            document.getElementById('transactiontitlelink').style.background = "#603AE9"
+            document.getElementById('transactiontitlelink').style.color = "#fff"
+            document.getElementById('footerdivsection').style.background = "#fff"
+
+        }
+        else {
+            document.getElementById('mastertransaction').style.display = "none"
+            document.getElementById('transactiontitlelink').style.background = "#fff"
+            document.getElementById('transactiontitlelink').style.color = "#000"
+
+        }
+        setTransactionmaster(!transactionmaster)
     }
     
     return (
@@ -308,6 +327,25 @@ const Sidebar = ({ children }) => {
                                     <NavLink to='/AddTickets' className='navlink d-flex' activeclassname="sidebaractive">
                                         <HiTicket />
                                         <div style={{ display: isOpen ? "block" : "none" }} > Ticket</div>
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li title='Transaction'>
+                            <div className="link" id='transactiontitlelink' style={{ cursor: "pointer" }} onClick={handleTransaction}>
+                                <div className="icon" onClick={toggle}><MdAttachMoney /></div>
+                                <span style={{ display: "flex" }} >
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text ">Transaction</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
+                                </span>
+                            </div>
+
+                            <ul id='mastertransaction' className='inneruldiv'>
+                                <li className='innerlink'>
+                                    <NavLink to='/TotalVendorInvoice' className='navlink d-flex' activeclassname="sidebaractive">
+                                        <MdAttachMoney />
+                                        <div style={{ display: isOpen ? "block" : "none" }} > VendorInvoice</div>
                                     </NavLink>
                                 </li>
                             </ul>
