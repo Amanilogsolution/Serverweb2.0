@@ -7,12 +7,14 @@ import {
 } from "react-icons/fa";
 
 import { IoIosArrowDown, IoMdLogOut } from 'react-icons/io'
-import { MdOutlineDoubleArrow, MdDevicesOther, MdLiveHelp, MdAttachMoney ,MdLowPriority,MdOutlinePrecisionManufacturing,MdOutlineMiscellaneousServices} from 'react-icons/md'
+import { MdOutlineDoubleArrow, MdDevicesOther, MdLiveHelp,
+     MdAttachMoney ,MdLowPriority,MdOutlinePrecisionManufacturing,
+     MdOutlineMiscellaneousServices,MdOutlineDevicesOther,MdAddTask} from 'react-icons/md'
 import { BsJournalCode, BsBugFill } from 'react-icons/bs'
-import { BiPurchaseTag,BiCategory ,BiCategoryAlt} from 'react-icons/bi'
+import { BiPurchaseTag,BiCategory ,BiCategoryAlt,BiDevices} from 'react-icons/bi'
 
-import { HiOutlineTicket,HiOutlineRefresh } from 'react-icons/hi'
-import { GrStatusGood ,GrServices} from 'react-icons/gr'
+import { HiOutlineTicket,HiOutlineRefresh,HiLink } from 'react-icons/hi'
+import { GrStatusGood ,GrServices,GrCompliance} from 'react-icons/gr'
 import { GiContract } from 'react-icons/gi'
 
 import { VscLocation,VscTypeHierarchySub } from 'react-icons/vsc'
@@ -144,42 +146,50 @@ const Sidebar = ({ children }) => {
 
                             <ul id='mastersubdiv' className='inneruldiv' >
                                 <li className='innerlink'>
-                                    <NavLink to='/Totalseries' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/Totalseries' className='navlink d-flex' activeclassname="sidebaractive">
+                                    <HiLink style={{color:"#a12e7a"}}/>&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Series</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/TotalDeviceType' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalDeviceType' className='navlink d-flex' activeclassname="sidebaractive">
+                                    <VscTypeHierarchySub style={{fill:"#a12e7a"}}/>&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Device Type</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/Showdevicegroup' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/Showdevicegroup' className='navlink d-flex' activeclassname="sidebaractive">
+                                     <MdOutlineDevicesOther style={{fill:"#a12e7a"}}/>&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Device Group</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/TotalOperatingSystem' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalOperatingSystem' className='navlink d-flex' activeclassname="sidebaractive">
+                                    <TiVendorMicrosoft style={{color:"#a12e7a"}}/>&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Operating System</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/ShowDeviceservices ' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/ShowDeviceservices ' className='navlink  d-flex' activeclassname="sidebaractive">
+                                    <BiDevices style={{color:"#a12e7a"}}/>&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Device Services</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/TotalServicecompliance' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalServicecompliance' className='navlink d-flex' activeclassname="sidebaractive">
+                                     <GrCompliance style={{color:"#a12e7a"}}/>&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Series Compliances</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/TotalDeviceTask' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalDeviceTask' className='navlink d-flex' activeclassname="sidebaractive">
+                                     <MdAddTask style={{color:"#a12e7a"}}/>&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Devices Task</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
-                                    <NavLink to='/TotalAgent' className='navlink' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalAgent' className='navlink d-flex' activeclassname="sidebaractive">
+                                    <FaUserAlt style={{color:"#a12e7a"}}/>&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Agent Master</div>
                                     </NavLink>
                                 </li>
@@ -280,8 +290,8 @@ const Sidebar = ({ children }) => {
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalVendSubCate' className='navlink d-flex' activeclassname="sidebaractive">
-                                     <BiCategoryAlt style={{color:"#a12e7a"}}/>&nbsp;
-                                        <div style={{ display: isOpen ? "block" : "none" }} >Vendor Sub Category</div>
+                                     <BiCategoryAlt style={{color:"#a12e7a"}}/>
+                                        <div style={{ display: isOpen ? "block" : "none" }} >Vendor SubCategory</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>

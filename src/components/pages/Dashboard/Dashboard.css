@@ -16,6 +16,26 @@
 .home_container h1{
     margin: 20px 30px; 
 }
+@media screen and (min-height:650px) {
+    .home_container{
+        min-height: 81vh;
+    }
+}
+@media screen and (min-height:720px) {
+    .home_container{
+        min-height: 82vh;
+    }
+}
+@media screen and (min-height:760px) {
+    .home_container{
+        min-height: 84vh;
+    }
+}
+@media screen and (min-height:890px) {
+    .home_container{
+        min-height: 86vh;
+    }
+}
 @media screen and (min-width:750px) {
     .home_container{
        background:url("../../../image/homebgnew.jpg");
