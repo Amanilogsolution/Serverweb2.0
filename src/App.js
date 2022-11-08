@@ -136,7 +136,8 @@ import AddTicket from './components/pages/HelpDesk/Tickets/AddTicket';
 import TotalVendorInvoice from './components/pages/Transaction/VendorInvoice/TotalVendorInvoice';
 import AddVendorInvoice from './components/pages/Transaction/VendorInvoice/AddVendorInvoice';
 
-import VendorInvoicePayment from './components/pages/Transaction/VendorInvoicePayment/VendorInvoicePayment';
+import TotalVendorPayment from './components/pages/Transaction/VendorPayment/TotalVendorPayment';
+import AddVendorPayment from './components/pages/Transaction/VendorPayment/AddVendorPayment';
 
 import PageNotFound from './components/404/404';
 const App = () => {
@@ -276,7 +277,9 @@ const App = () => {
           <Route path="/AddVendorInvoice" element={<AddVendorInvoice />} />
           
 
-          <Route path="/VendorInvoicePayment" element={<VendorInvoicePayment/>} />
+          <Route path="/TotalVendorPayment" element={<TotalVendorPayment/>} />
+          <Route path="/AddVendorPayment" element={<AddVendorPayment/>} />
+          
         </Route>
 
         <Route path="/*" element={<PageNotFound />} />
