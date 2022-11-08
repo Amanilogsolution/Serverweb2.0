@@ -47,7 +47,7 @@ function AddContractType() {
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="form-group">
-                                            <label htmlFor='contract_type'>Contract Type  <small className='text-danger'>*</small></label>
+                                            <label htmlFor='contract_type'>Contract Type  <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='contract_type' />
                                         </div>
                                         <div className="form-group mt-3">

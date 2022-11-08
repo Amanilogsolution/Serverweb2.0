@@ -50,7 +50,7 @@ function AddVendorCategory() {
                                         <div className="row">
 
                                             <div className="col" >
-                                                <label htmlFor='vendor_category'>Vendor Category  <small className='text-danger'>*</small> </label>
+                                                <label htmlFor='vendor_category'>Vendor Category  <span className='text-danger'>*</span> </label>
                                                 <input type="text" className="form-control" id='vendor_category' />
                                             </div>
                                         </div>

@@ -70,7 +70,7 @@ function AddEmployee() {
                                                 <input type="text" className="form-control" id='company' />
                                             </div>
                                             <div className="col-md-6" >
-                                                <label htmlFor='location'>Location <small className='text-danger'>*</small></label>
+                                                <label htmlFor='location'>Location <span className='text-danger'>*</span></label>
                                                 <select className="form-select" id='location' required >
                                                     <option value='' hidden>Select Location</option>
                                                     {
@@ -85,11 +85,11 @@ function AddEmployee() {
                                         </div>
                                         <div className="row mt-2">
                                         <div className="col-md-6" >
-                                                <label htmlFor='employee_name'>Employee Name <small className='text-danger'>*</small></label>
+                                                <label htmlFor='employee_name'>Employee Name <span className='text-danger'>*</span></label>
                                                 <input type="text" className="form-control" id='employee_name' />
                                             </div>
                                             <div className="col-md-6" >
-                                                <label htmlFor='employee_email'>Employee Email <small className='text-danger'>*</small></label>
+                                                <label htmlFor='employee_email'>Employee Email <span className='text-danger'>*</span></label>
                                                 <input type="email" className="form-control" id='employee_email' />
                                             </div>
                                           

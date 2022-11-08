@@ -49,16 +49,16 @@ function AddAssetType() {
                                     <form className='px-3' autoComplete='off'>
 
                                         <div className="col" >
-                                            <label htmlFor='asset_type'>Asset Type </label>
+                                            <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='asset_type' />
                                         </div>
                                         <div className="col-md mt-3" >
                                             <label htmlFor='asset_type_desc'>Remarks</label>
-                                            <textarea className="form-control" id='asset_type_desc' />
+                                            <textarea className="form-control" id='asset_type_desc' rows='3'/>
                                         </div>
 
                                         <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Submit</button>
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Asset Type</button>
                                             <button type="reset" className="btn btn-secondary" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
                                         </div>
                                     </form>

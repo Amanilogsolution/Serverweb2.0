@@ -69,7 +69,7 @@ function EditPriority() {
                                     <form className='px-3' autoComplete='off'>
 
                                         <div className="form-group col" >
-                                            <label htmlFor='priority'>Priority Type <small className='text-danger'>*</small></label>
+                                            <label htmlFor='priority'>Priority Type <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='priority' value={data.priority_type} onChange={handlechangeassetstatus} />
                                         </div>
                                         <div className="form-group col-md mt-3" >

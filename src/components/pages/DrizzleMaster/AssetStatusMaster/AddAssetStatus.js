@@ -49,12 +49,12 @@ function AddAssetStatus() {
                                     <form className='px-3' autoComplete='off'>
 
                                             <div className="col" >
-                                                <label htmlFor='asset_status'>Asset Status  <small className='text-danger'>*</small></label>
+                                                <label htmlFor='asset_status'>Asset Status  <span className='text-danger'>*</span></label>
                                                 <input type="text" className="form-control" id='asset_status' />
                                             </div> 
                                             <div className="col-md mt-3" >
                                                 <label htmlFor='asset_status_desc'>Remarks</label>
-                                                <textarea className="form-control" id='asset_status_desc' />
+                                                <textarea className="form-control" id='asset_status_desc' rows='3'/>
                                             </div>
 
 

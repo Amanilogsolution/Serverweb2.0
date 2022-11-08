@@ -76,7 +76,7 @@ function EditDeviceComp() {
          {
                 loading ?
             <Sidebar>
-                <div className='main_container' >
+                <div className='main_container pb-3' >
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Device Compliances</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Device Compliances</span> </h2>
                         <button className='btn btn-secondary btn ' onClick={() => {sessionStorage.removeItem('devicecompSno'); window.location.href = '/TotalDeviceComp' }} >Back <MdOutlineArrowForward /></button>
@@ -88,17 +88,17 @@ function EditDeviceComp() {
                         <article className="card-body" >
                             <form style={{ margin: "0px 20px 0px 15px" }}>
                                 <div className="form-group">
-                                    <label htmlFor='devicename'>Device Name </label>
+                                    <label htmlFor='devicename'>Device Name <span className='text-danger'>*</span></label>
                                     <input type="text" className="form-control" disabled value={data.device_name} id="devicename" />
                                 </div>
 
-                                <div className="form-group " >
-                                    <label htmlFor='services'>Select Services </label>
+                                <div className="form-group mt-3" >
+                                    <label htmlFor='services'>Select Services <span className='text-danger'>*</span></label>
                                     <input type="text" className="form-control" disabled value={data.services} id="services" />
 
                                 </div>
-                                <div className="form-group " >
-                                    <label htmlFor='compliances'> Compliance </label>
+                                <div className="form-group mt-3" >
+                                    <label htmlFor='compliances'> Compliance <span className='text-danger'>*</span></label>
                                     <select
                                         id="compliances"
                                         className="form-select col-md-12"
@@ -112,7 +112,7 @@ function EditDeviceComp() {
                                     </select>
                                 </div>
 
-                                <div className="form-group">
+                                <div className="form-group mt-3">
                                     <label htmlFor='remark'>Remarks</label>
                                     <textarea className="form-control" placeholder="Comments" id='remark' rows="3" value={data.remark} onChange={handlechangeremark} />
                                 </div>

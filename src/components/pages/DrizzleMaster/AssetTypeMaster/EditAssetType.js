@@ -67,12 +67,12 @@ function EditAssetType() {
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="form-group col" >
-                                            <label htmlFor='asset_type'> Asset Type </label>
+                                            <label htmlFor='asset_type'> Asset Type <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='asset_type' value={data.asset_type} onChange={handlechangeassettype} />
                                         </div>
                                         <div className="form-group col-md mt-3" >
                                             <label htmlFor='asset_type_desc'>Remarks</label>
-                                            <textarea className="form-control" id='asset_type_desc' value={data.asset_description} onChange={handlechangeassettypedesc} />
+                                            <textarea className="form-control" id='asset_type_desc' rows='3' value={data.asset_description} onChange={handlechangeassettypedesc} />
                                         </div>
 
 
