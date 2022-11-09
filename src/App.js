@@ -139,6 +139,11 @@ import AddVendorInvoice from './components/pages/Transaction/VendorInvoice/AddVe
 import TotalVendorPayment from './components/pages/Transaction/VendorPayment/TotalVendorPayment';
 import AddVendorPayment from './components/pages/Transaction/VendorPayment/AddVendorPayment';
 
+
+import TotalNewAssets from './components/pages/HelpDesk/NewAssets/TotalNewAssets';
+import AddNewAssets from './components/pages/HelpDesk/NewAssets/AddNewAssets';
+
+
 import PageNotFound from './components/404/404';
 const App = () => {
   return (
@@ -279,6 +284,10 @@ const App = () => {
 
           <Route path="/TotalVendorPayment" element={<TotalVendorPayment/>} />
           <Route path="/AddVendorPayment" element={<AddVendorPayment/>} />
+
+          <Route path="/TotalNewAssets" element={<TotalNewAssets/>} />
+          <Route path="/AddNewAssets" element={<AddNewAssets/>} />
+          
           
         </Route>
 

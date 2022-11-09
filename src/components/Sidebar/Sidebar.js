@@ -7,17 +7,19 @@ import {
 } from "react-icons/fa";
 
 import { IoIosArrowDown, IoMdLogOut } from 'react-icons/io'
-import { MdOutlineDoubleArrow, MdDevicesOther, MdLiveHelp,
-     MdAttachMoney ,MdLowPriority,MdOutlinePrecisionManufacturing,
-     MdOutlineMiscellaneousServices,MdOutlineDevicesOther,MdAddTask} from 'react-icons/md'
+import {
+    MdOutlineDoubleArrow, MdDevicesOther, MdLiveHelp,
+    MdAttachMoney, MdLowPriority, MdOutlinePrecisionManufacturing,
+    MdOutlineMiscellaneousServices, MdOutlineDevicesOther, MdAddTask
+} from 'react-icons/md'
 import { BsJournalCode, BsBugFill } from 'react-icons/bs'
-import { BiPurchaseTag,BiCategory ,BiCategoryAlt,BiDevices} from 'react-icons/bi'
+import { BiPurchaseTag, BiCategory, BiCategoryAlt, BiDevices } from 'react-icons/bi'
 
-import { HiOutlineTicket,HiOutlineRefresh,HiLink } from 'react-icons/hi'
-import { GrStatusGood ,GrServices,GrCompliance} from 'react-icons/gr'
+import { HiOutlineTicket, HiOutlineRefresh, HiLink } from 'react-icons/hi'
+import { GrStatusGood, GrServices, GrCompliance } from 'react-icons/gr'
 import { GiContract } from 'react-icons/gi'
 
-import { VscLocation,VscTypeHierarchySub } from 'react-icons/vsc'
+import { VscLocation, VscTypeHierarchySub } from 'react-icons/vsc'
 import { TiVendorMicrosoft } from 'react-icons/ti'
 import { NavLink } from 'react-router-dom';
 import Footer from './Footer/Footer';
@@ -147,49 +149,49 @@ const Sidebar = ({ children }) => {
                             <ul id='mastersubdiv' className='inneruldiv' >
                                 <li className='innerlink'>
                                     <NavLink to='/Totalseries' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <HiLink style={{color:"#a12e7a"}}/>&nbsp;
+                                        <HiLink style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Series</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalDeviceType' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <VscTypeHierarchySub style={{fill:"#a12e7a"}}/>&nbsp;
+                                        <VscTypeHierarchySub style={{ fill: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Device Type</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/Showdevicegroup' className='navlink d-flex' activeclassname="sidebaractive">
-                                     <MdOutlineDevicesOther style={{fill:"#a12e7a"}}/>&nbsp;
+                                        <MdOutlineDevicesOther style={{ fill: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Device Group</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalOperatingSystem' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <TiVendorMicrosoft style={{color:"#a12e7a"}}/>&nbsp;
+                                        <TiVendorMicrosoft style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Operating System</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/ShowDeviceservices ' className='navlink  d-flex' activeclassname="sidebaractive">
-                                    <BiDevices style={{color:"#a12e7a"}}/>&nbsp;
+                                        <BiDevices style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Device Services</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalServicecompliance' className='navlink d-flex' activeclassname="sidebaractive">
-                                     <GrCompliance style={{color:"#a12e7a"}}/>&nbsp;
+                                        <GrCompliance style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Series Compliances</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalDeviceTask' className='navlink d-flex' activeclassname="sidebaractive">
-                                     <MdAddTask style={{color:"#a12e7a"}}/>&nbsp;
+                                        <MdAddTask style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Devices Task</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalAgent' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <FaUserAlt style={{color:"#a12e7a"}}/>&nbsp;
+                                        <FaUserAlt style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Agent Master</div>
                                     </NavLink>
                                 </li>
@@ -207,13 +209,13 @@ const Sidebar = ({ children }) => {
                             <ul id='masterdrizellsubdiv' className='inneruldiv'>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalLocations' className='navlink d-flex' activeclassname="sidebaractive">
-                                        <VscLocation style={{color:"#a12e7a"}}/>&nbsp;
+                                        <VscLocation style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} > Location</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalEmployee' className='navlink d-flex' activeclassname="sidebaractive">
-                                        <FaUserAlt style={{color:"#a12e7a"}}/> &nbsp;
+                                        <FaUserAlt style={{ color: "#a12e7a" }} /> &nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Employee</div>
                                     </NavLink>
                                 </li>
@@ -224,85 +226,85 @@ const Sidebar = ({ children }) => {
                                 </li> */}
                                 <li className='innerlink'>
                                     <NavLink to='/TotalAssetType' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <VscTypeHierarchySub style={{fill:"#a12e7a"}}/>&nbsp;
+                                        <VscTypeHierarchySub style={{ fill: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Asset Type</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalAssetStatus' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <GrStatusGood style={{fill:"#a12e7a"}}/>&nbsp;
+                                        <GrStatusGood style={{ fill: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Asset Status</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalManufacturer' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <MdOutlinePrecisionManufacturing style={{color:"#a12e7a"}}/>&nbsp;
+                                        <MdOutlinePrecisionManufacturing style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Manufacturer</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalSoftware' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <TiVendorMicrosoft style={{color:"#a12e7a"}}/>&nbsp;
+                                        <TiVendorMicrosoft style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Software</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalIssueType' className='navlink d-flex' activeclassname="sidebaractive">
-                                        <BsBugFill style={{color:"#a12e7a"}}/>&nbsp;
+                                        <BsBugFill style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Issue Type</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalPurchaseType' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <BiPurchaseTag style={{color:"#a12e7a"}}/>&nbsp;
+                                        <BiPurchaseTag style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Purchase Type</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalContractType' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <GiContract style={{color:"#a12e7a"}}/>&nbsp;
+                                        <GiContract style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Contract Type</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalPriority' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <MdLowPriority style={{color:"#a12e7a"}}/>&nbsp;
+                                        <MdLowPriority style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Priority</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalTicketStatus' className='navlink d-flex' activeclassname="sidebaractive">
-                                     <GrStatusGood style={{fill:"#a12e7a"}}/>&nbsp;
+                                        <GrStatusGood style={{ fill: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Ticket Status</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalBillingFreq' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <HiOutlineRefresh style={{color:"#a12e7a"}}/>&nbsp;
+                                        <HiOutlineRefresh style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Billing Frequency</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalVendorCategory' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <BiCategory style={{color:"#a12e7a"}}/>&nbsp;
+                                        <BiCategory style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Vendor Category</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalVendSubCate' className='navlink d-flex' activeclassname="sidebaractive">
-                                     <BiCategoryAlt style={{color:"#a12e7a"}}/>
+                                        <BiCategoryAlt style={{ color: "#a12e7a" }} />
                                         <div style={{ display: isOpen ? "block" : "none" }} >Vendor SubCategory</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalServiceActionType' className='navlink d-flex' activeclassname="sidebaractive">
-                                     <MdOutlineMiscellaneousServices style={{color:"#a12e7a"}}/>&nbsp;
+                                        <MdOutlineMiscellaneousServices style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Service Action Type</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalServiceGroup' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <GrServices style={{fill:"#a12e7a"}}/>&nbsp;
+                                        <GrServices style={{ fill: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} >Service Group Type</div>
                                     </NavLink>
                                 </li>
@@ -354,8 +356,15 @@ const Sidebar = ({ children }) => {
                             <ul id='masterhelpdesk' className='inneruldiv'>
                                 <li className='innerlink'>
                                     <NavLink to='/AddTickets' className='navlink d-flex' activeclassname="sidebaractive">
-                                        <HiOutlineTicket />
+                                        <HiOutlineTicket style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} > Ticket</div>
+                                    </NavLink>
+                                </li>
+
+                                <li className='innerlink'>
+                                    <NavLink to='/TotalNewAssets' className='navlink d-flex' activeclassname="sidebaractive">
+                                        <BiDevices style={{ color: "#a12e7a" }} />&nbsp;
+                                        <div style={{ display: isOpen ? "block" : "none" }} > New Assetes</div>
                                     </NavLink>
                                 </li>
                             </ul>
