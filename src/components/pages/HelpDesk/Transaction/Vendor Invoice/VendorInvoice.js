@@ -10,7 +10,7 @@ export default function VendorInvoice() {
             <Sidebar>
                 <div className='Vendor_invoice'>
                     <div className='my-3 card d-flex justify-content-center'>
-                        <div className='row '>
+                        <div className='row'>
                             <div class="col-sm-2 mb-3">
                                 <label for="validationCustom05">Email</label>
                                 <input type="text" class="form-control" required />
@@ -36,17 +36,16 @@ export default function VendorInvoice() {
                             </div>
 
                         </div>
-                        
+
                         <div className='row row2'>
                             <div class="col-sm-2 mb-3">
                                 <label for="validationCustom05">Country</label>
                                 <input type="text" class="form-control" required />
-
                             </div>
+
                             <div class="col-sm-2 mb-3">
                                 <label for="validationCustom05">State</label>
                                 <input type="text" class="form-control" required />
-
                             </div>
                             <div class="col-sm-2 mb-3">
                                 <label for="validationCustom05">Asset Type</label>
@@ -69,10 +68,6 @@ export default function VendorInvoice() {
                             <button className='btn btn-secondary mx-2'>Cancel</button>
                         </div>
                     </div>
-                    
-                    
-
-
                 </div>
             </Sidebar>
         </>
