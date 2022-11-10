@@ -58,7 +58,7 @@ function AddServiceGroup() {
 
 
                                         <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleinsertdata}>Submit</button>
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleinsertdata}>Add Group Type</button>
                                             <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
                                         </div>
                                     </form>

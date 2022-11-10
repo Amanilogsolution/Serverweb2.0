@@ -10,7 +10,7 @@ export default function VendorInvoicePayment() {
             <Sidebar>
                 <div className='Vendor_invoice_payment'>
                     <div className='my-3 card d-flex justify-content-center'>
-                        <div className='row '>
+                        <div className='row'>
                             <div class="col-sm-2 mb-3">
                                 <label for="validationCustom05">Email</label>
                                 <input type="text" class="form-control" required />
@@ -40,7 +40,6 @@ export default function VendorInvoicePayment() {
                             <div class="col-sm-2 mb-3">
                                 <label for="validationCustom05">Zip Code</label>
                                 <input type="text" class="form-control" required />
-
                             </div>
                             <div class="col-sm-2 mb-3">
 
@@ -50,7 +49,6 @@ export default function VendorInvoicePayment() {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </Sidebar>
