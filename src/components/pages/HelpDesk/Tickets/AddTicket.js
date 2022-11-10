@@ -20,7 +20,7 @@ export default function AddTicket() {
                                 <form className='px-3' autoComplete='off'>
                                     <div className="row">
                                         <div className="col-md-4">
-                                            <label htmlFor='vendor'>Username <span className='text-danger'>*</span></label>
+                                            <label htmlFor='vendor'>Employee Name <span className='text-danger'>*</span></label>
                                             <select className="form-select">
                                                 <option value='' hidden>Select...</option>
                                             </select>
@@ -45,7 +45,7 @@ export default function AddTicket() {
                                             <input type="text" className="form-control" />
                                         </div>
                                         <div className="col-md-4">
-                                            <label htmlFor='comp_pincode'>Type of call<span className='text-danger'>*</span></label>
+                                            <label htmlFor='comp_pincode'>Type of Issue<span className='text-danger'>*</span></label>
                                             <input type="number" className="form-control" id='comp_pincode' />
                                         </div>
                                     </div>
@@ -59,7 +59,7 @@ export default function AddTicket() {
                                             <input type="url" className="form-control" />
                                         </div>
                                         <div className="col-md-4">
-                                            <label htmlFor='vendor'>Username <span className='text-danger'>*</span></label>
+                                            <label htmlFor='vendor'>Ticket Status <span className='text-danger'>*</span></label>
                                             <select className="form-select">
                                                 <option value='' hidden>Select...</option>
                                             </select>
@@ -67,11 +67,11 @@ export default function AddTicket() {
                                     </div>
                                     <div className="row pt-2">
                                         <div className="col">
-                                            <label htmlFor='comp_addr1'>Ticket<span className='text-danger'>*</span></label>
+                                            <label htmlFor='comp_addr1'>Ticket Subject <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='comp_addr1' required />
                                         </div>
                                         <div className="col">
-                                            <label htmlFor='comp_addr2'>Mail ID</label>
+                                            <label htmlFor='comp_addr2'>Priority</label>
                                             <input type="text" className="form-control" id='comp_addr2' />
                                         </div>
 
