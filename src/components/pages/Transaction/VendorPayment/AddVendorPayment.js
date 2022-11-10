@@ -8,6 +8,7 @@ import LoadingPage from '../../../LoadingPage/LoadingPage';
 function AddVendorPayment() {
     const [loading, setLoading] = useState(false)
 
+    const [todatdate, setTodaydate] = useState('')
     const [count, setCount] = useState(0);
     const [arry, setArry] = useState([0]);
     const [arryval, setArryval] = useState([{}]);
@@ -19,10 +20,22 @@ function AddVendorPayment() {
             // const vendorall = await ActiveVendorCode();
             // console.log(vendorall)
             // setVendorlist(vendorall)
+            Todaydate()
             setLoading(true)
         }
         fetchdata();
     }, [])
+
+    const Todaydate = () => {
+        let date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        let today = year + "-" + month + "-" + day;
+        setTodaydate(today)
+    }
 
     const addRow = () => {
         let val = count + 1;
@@ -97,13 +110,13 @@ function AddVendorPayment() {
                                             <thead>
 
                                                 <tr >
-                                                    <th scope="col">Invoice no</th>
-                                                    <th scope="col">Invoice Amount</th>
-                                                    <th scope="col">Payment Detail</th>
-                                                    <th scope="col">Payment Amount</th>
-                                                    <th scope="col">Payment Date</th>
+                                                    <th scope="col">Invoice no  <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Invoice Amount  <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Payment Detail  <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Payment Amount  <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Payment Date  <span className='text-danger'>*</span></th>
                                                     <th scope="col">Remark</th>
-                                                    <th scope="col">Ref no.</th>
+                                                    <th scope="col">Ref no.  <span className='text-danger'>*</span></th>
                                                 </tr>
 
                                             </thead>
@@ -117,10 +130,10 @@ function AddVendorPayment() {
                  
                                                             </select>
                                                         </td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`invamt-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='number' id={`invamt-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 invoice-td'><input type='text' id={`ptydtl-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 invoice-td'><input type='number' id={`ptyamt-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='date' id={`ptydate-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='date' id={`ptydate-${index}`} className='form-control m-0 invoice-inp' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 invoice-td'><input type='text' id={`remark-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 invoice-td'><input type='text' id={`refno-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
                                                     </tr>
