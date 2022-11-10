@@ -52,6 +52,8 @@
      width: 97%;
  }
 
+ 
+
  @media screen and (min-height:850px) {
      .main_container {
          min-height: 85vh;

@@ -100,15 +100,15 @@ function AddVendorInvoice() {
                                             <thead>
 
                                                 <tr >
-                                                    <th scope="col">Vendor</th>
-                                                    <th scope="col">Account No</th>
-                                                    <th scope="col">Invoice No</th>
-                                                    <th scope="col">Invoice Amount</th>
-                                                    <th scope="col">Invoice Date</th>
-                                                    <th scope="col">Invoice DueDate</th>
-                                                    <th scope="col">Invoice SubDate</th>
-                                                    <th scope="col">Remark</th>
-                                                    <th scope="col">Ref no.</th>
+                                                    <th scope="col">Vendor <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Account No <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Invoice No <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Invoice Amount <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Invoice Date <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Invoice DueDate <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Invoice SubDate <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Remark </th>
+                                                    <th scope="col">Ref no. <span className='text-danger'>*</span></th>
                                                     <th scope="col">Printer Counter</th>
 
                                                 </tr>
