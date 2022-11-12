@@ -10,7 +10,7 @@ import LoadingPage from '../../../LoadingPage/LoadingPage';
 const AddNewAssets = () => {
     const [loading, setLoading] = useState(false)
 
-    const [todatdate,setTodaydate]= useState('')
+    const [todatdate, setTodaydate] = useState('')
     const [devicelist, setDevicelist] = useState([])
     const [vendorlist, setVendorlist] = useState([])
     const [devicedetail, setDevicedetail] = useState(true)
@@ -91,13 +91,17 @@ const AddNewAssets = () => {
     }
 
     const handleToggleSoftware = (e) => {
-        if (e.target.value === 'Laptop') {
+        const devicetype = e.target.value;
+        if (devicetype === 'Laptop') {
             document.getElementById('softwarediv').style.display = 'block'
         }
         else {
             document.getElementById('softwarediv').style.display = 'none'
 
         }
+
+
+        document.getElementById('assetetag').value = devicetype.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
     }
 
     const handleChnagePurType = (e) => {
@@ -149,7 +153,6 @@ const AddNewAssets = () => {
                                                                 <label htmlFor='vendor'>Device Type <span className='text-danger'>*</span></label>
                                                                 <select className="form-select" onChange={handleToggleSoftware}>
                                                                     <option value='' hidden>Select...</option>
-
                                                                     {
                                                                         devicelist.map((item, index) => (
                                                                             <option key={index} value={item.device_type}>{item.device_type}</option>
@@ -160,7 +163,7 @@ const AddNewAssets = () => {
 
                                                             <div className="col-md-4">
                                                                 <label htmlFor='vendor'>Asset Tag <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" placeholder='Auto generated' disabled />
+                                                                <input type="text" id='assetetag' className="form-control" placeholder='Auto generated' disabled />
                                                             </div>
                                                             <div className="col-md-4" id='softwarediv' style={{ display: "none" }}>
                                                                 <label htmlFor='vendor'>Software <span className='text-danger'>*</span></label>
@@ -285,7 +288,7 @@ const AddNewAssets = () => {
                                                         <div className="row mt-3">
                                                             <div className="col-md-4" id='purchasespricediv' style={{ display: "none" }}>
                                                                 <label htmlFor='model'>Purchase Price <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" required />
+                                                                <input type="number" className="form-control" required />
                                                             </div>
                                                             <div className="col-md-4" id='rentpermonthdiv' style={{ display: "none" }}>
                                                                 <label htmlFor='vendor'>Rent Per Month <span className='text-danger'>*</span></label>
@@ -300,7 +303,7 @@ const AddNewAssets = () => {
 
                                                             <div className="col-md-4">
                                                                 <label htmlFor='vendor'>Asset Name<span className='text-danger'>*</span></label>
-                                                                <input type="Text" className="form-control" required />
+                                                                <input type="text" className="form-control" required />
                                                             </div>
                                                             <div className="col-md-4">
                                                                 <label htmlFor='location'>Asset Assign <span className='text-danger'>*</span></label>
@@ -316,116 +319,6 @@ const AddNewAssets = () => {
                                                 {/* #################### Other Detail  Box End ############### */}
 
                                             </ul>
-                                            {/* <div className="row">
-                                                <div className="col-md-4">
-                                                    <label htmlFor='vendor'>Purchase Type <span className='text-danger'>*</span></label>
-                                                    <select className="form-select">
-                                                        <option value='' hidden>Select...</option>
-                                                    </select>
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='vendor'>Device Type <span className='text-danger'>*</span></label>
-                                                    <select className="form-select">
-                                                        <option value='' hidden>Select...</option>
-                                                        {
-                                                            devicelist.map((item,index)=>(
-                                                                <option key={index} value={item.device_type}>{item.device_type}</option>
-                                                            ))
-                                                        }
-                                                    </select>
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='location'>Description</label>
-                                                    <input type="text" className="form-control" required />
-                                                </div>
-                                            </div>
-                                            <div className="row mt-3">
-                                                <div className="col-md-4">
-                                                    <label htmlFor='model'>Model <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" required />
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='vendor'>Manufacture <span className='text-danger'>*</span></label>
-                                                    <select className="form-select">
-                                                        <option value='' hidden>Select...</option>
-                                                    </select>
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='location'>Device Status <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" required />
-                                                </div>
-                                            </div>
-
-                                            <div className="row mt-3">
-                                                <div className="col-md-4">
-                                                    <label htmlFor='model'>Serial No. <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" required />
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='vendor'>Asset Tag <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" required disabled/>
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='location'>Purchase Date <span className='text-danger'>*</span></label>
-                                                    <input type="date" className="form-control" required />
-                                                </div>
-                                            </div>
-
-                                            <div className="row mt-3">
-                                                <div className="col-md-4">
-                                                    <label htmlFor='model'>Company <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" required />
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='vendor'>Vendor <span className='text-danger'>*</span></label>
-                                                    <select className="form-select">
-                                                        <option value='' hidden>Select...</option>
-                                                        {
-                                                            vendorlist.map((item,index)=>(
-                                                                <option key={index} value={item.vendor_name}>{item.vendor_name}</option>
-                                                            ))
-                                                        }
-                                                    </select>
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='location'>Invoice No.<span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" required />
-                                                </div>
-                                            </div>
-
-                                            <div className="row mt-3">
-                                                <div className="col-md-4">
-                                                    <label htmlFor='model'>Purchase Price <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" required />
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='vendor'>Rent Per Month <span className='text-danger'>*</span></label>
-                                                    <input type="number" className="form-control" required />
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='location'>Latest Inventory <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" required />
-                                                </div>
-                                            </div>
-                                            <div className="row mt-3">
-                                                <div className="col-md-4">
-                                                    <label htmlFor='model'>Location <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" required />
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='vendor'>Asset Name<span className='text-danger'>*</span></label>
-                                                    <input type="Text" className="form-control" required />
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='location'>Asset Assign <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" defaultValue={sessionStorage.getItem('UserName')} required />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6 mt-3">
-                                                <label htmlFor='model'>Remarks </label>
-                                                <textarea className="form-control" rows='3'></textarea>
-                                            </div> */}
-
                                             <div className="form-group mt-3" >
                                                 <button type="submit" className="btn btn-voilet " id="subnitbtn">Add New Assets</button>&nbsp;&nbsp;
                                                 <button type="reset" className="btn btn-secondary">Reset</button>

@@ -8,6 +8,7 @@ import LoadingPage from '../../../LoadingPage/LoadingPage';
 function AddVendorInvoice() {
 
     const [loading, setLoading] = useState(false)
+    const [todatdate, setTodaydate] = useState('')
     const [count, setCount] = useState(0);
     const [arry, setArry] = useState([0]);
     const [arryval, setArryval] = useState([{}]);
@@ -19,10 +20,21 @@ function AddVendorInvoice() {
             const vendorall = await ActiveVendorCode();
             console.log(vendorall)
             setVendorlist(vendorall)
+            Todaydate()
             setLoading(true)
         }
         fetchdata();
     }, [])
+    const Todaydate = () => {
+        let date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        let today = year + "-" + month + "-" + day;
+        setTodaydate(today)
+    }
 
     const addRow = () => {
         let val = count + 1;
@@ -129,10 +141,10 @@ function AddVendorInvoice() {
                                                         </td>
                                                         <td className='p-0 invoice-td'><input type='text' id={`accountno-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 invoice-td'><input type='text' id={`invno-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`invamt-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='date' id={`invdate-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='date' id={`invduedate-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='date' id={`invsubdate-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='number' id={`invamt-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='date' id={`invdate-${index}`} className='form-control m-0 invoice-inp' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='date' id={`invduedate-${index}`} className='form-control m-0 invoice-inp' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='date' id={`invsubdate-${index}`} className='form-control m-0 invoice-inp'  defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 invoice-td'><input type='text' id={`remark-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 invoice-td'><input type='text' id={`refno-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 invoice-td'><input type='text' id={`printercount-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
@@ -148,16 +160,12 @@ function AddVendorInvoice() {
                                     </form>
                                 </article>
                             </div>
-
-
-
-
-                        </div>
+                         </div>
                     </Sidebar>
-                : <LoadingPage />
+                : <LoadingPage/>
             }
         </>
     )
 }
 
-export default AddVendorInvoice; 
+export default AddVendorInvoice;
