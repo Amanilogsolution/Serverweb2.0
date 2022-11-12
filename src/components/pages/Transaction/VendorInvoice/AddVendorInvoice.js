@@ -6,8 +6,8 @@ import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 function AddVendorInvoice() {
-    const [loading, setLoading] = useState(false)
 
+    const [loading, setLoading] = useState(false)
     const [count, setCount] = useState(0);
     const [arry, setArry] = useState([0]);
     const [arryval, setArryval] = useState([{}]);
@@ -160,4 +160,4 @@ function AddVendorInvoice() {
     )
 }
 
-export default AddVendorInvoice;
+export default AddVendorInvoice; 
