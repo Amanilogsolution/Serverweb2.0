@@ -136,7 +136,6 @@ export default function AddTicket() {
                                                     <label htmlFor='vendor'>Employee Name <span className='text-danger'>*</span></label>
                                                     <select id='employee' className="form-select" onChange={handleGetEmpDetail}>
                                                         <option value='' hidden >Select Employee</option>
-                                                        <option value={sessionStorage.getItem('UserId')} >{sessionStorage.getItem('UserName')}</option>
                                                         {
                                                             employeelist.map((item, index) => (
                                                                 <option key={index} value={item.employee_id}>{item.employee_name}</option>
