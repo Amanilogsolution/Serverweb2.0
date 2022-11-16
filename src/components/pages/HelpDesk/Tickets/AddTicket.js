@@ -40,7 +40,6 @@ export default function AddTicket() {
             const countTickets = await CountTickets()
             let count = Number(countTickets[0].count);
             count = count + 1 + ''
-            console.log(count)
             document.getElementById('assignticket').value = 'Ticket' + '-' + count.padStart(5, '0');
         }
         fetchdata();
@@ -77,7 +76,12 @@ export default function AddTicket() {
         const employee_name = employee_id.options[employee_id.selectedIndex].text;
         employee_id = employee_id.value;
 
-        const assettype = document.getElementById('assettype').value;
+        let assettype = document.getElementById('assettype');
+
+        assettype = assettype.options[assettype.selectedIndex].text;
+        let toindex2 = assettype.indexOf(",")
+        assettype = assettype.slice(0 , toindex2)
+
         const assetserial = document.getElementById('assetserial').value;
         const location = document.getElementById('location').value;
         const assignticket = document.getElementById('assignticket').value;
@@ -148,7 +152,7 @@ export default function AddTicket() {
                                                         {
                                                             assettypelist.length ?
                                                                 assettypelist.map((item, index) => (
-                                                                    <option key={index} value={item.serial_no}>{item.asset_type}</option>
+                                                                    <option key={index} value={item.serial_no}>{`${item.asset_type}, (${item.serial_no})`}</option>
                                                                 ))
                                                                 : <option value=''>Please Assign the asset to this Employee</option>
                                                         }
