@@ -13,14 +13,14 @@ function EditVendorCode() {
         const fetchdata = async () => {
             const tabledata = await GetVendorCode(sessionStorage.getItem('VendorCodeSno'))
             setData(tabledata[0])
-
+            setLoading(true)
             if (tabledata[0].venodr_portal === 'true') {
                 document.getElementById('vendor_portal').checked = true
             }
 
         }
         fetchdata()
-        setLoading(true)
+        
     }, [])
 
 
@@ -108,30 +108,31 @@ function EditVendorCode() {
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Code</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Code</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('VendorCodeSno');window.location.href = '/TotalVendorCode' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('VendorCodeSno'); window.location.href = '/TotalVendorCode' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
                                 <div className="card inner-card">
                                     <header className="card-header" >
-                                        <h5 >Edit Vendor Code</h5>
+                                        Edit Vendor Code
                                     </header>
                                     <article className="card-body" >
                                         <form className='px-3' autoComplete='off'>
                                             <div className="row">
-                                                <div className="col-md-6">
+                                                <div className="col-md-4">
                                                     <label htmlFor='vendor_code'>Vendor Code <span className='text-danger'>*</span></label>
                                                     <input type="text" className="form-control" id='vendor_code' required value={data.vendor_code} />
                                                 </div>
-                                                <div className="col-md-6" >
+                                                <div className="col-md-4" >
                                                     <label htmlFor='vendor_name'>Vendor Name <span className='text-danger'>*</span></label>
                                                     <input type="text" className="form-control" id='vendor_name' required value={data.vendor_name} onChange={handleChangeVendorName} />
                                                 </div>
-                                            </div>
-                                            <div className="row mt-3">
                                                 <div className="col-md-4" >
                                                     <label htmlFor='comp_email'>Company Email Id <span className='text-danger'>*</span></label>
                                                     <input type="email" className="form-control" id='comp_email' required value={data.company_email} onChnage={handleChangeCompEmail} />
                                                 </div>
+                                            </div>
+                                            <div className="row mt-3">
+
                                                 <div className="col-md-4">
                                                     <label htmlFor='comp_website'>Company website </label>
                                                     <input type="url" className="form-control" id='comp_website' required value={data.company_website} onChange={handleChangeCompWebsite} />
@@ -141,13 +142,14 @@ function EditVendorCode() {
                                                     <label htmlFor='comp_gst'>Company GST no. </label>
                                                     <input type="text" className="form-control" id='comp_gst' value={data.company_gst} onChange={handleChangeGst} />
                                                 </div>
-                                            </div>
-
-                                            <div className="row mt-3">
                                                 <div className="col-md-4">
                                                     <label htmlFor='comp_city'>Company City <span className='text-danger'>*</span></label>
                                                     <input type="text" className="form-control" id='comp_city' required value={data.company_city} onChange={handleChangeCompCity} />
                                                 </div>
+                                            </div>
+
+                                            <div className="row mt-3">
+
                                                 <div className="col-md-4" >
                                                     <label htmlFor='comp_state'>Company State <span className='text-danger'>*</span></label>
                                                     <input type="text" className="form-control" id='comp_state' required value={data.company_state} onChange={handleChangeCompState} />
@@ -158,14 +160,16 @@ function EditVendorCode() {
                                                 </div>
                                             </div>
 
-                                            <div className="col mt-3">
-                                                <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='comp_addr1' required value={data.company_address_line1} onChange={handleChangeAddressLine1} />
-                                            </div>
+                                            <div className='row mt-3'>
+                                                <div className="col">
+                                                    <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='comp_addr1' required value={data.company_address_line1} onChange={handleChangeAddressLine1} />
+                                                </div>
 
-                                            <div className="col mt-3">
-                                                <label htmlFor='comp_addr2'>Company Address Line 2</label>
-                                                <input type="text" className="form-control" id='comp_addr2' value={data.company_address_line2} onChange={handleChangeAddressLine2} />
+                                                <div className="col">
+                                                    <label htmlFor='comp_addr2'>Company Address Line 2</label>
+                                                    <input type="text" className="form-control" id='comp_addr2' value={data.company_address_line2} onChange={handleChangeAddressLine2} />
+                                                </div>
                                             </div>
 
 
@@ -183,7 +187,7 @@ function EditVendorCode() {
                             </div>
                         </div>
                     </Sidebar>
-                : <LoadingPage />
+                    : <LoadingPage />
             }
         </>
     )

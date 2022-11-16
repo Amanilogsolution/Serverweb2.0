@@ -1,24 +1,52 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect } from 'react';
-import { } from '../../../../api'
+import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, ActiveLocation, ActivePriority, GetNewAssetAssign, InsertTicket, CountTickets } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
-// import './vendorcontract.css'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 export default function AddTicket() {
     const [loading, setLoading] = useState(false)
+
+    const [employeelist, setEmployeelist] = useState([])
+    const [employeedetail, setEmployeedetail] = useState([])
+    const [issuelist, setIssuelist] = useState([])
+    const [ticketstatuslist, setTicketstatuslist] = useState([])
+    const [locationlist, setLocationlist] = useState([])
+    const [prioritylist, setPrioritylist] = useState([])
+    const [assettypelist, setAssettypelist] = useState([])
 
     const [todatdate, setTodaydate] = useState('')
 
 
     useEffect(() => {
         const fetchdata = async () => {
+            const employee = await ActiveEmployees()
+            setEmployeelist(employee)
+
+            const location = await ActiveLocation();
+            setLocationlist(location)
+
+            const allissue = await ActiveIssue();
+            setIssuelist(allissue)
+
+            const ticketstatus = await ActiveTicketStatus();
+            setTicketstatuslist(ticketstatus)
+
+            const priority = await ActivePriority();
+            setPrioritylist(priority)
+
             setLoading(true)
+
+            const countTickets = await CountTickets()
+            let count = Number(countTickets[0].count);
+            count = count + 1 + ''
+            console.log(count)
+            document.getElementById('assignticket').value = 'Ticket' + '-' + count.padStart(5, '0');
         }
         fetchdata();
-        Todaydate()
+        todaydate()
     }, [])
-    const Todaydate = () => {
+    const todaydate = () => {
         let date = new Date();
         let day = date.getDate();
         let month = date.getMonth() + 1;
@@ -29,6 +57,61 @@ export default function AddTicket() {
         setTodaydate(today)
     }
 
+    const handleGetEmpDetail = async (e) => {
+        let employee_id = e.target.value;
+        const detail = await EmployeesDetail(employee_id);
+        setEmployeedetail(detail)
+        const assetall = await GetNewAssetAssign(employee_id)
+        setAssettypelist(assetall)
+    }
+
+    const handleAssetTypeChange = (e) => {
+        document.getElementById('assetserial').value = e.target.value
+    }
+
+
+    const handleSaveTicket = async (e) => {
+        e.preventDefault();
+        setLoading(false)
+        let employee_id = document.getElementById('employee');
+        const employee_name = employee_id.options[employee_id.selectedIndex].text;
+        employee_id = employee_id.value;
+
+        const assettype = document.getElementById('assettype').value;
+        const assetserial = document.getElementById('assetserial').value;
+        const location = document.getElementById('location').value;
+        const assignticket = document.getElementById('assignticket').value;
+        const typeofissue = document.getElementById('typeofissue').value;
+
+        const email = document.getElementById('email').value;
+        const ticketdate = document.getElementById('ticketdate').value;
+        const ticketstatus = document.getElementById('ticketstatus').value;
+        const ticketsubject = document.getElementById('ticketsubject').value;
+        const priority = document.getElementById('priority').value;
+        const issuedesc = document.getElementById('issuedesc').value;
+        const remark = document.getElementById('remark').value;
+
+        const user_id = sessionStorage.getItem('UserId')
+
+        if (!employee_id || !assettype || !location || !ticketstatus || !ticketsubject) {
+            alert('Please enter the Mandatory field')
+            setLoading(true)
+            return false;
+        }
+        else {
+            const result = await InsertTicket(employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
+                priority, issuedesc, remark, user_id)
+            if (result === 'Data Added') {
+                alert('Data Added')
+                window.location.reload();
+            }
+            else {
+                alert('Server Not Response')
+                setLoading(true)
+            }
+        }
+
+    }
     return (
         <>
             {
@@ -47,77 +130,113 @@ export default function AddTicket() {
                                             <div className="row">
                                                 <div className="col-md-4">
                                                     <label htmlFor='vendor'>Employee Name <span className='text-danger'>*</span></label>
-                                                    <select className="form-select">
-                                                        <option value='' hidden>Select...</option>
+                                                    <select id='employee' className="form-select" onChange={handleGetEmpDetail}>
+                                                        <option value='' hidden >Select Employee</option>
+                                                        <option value={sessionStorage.getItem('UserId')} >{sessionStorage.getItem('UserName')}</option>
+                                                        {
+                                                            employeelist.map((item, index) => (
+                                                                <option key={index} value={item.employee_id}>{item.employee_name}</option>
+                                                            ))
+                                                        }
                                                     </select>
                                                 </div>
                                                 <div className="col-md-4" >
-                                                    <label htmlFor='company'>Asset Type <span className='text-danger'>*</span></label>
-                                                    <select className="form-select">
+                                                    <label htmlFor='assettype'>Asset Type <span className='text-danger'>*</span></label>
+                                                    <select className="form-select" id='assettype' onChange={handleAssetTypeChange}>
                                                         <option value='' hidden>Select...</option>
+
+                                                        {
+                                                            assettypelist.length ?
+                                                                assettypelist.map((item, index) => (
+                                                                    <option key={index} value={item.serial_no}>{item.asset_type}</option>
+                                                                ))
+                                                                : <option value=''>Please Assign the asset to this Employee</option>
+                                                        }
                                                     </select>
                                                 </div>
+                                                <div className="col-md-4">
+                                                    <label htmlFor='assetserial'>Asset Serial</label>
+                                                    <input type="text" id='assetserial' className="form-control" disabled />
+                                                </div>
+
+                                            </div>
+
+                                            <div className="row mt-3">
                                                 <div className="col-md-4">
                                                     <label htmlFor='location'>Location <span className='text-danger'>*</span></label>
-                                                    <select className="form-select">
-                                                        <option value='' hidden>Select...</option>
+                                                    <select id='location' className="form-select">
+                                                        <option value={employeedetail.location} hidden>{employeedetail.location}</option>
+                                                        {
+                                                            locationlist.map((item, index) =>
+                                                                <option key={index}>{item.location_name}</option>
+                                                            )
+                                                        }
                                                     </select>
                                                 </div>
-                                            </div>
 
-                                            <div className="row mt-3">
                                                 <div className="col-md-4" >
-                                                    <label htmlFor='company_city'>Date </label>
-                                                    <input type="date" className="form-control" defaultValue={todatdate} required />
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='company_state'>Assign Ticket <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" />
+                                                    <label htmlFor='assignticket'>Assign Ticket </label>
+                                                    <input type="text" id='assignticket' className="form-control" disabled />
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <label htmlFor='comp_pincode'>Type of Issue</label>
-                                                    <select className="form-select">
+                                                    <label htmlFor='typeofissue'>Type of Issue</label>
+                                                    <select id='typeofissue' className="form-select">
                                                         <option value='' hidden>Select...</option>
+                                                        {
+                                                            issuelist.map((item, index) => (
+                                                                <option key={index} value={item.issue_type}>{item.issue_type}</option>
+                                                            ))
+                                                        }
                                                     </select>
                                                 </div>
                                             </div>
                                             <div className="row mt-3">
                                                 <div className="col-md-4" >
-                                                    <label htmlFor='comp_gst'>Email ID</label>
-                                                    <input type="text" className="form-control" />
+                                                    <label htmlFor='email'>Email ID</label>
+                                                    <input type="email" id='email' className="form-control" disabled defaultValue={employeedetail.employee_email} />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='ticketdate'>Date </label>
+                                                    <input type="date" id='ticketdate' className="form-control" defaultValue={todatdate} required />
                                                 </div>
                                                 <div className="col-md-4">
-                                                    <label htmlFor='comp_website'>Asset Serial</label>
-                                                    <input type="url" className="form-control" />
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='vendor'>Ticket Status <span className='text-danger'>*</span></label>
-                                                    <select className="form-select">
+                                                    <label htmlFor='ticketstatus'>Ticket Status <span className='text-danger'>*</span></label>
+                                                    <select id='ticketstatus' className="form-select">
                                                         <option value='' hidden>Select...</option>
+                                                        {
+                                                            ticketstatuslist.map((item, index) => (
+                                                                <option key={index} value={item.ticket_status}>{item.ticket_status}</option>
+                                                            ))
+                                                        }
                                                     </select>
                                                 </div>
                                             </div>
                                             <div className="row mt-3">
                                                 <div className="col">
-                                                    <label htmlFor='comp_addr1'>Ticket Subject <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='comp_addr1' required />
+                                                    <label htmlFor='ticketsubject'>Ticket Subject <span className='text-danger'>*</span></label>
+                                                    <input type="text" id='ticketsubject' className="form-control" required />
                                                 </div>
                                                 <div className="col">
-                                                    <label htmlFor='comp_addr2'>Priority</label>
-                                                    <select className="form-select">
+                                                    <label htmlFor='priority'>Priority</label>
+                                                    <select id='priority' className="form-select">
                                                         <option value='' hidden>Select...</option>
+                                                        {
+                                                            prioritylist.map((item, index) => (
+                                                                <option key={index} value={item.priority_type}>{item.priority_type}</option>
+                                                            ))
+                                                        }
                                                     </select>
                                                 </div>
 
                                             </div>
                                             <div className="row mt-3">
-                                                <div class="col-md-6 form-group">
-                                                    <label for="exampleFormControlTextarea1">Issue Discription</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <div className="col-md-6 form-group">
+                                                    <label htmlFor="issuedesc">Issue Discription</label>
+                                                    <textarea className="form-control" id="issuedesc" rows="3"></textarea>
                                                 </div>
-                                                <div class="col-md-6 form-group">
-                                                    <label for="exampleFormControlTextarea1">Resolution/Pending Remarks</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <div className="col-md-6 form-group">
+                                                    <label htmlFor="remark">Resolution/Pending Remarks</label>
+                                                    <textarea className="form-control" id="remark" rows="3"></textarea>
                                                 </div>
                                             </div>
 
@@ -126,7 +245,7 @@ export default function AddTicket() {
                                 </div>
 
                                 <div className="form-group" >
-                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn">Add Tickets</button>
+                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleSaveTicket}>Add Tickets</button>
                                 </div>
                             </div>
                         </div>

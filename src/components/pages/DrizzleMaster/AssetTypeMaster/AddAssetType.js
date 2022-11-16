@@ -11,12 +11,15 @@ function AddAssetType() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
         setLoading(false)
+        
+        // const software = document.getElementById('software').checked=== true?true:false;
         const asset_type = document.getElementById('asset_type').value;
         const assettype_id = asset_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const asset_type_desc = document.getElementById('asset_type_desc').value;
 
         const username = sessionStorage.getItem('UserId');
 
+        // console.log(software)
         if (!asset_type) {
             alert("Please fill the  mandatory Fields...")
             setLoading(true)
@@ -47,14 +50,17 @@ function AddAssetType() {
                             <div className="card card-div" style={{ width: "50%" }}>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-
-                                        <div className="col" >
+                                        {/* <div className="col" >
+                                            <label htmlFor='software'>Software <span className='text-danger'>*</span></label>&nbsp;&nbsp;
+                                            <input type="checkbox"  id='software' style={{height:'20px',width:'20px'}} />
+                                        </div> */}
+                                        <div className="col mt-2" >
                                             <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='asset_type' />
                                         </div>
                                         <div className="col-md mt-3" >
                                             <label htmlFor='asset_type_desc'>Remarks</label>
-                                            <textarea className="form-control" id='asset_type_desc' rows='3'/>
+                                            <textarea className="form-control" id='asset_type_desc' rows='3' />
                                         </div>
 
                                         <div className="form-group mt-3" >

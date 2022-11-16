@@ -1,5 +1,5 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { InsertVendorCode } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
@@ -60,26 +60,24 @@ function AddVendorCode() {
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
                                 <div className="card inner-card">
-                                    <header className="card-header" >
-                                        <h5 >Add Vendor Code</h5>
-                                    </header>
+                                    <header className="card-header" >Add Vendor Code</header>
                                     <article className="card-body" >
                                         <form className='px-3' autoComplete='off'>
                                             <div className="row">
-                                                <div className="col-md-6">
+                                                <div className="col-md-4">
                                                     <label htmlFor='vendor_code'>Vendor Code <span className='text-danger'>*</span></label>
                                                     <input type="text" className="form-control" id='vendor_code' required />
                                                 </div>
-                                                <div className="col-md-6" >
+                                                <div className="col-md-4" >
                                                     <label htmlFor='vendor_name'>Vendor Name <span className='text-danger'>*</span></label>
                                                     <input type="text" className="form-control" id='vendor_name' required />
                                                 </div>
-                                            </div>
-                                            <div className="row mt-3">
                                                 <div className="col-md-4" >
                                                     <label htmlFor='comp_email'>Company Email Id <span className='text-danger'>*</span></label>
                                                     <input type="email" className="form-control" id='comp_email' required />
                                                 </div>
+                                            </div>
+                                            <div className="row mt-3">
                                                 <div className="col-md-4">
                                                     <label htmlFor='comp_website'>Company website</label>
                                                     <input type="url" className="form-control" id='comp_website' required />
@@ -89,12 +87,13 @@ function AddVendorCode() {
                                                     <label htmlFor='comp_gst'>Company GST no.</label>
                                                     <input type="text" className="form-control" id='comp_gst' />
                                                 </div>
-                                            </div>
-                                            <div className="row mt-3">
                                                 <div className="col-md-4">
                                                     <label htmlFor='comp_city'>Company City <span className='text-danger'>*</span></label>
                                                     <input type="text" className="form-control" id='comp_city' required />
                                                 </div>
+                                            </div>
+                                            <div className="row mt-3">
+
                                                 <div className="col-md-4" >
                                                     <label htmlFor='comp_state'>Company State <span className='text-danger'>*</span></label>
                                                     <input type="text" className="form-control" id='comp_state' required />
@@ -105,27 +104,26 @@ function AddVendorCode() {
                                                 </div>
                                             </div>
 
+                                            <div className='row mt-3'>
+                                                <div className="col ">
+                                                    <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='comp_addr1' required />
+                                                </div>
 
-                                            <div className="col mt-3">
-                                                <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='comp_addr1' required />
+                                                <div className="col">
+                                                    <label htmlFor='comp_addr2'>Company Address Line 2</label>
+                                                    <input type="text" className="form-control" id='comp_addr2' />
+                                                </div>
                                             </div>
-
-                                            <div className="col mt-3">
-                                                <label htmlFor='comp_addr2'>Company Address Line 2</label>
-                                                <input type="text" className="form-control" id='comp_addr2' />
-                                            </div>
-
 
                                             <div className="form-row mt-3 d-flex align-items-center">
                                                 <label htmlFor='vendor_portal' className='col-md-3' >Vendor Portal</label>
                                                 <input type="checkbox" className="" id='vendor_portal' style={{ height: "20px", width: "20px" }} />
                                             </div>
 
-
-                                            <div className="form-group" >
-                                                <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleaddinsert}>Add Vendor Code </button>
-                                                <button type="reset" className="btn btn-secondary ml-2 mb-4 mt-3" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                            <div className="form-group mt-3" >
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Vendor Code </button>
+                                                <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
                                             </div>
                                         </form>
                                     </article>
@@ -133,7 +131,7 @@ function AddVendorCode() {
                             </div>
                         </div>
                     </Sidebar>
-                : <LoadingPage />
+                    : <LoadingPage />
             }
         </>
     )

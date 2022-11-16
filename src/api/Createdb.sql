@@ -367,3 +367,104 @@ CREATE TABLE tbl_drizzle_agent_master (
                 status nvarchar(30) NULL,
                 drizzle_agent_uuid nvarchar(350) NULL
 )
+
+
+
+
+CREATE TABLE IPERISCOPE.dbo.tbl_vendor_invoice (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                vendor nvarchar(100) NULL,
+                account_no nvarchar(100) NULL,
+                invoice_no nvarchar(100) NULL ,
+                invoice_amt nvarchar(100) NULL ,
+                invoice_date date NULL ,
+                invoice_duedate date NULL ,
+                invoice_subdate date NULL ,
+                remark nvarchar(300) NULL ,
+                reference_no  nvarchar(50) NULL ,
+                printer_counter nvarchar(50) NULL ,
+                invoice_status nvarchar(50) NULL ,
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                vend_inv_uuid nvarchar(350) NULL
+)
+
+
+CREATE TABLE IPERISCOPE.dbo.tbl_new_assets (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                new_asset_type_id nvarchar(20) NULL,
+                asset_type nvarchar(100) NULL,
+                asset_tag nvarchar(50) NULL,
+                serial_no nvarchar(50) NULL ,
+                location nvarchar(100) NULL ,
+                manufacture nvarchar(50) NULL ,
+                software nvarchar(50) NULL ,
+                model nvarchar(50) NULL ,
+                asset_status nvarchar(50) NULL ,
+                
+                description nvarchar(300) NULL,
+                purchase_type nvarchar(150) NULL,
+                purchase_date date NULL ,
+                company nvarchar(100) NULL ,
+                vendor nvarchar(100) NULL ,
+                invoice_no nvarchar(100) NULL ,
+                rent_per_month nvarchar(100) NULL ,
+                purchases_price nvarchar(100) NULL ,
+             
+                latest_inventory nvarchar(100) NULL ,
+                asset_name nvarchar(100) NULL ,
+                asset_assign nvarchar(100) NULL ,
+                asset_assign_empid nvarchar(100) NULL ,
+                remarks nvarchar(300) NULL ,
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                new_assets_uuid nvarchar(350) NULL
+)
+
+
+CREATE TABLE IPERISCOPE.dbo.tbl_ticket (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                emp_id  nvarchar(20) NULL,
+                emp_name  nvarchar(20) NULL,
+                asset_type nvarchar(100) NULL,
+                asset_serial nvarchar(50) NULL,
+               
+                location nvarchar(100) NULL ,
+                assign_ticket nvarchar(50) NULL ,
+                type_of_issue nvarchar(50) NULL ,
+                email_id nvarchar(50) NULL ,
+                ticket_date date NULL ,
+             
+                ticket_status nvarchar(100) NULL ,
+                ticket_subject nvarchar(100) NULL ,
+                priority nvarchar(100) NULL ,
+                issue_discription nvarchar(100) NULL ,
+                remarks nvarchar(300) NULL ,
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                ticket_uuid nvarchar(350) NULL
+)

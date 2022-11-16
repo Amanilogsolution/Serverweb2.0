@@ -4,34 +4,56 @@ import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { FaMinusCircle } from 'react-icons/fa'
 
-import { ActiveDevicetype, ActiveVendorCode } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import { GiLuger } from 'react-icons/gi';
 
 const AddNewAssets = () => {
     const [loading, setLoading] = useState(false)
 
     const [todatdate, setTodaydate] = useState('')
-    const [devicelist, setDevicelist] = useState([])
+    const [assettypelist, setAssettypelist] = useState([])
     const [vendorlist, setVendorlist] = useState([])
+    const [manufacturerlist, setManufacturerlist] = useState([])
+    const [locationlist, setLocationlist] = useState([])
+    const [assetstatuslist, setAssetstatuslist] = useState([])
+    const [softwarelist, setSoftwarelist] = useState([])
+    const [employeelist, setEmployeelist] = useState([])
+
+
     const [devicedetail, setDevicedetail] = useState(true)
     const [purchasesdetail, setPurchasesdetail] = useState(false)
     const [otherdetail, setOtherdetail] = useState(false)
 
     useEffect(() => {
         const fetchdata = async () => {
-            const devices = await ActiveDevicetype();
-            console.log(devices)
-            setDevicelist(devices)
+            const devices = await ActiveAssetesType();
+            setAssettypelist(devices)
             const vendor = await ActiveVendorCode()
-            console.log(vendor)
             setVendorlist(vendor)
+
+            const manufacture = await ActiveManufacturer();
+            setManufacturerlist(manufacture)
+
+            const location = await ActiveLocation();
+            setLocationlist(location)
+
+            const assetstatus = await ActiveAssetStatus();
+            setAssetstatuslist(assetstatus)
+
+            const software = await ActiveSoftware();
+            setSoftwarelist(software)
+
+            const employee = await ActiveEmployees()
+            setEmployeelist(employee)
+
             setLoading(true)
         }
         fetchdata();
-        Todaydate()
+        todaydate()
     }, [])
 
-    const Todaydate = () => {
+    const todaydate = () => {
         let date = new Date();
         let day = date.getDate();
         let month = date.getMonth() + 1;
@@ -90,7 +112,7 @@ const AddNewAssets = () => {
         setOtherdetail(!otherdetail)
     }
 
-    const handleToggleSoftware = (e) => {
+    const handleToggleSoftware = async (e) => {
         const devicetype = e.target.value;
         if (devicetype === 'Laptop') {
             document.getElementById('softwarediv').style.display = 'block'
@@ -100,8 +122,9 @@ const AddNewAssets = () => {
 
         }
 
-
-        document.getElementById('assetetag').value = devicetype.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
+        const count = await CountNewAssets(devicetype)
+        let asset_count = Number(count.count) + 1 + '';
+        document.getElementById('assetetag').value = devicetype.substring(0, 3).toUpperCase() + '-' + asset_count.padStart(6, '0');
     }
 
     const handleChnagePurType = (e) => {
@@ -115,6 +138,94 @@ const AddNewAssets = () => {
         }
     }
 
+    const handleInsertData = async (e) => {
+        e.preventDefault();
+        setLoading(false)
+
+        const asset_type = document.getElementById('asset_type').value;
+        const asset_id = asset_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
+        const assetetag = document.getElementById('assetetag').value;
+        let software = document.getElementById('software').value;
+        const serialno = document.getElementById('serialno').value;
+        const location = document.getElementById('location').value;
+        const manufacture = document.getElementById('manufacture').value;
+        const model = document.getElementById('model').value;
+        const assetstatus = document.getElementById('assetstatus').value;
+        const description = document.getElementById('description').value;
+        const purchase_type = document.getElementById('purchase_type').value;
+        const purchasesdate = document.getElementById('purchasesdate').value;
+        const company = document.getElementById('company').value;
+        const vendor = document.getElementById('vendor').value;
+        const invoiceno = document.getElementById('invoiceno').value;
+        let purchaseprice = document.getElementById('purchaseprice').value;
+        let rentpermonth = document.getElementById('rentpermonth').value;
+        const latestinventory = document.getElementById('latestinventory').value;
+        const assetname = document.getElementById('assetname').value;
+        let  asset_assign_empid = document.getElementById('assetassign');
+        const assetassign=asset_assign_empid.options[asset_assign_empid.selectedIndex].text;
+        asset_assign_empid= asset_assign_empid.value
+        const remark = document.getElementById('remark').value;
+
+        if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
+            !company || !vendor || !invoiceno || !latestinventory || !assetname || !asset_assign_empid) {
+            alert('Please enter the Mandatory field')
+            setLoading(true)
+            return false;
+        }
+        else {
+            let errorcount = 0;
+            if (asset_type === 'Laptop') {
+                if (!software) {
+                    alert('Please enter the Software Field')
+                    setLoading(true)
+                    errorcount = errorcount + 1;
+                    return false;
+                }
+
+            }
+            else {
+                software = '';
+            }
+            if (purchase_type === 'Rental') {
+                if (!rentpermonth) {
+                    alert('Please enter the RentPerMonth Field')
+                    setLoading(true)
+                    errorcount = errorcount + 1;
+                    return false;
+                }
+
+            }
+            else {
+                rentpermonth = '';
+            }
+            if (purchase_type === 'Owned') {
+                if (!purchaseprice) {
+                    alert('Please enter the Purchase Price Field')
+                    setLoading(true)
+                    errorcount = errorcount + 1;
+                    return false;
+                }
+
+            }
+            else {
+                purchaseprice = '';
+            }
+
+            if (errorcount === 0) {
+                const result = await InsertNewAssets(asset_id, asset_type, assetetag, serialno, location, manufacture, software,
+                    model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
+                    rentpermonth, purchaseprice, latestinventory, assetname, assetassign,asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+                if (result === 'Data Added') {
+                    alert('Data Added')
+                    window.location.reload();
+                }
+                else {
+                    alert('Server Not Response')
+                    setLoading(true)
+                }
+            }
+        }
+    }
 
     return (
         <>
@@ -150,45 +261,59 @@ const AddNewAssets = () => {
                                                         <div className="row mt-2">
 
                                                             <div className="col-md-4">
-                                                                <label htmlFor='vendor'>Device Type <span className='text-danger'>*</span></label>
-                                                                <select className="form-select" onChange={handleToggleSoftware}>
+                                                                <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
+                                                                <select id='asset_type' className="form-select" onChange={handleToggleSoftware}>
                                                                     <option value='' hidden>Select...</option>
                                                                     {
-                                                                        devicelist.map((item, index) => (
-                                                                            <option key={index} value={item.device_type}>{item.device_type}</option>
+                                                                        assettypelist.map((item, index) => (
+                                                                            <option key={index} value={item.asset_type}>{item.asset_type}</option>
                                                                         ))
                                                                     }
                                                                 </select>
                                                             </div>
 
                                                             <div className="col-md-4">
-                                                                <label htmlFor='vendor'>Asset Tag <span className='text-danger'>*</span></label>
+                                                                <label htmlFor='assetetag'>Asset Tag <span className='text-danger'>*</span></label>
                                                                 <input type="text" id='assetetag' className="form-control" placeholder='Auto generated' disabled />
                                                             </div>
                                                             <div className="col-md-4" id='softwarediv' style={{ display: "none" }}>
-                                                                <label htmlFor='vendor'>Software <span className='text-danger'>*</span></label>
-                                                                <select className="form-select">
+                                                                <label htmlFor='software'>Software <span className='text-danger'>*</span></label>
+                                                                <select className="form-select" id='software'>
                                                                     <option value='' hidden>Select Software</option>
+                                                                    {
+                                                                        softwarelist.map((item, index) => (
+                                                                            <option key={index} value={item.software_name}>{item.software_name}</option>
+                                                                        ))
+                                                                    }
                                                                 </select>
                                                             </div>
 
                                                         </div>
                                                         <div className='row mt-3'>
                                                             <div className="col-md-4">
-                                                                <label htmlFor='model'>Serial No. <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" required />
+                                                                <label htmlFor='serialno'>Serial No. <span className='text-danger'>*</span></label>
+                                                                <input type="text" id='serialno' className="form-control" required />
                                                             </div>
                                                             <div className="col-md-4">
-                                                                <label htmlFor='model'>Location <span className='text-danger'>*</span></label>
-                                                                <select className="form-select">
+                                                                <label htmlFor='location'>Location <span className='text-danger'>*</span></label>
+                                                                <select className="form-select" id='location'>
                                                                     <option value='' hidden>Select...</option>
-
+                                                                    {
+                                                                        locationlist.map((item, index) =>
+                                                                            <option key={index}>{item.location_name}</option>
+                                                                        )
+                                                                    }
                                                                 </select>
                                                             </div>
                                                             <div className="col-md-4">
-                                                                <label htmlFor='vendor'>Manufacture <span className='text-danger'>*</span></label>
-                                                                <select className="form-select">
+                                                                <label htmlFor='manufacture'>Manufacture <span className='text-danger'>*</span></label>
+                                                                <select className="form-select" id='manufacture'>
                                                                     <option value='' hidden>Select...</option>
+                                                                    {
+                                                                        manufacturerlist.map((item, index) => (
+                                                                            <option key={index} value={item.manufacturer_name}>{item.manufacturer_name}</option>
+                                                                        ))
+                                                                    }
                                                                 </select>
                                                             </div>
 
@@ -198,19 +323,24 @@ const AddNewAssets = () => {
                                                         <div className="row mt-3">
                                                             <div className="col-md-4">
                                                                 <label htmlFor='model'>Model <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" required />
+                                                                <input type="text" id='model' className="form-control" required />
                                                             </div>
 
                                                             <div className="col-md-4">
-                                                                <label htmlFor='location'>Device Status <span className='text-danger'>*</span></label>
-                                                                <select className="form-select">
+                                                                <label htmlFor='assetstatus'>Asset Status <span className='text-danger'>*</span></label>
+                                                                <select className="form-select" id='assetstatus'>
                                                                     <option value='' hidden>Select...</option>
+                                                                    {
+                                                                        assetstatuslist.map((item, index) => (
+                                                                            <option key={index} value={item.asset_status}>{item.asset_status}</option>
+                                                                        ))
+                                                                    }
 
                                                                 </select>
                                                             </div>
                                                             <div className="col-md-4">
-                                                                <label htmlFor='location'>Description</label>
-                                                                <input type="text" className="form-control" required />
+                                                                <label htmlFor='description'>Description</label>
+                                                                <input type="text" id='description' className="form-control" required />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -233,27 +363,27 @@ const AddNewAssets = () => {
                                                     <div id='purchasesdivdetail' style={{ display: 'none' }}>
                                                         <div className="row mt-3">
                                                             <div className="col-md-4">
-                                                                <label htmlFor='vendor'>Purchase Type <span className='text-danger'>*</span></label>
-                                                                <select className="form-select" onChange={handleChnagePurType}>
+                                                                <label htmlFor='purchase_type'>Purchase Type <span className='text-danger'>*</span></label>
+                                                                <select className="form-select" id='purchase_type' onChange={handleChnagePurType}>
                                                                     <option value='' hidden>Select...</option>
                                                                     <option value='Rental' >Rental</option>
                                                                     <option value='Owned' >Owned</option>
                                                                 </select>
                                                             </div>
                                                             <div className="col-md-4">
-                                                                <label htmlFor='location'>Purchase Date <span className='text-danger'>*</span></label>
+                                                                <label htmlFor='purchasesdate'>Purchase Date <span className='text-danger'>*</span></label>
                                                                 <input type="date" id='purchasesdate' className="form-control" defaultValue={todatdate} required />
                                                             </div>
                                                         </div>
 
                                                         <div className="row mt-3">
                                                             <div className="col-md-4">
-                                                                <label htmlFor='model'>Company <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" required />
+                                                                <label htmlFor='company'>Company <span className='text-danger'>*</span></label>
+                                                                <input type="text" id='company' className="form-control" required />
                                                             </div>
                                                             <div className="col-md-4">
                                                                 <label htmlFor='vendor'>Vendor <span className='text-danger'>*</span></label>
-                                                                <select className="form-select">
+                                                                <select id='vendor' className="form-select">
                                                                     <option value='' hidden>Select...</option>
                                                                     {
                                                                         vendorlist.map((item, index) => (
@@ -263,8 +393,8 @@ const AddNewAssets = () => {
                                                                 </select>
                                                             </div>
                                                             <div className="col-md-4">
-                                                                <label htmlFor='location'>Invoice No.<span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" required />
+                                                                <label htmlFor='invoiceno'>Invoice No.<span className='text-danger'>*</span></label>
+                                                                <input type="text" id='invoiceno' className="form-control" required />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -287,32 +417,39 @@ const AddNewAssets = () => {
 
                                                         <div className="row mt-3">
                                                             <div className="col-md-4" id='purchasespricediv' style={{ display: "none" }}>
-                                                                <label htmlFor='model'>Purchase Price <span className='text-danger'>*</span></label>
-                                                                <input type="number" className="form-control" required />
+                                                                <label htmlFor='purchaseprice'>Purchase Price <span className='text-danger'>*</span></label>
+                                                                <input type="number" id='purchaseprice' className="form-control" required />
                                                             </div>
                                                             <div className="col-md-4" id='rentpermonthdiv' style={{ display: "none" }}>
-                                                                <label htmlFor='vendor'>Rent Per Month <span className='text-danger'>*</span></label>
-                                                                <input type="number" className="form-control" required />
+                                                                <label htmlFor='rentpermonth'>Rent Per Month <span className='text-danger'>*</span></label>
+                                                                <input type="number" id='rentpermonth' className="form-control" required />
                                                             </div>
                                                             <div className="col-md-4">
-                                                                <label htmlFor='location'>Latest Inventory <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" required />
+                                                                <label htmlFor='latestinventory'>Latest Inventory <span className='text-danger'>*</span></label>
+                                                                <input type="text" id='latestinventory' className="form-control" required />
                                                             </div>
                                                         </div>
                                                         <div className="row mt-3">
 
                                                             <div className="col-md-4">
-                                                                <label htmlFor='vendor'>Asset Name<span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" required />
+                                                                <label htmlFor='assetname'>Asset Name<span className='text-danger'>*</span></label>
+                                                                <input type="text" id='assetname' className="form-control" required />
                                                             </div>
                                                             <div className="col-md-4">
-                                                                <label htmlFor='location'>Asset Assign <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" defaultValue={sessionStorage.getItem('UserName')} required />
+                                                                <label htmlFor='assetassign'>Asset Assign <span className='text-danger'>*</span></label>
+                                                                <select id='assetassign' className="form-select" >
+                                                                    <option value={sessionStorage.getItem('UserId')} hidden>{sessionStorage.getItem('UserName')}</option>
+                                                                    {
+                                                                        employeelist.map((item, index) => (
+                                                                            <option key={index} value={item.employee_id}>{item.employee_name}</option>
+                                                                        ))
+                                                                    }
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div className="col-md-6 mt-3">
-                                                            <label htmlFor='model'>Remarks </label>
-                                                            <textarea className="form-control" rows='3'></textarea>
+                                                            <label htmlFor='remark'>Remarks </label>
+                                                            <textarea id='remark' className="form-control" rows='3'></textarea>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -320,7 +457,7 @@ const AddNewAssets = () => {
 
                                             </ul>
                                             <div className="form-group mt-3" >
-                                                <button type="submit" className="btn btn-voilet " id="subnitbtn">Add New Assets</button>&nbsp;&nbsp;
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleInsertData}>Add New Assets</button>&nbsp;&nbsp;
                                                 <button type="reset" className="btn btn-secondary">Reset</button>
                                             </div>
                                         </form>

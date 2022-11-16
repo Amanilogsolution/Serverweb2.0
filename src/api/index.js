@@ -377,25 +377,38 @@ export const TotalEmployees = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const AddEmployees = async (employee_id,employee_name,location,employee_email,employee_number,company,user_id) => {
+export const AddEmployees = async (employee_id, employee_name, location, employee_email, employee_number, company, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertEmployee`
-    return axios.post(url,{employee_id,employee_name,location,employee_email,employee_number,company,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { employee_id, employee_name, location, employee_email, employee_number, company, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 export const GetEmployees = async (sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getEmployee`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const DeleteEmployees = async (status,sno) => {
-    console.log(status,sno)
+export const DeleteEmployees = async (status, sno) => {
+    console.log(status, sno)
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteEmployee`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateEmployees = async (sno,employee_name,location,employee_email,employee_number,company,user_id) => {
+export const UpdateEmployees = async (sno, employee_name, location, employee_email, employee_number, company, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateEmployee`
-    return axios.post(url,{sno,employee_name,location,employee_email,employee_number,company,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, employee_name, location, employee_email, employee_number, company, user_id }).then(response => response.data).catch(error => console.log(error));
 }
+
+
+export const ActiveEmployees = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ActiveEmployee`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
+
+
+export const EmployeesDetail = async (empid) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/EmployeeDetail`
+    return axios.post(url, { empid }).then(response => response.data).catch(error => console.log(error));
+}
+
 
 //Assets Type
 export const TotalAssetTypeapi = async () => {
@@ -403,24 +416,29 @@ export const TotalAssetTypeapi = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const AddAssetTypeapi = async (asset_type_id,asset_type,asset_description,user_id) => {
+export const AddAssetTypeapi = async (asset_type_id, asset_type, asset_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertAssetType`
-    return axios.post(url,{asset_type_id,asset_type,asset_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { asset_type_id, asset_type, asset_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetAssetTypeapi = async (sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getAssetType`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const DeleteAssetTypeapi = async (status,sno) => {
+export const DeleteAssetTypeapi = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteAssetType`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateAssettypeapi = async (sno,asset_type,asset_description,user_id) => {
+export const UpdateAssettypeapi = async (sno, asset_type, asset_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateAssetType`
-    return axios.post(url,{sno,asset_type,asset_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, asset_type, asset_description, user_id }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const ActiveAssetesType = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ActiveAssetesType`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 //Asset Status
@@ -430,24 +448,30 @@ export const TotalAssetStatusapi = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const AddAssetStatusapi = async (asset_status_id,asset_status,asset_status_description,user_id) => {
+export const AddAssetStatusapi = async (asset_status_id, asset_status, asset_status_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertAssetStatus`
-    return axios.post(url,{asset_status_id,asset_status,asset_status_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { asset_status_id, asset_status, asset_status_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const DeleteAssetStatusapi = async (status,sno) => {
+export const DeleteAssetStatusapi = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteAssetStatus`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetAssetStatusapi = async (sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getAssetStatus`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateAssetStatusapi = async (sno,asset_status,asset_status_description,user_id) => {
+export const UpdateAssetStatusapi = async (sno, asset_status, asset_status_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateAssetStatus`
-    return axios.post(url,{sno,asset_status,asset_status_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, asset_status, asset_status_description, user_id }).then(response => response.data).catch(error => console.log(error));
+}
+
+
+export const ActiveAssetStatus = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ActiveAssetesStatus`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 
@@ -458,25 +482,32 @@ export const TotalSoftwareapi = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const AddSoftwareapi = async (software_id,software_name,software_description,user_id) => {
+export const AddSoftwareapi = async (software_id, software_name, software_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertSoftware`
-    return axios.post(url,{software_id,software_name,software_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { software_id, software_name, software_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const DeleteSoftwaresapi = async (status,sno) => {
+export const DeleteSoftwaresapi = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteSoftware`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetSoftwareapi = async (sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getSoftware`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateSoftwareapi = async (sno,software_name,software_description,user_id) => {
+export const UpdateSoftwareapi = async (sno, software_name, software_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateSoftware`
-    return axios.post(url,{sno,software_name,software_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, software_name, software_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
+
+
+export const ActiveSoftware = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ActiveSoftware`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
+
 
 // Purchase Master
 
@@ -485,24 +516,24 @@ export const TotalPurchaseTypeapi = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const AddPurchaseTypeeapi = async (purchase_id,purchase_type,purchase_description,user_id) => {
+export const AddPurchaseTypeeapi = async (purchase_id, purchase_type, purchase_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertPurchaseType`
-    return axios.post(url,{purchase_id,purchase_type,purchase_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { purchase_id, purchase_type, purchase_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const DeletePurchaseTypeapi = async (status,sno) => {
+export const DeletePurchaseTypeapi = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deletePurchaseType`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetPurchaseTypeapi = async (sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getPurchaseType`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdatePurchaseapi = async (sno,purchase_type,purchase_description,user_id) => {
+export const UpdatePurchaseapi = async (sno, purchase_type, purchase_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updatePurchaseType`
-    return axios.post(url,{sno,purchase_type,purchase_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, purchase_type, purchase_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
 // Priority Master
@@ -512,26 +543,32 @@ export const TotalPriorityapi = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const AddPriorityapi = async (priority_id,priority_type,priority_description,user_id) => {
+export const AddPriorityapi = async (priority_id, priority_type, priority_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertPriority`
-    return axios.post(url,{priority_id,priority_type,priority_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { priority_id, priority_type, priority_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
 
-export const DeletePriorityapi = async (status,sno) => {
+export const DeletePriorityapi = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deletePriority`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetPriorityapi = async (sno) => {
-    console.log(sno)
     const url = `https://drizzlebackend.awlworldwide.com/api/getPriority`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
-export const UpdatePriorityapi = async (sno,priority_type,priority_description,user_id) => {
+export const UpdatePriorityapi = async (sno, priority_type, priority_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updatePriority`
-    return axios.post(url,{sno,priority_type,priority_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, priority_type, priority_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
+
+
+export const ActivePriority = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ActivePriority`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
+
 
 // Billing Frequency
 export const TotalBillingFreqapi = async () => {
@@ -539,94 +576,91 @@ export const TotalBillingFreqapi = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const DeleteBillingFreqapi = async (status,sno) => {
+export const DeleteBillingFreqapi = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteBillingFrequency`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
-export const AddBillingFreqapi = async (billing_freq_id,billing_freq,billing_freq_description,user_id) => {
+export const AddBillingFreqapi = async (billing_freq_id, billing_freq, billing_freq_description, user_id) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/insertBillingFrequency`
-    return axios.post(url,{billing_freq_id,billing_freq,billing_freq_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { billing_freq_id, billing_freq, billing_freq_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 export const GetBillingFreqapi = async (sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getBillingFrequency`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateBillingFreqapi = async (sno,billing_freq,billing_freq_description,user_id) => {
-    console.log(sno,billing_freq)
+export const UpdateBillingFreqapi = async (sno, billing_freq, billing_freq_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateBillingFrequency`
-    return axios.post(url,{sno,billing_freq,billing_freq_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, billing_freq, billing_freq_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
+
+export const ActiveBillingFreq = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ActiveBillingFreq`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
+
 
 // Vendor Category
 export const TotalVendorCategoryapi = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/totalVendorCategory`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
-export const DeleteVendorCategoryapi = async (status,sno) => {
+export const DeleteVendorCategoryapi = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteVendorCategory`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const AddVendorCategoryapi = async (vendor_category_id,vendor_category,vendor_category_description,user_id) => {
+export const AddVendorCategoryapi = async (vendor_category_id, vendor_category, vendor_category_description, user_id) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/insertVendorCategory`
-    return axios.post(url,{vendor_category_id,vendor_category,vendor_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { vendor_category_id, vendor_category, vendor_category_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetVendorCategoryapi = async (sno) => {
-    console.log(sno)
     const url = `https://drizzlebackend.awlworldwide.com/api/getVendorCategory`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateVendorCategoryapi = async (sno,vendor_category,vendor_category_description,user_id) => {
+export const UpdateVendorCategoryapi = async (sno, vendor_category, vendor_category_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateVendorCategory`
-    return axios.post(url,{sno,vendor_category,vendor_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, vendor_category, vendor_category_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveVendorCategory = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getallvendorcategory`
-    return axios.post(url,{}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, {}).then(response => response.data).catch(error => console.log(error));
 }
-
 
 
 //  Location Master
 
 export const TotalLocation = async () => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/totalLocation`
+    const url = `https://drizzlebackend.awlworldwide.com/api/api/totalLocation`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateLocationStatus = async (status,sno) => {
+export const UpdateLocationStatus = async (status, sno) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/deleteLocation`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const AddLocationapi = async (location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id) => {
-    console.log('api',location_id,company_name,location_code,location_name,location_address_line1,
-    location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,
-    contact_person_email,contact_person_number,location_latitude,location_longitude,user_id)
+export const AddLocationapi = async (location_id, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertLocation`
-    return axios.post(url,{location_id,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { location_id, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetLocation = async (sno) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/getLocation`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateLocation = async (sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id) => {
-    console.log(sno,company_name,location_code,location_name,location_address_line1,location_address_line2,
-        location_city,location_state,location_pin_code,location_gst,contact_person,
-        contact_person_email,contact_person_number,location_latitude,location_longitude,user_id)
+export const UpdateLocation = async (sno, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/updateLocation`
-    return axios.post(url,{sno,company_name,location_code,location_name,location_address_line1,location_address_line2,location_city,location_state,location_pin_code,location_gst,contact_person,contact_person_email,contact_person_number,location_latitude,location_longitude,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveLocation = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getalllocation`
-    return axios.post(url,{}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, {}).then(response => response.data).catch(error => console.log(error));
 }
 
 
@@ -638,28 +672,33 @@ export const TotalManufacturerapi = async () => {
 }
 
 
-export const UpdateManufacturerStatus = async (status,sno) => {
+export const UpdateManufacturerStatus = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteManufacturer`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
 
-export const InsertManufacturer = async (manufacturer_id,manufacturer_name,manufacturer_description,user_id) => {
+export const InsertManufacturer = async (manufacturer_id, manufacturer_name, manufacturer_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertManufacturer`
-    return axios.post(url,{manufacturer_id,manufacturer_name,manufacturer_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { manufacturer_id, manufacturer_name, manufacturer_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
 
 export const GetManufacturer = async (sno) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/getManufacturer`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateManufacturer = async (sno,manufacturer_name,manufacturer_description,user_id) => {
+export const UpdateManufacturer = async (sno, manufacturer_name, manufacturer_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateManufacturer`
-    return axios.post(url,{sno,manufacturer_name,manufacturer_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, manufacturer_name, manufacturer_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
+
+export const ActiveManufacturer = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ActiveManufacturer`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
 
 // Issue Type Master
 
@@ -669,24 +708,29 @@ export const TotalIssueTypeapi = async () => {
 }
 
 
-export const UpdateIssueTypeStatus = async (status,sno) => {
+export const UpdateIssueTypeStatus = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteIssueType`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const InsertIssueType = async (issue_id,issue_type,issue_description,user_id) => {
+export const InsertIssueType = async (issue_id, issue_type, issue_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertIssueType`
-    return axios.post(url,{issue_id,issue_type,issue_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { issue_id, issue_type, issue_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetIssueType = async (sno) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/getIssueType`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateIssueType = async (sno,issue_type,issue_description,user_id) => {
+export const UpdateIssueType = async (sno, issue_type, issue_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateIssueType`
-    return axios.post(url,{sno,issue_type,issue_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, issue_type, issue_description, user_id }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const ActiveIssue = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ActiveIssue`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 
@@ -697,28 +741,28 @@ export const TotalContractTypeapi = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateContractTypeStatus = async (status,sno) => {
+export const UpdateContractTypeStatus = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteContractType`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const InsertContractType = async (contract_id,contract_type,contract_description,user_id) => {
+export const InsertContractType = async (contract_id, contract_type, contract_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertContractType`
-    return axios.post(url,{contract_id,contract_type,contract_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { contract_id, contract_type, contract_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const GetContractType= async (sno) => {
+export const GetContractType = async (sno) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/getContractType`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateContractType = async (sno,contract_type,contract_description,user_id) => {
+export const UpdateContractType = async (sno, contract_type, contract_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateContractType`
-    return axios.post(url,{sno,contract_type,contract_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, contract_type, contract_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 export const ActiveContractType = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getallcontracttype`
-    return axios.post(url,{}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, {}).then(response => response.data).catch(error => console.log(error));
 }
 
 
@@ -729,26 +773,30 @@ export const TotalTicketstatusapi = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateTicketstatusActive = async (status,sno) => {
+export const UpdateTicketstatusActive = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteTicketStatus`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const InsertTicketstatus = async (ticket_id,ticket_status,ticket_description,user_id) => {
+export const InsertTicketstatus = async (ticket_id, ticket_status, ticket_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertTicketStatus`
-    return axios.post(url,{ticket_id,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { ticket_id, ticket_status, ticket_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const GetTicketstatus= async (sno) => {
+export const GetTicketstatus = async (sno) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/getTicketStatus`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateTicketstatus = async (sno,ticket_status,ticket_description,user_id) => {
+export const UpdateTicketstatus = async (sno, ticket_status, ticket_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateTicketStatus`
-    return axios.post(url,{sno,ticket_status,ticket_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, ticket_status, ticket_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const ActiveTicketStatus = async () => {
+    const url = ` https://drizzlebackend.awlworldwide.com/api/ActiveTicketStatus`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
 
 
 // Vendor Sub Category Master
@@ -758,29 +806,28 @@ export const TotalVendSubCateapi = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const DeleteVendSubCateStatus = async (status,sno) => {
+export const DeleteVendSubCateStatus = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteVendorSubCategory`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const InsertVendSubCate = async (vendor_sub_category_id,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id) => {
+export const InsertVendSubCate = async (vendor_sub_category_id, vendor_category, vendor_sub_category, vendor_sub_category_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertVendorSubCategory`
-    return axios.post(url,{vendor_sub_category_id,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { vendor_sub_category_id, vendor_category, vendor_sub_category, vendor_sub_category_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const GetVendSubCate= async (sno) => {
+export const GetVendSubCate = async (sno) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/getVendorSubCategory`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateVendSubCate = async (sno,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id) => {
+export const UpdateVendSubCate = async (sno, vendor_category, vendor_sub_category, vendor_sub_category_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateVendorSubCategory`
-    return axios.post(url,{sno,vendor_category,vendor_sub_category,vendor_sub_category_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, vendor_category, vendor_sub_category, vendor_sub_category_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 export const ActiveVendSubCate = async (vendor_category) => {
-    console.log(vendor_category)
     const url = `https://drizzlebackend.awlworldwide.com/api/getvendorsubcategorybyvend`
-    return axios.post(url,{vendor_category}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { vendor_category }).then(response => response.data).catch(error => console.log(error));
 }
 
 // Service Action Type Master
@@ -790,24 +837,24 @@ export const TotalServiceActionTypeapi = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const DeleteServiceActionTypeStatus = async (status,sno) => {
+export const DeleteServiceActionTypeStatus = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteServiceAction`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const InsertServiceActionType = async (service_action_id,service_action_type,service_action_type_description,user_id) => {
+export const InsertServiceActionType = async (service_action_id, service_action_type, service_action_type_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertServiceAction`
-    return axios.post(url,{service_action_id,service_action_type,service_action_type_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { service_action_id, service_action_type, service_action_type_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const GetServiceActionType= async (sno) => {
+export const GetServiceActionType = async (sno) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/getServiceAction`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateServiceActionType = async (sno,service_action_type,service_action_type_description,user_id) => {
+export const UpdateServiceActionType = async (sno, service_action_type, service_action_type_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateServiceAction`
-    return axios.post(url,{sno,service_action_type,service_action_type_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, service_action_type, service_action_type_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
 
@@ -818,24 +865,24 @@ export const TotalServiceGroupapi = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const DeleteServiceGroupStatus = async (status,sno) => {
+export const DeleteServiceGroupStatus = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteServiceGroup`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const InsertServiceGroup = async (service_group_id,service_group_type,service_group_description,user_id) => {
+export const InsertServiceGroup = async (service_group_id, service_group_type, service_group_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertServiceGroup`
-    return axios.post(url,{service_group_id,service_group_type,service_group_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { service_group_id, service_group_type, service_group_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const GetServiceGroup= async (sno) => {
+export const GetServiceGroup = async (sno) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/getServiceGroup`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateServiceGroup = async (sno,service_group_type,service_group_description,user_id) => {
+export const UpdateServiceGroup = async (sno, service_group_type, service_group_description, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateServiceGroup`
-    return axios.post(url,{sno,service_group_type,service_group_description,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, service_group_type, service_group_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
 
@@ -847,29 +894,29 @@ export const TotalVendorCodeapi = async () => {
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
-export const DeleteVendorCode = async (status,sno) => {
+export const DeleteVendorCode = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteVendorCode`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const InsertVendorCode = async (vendor_code_id,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,venodr_portal,user_id) => {
+export const InsertVendorCode = async (vendor_code_id, vendor_code, vendor_name, company_address_line1, company_address_line2, company_city, company_state, company_pin_code, company_gst, company_website, company_email, venodr_portal, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertVendorCode`
-    return axios.post(url,{vendor_code_id,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,venodr_portal,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { vendor_code_id, vendor_code, vendor_name, company_address_line1, company_address_line2, company_city, company_state, company_pin_code, company_gst, company_website, company_email, venodr_portal, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const GetVendorCode= async (sno) => {
+export const GetVendorCode = async (sno) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/getVendorCode`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateVendorCode = async (sno,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,venodr_portal,user_id) => {
+export const UpdateVendorCode = async (sno, vendor_code, vendor_name, company_address_line1, company_address_line2, company_city, company_state, company_pin_code, company_gst, company_website, company_email, venodr_portal, user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updateVendorCode`
-    return axios.post(url,{sno,vendor_code,vendor_name,company_address_line1,company_address_line2,company_city,company_state,company_pin_code,company_gst,company_website,company_email,venodr_portal,user_id}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno, vendor_code, vendor_name, company_address_line1, company_address_line2, company_city, company_state, company_pin_code, company_gst, company_website, company_email, venodr_portal, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveVendorCode = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getallvendor`
-    return axios.post(url,{}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, {}).then(response => response.data).catch(error => console.log(error));
 }
 
 
@@ -879,39 +926,108 @@ export const TotalVendorContractapi = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/totalVendorContract`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
+export const InsertVendorContract = async (vendor_contract_id, vendor, type_of_contract,
+    major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
+    rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
+    help_desk_no, userid) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/InsertVendorContract`
+    return axios.post(url, {
+        vendor_contract_id, vendor, type_of_contract,
+        major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
+        rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
+        help_desk_no, userid
+    }).then(response => response.data).catch(error => console.log(error));
+}
 
-export const DeleteVendorContract = async (status,sno) => {
+export const UpdateVendorContract = async (sno, vendor, type_of_contract,
+    major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
+    rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
+    help_desk_no, user_id) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/UpdateVendorContract`
+    return axios.post(url, {
+        sno, vendor, type_of_contract,
+        major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
+        rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
+        help_desk_no, user_id
+    }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DeleteVendorContract = async (status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deleteVendorContract`
-    return axios.post(url,{status,sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const InsertVendorContract = async (vendor_contract_id,vendor,company_address_line1,company_address_line2,
-    company_city,company_state,company_pin_code,company_gst,company_website,company_email,type_of_contract,
-    major_category,sub_category,location,company,customer_account_no,reference_no,contact_plain_details,
-    rate_per_month,contract_start_date,invoice_generation_date,billing_freq,payee_name,tds,link_id_no,
-    help_desk_no,user_id) => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/insertVendorContract`
-    return axios.post(url,{vendor_contract_id,vendor,company_address_line1,company_address_line2,
-        company_city,company_state,company_pin_code,company_gst,company_website,company_email,type_of_contract,
-        major_category,sub_category,location,company,customer_account_no,reference_no,contact_plain_details,
-        rate_per_month,contract_start_date,invoice_generation_date,billing_freq,payee_name,tds,link_id_no,
-        help_desk_no,user_id}).then(response => response.data).catch(error => console.log(error));
-}
-
-export const GetVendorContract= async (sno) => {
+export const GetVendorContract = async (sno) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/getVendorContract`
-    return axios.post(url,{sno}).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateVendorContract = async (sno,vendor,company_address_line1,company_address_line2,company_city,
-    company_state,company_pin_code,company_gst,company_website,company_email,type_of_contract,
-    major_category,sub_category,location,company,customer_account_no,reference_no,contact_plain_details,
-    rate_per_month,contract_start_date,invoice_generation_date,billing_freq,payee_name,tds,link_id_no,
-    help_desk_no,user_id) => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/updateVendorContract`
-    return axios.post(url,{sno,vendor,company_address_line1,company_address_line2,company_city,
-        company_state,company_pin_code,company_gst,company_website,company_email,type_of_contract,
-        major_category,sub_category,location,company,customer_account_no,reference_no,contact_plain_details,
-        rate_per_month,contract_start_date,invoice_generation_date,billing_freq,payee_name,tds,link_id_no,
-        help_desk_no,user_id}).then(response => response.data).catch(error => console.log(error));
+export const ActiveVendorContract = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ActiveVendorContract`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const VendorContractDetail = async (sno) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/VendorContractDetail`
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
+}
+
+//     Voice Invoice
+
+export const InsertVendorInvoice = async (data, userid) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/InsertVendorInvoice`
+    return axios.post(url, { data, userid }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const PendingVendorInvoice = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/PendingVendorInvoice`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateVendorInvoice = async (data, userid) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/UpdateVendorInvoice`
+    return axios.post(url, { data, userid }).then(response => response.data).catch(error => console.log(error));
+}
+
+
+
+
+
+
+//  #########################   New Assets ##############################
+
+export const InsertNewAssets = async (new_asset_type_id, asset_type, asset_tag, serial_no, location, manufacture,
+    software, model, asset_status, description, purchase_type, purchase_date, company, vendor, invoice_no,
+    rent_per_month, purchases_price, latest_inventory, asset_name, asset_assign, asset_assign_empid, remarks, userid) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/InsertNewAssets`
+    return axios.post(url, {
+        new_asset_type_id, asset_type, asset_tag, serial_no, location, manufacture,
+        software, model, asset_status, description, purchase_type, purchase_date, company, vendor, invoice_no,
+        rent_per_month, purchases_price, latest_inventory, asset_name, asset_assign, asset_assign_empid, remarks, userid
+    }).then(response => response.data).catch(error => console.log(error));
+}
+
+
+export const CountNewAssets = async (asset_type) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/CountNewAssets`
+    return axios.post(url, { asset_type }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const GetNewAssetAssign = async (asset_assign_empid) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/GetNewAssetAssign`
+    return axios.post(url, { asset_assign_empid }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const InsertTicket = async (emp_id, emp_name, asset_type, asset_serial, location, assign_ticket, type_of_issue, email_id,
+    ticket_date, ticket_status, ticket_subject, priority, issue_discription, remarks, user_id) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/InsertTicket`
+    return axios.post(url, {
+        emp_id, emp_name, asset_type, asset_serial, location, assign_ticket, type_of_issue, email_id,
+        ticket_date, ticket_status, ticket_subject, priority, issue_discription, remarks, user_id
+    }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const CountTickets = async () => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/CountTickets`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
