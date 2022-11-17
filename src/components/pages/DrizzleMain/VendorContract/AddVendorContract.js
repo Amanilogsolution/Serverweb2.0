@@ -165,7 +165,7 @@ function AddVendorContract() {
                 const callapi = await InsertVendorContract(vendor_contract_id, vendor, type_of_contract,
                     major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
                     rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
-                    help_desk_no,user_id)
+                    help_desk_no, user_id)
                 if (callapi === 'Added') {
                     alert('Data Added');
                     window.location.href = './TotalVendorContract'
@@ -211,7 +211,7 @@ function AddVendorContract() {
                                                     <label htmlFor='company'>Company <span className='text-danger'>*</span></label>
                                                     <input className="form-control" id='company' required />
                                                 </div>
-                                                
+
                                                 <div className="col-md-4">
                                                     <label htmlFor='location'>Location</label>
                                                     <select className="form-select" id='location' required >
@@ -327,12 +327,15 @@ function AddVendorContract() {
                                                     <input type="text" className="form-control" id='link_id_no' required />
                                                 </div>
                                             </div>
+                                            
+                                            <div className="form-group mt-3" >
+                                                <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleaddinsert}>Add Contract</button>&nbsp; &nbsp;
+                                                <button type="reset" className="btn btn-secondary ">Reset</button>
+                                            </div>
                                         </form>
                                     </article>
                                 </div>
-                                <div className="form-group" >
-                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleaddinsert}>Add Contract</button>
-                                </div>
+
                             </div>
                         </div>
                     </Sidebar>

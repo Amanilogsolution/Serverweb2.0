@@ -80,7 +80,7 @@ export default function AddTicket() {
 
         assettype = assettype.options[assettype.selectedIndex].text;
         let toindex2 = assettype.indexOf(",")
-        assettype = assettype.slice(0 , toindex2)
+        assettype = assettype.slice(0, toindex2)
 
         const assetserial = document.getElementById('assetserial').value;
         const location = document.getElementById('location').value;
@@ -242,14 +242,14 @@ export default function AddTicket() {
                                                     <textarea className="form-control" id="remark" rows="3"></textarea>
                                                 </div>
                                             </div>
-
+                                            <div className="form-group mt-3" >
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleSaveTicket}>Add Tickets</button>
+                                            </div>
                                         </form>
                                     </article>
                                 </div>
 
-                                <div className="form-group" >
-                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleSaveTicket}>Add Tickets</button>
-                                </div>
+
                             </div>
                         </div>
                     </Sidebar>
