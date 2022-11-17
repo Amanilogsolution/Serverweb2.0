@@ -38,13 +38,13 @@
 }
 @media screen and (min-width:750px) {
     .home_container{
-       background:url("../../../image/homebgnew.jpg");
+       background:url("../../../image/homebgnew.png");
        background-size: 100% 100%;
 }
 }
 @media screen and (min-width:488px) and (max-width:750px){
     .home_container{
-       background:url("../../../image/homebgnew2.jpg");
+       background:url("../../../image/homebgnew2.png");
        background-size: 100% 100%;
        
     }
@@ -61,7 +61,7 @@
 }
 @media screen and (min-width:0px) and (max-width:488px){
     .home_container{
-       background:url("../../../image/homebgnew3.jpg");
+       background:url("../../../image/homebgnew3.png");
        background-size: 100% 100%;
 }
 .home_container p{

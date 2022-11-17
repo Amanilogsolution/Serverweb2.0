@@ -200,9 +200,6 @@ function AddVendorInvoice() {
                                 </article>
                             </div>
 
-
-
-
                         </div>
                     </Sidebar>
                     : <LoadingPage />
