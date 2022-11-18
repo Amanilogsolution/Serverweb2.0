@@ -5,6 +5,36 @@ export const UserLogin = async (userid, password) => {
     return axios.post(url, { userid, password }).then(response => response.data).catch(error => console.log(error));
 }
 
+
+
+export const TotalCountry = async () => {
+    const url = `http://localhost:2008/api/totalcountry`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
+export const TotalState = async (country_id) => {
+    const url = `http://localhost:2008/api/totalstate`
+    return axios.post(url,{country_id}).then(response => response.data).catch(error => console.log(error));
+}
+export const TotalCity = async (state_id) => {
+    const url = `http://localhost:2008/api/totalcity`
+    return axios.post(url,{state_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+// export const UploadCountry = async (datas) => {
+//     const url = `http://localhost:2008/api/UploadCountry`
+//     return axios.post(url,{datas}).then(response => response.data).catch(error => console.log(error));
+// }
+// export const UploadState = async (datas) => {
+//     const url = `http://localhost:2008/api/UploadState`
+//     return axios.post(url,{datas}).then(response => response.data).catch(error => console.log(error));
+// }
+
+export const UploadCity = async (datas) => {
+    const url = `http://localhost:2008/api/UploadCity`
+    return axios.post(url,{datas}).then(response => response.data).catch(error => console.log(error));
+}
+
+
 //  Iperioscope Series start
 export const Totalseriesapi = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/totalseries`

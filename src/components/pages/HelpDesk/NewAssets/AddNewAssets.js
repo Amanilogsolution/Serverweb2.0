@@ -248,7 +248,6 @@ const AddNewAssets = () => {
                                                 {/* #################### Device Detail  Box Start #####################*/}
                                                 <li>
                                                     <div style={{ cursor: "pointer" }}  >
-                                                        <div className="icon" ></div>
                                                         <span style={{ display: "flex" }} >
                                                             <div className="link_text " onClick={handleClickDeviceDetail}>
                                                                 {devicedetail ? <FaMinusCircle /> : <MdAddCircle />}

@@ -7,7 +7,7 @@ const LandingHeader = () => {
         <>
             <div className="landingnav">
                     <div className='brand_name'>
-                    <img style={{width:"120px"}} src={logo}/>
+                    <img style={{width:"120px"}} src={logo} alt='Drizzle Logo'/>
                     </div>
                     <ul className='nav-list'>
                         <li>
