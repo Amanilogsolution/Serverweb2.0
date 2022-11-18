@@ -1,12 +1,35 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useEffect, useState } from 'react';
-import { InsertVendorCode } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import React, { useState, useEffect } from 'react';
+import {
+    InsertVendorCode, TotalCountry, TotalState,
+    TotalCity
+} from '../../../../api'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
+import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
+import { FaMinusCircle } from 'react-icons/fa'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 
 function AddVendorCode() {
     const [loading, setLoading] = useState(true)
+    const [pincodecount, setPincodecount] = useState()
+    const [phonenocount, setPhonenocount] = useState()
+    const [numbercount, setNumbercount] = useState()
+
+    const [vendordetail, setVendordetail] = useState(true)
+    const [persondetail, setPersondetail] = useState(false)
+
+    const [countrylist, setCountrylist] = useState([]);
+    const [statelist, setStatelist] = useState([]);
+    const [citylist, setCitylist] = useState([]);
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            const totalCountry = await TotalCountry();
+            setCountrylist(totalCountry)
+        }
+        fetchdata()
+    }, [])
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
@@ -14,28 +37,38 @@ function AddVendorCode() {
         const vendor_code = document.getElementById('vendor_code').value;
         const vendor_name = document.getElementById('vendor_name').value;
         const vendor_code_id = vendor_name.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
-        const comp_addr1 = document.getElementById('comp_addr1').value;
-
-
-        const comp_addr2 = document.getElementById('comp_addr2').value;
-        const comp_city = document.getElementById('comp_city').value;
-        const comp_state = document.getElementById('comp_state').value;
-
-        const comp_pincode = document.getElementById('comp_pincode').value;
         const comp_gst = document.getElementById('comp_gst').value;
         const comp_website = document.getElementById('comp_website').value;
         const comp_email = document.getElementById('comp_email').value;
+        const comp_phone = document.getElementById('comp_phone').value;
+        
+        let comp_country = document.getElementById('comp_country');
+        comp_country = comp_country.options[comp_country.selectedIndex].text;
+
+        let comp_state = document.getElementById('comp_state');
+        comp_state = comp_state.options[comp_state.selectedIndex].text;
+
+        const comp_city = document.getElementById('comp_city').value;
+
+        const comp_addr1 = document.getElementById('comp_addr1').value;
+        const comp_addr2 = document.getElementById('comp_addr2').value;
+        const comp_pincode = document.getElementById('comp_pincode').value;
         const vendor_portal = document.getElementById('vendor_portal').checked ? true : false;
+        const contact_person = document.getElementById('contact_person').value;
+        const contact_no = document.getElementById('contact_no').value;
+        const contact_email = document.getElementById('contact_email').value;
 
         const user_id = sessionStorage.getItem('UserId');
 
-        if (!vendor_code || !vendor_name || !comp_addr1 || !comp_city || !comp_state || !comp_pincode || !comp_email) {
+        if (!vendor_code || !vendor_name || !comp_addr1 || !comp_phone || !comp_country || !comp_city || !comp_state || !comp_pincode
+            || !comp_email || !contact_person || !contact_no || !contact_email) {
             alert("Please enter Mandatory field")
             setLoading(true)
         }
         else {
-            const result = await InsertVendorCode(vendor_code_id, vendor_code, vendor_name, comp_addr1, comp_addr2,
-                comp_city, comp_state, comp_pincode, comp_gst, comp_website, comp_email, vendor_portal, user_id);
+            const result = await InsertVendorCode(vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
+                comp_phone, comp_country, comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
+                vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Added') {
                 alert('Data Added ')
@@ -48,6 +81,50 @@ function AddVendorCode() {
         }
 
     }
+
+    const handleToggleVendorDetail = (e) => {
+        e.preventDefault();
+        if (vendordetail) {
+            document.getElementById('vendordetaildiv').style.display = 'none'
+            document.getElementById('persondetaildiv').style.display = 'block'
+            setPersondetail(!persondetail)
+        }
+        else {
+            document.getElementById('vendordetaildiv').style.display = 'block'
+            document.getElementById('persondetaildiv').style.display = 'none'
+            setPersondetail(!persondetail)
+        }
+        setVendordetail(!vendordetail)
+    }
+
+    const handleTogglePersonDetail = (e) => {
+        e.preventDefault();
+        if (persondetail) {
+            document.getElementById('persondetaildiv').style.display = 'none'
+            document.getElementById('vendordetaildiv').style.display = 'block'
+            setVendordetail(!vendordetail)
+        }
+        else {
+            document.getElementById('persondetaildiv').style.display = 'block'
+            document.getElementById('vendordetaildiv').style.display = 'none'
+            setVendordetail(!vendordetail)
+        }
+        setPersondetail(!persondetail)
+    }
+
+    const handleGetState = async (e) => {
+        const result = await TotalState(e.target.value)
+        console.log(result)
+        setStatelist(result)
+    }
+    const handleGetCity = async (e) => {
+        const result = await TotalCity(e.target.value)
+        console.log(result)
+        setCitylist(result)
+
+    }
+
+
     return (
         <>
             {
@@ -60,72 +137,163 @@ function AddVendorCode() {
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
                                 <div className="card inner-card">
-                                    <header className="card-header" >
-                                        <h5 >Add Vendor Code</h5>
-                                    </header>
+                                    <header className="card-header" >Add Vendor Code</header>
                                     <article className="card-body" >
                                         <form className='px-3' autoComplete='off'>
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <label htmlFor='vendor_code'>Vendor Code <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='vendor_code' required />
-                                                </div>
-                                                <div className="col-md-6" >
-                                                    <label htmlFor='vendor_name'>Vendor Name <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='vendor_name' required />
-                                                </div>
-                                            </div>
-                                            <div className="row mt-3">
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='comp_email'>Company Email Id <span className='text-danger'>*</span></label>
-                                                    <input type="email" className="form-control" id='comp_email' required />
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='comp_website'>Company website</label>
-                                                    <input type="url" className="form-control" id='comp_website' required />
-                                                </div>
+                                            <ul>
 
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='comp_gst'>Company GST no.</label>
-                                                    <input type="text" className="form-control" id='comp_gst' />
-                                                </div>
-                                            </div>
-                                            <div className="row mt-3">
-                                                <div className="col-md-4">
-                                                    <label htmlFor='comp_city'>Company City <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='comp_city' required />
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='comp_state'>Company State <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='comp_state' required />
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='comp_pincode'>Company Pincode <span className='text-danger'>*</span></label>
-                                                    <input type="number" className="form-control" id='comp_pincode' required />
-                                                </div>
-                                            </div>
+                                                {/* #################### Device Detail  Box Start #####################*/}
+                                                <li>
+                                                    <div>
+                                                        <span style={{ display: "flex", cursor: "pointer" }} onClick={handleToggleVendorDetail}>
+                                                            <div className="link_text " >
+                                                                {vendordetail ? <FaMinusCircle /> : <MdAddCircle />}
+                                                                &nbsp;Vendor / Company Details &nbsp;
+                                                                {vendordetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
+                                                            </div>
+                                                        </span>
+                                                    </div>
+
+                                                    <div className='mx-3' id='vendordetaildiv'>
+                                                        <div className="row mt-1">
+                                                            <div className="col-md-4">
+                                                                <label htmlFor='vendor_code'>Vendor Code <span className='text-danger'>*</span></label>
+                                                                <input type="text" className="form-control" id='vendor_code' required />
+                                                            </div>
+                                                            <div className="col-md-4" >
+                                                                <label htmlFor='vendor_name'>Vendor Name <span className='text-danger'>*</span></label>
+                                                                <input type="text" className="form-control" id='vendor_name' required />
+                                                            </div>
+                                                            <div className="col-md-4" >
+                                                                <label htmlFor='comp_email'>Company Email Id <span className='text-danger'>*</span></label>
+                                                                <input type="email" className="form-control" id='comp_email' required />
+                                                            </div>
+                                                        </div>
+                                                        <div className="row mt-2">
+                                                            <div className="col-md-4">
+                                                                <label htmlFor='comp_website'>Company website</label>
+                                                                <input type="url" className="form-control" id='comp_website' required />
+                                                            </div>
+
+                                                            <div className="col-md-4" >
+                                                                <label htmlFor='comp_gst'>Company GST no.</label>
+                                                                <input type="text" className="form-control" id='comp_gst' />
+                                                            </div>
+                                                            <div className="col-md-4" >
+                                                                <label htmlFor='comp_phone'>Phone no.<span className='text-danger'>*</span></label>
+                                                                <input type="number" className="form-control" id='comp_phone'
+                                                                    value={phonenocount}
+                                                                    onChange={(e) => { if (e.target.value.length === 11) return false; else { setPhonenocount(e.target.value) } }}
+                                                                />
+                                                            </div>
+
+                                                        </div>
+                                                        <div className='row mt-2'>
+                                                            <div className="col-md-4">
+                                                                <label htmlFor='comp_country'>Country<span className='text-danger'>*</span></label>
+                                                                <select type="text" className="form-select" id='comp_country' required onChange={handleGetState}>
+                                                                    <option value='' hidden>Select Country</option>
+                                                                    {
+                                                                        countrylist.map((item, index) => (
+                                                                            <option key={index} value={item.country_id}>{item.country_name}</option>
+                                                                        ))
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                            <div className="col-md-4" >
+                                                                <label htmlFor='comp_state'> State <span className='text-danger'>*</span></label>
+                                                                <select className="form-select" id='comp_state' required
+                                                                    onChange={handleGetCity}
+                                                                >
+                                                                    <option value='' hidden>Select State</option>
+                                                                    {
+                                                                        statelist.length ?
+                                                                            statelist.map((item, index) => (
+                                                                                <option key={index} value={item.state_id}>{item.state_name}</option>
+                                                                            ))
+                                                                            : <option value=''> Please Select Country</option>
+                                                                    }
+                                                                </select>
+
+                                                            </div>
+                                                            <div className="col-md-4">
+                                                                <label htmlFor='comp_city'> City <span className='text-danger'>*</span></label>
+                                                                <select type="text" className="form-select" id='comp_city' required >
+                                                                    <option value='' hidden>Select City</option>
+                                                                    {
+                                                                        citylist.length ?
+                                                                            citylist.map((item, index) => (
+                                                                                <option key={index} value={item.city_name}>{item.city_name}</option>
+                                                                            ))
+                                                                            : <option value=''> Please Select State</option>
+                                                                    }
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="row mt-2">
+                                                            <div className="col-md-4">
+                                                                <label htmlFor='comp_pincode'> Pincode <span className='text-danger'>*</span></label>
+                                                                <input type="number" className="form-control" id='comp_pincode' required value={pincodecount}
+                                                                    onChange={(e) => { if (e.target.value.length === 7) return false; else { setPincodecount(e.target.value) } }} />
+                                                            </div>
+                                                            <div className=" col-md-2 d-flex align-items-center" >
+                                                                <label htmlFor='vendor_portal' className='col' >Vendor Portal</label>
+                                                                <input type="checkbox" className="" id='vendor_portal' style={{ height: "20px", width: "20px" }} />
+                                                            </div>
+                                                        </div>
+
+                                                        <div className='row mt-2'>
+                                                            <div className="col ">
+                                                                <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
+                                                                <input type="text" className="form-control" id='comp_addr1' required />
+                                                            </div>
+
+                                                            <div className="col">
+                                                                <label htmlFor='comp_addr2'>Company Address Line 2</label>
+                                                                <input type="text" className="form-control" id='comp_addr2' />
+                                                            </div>
+                                                        </div>
 
 
-                                            <div className="col mt-3">
-                                                <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='comp_addr1' required />
-                                            </div>
+                                                    </div>
+                                                </li>
 
-                                            <div className="col mt-3">
-                                                <label htmlFor='comp_addr2'>Company Address Line 2</label>
-                                                <input type="text" className="form-control" id='comp_addr2' />
-                                            </div>
+                                                <li>
+                                                    <div>
+                                                        <span style={{ display: "flex", cursor: "pointer" }} onClick={handleTogglePersonDetail}>
+                                                            <div className="link_text mt-2" >
+                                                                {persondetail ? <FaMinusCircle /> : <MdAddCircle />}
+                                                                &nbsp;Contact Person Details &nbsp;
+                                                                {persondetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
+                                                            </div>
+                                                        </span>
+                                                    </div>
 
-
-                                            <div className="form-row mt-3 d-flex align-items-center">
-                                                <label htmlFor='vendor_portal' className='col-md-3' >Vendor Portal</label>
-                                                <input type="checkbox" className="" id='vendor_portal' style={{ height: "20px", width: "20px" }} />
-                                            </div>
-
-
-                                            <div className="form-group" >
-                                                <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleaddinsert}>Add Vendor Code </button>
-                                                <button type="reset" className="btn btn-secondary ml-2 mb-4 mt-3" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                                    <div className='mx-3' id='persondetaildiv' style={{ display: 'none' }}>
+                                                        <div className="row mt-1">
+                                                            <div className="col-md-4">
+                                                                <label htmlFor='contact_person'>Name <span className='text-danger'>*</span></label>
+                                                                <input type="text" className="form-control" id='contact_person' required />
+                                                            </div>
+                                                            <div className="col-md-4" >
+                                                                <label htmlFor='contact_no'>Contact no <span className='text-danger'>*</span></label>
+                                                                <input type="number" className="form-control" id='contact_no' required value={numbercount}
+                                                                    onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumbercount(e.target.value) } }}
+                                                                />
+                                                            </div>
+                                                            <div className="col-md-4" >
+                                                                <label htmlFor='contact_email'> Email Id <span className='text-danger'>*</span></label>
+                                                                <input type="email" className="form-control" id='contact_email' required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <div className="form-group mt-3" >
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Vendor Code </button>
+                                                <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
                                             </div>
                                         </form>
                                     </article>
@@ -133,7 +301,7 @@ function AddVendorCode() {
                             </div>
                         </div>
                     </Sidebar>
-                : <LoadingPage />
+                    : <LoadingPage />
             }
         </>
     )

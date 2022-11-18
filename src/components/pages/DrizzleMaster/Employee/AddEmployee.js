@@ -108,7 +108,7 @@ function AddEmployee() {
 
 
                                         <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Submit</button>&nbsp;
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Employee</button>&nbsp;
                                             <button type="reset" className="btn btn-secondary ">Reset</button>
                                         </div>
                                     </form>

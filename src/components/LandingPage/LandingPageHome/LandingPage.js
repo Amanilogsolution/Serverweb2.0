@@ -46,7 +46,7 @@ const LandingPage = () => {
                                                 <div className="device" >
                                                     <div className="screen ">
 
-                                                        <img src={Landingimg} className='landingimg' />
+                                                        <img src={Landingimg} className='landingimg' alt='Landing img'/>
                                                     </div>
                                                 </div>
                                             </div>

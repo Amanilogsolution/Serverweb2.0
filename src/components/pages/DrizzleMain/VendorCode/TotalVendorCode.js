@@ -63,7 +63,7 @@ function TotalVendorCode() {
             sortable: true,
         },
         {
-            name: 'Venodr Portal',
+            name: 'Vendor Portal',
             selector: row => row.venodr_portal,
             sortable: true,
         },
@@ -73,7 +73,7 @@ function TotalVendorCode() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const result = await DeleteVendorCode(status, row.sno)
+                    await DeleteVendorCode(status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -99,7 +99,6 @@ function TotalVendorCode() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalVendorCodeapi();
-            console.log(tabledata)
             setData(tabledata)
             setLoading(true)
 

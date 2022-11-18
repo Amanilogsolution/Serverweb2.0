@@ -145,6 +145,10 @@ import AddNewAssets from './components/pages/HelpDesk/NewAssets/AddNewAssets';
 
 
 import PageNotFound from './components/404/404';
+import EditTicket from './components/pages/HelpDesk/Tickets/EditTicket';
+
+import EditAsset from './components/pages/HelpDesk/NewAssets/EditAsset';
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -287,8 +291,11 @@ const App = () => {
 
           <Route path="/TotalNewAssets" element={<TotalNewAssets/>} />
           <Route path="/AddNewAssets" element={<AddNewAssets/>} />
-          
-          
+
+          <Route path="/EditTicket" element={<EditTicket/>} />
+          <Route path="/EditAsset" element={<EditAsset/>} />
+    
+           
         </Route>
 
         <Route path="/*" element={<PageNotFound />} />

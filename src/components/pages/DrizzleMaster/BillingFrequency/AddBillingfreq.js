@@ -56,7 +56,7 @@ function AddBillingFreq() {
                                         </div>
                                         <div className="col-md mt-3" >
                                             <label htmlFor='billing_freq_desc'>Remarks</label>
-                                            <textarea className="form-control" id='billing_freq_desc' placeholder='Comments'/>
+                                            <textarea className="form-control" id='billing_freq_desc' rows='3' placeholder='Comments'/>
                                         </div>
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Frequency</button>
