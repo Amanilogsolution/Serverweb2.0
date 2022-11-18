@@ -105,6 +105,7 @@ function TotalLocations() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalLocation();
+            console.log(tabledata)
             setData(tabledata)
             setLoading(true)
         }

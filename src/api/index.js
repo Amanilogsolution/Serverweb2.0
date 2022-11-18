@@ -664,7 +664,7 @@ export const ActiveVendorCategory = async () => {
 //  Location Master
 
 export const TotalLocation = async () => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/api/totalLocation`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalLocation`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
