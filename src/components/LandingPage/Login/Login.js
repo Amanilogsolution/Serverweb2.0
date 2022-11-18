@@ -62,7 +62,7 @@ const Login = () => {
     <>
       {
         loading ?
-          <section className="vh-100" >
+          <section className="vh-100">
             <LandingHeader />
             <div className="container-fluid " style={styleheight}>
               <div className="row d-flex justify-content-center align-items-center h-100 pb-5 pt-5">

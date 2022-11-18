@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from '../../Sidebar/Sidebar';
 import './Dashboard.css'
 import logo from '../../../image/drizzle_logo.jpg'
-import * as XLSX from "xlsx";
+// import * as XLSX from "xlsx";
 import {
   // UploadCountry
   // UploadCity
