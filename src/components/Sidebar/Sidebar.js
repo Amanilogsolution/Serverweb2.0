@@ -362,9 +362,9 @@ const Sidebar = ({ children }) => {
                                 </li>
 
                                 <li className='innerlink'>
-                                    <NavLink to='/AddNewAssets' className='navlink d-flex' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalNewAssets' className='navlink d-flex' activeclassname="sidebaractive">
                                         <BiDevices style={{ color: "#a12e7a" }} />&nbsp;
-                                        <div style={{ display: isOpen ? "block" : "none" }} > New Assetes</div>
+                                        <div style={{ display: isOpen ? "block" : "none" }} > Assets</div>
                                     </NavLink>
                                 </li>
                             </ul>

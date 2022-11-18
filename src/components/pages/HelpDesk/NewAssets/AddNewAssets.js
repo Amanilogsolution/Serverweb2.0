@@ -4,7 +4,7 @@ import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { FaMinusCircle } from 'react-icons/fa'
 
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets,ActivePurchaseTypeapi } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { GiLuger } from 'react-icons/gi';
 
@@ -19,6 +19,7 @@ const AddNewAssets = () => {
     const [assetstatuslist, setAssetstatuslist] = useState([])
     const [softwarelist, setSoftwarelist] = useState([])
     const [employeelist, setEmployeelist] = useState([])
+    const [purchaseslist, setPurchaseslist] = useState([])
 
 
     const [devicedetail, setDevicedetail] = useState(true)
@@ -46,6 +47,9 @@ const AddNewAssets = () => {
 
             const employee = await ActiveEmployees()
             setEmployeelist(employee)
+
+            const purchase= await ActivePurchaseTypeapi()
+            setPurchaseslist(purchase)
 
             setLoading(true)
         }
@@ -234,12 +238,12 @@ const AddNewAssets = () => {
                     <Sidebar >
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>New Assets</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add New Assets</span> </h2>
+                                <h2><span style={{ color: "rgb(123,108,200)" }}> Assets</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Assets</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalNewAssets' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
                                 <div className="card inner-card">
-                                    <div className='card-header'>Add New Assets</div>
+                                    <div className='card-header'>Add Assets</div>
                                     <article className="card-body" >
                                         <form className='' autoComplete='off'>
 
@@ -365,8 +369,12 @@ const AddNewAssets = () => {
                                                                 <label htmlFor='purchase_type'>Purchase Type <span className='text-danger'>*</span></label>
                                                                 <select className="form-select" id='purchase_type' onChange={handleChnagePurType}>
                                                                     <option value='' hidden>Select...</option>
-                                                                    <option value='Rental' >Rental</option>
-                                                                    <option value='Owned' >Owned</option>
+                                                                    {
+                                                                        purchaseslist.map((item, index) => (
+                                                                            <option key={index} value={item.purchase_type}>{item.purchase_type}</option>
+                                                                        ))
+                                                                    }
+
                                                                 </select>
                                                             </div>
                                                             <div className="col-md-4">
@@ -456,7 +464,7 @@ const AddNewAssets = () => {
 
                                             </ul>
                                             <div className="form-group mt-3" >
-                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleInsertData}>Add New Assets</button>&nbsp;&nbsp;
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleInsertData}>Add Assets</button>&nbsp;&nbsp;
                                                 <button type="reset" className="btn btn-secondary">Reset</button>
                                             </div>
                                         </form>

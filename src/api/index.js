@@ -566,6 +566,12 @@ export const UpdatePurchaseapi = async (sno, purchase_type, purchase_description
     return axios.post(url, { sno, purchase_type, purchase_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const ActivePurchaseTypeapi = async () => {
+    const url = `http://localhost:2008/api/ActivePurchasetype`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
+
+
 // Priority Master
 
 export const TotalPriorityapi = async () => {
@@ -929,13 +935,13 @@ export const DeleteVendorCode = async (status, sno) => {
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const InsertVendorCode = async (vendor_code_id, vendor_code, vendor_name, company_email, company_website, company_gst,
-    company_phone, company_country, company_state, company_city, company_pin_code, company_address_line1, company_address_line2,
-    venodr_portal, contact_person_name, contact_person_phone, contact_person_email, user_id) => {
+export const InsertVendorCode = async (vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
+    comp_phone, company_country_id, comp_country, comp_state_id,comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
+    vendor_portal, contact_person, contact_no, contact_email, user_id) => {
     const url = `http://localhost:2008/api/insertVendorCode`
-    return axios.post(url, { vendor_code_id, vendor_code, vendor_name, company_email, company_website, company_gst,
-        company_phone, company_country, company_state, company_city, company_pin_code, company_address_line1, company_address_line2,
-        venodr_portal, contact_person_name, contact_person_phone, contact_person_email, user_id }).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
+        comp_phone, company_country_id, comp_country, comp_state_id,comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
+        vendor_portal, contact_person, contact_no, contact_email, user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetVendorCode = async (sno) => {
@@ -943,9 +949,11 @@ export const GetVendorCode = async (sno) => {
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateVendorCode = async (sno, vendor_code, vendor_name, company_address_line1, company_address_line2, company_city, company_state, company_pin_code, company_gst, company_website, company_email, venodr_portal,comp_phone,comp_country,contact_person,contact_no,contact_email, user_id) => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/updateVendorCode`
-    return axios.post(url, { sno, vendor_code, vendor_name, company_address_line1, company_address_line2, company_city, company_state, company_pin_code, company_gst, company_website, company_email, venodr_portal,comp_phone,comp_country,contact_person,contact_no,contact_email, user_id }).then(response => response.data).catch(error => console.log(error));
+export const UpdateVendorCode = async (sno, vendor_code,vendor_name,comp_gst,comp_website,comp_email,comp_phone,comp_country_id,comp_country,
+    comp_state_id,comp_state,comp_city,comp_addr1,comp_addr2,comp_pincode,vendor_portal,contact_person,contact_no,contact_email,user_id) => {
+    const url = `http://localhost:2008/api/updateVendorCode`
+    return axios.post(url, { sno, vendor_code,vendor_name,comp_gst,comp_website,comp_email,comp_phone,comp_country_id,comp_country,
+        comp_state_id,comp_state,comp_city,comp_addr1,comp_addr2,comp_pincode,vendor_portal,contact_person,contact_no,contact_email,user_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveVendorCode = async () => {
@@ -1030,6 +1038,13 @@ export const UpdateVendorInvoice = async (data, userid) => {
 
 //  #########################   New Assets ##############################
 
+
+export const TotalNewAssets = async () => {
+    const url = `http://localhost:2008/api/TotalNewAssets`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
+
+
 export const InsertNewAssets = async (new_asset_type_id, asset_type, asset_tag, serial_no, location, manufacture,
     software, model, asset_status, description, purchase_type, purchase_date, company, vendor, invoice_no,
     rent_per_month, purchases_price, latest_inventory, asset_name, asset_assign, asset_assign_empid, remarks, userid) => {
@@ -1042,6 +1057,10 @@ export const InsertNewAssets = async (new_asset_type_id, asset_type, asset_tag, 
 }
 
 
+export const DeleteNewAssets = async (status, sno) => {
+    const url =`http://localhost:2008/api/DeleteNewAssets`
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
+}
 export const CountNewAssets = async (asset_type) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/CountNewAssets`
     return axios.post(url, { asset_type }).then(response => response.data).catch(error => console.log(error));
@@ -1051,6 +1070,8 @@ export const GetNewAssetAssign = async (asset_assign_empid) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/GetNewAssetAssign`
     return axios.post(url, { asset_assign_empid }).then(response => response.data).catch(error => console.log(error));
 }
+
+//  #########################   Ticketes ##############################
 
 export const InsertTicket = async (emp_id, emp_name, asset_type, asset_serial, location, assign_ticket, type_of_issue, email_id,
     ticket_date, ticket_status, ticket_subject, priority, issue_discription, remarks, user_id) => {
