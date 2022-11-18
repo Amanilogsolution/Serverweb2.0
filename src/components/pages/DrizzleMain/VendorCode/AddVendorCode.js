@@ -2,7 +2,7 @@ import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect } from 'react';
 import {
     InsertVendorCode, TotalCountry, TotalState,
-     TotalCity 
+    TotalCity
 } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
@@ -13,6 +13,7 @@ import LoadingPage from '../../../LoadingPage/LoadingPage';
 function AddVendorCode() {
     const [loading, setLoading] = useState(true)
     const [pincodecount, setPincodecount] = useState()
+    const [phonenocount, setPhonenocount] = useState()
     const [numbercount, setNumbercount] = useState()
 
     const [vendordetail, setVendordetail] = useState(true)
@@ -25,7 +26,6 @@ function AddVendorCode() {
     useEffect(() => {
         const fetchdata = async () => {
             const totalCountry = await TotalCountry();
-            console.log(totalCountry)
             setCountrylist(totalCountry)
         }
         fetchdata()
@@ -37,28 +37,38 @@ function AddVendorCode() {
         const vendor_code = document.getElementById('vendor_code').value;
         const vendor_name = document.getElementById('vendor_name').value;
         const vendor_code_id = vendor_name.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
-        const comp_addr1 = document.getElementById('comp_addr1').value;
-
-
-        const comp_addr2 = document.getElementById('comp_addr2').value;
-        const comp_city = document.getElementById('comp_city').value;
-        const comp_state = document.getElementById('comp_state').value;
-
-        const comp_pincode = document.getElementById('comp_pincode').value;
         const comp_gst = document.getElementById('comp_gst').value;
         const comp_website = document.getElementById('comp_website').value;
         const comp_email = document.getElementById('comp_email').value;
+        const comp_phone = document.getElementById('comp_phone').value;
+        
+        let comp_country = document.getElementById('comp_country');
+        comp_country = comp_country.options[comp_country.selectedIndex].text;
+
+        let comp_state = document.getElementById('comp_state');
+        comp_state = comp_state.options[comp_state.selectedIndex].text;
+
+        const comp_city = document.getElementById('comp_city').value;
+
+        const comp_addr1 = document.getElementById('comp_addr1').value;
+        const comp_addr2 = document.getElementById('comp_addr2').value;
+        const comp_pincode = document.getElementById('comp_pincode').value;
         const vendor_portal = document.getElementById('vendor_portal').checked ? true : false;
+        const contact_person = document.getElementById('contact_person').value;
+        const contact_no = document.getElementById('contact_no').value;
+        const contact_email = document.getElementById('contact_email').value;
 
         const user_id = sessionStorage.getItem('UserId');
 
-        if (!vendor_code || !vendor_name || !comp_addr1 || !comp_city || !comp_state || !comp_pincode || !comp_email) {
+        if (!vendor_code || !vendor_name || !comp_addr1 || !comp_phone || !comp_country || !comp_city || !comp_state || !comp_pincode
+            || !comp_email || !contact_person || !contact_no || !contact_email) {
             alert("Please enter Mandatory field")
             setLoading(true)
         }
         else {
-            const result = await InsertVendorCode(vendor_code_id, vendor_code, vendor_name, comp_addr1, comp_addr2,
-                comp_city, comp_state, comp_pincode, comp_gst, comp_website, comp_email, vendor_portal, user_id);
+            const result = await InsertVendorCode(vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
+                comp_phone, comp_country, comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
+                vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Added') {
                 alert('Data Added ')
@@ -170,8 +180,11 @@ function AddVendorCode() {
                                                                 <input type="text" className="form-control" id='comp_gst' />
                                                             </div>
                                                             <div className="col-md-4" >
-                                                                <label htmlFor='phoneno'>Phone no.<span className='text-danger'>*</span></label>
-                                                                <input type="number" className="form-control" id='phoneno' />
+                                                                <label htmlFor='comp_phone'>Phone no.<span className='text-danger'>*</span></label>
+                                                                <input type="number" className="form-control" id='comp_phone'
+                                                                    value={phonenocount}
+                                                                    onChange={(e) => { if (e.target.value.length === 11) return false; else { setPhonenocount(e.target.value) } }}
+                                                                />
                                                             </div>
 
                                                         </div>
@@ -190,7 +203,7 @@ function AddVendorCode() {
                                                             <div className="col-md-4" >
                                                                 <label htmlFor='comp_state'> State <span className='text-danger'>*</span></label>
                                                                 <select className="form-select" id='comp_state' required
-                                                                 onChange={handleGetCity}
+                                                                    onChange={handleGetCity}
                                                                 >
                                                                     <option value='' hidden>Select State</option>
                                                                     {
@@ -198,20 +211,19 @@ function AddVendorCode() {
                                                                             statelist.map((item, index) => (
                                                                                 <option key={index} value={item.state_id}>{item.state_name}</option>
                                                                             ))
-                                                                            : <option > Please Select Country</option>
+                                                                            : <option value=''> Please Select Country</option>
                                                                     }
                                                                 </select>
 
                                                             </div>
                                                             <div className="col-md-4">
                                                                 <label htmlFor='comp_city'> City <span className='text-danger'>*</span></label>
-                                                                {/* <input type="text" className="form-control" id='comp_city' required /> */}
                                                                 <select type="text" className="form-select" id='comp_city' required >
                                                                     <option value='' hidden>Select City</option>
                                                                     {
                                                                         citylist.length ?
                                                                             citylist.map((item, index) => (
-                                                                                <option key={index} value={item.city_code}>{item.city_name}</option>
+                                                                                <option key={index} value={item.city_name}>{item.city_name}</option>
                                                                             ))
                                                                             : <option value=''> Please Select State</option>
                                                                     }
@@ -262,18 +274,18 @@ function AddVendorCode() {
                                                     <div className='mx-3' id='persondetaildiv' style={{ display: 'none' }}>
                                                         <div className="row mt-1">
                                                             <div className="col-md-4">
-                                                                <label htmlFor='name'>Name <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" id='name' required />
+                                                                <label htmlFor='contact_person'>Name <span className='text-danger'>*</span></label>
+                                                                <input type="text" className="form-control" id='contact_person' required />
                                                             </div>
                                                             <div className="col-md-4" >
-                                                                <label htmlFor='contactno'>Contact no <span className='text-danger'>*</span></label>
-                                                                <input type="number" className="form-control" id='contactno' required value={numbercount}
+                                                                <label htmlFor='contact_no'>Contact no <span className='text-danger'>*</span></label>
+                                                                <input type="number" className="form-control" id='contact_no' required value={numbercount}
                                                                     onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumbercount(e.target.value) } }}
                                                                 />
                                                             </div>
                                                             <div className="col-md-4" >
-                                                                <label htmlFor='email'> Email Id <span className='text-danger'>*</span></label>
-                                                                <input type="email" className="form-control" id='email' required />
+                                                                <label htmlFor='contact_email'> Email Id <span className='text-danger'>*</span></label>
+                                                                <input type="email" className="form-control" id='contact_email' required />
                                                             </div>
                                                         </div>
                                                     </div>
