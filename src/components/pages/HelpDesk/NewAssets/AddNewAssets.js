@@ -221,7 +221,7 @@ const AddNewAssets = () => {
                     rentpermonth, purchaseprice, latestinventory, assetname, assetassign,asset_assign_empid, remark, sessionStorage.getItem('UserId'))
                 if (result === 'Data Added') {
                     alert('Data Added')
-                    window.location.reload();
+                    window.location.href = '/TotalNewAssets'
                 }
                 else {
                     alert('Server Not Response')

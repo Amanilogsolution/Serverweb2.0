@@ -4,21 +4,142 @@ import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { FaMinusCircle } from 'react-icons/fa'
 
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, ActivePurchaseTypeapi, GetNewAssets } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { GiLuger } from 'react-icons/gi';
 
 const EditAsset = () => {
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    const [assettypelist, setAssettypelist] = useState([])
+    const [vendorlist, setVendorlist] = useState([])
+    const [manufacturerlist, setManufacturerlist] = useState([])
+    const [locationlist, setLocationlist] = useState([])
+    const [assetstatuslist, setAssetstatuslist] = useState([])
+    const [softwarelist, setSoftwarelist] = useState([])
+    const [employeelist, setEmployeelist] = useState([])
+    const [purchaseslist, setPurchaseslist] = useState([])
 
 
+    const [devicedetail, setDevicedetail] = useState(true)
+    const [purchasesdetail, setPurchasesdetail] = useState(false)
+    const [otherdetail, setOtherdetail] = useState(false)
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            const devices = await ActiveAssetesType();
+            setAssettypelist(devices)
+            const vendor = await ActiveVendorCode()
+            setVendorlist(vendor)
+
+            const manufacture = await ActiveManufacturer();
+            setManufacturerlist(manufacture)
+
+            const location = await ActiveLocation();
+            setLocationlist(location)
+
+            const assetstatus = await ActiveAssetStatus();
+            setAssetstatuslist(assetstatus)
+
+            const software = await ActiveSoftware();
+            setSoftwarelist(software)
+
+            const employee = await ActiveEmployees()
+            setEmployeelist(employee)
+
+            const purchase = await ActivePurchaseTypeapi()
+            setPurchaseslist(purchase)
+
+            const getdata = await GetNewAssets(sessionStorage.getItem('newassetsno'))
+            console.log(getdata)
+            setData(getdata)
+
+            setLoading(true)
+        }
+        fetchdata();
+    }, [])
+
+
+    const handleClickDeviceDetail = () => {
+        if (devicedetail) {
+            document.getElementById('devicedivdetail').style.display = 'none'
+
+        }
+        else {
+            document.getElementById('devicedivdetail').style.display = 'block'
+            document.getElementById('otherdivdetail').style.display = 'none'
+            document.getElementById('purchasesdivdetail').style.display = 'none'
+            setOtherdetail(false)
+            setPurchasesdetail(false)
+        }
+
+        setDevicedetail(!devicedetail)
+    }
+    const handleClickPurchasesDetail = () => {
+
+        if (purchasesdetail) {
+            document.getElementById('purchasesdivdetail').style.display = 'none'
+
+        }
+        else {
+            document.getElementById('purchasesdivdetail').style.display = 'block'
+            document.getElementById('devicedivdetail').style.display = 'none'
+            document.getElementById('otherdivdetail').style.display = 'none'
+            setDevicedetail(false)
+            setOtherdetail(false)
+        }
+
+        setPurchasesdetail(!purchasesdetail)
+    }
+
+    const handleClickOtherDetail = () => {
+
+        if (otherdetail) {
+            document.getElementById('otherdivdetail').style.display = 'none'
+        }
+        else {
+            document.getElementById('otherdivdetail').style.display = 'block'
+            document.getElementById('purchasesdivdetail').style.display = 'none'
+            document.getElementById('devicedivdetail').style.display = 'none'
+            setDevicedetail(false)
+            setPurchasesdetail(false)
+        }
+
+        setOtherdetail(!otherdetail)
+    }
+
+    const handleToggleSoftware = async (e) => {
+        const devicetype = e.target.value;
+        if (devicetype === 'Laptop') {
+            document.getElementById('softwarediv').style.display = 'block'
+        }
+        else {
+            document.getElementById('softwarediv').style.display = 'none'
+
+        }
+
+    }
+
+    const handleChnagePurType = (e) => {
+        if (e.target.value === 'Rental') {
+            document.getElementById('purchasespricediv').style.display = 'none'
+            document.getElementById('rentpermonthdiv').style.display = 'block'
+        }
+        else if (e.target.value === 'Owned') {
+            document.getElementById('purchasespricediv').style.display = 'block'
+            document.getElementById('rentpermonthdiv').style.display = 'none'
+        }
+    }
     return (
         <>
-    
+            {
+                loading ?
                     <Sidebar >
-                      
+
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Assets</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add New Assets</span> </h2>
+                                <h2><span style={{ color: "rgb(123,108,200)" }}>Assets</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Asset</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalNewAssets' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
@@ -33,7 +154,10 @@ const EditAsset = () => {
                                                 <li>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <span style={{ display: "flex" }} >
-                                                            <div className="link_text ">
+                                                            <div className="link_text " onClick={handleClickDeviceDetail}>
+                                                                {devicedetail ? <FaMinusCircle /> : <MdAddCircle />}
+                                                                &nbsp;Assets / Device Details &nbsp;
+                                                                {devicedetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
                                                             </div>
                                                         </span>
                                                     </div>
@@ -42,8 +166,13 @@ const EditAsset = () => {
 
                                                             <div className="col-md-4">
                                                                 <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
-                                                                <select id='asset_type' className="form-select">
+                                                                <select id='asset_type' className="form-select" onChange={handleToggleSoftware}>
                                                                     <option value='' hidden>Select...</option>
+                                                                    {
+                                                                        assettypelist.map((item, index) => (
+                                                                            <option key={index} value={item.asset_type}>{item.asset_type}</option>
+                                                                        ))
+                                                                    }
                                                                 </select>
                                                             </div>
 
@@ -55,6 +184,11 @@ const EditAsset = () => {
                                                                 <label htmlFor='software'>Software <span className='text-danger'>*</span></label>
                                                                 <select className="form-select" id='software'>
                                                                     <option value='' hidden>Select Software</option>
+                                                                    {
+                                                                        softwarelist.map((item, index) => (
+                                                                            <option key={index} value={item.software_name}>{item.software_name}</option>
+                                                                        ))
+                                                                    }
                                                                 </select>
                                                             </div>
 
@@ -68,13 +202,22 @@ const EditAsset = () => {
                                                                 <label htmlFor='location'>Location <span className='text-danger'>*</span></label>
                                                                 <select className="form-select" id='location'>
                                                                     <option value='' hidden>Select...</option>
+                                                                    {
+                                                                        locationlist.map((item, index) =>
+                                                                            <option key={index}>{item.location_name}</option>
+                                                                        )
+                                                                    }
                                                                 </select>
                                                             </div>
                                                             <div className="col-md-4">
                                                                 <label htmlFor='manufacture'>Manufacture <span className='text-danger'>*</span></label>
                                                                 <select className="form-select" id='manufacture'>
                                                                     <option value='' hidden>Select...</option>
-                                                                    
+                                                                    {
+                                                                        manufacturerlist.map((item, index) => (
+                                                                            <option key={index} value={item.manufacturer_name}>{item.manufacturer_name}</option>
+                                                                        ))
+                                                                    }
                                                                 </select>
                                                             </div>
 
@@ -91,7 +234,11 @@ const EditAsset = () => {
                                                                 <label htmlFor='assetstatus'>Asset Status <span className='text-danger'>*</span></label>
                                                                 <select className="form-select" id='assetstatus'>
                                                                     <option value='' hidden>Select...</option>
-                                                        
+                                                                    {
+                                                                        assetstatuslist.map((item, index) => (
+                                                                            <option key={index} value={item.asset_status}>{item.asset_status}</option>
+                                                                        ))
+                                                                    }
 
                                                                 </select>
                                                             </div>
@@ -110,8 +257,10 @@ const EditAsset = () => {
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <div className="icon" ></div>
                                                         <span style={{ display: "flex" }} >
-                                                            <div className="link_text ">
-                                                               
+                                                            <div className="link_text " onClick={handleClickPurchasesDetail}>
+                                                                {purchasesdetail ? <FaMinusCircle /> : <MdAddCircle />}
+                                                                &nbsp;Purchases Details &nbsp;
+                                                                {purchasesdetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
                                                             </div>
                                                         </span>
                                                     </div>
@@ -119,10 +268,14 @@ const EditAsset = () => {
                                                         <div className="row mt-3">
                                                             <div className="col-md-4">
                                                                 <label htmlFor='purchase_type'>Purchase Type <span className='text-danger'>*</span></label>
-                                                                <select className="form-select" id='purchase_type'>
+                                                                <select className="form-select" id='purchase_type' onChange={handleChnagePurType}>
                                                                     <option value='' hidden>Select...</option>
-                                                                    <option value='Rental' >Rental</option>
-                                                                    <option value='Owned' >Owned</option>
+                                                                    {
+                                                                        purchaseslist.map((item, index) => (
+                                                                            <option key={index} value={item.purchase_type}>{item.purchase_type}</option>
+                                                                        ))
+                                                                    }
+
                                                                 </select>
                                                             </div>
                                                             <div className="col-md-4">
@@ -140,7 +293,11 @@ const EditAsset = () => {
                                                                 <label htmlFor='vendor'>Vendor <span className='text-danger'>*</span></label>
                                                                 <select id='vendor' className="form-select">
                                                                     <option value='' hidden>Select...</option>
-                                                
+                                                                    {
+                                                                        vendorlist.map((item, index) => (
+                                                                            <option key={index} value={item.vendor_name}>{item.vendor_name}</option>
+                                                                        ))
+                                                                    }
                                                                 </select>
                                                             </div>
                                                             <div className="col-md-4">
@@ -157,8 +314,10 @@ const EditAsset = () => {
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <div className="icon" ></div>
                                                         <span style={{ display: "flex" }} >
-                                                            <div className="link_text ">
-                                          
+                                                            <div className="link_text " onClick={handleClickOtherDetail}>
+                                                                {otherdetail ? <FaMinusCircle /> : <MdAddCircle />}
+                                                                &nbsp;Other Details &nbsp;
+                                                                {otherdetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
                                                             </div>
                                                         </span>
                                                     </div>
@@ -188,7 +347,11 @@ const EditAsset = () => {
                                                                 <label htmlFor='assetassign'>Asset Assign <span className='text-danger'>*</span></label>
                                                                 <select id='assetassign' className="form-select" >
                                                                     <option value={sessionStorage.getItem('UserId')} hidden>{sessionStorage.getItem('UserName')}</option>
-                                                        
+                                                                    {
+                                                                        employeelist.map((item, index) => (
+                                                                            <option key={index} value={item.employee_id}>{item.employee_name}</option>
+                                                                        ))
+                                                                    }
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -202,8 +365,7 @@ const EditAsset = () => {
 
                                             </ul>
                                             <div className="form-group mt-3" >
-                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" >Add New Assets</button>&nbsp;&nbsp;
-                                                <button type="reset" className="btn btn-secondary">Reset</button>
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" >Edit Assets</button>
                                             </div>
                                         </form>
                                     </article>
@@ -213,6 +375,8 @@ const EditAsset = () => {
                             </div>
                         </div>
                     </Sidebar>
+                    : <LoadingPage />
+            }
         </>
     )
 }

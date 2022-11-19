@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
-import DataTableExtensions from 'react-data-table-component-extensions';
+import DataTableExtensions from 'react-data-table-component-extensions';    
 import 'react-data-table-component-extensions/dist/index.css';
 import { TotalVendorCodeapi, DeleteVendorCode } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';

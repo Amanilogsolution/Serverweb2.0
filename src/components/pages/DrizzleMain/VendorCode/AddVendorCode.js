@@ -62,7 +62,6 @@ function AddVendorCode() {
         const contact_email = document.getElementById('contact_email').value;
 
         const user_id = sessionStorage.getItem('UserId');
-        console.log(company_country_id,comp_state_id)
 
         if (!vendor_code || !vendor_name || !comp_addr1 || !comp_phone || !company_country_id || !comp_city || !comp_state_id || !comp_pincode
             || !comp_email || !contact_person || !contact_no || !contact_email) {

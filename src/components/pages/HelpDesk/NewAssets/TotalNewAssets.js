@@ -77,17 +77,17 @@ const columns = [
             </select>
         ],
     },
-    // {
-    //     name: "Actions",
-    //     sortable: false,
-    //     selector: row => row.null,
-    //     cell: (row) => [
-    //         <a title='Edit Asset' href="/#">
-    //             <p onClick={() => sessionStorage.setItem('newassetsno', `${row.sno}`)} >
-    //                 <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
-    //             </p></a>
-    //     ]
-    // }
+    {
+        name: "Actions",
+        sortable: false,
+        selector: row => row.null,
+        cell: (row) => [
+            <a title='Edit Asset' href="/EditAsset">
+                <p onClick={() => sessionStorage.setItem('newassetsno', `${row.sno}`)} >
+                    <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+                </p></a>
+        ]
+    }
 
 ];
 

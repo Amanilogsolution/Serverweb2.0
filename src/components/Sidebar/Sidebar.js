@@ -355,7 +355,7 @@ const Sidebar = ({ children }) => {
 
                             <ul id='masterhelpdesk' className='inneruldiv'>
                                 <li className='innerlink'>
-                                    <NavLink to='/AddTickets' className='navlink d-flex' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalTicket' className='navlink d-flex' activeclassname="sidebaractive">
                                         <HiOutlineTicket style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} > Ticket</div>
                                     </NavLink>

@@ -1061,6 +1061,11 @@ export const DeleteNewAssets = async (status, sno) => {
     const url =`http://localhost:2008/api/DeleteNewAssets`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
+export const GetNewAssets = async (sno) => {
+    const url =`http://localhost:2008/api/GetNewAssets`
+    return axios.post(url, {sno }).then(response => response.data).catch(error => console.log(error));
+}
+
 export const CountNewAssets = async (asset_type) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/CountNewAssets`
     return axios.post(url, { asset_type }).then(response => response.data).catch(error => console.log(error));
@@ -1086,3 +1091,19 @@ export const CountTickets = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/CountTickets`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
+
+
+export const TotalTicket = async () => {
+    const url = `http://localhost:2008/api/TotalTicket`
+    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DeleteTickets = async (status, sno) => {
+    const url =`http://localhost:2008/api/DeleteTickets`
+    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
+}
+export const getTickets = async (sno) => {
+    const url =`http://localhost:2008/api/getTickets`
+    return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
+}
+
