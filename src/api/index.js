@@ -8,29 +8,29 @@ export const UserLogin = async (userid, password) => {
 
 
 export const TotalCountry = async () => {
-    const url = `http://localhost:2008/api/totalcountry`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalcountry`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 export const TotalState = async (country_id) => {
-    const url = `http://localhost:2008/api/totalstate`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalstate`
     return axios.post(url,{country_id}).then(response => response.data).catch(error => console.log(error));
 }
 export const TotalCity = async (state_id) => {
-    const url = `http://localhost:2008/api/totalcity`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalcity`
     return axios.post(url,{state_id}).then(response => response.data).catch(error => console.log(error));
 }
 
 // export const UploadCountry = async (datas) => {
-//     const url = `http://localhost:2008/api/UploadCountry`
+//     const url = `https://drizzlebackend.awlworldwide.com/api/UploadCountry`
 //     return axios.post(url,{datas}).then(response => response.data).catch(error => console.log(error));
 // }
 // export const UploadState = async (datas) => {
-//     const url = `http://localhost:2008/api/UploadState`
+//     const url = `https://drizzlebackend.awlworldwide.com/api/UploadState`
 //     return axios.post(url,{datas}).then(response => response.data).catch(error => console.log(error));
 // }
 
 export const UploadCity = async (datas) => {
-    const url = `http://localhost:2008/api/UploadCity`
+    const url = `https://drizzlebackend.awlworldwide.com/api/UploadCity`
     return axios.post(url,{datas}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -395,7 +395,7 @@ export const UpdateDevicetaskes = async (sno, devicename, services, task, task_f
 //Organization
 
 export const TotalOrganization = async () => {
-    const url = `hhttps://drizzlebackend.awlworldwide.com/api/totalorganization`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalorganization`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -567,7 +567,7 @@ export const UpdatePurchaseapi = async (sno, purchase_type, purchase_description
 }
 
 export const ActivePurchaseTypeapi = async () => {
-    const url = `http://localhost:2008/api/ActivePurchasetype`
+    const url = `https://drizzlebackend.awlworldwide.com/api/ActivePurchasetype`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -938,7 +938,7 @@ export const DeleteVendorCode = async (status, sno) => {
 export const InsertVendorCode = async (vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
     comp_phone, company_country_id, comp_country, comp_state_id,comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
     vendor_portal, contact_person, contact_no, contact_email, user_id) => {
-    const url = `http://localhost:2008/api/insertVendorCode`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertVendorCode`
     return axios.post(url, { vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
         comp_phone, company_country_id, comp_country, comp_state_id,comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
         vendor_portal, contact_person, contact_no, contact_email, user_id}).then(response => response.data).catch(error => console.log(error));
@@ -951,7 +951,7 @@ export const GetVendorCode = async (sno) => {
 
 export const UpdateVendorCode = async (sno, vendor_code,vendor_name,comp_gst,comp_website,comp_email,comp_phone,comp_country_id,comp_country,
     comp_state_id,comp_state,comp_city,comp_addr1,comp_addr2,comp_pincode,vendor_portal,contact_person,contact_no,contact_email,user_id) => {
-    const url = `http://localhost:2008/api/updateVendorCode`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateVendorCode`
     return axios.post(url, { sno, vendor_code,vendor_name,comp_gst,comp_website,comp_email,comp_phone,comp_country_id,comp_country,
         comp_state_id,comp_state,comp_city,comp_addr1,comp_addr2,comp_pincode,vendor_portal,contact_person,contact_no,contact_email,user_id}).then(response => response.data).catch(error => console.log(error));
 }
@@ -1040,7 +1040,7 @@ export const UpdateVendorInvoice = async (data, userid) => {
 
 
 export const TotalNewAssets = async () => {
-    const url = `http://localhost:2008/api/TotalNewAssets`
+    const url = `https://drizzlebackend.awlworldwide.com/api/TotalNewAssets`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -1058,11 +1058,11 @@ export const InsertNewAssets = async (new_asset_type_id, asset_type, asset_tag, 
 
 
 export const DeleteNewAssets = async (status, sno) => {
-    const url =`http://localhost:2008/api/DeleteNewAssets`
+    const url =`https://drizzlebackend.awlworldwide.com/api/DeleteNewAssets`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 export const GetNewAssets = async (sno) => {
-    const url =`http://localhost:2008/api/GetNewAssets`
+    const url =`https://drizzlebackend.awlworldwide.com/api/GetNewAssets`
     return axios.post(url, {sno }).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -1094,16 +1094,16 @@ export const CountTickets = async () => {
 
 
 export const TotalTicket = async () => {
-    const url = `http://localhost:2008/api/TotalTicket`
+    const url = `https://drizzlebackend.awlworldwide.com/api/TotalTicket`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
 
 export const DeleteTickets = async (status, sno) => {
-    const url =`http://localhost:2008/api/DeleteTickets`
+    const url =`https://drizzlebackend.awlworldwide.com/api/DeleteTickets`
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 export const getTickets = async (sno) => {
-    const url =`http://localhost:2008/api/getTickets`
+    const url =`https://drizzlebackend.awlworldwide.com/api/getTickets`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
 
