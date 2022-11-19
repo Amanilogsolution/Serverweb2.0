@@ -1062,7 +1062,7 @@ export const DeleteNewAssets = async (status, sno) => {
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 export const GetNewAssets = async (sno) => {
-    const url =`https://drizzlebackend.awlworldwide.com/api/GetNewAssets`
+    const url =`http://localhost:2008/api/GetNewAssets`
     return axios.post(url, {sno }).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -1074,6 +1074,16 @@ export const CountNewAssets = async (asset_type) => {
 export const GetNewAssetAssign = async (asset_assign_empid) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/GetNewAssetAssign`
     return axios.post(url, { asset_assign_empid }).then(response => response.data).catch(error => console.log(error));
+}
+export const UpdateNewAssets = async (  asset_type, assetetag, serialno, location, manufacture, software,
+    model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
+    rentpermonth, purchaseprice, latestinventory, assetname, assetassign,asset_assign_empid, remark, userid,sno) => {
+    const url = `http://localhost:2008/api/UpdateNewAssets`
+    return axios.post(url, {
+        asset_type, assetetag, serialno, location, manufacture, software,
+        model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
+        rentpermonth, purchaseprice, latestinventory, assetname, assetassign,asset_assign_empid, remark, userid,sno
+    }).then(response => response.data).catch(error => console.log(error));
 }
 
 //  #########################   Ticketes ##############################
@@ -1093,6 +1103,8 @@ export const CountTickets = async () => {
 }
 
 
+
+
 export const TotalTicket = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/TotalTicket`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
@@ -1103,7 +1115,14 @@ export const DeleteTickets = async (status, sno) => {
     return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 export const getTickets = async (sno) => {
-    const url =`https://drizzlebackend.awlworldwide.com/api/getTickets`
+    const url =`http://localhost:2008/api/getTickets`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateTicket = async (emp_id, emp_name, asset_type, asset_serial, location, assign_ticket, type_of_issue, email_id,
+    ticket_date, ticket_status, ticket_subject, priority, issue_discription, remarks, user_id,sno) => {
+    const url =`http://localhost:2008/api/UpdateTicket`
+    return axios.post(url, { emp_id, emp_name, asset_type, asset_serial, location, assign_ticket, type_of_issue, email_id,
+        ticket_date, ticket_status, ticket_subject, priority, issue_discription, remarks, user_id,sno }).then(response => response.data).catch(error => console.log(error));
 }
 
