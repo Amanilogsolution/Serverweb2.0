@@ -117,7 +117,7 @@ function AddVendorPayment() {
             const result = await UpdateVendorInvoice(arryval, sessionStorage.getItem('UserId'))
             if (result === 'Data Updated') {
                 alert('Data Updated')
-                window.location.reload();
+                window.location.href='./TotalVendorPayment';
             }
             else {
                 alert('Server Not Response')

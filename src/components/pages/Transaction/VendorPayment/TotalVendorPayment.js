@@ -1,108 +1,109 @@
 import React, { useState, useEffect } from 'react';
-// import DataTable from 'react-data-table-component';
-// import DataTableExtensions from 'react-data-table-component-extensions';
-// import 'react-data-table-component-extensions/dist/index.css';
-// import { TotalAssetStatusapi, DeleteAssetStatusapi } from '../../../../api'
+import DataTable from 'react-data-table-component';
+import DataTableExtensions from 'react-data-table-component-extensions';
+import 'react-data-table-component-extensions/dist/index.css';
+import { TotalVendorPaymentapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
-// import { AiFillEdit } from 'react-icons/ai';
-// import LoadingPage from '../../../LoadingPage/LoadingPage';
+import { AiFillEdit } from 'react-icons/ai';
+import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
-// const customStyles = {
-//     title: {
-//         style: {
-//             fontColor: 'red',
-//             fontWeight: '900',
-//         }
-//     },
-//     rows: {
-//         style: {
-//             minHeight: '35px'
-//         }
-//     },
-//     headCells: {
-//         style: {
-//             fontSize: '14px',
-//             background: 'rgb(105,59,233)',
-//             color: 'white',
-//         },
-//     },
-//     cells: {
-//         style: {
-//             fontSize: '14px',
-//             background: 'rgb(242,242,242)',
-//             borderBottom: "1px solid silver"
-//         },
-//     },
-// };
+const customStyles = {
+    title: {
+        style: {
+            fontColor: 'red',
+            fontWeight: '900',
+        }
+    },
+    rows: {
+        style: {
+            minHeight: '35px'
+        }
+    },
+    headCells: {
+        style: {
+            fontSize: '14px',
+            background: 'rgb(105,59,233)',
+            color: 'white',
+        },
+    },
+    cells: {
+        style: {
+            fontSize: '14px',
+            background: 'rgb(242,242,242)',
+            borderBottom: "1px solid silver"
+        },
+    },
+};
 
 
-function TotalVendorPayment() {
-    // const [data, setData] = useState([])
+const  TotalVendorPayment=()=> {
+    const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
 
-    // const columns = [
-    //     {
-    //         name: 'Asset Status',
-    //         selector: row => row.asset_status,
-    //         sortable: true,
-    //     },
-    //     {
-    //         name: 'Asset Status Description',
-    //         selector: row => row.asset_status_description,
-    //         sortable: true,
-    //     },
+    const columns = [
+        {
+            name: 'Vendor',
+            selector: row => row.vendor,
+            sortable: true,
+        },
+        {
+            name: 'Invoice No',
+            selector: row => row.invoice_no,
+            sortable: true,
+        },
 
+        {
+            name: 'Payment Amt',
+            selector: row => row.payment_amt,
+            sortable: true,
+        },
+        {
+            name: 'Payment Detail',
+            selector: row => row.payment_detail,
+            sortable: true,
+        },
+        {
+            name: 'Upload Documents',
+            sortable: true,
+            cell: (row) => [
+                <button className='btn btn-success'> Upload Invoice</button>
+            ],
+        },
+        {
+            name: "Actions",
+            sortable: false,
+            selector: row => row.null,
+            cell: (row) => [
+                <a title='Edit VendorPayments' href="/EditVendorPayments">
+                    <p onClick={() => sessionStorage.setItem('vendorpaymentssno', `${row.sno}`)} >
+                        <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+                    </p></a>
+            ]
+        }
 
+    ];
 
-    //     {
-    //         name: 'Status',
-    //         sortable: true,
-    //         cell: (row) => [
-    //             <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
-    //                 const status = e.target.value;
-    //                 const result = await DeleteAssetStatusapi(status, row.sno)
-    //                 window.location.reload()
-    //             }}>
-    //                 <option hidden value={row.status}>{row.status}</option>
-    //                 <option value='Active'>Active</option>
-    //                 <option value='Deactive'>Deactive</option>
-    //             </select>
-    //         ],
-    //     },
-    //     {
-    //         name: "Actions",
-    //         sortable: false,
-    //         selector: row => row.null,
-    //         cell: (row) => [
-    //             <a title='Edit Series' href="/EditAssetStatus">
-    //                 <p onClick={() => sessionStorage.setItem('assetstatussno', `${row.sno}`)} >
-    //                     <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
-    //                 </p></a>
-    //         ]
-    //     }
+    useEffect(() => {
+        const fetchdata = async () => {
+            const tabledata = await TotalVendorPaymentapi();
+            console.log(tabledata)
+            setData(tabledata)
+            setLoading(true)
+        }
+        fetchdata();
+    }, [])
 
-    // ];
-
-    // useEffect(() => {
-    //     const fetchdata = async () => {
-    //         const tabledata = await TotalAssetStatusapi();
-    //         setData(tabledata)
-    //         setLoading(true)
-    //     }
-    //     fetchdata();
-    // }, [])
-
-    // const tableData = {
-    //     columns,
-    //     data
-    // };
+    const tableData = {
+        columns,
+        data
+    };
 
     return (
         <>
-            {/* {
-                loading ? */}
+            {
+                loading ?
                     <Sidebar>
                         <div className='main_container' >
                             <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
@@ -111,7 +112,7 @@ function TotalVendorPayment() {
                                     <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorPayment' }} >Add Vendor Payment <MdAdd /></button>
                                 </div>
                                 <div >
-                                    {/* <DataTableExtensions {...tableData}  >
+                                    <DataTableExtensions {...tableData}  >
                                         <DataTable
                                             noHeader
                                             defaultSortField="id"
@@ -120,16 +121,14 @@ function TotalVendorPayment() {
                                             highlightOnHover
                                             customStyles={customStyles}
                                         />
-                                    </DataTableExtensions> */}
+                                    </DataTableExtensions>
                                 </div>
                             </div>
                         </div>
                     </Sidebar>
-                    {/* 
-
                     : <LoadingPage />
-            } 
-            */}
+            }
+
         </>
     )
 }

@@ -134,9 +134,11 @@ import AddVendorContract from './components/pages/DrizzleMain/VendorContract/Add
 
 import TotalVendorInvoice from './components/pages/Transaction/VendorInvoice/TotalVendorInvoice';
 import AddVendorInvoice from './components/pages/Transaction/VendorInvoice/AddVendorInvoice';
+import EditVendorInvoice from './components/pages/Transaction/VendorInvoice/EditVendorInvoice';
 
 import TotalVendorPayment from './components/pages/Transaction/VendorPayment/TotalVendorPayment';
 import AddVendorPayment from './components/pages/Transaction/VendorPayment/AddVendorPayment';
+import EditVendorPayments from './components/pages/Transaction/VendorPayment/EditVendorPayment';
 
 
 import TotalNewAssets from './components/pages/HelpDesk/NewAssets/TotalNewAssets';
@@ -282,11 +284,13 @@ const App = () => {
 
           <Route path="/TotalVendorInvoice" element={<TotalVendorInvoice />} />
           <Route path="/AddVendorInvoice" element={<AddVendorInvoice />} />
+          <Route path="/EditVendorInvoice" element={<EditVendorInvoice />} />
           
 
           <Route path="/TotalVendorPayment" element={<TotalVendorPayment/>} />
           <Route path="/AddVendorPayment" element={<AddVendorPayment/>} />
-
+          <Route path="/EditVendorPayments" element={<EditVendorPayments/>} />
+          
           <Route path="/TotalNewAssets" element={<TotalNewAssets/>} />
           <Route path="/AddNewAssets" element={<AddNewAssets/>} />
           <Route path="/EditAsset" element={<EditAsset/>} />
