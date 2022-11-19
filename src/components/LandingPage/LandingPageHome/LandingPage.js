@@ -83,7 +83,7 @@ const LandingPage = () => {
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="mb-5 mb-lg-0 text-center text-lg-start">
                                             <h3 className="display-5 lh-1 mb-3">About our Services</h3>
-                                            <p className="lead fw-normal text-muted mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, eius.</p>
+                                            <p className="lead fw-normal text-muted mb-5">With data-driven insights from over 200 bread-making facilities, Grupo Bimbo raises quality control on a global scale.</p>
                                         </div>
                                     </div>
 
@@ -91,6 +91,43 @@ const LandingPage = () => {
                             </div>
                         </header>
                     </section>
+
+                    <section className='photos_content'>
+                        <div className='photos_content1'>
+                            
+                            <div className='content_'>
+                                <h1>The Platform of platforms</h1>
+                                <p>Behind every great experience is a great workflow. As the foundation for all digital workflows, the Now Platform® connects people, functions, and systems across your organization.</p>
+                                <button className='btn btn-voilet'>Get Details</button>
+                            </div>
+                            <div className='img_div'></div>
+                        </div>
+                    </section>
+
+                    <section className='photos_content'>
+                        <div className='photos_content1'>
+                        <div className='img_div2'></div>
+                            <div className='content_'>
+                                <h1>Personalize your value acceleration</h1>
+                                <p>Maximize your investment with ServiceNow Impact. Realize value faster with experts on demand, premium support, and preventive tools to guide your digital transformation.</p>
+                                <button className='btn btn-voilet'>Get Details</button>
+                            </div>
+                            
+                        </div>
+                    </section>
+
+                    <section className='photos_content'>
+                        <div className='photos_content1'>
+                            
+                            <div className='content_'>
+                                <h1>Unleash the power of IT</h1>
+                                <p>Transform your business with digital IT workflows. Modernize your operations to optimize productivity, cost, and resilience with a single platform for IT.</p>
+                                <button className='btn btn-voilet'>Get Details</button>
+                            </div>
+                            <div className='img_div3'></div>
+                        </div>
+                    </section>
+
 
                     <section className='chooseus' data-aos="fade-up" data-aos-offset="200"
                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">

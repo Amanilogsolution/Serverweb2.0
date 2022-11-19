@@ -1,6 +1,7 @@
 .landingContainer {
     /* width: 99.9vw; */
     overflow: hidden;
+    
 }
 
 .landingnav {
@@ -359,4 +360,41 @@
     .landingnav .nav-list li {
         margin: 0px 5px 0px 5px;
     }
+}
+.photos_content{
+    /* border: 1px solid black; */
+    padding: 50px;
+}
+.photos_content1{
+    /* border: 1px solid blue; */
+    justify-content: center;
+    display: flex;
+    width: 90%;
+    margin-left: 5%;
+}
+.photos_content1 .img_div{
+    width:1290px;
+    height: 320px;
+    background: url('https://www.servicenow.com/content/dam/servicenow-assets/public/en-us/images/homepage/hp-now-platform.jpg.thumb.1024.1024.png');
+    background-size: 100% 100%;
+    border-radius: 6px;
+    
+}
+.photos_content1 .content_{
+    margin: 70px;
+}
+
+.photos_content1 .img_div2{
+    width:1290px;
+    height: 320px;
+    background: url('https://images.unsplash.com/photo-1584956929711-4ae19ffd0e68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+    background-size: 100% 100%;
+    border-radius: 6px;
+}
+.photos_content1 .img_div3{
+    width:1290px;
+    height: 320px;
+    background: url('https://images.unsplash.com/photo-1581091870598-36ce9bad5c77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+    background-size: 100% 100%;
+    border-radius: 6px;
 }
