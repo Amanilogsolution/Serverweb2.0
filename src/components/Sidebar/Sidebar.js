@@ -140,6 +140,7 @@ const Sidebar = ({ children }) => {
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Dashboard</div>
                             </NavLink>
                         </li>
+
                         <li onClick={handlesubmaster} title='Iperiscope Master' style={{ paddingRight: "0px" }}>
                             <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
                                 <div className="icon" onClick={toggle}><FaUserAlt /></div>
@@ -382,13 +383,13 @@ const Sidebar = ({ children }) => {
                             <ul id='mastertransaction' className='inneruldiv'>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalVendorInvoice' className='navlink d-flex' activeclassname="sidebaractive">
-                                        <MdAttachMoney  style={{ fill: "#a12e7a" }}/>
+                                        <MdAttachMoney style={{ fill: "#a12e7a" }} />
                                         <div style={{ display: isOpen ? "block" : "none" }} > Vendor Invoice</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalVendorPayment' className='navlink d-flex' activeclassname="sidebaractive">
-                                        <MdAttachMoney  style={{ fill: "#a12e7a" }}/>
+                                        <MdAttachMoney style={{ fill: "#a12e7a" }} />
                                         <div style={{ display: isOpen ? "block" : "none" }} > Vendor Payment</div>
                                     </NavLink>
                                 </li>
