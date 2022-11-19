@@ -130,7 +130,6 @@ import TotalVendorContract from './components/pages/DrizzleMain/VendorContract/T
 import EditVendorContract from './components/pages/DrizzleMain/VendorContract/EditVendorContract';
 import AddVendorContract from './components/pages/DrizzleMain/VendorContract/AddVendorContract';
 
-import AddTicket from './components/pages/HelpDesk/Tickets/AddTicket';
 
 
 import TotalVendorInvoice from './components/pages/Transaction/VendorInvoice/TotalVendorInvoice';
@@ -142,12 +141,15 @@ import AddVendorPayment from './components/pages/Transaction/VendorPayment/AddVe
 
 import TotalNewAssets from './components/pages/HelpDesk/NewAssets/TotalNewAssets';
 import AddNewAssets from './components/pages/HelpDesk/NewAssets/AddNewAssets';
+import EditAsset from './components/pages/HelpDesk/NewAssets/EditAsset';
+
+import AddTicket from './components/pages/HelpDesk/Tickets/AddTicket';
+import EditTicket from './components/pages/HelpDesk/Tickets/EditTicket';
+import TotalTicket from './components/pages/HelpDesk/Tickets/TotalTicket';
+
 
 
 import PageNotFound from './components/404/404';
-import EditTicket from './components/pages/HelpDesk/Tickets/EditTicket';
-
-import EditAsset from './components/pages/HelpDesk/NewAssets/EditAsset';
 
 const App = () => {
   return (
@@ -278,10 +280,6 @@ const App = () => {
           <Route path="/EditVendorContract" element={<EditVendorContract />} />
           <Route path="/AddVendorContract" element={<AddVendorContract />} />
 
-          <Route path="/AddTickets" element={<AddTicket />} />
-
-
-
           <Route path="/TotalVendorInvoice" element={<TotalVendorInvoice />} />
           <Route path="/AddVendorInvoice" element={<AddVendorInvoice />} />
           
@@ -291,9 +289,11 @@ const App = () => {
 
           <Route path="/TotalNewAssets" element={<TotalNewAssets/>} />
           <Route path="/AddNewAssets" element={<AddNewAssets/>} />
+          <Route path="/EditAsset" element={<EditAsset/>} />
 
           <Route path="/EditTicket" element={<EditTicket/>} />
-          <Route path="/EditAsset" element={<EditAsset/>} />
+          <Route path="/TotalTicket" element={<TotalTicket/>} />
+          <Route path="/AddTickets" element={<AddTicket />} />
     
            
         </Route>

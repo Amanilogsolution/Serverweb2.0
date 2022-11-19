@@ -1,6 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect } from 'react';
-import { GetVendorCode, UpdateVendorCode,TotalCountry ,TotalState,TotalCity} from '../../../../api'
+import { GetVendorCode, UpdateVendorCode, TotalCountry, TotalState, TotalCity } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
@@ -26,6 +26,12 @@ function EditVendorCode() {
             const totalCountry = await TotalCountry();
             setCountrylist(totalCountry)
 
+            const result = await TotalState(tabledata[0].company_country_id)
+            setStatelist(result)
+
+            const citys = await TotalCity(tabledata[0].company_state_id)
+            setCitylist(citys)
+
             setLoading(true)
             if (tabledata[0].venodr_portal === 'true') {
                 document.getElementById('vendor_portal').checked = true
@@ -39,18 +45,20 @@ function EditVendorCode() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        setLoading(false)
+        // setLoading(false)
         const vendor_code = document.getElementById('vendor_code').value;
         const vendor_name = document.getElementById('vendor_name').value;
         const comp_gst = document.getElementById('comp_gst').value;
         const comp_website = document.getElementById('comp_website').value;
         const comp_email = document.getElementById('comp_email').value;
         const comp_phone = document.getElementById('comp_phone').value;
-        
+
         let comp_country = document.getElementById('comp_country');
+        const comp_country_id=comp_country.value;
         comp_country = comp_country.options[comp_country.selectedIndex].text;
 
         let comp_state = document.getElementById('comp_state');
+        const comp_state_id=comp_state.value;
         comp_state = comp_state.options[comp_state.selectedIndex].text;
 
         const comp_city = document.getElementById('comp_city').value;
@@ -65,14 +73,15 @@ function EditVendorCode() {
         const user_id = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('VendorCodeSno')
 
-        if (!vendor_code || !vendor_name || !comp_addr1 || !comp_city || !comp_state || !comp_pincode || !comp_email) {
+
+        if (!vendor_code || !vendor_name || !comp_addr1 || !comp_phone || !comp_country_id || !comp_city || !comp_state_id || !comp_pincode
+            || !comp_email || !contact_person || !contact_no || !contact_email) {
             alert("Please enter Mandatory field")
             setLoading(true)
         }
         else {
-            const result = await UpdateVendorCode(sno, vendor_code, vendor_name, comp_addr1, comp_addr2,
-                 comp_city, comp_state, comp_pincode, comp_gst, comp_website, comp_email,
-                  vendor_portal,comp_phone,comp_country,contact_person,contact_no,contact_email, user_id);
+            const result = await UpdateVendorCode(sno, vendor_code,vendor_name,comp_gst,comp_website,comp_email,comp_phone,comp_country_id,comp_country,
+                comp_state_id,comp_state,comp_city,comp_addr1,comp_addr2,comp_pincode,vendor_portal,contact_person,contact_no,contact_email,user_id);
 
             if (result === 'Updated') {
                 alert('Data Updated ')
@@ -87,38 +96,20 @@ function EditVendorCode() {
 
     }
 
-    const handleChangeVendorName = (e) => {
-        setData({ ...data, vendor_name: e.target.value })
+    const handleChangephoneno = (e) => {
+        if(e.target.value.length===11){return false}
+        else{setData({ ...data, company_phone: e.target.value })}
     }
 
 
-    const handleChangeAddressLine1 = (e) => {
-        setData({ ...data, company_address_line1: e.target.value })
+    const handleChangepinCode = (e) => {
+        if(e.target.value.length===7){return false}
+        else{setData({ ...data, company_pin_code: e.target.value })}
     }
 
-    const handleChangeAddressLine2 = (e) => {
-        setData({ ...data, company_address_line2: e.target.value })
-    }
-
-    const handleChangeCompCity = (e) => {
-        setData({ ...data, company_city: e.target.value })
-    }
-    const handleChangeCompState = (e) => {
-        setData({ ...data, company_state: e.target.value })
-    }
-    const handleChangePinCode = (e) => {
-        setData({ ...data, company_pin_code: e.target.value })
-    }
-
-    const handleChangeGst = (e) => {
-        setData({ ...data, company_gst: e.target.value })
-    }
-
-    const handleChangeCompWebsite = (e) => {
-        setData({ ...data, company_website: e.target.value })
-    }
-    const handleChangeCompEmail = (e) => {
-        setData({ ...data, company_email: e.target.value })
+    const handleChangeno = (e) => {
+        if(e.target.value.length===11){return false}
+        else{setData({ ...data, contact_person_phone: e.target.value })}
     }
 
 
@@ -154,9 +145,16 @@ function EditVendorCode() {
     }
 
     const handleGetState = async (e) => {
+        console.log(data.company_state)
+        setData({ ...data, company_state:'' })
+        setData({ ...data, company_state_id:'' })
+        
+        setData({ ...data, company_city:'' })
+        setData({ ...data, company_city:'' })
         const result = await TotalState(e.target.value)
         console.log(result)
         setStatelist(result)
+        setCitylist([])
     }
     const handleGetCity = async (e) => {
         const result = await TotalCity(e.target.value)
@@ -182,7 +180,7 @@ function EditVendorCode() {
                                         Edit Vendor Code
                                     </header>
                                     <article className="card-body" >
-                                    <form className='px-3' autoComplete='off'>
+                                        <form className='px-3' autoComplete='off'>
                                             <ul>
 
                                                 {/* #################### Device Detail  Box Start #####################*/}
@@ -205,7 +203,7 @@ function EditVendorCode() {
                                                             </div>
                                                             <div className="col-md-4" >
                                                                 <label htmlFor='vendor_name'>Vendor Name <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" id='vendor_name' defaultValue={data.vendor_name}  required />
+                                                                <input type="text" className="form-control" id='vendor_name' defaultValue={data.vendor_name} required />
                                                             </div>
                                                             <div className="col-md-4" >
                                                                 <label htmlFor='comp_email'>Company Email Id <span className='text-danger'>*</span></label>
@@ -220,11 +218,11 @@ function EditVendorCode() {
 
                                                             <div className="col-md-4" >
                                                                 <label htmlFor='comp_gst'>Company GST no.</label>
-                                                                <input type="text" className="form-control" id='comp_gst' defaultValue={data.company_gst}/>
+                                                                <input type="text" className="form-control" id='comp_gst' defaultValue={data.company_gst} />
                                                             </div>
                                                             <div className="col-md-4" >
                                                                 <label htmlFor='comp_phone'>Phone no.<span className='text-danger'>*</span></label>
-                                                                <input type="number" className="form-control" id='comp_phone' defaultValue={data.company_phone}/>
+                                                                <input type="number" className="form-control" id='comp_phone' value={data.company_phone} onChange={handleChangephoneno}/>
                                                             </div>
 
                                                         </div>
@@ -232,7 +230,7 @@ function EditVendorCode() {
                                                             <div className="col-md-4">
                                                                 <label htmlFor='comp_country'>Country<span className='text-danger'>*</span></label>
                                                                 <select type="text" className="form-select" id='comp_country' required onChange={handleGetState}>
-                                                                    <option value={data.company_country}>{data.company_country}</option>
+                                                                    <option value={data.company_country_id} hidden>{data.company_country}</option>
                                                                     {
                                                                         countrylist.map((item, index) => (
                                                                             <option key={index} value={item.country_id}>{item.country_name}</option>
@@ -245,7 +243,7 @@ function EditVendorCode() {
                                                                 <select className="form-select" id='comp_state' required
                                                                     onChange={handleGetCity}
                                                                 >
-                                                                    <option value={data.company_state}>{data.company_state}</option>
+                                                                    <option value={data.company_state_id} hidden>{data.company_state}</option>
                                                                     {
                                                                         statelist.length ?
                                                                             statelist.map((item, index) => (
@@ -259,7 +257,7 @@ function EditVendorCode() {
                                                             <div className="col-md-4">
                                                                 <label htmlFor='comp_city'> City <span className='text-danger'>*</span></label>
                                                                 <select type="text" className="form-select" id='comp_city' required >
-                                                                    <option value={data.company_city}>{data.company_city}</option>
+                                                                    <option value={data.company_city} hidden>{data.company_city}</option>
                                                                     {
                                                                         citylist.length ?
                                                                             citylist.map((item, index) => (
@@ -275,7 +273,7 @@ function EditVendorCode() {
                                                         <div className="row mt-2">
                                                             <div className="col-md-4">
                                                                 <label htmlFor='comp_pincode'> Pincode <span className='text-danger'>*</span></label>
-                                                                <input type="number" className="form-control" id='comp_pincode' defaultValue={data.company_pin_code} required />
+                                                                <input type="number" className="form-control" id='comp_pincode' value={data.company_pin_code} onChange={handleChangepinCode} />
                                                             </div>
                                                             <div className=" col-md-2 d-flex align-items-center" >
                                                                 <label htmlFor='vendor_portal' className='col' >Vendor Portal</label>
@@ -286,12 +284,12 @@ function EditVendorCode() {
                                                         <div className='row mt-2'>
                                                             <div className="col ">
                                                                 <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" id='comp_addr1' defaultValue={data.company_address_line1}  required />
+                                                                <input type="text" className="form-control" id='comp_addr1' defaultValue={data.company_address_line1} required />
                                                             </div>
 
                                                             <div className="col">
                                                                 <label htmlFor='comp_addr2'>Company Address Line 2</label>
-                                                                <input type="text" className="form-control" defaultValue={data.company_address_line2}  id='comp_addr2' />
+                                                                <input type="text" className="form-control" defaultValue={data.company_address_line2} id='comp_addr2' />
                                                             </div>
                                                         </div>
 
@@ -314,15 +312,15 @@ function EditVendorCode() {
                                                         <div className="row mt-1">
                                                             <div className="col-md-4">
                                                                 <label htmlFor='contact_person'>Name <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" id='contact_person' defaultValue={data.contact_person_name}  required />
+                                                                <input type="text" className="form-control" id='contact_person' defaultValue={data.contact_person_name} required />
                                                             </div>
                                                             <div className="col-md-4" >
                                                                 <label htmlFor='contact_no'>Contact no <span className='text-danger'>*</span></label>
-                                                                <input type="number" className="form-control" id='contact_no' defaultValue={data.contact_person_phone}  required />
+                                                                <input type="number" className="form-control" id='contact_no' value={data.contact_person_phone} onChange={handleChangeno} />
                                                             </div>
                                                             <div className="col-md-4" >
                                                                 <label htmlFor='contact_email'> Email Id <span className='text-danger'>*</span></label>
-                                                                <input type="email" className="form-control" id='contact_email' defaultValue={data.contact_person_email}  required />
+                                                                <input type="email" className="form-control" id='contact_email' defaultValue={data.contact_person_email} required />
                                                             </div>
                                                         </div>
                                                     </div>

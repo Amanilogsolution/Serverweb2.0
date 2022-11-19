@@ -41,13 +41,16 @@ function AddVendorCode() {
         const comp_website = document.getElementById('comp_website').value;
         const comp_email = document.getElementById('comp_email').value;
         const comp_phone = document.getElementById('comp_phone').value;
-        
+
         let comp_country = document.getElementById('comp_country');
+        const company_country_id = comp_country.value;
         comp_country = comp_country.options[comp_country.selectedIndex].text;
+        
 
         let comp_state = document.getElementById('comp_state');
+        const comp_state_id = comp_state.value;
         comp_state = comp_state.options[comp_state.selectedIndex].text;
-
+        
         const comp_city = document.getElementById('comp_city').value;
 
         const comp_addr1 = document.getElementById('comp_addr1').value;
@@ -60,14 +63,14 @@ function AddVendorCode() {
 
         const user_id = sessionStorage.getItem('UserId');
 
-        if (!vendor_code || !vendor_name || !comp_addr1 || !comp_phone || !comp_country || !comp_city || !comp_state || !comp_pincode
+        if (!vendor_code || !vendor_name || !comp_addr1 || !comp_phone || !company_country_id || !comp_city || !comp_state_id || !comp_pincode
             || !comp_email || !contact_person || !contact_no || !contact_email) {
             alert("Please enter Mandatory field")
             setLoading(true)
         }
         else {
             const result = await InsertVendorCode(vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
-                comp_phone, comp_country, comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
+                comp_phone, company_country_id, comp_country, comp_state_id,comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
                 vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Added') {

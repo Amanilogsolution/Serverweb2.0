@@ -274,7 +274,7 @@ CREATE TABLE tbl_service_group_master (
                 service_group_uuid nvarchar(350) NULL
 )
 
-CREATE TABLE tbl_vendor_code_master (
+CREATE TABLE  IPERISCOPE.dbo.tbl_vendor_code_master (
                 sno bigint IDENTITY(1,1) NOT NULL,
                 vendor_code_id nvarchar(100) NULL,
                 vendor_code nvarchar(200) NULL,
@@ -284,7 +284,8 @@ CREATE TABLE tbl_vendor_code_master (
                 company_gst nvarchar(100) NULL ,
                 company_phone nvarchar(100) NULL ,
                 company_country nvarchar(100) NULL ,
-                company_state nvarchar(100) NULL,
+                company_country_id nvarchar(100) NULL ,
+                company_state_id nvarchar(100) NULL,
                 company_city nvarchar(100) NULL ,
                 company_pin_code nvarchar(30) NULL ,
                 company_address_line1 nvarchar(300) NULL ,
