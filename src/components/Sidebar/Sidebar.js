@@ -68,7 +68,6 @@ const Sidebar = ({ children }) => {
             document.getElementById('mastersubdiv').style.display = "none"
             document.getElementById('mastertitlelink').style.background = "#fff"
             document.getElementById('mastertitlelink').style.color = "#000"
-
         }
         setSubmasterOpen(!submasterOpen)
     }
@@ -140,7 +139,6 @@ const Sidebar = ({ children }) => {
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Dashboard</div>
                             </NavLink>
                         </li>
-
                         <li onClick={handlesubmaster} title='Iperiscope Master' style={{ paddingRight: "0px" }}>
                             <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
                                 <div className="icon" onClick={toggle}><FaUserAlt /></div>
@@ -198,6 +196,7 @@ const Sidebar = ({ children }) => {
                                 </li>
                             </ul>
                         </li>
+                        
                         <li title='Drizell Master'>
                             <div className="link" id='masterdrizelltitlelink' style={{ cursor: "pointer" }} onClick={handlesubdrizell}>
                                 <div className="icon" onClick={toggle}><FaUserAlt /></div>
