@@ -91,7 +91,7 @@ const LandingPage = () => {
                             </div>
                         </header>
                     </section>
-
+{/* ================================================= Content with photos ===================================================== */}
                     <section className='photos_content'>
                         <div className='photos_content1'>
                             
@@ -105,9 +105,14 @@ const LandingPage = () => {
                     </section>
 
                     <section className='photos_content'>
+                    <div className='content_diff'>
+                                <h1>Personalize your value acceleration</h1>
+                                <p>Maximize your investment with ServiceNow Impact. Realize value faster with experts on demand, premium support, and preventive tools to guide your digital transformation.</p>
+                                <button className='btn btn-voilet'>Get Details</button>
+                            </div>
                         <div className='photos_content1'>
                         <div className='img_div2'></div>
-                            <div className='content_'>
+                            <div className='content_' id='content_diff'>
                                 <h1>Personalize your value acceleration</h1>
                                 <p>Maximize your investment with ServiceNow Impact. Realize value faster with experts on demand, premium support, and preventive tools to guide your digital transformation.</p>
                                 <button className='btn btn-voilet'>Get Details</button>
@@ -128,6 +133,7 @@ const LandingPage = () => {
                         </div>
                     </section>
 
+{/* ========================================================================================================================== */}
 
                     <section className='chooseus' data-aos="fade-up" data-aos-offset="200"
                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
