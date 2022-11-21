@@ -30,8 +30,8 @@ const LandingFooter = () => {
                     </ul>
                     <ul>
                         <li style={{fontWeight:"600",margin:"10px 0"}}>My Account</li>
-                        <li>Sign in</li>
-                        <li>Register</li>
+                        <li><a style={{textDecoration:"none",color:"rgb(33,37,48)"}} href='/signin'>Sign in</a></li>
+                        <li><a style={{textDecoration:"none",color:"rgb(33,37,48)"}} href='/signup'>Register</a></li>
                     </ul>
                  </div>
                  </div>
