@@ -1,7 +1,7 @@
 .landingContainer {
     /* width: 99.9vw; */
     overflow: hidden;
-    
+
 }
 
 .landingnav {
@@ -66,7 +66,7 @@
 
 .portfoliodiv {
     min-height: 70px;
-    background-color: rgb(164,43,122);
+    background-color: rgb(164, 43, 122);
     color: white;
 
 }
@@ -76,7 +76,7 @@
     display: grid;
     align-items: center;
     color: white;
-   
+
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 24px;
@@ -120,7 +120,8 @@
 
 .parent_choose_div .chid_choose_div .choose_icon {
     margin-right: 10px;
-    margin-top: -5px;
+    height: 100%;
+
 }
 
 .parent_choose_div .chid_choose_div .choose_icon .choose_inner_icon {
@@ -139,15 +140,19 @@
 
 .parent_choose_div .chid_choose_div .choose_content {
     height: 100%;
+    min-width: 70%;
+    display: flex;
+    align-items: center;
+
 }
 
 /* Pricing Setion */
 .pricing .pricinghead .container .pricing_cards {
-    width: 80%;
+    width: 100%;
     display: grid;
     align-items: center;
-    justify-items: center;
-    grid-template-columns: repeat(3, 1fr);
+    justify-items: end;
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 3%;
     grid-row-gap: 0px;
@@ -155,11 +160,11 @@
 
 .pricing .pricinghead .container .pricing_cards .pricing_card {
     width: 17rem;
+    min-height: 100%;
 }
 
 .pricing .pricinghead .container .pricing_cards .pricing_card .card-header {
     background-color: #a4a4f8;
-   /* font-weight: 600; */
 }
 
 .pricing .pricinghead .container .pricing_cards .pricing_card .card-body ul li {
@@ -187,46 +192,38 @@
 
 
 /* Footer Link */
+.landingfooter_main {
+    background-color: rgb(225, 193, 214);
+}
 
 .landingfooter {
-    height: 60px;
-    background-color: rgb(164,43,122);
-    /* #d6d5f0f7 */
     z-index: 1000;
     display: flex;
     padding-top: 15px;
 }
 
-.landingfooter .copy_write {
-    cursor: pointer;
-    width: 25%;
-    text-align: right;
+.landingfooter ul {
+    margin: 0 40px;
 }
 
-.landingfooter .footer-list {
-    display: flex;
-    width: 70%;
-    justify-content: right;
-}
-
-.landingfooter .footer-list li {
+.landingfooter ul li {
     list-style: none;
-    margin: 0px 10px 0px 10px;
+    cursor: pointer;
 }
 
-.landingfooter .footer-list li .footer-link {
-    text-decoration: none;
-    margin-top: 8px;
-    color: white;
+.landingfooter .div_for_list {
+    display: flex;
 }
 
-.landingfooter .footer-list li .footer-link:hover {
-    border-bottom: 3px solid #fff;
+@media screen and (max-width: 775px) {
+    .landingfooter .div_for_list {
+        display: block;
+    }
 
+    .pricing .pricinghead .container .pricing_cards {
+        display: block;
+    }
 }
-
-
-
 
 
 
@@ -234,10 +231,6 @@
     .parent_choose_div {
         width: 100%;
         grid-column-gap: 0px;
-        /* grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-       
-        grid-row-gap: 12px; */
     }
 
     .pricing .pricinghead .container .pricing_cards .pricing_card {
@@ -253,6 +246,7 @@
         grid-template-rows: repeat(2, 1fr);
         grid-column-gap: 0px;
         grid-row-gap: 12px;
+
     }
 
     .pricing .pricinghead .container .pricing_cards .pricing_card {
@@ -261,24 +255,6 @@
 
     .pricing .pricinghead .container .pricing_cards {
         grid-column-gap: 0.5%;
-    }
-
-    .landingfooter {
-        height: 100px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .landingfooter .copy_write {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 5px;
-
-    }
-
-    .landingfooter .footer-list {
-        width: 100%;
-        justify-content: center;
     }
 
 }
@@ -312,11 +288,22 @@
         grid-row-gap: 12px;
     }
 
+    .chid_choose_div {
+        margin: auto;
+    }
+
     .pricing .pricinghead .container .pricing_cards {
         width: 95%;
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: 1fr;
         grid-row-gap: 5px;
+        border: 2px solid #000;
+    }
+
+    .pricing .pricinghead .container .pricing_cards .pricing_card {
+        width: 65%;
+        margin: auto;
+        margin-bottom: 5px;
     }
 }
 
@@ -347,7 +334,7 @@
         width: 100%;
         justify-content: left;
     }
-    
+
     .parent_choose_div .chid_choose_div .choose_icon {
         margin-right: 7px;
     }
@@ -355,8 +342,9 @@
 
 @media screen and (max-width:300px) {
     .landingnav .nav-list {
-       padding-left: 10px;
+        padding-left: 10px;
     }
+
     .landingnav .nav-list li {
         margin: 0px 5px 0px 5px;
     }
@@ -364,96 +352,113 @@
 
 /* ============================================ Content with photos ======================================================= */
 
-.photos_content{
+.photos_content {
     /* border: 1px solid black; */
     padding: 50px;
 }
-.photos_content1{
+
+.photos_content1 {
     /* border: 1px solid blue; */
     justify-content: center;
     display: flex;
     width: 90%;
     margin-left: 5%;
 }
-.photos_content1 .img_div{
-    width:1290px;
+
+.photos_content1 .img_div {
+    width: 1290px;
     height: 320px;
     background: url('https://www.servicenow.com/content/dam/servicenow-assets/public/en-us/images/homepage/hp-now-platform.jpg.thumb.1024.1024.png');
     background-size: 100% 100%;
     border-radius: 6px;
-    
+
 }
-.photos_content1 .content_{
+
+.photos_content1 .content_ {
     margin: 70px;
 }
 
-.photos_content1 .img_div2{
-    width:1290px;
+.photos_content1 .img_div2 {
+    width: 1290px;
     height: 320px;
     background: url('https://images.unsplash.com/photo-1584956929711-4ae19ffd0e68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
     background-size: 100% 100%;
     border-radius: 6px;
 }
-.photos_content1 .img_div3{
-    width:1290px;
+
+.photos_content1 .img_div3 {
+    width: 1290px;
     height: 320px;
     background: url('https://images.unsplash.com/photo-1581091870598-36ce9bad5c77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
     background-size: 100% 100%;
     border-radius: 6px;
 }
-.content_diff{
+
+.content_diff {
     display: none;
     padding: 20px;
 }
+
 @media screen and (max-width:990px) {
-    .photos_content1{
+    .photos_content1 {
         justify-content: center;
         display: block;
         width: 90%;
         margin-left: 5%;
     }
-    .photos_content{
+
+    .photos_content {
         /* border: 1px solid black; */
         padding: 20px;
     }
-    .photos_content1 .content_{
+
+    .photos_content1 .content_ {
         margin: 20px;
     }
-    .photos_content1 .img_div2{
-        width:400px;
+
+    .photos_content1 .img_div2 {
+        width: 400px;
         height: 320px;
     }
-    .photos_content1 .img_div3{
-        width:400px;
+
+    .photos_content1 .img_div3 {
+        width: 400px;
         height: 320px;
     }
-    .photos_content1 .img_div{
-        width:400px;
+
+    .photos_content1 .img_div {
+        width: 400px;
         height: 320px;
     }
-    .content_diff{
+
+    .content_diff {
         display: block;
     }
-    #content_diff{
+
+    #content_diff {
         display: none;
     }
 }
+
 @media screen and (max-width:500px) {
 
-    .photos_content1 .img_div2{
-        width:350px;
+    .photos_content1 .img_div2 {
+        width: 350px;
         height: 200px;
     }
-    .photos_content1 .img_div3{
-        width:350px;
+
+    .photos_content1 .img_div3 {
+        width: 350px;
         height: 200px;
     }
-    .photos_content1 .img_div{
-        width:350px;
+
+    .photos_content1 .img_div {
+        width: 350px;
         height: 200px;
     }
-    .photos_content1{
+
+    .photos_content1 {
         margin-left: 0;
     }
-   
+
 }
