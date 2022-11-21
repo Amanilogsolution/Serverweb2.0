@@ -185,16 +185,16 @@ const LandingPage = () => {
                             <div className="container px-4 pb-5">
                                 <h2 className='text-center'>Pricing</h2>
                                 <p className="lead fw-normal text-muted text-center mb-2">One software to manage your IT. Choose from the mode that suits you best. Looking for something else? <br/> Contact our enterprise sales team.</p>
-                                <div className="pricing_cards px-2 m-auto text-center" >
+                                <div className="pricing_cards px-2 m-auto text-center"  >
                                     <div className="card pricing_card pricing_card1 "
                                         data-aos="fade-right" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
 
                                         <div className="card-header">
-                                           <h4>Free</h4> 
+                                           <h5>Free</h5> 
                                         </div>
                                         <div className='card-body'>
-                                            <p>INR 0</p>
+                                            <h2>INR 0</h2>
                                             <ul>
                                                 <li>1 Organisation</li>
                                                 <li>1 Location</li>
@@ -214,10 +214,10 @@ const LandingPage = () => {
                                         data-aos="fade-up" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="card-header">
-                                            <h4>Standard</h4>
+                                            <h5>Standard</h5>
                                         </div>
                                         <div className='card-body'>
-                                        <p>INR</p>
+                                        <h2>INR</h2>
                                             <ul className=''>
                                                 <li>1 Organisation</li>
                                                 <li>3 Locations</li>
@@ -237,10 +237,10 @@ const LandingPage = () => {
                                         data-aos="fade-left" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="card-header">
-                                            <h4>Professional</h4>
+                                            <h5>Professional</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <p>INR</p>
+                                            <h2>INR</h2>
                                             <ul>
                                                 <li>2 Organisations</li>
                                                 <li>10 Locations</li>
@@ -260,10 +260,10 @@ const LandingPage = () => {
                                         data-aos="fade-left" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="card-header">
-                                            <h4>Enterprise</h4>
+                                            <h5>Enterprise</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <p>Contact Sales</p>
+                                            <h2>Contact Sales</h2>
                                             <ul>
                                                 <li>Unlimited Organisations</li>
                                                 <li>Unlimited Locations</li>
