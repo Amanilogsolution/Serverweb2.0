@@ -28,16 +28,18 @@ const LandingPage = () => {
                         <header className="masthead pb-4" >
                             <div className="container px-5">
                                 <div className="row gx-5 align-items-center">
-                                    <div className="col-lg-5">
+                                    <div className="col-lg-5" data-aos="fade-right"
+                                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="mb-5 mb-lg-1 text-center text-lg-start">
                                             <h3 className="display-3 lh-1 mb-3">Assets management System.</h3>
                                             <p className="lead fw-normal text-muted mb-5">Launch your mobile app landing page faster with this free, open source theme from Start Bootstrap!</p>
                                             <div className="d-flex flex-column flex-lg-row align-items-center">
-                                                <button className='btn btn-voilet' onClick={()=>{window.location.href='./signup'}}>Get Start</button>
+                                                <button className='btn btn-voilet' onClick={() => { window.location.href = './signup' }}>Get Start</button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-lg-6">
+                                    <div className="col-lg-6" data-aos="fade-left"
+                                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="masthead-device-mockup">
 
                                             <div className="device-wrapper">
@@ -57,7 +59,7 @@ const LandingPage = () => {
 
 
 
-                    <section className='portfoliodiv' >
+                    <section className='portfoliodiv'>
                         <div className="comp_name" >
                             <div className="comp1 text-center "><h3>AWL</h3></div>
                             <div className="comp2 text-center "><h3>ILOGSOLUTION</h3></div>
@@ -71,12 +73,14 @@ const LandingPage = () => {
                         <header className="abouthead pt-2">
                             <div className="container px-0" >
                                 <div className="row align-items-center pb-3" >
-                                    <div className="col-lg-5">
+                                    <div className="col-lg-5" data-aos="fade-left"
+                                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="aboutimgdiv"  >
                                             <img className='aboutimg' src={Services} alt='' />
                                         </div>
                                     </div>
-                                    <div className="col-lg-5" >
+                                    <div className="col-lg-5" data-aos="fade-right" data-aos-offset="200"
+                                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="mb-5 mb-lg-0 text-center text-lg-start">
                                             <h3 className="display-5 lh-1 mb-3">About our Services</h3>
                                             <p className="lead fw-normal text-muted mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, eius.</p>
@@ -88,7 +92,8 @@ const LandingPage = () => {
                         </header>
                     </section>
 
-                    <section className='chooseus'>
+                    <section className='chooseus' data-aos="fade-up" data-aos-offset="200"
+                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                         <header className="chooseus pt-5">
                             <div className="container px-4 pb-5">
                                 <h2 className='text-center'>Why Choose Us</h2>
@@ -162,7 +167,9 @@ const LandingPage = () => {
                                 <h2 className='text-center'>Pricing</h2>
                                 <p className="lead fw-normal text-muted text-center mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, molestias!</p>
                                 <div className="pricing_cards px-2 m-auto text-center" >
-                                    <div className="card pricing_card pricing_card1 ">
+                                    <div className="card pricing_card pricing_card1 "
+                                        data-aos="fade-right" data-aos-offset="200"
+                                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
 
                                         <div className="card-header">
                                             Regular
@@ -181,7 +188,9 @@ const LandingPage = () => {
                                         </div>
                                     </div>
 
-                                    <div className="pricing_card card pricing_card2">
+                                    <div className="pricing_card card pricing_card2"
+                                        data-aos="fade-up" data-aos-offset="200"
+                                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="card-header">
                                             Medium
                                         </div>
@@ -199,7 +208,9 @@ const LandingPage = () => {
                                         </div>
                                     </div>
 
-                                    <div className="pricing_card card pricing_card3">
+                                    <div className="pricing_card card pricing_card3"
+                                        data-aos="fade-left" data-aos-offset="200"
+                                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="card-header">
                                             Primium
                                         </div>

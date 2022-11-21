@@ -3,8 +3,10 @@ import Sidebar from '../../../Sidebar/Sidebar';
 import { ActiveDeviceService, Activedevicetask, Activedevice, Adddevicetaskby } from '../../../../api/index'
 import Select from 'react-select';
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 function AddDeviceServiceTask() {
+    const [loading, setLoading] = useState(false)
 
     const [activeservice, setActiveService] = useState([])
     const [activedevicetask, setActiveDeviceTask] = useState([]);
@@ -19,6 +21,8 @@ function AddDeviceServiceTask() {
             setActiveService(result)
             const task = await Activedevicetask()
             setActiveDeviceTask(task)
+            setLoading(true)
+
         }
         fetch()
 
@@ -28,7 +32,7 @@ function AddDeviceServiceTask() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        document.getElementById('subnitbtn').disabled = true;
+        setLoading(false)
 
         const devicename = document.getElementById('devicename').value;
         const services = document.getElementById('services').value;
@@ -38,7 +42,8 @@ function AddDeviceServiceTask() {
 
         if (!devicename || !services || !task.length || !completion_date) {
             alert("Please enter Mandatory field")
-            document.getElementById('subnitbtn').disabled = false;
+            setLoading(true)
+
 
         }
         else {
@@ -46,6 +51,7 @@ function AddDeviceServiceTask() {
             task.map((e) => {
                 const taskes = e.value
                 const result = Adddevicetaskby(devicename, services, taskes, completion_date, remark, username)
+                console.log(result)
                 arrresult.push(result);
             })
 
@@ -55,7 +61,8 @@ function AddDeviceServiceTask() {
             }
             else {
                 alert('Server not response')
-                document.getElementById('subnitbtn').disabled = false;
+                setLoading(true)
+
 
             }
 
@@ -73,71 +80,82 @@ function AddDeviceServiceTask() {
 
     return (
         <>
-            <Sidebar>
-                <div className='main_container' >
-                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{ color: "rgb(123,108,200)" }}>Device Task</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device Task</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalDeviceServiceTask' }} >Back <MdOutlineArrowForward /></button>
-                    </div>
-                    <div className="card card-div">
+            {
+                loading ?
+                    <Sidebar>
+                        <div className='main_container' >
+                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                                <h2><span style={{ color: "rgb(123,108,200)" }}>Device Task</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device Task</span> </h2>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalDeviceServiceTask' }} >Back <MdOutlineArrowForward /></button>
+                            </div>
+                            <div className="contract-div" style={{ width: "90%" }}>
+                                <div className="card inner-card">
+                                    <header className="card-header" >
+                                        <h5 >Add Device Task</h5>
+                                    </header>
+                                    <article className="card-body" >
+                                        <form className='px-3' autoComplete='off'>
+                                            <div className="row">
+                                                <div className="form-group col-md-6">
+                                                    <label htmlFor='devicename'>Device Name <span className='text-danger'>*</span></label>
+                                                    <select
+                                                        id="devicename"
+                                                        className="form-select">
+                                                        <option hidden value=''>Choose Device Name</option>
+                                                        {
+                                                            activedevicename.map((data, index) => (
+                                                                <option key={index} value={data.device_name}>{data.device_name}</option>
+                                                            ))
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div className="form-group col-md-6" >
+                                                    <label htmlFor='services'>Select Services <span className='text-danger'>*</span></label>
+                                                    <select
+                                                        id="services"
+                                                        className="form-select"
+                                                    >
+                                                        <option hidden value=''>Choose Service</option>
+                                                        {
+                                                            activeservice.map((data, index) => (
+                                                                <option key={index} value={data.device_services}>{data.device_services}</option>
+                                                            ))
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="row mt-3">
+                                                <div className="form-group col-md-6" >
+                                                    <label> Task<span className='text-danger'>*</span></label>
 
-                        <article className="card-body" >
-                            <form style={{ margin: "0px 20px 0px 15px" }}>
-                                <div className="form-group">
-                                    <label htmlFor='devicename'>Device Name <span style={{ color: "red" }}>*</span></label>
-                                    <select
-                                        id="devicename"
-                                        className="form-select">
-                                        <option hidden value=''>Choose Device Name</option>
-                                        {
-                                            activedevicename.map((data, index) => (
-                                                <option key={index} value={data.device_name}>{data.device_name}</option>
-                                            ))
-                                        }
-                                    </select>
+                                                    <Select
+                                                        options={options}
+                                                        isMulti={true}
+                                                        onChange={handleChange}
+                                                        defaultInputValue=''
+                                                    />
+                                                </div>
+                                                <div className="form-group col-md-6">
+                                                    <label htmlFor='completion_date'>Completion Date<span className='text-danger'>*</span></label>
+                                                    <input className="form-control" type="date" id='completion_date' />
+                                                </div>
+                                            </div>
+                                            <div className="form-group mt-3  col-md-7">
+                                                <label htmlFor='remark'>Remarks</label>
+                                                <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
+                                            </div>
+                                            <div className="form-group mt-3 " >
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleadddevice}>Submit</button>&nbsp;&nbsp;
+                                                <button type="reset" className="btn btn-secondary ">Reset</button>
+                                            </div>
+                                        </form>
+                                    </article>
                                 </div>
-                                <div className="form-group mt-2" >
-                                    <label htmlFor='services'>Select Services <span style={{ color: "red" }}>*</span></label>
-                                    <select
-                                        id="services"
-                                        className="form-select"
-                                    >
-                                        <option hidden value=''>Choose Service</option>
-                                        {
-                                            activeservice.map((data, index) => (
-                                                <option key={index} value={data.device_services}>{data.device_services}</option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
-                                <div className="form-group mt-2" >
-                                    <label> Task<span style={{ color: "red" }}>*</span></label>
-
-                                    <Select
-                                        options={options}
-                                        isMulti={true}
-                                        onChange={handleChange}
-                                        defaultInputValue=''
-                                    />
-                                </div>
-                                <div className="form-group mt-2">
-                                    <label htmlFor='completion_date'>Completion Date<span style={{ color: "red" }}>*</span></label>
-                                    <input className="form-control" type="date" id='completion_date' />
-                                </div>
-
-                                <div className="form-group mt-2">
-                                    <label htmlFor='remark'>Remarks</label>
-                                    <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
-                                </div>
-                                <div className="form-group mt-3" >
-                                    <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleadddevice}>Submit</button>&nbsp;
-                                    <button type="reset" className="btn btn-secondary ">Reset</button>
-                                </div>
-                            </form>
-                        </article>
-                    </div>
-                </div>
-            </Sidebar>
+                            </div>
+                        </div>
+                    </Sidebar>
+                    : <LoadingPage />
+            }
         </>
     )
 }

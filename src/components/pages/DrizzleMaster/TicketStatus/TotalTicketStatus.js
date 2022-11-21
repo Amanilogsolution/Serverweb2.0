@@ -5,8 +5,8 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { TotalTicketstatusapi, UpdateTicketstatusActive } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
-
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 const customStyles = {
     title: {
@@ -80,11 +80,13 @@ const columns = [
 
 function TotalTicketStatus() {
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const fetchdata = async () => {
             const result = await TotalTicketstatusapi();
             setData(result)
+            setLoading(true)
         }
         fetchdata();
     }, [])
@@ -96,6 +98,8 @@ function TotalTicketStatus() {
 
     return (
         <>
+        {
+                loading ?
             <Sidebar>
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
@@ -118,6 +122,8 @@ function TotalTicketStatus() {
                     </div>
                 </div>
             </Sidebar>
+            : <LoadingPage />
+            }
         </>
     )
 }

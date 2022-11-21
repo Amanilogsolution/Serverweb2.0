@@ -5,6 +5,7 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { TotalAssetTypeapi, DeleteAssetTypeapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
+import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
@@ -40,6 +41,8 @@ const customStyles = {
 
 function TotalAssetType() {
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+
     const columns = [
         {
             name: 'Asset Type Id',
@@ -65,9 +68,7 @@ function TotalAssetType() {
             cell: (row) => [
                 <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
                     const status = e.target.value;
-                    console.log(status)
                     const result = await DeleteAssetTypeapi(status, row.sno)
-                    console.log(result)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -93,8 +94,9 @@ function TotalAssetType() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalAssetTypeapi();
-            console.log(tabledata)
             setData(tabledata)
+            setLoading(true)
+
         }
         fetchdata();
     }, [])
@@ -106,6 +108,8 @@ function TotalAssetType() {
 
     return (
         <>
+         {
+                loading ?
             <Sidebar>
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
@@ -128,6 +132,8 @@ function TotalAssetType() {
                     </div>
                 </div>
             </Sidebar>
+            : <LoadingPage />
+            }
         </>
     )
 }

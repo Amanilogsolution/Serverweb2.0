@@ -5,6 +5,7 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { TotalLocation, UpdateLocationStatus } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
+import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
@@ -44,24 +45,18 @@ const columns = [
         sortable: true,
     },
     {
-        name: 'Location Address Line1',
-        selector: row => row.location_address_line1,
-        sortable: true,
-    },
-
-    {
         name: 'Location Name',
         selector: row => row.location_name,
         sortable: true,
     },
     {
-        name: 'location_id',
-        selector: row => row.location_id,
+        name: 'location_state',
+        selector: row => row.location_state,
         sortable: true,
     },
     {
-        name: 'location_state',
-        selector: row => row.location_state,
+        name: 'Location PinCode',
+        selector: row => row.location_pin_code,
         sortable: true,
     },
     {
@@ -94,7 +89,7 @@ const columns = [
         sortable: false,
         selector: row => row.null,
         cell: (row) => [
-            <a title='Edit Series' href="/EditLocation">
+            <a title='Edit Location' href="/EditLocation">
                 <p onClick={() => sessionStorage.setItem('locationsno', `${row.sno}`)} >
                     <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                 </p></a>
@@ -105,12 +100,13 @@ const columns = [
 
 function TotalLocations() {
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalLocation();
-            console.log(tabledata)
             setData(tabledata)
+            setLoading(true)
         }
         fetchdata();
     }, [])
@@ -122,28 +118,34 @@ function TotalLocations() {
 
     return (
         <>
-            <Sidebar>
-                <div className='main_container' >
-                    <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
-                        <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Locations</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Locations</span> </h2>
-                            <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddLocation' }} >Add Location <b><MdAdd /></b></button>
+            {
+                loading ?
+                    <Sidebar>
+
+                        <div className='main_container' >
+                            <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
+                                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
+                                    <h2><span style={{ color: "rgb(123,108,200)" }}>Locations</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Locations</span> </h2>
+                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddLocation' }} >Add Location <b><MdAdd /></b></button>
+                                </div>
+                                <div >
+                                    <DataTableExtensions {...tableData}  >
+                                        <DataTable
+                                            noHeader
+                                            defaultSortField="id"
+                                            defaultSortAsc={false}
+                                            pagination
+                                            highlightOnHover
+                                            customStyles={customStyles}
+                                        />
+                                    </DataTableExtensions>
+                                </div>
+                            </div>
                         </div>
-                        <div >
-                            <DataTableExtensions {...tableData}  >
-                                <DataTable
-                                    noHeader
-                                    defaultSortField="id"
-                                    defaultSortAsc={false}
-                                    pagination
-                                    highlightOnHover
-                                    customStyles={customStyles}
-                                />
-                            </DataTableExtensions>
-                        </div>
-                    </div>
-                </div>
-            </Sidebar>
+
+                    </Sidebar>
+                    : <LoadingPage />
+            }
         </>
     )
 }

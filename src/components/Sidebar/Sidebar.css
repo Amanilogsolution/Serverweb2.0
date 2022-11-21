@@ -61,7 +61,7 @@
     max-height: 100vh;
     position: fixed;
     transition: all 0.5s;
-    width: 240px;
+    width: 244px;
     box-shadow: 2px 0px 10px gray;
     border-radius: 0px 10px 10px 0px;
     z-index: 10000;
@@ -106,7 +106,7 @@
 .mainopen {
     width: 95%;
     height: 100%;
-    margin-left: 240px;
+    margin-left: 245px;
     /* margin-bottom: 10px; */
     padding: 5px 0px 0px 10px;
     transition: all 0.5s;

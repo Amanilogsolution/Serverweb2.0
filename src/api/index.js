@@ -274,8 +274,6 @@ export const GetDevicetaskfrequency = async (task) => {
     return axios.post(url, { task }).then(response => response.data).catch(error => console.log(error));
 }
 
-
-
 export const Adddevice = async (device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/adddevice`
     return axios.post(url, { device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username }).then(response => response.data).catch(error => console.log(error));
@@ -337,6 +335,7 @@ export const Getdevicetaskbyname = async (name) => {
 }
 
 export const Adddevicetaskby = async (devicename, services, task, completion_date, remark, username) => {
+    console.log(devicename, services, task, completion_date, remark, username)
     const url = `https://drizzlebackend.awlworldwide.com/api/adddevicetaskes`
     return axios.post(url, { devicename, services, task, completion_date, remark, username }).then(response => response.data).catch(error => console.log(error));
 }
@@ -367,7 +366,6 @@ export const TotalOrganization = async () => {
     const url = `hhttps://drizzlebackend.awlworldwide.com/api/totalorganization`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
-
 
 //Employee
 
@@ -587,8 +585,6 @@ export const ActiveVendorCategory = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getallvendorcategory`
     return axios.post(url, {}).then(response => response.data).catch(error => console.log(error));
 }
-
-
 
 //  Location Master
 

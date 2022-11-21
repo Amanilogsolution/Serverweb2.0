@@ -1,16 +1,16 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React from 'react';
+import React, { useState } from 'react';
 import { AddAssetTypeapi } from '../../../../api'
-// import './Addemployee.css'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import LoadingPage from '../../../LoadingPage/LoadingPage';
 
 
 function AddAssetType() {
+    const [loading, setLoading] = useState(true)
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-
-        document.getElementById('subnitbtn').disabled = true;
+        setLoading(false)
         const asset_type = document.getElementById('asset_type').value;
         const assettype_id = asset_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const asset_type_desc = document.getElementById('asset_type_desc').value;
@@ -18,8 +18,8 @@ function AddAssetType() {
         const username = sessionStorage.getItem('UserId');
 
         if (!asset_type) {
-            alert("All field are mandatory...")
-            document.getElementById('subnitbtn').disabled = false;
+            alert("Please fill the  mandatory Fields...")
+            setLoading(true)
         }
         else {
             const result = await AddAssetTypeapi(assettype_id, asset_type, asset_type_desc, username);
@@ -29,51 +29,45 @@ function AddAssetType() {
             }
             else {
                 alert("Server Error");
-                document.getElementById('subnitbtn').disabled = false;
+                setLoading(true)
             }
         }
 
     }
     return (
         <>
-            <Sidebar >
-                <div className='main_container pb-2' >
-                    <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                        <h2><span style={{ color: "rgb(123,108,200)" }}>Asset Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Asset Type</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssetType' }} >Back <MdOutlineArrowForward /></button>
-                    </div>
-                    <div className="card card-div" style={{ width: "50%" }}>
-                        <article className="card-body" >
-                            <form className='px-3' autoComplete='off'>
-                                <div className="row">
-                                    {/* <div className="col-md-6">
-                                            <label htmlFor='typeid'>Asset Type ID </label>
-                                            <input type="text" className="form-control" id='assettype_id' />
-                                        </div> */}
-                                    <div className="col" >
-                                        <label htmlFor='seriesid'>Asset Type </label>
-                                        <input type="text" className="form-control" id='asset_type' />
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md" >
-                                        <label htmlFor='taskid'>Description</label>
-                                        <textarea type="email" className="form-control" id='asset_type_desc' />
-                                    </div>
+            {
+                loading ?
+                    <Sidebar >
+                        <div className='main_container pb-2' >
+                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                                <h2><span style={{ color: "rgb(123,108,200)" }}>Asset Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Asset Type</span> </h2>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssetType' }} >Back <MdOutlineArrowForward /></button>
+                            </div>
+                            <div className="card card-div" style={{ width: "50%" }}>
+                                <article className="card-body" >
+                                    <form className='px-3' autoComplete='off'>
 
-                                </div>
+                                        <div className="col" >
+                                            <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
+                                            <input type="text" className="form-control" id='asset_type' />
+                                        </div>
+                                        <div className="col-md mt-3" >
+                                            <label htmlFor='asset_type_desc'>Remarks</label>
+                                            <textarea className="form-control" id='asset_type_desc' rows='3'/>
+                                        </div>
 
-
-
-                                <div className="form-group" >
-                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleaddinsert}>Submit</button>
-                                    <button type="reset" className="btn btn-secondary ml-2 mb-4 mt-3" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
-                                </div>
-                            </form>
-                        </article>
-                    </div>
-                </div>
-            </Sidebar>
+                                        <div className="form-group mt-3" >
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Asset Type</button>
+                                            <button type="reset" className="btn btn-secondary" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                        </div>
+                                    </form>
+                                </article>
+                            </div>
+                        </div>
+                    </Sidebar>
+                    : <LoadingPage />
+            }
         </>
     )
 }

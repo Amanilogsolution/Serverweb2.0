@@ -129,10 +129,22 @@ import AddVendorCode from './components/pages/DrizzleMain/VendorCode/AddVendorCo
 import TotalVendorContract from './components/pages/DrizzleMain/VendorContract/TotalVendorContract';
 import EditVendorContract from './components/pages/DrizzleMain/VendorContract/EditVendorContract';
 import AddVendorContract from './components/pages/DrizzleMain/VendorContract/AddVendorContract';
+
 import AddTicket from './components/pages/HelpDesk/Tickets/AddTicket';
 
-import PageNotFound from './components/404/404';
 
+import TotalVendorInvoice from './components/pages/Transaction/VendorInvoice/TotalVendorInvoice';
+import AddVendorInvoice from './components/pages/Transaction/VendorInvoice/AddVendorInvoice';
+
+import TotalVendorPayment from './components/pages/Transaction/VendorPayment/TotalVendorPayment';
+import AddVendorPayment from './components/pages/Transaction/VendorPayment/AddVendorPayment';
+
+
+import TotalNewAssets from './components/pages/HelpDesk/NewAssets/TotalNewAssets';
+import AddNewAssets from './components/pages/HelpDesk/NewAssets/AddNewAssets';
+
+
+import PageNotFound from './components/404/404';
 const App = () => {
   return (
     <BrowserRouter>
@@ -263,6 +275,20 @@ const App = () => {
           <Route path="/AddVendorContract" element={<AddVendorContract />} />
 
           <Route path="/AddTickets" element={<AddTicket />} />
+
+
+
+          <Route path="/TotalVendorInvoice" element={<TotalVendorInvoice />} />
+          <Route path="/AddVendorInvoice" element={<AddVendorInvoice />} />
+          
+
+          <Route path="/TotalVendorPayment" element={<TotalVendorPayment/>} />
+          <Route path="/AddVendorPayment" element={<AddVendorPayment/>} />
+
+          <Route path="/TotalNewAssets" element={<TotalNewAssets/>} />
+          <Route path="/AddNewAssets" element={<AddNewAssets/>} />
+          
+          
         </Route>
 
         <Route path="/*" element={<PageNotFound />} />
