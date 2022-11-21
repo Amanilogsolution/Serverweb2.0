@@ -379,9 +379,8 @@
     margin: 70px;
 }
 
-
-.photos_content1 .img_div3 {
-    width: 1290px;
+.photos_content1 .img_div3{
+    width:1290px;
     height: 320px;
     background: url('https://images.unsplash.com/photo-1581091870598-36ce9bad5c77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
     background-size: 100% 100%;

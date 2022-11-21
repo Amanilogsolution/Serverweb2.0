@@ -153,6 +153,13 @@ import TotalTicket from './components/pages/HelpDesk/Tickets/TotalTicket';
 
 import PageNotFound from './components/404/404';
 import HelpDeskSideBar from './components/HelpDeskUi/HelpDeskSideBar';
+import HelpLocation from './components/HelpDeskUi/HelpLocation';
+import HelpEmployee from './components/HelpDeskUi/HelpEmployee';
+import HelpSoftware from './components/HelpDeskUi/HelpSoftware';
+import HelpVendorCode from './components/HelpDeskUi/HelpVendorCode';
+import HelpVendorContract from './components/HelpDeskUi/HelpVendorContract';
+import HelpInvoice from './components/HelpDeskUi/HelpInvoice';
+import HelpVendorPayment from './components/HelpDeskUi/HelpVendorPayment';
 
 const App = () => {
   return (
@@ -300,7 +307,13 @@ const App = () => {
           <Route path="/TotalTicket" element={<TotalTicket/>} />
           <Route path="/AddTickets" element={<AddTicket />} />
 
-          <Route path="/HelpLocation" element={<HelpDeskSideBar/>} />
+          <Route path="/HelpLocation" element={<HelpLocation/>} />
+          <Route path="/HelpEmployee" element={<HelpEmployee/>} />
+          <Route path="/HelpSoftware" element={<HelpSoftware/>} />
+          <Route path="/HelpVendorCode" element={<HelpVendorCode/>} />
+          <Route path="/HelpVendorContract" element={<HelpVendorContract/>} />
+          <Route path="/HelpInvoice" element={<HelpInvoice/>} />
+          <Route path="/HelpVendorPayment" element={<HelpVendorPayment/>} />
 
            
         </Route>
