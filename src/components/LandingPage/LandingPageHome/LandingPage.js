@@ -1,7 +1,8 @@
 import LandingFooter from './LandingFooter'
 import LandingHeader from './LandingHeader';
 import './landing.css'
-import { MdOutlinePrivacyTip, MdOutlineManageAccounts, MdAccountTree, MdOutlinePlaylistAddCheck, MdArrowUpward } from 'react-icons/md'
+import { MdOutlinePrivacyTip, MdOutlineManageAccounts, MdOutlineDevicesOther, MdOutlinePlaylistAddCheck, MdArrowUpward } from 'react-icons/md'
+import { ImHappy } from 'react-icons/im'
 
 import Landingimg from '../../../image/landingimg.svg'
 import Services from '../../../image/services.svg'
@@ -106,8 +107,10 @@ const LandingPage = () => {
 
                     <section className='photos_content'>
                         <div className='photos_content1'>
-                        <div className='img_div3'></div>
-                            <div className='content_'>
+                        <div className='img_div3' data-aos="fade-right" data-aos-offset="200"
+                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true"></div>
+                            <div className='content_' data-aos="fade-left" data-aos-offset="200"
+                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                 <h1>Improve utilization, eliminate waste</h1>
                                 <p>Drizzle saves money by helping avoid unnecessary purchases and cutting licensing and support costs. Increased control enforces compliance to reduce risks.</p>
                                 <button className='btn btn-voilet'>Get Details</button>
@@ -126,7 +129,7 @@ const LandingPage = () => {
                                 <div className='parent_choose_div m-auto pt-3'>
                                     <div className="chid_choose_div chid_choose_div1  pt-1">
                                         <div className='choose_icon'>
-                                            <div className="choose_inner_icon mt-1"><MdOutlineManageAccounts className='icons' /></div>
+                                            <div className="choose_inner_icon mt-1"><MdOutlineDevicesOther className='icons' /></div>
                                         </div>
                                         <div className='choose_content'>
                                             <p>Managing 500,000+ devices</p>
@@ -134,7 +137,7 @@ const LandingPage = () => {
                                     </div>
                                     <div className="chid_choose_div chid_choose_div2  pt-1">
                                         <div className='choose_icon '>
-                                            <div className="choose_inner_icon mt-1"><MdAccountTree className='icons' /></div>
+                                            <div className="choose_inner_icon mt-1"><ImHappy className='icons' /></div>
                                         </div>
                                         <div className='choose_content'>
                                             <p>3000+ happy customers</p>
@@ -148,7 +151,7 @@ const LandingPage = () => {
                                             <p>Manage and Track IT Asset</p>
                                         </div>
                                     </div>
-                                    <div className="chid_choose_div chid_choose_div4   pt-1">
+                                    <div className="chid_choose_div chid_choose_div4 ">
                                         <div className='choose_icon '>
                                             <div className="choose_inner_icon mt-1"><MdOutlineManageAccounts className='icons' /></div>
                                         </div>
@@ -156,7 +159,7 @@ const LandingPage = () => {
                                             <p>Manage vendor contracts</p>
                                         </div>
                                     </div>
-                                    <div className="chid_choose_div chid_choose_div5   pt-1">
+                                    <div className="chid_choose_div chid_choose_div5  ">
                                         <div className='choose_icon '>
                                             <div className="choose_inner_icon mt-1"><MdOutlineManageAccounts className='icons' /></div>
                                         </div>
@@ -164,7 +167,7 @@ const LandingPage = () => {
                                             <p>Software License Management</p>
                                         </div>
                                     </div>
-                                    <div className="chid_choose_div chid_choose_div6   pt-1">
+                                    <div className="chid_choose_div chid_choose_div6">
                                         <div className='choose_icon '>
                                             <div className="choose_inner_icon mt-1  "><MdOutlinePrivacyTip className='icons' /></div>
                                         </div>
@@ -234,7 +237,7 @@ const LandingPage = () => {
                                     </div>
 
                                     <div className="pricing_card card pricing_card3"
-                                        data-aos="fade-left" data-aos-offset="200"
+                                        data-aos="fade-up" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="card-header">
                                             <h5>Professional</h5>
