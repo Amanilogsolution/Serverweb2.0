@@ -31,10 +31,10 @@ const LandingPage = () => {
                                     <div className="col-lg-5" data-aos="fade-right"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="mb-5 mb-lg-1 text-center text-lg-start">
-                                            <h3 className="display-3 lh-1 mb-3">Assets management System.</h3>
-                                            <p className="lead fw-normal text-muted mb-5">Launch your mobile app landing page faster with this free, open source theme from Start Bootstrap!</p>
+                                            <h3 className="display-3 lh-1 mb-3">Uncomplicate IT Asset Management</h3>
+                                            <p className="lead fw-normal text-muted mb-5">Automate and manage accounting, deployement, and maintenance of IT Assets for you and your clients on one plateform</p>
                                             <div className="d-flex flex-column flex-lg-row align-items-center">
-                                                <button className='btn btn-voilet' onClick={() => { window.location.href = './signup' }}>Get Start</button>
+                                                <button className='btn btn-voilet' onClick={() => { window.location.href = './signup' }}>Get Started</button>
                                             </div>
                                         </div>
                                     </div>
@@ -61,10 +61,10 @@ const LandingPage = () => {
 
                     <section className='portfoliodiv'>
                         <div className="comp_name" >
-                            <div className="comp1 text-center "><h3>AWL</h3></div>
-                            <div className="comp2 text-center "><h3>ILOGSOLUTION</h3></div>
-                            <div className="comp3 text-center "><h3>Dox and Box</h3></div>
-                            <div className="comp4 text-center "><h3>ILOGSOLUTION</h3></div>
+                            <div className="comp1 text-center "><h3 style={{fontSize:"20px"}}>Modernize & Automate</h3></div>
+                            <div className="comp2 text-center "><h3 style={{fontSize:"20px"}}>Intelligent ITAM</h3></div>
+                            <div className="comp3 text-center "><h3 style={{fontSize:"20px"}} >IT Expense Management</h3></div>
+                            <div className="comp4 text-center "><h3 style={{fontSize:"20px"}}>Insights & Analysis</h3></div>
                         </div>
 
                     </section>
@@ -82,8 +82,8 @@ const LandingPage = () => {
                                     <div className="col-lg-5" data-aos="fade-right" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="mb-5 mb-lg-0 text-center text-lg-start">
-                                            <h3 className="display-5 lh-1 mb-3">About our Services</h3>
-                                            <p className="lead fw-normal text-muted mb-5">With data-driven insights from over 200 bread-making facilities, Grupo Bimbo raises quality control on a global scale.</p>
+                                            <h3 className="display-5 lh-1 mb-3">Centralize your IT Management</h3>
+                                            <p className="lead fw-normal text-muted mb-5">Increase company-wide understanding of IT’s business value, improve communications and understanding by capturing asset data in Drizzle to maximize returns and minimize risks.</p>
                                         </div>
                                     </div>
 
@@ -96,8 +96,8 @@ const LandingPage = () => {
                         <div className='photos_content1'>
                             
                             <div className='content_'>
-                                <h1>The Platform of platforms</h1>
-                                <p>Behind every great experience is a great workflow. As the foundation for all digital workflows, the Now Platform® connects people, functions, and systems across your organization.</p>
+                                <h1>Record and stay updated anywhere</h1>
+                                <p>Behind every great experience is a great process. Teams are using Drizzle to update and get data on the run, making data available to stakeholders in real-time.</p>
                                 <button className='btn btn-voilet'>Get Details</button>
                             </div>
                             <div className='img_div'></div>
@@ -105,31 +105,14 @@ const LandingPage = () => {
                     </section>
 
                     <section className='photos_content'>
-                    <div className='content_diff'>
-                                <h1>Personalize your value acceleration</h1>
-                                <p>Maximize your investment with ServiceNow Impact. Realize value faster with experts on demand, premium support, and preventive tools to guide your digital transformation.</p>
-                                <button className='btn btn-voilet'>Get Details</button>
-                            </div>
                         <div className='photos_content1'>
-                        <div className='img_div2'></div>
-                            <div className='content_' id='content_diff'>
-                                <h1>Personalize your value acceleration</h1>
-                                <p>Maximize your investment with ServiceNow Impact. Realize value faster with experts on demand, premium support, and preventive tools to guide your digital transformation.</p>
-                                <button className='btn btn-voilet'>Get Details</button>
-                            </div>
-                            
-                        </div>
-                    </section>
-
-                    <section className='photos_content'>
-                        <div className='photos_content1'>
-                            
+                        <div className='img_div3'></div>
                             <div className='content_'>
-                                <h1>Unleash the power of IT</h1>
-                                <p>Transform your business with digital IT workflows. Modernize your operations to optimize productivity, cost, and resilience with a single platform for IT.</p>
+                                <h1>Improve utilization, eliminate waste</h1>
+                                <p>Drizzle saves money by helping avoid unnecessary purchases and cutting licensing and support costs. Increased control enforces compliance to reduce risks.</p>
                                 <button className='btn btn-voilet'>Get Details</button>
                             </div>
-                            <div className='img_div3'></div>
+                            
                         </div>
                     </section>
 
@@ -139,16 +122,14 @@ const LandingPage = () => {
                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                         <header className="chooseus pt-5">
                             <div className="container px-4 pb-5">
-                                <h2 className='text-center'>Why Choose Us</h2>
-                                <p className="lead fw-normal text-muted text-center mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, molestias!</p>
+                                <h2 className='text-center'>Why Choose Drizzle</h2>
                                 <div className='parent_choose_div m-auto pt-3'>
                                     <div className="chid_choose_div chid_choose_div1  pt-1">
                                         <div className='choose_icon'>
                                             <div className="choose_inner_icon mt-1"><MdOutlineManageAccounts className='icons' /></div>
                                         </div>
                                         <div className='choose_content'>
-                                            <h5 className='choose_title mb-0'>Title</h5>
-                                            <p>Lorem ipsum dolor sit amet .</p>
+                                            <p>Managing 500,000+ devices</p>
                                         </div>
                                     </div>
                                     <div className="chid_choose_div chid_choose_div2  pt-1">
@@ -156,8 +137,7 @@ const LandingPage = () => {
                                             <div className="choose_inner_icon mt-1"><MdAccountTree className='icons' /></div>
                                         </div>
                                         <div className='choose_content'>
-                                            <h5 className='choose_title mb-0'>Title</h5>
-                                            <p>Lorem ipsum dolor sit amet .</p>
+                                            <p>3000+ happy customers</p>
                                         </div>
                                     </div>
                                     <div className="chid_choose_div chid_choose_div3   pt-1">
@@ -165,8 +145,7 @@ const LandingPage = () => {
                                             <div className="choose_inner_icon mt-1"><MdOutlinePlaylistAddCheck className='icons' /></div>
                                         </div>
                                         <div className='choose_content'>
-                                            <h5 className='choose_title mb-0'>Title</h5>
-                                            <p>Lorem ipsum dolor sit amet .</p>
+                                            <p>Manage and Track IT Asset</p>
                                         </div>
                                     </div>
                                     <div className="chid_choose_div chid_choose_div4   pt-1">
@@ -174,8 +153,7 @@ const LandingPage = () => {
                                             <div className="choose_inner_icon mt-1"><MdOutlineManageAccounts className='icons' /></div>
                                         </div>
                                         <div className='choose_content'>
-                                            <h5 className='choose_title mb-0'>Title</h5>
-                                            <p>Lorem ipsum dolor sit amet .</p>
+                                            <p>Manage vendor contracts</p>
                                         </div>
                                     </div>
                                     <div className="chid_choose_div chid_choose_div5   pt-1">
@@ -183,8 +161,7 @@ const LandingPage = () => {
                                             <div className="choose_inner_icon mt-1"><MdOutlineManageAccounts className='icons' /></div>
                                         </div>
                                         <div className='choose_content'>
-                                            <h5 className='choose_title mb-0'>Title</h5>
-                                            <p>Lorem ipsum dolor sit amet .</p>
+                                            <p>Software License Management</p>
                                         </div>
                                     </div>
                                     <div className="chid_choose_div chid_choose_div6   pt-1">
@@ -192,8 +169,7 @@ const LandingPage = () => {
                                             <div className="choose_inner_icon mt-1  "><MdOutlinePrivacyTip className='icons' /></div>
                                         </div>
                                         <div className='choose_content ml-2'>
-                                            <h5 className='choose_title mb-0'>Privacy Policy</h5>
-                                            <p>Lorem ipsum dolor sit amet .</p>
+                                            <p>Reports & Dashboard</p>
                                         </div>
                                     </div>
 
@@ -208,22 +184,25 @@ const LandingPage = () => {
                         <header className="pricinghead pt-3" >
                             <div className="container px-4 pb-5">
                                 <h2 className='text-center'>Pricing</h2>
-                                <p className="lead fw-normal text-muted text-center mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, molestias!</p>
+                                <p className="lead fw-normal text-muted text-center mb-2">One software to manage your IT. Choose from the mode that suits you best. Looking for something else? <br/> Contact our enterprise sales team.</p>
                                 <div className="pricing_cards px-2 m-auto text-center" >
                                     <div className="card pricing_card pricing_card1 "
                                         data-aos="fade-right" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
 
                                         <div className="card-header">
-                                            Regular
+                                           <h4>Free</h4> 
                                         </div>
                                         <div className='card-body'>
-                                            <h2>Free</h2>
+                                            <p>INR 0</p>
                                             <ul>
                                                 <li>1 Organisation</li>
-                                                <li>5 Location</li>
-                                                <li>10 Users</li>
-                                                <li>50 Assets</li>
+                                                <li>1 Location</li>
+                                                <li>1 Agent</li>
+                                                <li>10 Employee</li>
+                                                <li>25 Assets</li>
+                                                <li>Help Desk/100 Tickets/Months</li>
+                                                <li>8 x 5 Email Support</li>
                                             </ul>
                                         </div>
                                         <div className="card-footer">
@@ -235,15 +214,18 @@ const LandingPage = () => {
                                         data-aos="fade-up" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="card-header">
-                                            Medium
+                                            <h4>Standard</h4>
                                         </div>
                                         <div className='card-body'>
-                                            <h2>$250</h2>
+                                        <p>INR</p>
                                             <ul className=''>
                                                 <li>1 Organisation</li>
-                                                <li>5 Location</li>
-                                                <li>10 Users</li>
-                                                <li>50 Assets</li>
+                                                <li>3 Locations</li>
+                                                <li>2 Agents</li>
+                                                <li>50 Employee</li>
+                                                <li>300 Assets</li>
+                                                <li>Help Desk Unlimited Tickets</li>
+                                                <li>24 x 5 Email/Phone Support</li>
                                             </ul>
                                         </div>
                                         <div className="card-footer">
@@ -255,21 +237,50 @@ const LandingPage = () => {
                                         data-aos="fade-left" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="card-header">
-                                            Primium
+                                            <h4>Professional</h4>
                                         </div>
                                         <div className='card-body'>
-                                            <h2>$500</h2>
+                                            <p>INR</p>
                                             <ul>
-                                                <li>1 Organisation</li>
-                                                <li>5 Location</li>
-                                                <li>10 Users</li>
-                                                <li>50 Assets</li>
+                                                <li>2 Organisations</li>
+                                                <li>10 Locations</li>
+                                                <li>5 Agents</li>
+                                                <li>200 Employee</li>
+                                                <li>1000 Assets</li>
+                                                <li>Help Desk Unlimited Tickets</li>
+                                                <li>24 x 5 Email/Phone Support</li>
                                             </ul>
                                         </div>
                                         <div className="card-footer">
                                             <button className='btn btn-voilet btn-sm'>Upgrad Now</button>
                                         </div>
                                     </div>
+
+                                    <div className="pricing_card card pricing_card3"
+                                        data-aos="fade-left" data-aos-offset="200"
+                                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
+                                        <div className="card-header">
+                                            <h4>Enterprise</h4>
+                                        </div>
+                                        <div className='card-body'>
+                                            <p>Contact Sales</p>
+                                            <ul>
+                                                <li>Unlimited Organisations</li>
+                                                <li>Unlimited Locations</li>
+                                                <li>20 Agents</li>
+                                                <li>Unlimited Employee</li>
+                                                <li>Unlimited Assets</li>
+                                                <li>Help Desk Unlimited Tickets</li>
+                                                <li>Customized SLA</li>
+                                            </ul>
+                                        </div>
+                                        <div className="card-footer">
+                                            <button className='btn btn-voilet btn-sm'>Upgrad Now</button>
+                                        </div>
+                                    </div>
+
+                                    
+                                    
                                 </div>
 
                             </div>
