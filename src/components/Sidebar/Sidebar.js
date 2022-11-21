@@ -270,7 +270,12 @@ const Sidebar = ({ children }) => {
                     </div>
                     <div className="innerdiv" id="innerdrizzle" style={{ display: "none" }}>
                         <ul style={{ marginBottom: "0px" }}>
-
+                            <li title='Assets' style={{ listStyle: "none" }}>
+                                <NavLink to='/TotalNewAssets' className="link" activeclassname="sidebaractive">
+                                    <div className="icon"><FaFileContract /></div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Assets</div>
+                                </NavLink>
+                            </li>
                             <li title='Vendor Contract' style={{ listStyle: "none" }}>
                                 <NavLink to='/TotalVendorContract' className="link" activeclassname="sidebaractive">
                                     <div className="icon"><FaFileContract /></div>
@@ -278,12 +283,7 @@ const Sidebar = ({ children }) => {
                                 </NavLink>
                             </li>
 
-                            <li title='Assets' style={{ listStyle: "none" }}>
-                                <NavLink to='/TotalNewAssets' className="link" activeclassname="sidebaractive">
-                                    <div className="icon"><FaFileContract /></div>
-                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Assets</div>
-                                </NavLink>
-                            </li>
+
                             <li onClick={handleinner2toggledrizzle} style={{ listStyle: "none" }}>
                                 <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
                                     <div className="icon" onClick={toggle}><FaUserAlt /></div>

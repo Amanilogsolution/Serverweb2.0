@@ -453,7 +453,7 @@ const EditAsset = () => {
                                                             </div>
                                                             <div className="col-md-4">
                                                                 <label htmlFor='latestinventory'>Latest Inventory <span className='text-danger'>*</span></label>
-                                                                <input type="text" id='latestinventory' className="form-control" defaultValue={data.latest_inventory} required />
+                                                                <input type="date" id='latestinventory' className="form-control" defaultValue={data.latest_inventory} required />
                                                             </div>
                                                         </div>
                                                         <div className="row mt-3">
