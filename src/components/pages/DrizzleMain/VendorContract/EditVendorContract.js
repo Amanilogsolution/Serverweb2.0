@@ -291,7 +291,12 @@ function EditVendorCode() {
                                                 <div className="row mt-2">
                                                     <div className="col-md-4" >
                                                         <label htmlFor='invoice_generation_date'>Invoice Generation Date <span className='text-danger'>*</span></label>
-                                                        <input type="date" className="form-control" id='invoice_generation_date' required defaultValue={data.invoice_generation_date} />
+                                                        <input type="number" className="form-control" id='invoice_generation_date' required value={data.invoice_generation_date} 
+                                                               onChange={(e) => {
+                                                            if (e.target.value > 31) return false;
+                                                            setData({...data,invoice_generation_date:e.target.value})
+                                                        }}
+                                                        />
                                                     </div>
                                                     <div className="col-md-4" >
                                                         <label htmlFor='billing_freq'>Billing Frequency <span className='text-danger'>*</span></label>

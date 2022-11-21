@@ -63,7 +63,7 @@ function AddVendorCode() {
 
         const user_id = sessionStorage.getItem('UserId');
 
-        if (!vendor_code || !vendor_name || !comp_addr1 || !comp_phone || !company_country_id || !comp_city || !comp_state_id || !comp_pincode
+        if (!vendor_code || !vendor_name || !comp_phone || !company_country_id || !comp_city || !comp_state_id 
             || !comp_email || !contact_person || !contact_no || !contact_email) {
             alert("Please enter Mandatory field")
             setLoading(true)
@@ -117,12 +117,10 @@ function AddVendorCode() {
 
     const handleGetState = async (e) => {
         const result = await TotalState(e.target.value)
-        console.log(result)
         setStatelist(result)
     }
     const handleGetCity = async (e) => {
         const result = await TotalCity(e.target.value)
-        console.log(result)
         setCitylist(result)
 
     }
@@ -135,12 +133,12 @@ function AddVendorCode() {
                     <Sidebar >
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Code</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Code</span> </h2>
+                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Code</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Master</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorCode' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
                                 <div className="card inner-card">
-                                    <header className="card-header" >Add Vendor Code</header>
+                                    <header className="card-header" >Add Vendor Master</header>
                                     <article className="card-body" >
                                         <form className='px-3' autoComplete='off'>
                                             <ul>
@@ -237,7 +235,7 @@ function AddVendorCode() {
 
                                                         <div className="row mt-2">
                                                             <div className="col-md-4">
-                                                                <label htmlFor='comp_pincode'> Pincode <span className='text-danger'>*</span></label>
+                                                                <label htmlFor='comp_pincode'> Pincode </label>
                                                                 <input type="number" className="form-control" id='comp_pincode' required value={pincodecount}
                                                                     onChange={(e) => { if (e.target.value.length === 7) return false; else { setPincodecount(e.target.value) } }} />
                                                             </div>
@@ -249,7 +247,7 @@ function AddVendorCode() {
 
                                                         <div className='row mt-2'>
                                                             <div className="col ">
-                                                                <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
+                                                                <label htmlFor='comp_addr1'>Company Address Line 1 </label>
                                                                 <input type="text" className="form-control" id='comp_addr1' required />
                                                             </div>
 
@@ -295,7 +293,7 @@ function AddVendorCode() {
                                                 </li>
                                             </ul>
                                             <div className="form-group mt-3" >
-                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Vendor Code </button>
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Vendor Master </button>
                                                 <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
                                             </div>
                                         </form>

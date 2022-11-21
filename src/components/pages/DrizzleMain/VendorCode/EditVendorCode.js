@@ -74,7 +74,7 @@ function EditVendorCode() {
         const sno = sessionStorage.getItem('VendorCodeSno')
 
 
-        if (!vendor_code || !vendor_name || !comp_addr1 || !comp_phone || !comp_country_id || !comp_city || !comp_state_id || !comp_pincode
+        if (!vendor_code || !vendor_name  || !comp_phone || !comp_country_id || !comp_city || !comp_state_id
             || !comp_email || !contact_person || !contact_no || !contact_email) {
             alert("Please enter Mandatory field")
             setLoading(true)
@@ -171,7 +171,7 @@ function EditVendorCode() {
                     <Sidebar >
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Code</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Code</span> </h2>
+                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Master</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Master</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('VendorCodeSno'); window.location.href = '/TotalVendorCode' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
@@ -184,7 +184,7 @@ function EditVendorCode() {
                                             <ul>
 
                                                 {/* #################### Device Detail  Box Start #####################*/}
-                                                <li>
+                                                <li style={{listStyle:"none"}}>
                                                     <div>
                                                         <span style={{ display: "flex", cursor: "pointer" }} onClick={handleToggleVendorDetail}>
                                                             <div className="link_text " >
@@ -272,7 +272,7 @@ function EditVendorCode() {
 
                                                         <div className="row mt-2">
                                                             <div className="col-md-4">
-                                                                <label htmlFor='comp_pincode'> Pincode <span className='text-danger'>*</span></label>
+                                                                <label htmlFor='comp_pincode'> Pincode </label>
                                                                 <input type="number" className="form-control" id='comp_pincode' value={data.company_pin_code} onChange={handleChangepinCode} />
                                                             </div>
                                                             <div className=" col-md-2 d-flex align-items-center" >
@@ -283,7 +283,7 @@ function EditVendorCode() {
 
                                                         <div className='row mt-2'>
                                                             <div className="col ">
-                                                                <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
+                                                                <label htmlFor='comp_addr1'>Company Address Line 1 </label>
                                                                 <input type="text" className="form-control" id='comp_addr1' defaultValue={data.company_address_line1} required />
                                                             </div>
 
@@ -297,7 +297,7 @@ function EditVendorCode() {
                                                     </div>
                                                 </li>
 
-                                                <li>
+                                                <li style={{listStyle:"none"}}>
                                                     <div>
                                                         <span style={{ display: "flex", cursor: "pointer" }} onClick={handleTogglePersonDetail}>
                                                             <div className="link_text mt-2" >
@@ -327,7 +327,7 @@ function EditVendorCode() {
                                                 </li>
                                             </ul>
                                             <div className="form-group mt-3" >
-                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Edit Vendor Code </button>
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Edit Vendor Master </button>
                                                 <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
                                             </div>
                                         </form>

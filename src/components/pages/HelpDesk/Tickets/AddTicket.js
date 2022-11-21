@@ -149,12 +149,15 @@ export default function AddTicket() {
                                                         <option value='' hidden>Select...</option>
 
                                                         {
-                                                            assettypelist.length ?
                                                                 assettypelist.map((item, index) => (
                                                                     <option key={index} value={item.serial_no}>{`${item.asset_type}, (${item.serial_no})`}</option>
-                                                                ))
-                                                                : <option value=''>Please Assign the asset to this Employee</option>
+
+                                                                )
+                                                        )
+                                                                
                                                         }
+                                                        <option value='Other' >Other</option>
+
                                                     </select>
                                                 </div>
                                                 <div className="col-md-4">
