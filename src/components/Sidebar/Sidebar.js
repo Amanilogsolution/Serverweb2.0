@@ -141,8 +141,10 @@ const Sidebar = ({ children }) => {
 
     return (
         <div className="sidebarcontainer">
-            <div className={isOpen ? 'sidebaropen' : 'sidebar'} onMouseEnter={() => setIsOpen(true)}
-                onMouseLeave={toggle}
+            <div className={isOpen ? 'sidebaropen' : 'sidebar'}
+            // onClick={toggle}
+            //  onMouseEnter={() => setIsOpen(true)}
+            //     onMouseLeave={toggle}
             >
                 <div className="top_section">
                     <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} />
@@ -402,7 +404,7 @@ const Sidebar = ({ children }) => {
                                     <li className='innerlink' style={{ borderBottom: "2px solid black" }}>
                                         <NavLink to='/TotalVendorCode' className='navlink d-flex' activeclassname="sidebaractive">
                                             <BsJournalCode style={{ fill: "#a12e7a" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Vendor Code</div>
+                                            <div style={{ display: isOpen ? "block" : "none" }} >Vendor Master</div>
                                         </NavLink>
                                     </li>
 

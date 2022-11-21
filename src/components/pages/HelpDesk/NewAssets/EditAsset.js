@@ -270,7 +270,7 @@ const EditAsset = () => {
                                             <ul>
 
                                                 {/* #################### Device Detail  Box Start #####################*/}
-                                                <li>
+                                                <li style={{listStyle:"none"}}>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <span style={{ display: "flex" }} >
                                                             <div className="link_text " onClick={handleClickDeviceDetail}>
@@ -372,7 +372,7 @@ const EditAsset = () => {
                                                 {/* #################### Device Detail  Box End #####################*/}
 
                                                 {/* #################### Purchases Detail  Box Start ############### */}
-                                                <li className='mt-3'>
+                                                <li className='mt-3' style={{listStyle:"none"}}>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <div className="icon" ></div>
                                                         <span style={{ display: "flex" }} >
@@ -429,7 +429,7 @@ const EditAsset = () => {
                                                 {/* #################### Purchases Detail  Box End ############### */}
                                                 {/* #################### Other Detail  Box Start ############### */}
 
-                                                <li className='mt-3'>
+                                                <li className='mt-3' style={{listStyle:"none"}}>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <div className="icon" ></div>
                                                         <span style={{ display: "flex" }} >

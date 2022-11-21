@@ -9,6 +9,7 @@ function AddVendorContract() {
     const [loading, setLoading] = useState(false)
 
     const [todatdate, setTodaydate] = useState('')
+    const [invoicedate, setInvoicedate] = useState('')
     const [refferenceno, setRefferenceno] = useState(false)
     const [locationlist, setLocationlist] = useState([])
     const [contractlist, setContractlist] = useState([])
@@ -307,7 +308,11 @@ function AddVendorContract() {
                                                 <div className="row mt-2">
                                                     <div className="col-md-4" >
                                                         <label htmlFor='invoice_generation_date'>Invoice Generation Date <span className='text-danger'>*</span></label>
-                                                        <input type="date" className="form-control" id='invoice_generation_date' defaultValue={todatdate} required />
+                                                        <input type="number" className="form-control" id='invoice_generation_date' value={invoicedate} required 
+                                                        onChange={(e) => {
+                                                            if (e.target.value > 31) return false;
+                                                            setInvoicedate(e.target.value)
+                                                        }} />
                                                     </div>
                                                     <div className="col-md-4" >
                                                         <label htmlFor='billing_freq'>Billing Frequency <span className='text-danger'>*</span></label>
@@ -327,7 +332,7 @@ function AddVendorContract() {
                                                     <input type="text" className="form-control" id='link_id_no' required />
                                                 </div>
                                             </div>
-                                            
+
                                             <div className="form-group mt-3" >
                                                 <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleaddinsert}>Add Contract</button>&nbsp; &nbsp;
                                                 <button type="reset" className="btn btn-secondary ">Reset</button>
