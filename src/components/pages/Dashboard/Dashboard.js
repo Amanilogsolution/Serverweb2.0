@@ -7,7 +7,7 @@ import {
   // UploadCountry
   // UploadCity
 } from '../../../api'
-import data from '../../Citylist';
+// import data from '../../Citylist';
 
 
 const Dashboard = () => {

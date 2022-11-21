@@ -146,8 +146,7 @@ const Sidebar = ({ children }) => {
     return (
         <div className="sidebarcontainer">
             <div className={isOpen ? 'sidebaropen' : 'sidebar'} onMouseEnter={() => setIsOpen(true)}
-                // onMouseLeave={toggle}
-                >
+                onMouseLeave={toggle}>
                 <div className="top_section">
                     <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} />
                     <div style={isOpen ? icononstyle : iconoffstyle} className="bars">
