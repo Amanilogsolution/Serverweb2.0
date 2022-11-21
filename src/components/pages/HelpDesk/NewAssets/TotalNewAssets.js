@@ -60,23 +60,23 @@ const columns = [
         sortable: true,
     },
   
-    {
-        name: 'Status',
-        sortable: true,
-        cell: (row) => [
-            <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} 
-            onChange={async (e) => {
-                const status = e.target.value;
-                await DeleteNewAssets(status, row.sno)
-                window.location.reload()
-            }}
-            >
-                <option hidden value={row.status}>{row.status}</option>
-                <option value='Active'>Active</option>
-                <option value='Deactive'>Deactive</option>
-            </select>
-        ],
-    },
+    // {
+    //     name: 'Status',
+    //     sortable: true,
+    //     cell: (row) => [
+    //         <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} 
+    //         onChange={async (e) => {
+    //             const status = e.target.value;
+    //             await DeleteNewAssets(status, row.sno)
+    //             window.location.reload()
+    //         }}
+    //         >
+    //             <option hidden value={row.status}>{row.status}</option>
+    //             <option value='Active'>Active</option>
+    //             <option value='Deactive'>Deactive</option>
+    //         </select>
+    //     ],
+    // },
     {
         name: "Actions",
         sortable: false,

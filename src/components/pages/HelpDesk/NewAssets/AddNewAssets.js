@@ -135,6 +135,8 @@ const AddNewAssets = () => {
         if (e.target.value === 'Rental') {
             document.getElementById('purchasespricediv').style.display = 'none'
             document.getElementById('rentpermonthdiv').style.display = 'block'
+            document.getElementById('invoicenodiv').style.display = 'none'
+            
         }
         else if (e.target.value === 'Owned') {
             document.getElementById('purchasespricediv').style.display = 'block'
@@ -171,7 +173,7 @@ const AddNewAssets = () => {
         const remark = document.getElementById('remark').value;
 
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
-            !company || !vendor || !invoiceno || !latestinventory || !assetname || !asset_assign_empid) {
+            !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
             alert('Please enter the Mandatory field')
             setLoading(true)
             return false;
@@ -192,7 +194,7 @@ const AddNewAssets = () => {
             }
             if (purchase_type === 'Rental') {
                 if (!rentpermonth) {
-                    alert('Please enter the RentPerMonth Field')
+                    alert('Please enter the RentPerMonth Or Invoice no. Field')
                     setLoading(true)
                     errorcount = errorcount + 1;
                     return false;
@@ -201,6 +203,7 @@ const AddNewAssets = () => {
             }
             else {
                 rentpermonth = '';
+                invoiceno='';
             }
             if (purchase_type === 'Owned') {
                 if (!purchaseprice) {
@@ -250,7 +253,7 @@ const AddNewAssets = () => {
                                             <ul>
 
                                                 {/* #################### Device Detail  Box Start #####################*/}
-                                                <li>
+                                                <li style={{listStyle:"none"}}>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <span style={{ display: "flex" }} >
                                                             <div className="link_text " onClick={handleClickDeviceDetail}>
@@ -352,7 +355,7 @@ const AddNewAssets = () => {
                                                 {/* #################### Device Detail  Box End #####################*/}
 
                                                 {/* #################### Purchases Detail  Box Start ############### */}
-                                                <li className='mt-3'>
+                                                <li className='mt-3' style={{listStyle:"none"}}>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <div className="icon" ></div>
                                                         <span style={{ display: "flex" }} >
@@ -399,7 +402,7 @@ const AddNewAssets = () => {
                                                                     }
                                                                 </select>
                                                             </div>
-                                                            <div className="col-md-4">
+                                                            <div className="col-md-4" id='invoicenodiv'>
                                                                 <label htmlFor='invoiceno'>Invoice No.<span className='text-danger'>*</span></label>
                                                                 <input type="text" id='invoiceno' className="form-control" required />
                                                             </div>
@@ -409,7 +412,7 @@ const AddNewAssets = () => {
                                                 {/* #################### Purchases Detail  Box End ############### */}
                                                 {/* #################### Other Detail  Box Start ############### */}
 
-                                                <li className='mt-3'>
+                                                <li className='mt-3' style={{listStyle:"none"}}>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <div className="icon" ></div>
                                                         <span style={{ display: "flex" }} >
@@ -433,7 +436,7 @@ const AddNewAssets = () => {
                                                             </div>
                                                             <div className="col-md-4">
                                                                 <label htmlFor='latestinventory'>Latest Inventory <span className='text-danger'>*</span></label>
-                                                                <input type="text" id='latestinventory' className="form-control" required />
+                                                                <input type="date" id='latestinventory' className="form-control"  defaultValue={todatdate} required />
                                                             </div>
                                                         </div>
                                                         <div className="row mt-3">
