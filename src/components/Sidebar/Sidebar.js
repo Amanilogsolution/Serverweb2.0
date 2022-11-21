@@ -409,7 +409,7 @@ const Sidebar = ({ children }) => {
                     </div>
                             <li onClick={handleinnertoggletransation} style={{ listStyle: "none" }}>
                                 <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
-                                    <div className="icon" onClick={toggle}><FaUserAlt /></div>
+                                    <div className="icon" onClick={toggle}><MdAttachMoney /></div>
                                     <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text "> &nbsp; Transaction<span className="icon"><IoIosArrowDown /></span> </div>
                                 </div>
                             </li>
