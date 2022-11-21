@@ -3,6 +3,7 @@ import LandingHeader from './LandingHeader';
 import './landing.css'
 import { MdOutlinePrivacyTip, MdOutlineManageAccounts, MdOutlineDevicesOther, MdOutlinePlaylistAddCheck, MdArrowUpward } from 'react-icons/md'
 import { ImHappy } from 'react-icons/im'
+import { BiRupee } from 'react-icons/bi'
 
 import Landingimg from '../../../image/landingimg.svg'
 import Services from '../../../image/services.svg'
@@ -197,7 +198,7 @@ const LandingPage = () => {
                                             <h5>Free</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h2>INR</h2>
+                                            <h2><BiRupee/>0</h2>
                                             <ul>
                                                 <li>1 Organisation</li>
                                                 <li>1 Location</li>
@@ -220,7 +221,7 @@ const LandingPage = () => {
                                             <h5>Standard</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h2>INR</h2>
+                                            <h2><BiRupee/>2999/<p style={{fontSize:"14px",margin:"-20px 0 0 150px"}}>Month</p></h2>
                                             <ul className=''>
                                                 <li>1 Organisation</li>
                                                 <li>3 Locations</li>
@@ -243,7 +244,7 @@ const LandingPage = () => {
                                             <h5>Professional</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h2>INR</h2>
+                                            <h2><BiRupee/>4999/<p style={{fontSize:"14px",margin:"-20px 0 0 150px"}}>Month</p></h2>
                                             <ul>
                                                 <li>2 Organisations</li>
                                                 <li>10 Locations</li>
@@ -266,7 +267,7 @@ const LandingPage = () => {
                                             <h5>Enterprise</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h2>Contact Sales</h2>
+                                            <h3>Contact Sales</h3>
                                             <ul>
                                                 <li>Unlimited Organisations</li>
                                                 <li>Unlimited Locations</li>

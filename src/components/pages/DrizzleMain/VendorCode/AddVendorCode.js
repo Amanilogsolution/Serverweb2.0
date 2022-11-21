@@ -63,7 +63,7 @@ function AddVendorCode() {
 
         const user_id = sessionStorage.getItem('UserId');
 
-        if (!vendor_code || !vendor_name || !comp_phone || !company_country_id || !comp_city || !comp_state_id 
+        if (!vendor_code || !vendor_name || !company_country_id || !comp_city || !comp_state_id 
             || !comp_email || !contact_person || !contact_no || !contact_email) {
             alert("Please enter Mandatory field")
             setLoading(true)
@@ -181,7 +181,7 @@ function AddVendorCode() {
                                                                 <input type="text" className="form-control" id='comp_gst' />
                                                             </div>
                                                             <div className="col-md-4" >
-                                                                <label htmlFor='comp_phone'>Phone no.<span className='text-danger'>*</span></label>
+                                                                <label htmlFor='comp_phone'>Phone no.</label>
                                                                 <input type="number" className="form-control" id='comp_phone'
                                                                     value={phonenocount}
                                                                     onChange={(e) => { if (e.target.value.length === 11) return false; else { setPhonenocount(e.target.value) } }}

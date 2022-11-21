@@ -74,7 +74,7 @@ function EditVendorCode() {
         const sno = sessionStorage.getItem('VendorCodeSno')
 
 
-        if (!vendor_code || !vendor_name  || !comp_phone || !comp_country_id || !comp_city || !comp_state_id
+        if (!vendor_code || !vendor_name  || !comp_country_id || !comp_city || !comp_state_id
             || !comp_email || !contact_person || !contact_no || !contact_email) {
             alert("Please enter Mandatory field")
             setLoading(true)
@@ -221,7 +221,7 @@ function EditVendorCode() {
                                                                 <input type="text" className="form-control" id='comp_gst' defaultValue={data.company_gst} />
                                                             </div>
                                                             <div className="col-md-4" >
-                                                                <label htmlFor='comp_phone'>Phone no.<span className='text-danger'>*</span></label>
+                                                                <label htmlFor='comp_phone'>Phone no.</label>
                                                                 <input type="number" className="form-control" id='comp_phone' value={data.company_phone} onChange={handleChangephoneno}/>
                                                             </div>
 
