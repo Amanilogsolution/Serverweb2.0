@@ -94,6 +94,12 @@ function AddVendorInvoice() {
                 return false;
 
             }
+            else if(!arryval[i].vendor){
+                alert('Please select the vendor')
+                setLoading(true)
+                errorcount = errorcount + 1;
+                return false;
+            }
             else if (!arryval[i].invno || !arryval[i].invamt) {
                 alert('Please enter the Mandatory field')
                 setLoading(true)

@@ -95,7 +95,7 @@ const Login = () => {
                       Remember me
                     </label> */}
                       </div>
-                      <a href="#!" className="text-body">Forgot password?</a>
+                      {/* <a href="#!" className="text-body">Forgot password?</a> */}
                     </div>
                     <div className="text-center text-lg-start pt-2">
                       <button type="submit" id='subBtn' className="btn btn-voilet btn-lg" style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }} onClick={handlelogin}>Login</button>
