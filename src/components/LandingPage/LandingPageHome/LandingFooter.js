@@ -30,12 +30,12 @@ const LandingFooter = () => {
                     </ul>
                     <ul>
                         <li style={{fontWeight:"600",margin:"10px 0"}}>My Account</li>
-                        <li>Sign in</li>
-                        <li>Register</li>
+                        <li><a style={{textDecoration:"none",color:"rgb(33,37,48)"}} href='/signin'>Sign in</a></li>
+                        <li><a style={{textDecoration:"none",color:"rgb(33,37,48)"}} href='/signup'>Register</a></li>
                     </ul>
                  </div>
                  </div>
-                 <hr/>
+                 {/* <hr/> */}
                  <div className='div_for_icon d-flex justify-content-center py-3'>
                     <h7>Connect with Us</h7>
                     <MdFacebook style={{fontSize:"30px",margin:"-7px 5px 0 5px",cursor:"pointer"}}/>
