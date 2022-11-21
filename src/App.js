@@ -152,6 +152,7 @@ import TotalTicket from './components/pages/HelpDesk/Tickets/TotalTicket';
 
 
 import PageNotFound from './components/404/404';
+import HelpDeskSideBar from './components/HelpDeskUi/HelpDeskSideBar';
 
 const App = () => {
   return (
@@ -298,7 +299,9 @@ const App = () => {
           <Route path="/EditTicket" element={<EditTicket/>} />
           <Route path="/TotalTicket" element={<TotalTicket/>} />
           <Route path="/AddTickets" element={<AddTicket />} />
-    
+
+          <Route path="/HelpLocation" element={<HelpDeskSideBar/>} />
+
            
         </Route>
 

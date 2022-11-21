@@ -187,44 +187,29 @@
 
 
 /* Footer Link */
-
+.landingfooter_main{
+    background-color: rgb(225, 193, 214);
+}
 .landingfooter {
-    height: 60px;
-    background-color: rgb(164,43,122);
-    /* #d6d5f0f7 */
     z-index: 1000;
     display: flex;
     padding-top: 15px;
 }
-
-.landingfooter .copy_write {
-    cursor: pointer;
-    width: 25%;
-    text-align: right;
+.landingfooter ul{
+    margin: 0 40px;
 }
-
-.landingfooter .footer-list {
-    display: flex;
-    width: 70%;
-    justify-content: right;
-}
-
-.landingfooter .footer-list li {
+.landingfooter ul li{
     list-style: none;
-    margin: 0px 10px 0px 10px;
+    cursor: pointer;
 }
-
-.landingfooter .footer-list li .footer-link {
-    text-decoration: none;
-    margin-top: 8px;
-    color: white;
+.landingfooter .div_for_list{
+    display: flex;
 }
-
-.landingfooter .footer-list li .footer-link:hover {
-    border-bottom: 3px solid #fff;
-
+@media screen and (max-width: 775px) {
+    .landingfooter .div_for_list{
+        display: block;
+    }
 }
-
 
 
 
@@ -261,24 +246,6 @@
 
     .pricing .pricinghead .container .pricing_cards {
         grid-column-gap: 0.5%;
-    }
-
-    .landingfooter {
-        height: 100px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .landingfooter .copy_write {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 5px;
-
-    }
-
-    .landingfooter .footer-list {
-        width: 100%;
-        justify-content: center;
     }
 
 }
