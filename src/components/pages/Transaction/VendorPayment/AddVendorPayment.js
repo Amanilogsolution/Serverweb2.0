@@ -161,7 +161,7 @@ function AddVendorPayment() {
                                     <h5 >Add Vendor Payment</h5>
                                     <div>
                                         <button className='btn btn-voilet' onClick={addRow}>Add row</button>
-                                        <button className='btn btn-secondary mx-2 ' onClick={RemoveRow}>Remove row</button>
+                                        <button className='btn btn-danger mx-2 ' onClick={RemoveRow}>Remove row</button>
                                     </div>
                                 </header>
                                 <article className="card-body" >
