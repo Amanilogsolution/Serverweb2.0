@@ -270,11 +270,14 @@ const AddNewAssets = () => {
                                                                 <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
                                                                 <select id='asset_type' className="form-select" onChange={handleToggleSoftware}>
                                                                     <option value='' hidden>Select...</option>
+                                                                    
                                                                     {
                                                                         assettypelist.map((item, index) => (
                                                                             <option key={index} value={item.asset_type}>{item.asset_type}</option>
                                                                         ))
+                                                                        
                                                                     }
+                                                                    
                                                                 </select>
                                                             </div>
 
