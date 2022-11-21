@@ -47,7 +47,7 @@ const LandingPage = () => {
                                                 <div className="device" >
                                                     <div className="screen ">
 
-                                                        <img src={Landingimg} className='landingimg' alt='Landing img'/>
+                                                        <img src={Landingimg} className='landingimg' alt='Landing img' />
                                                     </div>
                                                 </div>
                                             </div>
@@ -62,10 +62,10 @@ const LandingPage = () => {
 
                     <section className='portfoliodiv'>
                         <div className="comp_name" >
-                            <div className="comp1 text-center "><h3 style={{fontSize:"20px"}}>Modernize & Automate</h3></div>
-                            <div className="comp2 text-center "><h3 style={{fontSize:"20px"}}>Intelligent ITAM</h3></div>
-                            <div className="comp3 text-center "><h3 style={{fontSize:"20px"}} >IT Expense Management</h3></div>
-                            <div className="comp4 text-center "><h3 style={{fontSize:"20px"}}>Insights & Analysis</h3></div>
+                            <div className="comp1 text-center "><h3 style={{ fontSize: "20px" }}>Modernize & Automate</h3></div>
+                            <div className="comp2 text-center "><h3 style={{ fontSize: "20px" }}>Intelligent ITAM</h3></div>
+                            <div className="comp3 text-center "><h3 style={{ fontSize: "20px" }} >IT Expense Management</h3></div>
+                            <div className="comp4 text-center "><h3 style={{ fontSize: "20px" }}>Insights & Analysis</h3></div>
                         </div>
 
                     </section>
@@ -92,10 +92,10 @@ const LandingPage = () => {
                             </div>
                         </header>
                     </section>
-{/* ================================================= Content with photos ===================================================== */}
+                    {/* ================================================= Content with photos ===================================================== */}
                     <section className='photos_content'>
                         <div className='photos_content1'>
-                            
+
                             <div className='content_'>
                                 <h1>Record and stay updated anywhere</h1>
                                 <p>Behind every great experience is a great process. Teams are using Drizzle to update and get data on the run, making data available to stakeholders in real-time.</p>
@@ -107,19 +107,19 @@ const LandingPage = () => {
 
                     <section className='photos_content'>
                         <div className='photos_content1'>
-                        <div className='img_div3' data-aos="fade-right" data-aos-offset="200"
-                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true"></div>
+                            <div className='img_div3' data-aos="fade-right" data-aos-offset="200"
+                                data-aos-delay="50" data-aos-duration="1000" data-aos-once="true"></div>
                             <div className='content_' data-aos="fade-left" data-aos-offset="200"
-                        data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
+                                data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                 <h1>Improve utilization, eliminate waste</h1>
                                 <p>Drizzle saves money by helping avoid unnecessary purchases and cutting licensing and support costs. Increased control enforces compliance to reduce risks.</p>
                                 <button className='btn btn-voilet'>Get Details</button>
                             </div>
-                            
+
                         </div>
                     </section>
 
-{/* ========================================================================================================================== */}
+                    {/* ========================================================================================================================== */}
 
                     <section className='chooseus' data-aos="fade-up" data-aos-offset="200"
                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
@@ -187,14 +187,14 @@ const LandingPage = () => {
                         <header className="pricinghead pt-3" >
                             <div className="container px-4 pb-5">
                                 <h2 className='text-center'>Pricing</h2>
-                                <p className="lead fw-normal text-muted text-center mb-2">One software to manage your IT. Choose from the mode that suits you best. Looking for something else? <br/> Contact our enterprise sales team.</p>
+                                <p className="lead fw-normal text-muted text-center mb-2">One software to manage your IT. Choose from the mode that suits you best. Looking for something else? <br /> Contact our enterprise sales team.</p>
                                 <div className="pricing_cards px-2 m-auto text-center"  >
                                     <div className="card pricing_card pricing_card1 "
                                         data-aos="fade-right" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
 
                                         <div className="card-header">
-                                           <h5>Free</h5> 
+                                            <h5>Free</h5>
                                         </div>
                                         <div className='card-body'>
                                             <h2>INR</h2>
@@ -220,7 +220,7 @@ const LandingPage = () => {
                                             <h5>Standard</h5>
                                         </div>
                                         <div className='card-body'>
-                                        <h2>INR</h2>
+                                            <h2>INR</h2>
                                             <ul className=''>
                                                 <li>1 Organisation</li>
                                                 <li>3 Locations</li>
@@ -282,8 +282,8 @@ const LandingPage = () => {
                                         </div>
                                     </div>
 
-                                    
-                                    
+
+
                                 </div>
 
                             </div>
