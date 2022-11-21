@@ -42,7 +42,7 @@ const Navbar = (propes) => {
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                        <a className="dropdown-item" href="#">Profile</a>
                        <a className="dropdown-item" href="#">Change Password </a>
-                       <a className="dropdown-item border-top" href="#" onClick={handleLogout}>Logout <IoMdLogOut/></a>
+                       <a className="dropdown-item border-top text-danger" href="#" onClick={handleLogout}>Logout <IoMdLogOut/></a>
                    </div>
                </div>
 

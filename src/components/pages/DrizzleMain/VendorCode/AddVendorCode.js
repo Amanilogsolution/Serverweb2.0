@@ -146,7 +146,7 @@ function AddVendorCode() {
                                             <ul>
 
                                                 {/* #################### Device Detail  Box Start #####################*/}
-                                                <li>
+                                                <li  style={{listStyle:"none"}}>
                                                     <div>
                                                         <span style={{ display: "flex", cursor: "pointer" }} onClick={handleToggleVendorDetail}>
                                                             <div className="link_text " >
@@ -263,7 +263,7 @@ function AddVendorCode() {
                                                     </div>
                                                 </li>
 
-                                                <li>
+                                                <li style={{listStyle:"none"}}>
                                                     <div>
                                                         <span style={{ display: "flex", cursor: "pointer" }} onClick={handleTogglePersonDetail}>
                                                             <div className="link_text mt-2" >
