@@ -194,7 +194,7 @@ const LandingPage = () => {
                                            <h5>Free</h5> 
                                         </div>
                                         <div className='card-body'>
-                                            <h2>INR 0</h2>
+                                            <h2>INR</h2>
                                             <ul>
                                                 <li>1 Organisation</li>
                                                 <li>1 Location</li>
