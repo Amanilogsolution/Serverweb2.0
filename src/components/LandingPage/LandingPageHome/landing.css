@@ -188,7 +188,8 @@
 
 /* Footer Link */
 .landingfooter_main{
-    background-color: rgb(225, 193, 214);
+    background: url("../../../image/footer_img.jpg");
+    background-size: 100% 100%;
 }
 .landingfooter {
     z-index: 1000;

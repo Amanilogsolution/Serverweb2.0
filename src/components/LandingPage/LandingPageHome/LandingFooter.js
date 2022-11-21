@@ -35,7 +35,7 @@ const LandingFooter = () => {
                     </ul>
                  </div>
                  </div>
-                 <hr/>
+                 {/* <hr/> */}
                  <div className='div_for_icon d-flex justify-content-center py-3'>
                     <h7>Connect with Us</h7>
                     <MdFacebook style={{fontSize:"30px",margin:"-7px 5px 0 5px",cursor:"pointer"}}/>
