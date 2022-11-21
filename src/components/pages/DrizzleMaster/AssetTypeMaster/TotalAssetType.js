@@ -45,11 +45,6 @@ function TotalAssetType() {
 
     const columns = [
         {
-            name: 'Asset Type Id',
-            selector: row => row.asset_type_id,
-            sortable: true,
-        },
-        {
             name: 'Asset Type',
             selector: row => row.asset_type,
             sortable: true,

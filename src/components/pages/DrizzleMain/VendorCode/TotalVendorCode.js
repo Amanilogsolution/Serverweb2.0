@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
-import DataTableExtensions from 'react-data-table-component-extensions';
+import DataTableExtensions from 'react-data-table-component-extensions';    
 import 'react-data-table-component-extensions/dist/index.css';
 import { TotalVendorCodeapi, DeleteVendorCode } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
@@ -63,7 +63,7 @@ function TotalVendorCode() {
             sortable: true,
         },
         {
-            name: 'Venodr Portal',
+            name: 'Vendor Portal',
             selector: row => row.venodr_portal,
             sortable: true,
         },
@@ -73,7 +73,7 @@ function TotalVendorCode() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const result = await DeleteVendorCode(status, row.sno)
+                    await DeleteVendorCode(status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -99,7 +99,6 @@ function TotalVendorCode() {
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await TotalVendorCodeapi();
-            console.log(tabledata)
             setData(tabledata)
             setLoading(true)
 

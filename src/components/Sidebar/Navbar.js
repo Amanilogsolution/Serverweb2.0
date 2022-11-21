@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React from 'react'
 import './Navbar.css'
 import { FaUserCircle } from 'react-icons/fa'
 import { IoMdLogOut } from 'react-icons/io'

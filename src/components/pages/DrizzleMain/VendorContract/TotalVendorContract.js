@@ -47,19 +47,10 @@ function TotalVendorContract() {
             selector: row => row.vendor,
             sortable: true,
         },
-        {
-            name: 'Company City',
-            selector: row => row.company_city,
-            sortable: true,
-        },
+      
         {
             name: 'Location',
             selector: row => row.location,
-            sortable: true,
-        },
-        {
-            name: 'Company Gst',
-            selector: row => row.company_gst,
             sortable: true,
         },
         {
@@ -67,6 +58,17 @@ function TotalVendorContract() {
             selector: row => row.type_of_contract,
             sortable: true,
         },
+        {
+            name: 'Major Category',
+            selector: row => row.major_category,
+            sortable: true,
+        },
+        {
+            name: 'Sub Category',
+            selector: row => row.sub_category,
+            sortable: true,
+        },
+       
         {
             name: 'Status',
             sortable: true,

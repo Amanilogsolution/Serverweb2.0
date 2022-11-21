@@ -4,7 +4,8 @@
      box-sizing: border-box;
      text-decoration: none;
      /* font-family: Raleway; */
-     font-family: Roboto;
+     /* font-family: 'Alata'; */
+     font-family: 'Roboto';
  }
 
  /* Chrome, Safari, Edge, Opera */
@@ -22,7 +23,7 @@
 
  .main_container {
      background: #fff;
-     background: url("./image/themeimg.jpg");
+     background: url("./image/themeimg.png");
      background-size: 100% 100%;
      min-height: 77vh;
      max-width: 100%;
@@ -51,6 +52,8 @@
  .innermain_container {
      width: 97%;
  }
+
+ 
 
  @media screen and (min-height:850px) {
      .main_container {

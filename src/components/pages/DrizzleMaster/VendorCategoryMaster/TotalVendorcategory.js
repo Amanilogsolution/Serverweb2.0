@@ -42,11 +42,7 @@ function TotalVendorCategory() {
     const [loading, setLoading] = useState(false)
 
     const columns = [
-        {
-            name: 'Vendor Category Id',
-            selector: row => row.vendor_category_id,
-            sortable: true,
-        },
+      
         {
             name: 'Vendor Category',
             selector: row => row.vendor_category,

@@ -9,7 +9,6 @@ function EditVendorCode() {
     const [data, setData] = useState({})
     const [loading, setLoading] = useState(false)
 
-    const [refferenceno, setRefferenceno] = useState(false)
     const [locationlist, setLocationlist] = useState([])
     const [contractlist, setContractlist] = useState([])
     const [vendorcatlist, setVendorcatlist] = useState([])
@@ -22,17 +21,10 @@ function EditVendorCode() {
             setLoading(true)
 
             const vendcontract = await GetVendorContract(sessionStorage.getItem('VendorContractSno'));
+            console.log(vendcontract)
             setData(vendcontract[0])
 
 
-            if (vendcontract[0].reference_no.length > 0) {
-                document.getElementById('ref_no_input').style.display = "flex"
-                document.getElementById('ref_no_lable').style.display = "none"
-            }
-            else {
-                document.getElementById('ref_no_input').style.display = "none"
-                document.getElementById('ref_no_lable').style.display = "flex"
-            }
             if (vendcontract[0].major_category === 'Internet' || vendcontract[0].major_category === 'Data' || vendcontract[0].major_category === 'Telecom') {
                 document.getElementById('link_id_div').style.display = 'block'
             }
@@ -41,19 +33,11 @@ function EditVendorCode() {
             }
 
             // const valnkjn= 'Recurring'
-            if (vendcontract[0].contract_type === 'Recurring') {
+            if (vendcontract[0].type_of_contract === 'Recurring') {
                 document.getElementById('recurringdiv').style.display = "block"
             }
             else {
                 document.getElementById('recurringdiv').style.display = "none"
-            }
-            if (vendcontract[0].reference_no.length > 0) {
-                document.getElementById('ref_no').checked = false
-                document.getElementById('ref_no_lable').style.display = 'none'
-                document.getElementById('ref_no_input').style.display = 'block'
-            }
-            else {
-                document.getElementById('ref_no').checked = true
             }
 
             if (vendcontract[0].tds === 'true') {
@@ -86,19 +70,7 @@ function EditVendorCode() {
             document.getElementById('recurringdiv').style.display = "none"
         }
     }
-    const handleChangeRef = () => {
-        const checkedval = document.getElementById('ref_no').checked ? true : false
-        if (!checkedval) {
-            document.getElementById('ref_no_input').style.display = "flex"
-            document.getElementById('ref_no_lable').style.display = "none"
-        }
-        else {
-            document.getElementById('ref_no_input').style.display = "none"
-            document.getElementById('ref_no_lable').style.display = "flex"
 
-        }
-        setRefferenceno(!refferenceno)
-    }
 
     const handleChangeCategory = async (e) => {
         const val = e.target.value;
@@ -118,14 +90,6 @@ function EditVendorCode() {
         e.preventDefault();
         setLoading(false)
         const vendor = document.getElementById('vendor').value;
-        const company_address_line1 = document.getElementById('comp_addr1').value;
-        const company_address_line2 = document.getElementById('comp_addr2').value;
-        const company_city = document.getElementById('company_city').value;
-        const company_state = document.getElementById('company_state').value;
-        const company_pin_code = document.getElementById('comp_pincode').value;
-        const company_gst = document.getElementById('comp_gst').value;
-        const company_website = document.getElementById('comp_website').value;
-        const company_email = document.getElementById('comp_email').value;
         const type_of_contract = document.getElementById('contract_type').value;
         const major_category = document.getElementById('vendor_category').value;
         const sub_category = document.getElementById('vendor_sub_category').value;
@@ -145,14 +109,13 @@ function EditVendorCode() {
         const user_id = sessionStorage.getItem('UserId')
         const sno = sessionStorage.getItem('VendorContractSno');
 
-        if (!vendor || !company_address_line1 || !company_city || !company_state || !company_pin_code || !company_email ||
+        if (!vendor ||
             !type_of_contract || !major_category || !sub_category || !customer_account_no || !payee_name || !tds || !help_desk_no) {
             alert('Please Fill the Mandatory Field')
             setLoading(true)
 
         }
         else {
-            const refno = document.getElementById('ref_no').checked ? true : false;
             let errorcount = 0;
 
             if (type_of_contract === 'Recurring') {
@@ -169,16 +132,8 @@ function EditVendorCode() {
                 invoice_generation_date = '';
                 billing_freq = ''
             }
-            if (!refno) {
-                if (!reference_no) {
-                    errorcount = errorcount + 1
-                    alert('Please Enter the Reference no')
-                    setLoading(true)
-                }
-            }
-            else {
-                reference_no = customer_account_no
-            }
+
+
             if (major_category === 'Internet' || major_category === 'Data' || major_category === 'Telecom') {
                 if (!link_id_no) {
                     errorcount = errorcount + 1
@@ -188,10 +143,11 @@ function EditVendorCode() {
             }
             else { link_id_no = '' }
 
-            if (errorcount === 0) {
 
-                const callapi = await UpdateVendorContract(sno, vendor, company_address_line1, company_address_line2, company_city,
-                    company_state, company_pin_code, company_gst, company_website, company_email, type_of_contract,
+            if (errorcount === 0) {
+                console.log(link_id_no)
+
+                const callapi = await UpdateVendorContract(sno, vendor, type_of_contract,
                     major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
                     rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
                     help_desk_no, user_id)
@@ -210,66 +166,8 @@ function EditVendorCode() {
 
     }
 
-    const handleChangeCompanyCity = (e) => {
-        setData({ ...data, company_city: e.target.value })
-    }
 
 
-    const handleChangeCompanyState = (e) => {
-        setData({ ...data, company_state: e.target.value })
-    }
-
-    const handleChangeCompPincode = (e) => {
-        if (e.target.value.length === 7) return false;
-        setData({ ...data, company_pin_code: e.target.value })
-    }
-
-    const handleChangeCompGstno = (e) => {
-        setData({ ...data, company_gst: e.target.value })
-    }
-    const handleChangeCompWebsite = (e) => {
-        setData({ ...data, company_website: e.target.value })
-    }
-    const handleChangeCompEmail = (e) => {
-        setData({ ...data, company_email: e.target.value })
-    }
-    const handleChangeCompAddr1 = (e) => {
-        setData({ ...data, company_address_line1: e.target.value })
-    }
-    const handleChangeCompAddr2 = (e) => {
-        setData({ ...data, company_address_line2: e.target.value })
-    }
-    const handleChangeContactPlanDet = (e) => {
-        setData({ ...data, contatct_plain_details: e.target.value })
-    }
-    const handleChangeRatePerMonth = (e) => {
-        setData({ ...data, rate_per_month: e.target.value })
-    }
-
-    const handleChangeContStartDate = (e) => {
-        setData({ ...data, contract_start_date: e.target.value })
-    }
-    const handleChangeInvGenDate = (e) => {
-        setData({ ...data, invoice_generation_date: e.target.value })
-    }
-    const handleChangeBillFreq = (e) => {
-        setData({ ...data, billling_freq: e.target.value })
-    }
-    const handleChangeCustAccno = (e) => {
-        setData({ ...data, customer_account_no: e.target.value })
-    }
-    const handleChangeReffno = (e) => {
-        setData({ ...data, reference_no: e.target.value })
-    }
-    const handleChangePayeeName = (e) => {
-        setData({ ...data, payee_name: e.target.value })
-    }
-    const handleChangeHelpDeskno = (e) => {
-        setData({ ...data, help_desk_no: e.target.value })
-    }
-    const handleChangeLinkIdNo = (e) => {
-        setData({ ...data, link_id_no: e.target.value })
-    }
     return (
         <>
             {
@@ -315,54 +213,9 @@ function EditVendorCode() {
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div className="row mt-2">
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='company_city'>Company City <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='company_city' required value={data.company_city} onChange={handleChangeCompanyCity} />
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='company_state'>Company State <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='company_state' required value={data.company_state} onChange={handleChangeCompanyState} />
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='comp_pincode'>Company pincode <span className='text-danger'>*</span></label>
-                                                    <input type="number" className="form-control" id='comp_pincode' value={data.company_pin_code} required onChange={handleChangeCompPincode} />
-                                                </div>
-                                            </div>
-                                            <div className="row mt-2">
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='comp_gst'>Company GST no.</label>
-                                                    <input type="text" className="form-control" id='comp_gst' value={data.company_gst} onChange={handleChangeCompGstno} />
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='comp_website'>Company website</label>
-                                                    <input type="url" className="form-control" id='comp_website' required value={data.company_website} onChange={handleChangeCompWebsite} />
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='comp_email'>Company Email Id <span className='text-danger'>*</span></label>
-                                                    <input type="email" className="form-control" id='comp_email' required value={data.company_email} onChange={handleChangeCompEmail} />
-                                                </div>
-                                            </div>
-                                            <div className="row pt-2">
-                                                <div className="col">
-                                                    <label htmlFor='comp_addr1'>Company Address Line 1 <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='comp_addr1' required value={data.company_address_line1} onChange={handleChangeCompAddr1} />
-                                                </div>
-                                                <div className="col">
-                                                    <label htmlFor='comp_addr2'>Company Address Line 2 </label>
-                                                    <input type="text" className="form-control" id='comp_addr2' value={data.company_address_line2} onChange={handleChangeCompAddr2} />
-                                                </div>
 
-                                            </div>
-                                        </form>
-                                    </article>
-                                </div>
 
-                                <div className="card mt-3 inner-card">
-                                    <div className='card-header'>Other Details:</div>
-                                    <article className="card-body" >
-                                        <form className='px-3' autoComplete='off'>
-                                            <div className="row">
+                                            <div className="row mt-3">
                                                 <div className="col-md-4">
                                                     <label htmlFor='contract_type'>Type of Contract <span className='text-danger'>*</span></label>
                                                     <select className="form-select" id='contract_type' onChange={togglerecurrngdiv}>
@@ -377,8 +230,6 @@ function EditVendorCode() {
                                                     <label htmlFor='vendor_category'>Vendor Category <span className='text-danger'>*</span></label>
                                                     <select type="text" className="form-select" id='vendor_category' required onChange={handleChangeCategory}>
                                                         <option value={data.major_category} hidden>{data.major_category}</option>
-                                                        <option value='Internet'>Internet</option>
-                                                        <option value='Telecome'>Telecome</option>
                                                         {
                                                             vendorcatlist.map((item, index) =>
                                                                 <option key={index} value={item.vendor_category}>{item.vendor_category}</option>)
@@ -389,7 +240,6 @@ function EditVendorCode() {
                                                     <label htmlFor='vendor_sub_category'>Vendor Sub Category <span className='text-danger'>*</span></label>
                                                     <select type="text" className="form-select" id='vendor_sub_category' required >
                                                         <option value={data.sub_category} hidden>{data.sub_category}</option>
-                                                        <option value='abc' >Abc</option>
                                                         {
                                                             vendorsubcatlist.map((item, index) =>
                                                                 <option key={index} value={item.vendor_sub_category}>{item.vendor_sub_category}</option>)
@@ -397,66 +247,62 @@ function EditVendorCode() {
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div className='mt-2' id='recurringdiv' style={{ display: "none" }}>
-                                                <div className="row ">
-                                                    <div className="col-md-4">
-                                                        <label htmlFor='contact_plan_detail'>Contact Plan Detail <span className='text-danger'>*</span></label>
-                                                        <input type="text" className="form-control" id='contact_plan_detail' required value={data.contatct_plain_details} onChange={handleChangeContactPlanDet} />
-                                                    </div>
-                                                    <div className="col-md-4" >
-                                                        <label htmlFor='rate_per_month'>Rate Per Month <span className='text-danger'>*</span></label>
-                                                        <input type="number" className="form-control" id='rate_per_month' required value={data.rate_per_month} onChange={handleChangeRatePerMonth} />
-                                                    </div>
-                                                    <div className="col-md-4" >
-                                                        <label htmlFor='contract_start_date'>Contract Start Date <span className='text-danger'>*</span></label>
-                                                        <input type="date" className="form-control" id='contract_start_date' required value={data.contract_start_date} onChange={handleChangeContStartDate} />
-                                                    </div>
-                                                </div>
 
-                                                <div className="row mt-2">
-                                                    <div className="col-md-4" >
-                                                        <label htmlFor='invoice_generation_date'>Invoice Generation Date <span className='text-danger'>*</span></label>
-                                                        <input type="date" className="form-control" id='invoice_generation_date' required value={data.invoice_generation_date} onChange={handleChangeInvGenDate} />
-                                                    </div>
-                                                    <div className="col-md-4" >
-                                                        <label htmlFor='billing_freq'>Billing Frequency <span className='text-danger'>*</span></label>
-                                                        <input type="text" className="form-control" id='billing_freq' required value={data.billling_freq} onChange={handleChangeBillFreq} />
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div className="row mt-2">
                                                 <div className="col-md-4">
                                                     <label htmlFor='cust_ac_no'>Customer Account No <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='cust_ac_no' required value={data.customer_account_no} onChange={handleChangeCustAccno} />
+                                                    <input type="text" className="form-control" id='cust_ac_no' required defaultValue={data.customer_account_no} />
                                                 </div>
                                                 <div className="col-md-6 d-flex align-items-center" >
                                                     <label htmlFor='ref_no' className='col-md-4' >Reference Number <span className='text-danger'>*</span></label>
-                                                    <input title='Click if Reference Number is same as Account no' type="checkbox" id='ref_no' required style={{ height: "20px", width: "20px", marginRight: "20px" }} onChange={handleChangeRef} />
-
-                                                    <div className="col-md-7" >
-                                                        <p className='col text-danger' id='ref_no_lable'>Same as Account number </p>
-                                                        <input type="text" className="form-control" id='ref_no_input' required placeholder='Reference no.' value={data.reference_no} onChange={handleChangeReffno} />
-                                                    </div>
+                                                    <input type="text" className="form-control" id='ref_no_input' required placeholder='Reference no.' defaultValue={data.reference_no} />
                                                 </div>
                                             </div>
                                             <div className="row mt-2">
                                                 <div className="col-md-4" >
                                                     <label htmlFor='payee_name'>Payee Name <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='payee_name' required value={data.payee_name} onChange={handleChangePayeeName} />
+                                                    <input type="text" className="form-control" id='payee_name' required defaultValue={data.payee_name} />
                                                 </div>
                                                 <div className="col-md-4" >
                                                     <label htmlFor='help_desk_no'>HelpDesk Number <span className='text-danger'>*</span></label>
-                                                    <input type="number" className="form-control" id='help_desk_no' required value={data.help_desk_no} onChange={handleChangeHelpDeskno} />
+                                                    <input type="number" className="form-control" id='help_desk_no' required defaultValue={data.help_desk_no} />
                                                 </div>
                                                 <div className="col-md-3 mt-3 d-flex align-items-center" >
                                                     <label htmlFor='tds' className='col-md-3' >TDS </label>
                                                     <input type="checkbox" className="" id='tds' style={{ height: "20px", width: "20px" }} />
                                                 </div>
                                             </div>
+                                            <div className='mt-2' id='recurringdiv' style={{ display: "none" }}>
+                                                <div className="row ">
+                                                    <div className="col-md-4">
+                                                        <label htmlFor='contact_plan_detail'>Contact Plan Detail <span className='text-danger'>*</span></label>
+                                                        <input type="text" className="form-control" id='contact_plan_detail' required defaultValue={data.contatct_plain_details} />
+                                                    </div>
+                                                    <div className="col-md-4" >
+                                                        <label htmlFor='rate_per_month'>Rate Per Month <span className='text-danger'>*</span></label>
+                                                        <input type="number" className="form-control" id='rate_per_month' required defaultValue={data.rate_per_month} />
+                                                    </div>
+                                                    <div className="col-md-4" >
+                                                        <label htmlFor='contract_start_date'>Contract Start Date <span className='text-danger'>*</span></label>
+                                                        <input type="date" className="form-control" id='contract_start_date' required defaultValue={data.contract_start_date} />
+                                                    </div>
+                                                </div>
+
+                                                <div className="row mt-2">
+                                                    <div className="col-md-4" >
+                                                        <label htmlFor='invoice_generation_date'>Invoice Generation Date <span className='text-danger'>*</span></label>
+                                                        <input type="date" className="form-control" id='invoice_generation_date' required defaultValue={data.invoice_generation_date} />
+                                                    </div>
+                                                    <div className="col-md-4" >
+                                                        <label htmlFor='billing_freq'>Billing Frequency <span className='text-danger'>*</span></label>
+                                                        <input type="text" className="form-control" id='billing_freq' required defaultValue={data.billling_freq} />
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div className="row " id='link_id_div' style={{ display: "none" }}>
                                                 <div className="col-md-4" >
                                                     <label htmlFor='link_id_no'>Link Id No <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='link_id_no' required value={data.link_id_no} onChange={handleChangeLinkIdNo} />
+                                                    <input type="text" className="form-control" id='link_id_no' defaultValue={data.link_id_no} required />
                                                 </div>
                                             </div>
                                         </form>
@@ -469,7 +315,7 @@ function EditVendorCode() {
 
                         </div>
                     </Sidebar>
-                : <LoadingPage />
+                    : <LoadingPage />
             }
         </>
     )

@@ -173,9 +173,6 @@
 .innerlink:hover {
     background: #B0AEF3;
     color: #603AE9;
-    /* color: black; */
-
-    /* font-weight: 700; */
     transition: all 0.7s;
 }
 
@@ -183,14 +180,12 @@
     overflow: hidden;
     display: none;
     width: 100%;
-    /* background: #B0AEF3; */
     transition: all 1.7s;
-
 }
 
 .icon,
 .link_text {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .footer_section {
@@ -204,14 +199,6 @@
     font-size: 1.3rem;
     color: #603AE9;
 }
-
-/* @media screen and (min-width:1850px){
-    .main{
-        max-width:100%;
-        border: 2px solid green;
-    }
-} */
-
 
 
 @media screen and (max-width:800px) {
@@ -251,8 +238,4 @@
         padding: 10px 8px;
     }
 
-    /* .icon,
-    .link_text {
-        font-size: 15px;
-    } */
 }

@@ -68,7 +68,6 @@ const Sidebar = ({ children }) => {
             document.getElementById('mastersubdiv').style.display = "none"
             document.getElementById('mastertitlelink').style.background = "#fff"
             document.getElementById('mastertitlelink').style.color = "#000"
-
         }
         setSubmasterOpen(!submasterOpen)
     }
@@ -143,7 +142,7 @@ const Sidebar = ({ children }) => {
                         <li onClick={handlesubmaster} title='Iperiscope Master' style={{ paddingRight: "0px" }}>
                             <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
                                 <div className="icon" onClick={toggle}><FaUserAlt /></div>
-                                <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text ">Iperiscope Master<span className="icon"><IoIosArrowDown /></span> </div>
+                                <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text "> &nbsp;Iperiscope Master<span className="icon"><IoIosArrowDown /></span> </div>
                             </div>
 
                             <ul id='mastersubdiv' className='inneruldiv' >
@@ -197,6 +196,7 @@ const Sidebar = ({ children }) => {
                                 </li>
                             </ul>
                         </li>
+                        
                         <li title='Drizell Master'>
                             <div className="link" id='masterdrizelltitlelink' style={{ cursor: "pointer" }} onClick={handlesubdrizell}>
                                 <div className="icon" onClick={toggle}><FaUserAlt /></div>
@@ -355,7 +355,7 @@ const Sidebar = ({ children }) => {
 
                             <ul id='masterhelpdesk' className='inneruldiv'>
                                 <li className='innerlink'>
-                                    <NavLink to='/AddTickets' className='navlink d-flex' activeclassname="sidebaractive">
+                                    <NavLink to='/TotalTicket' className='navlink d-flex' activeclassname="sidebaractive">
                                         <HiOutlineTicket style={{ color: "#a12e7a" }} />&nbsp;
                                         <div style={{ display: isOpen ? "block" : "none" }} > Ticket</div>
                                     </NavLink>
@@ -364,7 +364,7 @@ const Sidebar = ({ children }) => {
                                 <li className='innerlink'>
                                     <NavLink to='/TotalNewAssets' className='navlink d-flex' activeclassname="sidebaractive">
                                         <BiDevices style={{ color: "#a12e7a" }} />&nbsp;
-                                        <div style={{ display: isOpen ? "block" : "none" }} > New Assetes</div>
+                                        <div style={{ display: isOpen ? "block" : "none" }} > Assets</div>
                                     </NavLink>
                                 </li>
                             </ul>
@@ -382,13 +382,13 @@ const Sidebar = ({ children }) => {
                             <ul id='mastertransaction' className='inneruldiv'>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalVendorInvoice' className='navlink d-flex' activeclassname="sidebaractive">
-                                        <MdAttachMoney />
+                                        <MdAttachMoney style={{ fill: "#a12e7a" }} />
                                         <div style={{ display: isOpen ? "block" : "none" }} > Vendor Invoice</div>
                                     </NavLink>
                                 </li>
                                 <li className='innerlink'>
                                     <NavLink to='/TotalVendorPayment' className='navlink d-flex' activeclassname="sidebaractive">
-                                        <MdAttachMoney />
+                                        <MdAttachMoney style={{ fill: "#a12e7a" }} />
                                         <div style={{ display: isOpen ? "block" : "none" }} > Vendor Payment</div>
                                     </NavLink>
                                 </li>
