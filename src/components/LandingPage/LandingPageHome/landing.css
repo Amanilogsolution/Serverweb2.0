@@ -192,8 +192,9 @@
 
 
 /* Footer Link */
-.landingfooter_main {
-    background-color: rgb(225, 193, 214);
+.landingfooter_main{
+    background: url("../../../image/footer_img.jpg");
+    background-size: 100% 100%;
 }
 
 .landingfooter {
@@ -354,7 +355,7 @@
 
 .photos_content {
     /* border: 1px solid black; */
-    padding: 50px;
+    padding: 20px;
 }
 
 .photos_content1 {
@@ -440,14 +441,8 @@
         width: 350px;
         height: 200px;
     }
-
-    .photos_content1 .img_div3 {
-        width: 350px;
-        height: 200px;
-    }
-
-    .photos_content1 .img_div {
-        width: 350px;
+    .photos_content1 .img_div{
+        width:350px;
         height: 200px;
     }
 
