@@ -20,8 +20,12 @@ const LandingHeader = () => {
                             <Link className='nav-link'  to='/Login'>Login</Link>
                         </li> */}
                         <li>
+                            <Link className='nav-link' to='/HelpDescription'>Help</Link>
+                        </li>
+                        <li>
                             <Link className='btn btn-voilet' to='/Signin' >Sign In</Link>
                         </li>
+                        
                     </ul>
             </div>
 

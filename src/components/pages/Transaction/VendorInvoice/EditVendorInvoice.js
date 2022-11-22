@@ -14,7 +14,6 @@ function EditVendorInvoice() {
     useEffect(() => {
         const fetchdata = async () => {
             const datas = await GetVendorInvoice(sessionStorage.getItem('vendorinvoicesno'))
-            console.log(datas)
             setData(datas[0])
 
             const vendorcontract = await ActiveVendorContract();

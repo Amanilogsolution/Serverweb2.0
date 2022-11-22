@@ -96,7 +96,6 @@ export default function EditTicket() {
         else {
             const result = await UpdateTicket(employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id, sno)
-            console.log(result)
             if (result === 'Data Updated') {
                 alert('Ticket Updated')
                 sessionStorage.removeItem('TicketSno')
