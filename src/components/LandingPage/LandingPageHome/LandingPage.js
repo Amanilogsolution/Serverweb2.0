@@ -198,7 +198,7 @@ const LandingPage = () => {
                                             <h5>Free</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h3><BiRupee/>0</h3>
+                                            <h3><BiRupee style={{marginTop:"-4px"}}/>0</h3>
                                             <ul>
                                                 <li>1 Organisation</li>
                                                 <li>1 Location</li>
