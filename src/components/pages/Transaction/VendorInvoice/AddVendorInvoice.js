@@ -155,7 +155,7 @@ function AddVendorInvoice() {
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Invoice</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Invoice</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorInvoice' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className=" card contract-div" style={{ width: "98%" }}>
+                            <div className=" card contract-div" style={{ width: "98%",minHeight:"62vh"}}>
                                 <header className="card-header d-flex justify-content-between" >
                                     <h5 >Add Vendor Invoice</h5>
                                     <div>

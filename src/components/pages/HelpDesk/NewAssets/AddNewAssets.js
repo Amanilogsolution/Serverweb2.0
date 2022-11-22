@@ -215,7 +215,6 @@ const AddNewAssets = () => {
             }
             else {
                 rentpermonth = '';
-                invoiceno = '';
             }
             if (purchase_type === 'Owned') {
                 if (!purchaseprice) {
@@ -228,6 +227,7 @@ const AddNewAssets = () => {
             }
             else {
                 purchaseprice = '';
+                invoiceno = '';
             }
 
             if (errorcount === 0) {
