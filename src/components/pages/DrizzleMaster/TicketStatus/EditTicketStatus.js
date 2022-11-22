@@ -36,7 +36,7 @@ function EditTicketStatus() {
         else {
             const result = await UpdateTicketstatus(sno, ticket_status, remark, username);
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Ticket Status Updated')
                 sessionStorage.removeItem('ticketstatussno');
                 window.location.href = './TotalTicketStatus'
             }

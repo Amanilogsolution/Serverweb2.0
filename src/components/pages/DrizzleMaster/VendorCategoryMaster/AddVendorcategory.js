@@ -24,7 +24,7 @@ function AddVendorCategory() {
         else {
             const result = await AddVendorCategoryapi(vendor_category_id, vendor_category, vendor_category_description, username);
             if (result === 'Added') {
-                alert('Data Added ')
+                alert('Vendor Category Added ')
                 window.location.href = './TotalVendorCategory'
             }
             else {

@@ -35,7 +35,7 @@ function EditBillingFreq() {
             const result = await UpdateBillingFreqapi(sno, billing_freq, billing_freq_desc, username);
 
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Billing Frequency Updated')
                 sessionStorage.removeItem('billingfreqsno');
                 window.location.href = './TotalBillingFreq'
             }

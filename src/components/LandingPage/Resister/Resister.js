@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { CgOrganisation } from 'react-icons/cg';
 import { BsPersonCircle } from 'react-icons/bs';
 import ReCAPTCHA from "react-google-recaptcha";
+import { Link } from 'react-router-dom'
 
 
 
@@ -14,13 +15,13 @@ export default function Resister() {
 
     //recaptcha function
     function captchaChange(value) {
-        if(value.length>10){
+        if (value.length > 10) {
             setVerified(true)
         }
-        else{
+        else {
             alert("CAPTCHA Invalid")
         }
-        
+
     }
     // =============================================== STEP 1 =======================================================
     const Step1 = () => {
@@ -91,11 +92,13 @@ export default function Resister() {
                                     <div className="row mb-3" id='gstno-div' style={{ display: "none" }}>
                                         <div className="form-group col-md-5">
                                             <label htmlFor='gstno'>Gst no :-</label>
-                                            <input type='text' id="gstno" className="form-control col" placeholder='XXXXXXXXXXXXXXX'/>
+                                            <input type='text' id="gstno" className="form-control col" placeholder='XXXXXXXXXXXXXXX' />
                                         </div>
                                     </div>
 
                                     <button type="submit" onClick={() => setStep(2)} className="btn btn-voilet">Next</button>
+                                    <p className="small fw-bold mt-2 pt-1 mb-0">Already! have an account? <Link to="/Signin" className="link-danger">Sign In</Link></p>
+
                                 </form>
                             </article>
 
@@ -169,7 +172,7 @@ export default function Resister() {
                                     </div>
 
 
-                                    <ReCAPTCHA 
+                                    <ReCAPTCHA
                                         className='mt-3'
                                         sitekey="6LfhsLgiAAAAAAGeb1jYsf0mBw6rzfJJaZ-iVYNJ"
                                         onChange={captchaChange}
@@ -183,7 +186,7 @@ export default function Resister() {
                             <BsPersonCircle id="organisation" /><br />
                             <h5 style={{ textAlign: "center", fontSize: "25px" }}>Personal Profile</h5>
                             <p className='mx-3 my-5 text-center'>Fill out the form here for your complete details about personal. You can always edit these details</p>
-                            <h6 style={{marginTop:"180px"}} className='pagechange text-center text-white'>2</h6>
+                            <h6 style={{ marginTop: "180px" }} className='pagechange text-center text-white'>2</h6>
                         </div>
                     </div>
                 </div>

@@ -39,7 +39,7 @@ function AddEmployee() {
         else {
             const result = await AddEmployees(employee_id, employee_name, location, employee_email, employee_number, company, username);
             if (result === 'Added') {
-                alert('Data Added ')
+                alert('Employee Added ')
                 window.location.href = './TotalEmployee'
             }
             else {

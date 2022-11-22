@@ -106,7 +106,7 @@ export default function AddTicket() {
             const result = await InsertTicket(employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id)
             if (result === 'Data Added') {
-                alert('Data Added')
+                alert('Ticket Added')
                 window.location.href = './TotalTicket'
             }
             else {

@@ -153,7 +153,7 @@ function EditVendorCode() {
                     help_desk_no, user_id)
 
                 if (callapi === 'Updated') {
-                    alert('Data Update');
+                    alert('Vendor Contract Update');
                     window.location.href = './TotalVendorContract'
                 }
                 else {

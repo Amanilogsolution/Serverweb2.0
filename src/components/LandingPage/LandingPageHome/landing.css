@@ -1,7 +1,7 @@
 .landingContainer {
     /* width: 99.9vw; */
     overflow: hidden;
-
+    font-family: 'Alata';
 }
 
 .landingnav {
@@ -73,11 +73,11 @@
 }
 
 .comp_name {
+    /* font-family: 'Alata'; */
     min-height: 70px;
     display: grid;
     align-items: center;
     color: white;
-
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 24px;
@@ -196,6 +196,7 @@
 .landingfooter_main{
     background: url("../../../image/footer_img.jpg");
     background-size: 100% 100%;
+    font-family: 'Alata'
 }
 
 .landingfooter {

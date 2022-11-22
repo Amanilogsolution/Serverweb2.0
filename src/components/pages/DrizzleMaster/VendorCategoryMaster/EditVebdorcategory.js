@@ -34,7 +34,7 @@ function EditVendorcategory() {
             const result = await UpdateVendorCategoryapi(sno, vendor_category, vendor_category_description, username);
 
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Vendor Category Updated')
                 sessionStorage.removeItem('vendorcatsno');
                 window.location.href = './TotalVendorCategory'
             }

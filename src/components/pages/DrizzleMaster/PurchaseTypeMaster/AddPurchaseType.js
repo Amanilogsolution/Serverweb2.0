@@ -26,7 +26,7 @@ function AddPurchaseType() {
         else {
             const result = await AddPurchaseTypeeapi(purchase_type_id, purchase_type, purchase_type_desc, username);
             if (result === 'Added') {
-                alert('Data Added ')
+                alert('Purchase Type Added ')
                 window.location.href = './TotalPurchaseType'
             }
             else {

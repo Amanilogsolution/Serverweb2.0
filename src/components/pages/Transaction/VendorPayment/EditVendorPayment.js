@@ -61,7 +61,7 @@ function EditVendorPayments() {
         else {
             const result = await UpdateVendorPayment(paymentdetail,paymentamt,paymentdate,remark,sno)
             if (result === 'Data Updated') {
-                alert('Data Updated')
+                alert('Vendor Payment Updated')
                 sessionStorage.removeItem('vendorpaymentssno')
                 window.location.href = './TotalVendorPayment'
             }

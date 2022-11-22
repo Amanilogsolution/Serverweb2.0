@@ -23,7 +23,7 @@ function AddVendorSubCategory() {
         else {
             const result = await InsertServiceActionType(service_action_id, service_action, remark, username);
             if (result === 'Added') {
-                alert('Data Added ')
+                alert('Service Action Type Added ')
                 window.location.href = './TotalServiceActionType'
             }
             else {

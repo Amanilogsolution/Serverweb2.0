@@ -7,7 +7,7 @@
     display: flex;
     box-shadow: 1px 1px 9px 1px silver;
     border-radius: 5px;
-
+    font-family: 'Alata';
   }
   .for_reg{
       /* width:100%; */

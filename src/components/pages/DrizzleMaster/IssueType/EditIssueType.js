@@ -33,7 +33,7 @@ function EditIssueType() {
         else {
             const result = await UpdateIssueType(sno, issue_type, remark, username);
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Issue Type Updated')
                 sessionStorage.removeItem('IssueTypesno');
                 window.location.href = './TotalIssueType'
             }

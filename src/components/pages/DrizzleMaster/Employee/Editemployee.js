@@ -40,7 +40,7 @@ function EditEmployee() {
             const result = await UpdateEmployees(sno, employee_name, location, employee_email, employee_number, company, username);
 
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Employee Updated')
                 sessionStorage.removeItem('employeesno');
                 window.location.href = './TotalEmployee'
             }

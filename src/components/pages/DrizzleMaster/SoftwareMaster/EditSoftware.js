@@ -34,7 +34,7 @@ function EditSoftware() {
             const result = await UpdateSoftwareapi(sno, software, software_desc, username);
 
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Software Updated')
                 sessionStorage.removeItem('softwaresno');
                 window.location.href = './TotalSoftware'
             }

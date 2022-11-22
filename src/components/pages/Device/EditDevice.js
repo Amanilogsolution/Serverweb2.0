@@ -81,7 +81,7 @@ function EditDevice() {
         else {
             const result = await Updatedevice(sno, deviceid, devicename, devicetype, devicegroup, deviceipaddr, devicehost, operatingsystem, services, createdate, registerdate, agent, remark, username)
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Device Updated')
                 sessionStorage.removeItem('deviceSno');
                 window.location.href = '/TotalDevice'
             }

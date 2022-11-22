@@ -68,10 +68,12 @@ const EditAsset = () => {
             if (getdata[0].purchase_type === 'Rental') {
                 document.getElementById('purchasespricediv').style.display = 'none'
                 document.getElementById('rentpermonthdiv').style.display = 'block'
+                document.getElementById('invoicenodiv').style.display = 'none'
             }
             else if (getdata[0].purchase_type === 'Owned') {
                 document.getElementById('purchasespricediv').style.display = 'block'
                 document.getElementById('rentpermonthdiv').style.display = 'none'
+                document.getElementById('invoicenodiv').style.display = 'block'
             }
         }
         fetchdata();
@@ -150,10 +152,12 @@ const EditAsset = () => {
         if (e.target.value === 'Rental') {
             document.getElementById('purchasespricediv').style.display = 'none'
             document.getElementById('rentpermonthdiv').style.display = 'block'
+            document.getElementById('invoicenodiv').style.display = 'none'
         }
         else if (e.target.value === 'Owned') {
             document.getElementById('purchasespricediv').style.display = 'block'
             document.getElementById('rentpermonthdiv').style.display = 'none'
+            document.getElementById('invoicenodiv').style.display = 'block'
         }
     }
 
@@ -239,7 +243,7 @@ const EditAsset = () => {
                     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, userid, sno)
 
                 if (result === 'Data Updated') {
-                    alert('Data Updated')
+                    alert('Asset Updated')
                     sessionStorage.removeItem('newassetsno')
                     window.location.href = '/TotalNewAssets'
                 }
@@ -419,7 +423,7 @@ const EditAsset = () => {
                                                                     }
                                                                 </select>
                                                             </div>
-                                                            <div className="col-md-4">
+                                                            <div className="col-md-4" id='invoicenodiv' >
                                                                 <label htmlFor='invoiceno'>Invoice No.<span className='text-danger'>*</span></label>
                                                                 <input type="text" id='invoiceno' className="form-control" defaultValue={data.invoice_no} required />
                                                             </div>

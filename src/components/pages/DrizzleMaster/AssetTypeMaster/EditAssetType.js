@@ -33,7 +33,7 @@ function EditAssetType() {
             const result = await UpdateAssettypeapi(sno, asset_type, asset_type_desc, username);
 
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Asset Type Updated')
                 sessionStorage.removeItem('assettypesno');
                 window.location.href = './TotalAssetType'
             }

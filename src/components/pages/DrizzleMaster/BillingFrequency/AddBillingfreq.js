@@ -24,7 +24,7 @@ function AddBillingFreq() {
         else {
             const result = await AddBillingFreqapi(billing_freq_id, billing_freq, billing_freq_desc, username);
             if (result === 'Added') {
-                alert('Data Added ')
+                alert('Billing Frequency Added ')
                 window.location.href = './TotalBillingFreq'
             }
             else {

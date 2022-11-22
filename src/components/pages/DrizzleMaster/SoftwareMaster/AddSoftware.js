@@ -24,7 +24,7 @@ function AddSoftware() {
         else {
             const result = await AddSoftwareapi(software_id, software, software_desc, username);
             if (result === 'Added') {
-                alert('Data Added ')
+                alert('Software Added ')
                 window.location.href = './TotalSoftware'
             }
             else {

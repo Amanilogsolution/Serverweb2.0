@@ -34,7 +34,7 @@ function EditServiceActionType() {
             const result = await UpdateServiceActionType(sno, service_action_type, remark, UserId);
 
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Service Action Type Updated')
                 sessionStorage.removeItem('serviceactiontypesno');
                 window.location.href = './TotalServiceActionType'
             }

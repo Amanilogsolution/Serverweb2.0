@@ -34,7 +34,7 @@ function EditManufacturer() {
         else {
             const result = await UpdateManufacturer(sno, manufacturername, remark, username);
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Manufacturer Updated')
                 sessionStorage.removeItem('manufacturersno');
                 window.location.href = './TotalManufacturer'
             }

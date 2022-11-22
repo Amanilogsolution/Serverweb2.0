@@ -34,7 +34,7 @@ function EditAssetStatus() {
             const result = await UpdateAssetStatusapi(sno, asset_status, asset_status_desc, username);
 
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Asset Status Updated')
                 sessionStorage.removeItem('assetstatussno');
                 window.location.href = './TotalAssetStatus'
             }

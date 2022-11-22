@@ -38,7 +38,7 @@ function EditVendorSubCategory() {
             const result = await UpdateVendSubCate(sno, vendor_category, vendor_sub_category, remark, UserId);
 
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Vendor Sub Category Updated')
                 sessionStorage.removeItem('vendsubcatesno');
                 window.location.href = './TotalVendSubCate'
             }

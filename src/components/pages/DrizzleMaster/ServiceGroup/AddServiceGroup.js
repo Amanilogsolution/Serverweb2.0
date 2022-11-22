@@ -23,7 +23,7 @@ function AddServiceGroup() {
         else {
             const result = await InsertServiceGroup(service_action_id, service_group_type, remark, username);
             if (result === 'Added') {
-                alert('Data Added ')
+                alert('Service Group Added ')
                 window.location.href = './TotalServiceGroup'
             }
             else {

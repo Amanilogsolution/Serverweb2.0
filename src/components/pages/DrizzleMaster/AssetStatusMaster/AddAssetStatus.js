@@ -24,7 +24,7 @@ function AddAssetStatus() {
         else {
             const result = await AddAssetStatusapi(assetstatus_id, asset_status, asset_status_desc, username);
             if (result === 'Added') {
-                alert('Data Added ')
+                alert('Asset Status Added ')
                 window.location.href = './TotalAssetStatus'
             }
             else {

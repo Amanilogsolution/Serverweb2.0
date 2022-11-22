@@ -48,7 +48,7 @@ function EditLocation() {
                 contactpersonname, email, contNum, latitude, longitude, username);
 
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Locations Updated')
                 sessionStorage.removeItem('locationsno');
                 window.location.href = './TotalLocations'
             }
