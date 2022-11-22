@@ -10,13 +10,41 @@ import Navbar from '../Sidebar/Navbar.js';
 import '../Sidebar/Sidebar'
 import logo from '../../image/drizzle_logo.jpg'
 import './HelpDeskSideBar.css'
+import HelpEmployee from './HelpEmployee';
+import HelpLocation from './HelpLocation';
+import './HelpDeskSideBar.css'
+import HelpInvoice from './HelpInvoice';
+import HelpVendorCode from './HelpVendorCode';
+import HelpVendorContract from './HelpVendorContract';
+import HelpVendorPayment from './HelpVendorPayment';
+import HelpSoftware from './HelpSoftware';
 
-
-const Sidebar = ({ children }) => {
+const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => {
         setIsOpen(!isOpen)
     };
+
+    const [currentStep, setStep] = useState(1);
+
+      const showStep = (step) => {
+        switch (step) {
+          case 1:
+            return  <HelpLocation/>
+          case 2:
+            return <HelpEmployee/>
+          case 3:
+            return <HelpInvoice/>
+          case 4:
+            return <HelpSoftware/>
+          case 5:
+              return <HelpVendorCode/>
+          case 6:
+            return <HelpVendorContract/>
+          case 7:
+            return <HelpVendorPayment/>
+        }
+      }
 
     const icononstyle = {
         transform: "rotate(-180deg)",
@@ -37,47 +65,39 @@ const Sidebar = ({ children }) => {
                 </div>
                 <div className='internalsidebar'>
                     <ul>
-                        <li>
-                            <NavLink to='/HelpLocation' className="link navlink" title='Dashboard' >
+                        <li onClick={() => setStep(1)}>
                                 <div className="icon"><FaLocationArrow /></div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Location</div>
-                            </NavLink>
+                                <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px" }} className="link_text">Location</div>       
                         </li>
-                        <li>
-                            <NavLink to='/HelpEmployee' className="link navlink" title='Dashboard' >
+
+                        <li onClick={() => setStep(2)}>
                                 <div className="icon"><RiUserFill  style={{fontSize:"22px"}}/></div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Employee</div>
-                            </NavLink>
+                                <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px" }} className="link_text">Employee</div>
                         </li>
-                        <li>
-                            <NavLink to='/HelpSoftware' className="link navlink" title='Dashboard' >
+
+                        <li  onClick={() => setStep(3)}>
                                 <div className="icon"><BsWindows /></div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Software</div>
-                            </NavLink>
+                                <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px"  }} className="link_text">Software</div>
                         </li>
-                        <li>
-                            <NavLink to='/HelpVendorCode' className="link navlink" title='Dashboard' >
+                        <li  onClick={() => setStep(4)}>
+                            
                                 <div className="icon"><FaLocationArrow /></div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Code</div>
-                            </NavLink>
+                                <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px"  }} className="link_text">Vendor Code</div>
+                            
                         </li>
-                        <li>
-                            <NavLink to='/HelpVendorContract' className="link navlink" title='Dashboard' >
+                        <li  onClick={() => setStep(5)}>
                                 <div className="icon"><FaFileContract /></div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Contract</div>
-                            </NavLink>
+                                <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px"  }} className="link_text">Vendor Contract</div>
                         </li>
-                        <li>
-                            <NavLink to='/HelpInvoice' className="link navlink" title='Dashboard' >
+
+                        <li  onClick={() => setStep(6)}>
                                 <div className="icon"><FaFileInvoiceDollar /></div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Invoice</div>
-                            </NavLink>
+                                <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px"  }} className="link_text">Invoice</div>
                         </li>
-                        <li>
-                            <NavLink to='/HelpVendorPayment' className="link navlink" title='Dashboard' >
+
+                        <li  onClick={() => setStep(7)}>
                                 <div className="icon"><MdPayment /></div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Payment</div>
-                            </NavLink>
+                                <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px"  }} className="link_text">Vendor Payment</div>
                         </li>
 
                     </ul>
@@ -87,7 +107,7 @@ const Sidebar = ({ children }) => {
 
             <div className={isOpen ? "mainopen" : "main"}>
                 <Navbar isOpen={isOpen} />
-                {children}
+                {showStep(currentStep)}
                 <Footer />
             </div>
         </div>

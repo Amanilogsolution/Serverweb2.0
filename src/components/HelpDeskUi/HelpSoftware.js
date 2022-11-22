@@ -4,7 +4,7 @@ import HelpDeskSideBar from './HelpDeskSideBar'
 export default function HelpSoftware() {
   return (
     <div>
-        <HelpDeskSideBar>
+    
         <div className='HelpDesk_container'>
            <h1>Software</h1>
            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur vitae sapiente nam dolores fugiat illo 
@@ -15,7 +15,7 @@ export default function HelpSoftware() {
                aperiam accusantium impedit non molestiae perferendis dolores eligendi, autem alias numquam.
              Porro, eos quis odio in repellat officiis. Molestiae sint quae veritatis a, iusto totam culpa nulla fugit.</p>
            </div>
-        </HelpDeskSideBar>
+        
     </div>
   )
 }
