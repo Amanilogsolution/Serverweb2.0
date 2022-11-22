@@ -35,7 +35,6 @@ function EditDevice() {
             setActiveAgent(Agent)
 
             const getdata = await Getdevice(sessionStorage.getItem('deviceSno'))
-            console.log(getdata)
             setData(getdata);
             setLoading(true)
 
