@@ -16,9 +16,6 @@ const LandingHeader = () => {
                         <li>
                             <a className='nav-link' href='/#about'>About</a>
                         </li>
-                        {/* <li>
-                            <Link className='nav-link'  to='/Login'>Login</Link>
-                        </li> */}
                         <li>
                             <Link className='nav-link' to='/HelpDescription'>Help</Link>
                         </li>
