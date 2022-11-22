@@ -294,15 +294,15 @@
     }
 
     .pricing .pricinghead .container .pricing_cards {
-        width: 95%;
+        width: 100%;
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: 1fr;
         grid-row-gap: 5px;
-        border: 2px solid #000;
+        /* border: 2px solid #000; */
     }
 
     .pricing .pricinghead .container .pricing_cards .pricing_card {
-        width: 65%;
+        width: 80%;
         margin: auto;
         margin-bottom: 5px;
     }

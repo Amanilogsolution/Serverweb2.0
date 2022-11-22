@@ -6,7 +6,8 @@ import { BsWindows } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 import Footer from '../Sidebar/Footer/Footer';
 import Navbar from '../Sidebar/Navbar.js';
-import '../Sidebar/Sidebar.css'
+// import '../Sidebar/Sidebar.css'
+import '../Sidebar/Sidebar'
 import logo from '../../image/drizzle_logo.jpg'
 import './HelpDeskSideBar.css'
 
@@ -26,7 +27,7 @@ const Sidebar = ({ children }) => {
     }
 
     return (
-        <div className="HelpDeskSidebar">
+        <div className="HelpDeskSideBar">
             <div className={isOpen ? 'sidebaropen' : 'sidebar'} >
                 <div className="top_section">
                     <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} />
