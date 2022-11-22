@@ -42,13 +42,10 @@ function EditDevice() {
             // if(!series){
             //     alert('Active Series')
             // }
-            // console.log(series)
             // const ser = series.device_id
-            // console.log(ser)
             // const count = await TotalCount('tbl_devices')
             // let countincrement = count.count+1;
             // let countnum = ''+countincrement;
-            // console.log(countnum)
             // setDeviceID(ser+countnum)
         }
         fetchdata()

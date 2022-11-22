@@ -221,7 +221,7 @@ const LandingPage = () => {
                                             <h5>Standard</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h2><BiRupee/>2999/<p style={{fontSize:"14px",margin:"-20px 0 0 150px"}}>Month</p></h2>
+                                            <h2><BiRupee/>2999<p style={{fontSize:"14px",margin:"-20px 0 0 145px"}}>/month</p></h2>
                                             <ul className=''>
                                                 <li>1 Organisation</li>
                                                 <li>3 Locations</li>
@@ -244,7 +244,7 @@ const LandingPage = () => {
                                             <h5>Professional</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h2><BiRupee/>4999/<p style={{fontSize:"14px",margin:"-20px 0 0 150px"}}>Month</p></h2>
+                                            <h2><BiRupee/>4999<p style={{fontSize:"14px",margin:"-20px 0 0 145px"}}>/month</p></h2>
                                             <ul>
                                                 <li>2 Organisations</li>
                                                 <li>10 Locations</li>
