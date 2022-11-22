@@ -32,13 +32,13 @@ const Sidebar = () => {
           case 2:
             return <HelpEmployee/>
           case 3:
-            return <HelpInvoice/>
-          case 4:
             return <HelpSoftware/>
+          case 4:
+            return <HelpVendorCode/>
           case 5:
-              return <HelpVendorCode/>
+              return <HelpVendorContract/>
           case 6:
-            return <HelpVendorContract/>
+            return <HelpInvoice/>
           case 7:
             return <HelpVendorPayment/>
         }
