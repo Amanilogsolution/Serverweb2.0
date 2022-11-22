@@ -60,7 +60,7 @@ function EditVendorInvoice() {
         else {
             const result = await UpdatePendingVendorInvoice( vendor,accountno,invno,invamt,invdate,invduedate,invsubdate,remark,refno,printercount,sno)
             if (result === 'Data Updated') {
-                alert('Data Updated')
+                alert('Vendor Invoice Updated')
                 sessionStorage.removeItem('vendorinvoicesno')
                 window.location.href = './TotalVendorInvoice'
             }

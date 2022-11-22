@@ -168,7 +168,7 @@ function AddVendorContract() {
                     rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
                     help_desk_no, user_id)
                 if (callapi === 'Added') {
-                    alert('Data Added');
+                    alert('Vendor Contract Added');
                     window.location.href = './TotalVendorContract'
                 }
                 else {

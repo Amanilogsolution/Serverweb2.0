@@ -33,7 +33,7 @@ function EditPriority() {
             const result = await UpdatePriorityapi(sno, priority, priority_desc, username);
 
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Priority Type Updated')
                 sessionStorage.removeItem('prioritysno');
                 window.location.href = './TotalPriority'
             }

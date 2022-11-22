@@ -23,7 +23,7 @@ function AddContractType() {
         else {
             const result = await InsertContractType(contract_type_id, contract_type, remark, username);
             if (result === 'Added') {
-                alert('Data Added')
+                alert('Contract Type Added')
                 window.location.href = './TotalContractType'
             }
             else {

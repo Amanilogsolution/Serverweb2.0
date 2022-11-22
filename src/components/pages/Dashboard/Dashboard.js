@@ -9,10 +9,10 @@ import {
 } from '../../../api'
 // import data from '../../Citylist';
 
+// import { warning } from '../../../Snackbar/Snackbar'
 
 const Dashboard = () => {
   // console.log(data)
-
 
   //   const onChange = (e) => {
   //     const [file] = e.target.files;
@@ -60,8 +60,9 @@ const Dashboard = () => {
           <div className='home_content'>
             {/* <input type='file' onChange={onChange}/> */}
             {/* <button onClick={upload}>Upload</button> */}
-            <img className='home_logo' src={logo} alt='Drizzle Logo'/>
+            <img className='home_logo' src={logo} alt='Drizzle Logo' />
             <h1>Hello from Us</h1>
+            {/* {warning('Asset Added Successfully ')} */}
             <p>
               Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
               and a search for 'lorem ipsum' will uncover many web sites still in their infancy.

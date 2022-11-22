@@ -24,7 +24,7 @@ function AddPriority() {
         else {
             const result = await AddPriorityapi(priority_id, priority, priority_desc, username);
             if (result === 'Added') {
-                alert('Data Added ')
+                alert('Priority Type Added ')
                 window.location.href = './TotalPriority'
             }
             else {

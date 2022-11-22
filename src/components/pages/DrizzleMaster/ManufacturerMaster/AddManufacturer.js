@@ -22,7 +22,7 @@ function AddManufacturer() {
         else {
             const result = await InsertManufacturer(manufacturer_id, manufacturername, remark, username);
             if (result === 'Added') {
-                alert('Data Added')
+                alert('Manufacturer Added')
                 sessionStorage.removeItem('seriessno');
                 window.location.href = './TotalManufacturer'
             }

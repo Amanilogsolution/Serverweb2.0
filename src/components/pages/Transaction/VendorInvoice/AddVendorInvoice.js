@@ -111,7 +111,7 @@ function AddVendorInvoice() {
         if (errorcount === 0) {
             const result = await InsertVendorInvoice(arryval, sessionStorage.getItem('UserId'))
             if(result==='Data Added'){
-                alert('Data Added')
+                alert('Vendor Invoice Added')
                 window.location.href='/TotalVendorInvoice';
             }
             else{ 

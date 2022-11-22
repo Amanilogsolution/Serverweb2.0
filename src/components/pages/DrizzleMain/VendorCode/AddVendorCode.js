@@ -74,7 +74,7 @@ function AddVendorCode() {
                 vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Added') {
-                alert('Data Added ')
+                alert('Vendor Master Added ')
                 window.location.href = './TotalVendorCode'
             }
             else {

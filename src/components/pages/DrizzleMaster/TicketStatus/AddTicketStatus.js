@@ -23,7 +23,7 @@ function AddTicketStatus() {
         else {
             const result = await InsertTicketstatus(ticket_status_id, ticket_status, remark, username);
             if (result === 'Added') {
-                alert('Data Added')
+                alert('Ticket Status Added')
                 window.location.href = './TotalTicketStatus'
             }
             else {

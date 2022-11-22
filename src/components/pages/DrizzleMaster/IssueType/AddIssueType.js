@@ -23,7 +23,7 @@ function AddIssueType() {
         else {
             const result = await InsertIssueType(issue_type_id, issue_type, remark, username);
             if (result === 'Added') {
-                alert('Data Added')
+                alert('Issue Type Added')
                 window.location.href = './TotalIssueType'
             }
             else {

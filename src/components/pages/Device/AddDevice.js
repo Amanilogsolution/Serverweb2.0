@@ -95,7 +95,7 @@ function AddDevice() {
             })
             setTimeout(() => {
                 if (arryresult.length > 0) {
-                    alert('Data Added')
+                    alert('Device Added')
                     window.location.href = '/TotalDevice'
                 }
 

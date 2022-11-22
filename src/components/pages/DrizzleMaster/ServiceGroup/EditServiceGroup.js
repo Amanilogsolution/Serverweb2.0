@@ -33,7 +33,7 @@ function EditServiceGroup() {
             const result = await UpdateServiceGroup(sno, service_group_type, remark, UserId);
 
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Service Group Updated')
                 sessionStorage.removeItem('servicegroupsno');
                 window.location.href = './TotalServiceGroup'
             }

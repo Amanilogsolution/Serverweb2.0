@@ -243,7 +243,7 @@ const EditAsset = () => {
                     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, userid, sno)
 
                 if (result === 'Data Updated') {
-                    alert('Data Updated')
+                    alert('Asset Updated')
                     sessionStorage.removeItem('newassetsno')
                     window.location.href = '/TotalNewAssets'
                 }

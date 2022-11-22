@@ -41,7 +41,7 @@ function AddLocation() {
                 pincode, gstno, contactpersonname, email, contNum, latitude, longitude, username);
 
             if (result === 'Added') {
-                alert('Data Added ')
+                alert('Locations Added ')
                 window.location.href = './TotalLocations'
             }
             else {

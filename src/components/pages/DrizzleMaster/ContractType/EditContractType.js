@@ -35,7 +35,7 @@ function EditContractType() {
         else {
             const result = await UpdateContractType(sno, contract_type, remark, username);
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Contract Type Updated')
                 sessionStorage.removeItem('contracttypesno');
                 window.location.href = './TotalContractType'
             }

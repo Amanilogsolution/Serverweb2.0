@@ -98,7 +98,7 @@ export default function EditTicket() {
                 priority, issuedesc, remark, user_id, sno)
             console.log(result)
             if (result === 'Data Updated') {
-                alert('Data Updated')
+                alert('Ticket Updated')
                 sessionStorage.removeItem('TicketSno')
                 window.location.href = './TotalTicket'
             }

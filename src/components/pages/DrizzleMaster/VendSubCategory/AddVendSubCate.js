@@ -36,7 +36,7 @@ function AddVendorSubCategory() {
         else {
             const result = await InsertVendSubCate(vend_sub_cate_id, vendor_category, vendor_sub_category, remark, username);
             if (result === 'Added') {
-                alert('Data Added ')
+                alert('Vendor Sub Category Added ')
                 window.location.href = './TotalVendSubCate'
             }
             else {

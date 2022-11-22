@@ -84,7 +84,7 @@ function EditVendorCode() {
                 comp_state_id,comp_state,comp_city,comp_addr1,comp_addr2,comp_pincode,vendor_portal,contact_person,contact_no,contact_email,user_id);
 
             if (result === 'Updated') {
-                alert('Data Updated ')
+                alert('Vendor Master Updated ')
                 sessionStorage.removeItem('VendorCodeSno');
                 window.location.href = './TotalVendorCode'
             }

@@ -33,7 +33,7 @@ function EditPurchaseType() {
         else {
             const result = await UpdatePurchaseapi(sno, purchase_type, purchase_type_desc, username);
             if (result === 'Updated') {
-                alert('Data Updated')
+                alert('Purchase Type Updated')
                 sessionStorage.removeItem('purchasesno');
                 window.location.href = './TotalPurchaseType'
             }
