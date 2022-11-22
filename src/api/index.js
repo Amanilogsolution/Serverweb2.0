@@ -5,8 +5,6 @@ export const UserLogin = async (userid, password) => {
     return axios.post(url, { userid, password }).then(response => response.data).catch(error => console.log(error));
 }
 
-
-
 export const TotalCountry = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/totalcountry`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
@@ -90,7 +88,6 @@ export const Getdevicetype = async (sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getdevicetypemaster`
     return axios.post(url, { sno }).then(response => response.data).catch(error => console.log(error));
 }
-
 
 export const Updatedevicetype = async (sno, devicetypeid, device_type, remark, username) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/updatedevicetypemaster`
@@ -304,8 +301,6 @@ export const GetDevicetaskfrequency = async (task) => {
     return axios.post(url, { task }).then(response => response.data).catch(error => console.log(error));
 }
 
-
-
 export const Adddevice = async (device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/adddevice`
     return axios.post(url, { device_id, device_name, device_type, device_group, device_ip_address, device_host_master, device_os, services, device_creation_date, device_reg_date, agent, remark, username }).then(response => response.data).catch(error => console.log(error));
@@ -397,7 +392,6 @@ export const TotalOrganization = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/totalorganization`
     return axios.post(url).then(response => response.data).catch(error => console.log(error));
 }
-
 
 //Employee
 
@@ -665,7 +659,6 @@ export const ActiveVendorCategory = async () => {
     return axios.post(url, {}).then(response => response.data).catch(error => console.log(error));
 }
 
-
 //  Location Master
 
 export const TotalLocation = async () => {
@@ -832,7 +825,6 @@ export const ActiveTicketStatus = async () => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/ActiveTicketStatus`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
 }
-
 
 // Vendor Sub Category Master
 

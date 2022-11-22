@@ -268,17 +268,22 @@ const Sidebar = ({ children }) => {
                             </span>
                         </div>
                     </div>
-
-
                     <div className="innerdiv" id="innerdrizzle" style={{ display: "none" }}>
                         <ul style={{ marginBottom: "0px" }}>
-
+                            <li title='Assets' style={{ listStyle: "none" }}>
+                                <NavLink to='/TotalNewAssets' className="link" activeclassname="sidebaractive">
+                                    <div className="icon"><FaFileContract /></div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Assets</div>
+                                </NavLink>
+                            </li>
                             <li title='Vendor Contract' style={{ listStyle: "none" }}>
                                 <NavLink to='/TotalVendorContract' className="link" activeclassname="sidebaractive">
                                     <div className="icon"><FaFileContract /></div>
                                     <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Contract</div>
                                 </NavLink>
                             </li>
+
+
                             <li onClick={handleinner2toggledrizzle} style={{ listStyle: "none" }}>
                                 <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
                                     <div className="icon" onClick={toggle}><FaUserAlt /></div>
@@ -318,12 +323,12 @@ const Sidebar = ({ children }) => {
                                             <div style={{ display: isOpen ? "block" : "none" }} >Asset Status</div>
                                         </NavLink>
                                     </li>
-                                    <li className='innerlink'>
+                                    {/* <li className='innerlink'>
                                         <NavLink to='/TotalNewAssets' className='navlink d-flex' activeclassname="sidebaractive">
                                             <BiDevices style={{ color: "#a12e7a" }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} > Assets</div>
                                         </NavLink>
-                                    </li>
+                                    </li> */}
                                     <li className='innerlink'>
                                         <NavLink to='/TotalManufacturer' className='navlink d-flex' activeclassname="sidebaractive">
                                             <MdOutlinePrecisionManufacturing style={{ color: "#a12e7a" }} />&nbsp;

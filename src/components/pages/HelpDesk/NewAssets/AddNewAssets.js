@@ -141,6 +141,7 @@ const AddNewAssets = () => {
         else if (e.target.value === 'Owned') {
             document.getElementById('purchasespricediv').style.display = 'block'
             document.getElementById('rentpermonthdiv').style.display = 'none'
+            document.getElementById('invoicenodiv').style.display = 'block'
         }
     }
 
@@ -405,7 +406,7 @@ const AddNewAssets = () => {
                                                                     }
                                                                 </select>
                                                             </div>
-                                                            <div className="col-md-4" id='invoicenodiv'>
+                                                            <div className="col-md-4" id='invoicenodiv' style={{display:'none'}}>
                                                                 <label htmlFor='invoiceno'>Invoice No.<span className='text-danger'>*</span></label>
                                                                 <input type="text" id='invoiceno' className="form-control" required />
                                                             </div>

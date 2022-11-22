@@ -68,10 +68,12 @@ const EditAsset = () => {
             if (getdata[0].purchase_type === 'Rental') {
                 document.getElementById('purchasespricediv').style.display = 'none'
                 document.getElementById('rentpermonthdiv').style.display = 'block'
+                document.getElementById('invoicenodiv').style.display = 'none'
             }
             else if (getdata[0].purchase_type === 'Owned') {
                 document.getElementById('purchasespricediv').style.display = 'block'
                 document.getElementById('rentpermonthdiv').style.display = 'none'
+                document.getElementById('invoicenodiv').style.display = 'block'
             }
         }
         fetchdata();
@@ -150,10 +152,12 @@ const EditAsset = () => {
         if (e.target.value === 'Rental') {
             document.getElementById('purchasespricediv').style.display = 'none'
             document.getElementById('rentpermonthdiv').style.display = 'block'
+            document.getElementById('invoicenodiv').style.display = 'none'
         }
         else if (e.target.value === 'Owned') {
             document.getElementById('purchasespricediv').style.display = 'block'
             document.getElementById('rentpermonthdiv').style.display = 'none'
+            document.getElementById('invoicenodiv').style.display = 'block'
         }
     }
 
@@ -419,7 +423,7 @@ const EditAsset = () => {
                                                                     }
                                                                 </select>
                                                             </div>
-                                                            <div className="col-md-4">
+                                                            <div className="col-md-4" id='invoicenodiv' >
                                                                 <label htmlFor='invoiceno'>Invoice No.<span className='text-danger'>*</span></label>
                                                                 <input type="text" id='invoiceno' className="form-control" defaultValue={data.invoice_no} required />
                                                             </div>
@@ -453,7 +457,7 @@ const EditAsset = () => {
                                                             </div>
                                                             <div className="col-md-4">
                                                                 <label htmlFor='latestinventory'>Latest Inventory <span className='text-danger'>*</span></label>
-                                                                <input type="text" id='latestinventory' className="form-control" defaultValue={data.latest_inventory} required />
+                                                                <input type="date" id='latestinventory' className="form-control" defaultValue={data.latest_inventory} required />
                                                             </div>
                                                         </div>
                                                         <div className="row mt-3">
