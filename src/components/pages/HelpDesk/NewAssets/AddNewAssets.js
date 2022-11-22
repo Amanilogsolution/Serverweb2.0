@@ -4,9 +4,11 @@ import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { FaMinusCircle } from 'react-icons/fa'
 
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets,ActivePurchaseTypeapi } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { GiLuger } from 'react-icons/gi';
+import Select from 'react-select';
+
 
 const AddNewAssets = () => {
     const [loading, setLoading] = useState(false)
@@ -20,6 +22,8 @@ const AddNewAssets = () => {
     const [softwarelist, setSoftwarelist] = useState([])
     const [employeelist, setEmployeelist] = useState([])
     const [purchaseslist, setPurchaseslist] = useState([])
+    let [softwares, setSoftwares] = useState([])
+
 
 
     const [devicedetail, setDevicedetail] = useState(true)
@@ -48,7 +52,7 @@ const AddNewAssets = () => {
             const employee = await ActiveEmployees()
             setEmployeelist(employee)
 
-            const purchase= await ActivePurchaseTypeapi()
+            const purchase = await ActivePurchaseTypeapi()
             setPurchaseslist(purchase)
 
             setLoading(true)
@@ -56,6 +60,13 @@ const AddNewAssets = () => {
         fetchdata();
         todaydate()
     }, [])
+
+    let options = softwarelist.map((ele) => {
+        return { value: ele.software_name, label: ele.software_name };
+    })
+    const handleChange = (selectedOption) =>{
+        setSoftwares(selectedOption)
+    }
 
     const todaydate = () => {
         let date = new Date();
@@ -136,7 +147,7 @@ const AddNewAssets = () => {
             document.getElementById('purchasespricediv').style.display = 'none'
             document.getElementById('rentpermonthdiv').style.display = 'block'
             document.getElementById('invoicenodiv').style.display = 'none'
-            
+
         }
         else if (e.target.value === 'Owned') {
             document.getElementById('purchasespricediv').style.display = 'block'
@@ -152,7 +163,7 @@ const AddNewAssets = () => {
         const asset_type = document.getElementById('asset_type').value;
         const asset_id = asset_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const assetetag = document.getElementById('assetetag').value;
-        let software = document.getElementById('software').value;
+        // let software = document.getElementById('software').value;
         const serialno = document.getElementById('serialno').value;
         const location = document.getElementById('location').value;
         const manufacture = document.getElementById('manufacture').value;
@@ -163,14 +174,14 @@ const AddNewAssets = () => {
         const purchasesdate = document.getElementById('purchasesdate').value;
         const company = document.getElementById('company').value;
         const vendor = document.getElementById('vendor').value;
-        const invoiceno = document.getElementById('invoiceno').value;
+        let invoiceno = document.getElementById('invoiceno').value;
         let purchaseprice = document.getElementById('purchaseprice').value;
         let rentpermonth = document.getElementById('rentpermonth').value;
         const latestinventory = document.getElementById('latestinventory').value;
         const assetname = document.getElementById('assetname').value;
-        let  asset_assign_empid = document.getElementById('assetassign');
-        const assetassign=asset_assign_empid.options[asset_assign_empid.selectedIndex].text;
-        asset_assign_empid= asset_assign_empid.value
+        let asset_assign_empid = document.getElementById('assetassign');
+        const assetassign = asset_assign_empid.options[asset_assign_empid.selectedIndex].text;
+        asset_assign_empid = asset_assign_empid.value
         const remark = document.getElementById('remark').value;
 
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
@@ -182,7 +193,7 @@ const AddNewAssets = () => {
         else {
             let errorcount = 0;
             if (asset_type === 'Laptop') {
-                if (!software) {
+                if (!softwares) {
                     alert('Please enter the Software Field')
                     setLoading(true)
                     errorcount = errorcount + 1;
@@ -191,7 +202,7 @@ const AddNewAssets = () => {
 
             }
             else {
-                software = '';
+                softwares = [];
             }
             if (purchase_type === 'Rental') {
                 if (!rentpermonth) {
@@ -204,7 +215,7 @@ const AddNewAssets = () => {
             }
             else {
                 rentpermonth = '';
-                invoiceno='';
+                invoiceno = '';
             }
             if (purchase_type === 'Owned') {
                 if (!purchaseprice) {
@@ -220,9 +231,20 @@ const AddNewAssets = () => {
             }
 
             if (errorcount === 0) {
-                const result = await InsertNewAssets(asset_id, asset_type, assetetag, serialno, location, manufacture, software,
+                if(asset_type === 'Laptop'){
+                    softwares.forEach(async (datas)=>{
+                       const software = datas.value
+                       const result = await InsertNewAssets(asset_id, asset_type, assetetag, serialno, location, manufacture, software,
+                       model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
+                       rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+                    })
+                    window.location.href = '/TotalNewAssets'
+
+                }else{
+                const result = await InsertNewAssets(asset_id, asset_type, assetetag, serialno, location, manufacture, '',
                     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
-                    rentpermonth, purchaseprice, latestinventory, assetname, assetassign,asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+                    rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+
                 if (result === 'Data Added') {
                     alert('Data Added')
                     window.location.href = '/TotalNewAssets'
@@ -231,6 +253,7 @@ const AddNewAssets = () => {
                     alert('Server Not Response')
                     setLoading(true)
                 }
+            }
             }
         }
     }
@@ -254,7 +277,7 @@ const AddNewAssets = () => {
                                             <ul>
 
                                                 {/* #################### Device Detail  Box Start #####################*/}
-                                                <li style={{listStyle:"none"}}>
+                                                <li style={{ listStyle: "none" }}>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <span style={{ display: "flex" }} >
                                                             <div className="link_text " onClick={handleClickDeviceDetail}>
@@ -269,16 +292,17 @@ const AddNewAssets = () => {
 
                                                             <div className="col-md-4">
                                                                 <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
+                                                               
                                                                 <select id='asset_type' className="form-select" onChange={handleToggleSoftware}>
                                                                     <option value='' hidden>Select...</option>
-                                                                    
+
                                                                     {
                                                                         assettypelist.map((item, index) => (
                                                                             <option key={index} value={item.asset_type}>{item.asset_type}</option>
                                                                         ))
-                                                                        
+
                                                                     }
-                                                                    
+
                                                                 </select>
                                                             </div>
 
@@ -288,14 +312,19 @@ const AddNewAssets = () => {
                                                             </div>
                                                             <div className="col-md-4" id='softwarediv' style={{ display: "none" }}>
                                                                 <label htmlFor='software'>Software <span className='text-danger'>*</span></label>
-                                                                <select className="form-select" id='software'>
+                                                                <Select
+                                                                    options={options}
+                                                                    isMulti={true}
+                                                                    onChange={handleChange}
+                                                                />
+                                                                {/* <select className="form-select" id='software'>
                                                                     <option value='' hidden>Select Software</option>
                                                                     {
                                                                         softwarelist.map((item, index) => (
                                                                             <option key={index} value={item.software_name}>{item.software_name}</option>
                                                                         ))
                                                                     }
-                                                                </select>
+                                                                </select> */}
                                                             </div>
 
                                                         </div>
@@ -359,7 +388,7 @@ const AddNewAssets = () => {
                                                 {/* #################### Device Detail  Box End #####################*/}
 
                                                 {/* #################### Purchases Detail  Box Start ############### */}
-                                                <li className='mt-3' style={{listStyle:"none"}}>
+                                                <li className='mt-3' style={{ listStyle: "none" }}>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <div className="icon" ></div>
                                                         <span style={{ display: "flex" }} >
@@ -406,7 +435,7 @@ const AddNewAssets = () => {
                                                                     }
                                                                 </select>
                                                             </div>
-                                                            <div className="col-md-4" id='invoicenodiv' style={{display:'none'}}>
+                                                            <div className="col-md-4" id='invoicenodiv' style={{ display: 'none' }}>
                                                                 <label htmlFor='invoiceno'>Invoice No.<span className='text-danger'>*</span></label>
                                                                 <input type="text" id='invoiceno' className="form-control" required />
                                                             </div>
@@ -416,7 +445,7 @@ const AddNewAssets = () => {
                                                 {/* #################### Purchases Detail  Box End ############### */}
                                                 {/* #################### Other Detail  Box Start ############### */}
 
-                                                <li className='mt-3' style={{listStyle:"none"}}>
+                                                <li className='mt-3' style={{ listStyle: "none" }}>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <div className="icon" ></div>
                                                         <span style={{ display: "flex" }} >
@@ -440,7 +469,7 @@ const AddNewAssets = () => {
                                                             </div>
                                                             <div className="col-md-4">
                                                                 <label htmlFor='latestinventory'>Latest Inventory <span className='text-danger'>*</span></label>
-                                                                <input type="date" id='latestinventory' className="form-control"  defaultValue={todatdate} required />
+                                                                <input type="date" id='latestinventory' className="form-control" defaultValue={todatdate} required />
                                                             </div>
                                                         </div>
                                                         <div className="row mt-3">
