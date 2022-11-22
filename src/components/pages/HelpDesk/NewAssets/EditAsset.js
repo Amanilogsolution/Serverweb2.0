@@ -29,7 +29,6 @@ const EditAsset = () => {
     useEffect(() => {
         const fetchdata = async () => {
             const getdata = await GetNewAssets(sessionStorage.getItem('newassetsno'))
-            console.log(getdata[0])
             setData(getdata[0])
 
             const devices = await ActiveAssetesType();
