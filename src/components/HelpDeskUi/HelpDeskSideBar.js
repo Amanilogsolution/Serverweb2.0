@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { FaLocationArrow,FaFileContract,FaFileInvoiceDollar } from 'react-icons/fa';
 import { RiUserFill } from 'react-icons/ri';
 import { MdOutlineDoubleArrow,MdPayment } from 'react-icons/md';
-import { BsWindows } from 'react-icons/bs';
-import { NavLink } from 'react-router-dom';
+import { BsWindows,BsFillFileEarmarkCodeFill } from 'react-icons/bs';
 import Footer from '../Sidebar/Footer/Footer';
 import Navbar from '../Sidebar/Navbar.js';
-// import '../Sidebar/Sidebar.css'
 import '../Sidebar/Sidebar'
 import logo from '../../image/drizzle_logo.jpg'
 import './HelpDeskSideBar.css'
@@ -72,30 +70,30 @@ const Sidebar = () => {
 
                         <li onClick={() => setStep(2)}>
                                 <div className="icon"><RiUserFill  style={{fontSize:"22px"}}/></div>
-                                <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px" }} className="link_text">Employee</div>
+                                <div style={{ display: isOpen ? "block" : "none",marginLeft:"6px" }} className="link_text">Employee</div>
                         </li>
 
-                        <li  onClick={() => setStep(3)}>
+                        <li onClick={() => setStep(3)}>
                                 <div className="icon"><BsWindows /></div>
                                 <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px"  }} className="link_text">Software</div>
                         </li>
-                        <li  onClick={() => setStep(4)}>
+                        <li onClick={() => setStep(4)}>
                             
-                                <div className="icon"><FaLocationArrow /></div>
+                                <div className="icon"><BsFillFileEarmarkCodeFill /></div>
                                 <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px"  }} className="link_text">Vendor Code</div>
-                            
                         </li>
+
                         <li  onClick={() => setStep(5)}>
                                 <div className="icon"><FaFileContract /></div>
                                 <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px"  }} className="link_text">Vendor Contract</div>
                         </li>
 
-                        <li  onClick={() => setStep(6)}>
+                        <li onClick={() => setStep(6)}>
                                 <div className="icon"><FaFileInvoiceDollar /></div>
                                 <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px"  }} className="link_text">Invoice</div>
                         </li>
 
-                        <li  onClick={() => setStep(7)}>
+                        <li onClick={() => setStep(7)}>
                                 <div className="icon"><MdPayment /></div>
                                 <div style={{ display: isOpen ? "block" : "none",marginLeft:"10px"  }} className="link_text">Vendor Payment</div>
                         </li>
