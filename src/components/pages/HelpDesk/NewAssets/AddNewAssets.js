@@ -274,7 +274,7 @@ const AddNewAssets = () => {
                                     <article className="card-body" >
                                         <form className='' autoComplete='off'>
 
-                                            <ul>
+                                            <ul >
 
                                                 {/* #################### Device Detail  Box Start #####################*/}
                                                 <li style={{ listStyle: "none" }}>

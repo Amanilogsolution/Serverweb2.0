@@ -164,8 +164,8 @@ function AddVendorInvoice() {
                                     </div>
                                 </header>
                                 <article className="card-body" >
-                                    <form className='invoice-form' autoComplete='off'>
-                                        <table className="table table-bordered">
+                                    <form className='invoice-form' autoComplete='off' style={{minHeight:"62vh"}}>
+                                        <table className="table table-bordered" >
                                             <thead>
 
                                                 <tr className='text-center'>
