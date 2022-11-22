@@ -12,7 +12,8 @@ const Navbar = (propes) => {
         padding: "5px 0px 0px 15px ",
         boxShadow:"3px 3px 10px gray",
         borderRadius: "10px 0px 0px 10px",
-        position:"relative"
+        position:"relative",
+        fontFamily: 'Roboto'
     }
     const profile = {
        position:"absolute",

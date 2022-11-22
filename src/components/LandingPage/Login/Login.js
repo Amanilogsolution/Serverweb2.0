@@ -56,7 +56,9 @@ const Login = () => {
 
 
   const styleheight = {
-    minHeight: "82.1vh"
+    minHeight: "82.1vh",
+    fontFamily: 'Alata'
+
   }
   return (
     <>
