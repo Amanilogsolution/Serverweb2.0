@@ -4,6 +4,8 @@ import './VendorInvoice.css'
 import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Select from 'react-select';
+
 
 function AddVendorInvoice() {
 
@@ -13,6 +15,7 @@ function AddVendorInvoice() {
     const [arry, setArry] = useState([0]);
     const [arryval, setArryval] = useState([{}]);
     const [vendorcontractlist, setVendorcontractlist] = useState([])
+    const [Vendorname,setVendorname] = useState([])
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -23,6 +26,10 @@ function AddVendorInvoice() {
         }
         fetchdata();
     }, [])
+
+    let options= vendorcontractlist.map((ele) => {
+        return { value: `${ele.sno},${ele.vendor}`, label: `${ele.vendor}, ${ele.reference_no}` };
+    })
     const Todaydate = () => {
         let date = new Date();
         let day = date.getDate();
@@ -55,11 +62,12 @@ function AddVendorInvoice() {
     };
 
     const savatoarry = (index) => {
-        let vendor = document.getElementById(`vendor-${index}`).value;
+        let vendor = Vendorname[index];
 
-        const val = vendor;
-        const toindex = val.indexOf(",")
-        vendor = val.slice(toindex + 1)
+        // const val = vendor;
+        // const toindex = val.indexOf(",")
+        // vendor = val.slice(toindex + 1)
+        console.log(vendor)
 
         const accountno = document.getElementById(`accountno-${index}`).value;
         const invno = document.getElementById(`invno-${index}`).value;
@@ -125,14 +133,17 @@ function AddVendorInvoice() {
 
     }
 
-    const handleChnageVendorDetail = async (index, e) => {
-        const val = e;
-        const toindex = val.indexOf(",")
-        const vebndconid = val.slice(0, toindex)
+    const handleChnageVendorDetail = async (e) => {
+        console.log(e)
+        const toindex = e.value.split(",")
+        Vendorname[e.Index] = toindex[1]
+        console.log(toindex[1])
+        const vebndconid = toindex[0]
         const detail = await VendorContractDetail(vebndconid);
-        document.getElementById(`accountno-${index}`).value = detail.customer_account_no;
-        document.getElementById(`refno-${index}`).value = detail.reference_no;
+        document.getElementById(`accountno-${e.Index}`).value = detail.customer_account_no;
+        document.getElementById(`refno-${e.Index}`).value = detail.reference_no;
     }
+
 
     return (
         <>
@@ -175,14 +186,19 @@ function AddVendorInvoice() {
                                                 {arry.map((item, index) => (
                                                     <tr key={index}>
                                                         <td className='p-0 invoice-td'>
-                                                            <select type='text' id={`vendor-${index}`} className='form-select m-0 invoice-inp' onChange={(e) => handleChnageVendorDetail(index, e.target.value)} onBlur={() => savatoarry(index)}>
+                                                        <Select options={options} className="col" isMulti={false} 
+                                                         onBlur={() => savatoarry(index)}
+                                                        onChange={(e)=>handleChnageVendorDetail({...e,Index:index})}
+                                                         />
+
+                                                            {/* <select type='text' id={`vendor-${index}`} className='form-select m-0 invoice-inp' onChange={(e) => handleChnageVendorDetail(index, e.target.value)} onBlur={() => savatoarry(index)}>
                                                                 <option value='' hidden>Select</option>
                                                                 {
                                                                     vendorcontractlist.map((item, index) =>
                                                                         <option key={index} value={[`${item.sno},${item.vendor}`]}>{`${item.vendor}, (${item.reference_no})`}</option>)
                                                                 }
 
-                                                            </select>
+                                                            </select> */}
                                                         </td>
                                                         <td className='p-0 invoice-td'><input type='text' id={`accountno-${index}`} className='form-control m-0 invoice-inp' disabled onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 invoice-td'><input type='text' id={`invno-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
