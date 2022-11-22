@@ -72,7 +72,7 @@ const Login = () => {
                   <img src={Loginimg} className="img-fluid" alt="Login " />
                 </div>
                 <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                  <form>
+                  <form autoComplete='off'>
                     <div className="divider d-flex align-items-center my-4">
                       <h2 className="text-center fw-bold mx-3 mb-0">Sign In</h2>
                     </div>
