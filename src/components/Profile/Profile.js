@@ -21,36 +21,36 @@ export default function Profile() {
                                  <div className='col-md-6'>
                                     <label>Name</label>
                                     <br/>
-                                    <input class="form-control" value="Rituraj Pankaj" disabled></input>
+                                    <input className="form-control" value="Rituraj Pankaj" disabled></input>
                                  </div>
                                  <div className='col-md-6'>
                                     <label>Mobile</label>
                                     <br/>
-                                    <input class="form-control" value="+1 65224 72112" disabled></input>
+                                    <input className="form-control" value="+1 65224 72112" disabled></input>
                                  </div>
                             </div>
                             <div className='row my-2'>
                                  <div className='col-md-6'>
                                     <label>Email</label>
                                     <br/>
-                                    <input class="form-control" value="xyz@awl.com" disabled></input>
+                                    <input className="form-control" value="xyz@awl.com" disabled></input>
                                  </div>
                                  <div className='col-md-6'>
                                     <label>Address</label>
                                     <br/>
-                                    <input class="form-control"value="Gurugram" disabled></input>
+                                    <input className="form-control"value="Gurugram" disabled></input>
                                  </div>
                             </div>
                             <div className='row my-2'>
                                  <div className='col-md-6'>
                                     <label>Location</label>
                                     <br/>
-                                    <input class="form-control" value="Gurgaon HO" disabled></input>
+                                    <input className="form-control" value="Gurgaon HO" disabled></input>
                                  </div>
                                  <div className='col-md-6'>
                                     <label>Organization Name</label>
                                     <br/>
-                                    <input class="form-control" value="Awl India" disabled></input>
+                                    <input className="form-control" value="Awl India" disabled></input>
                                  </div>
                             </div>
                         </form>
