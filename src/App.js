@@ -155,6 +155,7 @@ import TotalTicket from './components/pages/HelpDesk/Tickets/TotalTicket';
 
 import PageNotFound from './components/404/404';
 import HelpDeskSideBar from './components/HelpDeskUi/HelpDeskSideBar';
+import Profile from './components/Profile/Profile';
 
 import ChangePassword from './components/pages/ChangePassword/ChangePassword';
 
@@ -309,6 +310,8 @@ const App = () => {
           <Route path="/ChangePassword" element={<ChangePassword />} />
 
           
+          <Route path="/Profile" element={<Profile />} />
+
         </Route>
 
         <Route path="/HelpDescription" element={<HelpDeskSideBar/>} />
