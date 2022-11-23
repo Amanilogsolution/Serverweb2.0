@@ -156,6 +156,9 @@ import TotalTicket from './components/pages/HelpDesk/Tickets/TotalTicket';
 import PageNotFound from './components/404/404';
 import HelpDeskSideBar from './components/HelpDeskUi/HelpDeskSideBar';
 
+import ChangePassword from './components/pages/ChangePassword/ChangePassword';
+
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -303,6 +306,9 @@ const App = () => {
           <Route path="/TotalTicket" element={<TotalTicket/>} />
           <Route path="/AddTickets" element={<AddTicket />} />
 
+          <Route path="/ChangePassword" element={<ChangePassword />} />
+
+          
         </Route>
 
         <Route path="/HelpDescription" element={<HelpDeskSideBar/>} />
