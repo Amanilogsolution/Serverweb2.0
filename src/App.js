@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/LandingPage/Login/Login'
+import ForgetPassword from './components/LandingPage/Forgetpassword/ForgetPassword'
+
 import Signup from './components/LandingPage/Resister/Resister'
 import LandingPage from './components/LandingPage/LandingPageHome/LandingPage'
 
@@ -161,7 +163,8 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/Signin" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
-
+        <Route path="/ForgetPassword" element={<ForgetPassword />} />
+        
         <Route element={<PrivatRoute/>}>
           <Route path="/dashboard" element={<Dashboard />} />
 

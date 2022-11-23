@@ -56,7 +56,7 @@ const Login = () => {
 
 
   const styleheight = {
-    minHeight: "82.1vh"
+    minHeight: "71vh"
 
   }
   return (
@@ -96,13 +96,13 @@ const Login = () => {
                       Remember me
                     </label> */}
                       </div>
-                      {/* <a href="#!" className="text-body">Forgot password?</a> */}
+                      <Link to="/ForgetPassword" className="text-body">Forgot password?</Link>
                     </div>
                     <div className="text-center text-lg-start pt-2">
                       <button type="submit" id='subBtn' className="btn btn-voilet" style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }} onClick={handlelogin}>Login</button>
                       <small id='emptyVal' className='mt-3 text-danger' style={{ display: "none" }}> &nbsp;Please Enter the userId or Password</small>
                       <small id='validVal' className='mt-3 text-danger' style={{ display: "none" }}> &nbsp;Please Enter the Valid userId or Password</small>
-                      <p className="small mt-2 pt-1 mb-0">Don't have an account? <Link to="/signup" className="link-danger">Sign up</Link></p>
+                      <p className=" mt-2 pt-1 mb-0">Don't have an account? <Link to="/signup" className="link-danger">Sign up</Link></p>
                     </div>
                   </form>
                 </div>
