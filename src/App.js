@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/LandingPage/Login/Login'
+import ForgetPassword from './components/LandingPage/Forgetpassword/ForgetPassword'
+
 import Signup from './components/LandingPage/Resister/Resister'
 import LandingPage from './components/LandingPage/LandingPageHome/LandingPage'
 
@@ -153,6 +155,10 @@ import TotalTicket from './components/pages/HelpDesk/Tickets/TotalTicket';
 
 import PageNotFound from './components/404/404';
 import HelpDeskSideBar from './components/HelpDeskUi/HelpDeskSideBar';
+import Profile from './components/Profile/Profile';
+
+import ChangePassword from './components/pages/ChangePassword/ChangePassword';
+
 
 const App = () => {
   return (
@@ -161,7 +167,8 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/Signin" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
-
+        <Route path="/ForgetPassword" element={<ForgetPassword />} />
+        
         <Route element={<PrivatRoute/>}>
           <Route path="/dashboard" element={<Dashboard />} />
 
@@ -299,6 +306,11 @@ const App = () => {
           <Route path="/EditTicket" element={<EditTicket/>} />
           <Route path="/TotalTicket" element={<TotalTicket/>} />
           <Route path="/AddTickets" element={<AddTicket />} />
+
+          <Route path="/ChangePassword" element={<ChangePassword />} />
+
+          
+          <Route path="/Profile" element={<Profile />} />
 
         </Route>
 
