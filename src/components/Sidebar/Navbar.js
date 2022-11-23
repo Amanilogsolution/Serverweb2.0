@@ -35,13 +35,13 @@ const Navbar = (propes) => {
                 </h5>:<img src={DrizzleLogo} style={{height:"80%"}}/>}
 
                 <div className=" dropdown show w-100" >
-                   <a className=" " href="#" role="button" id="dropdownMenuLink" 
+                   <a className=" " href="/rofile" role="button" id="dropdownMenuLink" 
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={profile}>
                          <FaUserCircle  />
                    </a>
 
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                       <a className="dropdown-item" href="#">Profile</a>
+                       <a className="dropdown-item" href="/Profile">Profile</a>
                        <a className="dropdown-item" href="#">Change Password </a>
                        <a className="dropdown-item border-top text-danger" href="#" onClick={handleLogout}>Logout <IoMdLogOut/></a>
                    </div>
