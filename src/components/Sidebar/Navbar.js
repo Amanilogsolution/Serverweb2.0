@@ -3,7 +3,7 @@ import './Navbar.css'
 import { FaUserCircle } from 'react-icons/fa'
 import { IoMdLogOut } from 'react-icons/io'
 import DrizzleLogo from '../../image/drizzle_logo.jpg'
-
+import {Link} from 'react-router-dom'
 const Navbar = (propes) => {
 
     const navheight = {
@@ -41,8 +41,8 @@ const Navbar = (propes) => {
                    </a>
 
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                       <a className="dropdown-item" href="/Profile">Profile</a>
-                       <a className="dropdown-item" href="#">Change Password </a>
+                    <a className="dropdown-item" href="/Profile">Profile</a>
+                       <Link className="dropdown-item" to="/ChangePassword">Change Password </Link>
                        <a className="dropdown-item border-top text-danger" href="#" onClick={handleLogout}>Logout <IoMdLogOut/></a>
                    </div>
                </div>

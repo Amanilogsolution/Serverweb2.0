@@ -215,7 +215,6 @@ const AddNewAssets = () => {
             }
             else {
                 rentpermonth = '';
-                invoiceno = '';
             }
             if (purchase_type === 'Owned') {
                 if (!purchaseprice) {
@@ -228,6 +227,7 @@ const AddNewAssets = () => {
             }
             else {
                 purchaseprice = '';
+                invoiceno = '';
             }
 
             if (errorcount === 0) {
@@ -274,7 +274,7 @@ const AddNewAssets = () => {
                                     <article className="card-body" >
                                         <form className='' autoComplete='off'>
 
-                                            <ul>
+                                            <ul >
 
                                                 {/* #################### Device Detail  Box Start #####################*/}
                                                 <li style={{ listStyle: "none" }}>
