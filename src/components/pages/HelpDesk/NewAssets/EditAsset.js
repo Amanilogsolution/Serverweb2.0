@@ -28,7 +28,9 @@ const EditAsset = () => {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const getdata = await GetNewAssets(sessionStorage.getItem('newassetsno'))
+            const org = sessionStorage.getItem('Database')
+
+            const getdata = await GetNewAssets(org,sessionStorage.getItem('newassetsno'))
             setData(getdata[0])
 
             const devices = await ActiveAssetesType();
@@ -139,8 +141,9 @@ const EditAsset = () => {
             document.getElementById('assetetag').value = data.asset_tag
         }
         else {
+            const org = sessionStorage.getItem('Database')
 
-            const count = await CountNewAssets(devicetype)
+            const count = await CountNewAssets(org,devicetype)
             let asset_count = Number(count.count) + 1 + '';
             document.getElementById('assetetag').value = devicetype.substring(0, 3).toUpperCase() + '-' + asset_count.padStart(6, '0');
         }
@@ -237,7 +240,9 @@ const EditAsset = () => {
             }
 
             if (errorcount === 0) {
-                const result = await UpdateNewAssets(asset_type, assetetag, serialno, location, manufacture, software,
+                const org = sessionStorage.getItem('Database')
+
+                const result = await UpdateNewAssets(org,asset_type, assetetag, serialno, location, manufacture, software,
                     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, userid, sno)
 

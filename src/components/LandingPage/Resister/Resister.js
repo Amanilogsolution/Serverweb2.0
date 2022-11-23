@@ -97,7 +97,7 @@ export default function Resister() {
                                     </div>
 
                                     <button type="submit" onClick={() => setStep(2)} className="btn btn-voilet">Next</button>
-                                    <p className="small fw-bold mt-2 pt-1 mb-0">Already! have an account? <Link to="/Signin" className="link-danger">Sign In</Link></p>
+                                    <p className="small mt-2 pt-1 mb-0">Already! have an account? <Link to="/Signin" className="link-danger">Sign In</Link></p>
 
                                 </form>
                             </article>

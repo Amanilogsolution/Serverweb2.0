@@ -160,6 +160,7 @@ const AddNewAssets = () => {
         e.preventDefault();
         setLoading(false)
 
+        const org = sessionStorage.getItem('Database')
         const asset_type = document.getElementById('asset_type').value;
         const asset_id = asset_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const assetetag = document.getElementById('assetetag').value;
@@ -234,14 +235,14 @@ const AddNewAssets = () => {
                 if(asset_type === 'Laptop'){
                     softwares.forEach(async (datas)=>{
                        const software = datas.value
-                       const result = await InsertNewAssets(asset_id, asset_type, assetetag, serialno, location, manufacture, software,
+                       const result = await InsertNewAssets(org,asset_id, asset_type, assetetag, serialno, location, manufacture, software,
                        model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                        rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
                     })
                     window.location.href = '/TotalNewAssets'
 
                 }else{
-                const result = await InsertNewAssets(asset_id, asset_type, assetetag, serialno, location, manufacture, '',
+                const result = await InsertNewAssets(org,asset_id, asset_type, assetetag, serialno, location, manufacture, '',
                     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
 

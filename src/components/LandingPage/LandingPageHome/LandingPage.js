@@ -33,7 +33,7 @@ const LandingPage = () => {
                                     <div className="col-lg-5" data-aos="fade-right"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="mb-5 mb-lg-1 text-center text-lg-start">
-                                            <h3 className="display-3 lh-1 mb-3">Uncomplicate IT Asset Management</h3>
+                                            <h3 className="display-3 lh-1 mb-3" style={{fontWeight:"500"}}>Uncomplicate IT Asset Management</h3>
                                             <p className="lead fw-normal text-muted mb-5">Automate and manage accounting, deployement, and maintenance of IT Assets for you and your clients on one plateform</p>
                                             <div className="d-flex flex-column flex-lg-row align-items-center">
                                                 <button className='btn btn-voilet' onClick={() => { window.location.href = './signup' }}>Get Started</button>
@@ -84,7 +84,7 @@ const LandingPage = () => {
                                     <div className="col-lg-5" data-aos="fade-right" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="mb-5 mb-lg-0 text-center text-lg-start">
-                                            <h3 className="display-5 lh-1 mb-3">Centralize your IT Management</h3>
+                                            <h3 className="display-5 lh-1 mb-3" style={{fontWeight:"500"}}>Centralize your IT Management</h3>
                                             <p className="lead fw-normal text-muted mb-5">Increase company-wide understanding of IT’s business value, improve communications and understanding by capturing asset data in Drizzle to maximize returns and minimize risks.</p>
                                         </div>
                                     </div>
@@ -198,7 +198,7 @@ const LandingPage = () => {
                                             <h5>Free</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h2><BiRupee/>0</h2>
+                                            <h3><BiRupee style={{marginTop:"-4px"}}/>0</h3>
                                             <ul>
                                                 <li>1 Organisation</li>
                                                 <li>1 Location</li>
@@ -221,7 +221,7 @@ const LandingPage = () => {
                                             <h5>Standard</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h2><BiRupee/>2999<p style={{fontSize:"14px",margin:"-20px 0 0 155px"}}>/month</p></h2>
+                                            <h3><BiRupee style={{marginTop:"-4px"}}/>2999<p style={{fontSize:"14px",margin:"-20px 0 0 145px"}}>/month</p></h3>
                                             <ul className=''>
                                                 <li>1 Organisation</li>
                                                 <li>3 Locations</li>
@@ -244,7 +244,7 @@ const LandingPage = () => {
                                             <h5>Professional</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h2><BiRupee/>4999<p style={{fontSize:"14px",margin:"-20px 0 0 155px"}}>/month</p></h2>
+                                            <h3><BiRupee style={{marginTop:"-4px"}}/>4999<p style={{fontSize:"14px",margin:"-20px 0 0 145px"}}>/month</p></h3>
                                             <ul>
                                                 <li>2 Organisations</li>
                                                 <li>10 Locations</li>
@@ -267,7 +267,7 @@ const LandingPage = () => {
                                             <h5>Enterprise</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h3>Contact Sales</h3>
+                                            <h4>Contact Sales</h4>
                                             <ul>
                                                 <li>Unlimited Organisations</li>
                                                 <li>Unlimited Locations</li>
