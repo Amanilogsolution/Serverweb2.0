@@ -1009,48 +1009,48 @@ export const VendorContractDetail = async (sno) => {
 //  #########################   New Assets ##############################
 
 
-export const TotalNewAssets = async () => {
+export const TotalNewAssets = async (org) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/TotalNewAssets`
-    return axios.get(url).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url,{org}).then(response => response.data).catch(error => console.log(error));
 }
 
 
-export const InsertNewAssets = async (new_asset_type_id, asset_type, asset_tag, serial_no, location, manufacture,
+export const InsertNewAssets = async (org,new_asset_type_id, asset_type, asset_tag, serial_no, location, manufacture,
     software, model, asset_status, description, purchase_type, purchase_date, company, vendor, invoice_no,
     rent_per_month, purchases_price, latest_inventory, asset_name, asset_assign, asset_assign_empid, remarks, userid) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/InsertNewAssets`
     return axios.post(url, {
-        new_asset_type_id, asset_type, asset_tag, serial_no, location, manufacture,
+        org,new_asset_type_id, asset_type, asset_tag, serial_no, location, manufacture,
         software, model, asset_status, description, purchase_type, purchase_date, company, vendor, invoice_no,
         rent_per_month, purchases_price, latest_inventory, asset_name, asset_assign, asset_assign_empid, remarks, userid
     }).then(response => response.data).catch(error => console.log(error));
 }
 
 
-export const DeleteNewAssets = async (status, sno) => {
+export const DeleteNewAssets = async (org,status, sno) => {
     const url =`https://drizzlebackend.awlworldwide.com/api/DeleteNewAssets`
-    return axios.post(url, { status, sno }).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, {org, status, sno }).then(response => response.data).catch(error => console.log(error));
 }
-export const GetNewAssets = async (sno) => {
+export const GetNewAssets = async (org,sno) => {
     const url =`https://drizzlebackend.awlworldwide.com/api/GetNewAssets`
-    return axios.post(url, {sno }).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, {org,sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const CountNewAssets = async (asset_type) => {
+export const CountNewAssets = async (org,asset_type) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/CountNewAssets`
-    return axios.post(url, { asset_type }).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, {org, asset_type }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const GetNewAssetAssign = async (asset_assign_empid) => {
+export const GetNewAssetAssign = async (org,asset_assign_empid) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/GetNewAssetAssign`
-    return axios.post(url, { asset_assign_empid }).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { org,asset_assign_empid }).then(response => response.data).catch(error => console.log(error));
 }
-export const UpdateNewAssets = async (  asset_type, assetetag, serialno, location, manufacture, software,
+export const UpdateNewAssets = async ( org, asset_type, assetetag, serialno, location, manufacture, software,
     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
     rentpermonth, purchaseprice, latestinventory, assetname, assetassign,asset_assign_empid, remark, userid,sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/UpdateNewAssets`
     return axios.post(url, {
-        asset_type, assetetag, serialno, location, manufacture, software,
+        org,asset_type, assetetag, serialno, location, manufacture, software,
         model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
         rentpermonth, purchaseprice, latestinventory, assetname, assetassign,asset_assign_empid, remark, userid,sno
     }).then(response => response.data).catch(error => console.log(error));

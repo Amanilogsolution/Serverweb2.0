@@ -60,7 +60,9 @@ export default function AddTicket() {
         let employee_id = e.target.value;
         const detail = await EmployeesDetail(employee_id);
         setEmployeedetail(detail)
-        const assetall = await GetNewAssetAssign(employee_id)
+        const org = sessionStorage.getItem('Database')
+
+        const assetall = await GetNewAssetAssign(org,employee_id)
         setAssettypelist(assetall)
     }
 
