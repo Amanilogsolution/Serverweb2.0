@@ -205,12 +205,13 @@
 .landingfooter .div_for_list {
     width: 80%;
     display: grid;
-    align-items: center;
-    justify-items: center;
+    /* align-items: center; */
+    /* justify-items: center; */
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 4%;
     grid-row-gap: 0px;
+    /* border: 2px solid red; */
 }
 
 

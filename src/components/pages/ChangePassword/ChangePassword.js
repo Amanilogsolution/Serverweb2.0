@@ -47,7 +47,7 @@ function ChangePassword() {
                                     </div>
                                     <div className="form-outline mb-0 col-md-5" >
                                         <label className="form-label" htmlFor="new-password">New Password</label>
-                                        <div className="input-group mb-3">
+                                        <div className="input-group mb-0">
                                             <input type={newpass ? "text" : "password"} id="new-password" className="form-control form-control-lg" placeholder="New Password" required />
                                             <div className="input-group-append" >
                                                 <span className="input-group-text h-100 w-100" onClick={handleToggleNewpass}>{newpass ? <AiFillEye style={{ fontSize: "22px" }} /> : <AiFillEyeInvisible style={{ fontSize: "22px" }} />}</span>

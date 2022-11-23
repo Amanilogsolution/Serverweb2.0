@@ -66,8 +66,10 @@ const columns = [
     //     cell: (row) => [
     //         <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} 
     //         onChange={async (e) => {
+        // const org = sessionStorage.getItem('Database')
+
     //             const status = e.target.value;
-    //             await DeleteNewAssets(status, row.sno)
+    //             await DeleteNewAssets(org,status, row.sno)
     //             window.location.reload()
     //         }}
     //         >
@@ -101,7 +103,8 @@ function TotalNewAssetes() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const datas = await TotalNewAssets()
+            const org = sessionStorage.getItem('Database')
+            const datas = await TotalNewAssets(org)
             setdata(datas)
             setLoading(true)
         }

@@ -100,6 +100,7 @@ function TotalVendorContract() {
 
     useEffect(() => {
         const fetchdata = async () => {
+            // const org = sessionStorage.getItem('Database')
             const tabledata = await TotalVendorContractapi();
             setData(tabledata)
             setLoading(true)
