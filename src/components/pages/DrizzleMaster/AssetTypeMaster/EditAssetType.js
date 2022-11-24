@@ -34,10 +34,13 @@ function EditAssetType() {
         const sno = sessionStorage.getItem('assettypesno')
 
         if (!asset_type) {
-            alert("All field are mandatory...")
             setLoading(true)
+            setDatas({...datas,message:"Please enter the Asset Type",title:"warning",type:"Error"})
+            document.getElementById('snackbar').style.display="block"    
         }
         else {
+            setLoading(true)
+
             const result = await UpdateAssettypeapi(sno, asset_type, asset_type_desc, username);
 
             if (result === 'Updated') {

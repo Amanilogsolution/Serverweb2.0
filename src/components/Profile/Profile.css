@@ -15,8 +15,7 @@
     overflow: hidden;
     box-shadow: 2px 2px 6px gray;
     margin-top: 40px;
-   position: relative;
-
+    position: relative;
 }
 .Profile_container .profile .photo_sec{
    width: 20%;
@@ -24,11 +23,12 @@
    justify-content: center;
    padding: 10px;
    background: rgb(95, 33, 73);
-   position: relative;
+  
 }
 .Profile_container .profile .details{
     width: 80%;
     /* border: 1px solid blue; */
+    /* background: rgb(250, 247, 247); */
     padding: 30px 30px;
  }
  .photo_sec img{
@@ -82,5 +82,5 @@
         /* border: 1px solid black; */
         
      }
-
+    
 }
