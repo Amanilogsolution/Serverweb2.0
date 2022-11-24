@@ -3,12 +3,21 @@ import React, { useState, useEffect } from 'react';
 import { AddEmployees, ActiveLocation } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 
 function AddEmployee() {
     const [loading, setLoading] = useState(true)
     const [locationlist, setLocationlist] = useState([])
     const [numcount, setNumcount] = useState()
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle:"true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -29,23 +38,26 @@ function AddEmployee() {
         const employee_number = document.getElementById('employee_number').value;
         const company = document.getElementById('company').value;
         const location = document.getElementById('location').value;
-
         const username = sessionStorage.getItem('UserName');
+        setLoading(true)
 
         if (!location || !employee_name || !employee_email) {
             alert("Please fill the mandatory field ...")
-            setLoading(true)
         }
         else {
+            setLoading(true)
             const result = await AddEmployees(employee_id, employee_name, location, employee_email, employee_number, company, username);
             if (result === 'Added') {
-                alert('Employee Added ')
-                window.location.href = './TotalEmployee'
+                setDatas({...datas,message:"Employee Added",title:"success",type:"success",route:"/TotalEmployee",toggle:"true"})
+                document.getElementById('snackbar').style.display="block"
+            }
+            else if(result === 'Already'){
+                setDatas({...datas,message:"Employee Already Exist",title:"warning",type:"Error",toggle:"true"})
+                document.getElementById('snackbar').style.display="block" 
             }
             else {
-                alert("Server Error");
-                setLoading(true)
-
+                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/AddEmployee",toggle:"true"})
+                document.getElementById('snackbar').style.display="block"  
             }
         }
 
@@ -55,6 +67,11 @@ function AddEmployee() {
             {
                 loading ?
                     <Sidebar >
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle}/>
+                        </div>
+
                         <div className='main_container pb-2'  >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Employee</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Employee</span> </h2>

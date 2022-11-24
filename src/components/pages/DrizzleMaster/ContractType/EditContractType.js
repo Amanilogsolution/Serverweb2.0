@@ -3,10 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { GetContractType, UpdateContractType } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function EditContractType() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -23,26 +32,32 @@ function EditContractType() {
         setLoading(false)
         const contract_type = document.getElementById('contract_type').value;
         const remark = document.getElementById('remark').value;
+        setLoading(true)
 
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('contracttypesno')
 
         if (!contract_type) {
-            alert('Please Enter Mandatory Field')
-            setLoading(true)
-
+            setDatas({ ...datas, message: "Please enter all mendatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
+
         else {
+            setLoading(true)
             const result = await UpdateContractType(sno, contract_type, remark, username);
+
             if (result === 'Updated') {
-                alert('Contract Type Updated')
                 sessionStorage.removeItem('contracttypesno');
-                window.location.href = './TotalContractType'
+                setDatas({ ...datas, message: "Contract Type Updated", title: "success", type: "success", route: "/TotalContractType", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: " Contract Type Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
-
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditContractType", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -62,6 +77,11 @@ function EditContractType() {
             {
                 loading ?
                     <Sidebar >
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>ContractType</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit ContractType</span> </h2>

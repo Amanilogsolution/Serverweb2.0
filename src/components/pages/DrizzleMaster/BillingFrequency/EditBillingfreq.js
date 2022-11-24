@@ -3,10 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { GetBillingFreqapi, UpdateBillingFreqapi } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function EditBillingFreq() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -25,24 +34,29 @@ function EditBillingFreq() {
         const billing_freq_desc = document.getElementById('billing_freq_desc').value;
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('billingfreqsno')
+        setLoading(true)
 
         if (!billing_freq) {
-            alert('Please Enter the Billing Frequency')
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
 
         }
         else {
+            setLoading(true)
             const result = await UpdateBillingFreqapi(sno, billing_freq, billing_freq_desc, username);
 
             if (result === 'Updated') {
-                alert('Billing Frequency Updated')
                 sessionStorage.removeItem('billingfreqsno');
-                window.location.href = './TotalBillingFreq'
+                setDatas({ ...datas, message: "Billing Frequency Updated", title: "success", type: "success", route: "/TotalBillingFreq", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Billing Frequency Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
-
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditBillingFreq", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -64,6 +78,11 @@ function EditBillingFreq() {
             {
                 loading ?
                     <Sidebar >
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Billing Frequency</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Billing Frequency</span> </h2>
@@ -93,7 +112,7 @@ function EditBillingFreq() {
                             </div>
                         </div>
                     </Sidebar>
-                : <LoadingPage />
+                    : <LoadingPage />
             }
         </>
     )
