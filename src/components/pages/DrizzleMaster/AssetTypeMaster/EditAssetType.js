@@ -26,9 +26,7 @@ function EditAssetType() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        setDatas({...datas,message:"Asset Type Updated",title:"success",type:"success"})
-
-        document.getElementById('snackbar').style.display="block"
+  
 
 
         // setLoading(false)
@@ -42,16 +40,16 @@ function EditAssetType() {
             setLoading(true)
         }
         else {
-            // const result = await UpdateAssettypeapi(sno, asset_type, asset_type_desc, username);
+            const result = await UpdateAssettypeapi(sno, asset_type, asset_type_desc, username);
 
-            // if (result === 'Updated') {
-            //    sessionStorage.removeItem('assettypesno');
-            //     window.location.href = './TotalAssetType'
-            // }
-            // else {
-            //     alert("Server Error");
-            //     setLoading(true)
-            // }
+            if (result === 'Updated') {
+               sessionStorage.removeItem('assettypesno');
+               setDatas({...datas,message:"Asset Type Updated",title:"success",type:"success"})
+               document.getElementById('snackbar').style.display="block"            }
+            else {
+                alert("Server Error");
+                setLoading(true)
+            }
         }
 
     }
