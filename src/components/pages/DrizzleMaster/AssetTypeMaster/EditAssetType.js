@@ -12,7 +12,8 @@ function EditAssetType() {
     const [datas,setDatas] = useState({
         message:"abc",
         title:"title",
-        type:"type"
+        type:"type",
+        route:null
     })
 
     useEffect(() => {
@@ -27,9 +28,6 @@ function EditAssetType() {
     const handleadddevice = async (e) => {
         e.preventDefault();
   
-
-
-        // setLoading(false)
         const asset_type = document.getElementById('asset_type').value;
         const asset_type_desc = document.getElementById('asset_type_desc').value;
         const username = sessionStorage.getItem('UserName');
@@ -43,12 +41,14 @@ function EditAssetType() {
             const result = await UpdateAssettypeapi(sno, asset_type, asset_type_desc, username);
 
             if (result === 'Updated') {
+               setDatas({...datas,message:"Asset Type Updated",title:"success",type:"success",route:"/TotalAssetType"})
+               document.getElementById('snackbar').style.display="block"    
                sessionStorage.removeItem('assettypesno');
-               setDatas({...datas,message:"Asset Type Updated",title:"success",type:"success"})
-               document.getElementById('snackbar').style.display="block"            }
+      
+              }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/EditAssetType"})
+                document.getElementById('snackbar').style.display="block"   
             }
         }
 
@@ -67,7 +67,7 @@ function EditAssetType() {
                 loading ?
                     <Sidebar >
                         <div id="snackbar" style={{display:"none"}}>
-                                <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={"#"}/> 
+                                <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route}/> 
                                 </div>
 
                         <div className='main_container pb-2'>
