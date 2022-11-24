@@ -12,7 +12,8 @@ function EditAssetType() {
     const [datas,setDatas] = useState({
         message:"abc",
         title:"title",
-        type:"type"
+        type:"type",
+        route:"#"
     })
 
     useEffect(() => {
@@ -26,29 +27,31 @@ function EditAssetType() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-  
-
-
-        // setLoading(false)
+        setLoading(false)
         const asset_type = document.getElementById('asset_type').value;
         const asset_type_desc = document.getElementById('asset_type_desc').value;
         const username = sessionStorage.getItem('UserName');
         const sno = sessionStorage.getItem('assettypesno')
 
         if (!asset_type) {
-            alert("All field are mandatory...")
             setLoading(true)
+            setDatas({...datas,message:"Please enter the Asset Type",title:"warning",type:"Error"})
+            document.getElementById('snackbar').style.display="block"    
         }
         else {
+            setLoading(true)
+
             const result = await UpdateAssettypeapi(sno, asset_type, asset_type_desc, username);
 
             if (result === 'Updated') {
-               sessionStorage.removeItem('assettypesno');
-               setDatas({...datas,message:"Asset Type Updated",title:"success",type:"success"})
-               document.getElementById('snackbar').style.display="block"            }
+            //    sessionStorage.removeItem('assettypesno');
+               setDatas({...datas,message:"Asset Type Updated",title:"success",type:"Updated",route:"/TotalAssetType"})
+               document.getElementById('snackbar').style.display="block"    
+            //    window.location.href = "/TotalAssetType"
+            }
             else {
                 alert("Server Error");
-                setLoading(true)
+                // setLoading(true)
             }
         }
 
@@ -67,7 +70,7 @@ function EditAssetType() {
                 loading ?
                     <Sidebar >
                         <div id="snackbar" style={{display:"none"}}>
-                                <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={"#"}/> 
+                                <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route}/> 
                                 </div>
 
                         <div className='main_container pb-2'>
