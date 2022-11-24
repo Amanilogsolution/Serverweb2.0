@@ -46,12 +46,12 @@ function TotalAssetType() {
     const columns = [
         {
             name: 'Asset Type',
-            selector: row => row.asset_type,
+            selector: 'asset_type',
             sortable: true,
         },
         {
             name: 'Asset Type Description',
-            selector: row => row.asset_description,
+            selector: 'asset_description',
             sortable: true,
         },
        
@@ -75,7 +75,7 @@ function TotalAssetType() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit Series' href="/EditAssetType">
                     <p onClick={() => sessionStorage.setItem('assettypesno', `${row.sno}`)} >

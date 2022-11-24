@@ -5,6 +5,11 @@ export const UserLogin = async (userid, password) => {
     return axios.post(url, { userid, password }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const changePassword = async (user_id, password,CurrentPassword) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ChangePassword`
+    return axios.post(url, { user_id, password,CurrentPassword }).then(response => response.data).catch(error => console.log(error));
+}
+
 export const TotalCountry = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/totalcountry`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
@@ -440,7 +445,7 @@ export const TotalAssetTypeapi = async () => {
 }
 
 export const AddAssetTypeapi = async (asset_type_id, asset_type, asset_description, user_id) => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/insertAssetType`
+    const url = `http://drizzlebackend.awlworldwide.com/api/insertAssetType`
     return axios.post(url, { asset_type_id, asset_type, asset_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 

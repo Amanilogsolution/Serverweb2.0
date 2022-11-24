@@ -3,10 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { GetAssetTypeapi, UpdateAssettypeapi } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
+
 
 function EditAssetType() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
+    const [datas,setDatas] = useState({
+        message:"abc",
+        title:"title",
+        type:"type",
+        route:"#"
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -26,20 +34,24 @@ function EditAssetType() {
         const sno = sessionStorage.getItem('assettypesno')
 
         if (!asset_type) {
-            alert("All field are mandatory...")
             setLoading(true)
+            setDatas({...datas,message:"Please enter the Asset Type",title:"warning",type:"Error"})
+            document.getElementById('snackbar').style.display="block"    
         }
         else {
+            setLoading(true)
+
             const result = await UpdateAssettypeapi(sno, asset_type, asset_type_desc, username);
 
             if (result === 'Updated') {
-                alert('Asset Type Updated')
-                sessionStorage.removeItem('assettypesno');
-                window.location.href = './TotalAssetType'
+            //    sessionStorage.removeItem('assettypesno');
+               setDatas({...datas,message:"Asset Type Updated",title:"success",type:"Updated",route:"/TotalAssetType"})
+               document.getElementById('snackbar').style.display="block"    
+            //    window.location.href = "/TotalAssetType"
             }
             else {
                 alert("Server Error");
-                setLoading(true)
+                // setLoading(true)
             }
         }
 
@@ -57,6 +69,10 @@ function EditAssetType() {
             {
                 loading ?
                     <Sidebar >
+                        <div id="snackbar" style={{display:"none"}}>
+                                <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route}/> 
+                                </div>
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Asset Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Asset Type</span> </h2>
