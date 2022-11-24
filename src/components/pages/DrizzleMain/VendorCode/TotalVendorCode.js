@@ -44,27 +44,27 @@ function TotalVendorCode() {
     const columns = [
         {
             name: 'Vendor Code',
-            selector: row => row.vendor_code,
+            selector: 'row.vendor_code',
             sortable: true,
         },
         {
             name: 'Vendor Name',
-            selector: row => row.vendor_name,
+            selector: 'row.vendor_name',
             sortable: true,
         },
         {
             name: 'Company City',
-            selector: row => row.company_city,
+            selector: 'row.company_city',
             sortable: true,
         },
         {
             name: 'Company Gst',
-            selector: row => row.company_gst,
+            selector: 'row.company_gst',
             sortable: true,
         },
         {
             name: 'Vendor Portal',
-            selector: row => row.venodr_portal,
+            selector: 'row.venodr_portal',
             sortable: true,
         },
         {

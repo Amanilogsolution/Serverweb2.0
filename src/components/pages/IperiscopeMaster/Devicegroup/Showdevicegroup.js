@@ -44,17 +44,17 @@ function Showdevicegroup() {
     const columns = [
         {
             name: 'Device Id',
-            selector: row => row.id,
+            selector: 'id',
             sortable: true,
         },
         {
             name: 'Device Group',
-            selector: row => row.device_group,
+            selector: 'device_group',
             sortable: true,
         },
         {
             name: 'Remark',
-            selector: row => row.remark,
+            selector: 'remark',
             sortable: true,
         },
         {
@@ -75,7 +75,7 @@ function Showdevicegroup() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit Device Type' href="/EditDevicegroup">
                     <p onClick={() => sessionStorage.setItem('devicegroupSno', `${row.sno}`)} >

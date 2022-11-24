@@ -42,22 +42,22 @@ function TotalServicecompliance() {
     const columns = [
         {
             name: 'Device Id',
-            selector: row => row.id,
+            selector: 'id',
             sortable: true,
         },
         {
             name: 'Device Service',
-            selector: row => row.device_services,
+            selector: 'device_services',
             sortable: true,
         },
         {
             name: 'Service Compliance',
-            selector: row => row.services_compliance,
+            selector: 'services_compliance',
             sortable: true,
         },
         {
             name: 'Remark',
-            selector: row => row.remark,
+            selector: 'remark',
             sortable: true,
         },
         {
@@ -78,7 +78,7 @@ function TotalServicecompliance() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit Device Type' href="/EditServiceCompliance">
 

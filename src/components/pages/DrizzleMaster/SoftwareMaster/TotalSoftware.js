@@ -44,12 +44,12 @@ function TotalSoftware() {
     const columns = [
         {
             name: 'Software',
-            selector: row => row.software_name,
+            selector: 'software_name',
             sortable: true,
         },
         {
             name: 'Software Description',
-            selector: row => row.software_description,
+            selector: 'software_description',
             sortable: true,
         },
         {
@@ -70,7 +70,7 @@ function TotalSoftware() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit Software' href="/EditSoftware">
                     <p onClick={() => sessionStorage.setItem('softwaresno', `${row.sno}`)} >

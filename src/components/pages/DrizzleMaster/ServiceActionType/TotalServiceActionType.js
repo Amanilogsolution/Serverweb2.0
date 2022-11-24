@@ -44,13 +44,13 @@ function TotalServiceActionType() {
     const columns = [
         {
             name: 'Service Action Type',
-            selector: row => row.service_action_type,
+            selector: 'service_action_type',
             sortable: true,
         },
 
         {
             name: 'Service Action Type Description',
-            selector: row => row.service_action_type_description,
+            selector: 'service_action_type_description',
             sortable: true,
         },
         {
@@ -71,7 +71,7 @@ function TotalServiceActionType() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit ServiceActionType' href="/EditServiceActionType">
                     <p onClick={() => sessionStorage.setItem('serviceactiontypesno', `${row.sno}`)} >

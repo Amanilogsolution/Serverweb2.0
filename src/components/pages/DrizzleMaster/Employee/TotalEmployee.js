@@ -51,22 +51,22 @@ function TotalEmployee() {
         // },
         {
             name: 'Employee Name',
-            selector: row => row.employee_name,
+            selector: 'employee_name',
             sortable: true,
         },
         {
             name: 'Employee Number',
-            selector: row => row.employee_number,
+            selector: 'employee_number',
             sortable: true,
         },
         {
             name: 'Employee Email',
-            selector: row => row.employee_email,
+            selector: 'employee_email',
             sortable: true,
         },
         {
             name: 'Location',
-            selector: row => row.location,
+            selector: 'location',
             sortable: true,
         },
      
@@ -89,7 +89,7 @@ function TotalEmployee() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit Series' href="/EditEmployee">
                     <p onClick={() => sessionStorage.setItem('employeesno', `${row.sno}`)} >

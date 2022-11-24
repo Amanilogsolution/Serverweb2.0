@@ -44,17 +44,17 @@ function TotalVendSubCate() {
     const columns = [
         {
             name: 'Vendor Category',
-            selector: row => row.vendor_category,
+            selector: 'vendor_category',
             sortable: true,
         },
         {
             name: 'Vendor Sub_category',
-            selector: row => row.vendor_sub_category,
+            selector: 'vendor_sub_category',
             sortable: true,
         },
         {
             name: 'Vendor Sub Category Description',
-            selector: row => row.vendor_sub_category_description,
+            selector: 'vendor_sub_category_description',
             sortable: true,
         },
         {
@@ -75,7 +75,7 @@ function TotalVendSubCate() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit Vendor Sub Category' href="/EditVendorSubCategory">
                     <p onClick={() => sessionStorage.setItem('vendsubcatesno', `${row.sno}`)} >

@@ -40,12 +40,12 @@ const customStyles = {
 const columns = [
     {
         name: 'issue_type',
-        selector: row => row.issue_type,
+        selector: 'issue_type',
         sortable: true,
     },
     {
         name: 'issue_description',
-        selector: row => row.issue_description,
+        selector:'issue_description',
         sortable: true,
     },
     {
@@ -66,7 +66,7 @@ const columns = [
     {
         name: "Actions",
         sortable: false,
-        selector: row => row.null,
+        selector: 'null',
         cell: (row) => [
             <a title='Edit IssueType' href="/EditIssueType">
                 <p onClick={() => sessionStorage.setItem('IssueTypesno', `${row.sno}`)} >

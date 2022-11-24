@@ -43,47 +43,47 @@ function Totalseries() {
     const columns = [
         {
             name: 'Type series',
-            selector: row => row.type_id,
+            selector: 'type_id',
             sortable: true,
         },
         {
             name: 'Services id',
-            selector: row => row.services_id,
+            selector: 'services_id',
             sortable: true,
         },
         {
             name: 'Task id',
-            selector: row => row.task_id,
+            selector: 'task_id',
             sortable: true,
         },
         {
             name: 'Agent id',
-            selector: row => row.agent_id,
+            selector: 'agent_id',
             sortable: true,
         },
         {
             name: 'Group id',
-            selector: row => row.group_id,
+            selector: 'group_id',
             sortable: true,
         },
         {
             name: 'OS id',
-            selector: row => row.os_id,
+            selector: 'os_id',
             sortable: true,
         },
         {
             name: 'Compliance id',
-            selector: row => row.comp_id,
+            selector: 'comp_id',
             sortable: true,
         },
         {
             name: 'Device id',
-            selector: row => row.device_id,
+            selector: 'device_id',
             sortable: true,
         },
         {
             name: 'Task& comp id',
-            selector: row => row.taskandcomp_id,
+            selector: 'taskandcomp_id',
             sortable: true,
         },
         {
@@ -104,7 +104,7 @@ function Totalseries() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit Series' href="/Editseries">
                     <p onClick={() => sessionStorage.setItem('seriessno', `${row.sno}`)} >
