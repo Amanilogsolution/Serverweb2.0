@@ -13,7 +13,7 @@ function EditAssetType() {
         message:"abc",
         title:"title",
         type:"type",
-        route:"#"
+        route:null
     })
 
     useEffect(() => {
@@ -27,7 +27,7 @@ function EditAssetType() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        setLoading(false)
+  
         const asset_type = document.getElementById('asset_type').value;
         const asset_type_desc = document.getElementById('asset_type_desc').value;
         const username = sessionStorage.getItem('UserName');
@@ -44,14 +44,14 @@ function EditAssetType() {
             const result = await UpdateAssettypeapi(sno, asset_type, asset_type_desc, username);
 
             if (result === 'Updated') {
-            //    sessionStorage.removeItem('assettypesno');
-               setDatas({...datas,message:"Asset Type Updated",title:"success",type:"Updated",route:"/TotalAssetType"})
+               setDatas({...datas,message:"Asset Type Updated",title:"success",type:"success",route:"/TotalAssetType"})
                document.getElementById('snackbar').style.display="block"    
-            //    window.location.href = "/TotalAssetType"
-            }
+               sessionStorage.removeItem('assettypesno');
+      
+              }
             else {
-                alert("Server Error");
-                // setLoading(true)
+                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/EditAssetType"})
+                document.getElementById('snackbar').style.display="block"   
             }
         }
 

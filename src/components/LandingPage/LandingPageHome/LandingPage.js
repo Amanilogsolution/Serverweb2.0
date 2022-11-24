@@ -97,12 +97,14 @@ const LandingPage = () => {
                     <section className='photos_content'>
                         <div className='photos_content1'>
 
-                            <div className='content_'>
+                            <div className='content_' data-aos="fade-right" data-aos-offset="200"
+                                data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                 <h1>Record and stay updated anywhere</h1>
                                 <p>Behind every great experience is a great process. Teams are using Drizzle to update and get data on the run, making data available to stakeholders in real-time.</p>
                                 <button className='btn btn-voilet'>Get Details</button>
                             </div>
-                            <div className='img_div'></div>
+                            <div className='img_div'data-aos="fade-left" data-aos-offset="200"
+                                data-aos-delay="50" data-aos-duration="1000" data-aos-once="true"></div>
                         </div>
                     </section>
 

@@ -3,10 +3,20 @@ import React, { useState } from 'react';
 import { AddBillingFreqapi } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 
 function AddBillingFreq() {
     const [loading, setLoading] = useState(true)
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
+
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
@@ -16,20 +26,28 @@ function AddBillingFreq() {
         const billing_freq_desc = document.getElementById('billing_freq_desc').value;
 
         const username = sessionStorage.getItem('UserId');
+        setLoading(true)
 
         if (!billing_freq) {
-            alert('Please Enter Mandatory Field')
-            setLoading(true)
+            setDatas({...datas,message:"Please enter Mandatory fields",title:"Error",type:"warning",route:"#",toggle:"true"})
+            document.getElementById('snackbar').style.display="block"
         }
         else {
+
+            setLoading(true)
+
             const result = await AddBillingFreqapi(billing_freq_id, billing_freq, billing_freq_desc, username);
             if (result === 'Added') {
-                alert('Billing Frequency Added ')
-                window.location.href = './TotalBillingFreq'
+                setDatas({...datas,message:"Billing frequency Added",title:"success",type:"success",route:"/TotalBillingFreq",toggle:"true"})
+                document.getElementById('snackbar').style.display="block"
+            }
+            else if(result === 'Already'){
+                setDatas({...datas,message:"Billing frequency Already Exist",title:"warning",type:"Error",toggle:"true"})
+                document.getElementById('snackbar').style.display="block" 
             }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/AddBillingFreq",toggle:"true"})
+                document.getElementById('snackbar').style.display="block"  
             }
         }
 
@@ -39,6 +57,11 @@ function AddBillingFreq() {
             {
                 loading ?
                     <Sidebar >
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
+
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Billing Frequency</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Billing Frequency</span> </h2>
@@ -56,7 +79,7 @@ function AddBillingFreq() {
                                         </div>
                                         <div className="col-md mt-3" >
                                             <label htmlFor='billing_freq_desc'>Remarks</label>
-                                            <textarea className="form-control" id='billing_freq_desc' rows='3' placeholder='Comments'/>
+                                            <textarea className="form-control" id='billing_freq_desc' rows='3' placeholder='Comments' />
                                         </div>
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Frequency</button>

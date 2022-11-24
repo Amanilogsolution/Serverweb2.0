@@ -3,11 +3,20 @@ import React, { useEffect, useState } from 'react';
 import { GetEmployees, UpdateEmployees, ActiveLocation } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function EditEmployee() {
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState({});
     const [locationlist, setLocationlist] = useState([])
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -31,22 +40,24 @@ function EditEmployee() {
         const location = document.getElementById('location').value;
         const username = sessionStorage.getItem('UserName');
         const sno = sessionStorage.getItem('employeesno')
+        setLoading(true)
 
         if (!location || !employee_name || !employee_email) {
-            alert("Please fill the mandatory field ...")
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
+            setLoading(true)
             const result = await UpdateEmployees(sno, employee_name, location, employee_email, employee_number, company, username);
 
             if (result === 'Updated') {
-                alert('Employee Updated')
                 sessionStorage.removeItem('employeesno');
-                window.location.href = './TotalEmployee'
+                setDatas({ ...datas, message: "Employee Updated", title: "success", type: "success", route: "/TotalEmployee", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditEmployee", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -78,6 +89,11 @@ function EditEmployee() {
             {
                 loading ?
                     <Sidebar >
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
+
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Employee</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Employee</span> </h2>

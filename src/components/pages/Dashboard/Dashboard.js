@@ -57,18 +57,81 @@ const Dashboard = () => {
     <div>
       <Sidebar>
         <div className='home_container'>
-          <div className='home_content'>
-            {/* <input type='file' onChange={onChange}/> */}
-            {/* <button onClick={upload}>Upload</button> */}
+
+
+          {/* ============================= */}
+          {/* <div className='home_content'>
             <img className='home_logo' src={logo} alt='Drizzle Logo' />
             <h1>Hello from Us</h1>
-            {/* {warning('Asset Added Successfully ')} */}
             <p>
               Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
               and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
               Various versions have evolved over the years, sometimes by accident
             </p>
+          </div> */}
+          {/* ======================= */}
+
+          <div className='cards '>
+
+            <div class="card" id="above_card">
+              <div class="card-body">
+                <h5 class="card-title">Followers</h5>
+                <div className='d-flex'>
+                  <div style={{margin:"20px 0 0 0"}}>
+                    <h1>1750</h1>
+                    <label>Followers</label>
+                  </div>
+                  <div style={{margin:"20px 40px 0 40px"}}>
+                    <h1>970</h1>
+                    <label>Following</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card " id="above_card">
+              <div class="card-body">
+                <h5 class="card-title">Overviews</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+              </div>
+            </div>
+
+            <div class="card " id="above_card">
+              <div class="card-body">
+                <h5 class="card-title">Your Audience</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+              </div>
+            </div>
+
           </div>
+
+          <div className='cards'>
+
+            <div class="card" id="center_card1">
+              <div class="card-body">
+                <h5 class="card-title">Post Performance</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+              </div>
+            </div>
+
+            <div class="card" id="center_card2" >
+              <div class="card-body">
+                <h5 class="card-title">Location</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+              </div>
+            </div>
+
+          </div>
+
+
         </div>
       </Sidebar>
     </div>
