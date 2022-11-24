@@ -12,7 +12,7 @@ export default function Snackbar(props) {
   return (
     <div className="App">
       <div className={`${toggleclass ? "received" : ""} notification`}>
-        <div className={`notification__message message--${props.title}`}>
+        <div className={`notification__message message--${props.type}`}>
           <h1>{props.title}</h1>
           <p>{props.message}</p>
 
