@@ -1,32 +1,34 @@
-export const warning = (p) => {
-    return (
-        <div
-            className="container p-2 ml-auto fixed-top"
-            id="snackalert" >
-            <div className="row gutters  ">
-                <div className=" col-lg-4 col-md-2 " style={{ margin: "auto" }}>
-                    <div className="alert alert-success fade show d-flex" role="alert" style={{ padding: "5px", border: "2px solid red" }}>
-                        <p className="px-0 mx-0 py-0 my-0" style={{ marginRight: "0px", padding: "0px", border: "2px solid red" }}>
-                            {p}
-                        </p>
-                        <button type="button" className="close btn" data-dismiss="alert" aria-label="Close" style={{ marginRight: "0px", border: "2px solid red" }}>
-                            <span aria-hidden="True">ok</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+import React, { useState } from "react";
+
+import "./Snackbar.css";
+import {GrFormClose} from "react-icons/gr"
+
+export default function Snackbar(props) {
+  const [toggleclass, setToggleclass] = useState(true);
+
+  // const messageTitle = ["info", "success", "warning", "danger"];
+
+
+  return (
+    <div className="App">
+      <div className={`${toggleclass ? "received" : ""} notification`}>
+        <div className={`notification__message message--${props.title}`}>
+          <h1>{props.title}</h1>
+          <p>{props.message}</p>
+
+          <button
+            onClick={() => {
+              setToggleclass(false);
+              window.location.href = props.Route
+
+            }}
+          >
+           <GrFormClose/>
+          </button>
         </div>
+      </div>
 
 
-
-    )
+    </div>
+  );
 }
-
-export const success = () => {
-    return (
-        <>
-            success
-        </>
-    )
-}
-
