@@ -445,7 +445,7 @@ export const TotalAssetTypeapi = async () => {
 }
 
 export const AddAssetTypeapi = async (asset_type_id, asset_type, asset_description, user_id) => {
-    const url = `http://drizzlebackend.awlworldwide.com/api/insertAssetType`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertAssetType`
     return axios.post(url, { asset_type_id, asset_type, asset_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
