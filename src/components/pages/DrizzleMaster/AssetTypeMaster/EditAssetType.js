@@ -3,10 +3,17 @@ import React, { useEffect, useState } from 'react';
 import { GetAssetTypeapi, UpdateAssettypeapi } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
+
 
 function EditAssetType() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
+    const [datas,setDatas] = useState({
+        message:"abc",
+        title:"title",
+        type:"type"
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -19,7 +26,12 @@ function EditAssetType() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        setLoading(false)
+        setDatas({...datas,message:"Asset Type Updated",title:"success",type:"success"})
+
+        document.getElementById('snackbar').style.display="block"
+
+
+        // setLoading(false)
         const asset_type = document.getElementById('asset_type').value;
         const asset_type_desc = document.getElementById('asset_type_desc').value;
         const username = sessionStorage.getItem('UserName');
@@ -30,17 +42,16 @@ function EditAssetType() {
             setLoading(true)
         }
         else {
-            const result = await UpdateAssettypeapi(sno, asset_type, asset_type_desc, username);
+            // const result = await UpdateAssettypeapi(sno, asset_type, asset_type_desc, username);
 
-            if (result === 'Updated') {
-                alert('Asset Type Updated')
-                sessionStorage.removeItem('assettypesno');
-                window.location.href = './TotalAssetType'
-            }
-            else {
-                alert("Server Error");
-                setLoading(true)
-            }
+            // if (result === 'Updated') {
+            //    sessionStorage.removeItem('assettypesno');
+            //     window.location.href = './TotalAssetType'
+            // }
+            // else {
+            //     alert("Server Error");
+            //     setLoading(true)
+            // }
         }
 
     }
@@ -57,6 +68,10 @@ function EditAssetType() {
             {
                 loading ?
                     <Sidebar >
+                        <div id="snackbar" style={{display:"none"}}>
+                                <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={"#"}/> 
+                                </div>
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Asset Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Asset Type</span> </h2>

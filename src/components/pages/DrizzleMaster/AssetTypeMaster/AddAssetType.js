@@ -26,9 +26,15 @@ function AddAssetType() {
         }
         else {
             const result = await AddAssetTypeapi(assettype_id, asset_type, asset_type_desc, username);
+            console.log(result)
             if (result === 'Added') {
                 alert('Asset Type Added ')
                 window.location.href = './TotalAssetType'
+            }
+            else if(result === 'Already'){
+                alert('Asset Type Already Exist ')
+                setLoading(true)
+
             }
             else {
                 alert("Server Error");

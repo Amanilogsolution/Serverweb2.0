@@ -8,6 +8,7 @@ import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { GiLuger } from 'react-icons/gi';
 
+
 const EditAsset = () => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
