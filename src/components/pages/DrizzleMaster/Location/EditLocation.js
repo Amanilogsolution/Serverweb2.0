@@ -60,7 +60,7 @@ function EditLocation() {
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('locationsno');
-                setDatas({ ...datas, message: "Location Updated", title: "success", type: "success", route: "/TotalLocation", toggle: "true" })
+                setDatas({ ...datas, message: "Location Updated", title: "success", type: "success", route: "/TotalLocations", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {

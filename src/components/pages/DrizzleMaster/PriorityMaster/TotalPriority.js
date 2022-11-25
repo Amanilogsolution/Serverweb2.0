@@ -46,12 +46,12 @@ function TotalPriority() {
 
         {
             name: 'Priority Type',
-            selector: row => row.priority_type,
+            selector: 'priority_type',
             sortable: true,
         },
         {
             name: 'Priority Description',
-            selector: row => row.priority_description,
+            selector: 'priority_description',
             sortable: true,
         },
         {
@@ -72,7 +72,7 @@ function TotalPriority() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit Series' href="/EditPriority">
                     <p onClick={() => sessionStorage.setItem('prioritysno', `${row.sno}`)} >

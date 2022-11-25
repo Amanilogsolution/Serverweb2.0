@@ -40,12 +40,12 @@ const customStyles = {
 const columns = [
     {
         name: 'Ticket Status',
-        selector: row => row.ticket_status,
+        selector: 'ticket_status',
         sortable: true,
     },
     {
         name: 'Ticket Description',
-        selector: row => row.ticket_description,
+        selector: 'ticket_description',
         sortable: true,
     },
 
@@ -67,7 +67,7 @@ const columns = [
     {
         name: "Actions",
         sortable: false,
-        selector: row => row.null,
+        selector: 'null',
         cell: (row) => [
             <a title='Edit TicketStatus' href="/EditTicketStatus">
                 <p onClick={() => sessionStorage.setItem('ticketstatussno', `${row.sno}`)} >

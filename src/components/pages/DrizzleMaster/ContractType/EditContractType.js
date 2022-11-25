@@ -38,7 +38,7 @@ function EditContractType() {
         const sno = sessionStorage.getItem('contracttypesno')
 
         if (!contract_type) {
-            setDatas({ ...datas, message: "Please enter all mendatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            setDatas({ ...datas, message: "Please enter Contract Type ", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
 

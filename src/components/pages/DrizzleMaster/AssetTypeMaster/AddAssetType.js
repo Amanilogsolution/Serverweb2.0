@@ -38,17 +38,16 @@ function AddAssetType() {
         setLoading(true)
 
             const result = await AddAssetTypeapi(assettype_id, asset_type, asset_type_desc, username);
-            console.log(result)
             if (result === 'Added') {
-                setDatas({...datas,message:"Asset Type Added",title:"success",type:"success",route:"/TotalAssetStatus",toggle:"true"})
+                setDatas({...datas,message:"Asset Type Added",title:"success",type:"success",route:"/TotalAssetType",toggle:"true"})
                 document.getElementById('snackbar').style.display="block"
              }
             else if(result === 'Already'){
-                setDatas({...datas,message:" Asset Type Already Exist",title:"warning",type:"Error"})
+                setDatas({...datas,message:"This Asset Already Exist",title:"warning",type:"Error"})
                 document.getElementById('snackbar').style.display="block" 
             }
             else {
-                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/AddAssetStatus",toggle:"true"})
+                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/AddAssetType",toggle:"true"})
                 document.getElementById('snackbar').style.display="block"  
             }
         }

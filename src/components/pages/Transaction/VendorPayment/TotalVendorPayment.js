@@ -45,23 +45,23 @@ const  TotalVendorPayment=()=> {
     const columns = [
         {
             name: 'Vendor',
-            selector: row => row.vendor,
+            selector: 'vendor',
             sortable: true,
         },
         {
             name: 'Invoice No',
-            selector: row => row.invoice_no,
+            selector: 'invoice_no',
             sortable: true,
         },
 
         {
             name: 'Payment Amt',
-            selector: row => row.payment_amt,
+            selector: 'payment_amt',
             sortable: true,
         },
         {
             name: 'Payment Detail',
-            selector: row => row.payment_detail,
+            selector: 'payment_detail',
             sortable: true,
         },
         {
@@ -74,7 +74,7 @@ const  TotalVendorPayment=()=> {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit VendorPayments' href="/EditVendorPayments">
                     <p onClick={() => sessionStorage.setItem('vendorpaymentssno', `${row.sno}`)} >

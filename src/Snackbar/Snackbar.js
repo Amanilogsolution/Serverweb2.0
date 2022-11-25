@@ -12,7 +12,6 @@ export default function Snackbar(props) {
   },[props])
   // const messageTitle = ["info", "success", "warning", "danger"];
 
-
   return (
     <div className="App">
       <div className={`${toggleclass==="true" ? "received" : ""} notification`}>

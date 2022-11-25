@@ -44,12 +44,12 @@ function TotalServiceGroup() {
     const columns = [
         {
             name: 'Service group',
-            selector: row => row.service_group_type,
+            selector: 'service_group_type',
             sortable: true,
         },
         {
             name: 'Description',
-            selector: row => row.service_group_description,
+            selector: 'service_group_description',
             sortable: true,
         },
         {
@@ -70,7 +70,7 @@ function TotalServiceGroup() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit ServiceGroup' href="/EditServiceGroup">
                     <p onClick={() => sessionStorage.setItem('servicegroupsno', `${row.sno}`)} >

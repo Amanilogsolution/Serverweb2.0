@@ -123,7 +123,6 @@ function TotaldeviceTask() {
         const tabledata = await Getdevicetaskbyname(e.target.value);
         // setShowtable(true)
         setData(tabledata)
-        console.log(tabledata)
         setText('Data not Found')
         setLoading(true)
     }

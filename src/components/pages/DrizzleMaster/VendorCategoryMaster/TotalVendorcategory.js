@@ -45,12 +45,12 @@ function TotalVendorCategory() {
       
         {
             name: 'Vendor Category',
-            selector: row => row.vendor_category,
+            selector: 'vendor_category',
             sortable: true,
         },
         {
             name: 'Vendor Category Description',
-            selector: row => row.vendor_category_description,
+            selector: 'vendor_category_description',
             sortable: true,
         },
 
@@ -72,7 +72,7 @@ function TotalVendorCategory() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit Vendor Category' href="/EditVendorcategory">
                     <p onClick={() => sessionStorage.setItem('vendorcatsno', `${row.sno}`)} >

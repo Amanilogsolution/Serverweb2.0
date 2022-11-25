@@ -44,28 +44,28 @@ function TotalVendorContract() {
     const columns = [
         {
             name: 'Vendor ',
-            selector: row => row.vendor,
+            selector: 'vendor',
             sortable: true,
         },
       
         {
             name: 'Location',
-            selector: row => row.location,
+            selector:'location',
             sortable: true,
         },
         {
             name: 'Type of Contract',
-            selector: row => row.type_of_contract,
+            selector: 'type_of_contract',
             sortable: true,
         },
         {
             name: 'Major Category',
-            selector: row => row.major_category,
+            selector: 'major_category',
             sortable: true,
         },
         {
             name: 'Sub Category',
-            selector: row => row.sub_category,
+            selector: 'sub_category',
             sortable: true,
         },
        

@@ -40,27 +40,27 @@ const customStyles = {
 const columns = [
     {
         name: 'Employee Name',
-        selector: row => row.emp_name,
+        selector: 'emp_name',
         sortable: true,
     },
     {
         name: 'Asset Type',
-        selector: row => row.asset_type,
+        selector: 'asset_type',
         sortable: true,
     },
     {
         name: 'Assign Ticket',
-        selector: row => row.assign_ticket,
+        selector: 'assign_ticket',
         sortable: true,
     },
     {
         name: 'Location',
-        selector: row => row.location,
+        selector: 'location',
         sortable: true,
     },
     {
         name: 'Ticket Status',
-        selector: row => row.ticket_status,
+        selector: 'ticket_status',
         sortable: true,
     },
     {
@@ -83,7 +83,7 @@ const columns = [
     {
         name: "Actions",
         sortable: false,
-        selector: row => row.null,
+        selector: 'null',
         cell: (row) => [
             <a title='Edit Ticket' href="/EditTicket">
                 <p onClick={() => sessionStorage.setItem('TicketSno', `${row.sno}`)} >

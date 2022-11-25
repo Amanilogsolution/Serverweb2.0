@@ -45,12 +45,12 @@ function TotalBillingFreq() {
     const columns = [
         {
             name: 'Billing Frequency',
-            selector: row => row.billing_freq,
+            selector: 'billing_freq',
             sortable: true,
         },
         {
             name: 'Billing Frequency Description',
-            selector: row => row.billing_freq_description,
+            selector:'billing_freq_description',
             sortable: true,
         },
 

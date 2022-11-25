@@ -29,7 +29,7 @@ function AddBillingFreq() {
         setLoading(true)
 
         if (!billing_freq) {
-            setDatas({...datas,message:"Please enter Mandatory fields",title:"Error",type:"warning",route:"#",toggle:"true"})
+            setDatas({...datas,message:"Please enter Billing frequency",title:"Error",type:"warning",route:"#",toggle:"true"})
             document.getElementById('snackbar').style.display="block"
         }
         else {

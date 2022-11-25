@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, ActiveLocation, ActivePriority, GetNewAssetAssign, InsertTicket, CountTickets } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 export default function AddTicket() {
     const [loading, setLoading] = useState(false)
@@ -16,7 +17,13 @@ export default function AddTicket() {
     const [assettypelist, setAssettypelist] = useState([])
 
     const [todatdate, setTodaydate] = useState('')
-
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -62,7 +69,7 @@ export default function AddTicket() {
         setEmployeedetail(detail)
         const org = sessionStorage.getItem('Database')
 
-        const assetall = await GetNewAssetAssign(org,employee_id)
+        const assetall = await GetNewAssetAssign(org, employee_id)
         setAssettypelist(assetall)
     }
 
@@ -98,22 +105,25 @@ export default function AddTicket() {
         const remark = document.getElementById('remark').value;
 
         const user_id = sessionStorage.getItem('UserId')
-
+        
         if (!employee_id || !assettype || !location || !ticketstatus || !ticketsubject) {
-            alert('Please enter the Mandatory field')
             setLoading(true)
+            setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
+            setLoading(true)
+
             const result = await InsertTicket(employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id)
             if (result === 'Data Added') {
-                alert('Ticket Added')
-                window.location.href = './TotalTicket'
+                setDatas({ ...datas, message: "Ticket Added", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert('Server Not Response')
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -123,6 +133,9 @@ export default function AddTicket() {
             {
                 loading ?
                     <Sidebar >
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Tickets</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Tickets</span> </h2>
@@ -151,12 +164,12 @@ export default function AddTicket() {
                                                         <option value='' hidden>Select...</option>
 
                                                         {
-                                                                assettypelist.map((item, index) => (
-                                                                    <option key={index} value={item.serial_no}>{`${item.asset_type}, (${item.serial_no})`}</option>
+                                                            assettypelist.map((item, index) => (
+                                                                <option key={index} value={item.serial_no}>{`${item.asset_type}, (${item.serial_no})`}</option>
 
-                                                                )
-                                                        )
-                                                                
+                                                            )
+                                                            )
+
                                                         }
                                                         <option value='Other' >Other</option>
 

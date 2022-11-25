@@ -39,7 +39,7 @@ function EditTicketStatus() {
         setLoading(true)
 
         if (!ticket_status) {
-            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            setDatas({ ...datas, message: "Please enter Ticket Status", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
 
         }

@@ -41,32 +41,32 @@ const customStyles = {
 const columns = [
     {
         name: 'Location Code',
-        selector: row => row.location_code,
+        selector: 'location_code',
         sortable: true,
     },
     {
         name: 'Location Name',
-        selector: row => row.location_name,
+        selector: 'location_name',
         sortable: true,
     },
     {
         name: 'location_state',
-        selector: row => row.location_state,
+        selector: 'location_state',
         sortable: true,
     },
     {
         name: 'Location PinCode',
-        selector: row => row.location_pin_code,
+        selector: 'location_pin_code',
         sortable: true,
     },
     {
         name: 'location_gst',
-        selector: row => row.location_gst,
+        selector: 'location_gst',
         sortable: true,
     },
     {
         name: 'contact_person',
-        selector: row => row.contact_person,
+        selector: 'contact_person',
         sortable: true,
     },
     {
@@ -87,7 +87,7 @@ const columns = [
     {
         name: "Actions",
         sortable: false,
-        selector: row => row.null,
+        selector: 'null',
         cell: (row) => [
             <a title='Edit Location' href="/EditLocation">
                 <p onClick={() => sessionStorage.setItem('locationsno', `${row.sno}`)} >
