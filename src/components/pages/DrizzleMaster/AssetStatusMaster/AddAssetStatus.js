@@ -29,7 +29,7 @@ function AddAssetStatus() {
         setLoading(true)
 
         if (!asset_status) {
-            setDatas({...datas,message:"Please enter the Asset Type",title:"Error",type:"warning",route:"#",toggle:"true"})
+            setDatas({...datas,message:"Please enter the Asset Status",title:"Error",type:"warning",route:"#",toggle:"true"})
             document.getElementById('snackbar').style.display="block"
 
         }

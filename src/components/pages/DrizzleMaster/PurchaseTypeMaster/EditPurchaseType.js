@@ -37,7 +37,7 @@ function EditPurchaseType() {
         setLoading(true)
 
         if (!purchase_type) {
-            setDatas({ ...datas, message: "Please enter all mandatory fielids", title: "Error", type: "warning", route: "#", toggle: "true" })
+            setDatas({ ...datas, message: "Please enter Purchase Type", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
         else {

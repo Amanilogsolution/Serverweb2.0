@@ -44,7 +44,6 @@ function EditPriority() {
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('prioritysno');
-                alert('Priority Type Updated')
                 setDatas({ ...datas, message: "Priority Type Updated", title: "success", type: "success", route: "/TotalPriority", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

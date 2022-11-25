@@ -13,38 +13,37 @@ function AddContractType() {
         message: "abc",
         title: "title",
         type: "type",
-        route: null
+        route: "true"
     })
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        setLoading(false)
+        // setLoading(false)
         const contract_type = document.getElementById('contract_type').value;
         const contract_type_id = contract_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
-
-        setLoading(true)
+        console.log('outer', contract_type)
 
         if (!contract_type) {
-            setDatas({...datas,message:"Please fill all medatory fields",title:"Error",type:"warning",route:"#",toggle:"true"})
-            document.getElementById('snackbar').style.display="block"
+            setLoading(true)
+            setDatas({ ...datas, message: "Please enter Contract Type", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
             setLoading(true)
-
             const result = await InsertContractType(contract_type_id, contract_type, remark, username);
             if (result === 'Added') {
-               setDatas({...datas,message:"Contract Type Added",title:"success",type:"success",route:"/TotalContractType",toggle:"true"})
-               document.getElementById('snackbar').style.display="block"
+                setDatas({ ...datas, message: "Contract Type Added", title: "success", type: "success", route: "/TotalContractType", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
-            else if(result === 'Already'){
-                setDatas({...datas,message:"Contract Type Already Exist",title:"warning",type:"Error",toggle:"true"})
-                document.getElementById('snackbar').style.display="block" 
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Contract Type Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/AddContractType",toggle:"true"})
-                document.getElementById('snackbar').style.display="block"  
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddContractType", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
     }
@@ -56,7 +55,7 @@ function AddContractType() {
                     <Sidebar >
 
                         <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} />
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
 
                         <div className='main_container pb-2'>

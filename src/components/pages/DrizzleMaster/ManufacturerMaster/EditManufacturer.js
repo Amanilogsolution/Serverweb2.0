@@ -38,7 +38,7 @@ function EditManufacturer() {
         setLoading(true)
 
         if (!manufacturername) {
-            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            setDatas({ ...datas, message: "Please enter Manfacturer", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
         else {
@@ -46,7 +46,7 @@ function EditManufacturer() {
             const result = await UpdateManufacturer(sno, manufacturername, remark, username);
             if (result === 'Updated') {
                 sessionStorage.removeItem('manufacturersno');
-                setDatas({ ...datas, message: "Asset Status Updated", title: "success", type: "success", route: "/TotalManufacturer", toggle: "true" })
+                setDatas({ ...datas, message: "Manfacturer Updated", title: "success", type: "success", route: "/TotalManufacturer", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {

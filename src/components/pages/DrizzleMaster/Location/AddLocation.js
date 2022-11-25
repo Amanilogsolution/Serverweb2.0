@@ -52,7 +52,7 @@ function AddLocation() {
                 pincode, gstno, contactpersonname, email, contNum, latitude, longitude, username);
 
             if (result === 'Added') {
-                setDatas({ ...datas, message: "Location Added", title: "success", type: "success", route: "/TotalLocation", toggle: "true" })
+                setDatas({ ...datas, message: "Location Added", title: "success", type: "success", route: "/TotalLocations", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
@@ -154,7 +154,7 @@ function AddLocation() {
                                         <div className="row mt-3">
                                             <div className="col-md-6" >
                                                 <label htmlFor='latitude'>Latitude</label>
-                                                <input type="text" className="form-control" id='latitude' />
+                                                <input type="number" className="form-control" id='latitude' />
                                             </div>
                                             <div className="col-md-6" >
                                                 <label htmlFor='longitude'>Longitude</label>
