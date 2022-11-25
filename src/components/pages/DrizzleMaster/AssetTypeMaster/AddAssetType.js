@@ -38,7 +38,6 @@ function AddAssetType() {
         setLoading(true)
 
             const result = await AddAssetTypeapi(assettype_id, asset_type, asset_type_desc, username);
-            console.log(result)
             if (result === 'Added') {
                 setDatas({...datas,message:"Asset Type Added",title:"success",type:"success",route:"/TotalAssetStatus",toggle:"true"})
                 document.getElementById('snackbar').style.display="block"

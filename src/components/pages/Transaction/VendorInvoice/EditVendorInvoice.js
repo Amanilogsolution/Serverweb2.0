@@ -4,13 +4,20 @@ import './VendorInvoice.css'
 import { ActiveVendorContract, VendorContractDetail, UpdatePendingVendorInvoice, GetVendorInvoice } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function EditVendorInvoice() {
     const [loading, setLoading] = useState(false)
 
     const [data, setData] = useState([])
     const [vendorcontractlist, setVendorcontractlist] = useState([])
-
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
     useEffect(() => {
         const fetchdata = async () => {
             const datas = await GetVendorInvoice(sessionStorage.getItem('vendorinvoicesno'))
@@ -52,20 +59,22 @@ function EditVendorInvoice() {
 
 
         if (!vendor || !invamt || !invno ) {
-            alert('Please enter the Mandatory field')
             setLoading(true)
+            setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
+            setLoading(true)
             const result = await UpdatePendingVendorInvoice( vendor,accountno,invno,invamt,invdate,invduedate,invsubdate,remark,refno,printercount,sno)
             if (result === 'Data Updated') {
-                alert('Vendor Invoice Updated')
                 sessionStorage.removeItem('vendorinvoicesno')
-                window.location.href = './TotalVendorInvoice'
+                setDatas({ ...datas, message: "Invoice Updated", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert('Server Not Response')
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -92,6 +101,9 @@ function EditVendorInvoice() {
             {
                 loading ?
                     <Sidebar>
+                    <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Invoice</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Invoice</span> </h2>
