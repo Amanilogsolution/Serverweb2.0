@@ -5,6 +5,7 @@ import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { FaMinusCircle } from 'react-icons/fa'
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 
 function EditVendorCode() {
@@ -17,6 +18,14 @@ function EditVendorCode() {
     const [countrylist, setCountrylist] = useState([]);
     const [statelist, setStatelist] = useState([]);
     const [citylist, setCitylist] = useState([]);
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -72,25 +81,31 @@ function EditVendorCode() {
         const contact_email = document.getElementById('contact_email').value;
         const user_id = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('VendorCodeSno')
+        setLoading(true)
 
 
         if (!vendor_code || !vendor_name  || !comp_country_id || !comp_city || !comp_state_id
             || !comp_email || !contact_person || !contact_no || !contact_email) {
-            alert("Please enter Mandatory field")
-            setLoading(true)
+                setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
         }
         else {
+            setLoading(true)
             const result = await UpdateVendorCode(sno, vendor_code,vendor_name,comp_gst,comp_website,comp_email,comp_phone,comp_country_id,comp_country,
                 comp_state_id,comp_state,comp_city,comp_addr1,comp_addr2,comp_pincode,vendor_portal,contact_person,contact_no,contact_email,user_id);
 
             if (result === 'Updated') {
-                alert('Vendor Master Updated ')
                 sessionStorage.removeItem('VendorCodeSno');
-                window.location.href = './TotalVendorCode'
+                setDatas({ ...datas, message: "Vendor Code Updated", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Vendor Code Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditVendorCode", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -169,6 +184,9 @@ function EditVendorCode() {
             {
                 loading ?
                     <Sidebar >
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Master</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Master</span> </h2>
