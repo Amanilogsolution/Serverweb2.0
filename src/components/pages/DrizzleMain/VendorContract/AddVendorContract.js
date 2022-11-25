@@ -4,6 +4,7 @@ import { InsertVendorContract, ActiveLocation, ActiveContractType, ActiveVendorC
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import './vendorcontract.css'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 
 function AddVendorContract() {
     const [loading, setLoading] = useState(false)
@@ -17,13 +18,18 @@ function AddVendorContract() {
     const [vendorsubcatlist, setVendorsubcatlist] = useState([])
     const [vendorlist, setVendorlist] = useState([])
     const [billingfreqlist, setBillingfreqlist] = useState([])
-
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
 
     useEffect(() => {
         const fetchdata = async () => {
             const tablelocation = await ActiveLocation();
             setLocationlist(tablelocation)
-            console.log(tablelocation)
 
             const contract = await ActiveContractType();
             setContractlist(contract)
@@ -36,7 +42,6 @@ function AddVendorContract() {
 
             const billing = await ActiveBillingFreq();
             setBillingfreqlist(billing)
-            console.log(billing)
         }
         fetchdata();
         todaydate()
@@ -124,6 +129,10 @@ function AddVendorContract() {
             !customer_account_no || !payee_name || !help_desk_no) {
             alert("Please enter Mandatory field")
             setLoading(true)
+            setLoading(true)
+
+            // setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
         }
         else {
             const refno = document.getElementById('ref_no').checked ? true : false;
@@ -134,6 +143,8 @@ function AddVendorContract() {
                     errorcount = errorcount + 1
                     alert('Please fill the Contract Detail')
                     setLoading(true)
+                    // setDatas({ ...datas, message: "Please fill the Contract Detail", title: "success", type: "success", route: "#", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
             else {
@@ -148,6 +159,8 @@ function AddVendorContract() {
                     errorcount = errorcount + 1
                     alert('Please Enter the Reference no')
                     setLoading(true)
+                    // setDatas({ ...datas, message: "Please Enter the Reference no", title: "success", type: "success", route: "#", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
             else {
@@ -158,11 +171,14 @@ function AddVendorContract() {
                     errorcount = errorcount + 1
                     alert('Please Enter the Link id no')
                     setLoading(true)
+                    // setDatas({ ...datas, message: "Please Enter the Link id no", title: "success", type: "success", route: "#", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
             else { link_id_no = '' }
 
             if (errorcount === 0) {
+                setLoading(true)
                 const callapi = await InsertVendorContract(vendor_contract_id, vendor, type_of_contract,
                     major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
                     rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
@@ -170,10 +186,14 @@ function AddVendorContract() {
                 if (callapi === 'Added') {
                     alert('Vendor Contract Added');
                     window.location.href = './TotalVendorContract'
+                    // setDatas({ ...datas, message: "Vendor Contract Added", title: "warning", type: "Error", toggle: "true", route: '/TotalVendorContract' })
+                    // document.getElementById('snackbar').style.display = "block"
                 }
                 else {
                     alert('Server not Response')
                     setLoading(true)
+                    // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
 
@@ -185,6 +205,9 @@ function AddVendorContract() {
             {
                 loading ?
                     <Sidebar >
+                        {/* <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div> */}
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Contract</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Contract</span> </h2>
@@ -308,11 +331,11 @@ function AddVendorContract() {
                                                 <div className="row mt-2">
                                                     <div className="col-md-4" >
                                                         <label htmlFor='invoice_generation_date'>Invoice Generation Date <span className='text-danger'>*</span></label>
-                                                        <input type="number" className="form-control" id='invoice_generation_date' value={invoicedate} required 
-                                                        onChange={(e) => {
-                                                            if (e.target.value > 31) return false;
-                                                            setInvoicedate(e.target.value)
-                                                        }} />
+                                                        <input type="number" className="form-control" id='invoice_generation_date' value={invoicedate} required
+                                                            onChange={(e) => {
+                                                                if (e.target.value > 31) return false;
+                                                                setInvoicedate(e.target.value)
+                                                            }} />
                                                     </div>
                                                     <div className="col-md-4" >
                                                         <label htmlFor='billing_freq'>Billing Frequency <span className='text-danger'>*</span></label>
