@@ -3,10 +3,19 @@ import React, { useState } from 'react';
 import { AddSoftwareapi } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 
 function AddSoftware() {
     const [loading, setLoading] = useState(true)
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
@@ -16,20 +25,26 @@ function AddSoftware() {
         const software_desc = document.getElementById('software_desc').value;
 
         const username = sessionStorage.getItem('UserId');
+        setLoading(true)
 
         if (!software) {
-            alert("Please fill the  mandatory Fields...")
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
+            setLoading(true)
             const result = await AddSoftwareapi(software_id, software, software_desc, username);
             if (result === 'Added') {
-                alert('Software Added ')
-                window.location.href = './TotalSoftware'
+                setDatas({ ...datas, message: "Software Added", title: "success", type: "success", route: "/TotalSoftware", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Software Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddSoftware", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
     }
@@ -38,6 +53,9 @@ function AddSoftware() {
             {
                 loading ?
                     <Sidebar >
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Software</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Software</span> </h2>

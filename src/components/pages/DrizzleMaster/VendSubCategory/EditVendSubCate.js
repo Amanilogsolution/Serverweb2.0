@@ -3,11 +3,20 @@ import React, { useEffect, useState } from 'react';
 import { GetVendSubCate, UpdateVendSubCate,ActiveVendorCategory } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function EditVendorSubCategory() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
     const [vendorcatlist, setVendorcatlist] = useState([])
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -29,23 +38,26 @@ function EditVendorSubCategory() {
         const remark = document.getElementById('remark').value;
         const UserId = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('vendsubcatesno')
+        setLoading(true)
 
         if (!vendor_category || !vendor_sub_category) {
-            alert('Please Enter Mandatory Field')
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
             const result = await UpdateVendSubCate(sno, vendor_category, vendor_sub_category, remark, UserId);
 
             if (result === 'Updated') {
-                alert('Vendor Sub Category Updated')
-                sessionStorage.removeItem('vendsubcatesno');
-                window.location.href = './TotalVendSubCate'
+                setDatas({ ...datas, message: "Vendor Sub Category Updated", title: "success", type: "success", route: "/TotalVendSubCate", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Vendor Sub Category Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
-
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditVendSubCate", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -67,6 +79,9 @@ function EditVendorSubCategory() {
             {
                 loading ?
                     <Sidebar >
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h3><span style={{ color: "rgb(123,108,200)" }}>Vendor Sub Category</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Edit Vendor Sub Category</span> </h3>
