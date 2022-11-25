@@ -41,22 +41,22 @@ const customStyles = {
 const columns = [
     {
         name: 'Asset Name',
-        selector: row => row.asset_name,
+        selector: 'asset_name',
         sortable: true,
     },
     {
         name: 'asset_tag',
-        selector: row => row.asset_tag,
+        selector: 'asset_tag',
         sortable: true,
     },
     {
         name: 'asset_type',
-        selector: row => row.asset_type,
+        selector: 'asset_type',
         sortable: true,
     },
     {
         name: 'asset_assign',
-        selector: row => row.asset_assign,
+        selector: 'asset_assign',
         sortable: true,
     },
   
@@ -82,7 +82,7 @@ const columns = [
     {
         name: "Actions",
         sortable: false,
-        selector: row => row.null,
+        selector: 'null',
         cell: (row) => [
             <a title='Edit Asset' href="/EditAsset">
                 <p onClick={() => sessionStorage.setItem('newassetsno', `${row.sno}`)} >

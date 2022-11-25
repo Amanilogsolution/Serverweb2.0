@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, ActiveLocation, ActivePriority, GetNewAssetAssign, UpdateTicket, getTickets } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 export default function EditTicket() {
     const [data, setData] = useState({});
@@ -17,7 +18,13 @@ export default function EditTicket() {
     const [locationlist, setLocationlist] = useState([])
     const [prioritylist, setPrioritylist] = useState([])
     const [assettypelist, setAssettypelist] = useState([])
-
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
     useEffect(() => {
         const fetchdata = async () => {
             const result = await getTickets(sessionStorage.getItem('TicketSno'))
@@ -89,21 +96,25 @@ export default function EditTicket() {
         const sno = sessionStorage.getItem('TicketSno')
 
         if (!employee_id || !assettype || !location || !ticketstatus || !ticketsubject) {
-            alert('Please enter the Mandatory field')
             setLoading(true)
+            setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
+            setLoading(true)
+
             const result = await UpdateTicket(employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id, sno)
             if (result === 'Data Updated') {
-                alert('Ticket Updated')
                 sessionStorage.removeItem('TicketSno')
-                window.location.href = './TotalTicket'
+                setDatas({ ...datas, message: "Ticket Updated", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+                
             }
             else {
-                alert('Server Not Response')
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -114,6 +125,9 @@ export default function EditTicket() {
             {
                 loading ?
                     <Sidebar >
+                    <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Tickets</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Tickets</span> </h2>

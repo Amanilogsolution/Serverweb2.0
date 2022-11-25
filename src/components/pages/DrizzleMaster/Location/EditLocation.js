@@ -3,10 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { GetLocation, UpdateLocation } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function EditLocation() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -38,23 +47,29 @@ function EditLocation() {
 
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('locationsno')
+        setLoading(true)
 
         if (!company || !locationcode || !locationname || !address1 || !city || !state || !pincode || !contactpersonname || !email || !contNum) {
-            alert('Please Enter Mandatory Field')
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
+            setLoading(true)
             const result = await UpdateLocation(sno, company, locationcode, locationname, address1, address2, city, state, pincode, gstno,
                 contactpersonname, email, contNum, latitude, longitude, username);
 
             if (result === 'Updated') {
-                alert('Locations Updated')
                 sessionStorage.removeItem('locationsno');
-                window.location.href = './TotalLocations'
+                setDatas({ ...datas, message: "Location Updated", title: "success", type: "success", route: "/TotalLocations", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Location Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditLocation", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -113,6 +128,11 @@ function EditLocation() {
             {
                 loading ?
                     <Sidebar >
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Location</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Location</span> </h2>

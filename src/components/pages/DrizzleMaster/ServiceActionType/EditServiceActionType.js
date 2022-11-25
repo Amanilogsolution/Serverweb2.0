@@ -3,10 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { GetServiceActionType, UpdateServiceActionType } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function EditServiceActionType() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -25,22 +34,28 @@ function EditServiceActionType() {
         const remark = document.getElementById('remark').value;
         const UserId = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('serviceactiontypesno')
+        setLoading(true)
 
         if (!service_action_type) {
-            alert('Please fill the Mandatory Field!')
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter Service Action Type", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
+            setLoading(true)
             const result = await UpdateServiceActionType(sno, service_action_type, remark, UserId);
 
             if (result === 'Updated') {
-                alert('Service Action Type Updated')
                 sessionStorage.removeItem('serviceactiontypesno');
-                window.location.href = './TotalServiceActionType'
+                setDatas({ ...datas, message: "Service Action Type Updated", title: "success", type: "success", route: "/TotalServiceActionType", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Service Action Type Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditServiceActionType", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -60,6 +75,11 @@ function EditServiceActionType() {
             {
                 loading ?
                     <Sidebar >
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h3><span style={{ color: "rgb(123,108,200)" }}>Service Action Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Edit Service Action Type</span> </h3>

@@ -4,6 +4,7 @@ import { AddLocationapi } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { TotalState, TotalCity } from '../../../../api/index'
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 
 function AddLocation() {
@@ -27,6 +28,14 @@ function AddLocation() {
         setCities(city)
     }
 
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
+
     const handleaddinsert = async (e) => {
         e.preventDefault();
         // setLoading(false)
@@ -49,22 +58,28 @@ function AddLocation() {
         const longitude = document.getElementById('longitude').value;
 
         const username = sessionStorage.getItem('UserId');
+        setLoading(true)
 
         if (!company || !locationcode || !locationname || !address1 || !city || !state || !pincode || !contactpersonname || !email || !contNum) {
-            alert("Please fill the  mandatory Fields...")
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter All mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
+            setLoading(true)
             const result = await AddLocationapi(location_id, company, locationcode, locationname, address1, address2, city, state,
                 pincode, gstno, contactpersonname, email, contNum, latitude, longitude, username);
 
             if (result === 'Added') {
-                alert('Locations Added ')
-                window.location.href = './TotalLocations'
+                setDatas({ ...datas, message: "Location Added", title: "success", type: "success", route: "/TotalLocations", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Location Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddLocation", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -74,6 +89,11 @@ function AddLocation() {
             {
                 loading ?
                     <Sidebar >
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
+
                         <div className='main_container pb-3'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 '>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Locations</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Location</span> </h2>

@@ -45,17 +45,14 @@ function TotalAssetStatus() {
     const columns = [
         {
             name: 'Asset Status',
-            selector: row => row.asset_status,
+            selector: 'asset_status',
             sortable: true,
         },
         {
             name: 'Asset Status Description',
-            selector: row => row.asset_status_description,
+            selector: 'asset_status_description',
             sortable: true,
         },
-
-
-
         {
             name: 'Status',
             sortable: true,
@@ -74,7 +71,7 @@ function TotalAssetStatus() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit Series' href="/EditAssetStatus">
                     <p onClick={() => sessionStorage.setItem('assetstatussno', `${row.sno}`)} >

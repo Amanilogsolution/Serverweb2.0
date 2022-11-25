@@ -3,9 +3,18 @@ import React, { useState } from 'react';
 import { InsertIssueType } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function AddIssueType() {
     const [loading, setLoading] = useState(true)
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
@@ -15,20 +24,26 @@ function AddIssueType() {
         const issue_type_id = issue_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
+        setLoading(true)
 
         if (!issue_type) {
-            alert('Please Enter Mandatory Field')
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter Issue Type", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
+            setLoading(true)
             const result = await InsertIssueType(issue_type_id, issue_type, remark, username);
             if (result === 'Added') {
-                alert('Issue Type Added')
-                window.location.href = './TotalIssueType'
+                setDatas({ ...datas, message: "Issue Type Added", title: "success", type: "success", route: "/TotalIssueType", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Issue Type Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddIssueType", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
     }
@@ -38,6 +53,11 @@ function AddIssueType() {
             {
                 loading ?
                     <Sidebar >
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>IssueType</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add IssueType</span> </h2>

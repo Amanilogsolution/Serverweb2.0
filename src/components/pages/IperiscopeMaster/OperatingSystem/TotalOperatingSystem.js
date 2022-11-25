@@ -44,17 +44,17 @@ function TotalOperatingSystem() {
     const columns = [
         {
             name: 'Device Id',
-            selector: row => row.id,
+            selector: 'id',
             sortable: true,
         },
         {
             name: 'Operating Syatem',
-            selector: row => row.operating_system,
+            selector: 'operating_system',
             sortable: true,
         },
         {
             name: 'Remark',
-            selector: row => row.remark,
+            selector: 'remark',
             sortable: true,
         },
         {
@@ -75,7 +75,7 @@ function TotalOperatingSystem() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit Device Type' href="/EditOperatingSystem">
                     <p onClick={() => sessionStorage.setItem('OperatingSystemSno', `${row.sno}`)} >

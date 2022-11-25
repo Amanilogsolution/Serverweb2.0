@@ -46,22 +46,22 @@ function TotalVendorInvoice() {
     const columns = [
         {
             name: 'Vendor',
-            selector: row => row.vendor,
+            selector: 'vendor',
             sortable: true,
         },
         {
             name: 'Invoice_no',
-            selector: row => row.invoice_no,
+            selector: 'invoice_no',
             sortable: true,
         },
         {
             name: 'Reference No',
-            selector: row => row.reference_no,
+            selector: 'reference_no',
             sortable: true,
         },
         {
             name: 'Invoice Amt',
-            selector: row => row.invoice_amt,
+            selector: 'invoice_amt',
             sortable: true,
         },
         {
@@ -74,7 +74,7 @@ function TotalVendorInvoice() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit Invoice' href="/EditVendorInvoice">
                     <p onClick={() => sessionStorage.setItem('vendorinvoicesno', `${row.sno}`)} >

@@ -8,6 +8,7 @@ import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { FaMinusCircle } from 'react-icons/fa'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 
 
 function AddVendorCode() {
@@ -22,6 +23,14 @@ function AddVendorCode() {
     const [countrylist, setCountrylist] = useState([]);
     const [statelist, setStatelist] = useState([]);
     const [citylist, setCitylist] = useState([]);
+
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -62,10 +71,13 @@ function AddVendorCode() {
         const contact_email = document.getElementById('contact_email').value;
 
         const user_id = sessionStorage.getItem('UserId');
+        setLoading(true)
 
         if (!vendor_code || !vendor_name || !company_country_id || !comp_city || !comp_state_id 
             || !comp_email || !contact_person || !contact_no || !contact_email) {
-            alert("Please enter Mandatory field")
+            //  setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
+            alert('Please Enter Madatory field ')
             setLoading(true)
         }
         else {
@@ -74,12 +86,25 @@ function AddVendorCode() {
                 vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Added') {
-                alert('Vendor Master Added ')
-                window.location.href = './TotalVendorCode'
+                // setDatas({ ...datas, message: "Vendor Code Added", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
+                alert('Vendor Code Added ')
+                setLoading(true)
+                window.location.href='/TotalVendorCode'
+
+            }
+            else if (result === 'Already') {
+                alert('Vendor Code already Exist')
+                setLoading(true)
+                // setDatas({ ...datas, message: "Vendor Code Already Exist", title: "warning", type: "Error", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
+                
             }
             else {
-                alert("Server Error");
+                alert('Server Error')
                 setLoading(true)
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddVendorCode", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -131,6 +156,9 @@ function AddVendorCode() {
             {
                 loading ?
                     <Sidebar >
+                        {/* <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div> */}
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Code</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Master</span> </h2>

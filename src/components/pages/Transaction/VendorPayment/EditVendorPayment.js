@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import {  VendorContractDetail, UpdateVendorPayment, GetVendorPayment, PendingVendorInvoice } from '../../../../api'
+import { VendorContractDetail, UpdateVendorPayment, GetVendorPayment, PendingVendorInvoice } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function EditVendorPayments() {
     const [loading, setLoading] = useState(false)
 
     const [data, setData] = useState([])
     const [pendinginvoicelist, setPendinginvoicelist] = useState([])
-
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
     useEffect(() => {
         const fetchdata = async () => {
             const datas = await GetVendorPayment(sessionStorage.getItem('vendorpaymentssno'))
@@ -43,31 +50,33 @@ function EditVendorPayments() {
         //     middletext.lastIndexOf(')'),
         // );
         // const invno = middle;
-       
+
 
         const paymentdetail = document.getElementById('paymentdetail').value;
         const paymentamt = document.getElementById('paymentamt').value;
         const paymentdate = document.getElementById('paymentdate').value;
         const remark = document.getElementById('remark').value;
         const sno = sessionStorage.getItem('vendorpaymentssno')
-        console.log(paymentdetail,paymentamt,paymentdate,remark,sno)
 
 
         if (!paymentdetail || !paymentamt || !paymentdate) {
-            alert('Please enter the Mandatory field')
             setLoading(true)
+            setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
-            const result = await UpdateVendorPayment(paymentdetail,paymentamt,paymentdate,remark,sno)
+            setLoading(true)
+
+            const result = await UpdateVendorPayment(paymentdetail, paymentamt, paymentdate, remark, sno)
             if (result === 'Data Updated') {
-                alert('Vendor Payment Updated')
                 sessionStorage.removeItem('vendorpaymentssno')
-                window.location.href = './TotalVendorPayment'
+                setDatas({ ...datas, message: "Vendor Payment Updated", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert('Server Not Response')
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -93,6 +102,9 @@ function EditVendorPayments() {
             {
                 loading ?
                     <Sidebar>
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Payment</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Payment</span> </h2>
@@ -108,9 +120,9 @@ function EditVendorPayments() {
                                         <div className="row">
                                             <div className="form-group col-md-4" >
                                                 <label htmlFor='invno'>Invoice no <span className='text-danger'>*</span></label>
-                                                <select type='text' id='invno' className='form-select m-0 invoice-inp' 
-                                                // onChange={handleChnageVendorDetail} 
-                                                disabled>
+                                                <select type='text' id='invno' className='form-select m-0 invoice-inp'
+                                                    // onChange={handleChnageVendorDetail} 
+                                                    disabled>
                                                     <option value={[`${data.sno},${data.invoice_amt}`]} hidden>{`${data.reference_no}, (${data.invoice_no})`}</option>
                                                     {
                                                         pendinginvoicelist.map((item, index) =>

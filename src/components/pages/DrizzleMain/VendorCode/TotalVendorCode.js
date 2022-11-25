@@ -44,27 +44,27 @@ function TotalVendorCode() {
     const columns = [
         {
             name: 'Vendor Code',
-            selector: row => row.vendor_code,
+            selector: 'vendor_code',
             sortable: true,
         },
         {
             name: 'Vendor Name',
-            selector: row => row.vendor_name,
+            selector: 'vendor_name',
             sortable: true,
         },
         {
             name: 'Company City',
-            selector: row => row.company_city,
+            selector: 'company_city',
             sortable: true,
         },
         {
             name: 'Company Gst',
-            selector: row => row.company_gst,
+            selector: 'company_gst',
             sortable: true,
         },
         {
             name: 'Vendor Portal',
-            selector: row => row.venodr_portal,
+            selector: 'venodr_portal',
             sortable: true,
         },
         {
@@ -85,7 +85,7 @@ function TotalVendorCode() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector:'null',
             cell: (row) => [
                 <a title='Edit Vendor Code' href="/EditVendorCode">
                     <p onClick={() => sessionStorage.setItem('VendorCodeSno', `${row.sno}`)} >
@@ -100,6 +100,7 @@ function TotalVendorCode() {
         const fetchdata = async () => {
             const tabledata = await TotalVendorCodeapi();
             setData(tabledata)
+            console.log(tabledata)
             setLoading(true)
 
         }

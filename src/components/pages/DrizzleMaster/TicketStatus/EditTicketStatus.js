@@ -3,10 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { GetTicketstatus, UpdateTicketstatus } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function EditTicketStatus() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -27,23 +36,28 @@ function EditTicketStatus() {
 
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('ticketstatussno')
+        setLoading(true)
 
         if (!ticket_status) {
-            alert('Please Enter Mandatory Field')
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter Ticket Status", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
 
         }
         else {
+            setLoading(true)
             const result = await UpdateTicketstatus(sno, ticket_status, remark, username);
             if (result === 'Updated') {
-                alert('Ticket Status Updated')
                 sessionStorage.removeItem('ticketstatussno');
-                window.location.href = './TotalTicketStatus'
+                setDatas({ ...datas, message: "Ticket Status Updated", title: "success", type: "success", route: "/TotalTicketStatus", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Ticket Status Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
-
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditTicketStatus", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -62,6 +76,9 @@ function EditTicketStatus() {
             {
                 loading ?
                     <Sidebar >
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>TicketStatus</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit TicketStatus</span> </h2>

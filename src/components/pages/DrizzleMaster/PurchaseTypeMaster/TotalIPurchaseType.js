@@ -45,12 +45,12 @@ function TotalPurchaseType() {
     const columns = [
         {
             name: 'Purchase Type',
-            selector: row => row.purchase_type,
+            selector: 'purchase_type',
             sortable: true,
         },
         {
             name: 'Purchase Type Description',
-            selector: row => row.purchase_description,
+            selector: 'purchase_description',
             sortable: true,
         },
         {
@@ -71,7 +71,7 @@ function TotalPurchaseType() {
         {
             name: "Actions",
             sortable: false,
-            selector: row => row.null,
+            selector: 'null',
             cell: (row) => [
                 <a title='Edit PurchaseType' href="/EditPurchaseType">
                     <p onClick={() => sessionStorage.setItem('purchasesno', `${row.sno}`)} >

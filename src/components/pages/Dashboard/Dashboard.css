@@ -97,6 +97,7 @@ width: 150px;
   min-height: 200px;
 }
 .home_container .cards #center_card1{
+
     width: 60%;
     min-height: 270px;
     margin:0 12px;
@@ -106,8 +107,8 @@ width: 150px;
     width: 40%;
     min-height: 270px;
 }
-.card:hover {
+/* .card:hover {
     -ms-transform: scale(1.05); 
     -webkit-transform: scale(1.05); 
     transform: scale(1.05); 
-  }
+  } */

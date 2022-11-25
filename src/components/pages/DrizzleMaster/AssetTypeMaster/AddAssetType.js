@@ -8,11 +8,12 @@ import Snackbar from '../../../../Snackbar/Snackbar';
 
 function AddAssetType() {
     const [loading, setLoading] = useState(true)
-    const [datas,setDatas] = useState({
-        message:"abc",
-        title:"title",
-        type:"type",
-        route:null
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle:"true",
     })
 
     const handleaddinsert = async (e) => {
@@ -28,25 +29,25 @@ function AddAssetType() {
 
         // console.log(software)
         if (!asset_type) {
-            setDatas({...datas,message:"Please enter the Asset Type",title:"warning",type:"Error"})
-            document.getElementById('snackbar').style.display="block"   
+            setLoading(true)
+
+            setDatas({...datas,message:"Please enter the Asset Type",title:"Error",type:"warning",route:"#",toggle:"true"})
+            document.getElementById('snackbar').style.display="block"
         }
         else {
         setLoading(true)
 
             const result = await AddAssetTypeapi(assettype_id, asset_type, asset_type_desc, username);
-            console.log(result)
             if (result === 'Added') {
-                setDatas({...datas,message:"Asset Type Added",title:"success",type:"success",route:"/TotalAssetType"})
-               document.getElementById('snackbar').style.display="block"   
-            }
+                setDatas({...datas,message:"Asset Type Added",title:"success",type:"success",route:"/TotalAssetType",toggle:"true"})
+                document.getElementById('snackbar').style.display="block"
+             }
             else if(result === 'Already'){
-                setDatas({...datas,message:" Asset Type Already Exist",title:"warning",type:"Error"})
+                setDatas({...datas,message:"This Asset Already Exist",title:"warning",type:"Error"})
                 document.getElementById('snackbar').style.display="block" 
-
             }
             else {
-                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/AddAssetType"})
+                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/AddAssetType",toggle:"true"})
                 document.getElementById('snackbar').style.display="block"  
             }
         }
@@ -57,9 +58,11 @@ function AddAssetType() {
             {
                 loading ?
                     <Sidebar >
+
                          <div id="snackbar" style={{display:"none"}}>
-                                <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route}/> 
-                                </div>
+                                <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle}/> 
+                            </div>
+
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Asset Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Asset Type</span> </h2>

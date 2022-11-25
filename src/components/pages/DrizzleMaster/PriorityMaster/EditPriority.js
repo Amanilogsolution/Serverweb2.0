@@ -3,10 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { GetPriorityapi, UpdatePriorityapi } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function EditPriority() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -24,22 +33,27 @@ function EditPriority() {
         const priority_desc = document.getElementById('priority_desc').value;
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('prioritysno')
+        setLoading(true)
 
         if (!priority) {
-            alert('Please Enter the Priority Type')
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter Priority Type", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
             const result = await UpdatePriorityapi(sno, priority, priority_desc, username);
 
             if (result === 'Updated') {
-                alert('Priority Type Updated')
                 sessionStorage.removeItem('prioritysno');
-                window.location.href = './TotalPriority'
+                setDatas({ ...datas, message: "Priority Type Updated", title: "success", type: "success", route: "/TotalPriority", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Priority Type Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditPriority", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
 
         }
@@ -59,6 +73,10 @@ function EditPriority() {
             {
                 loading ?
                     <Sidebar >
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Priority</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Priority Type</span> </h2>

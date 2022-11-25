@@ -5,6 +5,7 @@ import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice } from 
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Select from 'react-select';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 
 function AddVendorInvoice() {
@@ -16,12 +17,19 @@ function AddVendorInvoice() {
     const [arryval, setArryval] = useState([{}]);
     const [vendorcontractlist, setVendorcontractlist] = useState([])
     const [Vendorname,setVendorname] = useState([])
+      const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
             const vendorcontract = await ActiveVendorContract();
             setVendorcontractlist(vendorcontract)
-            Todaydate()
+            todaydate()
             setLoading(true)
         }
         fetchdata();
@@ -30,7 +38,7 @@ function AddVendorInvoice() {
     let options= vendorcontractlist.map((ele) => {
         return { value: `${ele.sno},${ele.vendor}`, label: `${ele.vendor}, ${ele.reference_no}` };
     })
-    const Todaydate = () => {
+    const todaydate = () => {
         let date = new Date();
         let day = date.getDate();
         let month = date.getMonth() + 1;
@@ -67,7 +75,6 @@ function AddVendorInvoice() {
         // const val = vendor;
         // const toindex = val.indexOf(",")
         // vendor = val.slice(toindex + 1)
-        console.log(vendor)
 
         const accountno = document.getElementById(`accountno-${index}`).value;
         const invno = document.getElementById(`invno-${index}`).value;
@@ -93,38 +100,42 @@ function AddVendorInvoice() {
         e.preventDefault();
         setLoading(false)
         let errorcount = 0;
-
         for (let i = 0; i < arryval.length; i++) {
             if (!arryval[i]) {
-                alert('Please Select the vendor')
                 setLoading(true)
+                setDatas({ ...datas, message: "Please Select the vendor", title: "Error", type: "warning", route: "#", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
 
             }
             else if(!arryval[i].vendor){
-                alert('Please select the vendor')
                 setLoading(true)
+                setDatas({ ...datas, message: "Please Select the vendor", title: "Error", type: "warning", route: "#", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
             else if (!arryval[i].invno || !arryval[i].invamt) {
-                alert('Please enter the Mandatory field')
                 setLoading(true)
+                setDatas({ ...datas, message: "Please enter the Mandatory field", title: "Error", type: "warning", route: "#", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
 
             }
         }
         if (errorcount === 0) {
+            setLoading(true)
             const result = await InsertVendorInvoice(arryval, sessionStorage.getItem('UserId'))
+         
             if(result==='Data Added'){
-                alert('Vendor Invoice Added')
-                window.location.href='/TotalVendorInvoice';
+                setDatas({ ...datas, message: "Vendor Invoice Added", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else{ 
-                alert('Server Not Response')
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
 
         }
@@ -150,6 +161,9 @@ function AddVendorInvoice() {
             {
                 loading ?
                     <Sidebar>
+                    <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Invoice</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Invoice</span> </h2>

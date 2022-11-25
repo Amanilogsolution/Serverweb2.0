@@ -5,6 +5,7 @@ import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { FaMinusCircle } from 'react-icons/fa'
+// import Snackbar from '../../../../Snackbar/Snackbar';
 
 
 function EditVendorCode() {
@@ -17,6 +18,14 @@ function EditVendorCode() {
     const [countrylist, setCountrylist] = useState([]);
     const [statelist, setStatelist] = useState([]);
     const [citylist, setCitylist] = useState([]);
+
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -54,11 +63,11 @@ function EditVendorCode() {
         const comp_phone = document.getElementById('comp_phone').value;
 
         let comp_country = document.getElementById('comp_country');
-        const comp_country_id=comp_country.value;
+        const comp_country_id = comp_country.value;
         comp_country = comp_country.options[comp_country.selectedIndex].text;
 
         let comp_state = document.getElementById('comp_state');
-        const comp_state_id=comp_state.value;
+        const comp_state_id = comp_state.value;
         comp_state = comp_state.options[comp_state.selectedIndex].text;
 
         const comp_city = document.getElementById('comp_city').value;
@@ -74,42 +83,56 @@ function EditVendorCode() {
         const sno = sessionStorage.getItem('VendorCodeSno')
 
 
-        if (!vendor_code || !vendor_name  || !comp_country_id || !comp_city || !comp_state_id
+        if (!vendor_code || !vendor_name || !comp_country_id || !comp_city || !comp_state_id
             || !comp_email || !contact_person || !contact_no || !contact_email) {
-            alert("Please enter Mandatory field")
+            // setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
+            alert('Please Enter Madatory field ')
             setLoading(true)
         }
         else {
-            const result = await UpdateVendorCode(sno, vendor_code,vendor_name,comp_gst,comp_website,comp_email,comp_phone,comp_country_id,comp_country,
-                comp_state_id,comp_state,comp_city,comp_addr1,comp_addr2,comp_pincode,vendor_portal,contact_person,contact_no,contact_email,user_id);
+            setLoading(true)
+            const result = await UpdateVendorCode(sno, vendor_code, vendor_name, comp_gst, comp_website, comp_email, comp_phone, comp_country_id, comp_country,
+                comp_state_id, comp_state, comp_city, comp_addr1, comp_addr2, comp_pincode, vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Updated') {
-                alert('Vendor Master Updated ')
                 sessionStorage.removeItem('VendorCodeSno');
-                window.location.href = './TotalVendorCode'
+                alert('Vendor Code Added ')
+                setLoading(true)
+                window.location.href='/TotalVendorCode'
+                // setDatas({ ...datas, message: "Vendor Code Updated", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                alert('Vendor Code already Exist')
+                setLoading(true)
+                // setDatas({ ...datas, message: "Vendor Code Already Exist", title: "warning", type: "Error", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
+                alert('Server Error')
                 setLoading(true)
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditVendorCode", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
 
     }
 
     const handleChangephoneno = (e) => {
-        if(e.target.value.length===11){return false}
-        else{setData({ ...data, company_phone: e.target.value })}
+        if (e.target.value.length === 11) { return false }
+        else { setData({ ...data, company_phone: e.target.value }) }
     }
 
 
     const handleChangepinCode = (e) => {
-        if(e.target.value.length===7){return false}
-        else{setData({ ...data, company_pin_code: e.target.value })}
+        if (e.target.value.length === 7) { return false }
+        else { setData({ ...data, company_pin_code: e.target.value }) }
     }
 
     const handleChangeno = (e) => {
-        if(e.target.value.length===11){return false}
-        else{setData({ ...data, contact_person_phone: e.target.value })}
+        if (e.target.value.length === 11) { return false }
+        else { setData({ ...data, contact_person_phone: e.target.value }) }
     }
 
 
@@ -145,20 +168,17 @@ function EditVendorCode() {
     }
 
     const handleGetState = async (e) => {
-        console.log(data.company_state)
-        setData({ ...data, company_state:'' })
-        setData({ ...data, company_state_id:'' })
-        
-        setData({ ...data, company_city:'' })
-        setData({ ...data, company_city:'' })
+        setData({ ...data, company_state: '' })
+        setData({ ...data, company_state_id: '' })
+
+        setData({ ...data, company_city: '' })
+        setData({ ...data, company_city: '' })
         const result = await TotalState(e.target.value)
-        console.log(result)
         setStatelist(result)
         setCitylist([])
     }
     const handleGetCity = async (e) => {
         const result = await TotalCity(e.target.value)
-        console.log(result)
         setCitylist(result)
 
     }
@@ -169,6 +189,9 @@ function EditVendorCode() {
             {
                 loading ?
                     <Sidebar >
+                        {/* <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div> */}
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Master</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Master</span> </h2>
@@ -184,7 +207,7 @@ function EditVendorCode() {
                                             <ul>
 
                                                 {/* #################### Device Detail  Box Start #####################*/}
-                                                <li style={{listStyle:"none"}}>
+                                                <li style={{ listStyle: "none" }}>
                                                     <div>
                                                         <span style={{ display: "flex", cursor: "pointer" }} onClick={handleToggleVendorDetail}>
                                                             <div className="link_text " >
@@ -222,7 +245,7 @@ function EditVendorCode() {
                                                             </div>
                                                             <div className="col-md-4" >
                                                                 <label htmlFor='comp_phone'>Phone no.</label>
-                                                                <input type="number" className="form-control" id='comp_phone' value={data.company_phone} onChange={handleChangephoneno}/>
+                                                                <input type="number" className="form-control" id='comp_phone' value={data.company_phone} onChange={handleChangephoneno} />
                                                             </div>
 
                                                         </div>
@@ -297,7 +320,7 @@ function EditVendorCode() {
                                                     </div>
                                                 </li>
 
-                                                <li style={{listStyle:"none"}}>
+                                                <li style={{ listStyle: "none" }}>
                                                     <div>
                                                         <span style={{ display: "flex", cursor: "pointer" }} onClick={handleTogglePersonDetail}>
                                                             <div className="link_text mt-2" >
