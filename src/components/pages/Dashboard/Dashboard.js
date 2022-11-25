@@ -71,7 +71,7 @@ const Dashboard = () => {
           </div> */}
           {/* ======================= */}
 
-          <div className='cards '>
+          <div className='cards'>
 
             <div class="card" id="above_card">
               <div class="card-body">
@@ -89,7 +89,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div class="card " id="above_card">
+            <div class="card" id="above_card">
               <div class="card-body">
                 <h5 class="card-title">Overviews</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -98,7 +98,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div class="card " id="above_card">
+            <div class="card" id="above_card">
               <div class="card-body">
                 <h5 class="card-title">Your Audience</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

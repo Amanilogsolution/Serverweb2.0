@@ -3,10 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { GetPurchaseTypeapi, UpdatePurchaseapi } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function EditPurchaseType() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -25,21 +34,27 @@ function EditPurchaseType() {
         const purchase_type_desc = document.getElementById('purchase_type_desc').value;
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('purchasesno')
+        setLoading(true)
 
         if (!purchase_type) {
-            alert('Please Enter Mandatory Field')
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter all mandatory fielids", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
+            setLoading(true)
             const result = await UpdatePurchaseapi(sno, purchase_type, purchase_type_desc, username);
             if (result === 'Updated') {
-                alert('Purchase Type Updated')
                 sessionStorage.removeItem('purchasesno');
-                window.location.href = './TotalPurchaseType'
+                setDatas({ ...datas, message: "Purchase Type Updated", title: "success", type: "success", route: "/TotalPurchaseType", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Purchase Type Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditPurchaseType", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -57,6 +72,11 @@ function EditPurchaseType() {
             {
                 loading ?
                     <Sidebar >
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>PurchaseType</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Purchase Type</span> </h2>
