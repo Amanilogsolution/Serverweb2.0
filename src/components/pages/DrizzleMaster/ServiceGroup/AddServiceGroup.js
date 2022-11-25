@@ -26,10 +26,14 @@ function AddServiceGroup() {
         const username = sessionStorage.getItem('UserId');
 
         if (!service_group_type) {
+            setLoading(true)
+
             setDatas({ ...datas, message: "Please enter Service Group Type", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
         else {
+            setLoading(true)
+
             const result = await InsertServiceGroup(service_action_id, service_group_type, remark, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Service Group Type Added", title: "success", type: "success", route: "/TotalServiceGroup", toggle: "true" })
