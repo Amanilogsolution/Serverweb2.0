@@ -3,10 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { GetVendorCategoryapi, UpdateVendorCategoryapi } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 function EditVendorcategory() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -25,22 +34,28 @@ function EditVendorcategory() {
         const vendor_category_description = document.getElementById('vendor_category_description').value;
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('vendorcatsno')
+        setLoading(true)
 
         if (!vendor_category) {
-            alert('Please Enter Mandatory Field')
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
+            setLoading(true)
             const result = await UpdateVendorCategoryapi(sno, vendor_category, vendor_category_description, username);
 
             if (result === 'Updated') {
-                alert('Vendor Category Updated')
                 sessionStorage.removeItem('vendorcatsno');
-                window.location.href = './TotalVendorCategory'
+                setDatas({ ...datas, message: "Vendor Category Updated", title: "success", type: "success", route: "/TotalVendorCategory", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Vendor Category Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditVendorCategory", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -60,6 +75,10 @@ function EditVendorcategory() {
             {
                 loading ?
                     <Sidebar >
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h3><span style={{ color: "rgb(123,108,200)" }}>Vendor Category</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Category</span> </h3>

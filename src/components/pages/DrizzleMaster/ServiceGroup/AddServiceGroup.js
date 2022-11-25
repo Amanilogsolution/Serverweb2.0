@@ -3,10 +3,19 @@ import React, { useState } from 'react';
 import { InsertServiceGroup } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import Snackbar from '../../../../Snackbar/Snackbar';
 
 
 function AddServiceGroup() {
     const [loading, setLoading] = useState(true)
+
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     const handleinsertdata = async (e) => {
         e.preventDefault();
@@ -17,18 +26,22 @@ function AddServiceGroup() {
         const username = sessionStorage.getItem('UserId');
 
         if (!service_group_type) {
-            alert('Please Enter Gervice Group Type')
-            setLoading(true)
+            setDatas({ ...datas, message: "Please enter Service Group Type", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
             const result = await InsertServiceGroup(service_action_id, service_group_type, remark, username);
             if (result === 'Added') {
-                alert('Service Group Added ')
-                window.location.href = './TotalServiceGroup'
+                setDatas({ ...datas, message: "Service Group Type Added", title: "success", type: "success", route: "/TotalServiceGroup", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Service Group Type Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert("Server Error");
-                setLoading(true)
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddServiceGroup", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -38,6 +51,11 @@ function AddServiceGroup() {
             {
                 loading ?
                     <Sidebar >
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
+
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Service Group</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Service Group</span> </h2>
