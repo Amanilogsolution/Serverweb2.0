@@ -7,7 +7,7 @@
     display: flex;
     background: #eee;
     /* width: 100vw; */
-    /* height: 100vh; */
+    height: 100%;
     /* overflow: auto; */
     /* border: 2px solid green; */
     font-family: 'Roboto'; 
@@ -30,7 +30,7 @@
     border-radius: 0px 10px 10px 0px;
     z-index: 10000;
   
-    /* border: 2px solid red; */
+    /* border: 2px solid rgb(0, 38, 255); */
 }
 /* .sidebar:hover{
     background: #fff;
@@ -59,8 +59,8 @@
    
     background: #fff;
     color: #000;
-    min-height: 100vh;
-    max-height: 100vh;
+    min-height: 100%;
+    max-height: 100%;
     position: fixed;
     transition: all 0.5s;
     width: 244px;

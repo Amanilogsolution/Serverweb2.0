@@ -27,9 +27,11 @@
      background-size: 100% 100%;
      min-height: 77vh;
      font-family: 'Roboto'; 
+     /* max-width: 90%; */
      max-width: 100%;
      box-shadow: 2px 1px 10px gray, -3px -3px 10px gray;
      border-radius: 10px 0px 0px 10px;
+     /* border:2px solid red; */
  }
 
  .card-div {
@@ -64,13 +66,13 @@
 
  @media screen and (min-height:1000px) {
      .main_container {
-         min-height: 87vh;
+         min-height: 90vh;
      }
  }
 
  @media screen and (min-height:735px) {
      .main_container {
-        min-height: 81vh;
+        min-height: 85vh;
      }
  }
 

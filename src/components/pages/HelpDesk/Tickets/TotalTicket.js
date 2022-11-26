@@ -9,12 +9,6 @@ import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 
 const customStyles = {
-    // table: {
-    //     style: {
-    //         border: '2px solid red',
-    //         height:'55vh'
-    //     }
-    // },
     title: {
         style: {
             fontColor: 'red',

@@ -1,6 +1,6 @@
 import LandingFooter from '../LandingPageHome/LandingFooter'
 import LandingHeader from '../LandingPageHome/LandingHeader';
-import Loginimg from '../../../image/draw2.png'
+import Loginimg from '../../../image/draw2.webp'
 import { Link } from 'react-router-dom'
 import React, { useState } from 'react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
@@ -70,7 +70,7 @@ const Login = () => {
             <div className="container-fluid " style={styleheight}>
               <div className="row d-flex justify-content-center align-items-center h-100 pb-5 pt-5">
                 <div className="col-md-9 col-lg-6 col-xl-5">
-                  <img src={Loginimg} className="img-fluid" alt="Login " />
+                  <img src={Loginimg} className="img-fluid" alt="Login " loading="lazy"/>
                 </div>
                 <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                   <form autoComplete='off'>

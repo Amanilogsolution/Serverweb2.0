@@ -143,7 +143,7 @@ const Sidebar = ({ children }) => {
         <div className="sidebarcontainer">
             <div className={isOpen ? 'sidebaropen' : 'sidebar'}
             // onClick={toggle}
-             onMouseEnter={() => setIsOpen(true)}
+            //  onMouseEnter={() => setIsOpen(true)}
             //     onMouseLeave={toggle}
             >
                 <div className="top_section">

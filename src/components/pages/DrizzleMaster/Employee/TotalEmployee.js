@@ -10,6 +10,12 @@ import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 const customStyles = {
+    // table: {
+    //     style: {
+    //         border:'2px solid red',
+    //         minHeight:'55vh'
+    //     }
+    // },
     title: {
       style: {
         fontColor: 'red',
