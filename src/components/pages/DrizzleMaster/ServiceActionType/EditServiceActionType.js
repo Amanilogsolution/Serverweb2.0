@@ -22,7 +22,6 @@ function EditServiceActionType() {
             const result = await GetServiceActionType(sessionStorage.getItem('serviceactiontypesno'))
             setData(result[0]);
             setLoading(true)
-
         }
         fetchdata()
     }, [])

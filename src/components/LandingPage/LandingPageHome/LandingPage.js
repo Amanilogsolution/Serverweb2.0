@@ -24,7 +24,7 @@ const LandingPage = () => {
     return (
         <>
             <div className='landingContainer'>
-                <LandingHeader />
+                <LandingHeader/>
                 <div className='landingContent' >
                     <section className='topbottomdiv' id='topdiv'>
                         <header className="masthead pb-4" >
@@ -58,8 +58,6 @@ const LandingPage = () => {
                             </div>
                         </header>
                     </section>
-
-
 
                     <section className='portfoliodiv'>
                         <div className="comp_name" >
