@@ -10,46 +10,55 @@ import {
 // import data from '../../Citylist';
 
 // import { warning } from '../../../Snackbar/Snackbar'
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Legend,
+  Tooltip,
+} from "recharts";
+
+import {
+  BarChart,
+  Bar
+} from "recharts";
+
+import {
+
+} from "recharts";
 
 const Dashboard = () => {
-  // console.log(data)
 
-  //   const onChange = (e) => {
-  //     const [file] = e.target.files;
-  //     const reader = new FileReader();
+  const chartData = [
+    { course: "python", Students: 60, fees: 200 },
 
-  //     reader.onload = (evt) => {
-  //       const bstr = evt.target.result;
-  //       const wb = XLSX.read(bstr, { type: "binary" });
-  //       const wsname = wb.SheetNames[0];
-  //       const ws = wb.Sheets[wsname];
-  //       const data = XLSX.utils.sheet_to_csv(ws, { header: 1 });
-  //       var lines = data.split("\n");
-  //       var result = [];
-  //       var headers = lines[0].split(",");
-  //       for (var i = 1; i < lines.length - 1; i++) {
-  //         var obj = {};
-  //         var currentline = lines[i].split(",");
-  //         for (var j = 0; j < headers.length; j++) {
-  //           obj[headers[j]] = currentline[j];
-  //         }
-  //         result.push(obj);
-  //       }
-  //       console.log(result)
-  //       const array = JSON.stringify(result)
-  //       const datas = JSON.parse(array)
-  //       console.log(datas)
-  //       setImportdata(datas);
+    { course: "React Js", Students: 150, fees: 410 },
 
-  //     };
-  //     reader.readAsBinaryString(file);
-  //   };
+    { course: "Java", Students: 390, fees: 300 },
 
-  // const upload=async(e)=>{
-  //   e.preventDefault();
-  //   await UploadCity(data)
-  // }
+    { course: "C programming", Students: 231, fees: 325 },
 
+    { course: "Javascript", Students: 301, fees: 225 },
+
+    { course: "C++", Students: 671, fees: 400 }
+  ];
+
+  const chartData2 = [
+    { month: "January", India: 3.4, China: 8.3, Russia: 6.4 },
+
+    { month: "February", India: 2.9, China: 11.6, Russia: 10.9 },
+
+    { month: "March", India: 3.4, China: 8.1, Russia: 7.5 },
+
+    { month: "April", India: 2.8, China: 6.9, Russia: 8.5 },
+
+    { month: "May", India: 5.3, China: 7.0, Russia: 6.4 },
+
+    { month: "June", India: 5.4, China: 7.2, Russia: 5.3 }
+  ];
 
 
 
@@ -58,81 +67,81 @@ const Dashboard = () => {
       <Sidebar>
         <div className='home_container'>
 
-
-          {/* ============================= */}
-          {/* <div className='home_content'>
-            <img className='home_logo' src={logo} alt='Drizzle Logo' />
-            <h1>Hello from Us</h1>
-            <p>
-              Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
-              and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
-              Various versions have evolved over the years, sometimes by accident
-            </p>
-          </div> */}
-          {/* ======================= */}
-
-          <div className='cards'>
-
-            <div class="card" id="above_card">
-              <div class="card-body">
-                <h5 class="card-title">Followers</h5>
-                <div className='d-flex'>
-                  <div style={{margin:"20px 0 0 0"}}>
-                    <h1>1750</h1>
-                    <label>Followers</label>
-                  </div>
-                  <div style={{margin:"20px 40px 0 40px"}}>
-                    <h1>970</h1>
-                    <label>Following</label>
-                  </div>
-                </div>
-              </div>
+          <div className='dashboard_cards_1st_row'>
+            <div className='card1' id="card11">
+                <h1>65</h1>
+                <p>Total Invoice</p>
             </div>
-
-            <div class="card" id="above_card">
-              <div class="card-body">
-                <h5 class="card-title">Overviews</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
+            <div className='card1' id="card12">
+              <h1>154</h1>
+              <p>Paid Invoice</p>
             </div>
-
-            <div class="card" id="above_card">
-              <div class="card-body">
-                <h5 class="card-title">Your Audience</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
+            <div className='card1' id="card13">
+            <h1>170</h1>
+              <p>Unpaid Invoice</p>
             </div>
-
+            <div className='card1' id="card14">
+            <h1>$ 4,877</h1>
+              <p>Total Paid</p>
+            </div>
           </div>
 
-          <div className='cards'>
-
-            <div class="card" id="center_card1">
-              <div class="card-body">
-                <h5 class="card-title">Post Performance</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
+          <div className='dashboard_cards_2st_row'>
+            <div className='card21'>
+              <h4 style={{ margin: "15px" }}>Line Chart, Total students of courses</h4>
+              <ResponsiveContainer width="100%" aspect={2.9}>
+                <LineChart data={chartData} margin={{ top: 20, right: 45 }}>
+                  <CartesianGrid />
+                  <XAxis dataKey="course" interval={"preserveStartEnd"} />
+                  <YAxis />
+                  <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
+                  <Legend />
+                  <Line
+                    type="monotone"
+                    dataKey="Students"
+                    stroke="blue"
+                    activeDot={{ r: 8 }}
+                    strokeWidth="3px"
+                  />
+                  <Tooltip />
+                  <Legend />
+                  <Line
+                    type="monotone"
+                    dataKey="fees"
+                    stroke="red"
+                    activeDot={{ r: 8 }}
+                    strokeWidth="3px"
+                  />
+                </LineChart>
+              </ResponsiveContainer>
             </div>
 
-            <div class="card" id="center_card2" >
-              <div class="card-body">
-                <h5 class="card-title">Location</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
 
+            <div className='card22'>
+              <h4 style={{ margin: "15px" }}>2022 ECONOMY % OF THE NATIONS</h4>
+              <ResponsiveContainer width="100%" aspect={2}>
+                <BarChart data={chartData2} margin={{ top: 20, right: 45 }}>
+                  <CartesianGrid />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="India" fill="Blue" />
+                  <Legend />
+                  <Bar dataKey="China" fill="red" />
+                  <Legend />
+                  <Bar dataKey="Russia" fill="rgb(5, 46, 9)" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </div>
-
 
         </div>
+
+
+
+
+
       </Sidebar>
     </div>
 
