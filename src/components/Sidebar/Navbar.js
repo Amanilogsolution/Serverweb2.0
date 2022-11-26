@@ -17,7 +17,7 @@ const Navbar = (propes) => {
     }
     const profile = {
        position:"absolute",
-       right:"15%",
+       right:"5%",
         fontSize: "36px",
         color:"rgb(164,43,122)",
         cursor:"pointer"
@@ -40,7 +40,7 @@ const Navbar = (propes) => {
                          <FaUserCircle  />
                    </a>
 
-                    <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                     <a className="dropdown-item" href="/Profile">Profile</a>
                        <Link className="dropdown-item" to="/ChangePassword">Change Password </Link>
                        <a className="dropdown-item border-top text-danger" href="#" onClick={handleLogout}>Logout <IoMdLogOut/></a>
