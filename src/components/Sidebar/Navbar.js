@@ -17,7 +17,7 @@ const Navbar = (propes) => {
     }
     const profile = {
        position:"absolute",
-       right:"5%",
+       right:"15%",
         fontSize: "36px",
         color:"rgb(164,43,122)",
         cursor:"pointer"
@@ -34,7 +34,7 @@ const Navbar = (propes) => {
                 <h5 style={{ color: "#603AE9",margin:"7px" }}>Drizzle
                 </h5>:<img src={DrizzleLogo} style={{height:"80%"}}/>}
 
-                <div className=" dropdown show w-100" >
+                <div className=" dropdown show w-100">
                    <a className=" " href="/rofile" role="button" id="dropdownMenuLink" 
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={profile}>
                          <FaUserCircle  />
