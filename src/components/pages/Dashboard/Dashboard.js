@@ -155,7 +155,7 @@ const Dashboard = () => {
 
           <div className='dashboard_cards_2st_row'>
             <div className='card21'>
-              <h4 style={{ margin: "15px 40px" }}>Line Chart</h4>
+              <h4 style={{ margin: "15px 40px" }}>Assets Line Chart</h4>
               <ResponsiveContainer width="100%" aspect={2.9}>
                 <LineChart data={chartData} margin={{ top: 20, right: 45 }}>
                   <CartesianGrid />

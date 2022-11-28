@@ -129,7 +129,7 @@ function EditVendorCode() {
 
         }
         else {
-            const refno = document.getElementById('ref_no').checked ? true : false;
+            // const refno = document.getElementById('ref_no').checked ? true : false;
 
             let errorcount = 0;
 
@@ -178,6 +178,7 @@ function EditVendorCode() {
 
             if (errorcount === 0) {
                 console.log(link_id_no)
+                setLoading(true)
 
                 const callapi = await UpdateVendorContract(org,sno, vendor, type_of_contract,
                     major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,

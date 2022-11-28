@@ -9,6 +9,12 @@ export const changePassword = async (user_id, password,CurrentPassword) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/ChangePassword`
     return axios.post(url, { user_id, password,CurrentPassword }).then(response => response.data).catch(error => console.log(error));
 }
+export const insertUserLogin = async (user_name, user_id,user_password,DBname) => {
+    const url = `http://localhost:2008/api/insertuserlogin`
+    return axios.post(url, { user_name, user_id,user_password,DBname }).then(response => response.data).catch(error => console.log(error));
+}
+
+insertuserlogin
 
 export const TotalCountry = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/totalcountry`
