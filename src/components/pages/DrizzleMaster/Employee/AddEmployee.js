@@ -3,14 +3,16 @@ import React, { useState, useEffect } from 'react';
 import { AddEmployees, ActiveLocation } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+import { GrFormClose } from "react-icons/gr"
 
 
 function AddEmployee() {
     const [loading, setLoading] = useState(true)
     const [locationlist, setLocationlist] = useState([])
     const [numcount, setNumcount] = useState()
-
+    const [passwordshow, setPasswordshow] = useState(false);
+    const [agentcheck, setAgentcheck] = useState(false)
     const [datas, setDatas] = useState({
         message: "abc",
         title: "title",
@@ -44,7 +46,8 @@ function AddEmployee() {
         setLoading(true)
 
         if (!location || !employee_name || !employee_email) {
-            alert("Please fill the mandatory field ...")
+            setDatas({ ...datas, message: "Please Enter Mandatory Field", title: "Warning", type: "warning", route: "#", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
         }
         else {
             setLoading(true)
@@ -66,15 +69,43 @@ function AddEmployee() {
         }
 
     }
+
+    const handletoggleuserid = () => {
+        if (agentcheck) {
+            document.getElementById('useriddiv').style.display = 'none'
+        }
+        else {
+            document.getElementById('useriddiv').style.display = 'flex'
+        }
+        setAgentcheck(!agentcheck)
+    }
     return (
         <>
             {
                 loading ?
                     <Sidebar >
 
-                        <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                     {/* ################# Snackbar ##################### */}
+
+                     <div id="snackbar" style={{ display: "none" }}>
+                            <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
+                                <div className={`notification__message message--${datas.type}`}>
+                                    <h1>{datas.title}</h1>
+                                    <p>{datas.message}</p>
+
+                                    <button
+                                        onClick={() => {
+                                            setDatas({ ...datas, toggle: 'false' });
+                                            window.location.href = datas.route
+
+                                        }}
+                                    >
+                                        <GrFormClose />
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+                        {/* ################# Snackbar ##################### */}
 
                         <div className='main_container pb-2'  >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
@@ -115,9 +146,6 @@ function AddEmployee() {
                                                     <label htmlFor='employee_email'>Employee Email <span className='text-danger'>*</span></label>
                                                     <input type="email" className="form-control" id='employee_email' />
                                                 </div>
-
-
-
                                             </div>
 
                                             <div className="row mt-2">
@@ -126,10 +154,26 @@ function AddEmployee() {
                                                     <input type="number" className="form-control" id='employee_number' value={numcount}
                                                         onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumcount(e.target.value) } }} />
                                                 </div>
-                                                <div className="col-md-6" style={{border:"2px solid red"}}>
-                                                    <div className="row" style={{border:"2px solid red"}}>
-                                                        <label htmlFor='employee_number'>Phone Number </label>
-                                                        <input type="checkbox" className="" id='employee_number' />
+                                                <div className="col-md-6 d-flex flex-column justify-content-center" >
+                                                    <div className="d-flex  align-items-center" >
+                                                        <label htmlFor='portal_access' className='col-md-3'>Agent</label>
+                                                        <input type="checkbox" className="" id='portal_access' checked={agentcheck ? true : false} style={{ width: "18px", height: "18px" }} onChange={handletoggleuserid} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="row mt-2" id='useriddiv' style={{ display: "none" }}>
+                                                <div className="col-md-6" >
+                                                    <label htmlFor='user_id'>User Id <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='user_id' />
+                                                </div>
+
+                                                <div className="col-md-6">
+                                                    <label htmlFor="password">Password <span className='text-danger'>*</span></label>
+                                                    <div className="input-group">
+                                                        <input type={passwordshow ? "text" : "password"} className="form-control" placeholder="Enter password" id="password" required />
+                                                        <div className="input-group-append" onClick={() => { setPasswordshow(!passwordshow) }}>
+                                                            <span className="input-group-text h-100 w-100" >{passwordshow ? <AiFillEye style={{ fontSize: "22px" }} /> : <AiFillEyeInvisible style={{ fontSize: "22px" }} />}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
