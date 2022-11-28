@@ -1,7 +1,6 @@
-.home_container{
-        min-height: 80vh;
+.dashboard_container{
+        min-height: 79vh;
         max-width: 100%;
-        box-shadow: 2px 1px 10px gray,-3px -3px 10px gray;
         border-radius: 10px 0px 0px 10px;
         background-size: 100% 100%;
         padding: 23px;
@@ -21,6 +20,7 @@
   padding: 20px;
   color: white;
   transition: transform .2s;
+  display: flex;
 }
 #card11{
     background:linear-gradient(45deg,rgb(255,160,27),rgb(168, 112, 32))
@@ -48,14 +48,17 @@
     margin-top: 20px;
 }
 .dashboard_cards_2st_row .card21{
-    background: rgb(237, 234, 234);
+    /* background: linear-gradient(40deg,rgb(29, 52, 169),rgb(68,97,240)); */
+    background: white;
     width: 55%;
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px 1px gray;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px 1px gray;
 }
 .dashboard_cards_2st_row .card22{
     width: 40%;
-    border-radius: 5px;
-    background: rgb(237, 234, 234);
-    box-shadow: 1px 1px 5px 1px gray;
+    height:46vh;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 1px 1px 3px 1px gray;
+    position: relative;
 }

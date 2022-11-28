@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import Sidebar from '../../Sidebar/Sidebar';
 import './Dashboard.css'
 import logo from '../../../image/drizzle_logo.jpg'
+import { BsLaptopFill } from 'react-icons/bs';
+import { HiUsers } from 'react-icons/hi';
+import { SiMicrosoftedge } from 'react-icons/si';
+import { ImLocation } from 'react-icons/im';
 // import * as XLSX from "xlsx";
 import {
   // UploadCountry
@@ -19,6 +23,9 @@ import {
   CartesianGrid,
   Legend,
   Tooltip,
+  Pie,
+  PolarGrid,
+  PieChart
 } from "recharts";
 
 import {
@@ -33,105 +40,158 @@ import {
 const Dashboard = () => {
 
   const chartData = [
-    { course: "python", Students: 60, fees: 200 },
+    { course: "Laptop", Employee: 60, Asset: 200 },
 
-    { course: "React Js", Students: 150, fees: 410 },
+    { course: "LED", Employee: 150, Asset: 410 },
 
-    { course: "Java", Students: 390, fees: 300 },
+    { course: "Smartphone", Employee: 390, Asset: 300 },
 
-    { course: "C programming", Students: 231, fees: 325 },
+    { course: "Printer", Employee: 231, Asset: 325 },
 
-    { course: "Javascript", Students: 301, fees: 225 },
+    { course: "Mouse", Employee: 301, Asset: 225 },
 
-    { course: "C++", Students: 671, fees: 400 }
+    { course: "Charger", Employee: 671, Asset: 400 }
   ];
 
-  const chartData2 = [
-    { month: "January", India: 3.4, China: 8.3, Russia: 6.4 },
-
-    { month: "February", India: 2.9, China: 11.6, Russia: 10.9 },
-
-    { month: "March", India: 3.4, China: 8.1, Russia: 7.5 },
-
-    { month: "April", India: 2.8, China: 6.9, Russia: 8.5 },
-
-    { month: "May", India: 5.3, China: 7.0, Russia: 6.4 },
-
-    { month: "June", India: 5.4, China: 7.2, Russia: 5.3 }
+  const data01 = [
+    {
+      "name": "Group A",
+      "value": 400
+    },
+    {
+      "name": "Group B",
+      "value": 300
+    },
+    {
+      "name": "Group C",
+      "value": 300
+    },
+    {
+      "name": "Group D",
+      "value": 200
+    },
+    {
+      "name": "Group E",
+      "value": 278
+    },
+    {
+      "name": "Group F",
+      "value": 189
+    }
   ];
+  const data02 = [
+    {
+      "name": "Group A",
+      "value": 2400
+    },
+    {
+      "name": "Group B",
+      "value": 4567
+    },
+    {
+      "name": "Group C",
+      "value": 1398
+    },
+    {
+      "name": "Group D",
+      "value": 9800
+    },
+    {
+      "name": "Group E",
+      "value": 3908
+    },
+    {
+      "name": "Group F",
+      "value": 4800
+    }
+  ];
+
 
 
 
   return (
     <div>
       <Sidebar>
-        <div className='home_container'>
+        <div className='dashboard_container'>
 
           <div className='dashboard_cards_1st_row'>
             <div className='card1' id="card11">
-                <h1>65</h1>
-                <p>Total Invoice</p>
+              <div>
+                <h1>453</h1>
+                <p>Total Assets</p>
+              </div>
+              <div style={{ background: "rgba(0, 0, 0, 0.4)", height: "54px", width: "54px", padding: "10px", borderRadius: "50px", margin: "0 40px" }}>
+                <BsLaptopFill style={{ fontSize: "33px" }} />
+              </div>
             </div>
             <div className='card1' id="card12">
-              <h1>154</h1>
-              <p>Paid Invoice</p>
+              <div>
+                <h1>154</h1>
+                <p>Total Vendor</p>
+              </div>
+              <div style={{ background: "rgba(0, 0, 0, 0.4)", height: "54px", width: "54px", padding: "10px", borderRadius: "50px", margin: "0 40px" }}>
+                <HiUsers style={{ fontSize: "33px" }} />
+              </div>
             </div>
             <div className='card1' id="card13">
-            <h1>170</h1>
-              <p>Unpaid Invoice</p>
+              <div>
+                <h1>54</h1>
+                <p>Locations</p>
+              </div>
+              <div style={{ background: "rgba(0, 0, 0, 0.4)", height: "54px", width: "54px", padding: "10px", borderRadius: "50px", margin: "0 70px" }}>
+                <ImLocation style={{ fontSize: "33px" }} />
+              </div>
             </div>
             <div className='card1' id="card14">
-            <h1>$ 4,877</h1>
-              <p>Total Paid</p>
+              <div>
+                <h1>336</h1>
+                <p>Softwares</p>
+              </div>
+              <div style={{ background: "rgba(0, 0, 0, 0.4)", height: "54px", width: "54px", padding: "10px", borderRadius: "50px", margin: "0 60px" }}>
+                <SiMicrosoftedge style={{ fontSize: "33px" }} />
+              </div>
             </div>
           </div>
 
           <div className='dashboard_cards_2st_row'>
             <div className='card21'>
-              <h4 style={{ margin: "15px" }}>Line Chart, Total students of courses</h4>
+              <h4 style={{ margin: "15px 40px" }}>Line Chart</h4>
               <ResponsiveContainer width="100%" aspect={2.9}>
                 <LineChart data={chartData} margin={{ top: 20, right: 45 }}>
                   <CartesianGrid />
                   <XAxis dataKey="course" interval={"preserveStartEnd"} />
                   <YAxis />
-                  <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
+                  <Tooltip contentStyle={{ backgroundColor: "silver", border: "none" }} />
                   <Legend />
                   <Line
                     type="monotone"
-                    dataKey="Students"
+                    dataKey="Employee"
                     stroke="blue"
                     activeDot={{ r: 8 }}
-                    strokeWidth="3px"
+                    strokeWidth="5px"
                   />
                   <Tooltip />
                   <Legend />
                   <Line
                     type="monotone"
-                    dataKey="fees"
+                    dataKey="Asset"
                     stroke="red"
                     activeDot={{ r: 8 }}
-                    strokeWidth="3px"
+                    strokeWidth="5px"
                   />
                 </LineChart>
               </ResponsiveContainer>
             </div>
 
 
-            <div className='card22'>
-              <h4 style={{ margin: "15px" }}>2022 ECONOMY % OF THE NATIONS</h4>
-              <ResponsiveContainer width="100%" aspect={2}>
-                <BarChart data={chartData2} margin={{ top: 20, right: 45 }}>
-                  <CartesianGrid />
-                  <XAxis dataKey="month" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="India" fill="Blue" />
-                  <Legend />
-                  <Bar dataKey="China" fill="red" />
-                  <Legend />
-                  <Bar dataKey="Russia" fill="rgb(5, 46, 9)" />
-                </BarChart>
+            <div className='card22' >
+              <h4 style={{ margin: "10px 30px 0px 30px"}}>Pie Chart</h4>
+             
+              <ResponsiveContainer>
+                <PieChart width={780} height={320}>
+                  <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="red" />
+                  <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="rgb(113, 17, 69)" label />
+                </PieChart>
               </ResponsiveContainer>
             </div>
           </div>
