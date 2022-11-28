@@ -189,7 +189,7 @@ function EditVendorCode() {
                     // alert('Vendor Contract Update');
                     // window.location.href = './TotalVendorContract'
                     sessionStorage.removeItem('VendorContractSno');
-                    setDatas({ ...datas, message: "Vendor Contract Update", title: "warning", type: "Error", toggle: "true", route: '/TotalVendorContract' })
+                    setDatas({ ...datas, message: "Vendor Contract Update", title: "success", type: "success", toggle: "true", route: '/TotalVendorContract' })
                     document.getElementById('snackbar').style.display = "block"
                 }
                 else {
