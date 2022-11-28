@@ -128,7 +128,7 @@ function AddVendorPayment() {
 
             const result = await UpdateVendorInvoice(arryval, sessionStorage.getItem('UserId'))
             if (result === 'Data Updated') {
-                setDatas({ ...datas, message: "Vendor Payment Updated", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
+                setDatas({ ...datas, message: "Vendor Payment Added", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {

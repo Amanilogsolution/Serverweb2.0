@@ -143,18 +143,18 @@ function EditVendorCode() {
                 invoice_generation_date = '';
                 billing_freq = ''
             }
-            if (!refno) {
-                if (!reference_no) {
-                    errorcount = errorcount + 1
-                    // alert('Please Enter the Reference no')
-                    setLoading(true)
-                    setDatas({ ...datas, message: "Please Enter the Reference no", title: "success", type: "success", route: "#", toggle: "true" })
-                    document.getElementById('snackbar').style.display = "block"
-                }
-            }
-            else {
-                reference_no = customer_account_no;
-            }
+            // if (!refno) {
+            //     if (!reference_no) {
+            //         errorcount = errorcount + 1
+            //         // alert('Please Enter the Reference no')
+            //         setLoading(true)
+            //         setDatas({ ...datas, message: "Please Enter the Reference no", title: "success", type: "success", route: "#", toggle: "true" })
+            //         document.getElementById('snackbar').style.display = "block"
+            //     }
+            // }
+            // else {
+            //     reference_no = customer_account_no;
+            // }
 
 
             if (major_category === 'Internet' || major_category === 'Data' || major_category === 'Telecom') {

@@ -1,3 +1,37 @@
+
+CREATE TABLE tbl_location_master (
+                sno bigint IDENTITY(1,1) NOT NULL,
+                location_id nvarchar(100) NULL,
+                company_name nvarchar(200) NULL,
+                location_code nvarchar(200) NULL ,
+                location_name nvarchar (70) NULL,
+                location_address_line1 nvarchar(200) NULL,
+                location_address_line2 nvarchar(200) NULL,
+                location_country_id nvarchar(100) NULL,
+                location_country nvarchar(100) NULL,
+                location_state_id nvarchar(100) NULL,
+                location_state nvarchar(100) NULL,
+                location_city nvarchar(200) NULL,
+                location_pin_code bigint  NULL ,
+                location_gst nvarchar (70) NULL,
+                contact_person nvarchar (70) NULL,
+                contact_person_email nvarchar(100) NULL,
+                contact_person_number bigint  NULL,
+                location_latitude nvarchar(100)  NULL ,
+                location_longitude nvarchar (70) NULL,
+                
+                add_user_name nvarchar(50) NULL,
+                add_system_name nvarchar(100) NULL,
+                add_ip_address nvarchar(30) NULL,
+                add_date_time datetime NULL,
+                update_user_name nvarchar(30) NULL,
+                update_system_name nvarchar(100) NULL,
+                update_ip_address nvarchar(30) NULL,
+                update_date_time datetime NULL,
+                status nvarchar(30) NULL,
+                location_uuid nvarchar(350) NULL
+)
+
 CREATE TABLE tbl_employee_master (
                 sno bigint IDENTITY(1,1) NOT NULL,
                 employee_id nvarchar(100) NULL,
@@ -18,6 +52,7 @@ CREATE TABLE tbl_employee_master (
                 status nvarchar(30) NULL,
                 emp_uuid nvarchar(350) NULL
 )
+-- Insert into tbl_employee_master( Run After Created tables whoses Resister)
 
 CREATE TABLE tbl_asset_type_master (
                 sno bigint IDENTITY(1,1) NOT NULL,

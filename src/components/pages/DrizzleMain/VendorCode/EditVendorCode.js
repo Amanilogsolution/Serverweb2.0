@@ -32,6 +32,7 @@ function EditVendorCode() {
         const fetchdata = async () => {
             const tabledata = await GetVendorCode(sessionStorage.getItem('VendorCodeSno'))
             setData(tabledata[0])
+            console.log(tabledata[0].venodr_portal )
             const totalCountry = await TotalCountry();
             setCountrylist(totalCountry)
 
