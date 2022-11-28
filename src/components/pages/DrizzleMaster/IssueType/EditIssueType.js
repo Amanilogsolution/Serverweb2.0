@@ -19,7 +19,9 @@ function EditIssueType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetIssueType(sessionStorage.getItem('IssueTypesno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetIssueType(org,sessionStorage.getItem('IssueTypesno'))
             setData(result[0]);
             setLoading(true)
         }
@@ -28,9 +30,11 @@ function EditIssueType() {
 
     const handleUpdateIssueType = async (e) => {
         e.preventDefault();
+
         setLoading(false)
         const issue_type = document.getElementById('issue_type').value;
         const remark = document.getElementById('remark').value;
+            const org = sessionStorage.getItem('Database')
 
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('IssueTypesno')
@@ -42,7 +46,7 @@ function EditIssueType() {
         }
         else {
             setLoading(true)
-            const result = await UpdateIssueType(sno, issue_type, remark, username);
+            const result = await UpdateIssueType(org,sno, issue_type, remark, username);
             if (result === 'Updated') {
                 sessionStorage.removeItem('IssueTypesno');
                 setDatas({ ...datas, message: "Issue Type Updated", title: "success", type: "success", route: "/TotalIssueType", toggle: "true" })

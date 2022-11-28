@@ -19,7 +19,9 @@ function EditServiceActionType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetServiceActionType(sessionStorage.getItem('serviceactiontypesno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetServiceActionType(org,sessionStorage.getItem('serviceactiontypesno'))
             setData(result[0]);
             setLoading(true)
 
@@ -34,6 +36,8 @@ function EditServiceActionType() {
         const remark = document.getElementById('remark').value;
         const UserId = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('serviceactiontypesno')
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!service_action_type) {
@@ -42,7 +46,7 @@ function EditServiceActionType() {
         }
         else {
             setLoading(true)
-            const result = await UpdateServiceActionType(sno, service_action_type, remark, UserId);
+            const result = await UpdateServiceActionType(org,sno, service_action_type, remark, UserId);
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('serviceactiontypesno');

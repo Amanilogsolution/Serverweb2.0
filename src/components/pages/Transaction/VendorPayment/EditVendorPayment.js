@@ -19,11 +19,13 @@ function EditVendorPayments() {
     })
     useEffect(() => {
         const fetchdata = async () => {
-            const datas = await GetVendorPayment(sessionStorage.getItem('vendorpaymentssno'))
+            const org = sessionStorage.getItem('Database')
+
+            const datas = await GetVendorPayment(org,sessionStorage.getItem('vendorpaymentssno'))
             console.log(datas)
             setData(datas[0])
 
-            const invoice = await PendingVendorInvoice();
+            const invoice = await PendingVendorInvoice(org);
             setPendinginvoicelist(invoice)
 
             setLoading(true)
@@ -57,6 +59,8 @@ function EditVendorPayments() {
         const paymentdate = document.getElementById('paymentdate').value;
         const remark = document.getElementById('remark').value;
         const sno = sessionStorage.getItem('vendorpaymentssno')
+        const org = sessionStorage.getItem('Database')
+
 
 
         if (!paymentdetail || !paymentamt || !paymentdate) {
@@ -68,7 +72,7 @@ function EditVendorPayments() {
         else {
             setLoading(true)
 
-            const result = await UpdateVendorPayment(paymentdetail, paymentamt, paymentdate, remark, sno)
+            const result = await UpdateVendorPayment(org,paymentdetail, paymentamt, paymentdate, remark, sno)
             if (result === 'Data Updated') {
                 sessionStorage.removeItem('vendorpaymentssno')
                 setDatas({ ...datas, message: "Vendor Payment Updated", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })

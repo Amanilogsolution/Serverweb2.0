@@ -24,6 +24,8 @@ function AddIssueType() {
         const issue_type_id = issue_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!issue_type) {
@@ -32,7 +34,7 @@ function AddIssueType() {
         }
         else {
             setLoading(true)
-            const result = await InsertIssueType(issue_type_id, issue_type, remark, username);
+            const result = await InsertIssueType(org,issue_type_id, issue_type, remark, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Issue Type Added", title: "success", type: "success", route: "/TotalIssueType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

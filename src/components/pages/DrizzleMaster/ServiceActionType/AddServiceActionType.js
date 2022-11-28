@@ -24,6 +24,8 @@ function AddVendorSubCategory() {
         const service_action_id = service_action.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!service_action) {
@@ -32,7 +34,7 @@ function AddVendorSubCategory() {
         }
         else {
             setLoading(true)
-            const result = await InsertServiceActionType(service_action_id, service_action, remark, username);
+            const result = await InsertServiceActionType(org,service_action_id, service_action, remark, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Service Action Type Added", title: "success", type: "success", route: "/TotalServiceActionType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

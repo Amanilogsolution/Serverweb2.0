@@ -35,8 +35,8 @@ function AddAssetStatus() {
         }
         else {
             setLoading(true)
-
-            const result = await AddAssetStatusapi(assetstatus_id, asset_status, asset_status_desc, username);
+            const org = sessionStorage.getItem('Database')
+            const result = await AddAssetStatusapi(org,assetstatus_id, asset_status, asset_status_desc, username);
             if (result === 'Added') {
                setDatas({...datas,message:"Asset Status Added",title:"success",type:"success",route:"/TotalAssetStatus",toggle:"true"})
                document.getElementById('snackbar').style.display="block"

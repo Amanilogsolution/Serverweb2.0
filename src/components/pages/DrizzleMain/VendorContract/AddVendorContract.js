@@ -33,16 +33,16 @@ function AddVendorContract() {
             const tablelocation = await ActiveLocation(org);
             setLocationlist(tablelocation)
 
-            const contract = await ActiveContractType();
+            const contract = await ActiveContractType(org);
             setContractlist(contract)
 
-            const vendorCategory = await ActiveVendorCategory()
+            const vendorCategory = await ActiveVendorCategory(org)
             setVendorcatlist(vendorCategory)
 
-            const vendorall = await ActiveVendorCode();
+            const vendorall = await ActiveVendorCode(org);
             setVendorlist(vendorall)
 
-            const billing = await ActiveBillingFreq();
+            const billing = await ActiveBillingFreq(org);
             setBillingfreqlist(billing)
         }
         fetchdata();
@@ -87,6 +87,8 @@ function AddVendorContract() {
 
     const handleChangeCategory = async (e) => {
         const val = e.target.value;
+        const org = sessionStorage.getItem('Database')
+
         if (val === 'Internet' || val === 'Data' || val === 'Telecom') {
             document.getElementById('link_id_div').style.display = 'block'
         }
@@ -94,7 +96,7 @@ function AddVendorContract() {
             document.getElementById('link_id_div').style.display = 'none'
 
         }
-        const subcate = await ActiveVendSubCate(e.target.value);
+        const subcate = await ActiveVendSubCate(org,e.target.value);
         setVendorsubcatlist(subcate)
     }
 
@@ -125,6 +127,8 @@ function AddVendorContract() {
         let link_id_no = document.getElementById('link_id_no').value;
         const help_desk_no = document.getElementById('help_desk_no').value;
         const user_id = sessionStorage.getItem('UserId')
+        const org = sessionStorage.getItem('Database')
+
 
 
         if (!vendor || !company || !type_of_contract || !major_category || !sub_category ||
@@ -181,7 +185,7 @@ function AddVendorContract() {
 
             if (errorcount === 0) {
                 setLoading(true)
-                const callapi = await InsertVendorContract(vendor_contract_id, vendor, type_of_contract,
+                const callapi = await InsertVendorContract(org,vendor_contract_id, vendor, type_of_contract,
                     major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
                     rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
                     help_desk_no, user_id)

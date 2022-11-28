@@ -23,6 +23,8 @@ function AddManufacturer() {
         const manufacturer_id = manufacturername.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserName');
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!manufacturername) {
@@ -32,7 +34,7 @@ function AddManufacturer() {
         else {
             setLoading(true)
 
-            const result = await InsertManufacturer(manufacturer_id, manufacturername, remark, username);
+            const result = await InsertManufacturer(org,manufacturer_id, manufacturername, remark, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Manufacturer Added", title: "success", type: "success", route: "/TotalManufacturer", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

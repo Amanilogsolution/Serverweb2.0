@@ -24,6 +24,8 @@ function AddTicketStatus() {
         const ticket_status_id = ticket_status.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!ticket_status) {
@@ -32,7 +34,7 @@ function AddTicketStatus() {
         }
         else {
             setLoading(true)
-            const result = await InsertTicketstatus(ticket_status_id, ticket_status, remark, username);
+            const result = await InsertTicketstatus(org,ticket_status_id, ticket_status, remark, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Ticket Status Added", title: "success", type: "success", route: "/TotalTicketStatus", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

@@ -63,7 +63,9 @@ function TotalAssetType() {
             cell: (row) => [
                 <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
                     const status = e.target.value;
-                    const result = await DeleteAssetTypeapi(status, row.sno)
+                    const org = sessionStorage.getItem('Database')
+
+                    const result = await DeleteAssetTypeapi(org,status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -88,7 +90,9 @@ function TotalAssetType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalAssetTypeapi();
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await TotalAssetTypeapi(org);
             setData(tabledata)
             setLoading(true)
 

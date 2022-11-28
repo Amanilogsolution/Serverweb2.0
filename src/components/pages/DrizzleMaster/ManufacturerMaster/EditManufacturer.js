@@ -19,7 +19,9 @@ function EditManufacturer() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetManufacturer(sessionStorage.getItem('manufacturersno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetManufacturer(org,sessionStorage.getItem('manufacturersno'))
             setData(result[0]);
             setLoading(true)
 
@@ -35,6 +37,8 @@ function EditManufacturer() {
 
         const username = sessionStorage.getItem('UserName');
         const sno = sessionStorage.getItem('manufacturersno')
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!manufacturername) {
@@ -43,7 +47,7 @@ function EditManufacturer() {
         }
         else {
             setLoading(true)
-            const result = await UpdateManufacturer(sno, manufacturername, remark, username);
+            const result = await UpdateManufacturer(org,sno, manufacturername, remark, username);
             if (result === 'Updated') {
                 sessionStorage.removeItem('manufacturersno');
                 setDatas({ ...datas, message: "Manfacturer Updated", title: "success", type: "success", route: "/TotalManufacturer", toggle: "true" })

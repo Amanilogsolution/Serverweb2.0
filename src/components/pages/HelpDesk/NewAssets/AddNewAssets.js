@@ -32,28 +32,29 @@ const AddNewAssets = () => {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const devices = await ActiveAssetesType();
+            const org = sessionStorage.getItem('Database')
+
+            const devices = await ActiveAssetesType(org);
             setAssettypelist(devices)
-            const vendor = await ActiveVendorCode()
+            const vendor = await ActiveVendorCode(org)
             setVendorlist(vendor)
 
-            const manufacture = await ActiveManufacturer();
+            const manufacture = await ActiveManufacturer(org);
             setManufacturerlist(manufacture)
 
-            const org = sessionStorage.getItem('Database')
             const location = await ActiveLocation(org);
             setLocationlist(location)
 
-            const assetstatus = await ActiveAssetStatus();
+            const assetstatus = await ActiveAssetStatus(org);
             setAssetstatuslist(assetstatus)
 
-            const software = await ActiveSoftware();
+            const software = await ActiveSoftware(org);
             setSoftwarelist(software)
 
-            const employee = await ActiveEmployees()
+            const employee = await ActiveEmployees(org)
             setEmployeelist(employee)
 
-            const purchase = await ActivePurchaseTypeapi()
+            const purchase = await ActivePurchaseTypeapi(org)
             setPurchaseslist(purchase)
 
             setLoading(true)

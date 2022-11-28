@@ -55,7 +55,9 @@ const columns = [
         cell: (row) => [
             <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                 const status = e.target.value;
-                await UpdateTicketstatusActive(status, row.sno)
+                const org = sessionStorage.getItem('Database')
+
+                await UpdateTicketstatusActive(org,status, row.sno)
                 window.location.reload()
             }}>
                 <option hidden value={row.status}>{row.status}</option>
@@ -84,7 +86,9 @@ function TotalTicketStatus() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await TotalTicketstatusapi();
+            const org = sessionStorage.getItem('Database')
+
+            const result = await TotalTicketstatusapi(org);
             setData(result)
             setLoading(true)
         }

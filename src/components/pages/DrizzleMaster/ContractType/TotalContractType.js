@@ -54,7 +54,9 @@ const columns = [
         cell: (row) => [
             <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                 const status = e.target.value;
-                await UpdateContractTypeStatus(status, row.sno)
+                const org = sessionStorage.getItem('Database')
+
+                await UpdateContractTypeStatus(org,status, row.sno)
                 window.location.reload()
             }}>
                 <option hidden value={row.status}>{row.status}</option>
@@ -83,7 +85,9 @@ function TotalContractType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await TotalContractTypeapi();
+            const org = sessionStorage.getItem('Database')
+
+            const result = await TotalContractTypeapi(org);
             setData(result)
             setLoading(true)
         }

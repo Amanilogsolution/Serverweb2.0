@@ -58,7 +58,9 @@ function TotalSoftware() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const result = await DeleteSoftwaresapi(status, row.sno)
+                    const org = sessionStorage.getItem('Database')
+
+                    const result = await DeleteSoftwaresapi(org,status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -83,7 +85,9 @@ function TotalSoftware() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalSoftwareapi();
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await TotalSoftwareapi(org);
             setData(tabledata)
             setLoading(true)
 

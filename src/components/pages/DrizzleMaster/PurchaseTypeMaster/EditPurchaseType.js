@@ -19,7 +19,9 @@ function EditPurchaseType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetPurchaseTypeapi(sessionStorage.getItem('purchasesno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetPurchaseTypeapi(org,sessionStorage.getItem('purchasesno'))
             setData(result[0]);
             setLoading(true)
 
@@ -42,7 +44,9 @@ function EditPurchaseType() {
         }
         else {
             setLoading(true)
-            const result = await UpdatePurchaseapi(sno, purchase_type, purchase_type_desc, username);
+            const org = sessionStorage.getItem('Database')
+
+            const result = await UpdatePurchaseapi(org,sno, purchase_type, purchase_type_desc, username);
             if (result === 'Updated') {
                 sessionStorage.removeItem('purchasesno');
                 setDatas({ ...datas, message: "Purchase Type Updated", title: "success", type: "success", route: "/TotalPurchaseType", toggle: "true" })

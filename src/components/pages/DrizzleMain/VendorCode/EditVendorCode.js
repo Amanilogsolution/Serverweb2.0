@@ -29,7 +29,9 @@ function EditVendorCode() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await GetVendorCode(sessionStorage.getItem('VendorCodeSno'))
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await GetVendorCode(org,sessionStorage.getItem('VendorCodeSno'))
             setData(tabledata[0])
             console.log(tabledata[0])
             const totalCountry = await TotalCountry();
@@ -81,6 +83,7 @@ function EditVendorCode() {
         const contact_email = document.getElementById('contact_email').value;
         const user_id = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('VendorCodeSno')
+        const org = sessionStorage.getItem('Database')
 
 
         if (!vendor_code || !vendor_name || !comp_country_id || !comp_city || !comp_state_id
@@ -92,7 +95,7 @@ function EditVendorCode() {
         }
         else {
             setLoading(true)
-            const result = await UpdateVendorCode(sno, vendor_code, vendor_name, comp_gst, comp_website, comp_email, comp_phone, comp_country_id, comp_country,
+            const result = await UpdateVendorCode(org,sno, vendor_code, vendor_name, comp_gst, comp_website, comp_email, comp_phone, comp_country_id, comp_country,
                 comp_state_id, comp_state, comp_city, comp_addr1, comp_addr2, comp_pincode, vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Updated') {

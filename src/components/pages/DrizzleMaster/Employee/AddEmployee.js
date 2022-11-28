@@ -48,7 +48,9 @@ function AddEmployee() {
         }
         else {
             setLoading(true)
-            const result = await AddEmployees(employee_id, employee_name, location, employee_email, employee_number, company, username);
+            const org = sessionStorage.getItem('Database')
+
+            const result = await AddEmployees(org,employee_id, employee_name, location, employee_email, employee_number, company, username);
             if (result === 'Added') {
                 setDatas({...datas,message:"Employee Added",title:"success",type:"success",route:"/TotalEmployee",toggle:"true"})
                 document.getElementById('snackbar').style.display="block"

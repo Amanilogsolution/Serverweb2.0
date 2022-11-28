@@ -27,7 +27,9 @@ function AddVendorInvoice() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const vendorcontract = await ActiveVendorContract();
+            const org = sessionStorage.getItem('Database')
+
+            const vendorcontract = await ActiveVendorContract(org);
             setVendorcontractlist(vendorcontract)
             todaydate()
             setLoading(true)
@@ -98,6 +100,8 @@ function AddVendorInvoice() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
+        const org = sessionStorage.getItem('Database')
+
         setLoading(false)
         let errorcount = 0;
         for (let i = 0; i < arryval.length; i++) {
@@ -127,7 +131,7 @@ function AddVendorInvoice() {
         }
         if (errorcount === 0) {
             setLoading(true)
-            const result = await InsertVendorInvoice(arryval, sessionStorage.getItem('UserId'))
+            const result = await InsertVendorInvoice(org,arryval, sessionStorage.getItem('UserId'))
          
             if(result==='Data Added'){
                 setDatas({ ...datas, message: "Vendor Invoice Added", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
@@ -145,12 +149,14 @@ function AddVendorInvoice() {
     }
 
     const handleChnageVendorDetail = async (e) => {
+        const org = sessionStorage.getItem('Database')
+
         console.log(e)
         const toindex = e.value.split(",")
         Vendorname[e.Index] = toindex[1]
         console.log(toindex[1])
         const vebndconid = toindex[0]
-        const detail = await VendorContractDetail(vebndconid);
+        const detail = await VendorContractDetail(org,vebndconid);
         document.getElementById(`accountno-${e.Index}`).value = detail.customer_account_no;
         document.getElementById(`refno-${e.Index}`).value = detail.reference_no;
     }

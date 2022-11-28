@@ -19,7 +19,9 @@ function EditContractType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetContractType(sessionStorage.getItem('contracttypesno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetContractType(org,sessionStorage.getItem('contracttypesno'))
             setData(result[0]);
             setLoading(true)
 
@@ -33,6 +35,7 @@ function EditContractType() {
         const contract_type = document.getElementById('contract_type').value;
         const remark = document.getElementById('remark').value;
         setLoading(true)
+        const org = sessionStorage.getItem('Database')
 
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('contracttypesno')
@@ -44,7 +47,7 @@ function EditContractType() {
 
         else {
             setLoading(true)
-            const result = await UpdateContractType(sno, contract_type, remark, username);
+            const result = await UpdateContractType(org,sno, contract_type, remark, username);
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('contracttypesno');

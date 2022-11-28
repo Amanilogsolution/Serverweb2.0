@@ -55,7 +55,9 @@ const columns = [
         cell: (row) => [
             <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                 const status = e.target.value;
-                await UpdateManufacturerStatus(status, row.sno)
+                const org = sessionStorage.getItem('Database')
+
+                await UpdateManufacturerStatus(org,status, row.sno)
                 window.location.reload()
             }}>
                 <option hidden value={row.status}>{row.status}</option>
@@ -84,7 +86,9 @@ function TotalManufacturer() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalManufacturerapi();
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await TotalManufacturerapi(org);
             setData(tabledata)
             setLoading(true)
 

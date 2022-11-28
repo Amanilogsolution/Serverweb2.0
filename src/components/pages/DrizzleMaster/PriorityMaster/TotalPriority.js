@@ -60,7 +60,9 @@ function TotalPriority() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const result = await DeletePriorityapi(status, row.sno)
+                    const org = sessionStorage.getItem('Database')
+
+                    const result = await DeletePriorityapi(org,status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -85,7 +87,9 @@ function TotalPriority() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalPriorityapi();
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await TotalPriorityapi(org);
             setData(tabledata)
             setLoading(true)
 
