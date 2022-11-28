@@ -18,7 +18,9 @@ function EditAssetType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetAssetTypeapi(sessionStorage.getItem('assettypesno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetAssetTypeapi(org,sessionStorage.getItem('assettypesno'))
             setData(result[0]);
             setLoading(true)
         }
@@ -32,6 +34,8 @@ function EditAssetType() {
         const asset_type_desc = document.getElementById('asset_type_desc').value;
         const username = sessionStorage.getItem('UserName');
         const sno = sessionStorage.getItem('assettypesno')
+        const org = sessionStorage.getItem('Database')
+
 
         if (!asset_type) {
             setLoading(true)
@@ -41,7 +45,7 @@ function EditAssetType() {
         else {
             setLoading(true)
 
-            const result = await UpdateAssettypeapi(sno, asset_type, asset_type_desc, username);
+            const result = await UpdateAssettypeapi(org,sno, asset_type, asset_type_desc, username);
 
             if (result === 'Updated') {
                setDatas({...datas,message:"Asset Type Updated",title:"success",type:"success",route:"/TotalAssetType"})

@@ -70,6 +70,7 @@ function AddVendorCode() {
         const contact_person = document.getElementById('contact_person').value;
         const contact_no = document.getElementById('contact_no').value;
         const contact_email = document.getElementById('contact_email').value;
+        const org = sessionStorage.getItem('Database')
 
         const user_id = sessionStorage.getItem('UserId');
         // setLoading(true)
@@ -83,8 +84,8 @@ function AddVendorCode() {
             // setLoading(true)
         }
         else {
-            const result = await InsertVendorCode(vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
-                comp_phone, company_country_id, comp_country, comp_state_id, comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
+            const result = await InsertVendorCode(org,vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
+                comp_phone, company_country_id, comp_country, comp_state_id,comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
                 vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Added') {

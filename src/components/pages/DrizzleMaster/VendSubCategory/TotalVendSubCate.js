@@ -63,7 +63,9 @@ function TotalVendSubCate() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const result = await DeleteVendSubCateStatus(status, row.sno)
+                    const org = sessionStorage.getItem('Database')
+
+                    const result = await DeleteVendSubCateStatus(org,status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -88,7 +90,9 @@ function TotalVendSubCate() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalVendSubCateapi();
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await TotalVendSubCateapi(org);
             setData(tabledata)
             setLoading(true)
 

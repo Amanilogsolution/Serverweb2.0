@@ -67,12 +67,14 @@ const columns = [
         name: 'Status',
         sortable: true,
         cell: (row) => [
-            <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }}
-                onChange={async (e) => {
-                    const status = e.target.value;
-                    await DeleteTickets(status, row.sno)
-                    window.location.reload()
-                }}
+            <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} 
+            onChange={async (e) => {
+                const status = e.target.value;
+                const org = sessionStorage.getItem('Database')
+
+                await DeleteTickets(org,status, row.sno)
+                window.location.reload()
+            }}
             >
                 <option hidden value={row.status}>{row.status}</option>
                 <option value='Active'>Active</option>
@@ -102,7 +104,9 @@ const TotalTickets = () => {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalTicket();
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await TotalTicket(org);
             console.log(tabledata)
             setData(tabledata)
             setLoading(true)

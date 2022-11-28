@@ -20,9 +20,11 @@ function EditVendorSubCategory() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetVendSubCate(sessionStorage.getItem('vendsubcatesno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetVendSubCate(org,sessionStorage.getItem('vendsubcatesno'))
             setData(result[0]);
-            const vendorCategory = await ActiveVendorCategory()
+            const vendorCategory = await ActiveVendorCategory(org)
             setVendorcatlist(vendorCategory)
             setLoading(true)
 
@@ -38,6 +40,8 @@ function EditVendorSubCategory() {
         const remark = document.getElementById('remark').value;
         const UserId = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('vendsubcatesno')
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!vendor_category || !vendor_sub_category) {
@@ -45,7 +49,7 @@ function EditVendorSubCategory() {
             document.getElementById('snackbar').style.display = "block"
         }
         else {
-            const result = await UpdateVendSubCate(sno, vendor_category, vendor_sub_category, remark, UserId);
+            const result = await UpdateVendSubCate(org,sno, vendor_category, vendor_sub_category, remark, UserId);
 
             if (result === 'Updated') {
                 setDatas({ ...datas, message: "Vendor Sub Category Updated", title: "success", type: "success", route: "/TotalVendSubCate", toggle: "true" })

@@ -75,7 +75,9 @@ function TotalVendorContract() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const result = await DeleteVendorContract(status, row.sno)
+                    const org = sessionStorage.getItem('Database')
+
+                    const result = await DeleteVendorContract(org,status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -100,8 +102,8 @@ function TotalVendorContract() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            // const org = sessionStorage.getItem('Database')
-            const tabledata = await TotalVendorContractapi();
+            const org = sessionStorage.getItem('Database')
+            const tabledata = await TotalVendorContractapi(org);
             setData(tabledata)
             setLoading(true)
 

@@ -87,7 +87,9 @@ function TotalVendorInvoice() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await PendingVendorInvoice();
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await PendingVendorInvoice(org);
             console.log(tabledata)
             setData(tabledata)
             setLoading(true)

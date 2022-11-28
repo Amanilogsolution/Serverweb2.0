@@ -26,8 +26,10 @@ function EditVendorCode() {
     useEffect(() => {
         const fetchdata = async () => {
             setLoading(true)
+            const org = sessionStorage.getItem('Database')
 
-            const vendcontract = await GetVendorContract(sessionStorage.getItem('VendorContractSno'));
+            const vendcontract = await GetVendorContract(org,sessionStorage.getItem('VendorContractSno'));
+            console.log(vendcontract)
             setData(vendcontract[0])
 
 
@@ -48,20 +50,19 @@ function EditVendorCode() {
             if (vendcontract[0].tds === 'true') {
                 document.getElementById('tds').checked = true
             }
-            const org = sessionStorage.getItem('Database')
             const tablelocation = await ActiveLocation(org);
             setLocationlist(tablelocation)
 
-            const contract = await ActiveContractType();
+            const contract = await ActiveContractType(org);
             setContractlist(contract)
 
-            const vendorCategory = await ActiveVendorCategory()
+            const vendorCategory = await ActiveVendorCategory(org)
             setVendorcatlist(vendorCategory)
 
-            const vendorall = await ActiveVendorCode();
+            const vendorall = await ActiveVendorCode(org);
             setVendorlist(vendorall)
 
-            const subcate = await ActiveVendSubCate(vendcontract[0].major_category);
+            const subcate = await ActiveVendSubCate(org,vendcontract[0].major_category);
             setVendorsubcatlist(subcate)
         }
         fetchdata()
@@ -80,6 +81,8 @@ function EditVendorCode() {
 
     const handleChangeCategory = async (e) => {
         const val = e.target.value;
+        const org = sessionStorage.getItem('Database')
+
 
         if (val === 'Internet' || val === 'Data' || val === 'Telecom') {
             document.getElementById('link_id_div').style.display = 'block'
@@ -87,7 +90,7 @@ function EditVendorCode() {
         else {
             document.getElementById('link_id_div').style.display = 'none'
         }
-        const subcate = await ActiveVendSubCate(e.target.value);
+        const subcate = await ActiveVendSubCate(org,e.target.value);
         setVendorsubcatlist(subcate)
     }
 
@@ -114,6 +117,8 @@ function EditVendorCode() {
         const help_desk_no = document.getElementById('help_desk_no').value;
         const user_id = sessionStorage.getItem('UserId')
         const sno = sessionStorage.getItem('VendorContractSno');
+        const org = sessionStorage.getItem('Database')
+
 
         if (!vendor ||
             !type_of_contract || !major_category || !sub_category || !customer_account_no || !payee_name || !tds || !help_desk_no) {
@@ -172,7 +177,9 @@ function EditVendorCode() {
 
 
             if (errorcount === 0) {
-                const callapi = await UpdateVendorContract(sno, vendor, type_of_contract,
+                console.log(link_id_no)
+
+                const callapi = await UpdateVendorContract(org,sno, vendor, type_of_contract,
                     major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
                     rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
                     help_desk_no, user_id)

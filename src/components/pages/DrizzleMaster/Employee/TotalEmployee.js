@@ -83,7 +83,9 @@ function TotalEmployee() {
             cell: (row) => [
                 <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
                     const status = e.target.value;
-                    const result = await DeleteEmployees(status, row.sno)
+                    const org = sessionStorage.getItem('Database')
+
+                    const result = await DeleteEmployees(org,status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -108,7 +110,9 @@ function TotalEmployee() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalEmployees();
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await TotalEmployees(org);
             setData(tabledata)
             setLoading(true)
 

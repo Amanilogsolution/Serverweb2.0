@@ -27,24 +27,24 @@ export default function EditTicket() {
     })
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await getTickets(sessionStorage.getItem('TicketSno'))
+            const org = sessionStorage.getItem('Database')
+            const result = await getTickets(org,sessionStorage.getItem('TicketSno'))
             setData(result[0]);
             const assetall = await GetNewAssetAssign(result[0].emp_id)
             setAssettypelist(assetall)
-            const employee = await ActiveEmployees()
+            const employee = await ActiveEmployees(org)
             setEmployeelist(employee)
-            const org = sessionStorage.getItem('Database')
 
             const location = await ActiveLocation(org);
             setLocationlist(location)
 
-            const allissue = await ActiveIssue();
+            const allissue = await ActiveIssue(org);
             setIssuelist(allissue)
 
-            const ticketstatus = await ActiveTicketStatus();
+            const ticketstatus = await ActiveTicketStatus(org);
             setTicketstatuslist(ticketstatus)
 
-            const priority = await ActivePriority();
+            const priority = await ActivePriority(org);
             setPrioritylist(priority)
 
             setLoading(true)
@@ -55,13 +55,16 @@ export default function EditTicket() {
 
     const handleGetEmpDetail = async (e) => {
         let employee_id = e.target.value;
+        const org = sessionStorage.getItem('Database')
+
         setTogglefields(true)
-        const detail = await EmployeesDetail(employee_id);
+        const detail = await EmployeesDetail(org,employee_id);
         setEmployeedetail(detail)
 
         const assetall = await GetNewAssetAssign(employee_id)
         setAssettypelist(assetall)
     }
+
 
     const handleAssetTypeChange = (e) => {
         document.getElementById('assetserial').value = e.target.value
@@ -92,6 +95,7 @@ export default function EditTicket() {
         const priority = document.getElementById('priority').value;
         const issuedesc = document.getElementById('issuedesc').value;
         const remark = document.getElementById('remark').value;
+        const org = sessionStorage.getItem('Database')
 
         const user_id = sessionStorage.getItem('UserId')
         const sno = sessionStorage.getItem('TicketSno')
@@ -105,7 +109,7 @@ export default function EditTicket() {
         else {
             setLoading(true)
 
-            const result = await UpdateTicket(employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
+            const result = await UpdateTicket(org,employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id, sno)
             if (result === 'Data Updated') {
                 sessionStorage.removeItem('TicketSno')

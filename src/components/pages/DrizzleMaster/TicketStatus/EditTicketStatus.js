@@ -19,7 +19,9 @@ function EditTicketStatus() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetTicketstatus(sessionStorage.getItem('ticketstatussno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetTicketstatus(org,sessionStorage.getItem('ticketstatussno'))
             setData(result[0]);
             setLoading(true)
 
@@ -36,6 +38,8 @@ function EditTicketStatus() {
 
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('ticketstatussno')
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!ticket_status) {
@@ -45,7 +49,7 @@ function EditTicketStatus() {
         }
         else {
             setLoading(true)
-            const result = await UpdateTicketstatus(sno, ticket_status, remark, username);
+            const result = await UpdateTicketstatus(org,sno, ticket_status, remark, username);
             if (result === 'Updated') {
                 sessionStorage.removeItem('ticketstatussno');
                 setDatas({ ...datas, message: "Ticket Status Updated", title: "success", type: "success", route: "/TotalTicketStatus", toggle: "true" })

@@ -33,7 +33,9 @@ function AddSoftware() {
         }
         else {
             setLoading(true)
-            const result = await AddSoftwareapi(software_id, software, software_desc, username);
+            const org = sessionStorage.getItem('Database')
+
+            const result = await AddSoftwareapi(org,software_id, software, software_desc, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Software Added", title: "success", type: "success", route: "/TotalSoftware", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

@@ -19,7 +19,9 @@ function EditServiceGroup() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetServiceGroup(sessionStorage.getItem('servicegroupsno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetServiceGroup(org,sessionStorage.getItem('servicegroupsno'))
             setData(result[0]);
             setLoading(true)
         }
@@ -33,6 +35,8 @@ function EditServiceGroup() {
         const remark = document.getElementById('remark').value;
         const UserId = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('servicegroupsno')
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!service_group_type) {
@@ -41,7 +45,7 @@ function EditServiceGroup() {
         }
         else {
             setLoading(true)
-            const result = await UpdateServiceGroup(sno, service_group_type, remark, UserId);
+            const result = await UpdateServiceGroup(org,sno, service_group_type, remark, UserId);
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('servicegroupsno');

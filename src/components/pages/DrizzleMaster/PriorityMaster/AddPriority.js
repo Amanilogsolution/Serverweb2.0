@@ -23,6 +23,7 @@ function AddPriority() {
         const priority = document.getElementById('priority').value;
         const priority_id = priority.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const priority_desc = document.getElementById('priority_desc').value;
+        const org = sessionStorage.getItem('Database')
 
         const username = sessionStorage.getItem('UserId');
         setLoading(true)
@@ -34,7 +35,7 @@ function AddPriority() {
 
         else {
             setLoading(true)
-            const result = await AddPriorityapi(priority_id, priority, priority_desc, username);
+            const result = await AddPriorityapi(org,priority_id, priority, priority_desc, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Priority Type Added", title: "success", type: "success", route: "/TotalPriority", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

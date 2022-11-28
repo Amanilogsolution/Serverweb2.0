@@ -27,25 +27,26 @@ export default function AddTicket() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const employee = await ActiveEmployees()
-            setEmployeelist(employee)
             const org = sessionStorage.getItem('Database')
+
+            const employee = await ActiveEmployees(org)
+            setEmployeelist(employee)
 
             const location = await ActiveLocation(org);
             setLocationlist(location)
 
-            const allissue = await ActiveIssue();
+            const allissue = await ActiveIssue(org);
             setIssuelist(allissue)
 
-            const ticketstatus = await ActiveTicketStatus();
+            const ticketstatus = await ActiveTicketStatus(org);
             setTicketstatuslist(ticketstatus)
 
-            const priority = await ActivePriority();
+            const priority = await ActivePriority(org);
             setPrioritylist(priority)
 
             setLoading(true)
 
-            const countTickets = await CountTickets()
+            const countTickets = await CountTickets(org)
             let count = Number(countTickets[0].count);
             count = count + 1 + ''
             document.getElementById('assignticket').value = 'Ticket' + '-' + count.padStart(5, '0');
@@ -66,9 +67,10 @@ export default function AddTicket() {
 
     const handleGetEmpDetail = async (e) => {
         let employee_id = e.target.value;
-        const detail = await EmployeesDetail(employee_id);
-        setEmployeedetail(detail)
         const org = sessionStorage.getItem('Database')
+
+        const detail = await EmployeesDetail(org,employee_id);
+        setEmployeedetail(detail)
 
         const assetall = await GetNewAssetAssign(org, employee_id)
         setAssettypelist(assetall)
@@ -104,6 +106,7 @@ export default function AddTicket() {
         const priority = document.getElementById('priority').value;
         const issuedesc = document.getElementById('issuedesc').value;
         const remark = document.getElementById('remark').value;
+        const org = sessionStorage.getItem('Database')
 
         const user_id = sessionStorage.getItem('UserId')
         
@@ -116,7 +119,7 @@ export default function AddTicket() {
         else {
             setLoading(true)
 
-            const result = await InsertTicket(employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
+            const result = await InsertTicket(org,employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id)
             if (result === 'Data Added') {
                 setDatas({ ...datas, message: "Ticket Added", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })

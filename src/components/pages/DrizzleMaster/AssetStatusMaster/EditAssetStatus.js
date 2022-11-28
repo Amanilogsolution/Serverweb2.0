@@ -19,7 +19,9 @@ function EditAssetStatus() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetAssetStatusapi(sessionStorage.getItem('assetstatussno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetAssetStatusapi(org,sessionStorage.getItem('assetstatussno'))
             setData(result[0]);
             setLoading(true)
 
@@ -42,8 +44,9 @@ function EditAssetStatus() {
         }
         else {
             setLoading(true)
-            const result = await UpdateAssetStatusapi(sno, asset_status, asset_status_desc, username);
+            const org = sessionStorage.getItem('Database')
 
+            const result = await UpdateAssetStatusapi(org,sno, asset_status, asset_status_desc, username);
             if (result === 'Updated') {
                 sessionStorage.removeItem('assetstatussno');
                 setDatas({ ...datas, message: "Asset Status Updated", title: "success", type: "success", route: "/TotalAssetStatus", toggle: "true" })
