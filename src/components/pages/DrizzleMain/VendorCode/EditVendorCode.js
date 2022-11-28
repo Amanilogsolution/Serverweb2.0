@@ -104,12 +104,12 @@ function EditVendorCode() {
                 setDatas({ ...datas, message: "Vendor Code Updated", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
-            else if (result === 'Already') {
-                // alert('Vendor Code already Exist')
-                setLoading(true)
-                setDatas({ ...datas, message: "Vendor Code Already Exist", title: "warning", type: "Error", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
-            }
+            // else if (result === 'Already') {
+            //     // alert('Vendor Code already Exist')
+            //     setLoading(true)
+            //     setDatas({ ...datas, message: "Vendor Code Already Exist", title: "warning", type: "Error", toggle: "true" })
+            //     document.getElementById('snackbar').style.display = "block"
+            // }
             else {
                 // alert('Server Error')
                 setLoading(true)
