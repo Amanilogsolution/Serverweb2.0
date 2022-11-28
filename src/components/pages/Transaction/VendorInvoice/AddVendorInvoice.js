@@ -107,7 +107,7 @@ function AddVendorInvoice() {
         for (let i = 0; i < arryval.length; i++) {
             if (!arryval[i]) {
                 setLoading(true)
-                setDatas({ ...datas, message: "Please Select the vendor", title: "Error", type: "warning", route: "#", toggle: "true" })
+                setDatas({ ...datas, message: "Please Select the vendor", title: "warning", type: "warning", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
@@ -115,14 +115,14 @@ function AddVendorInvoice() {
             }
             else if(!arryval[i].vendor){
                 setLoading(true)
-                setDatas({ ...datas, message: "Please Select the vendor", title: "Error", type: "warning", route: "#", toggle: "true" })
+                setDatas({ ...datas, message: "Please Select the vendor", title: "warning", type: "warning", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
             else if (!arryval[i].invno || !arryval[i].invamt) {
                 setLoading(true)
-                setDatas({ ...datas, message: "Please enter the Mandatory field", title: "Error", type: "warning", route: "#", toggle: "true" })
+                setDatas({ ...datas, message: "Please enter the Mandatory field", title: "warning", type: "warning", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;

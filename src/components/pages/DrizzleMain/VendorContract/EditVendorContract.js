@@ -124,7 +124,7 @@ function EditVendorCode() {
             !type_of_contract || !major_category || !sub_category || !customer_account_no || !payee_name || !tds || !help_desk_no) {
             // alert('Please Fill the Mandatory Field')
             setLoading(true)
-            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "warning", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
 
         }
@@ -138,7 +138,7 @@ function EditVendorCode() {
                     errorcount = errorcount + 1
                     // alert('Please fill the Contract Detail')
                     setLoading(true)
-                    setDatas({ ...datas, message: "Please fill the Contract Detail", title: "success", type: "success", route: "#", toggle: "true" })
+                    setDatas({ ...datas, message: "Please fill the Contract Detail", title: "warning", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
                 }
             }
@@ -169,7 +169,7 @@ function EditVendorCode() {
                     // alert('Please Enter the Link id no')
                     // setLoading(true)
                     setLoading(true)
-                    setDatas({ ...datas, message: "Please Enter the Link id no", title: "success", type: "success", route: "#", toggle: "true" })
+                    setDatas({ ...datas, message: "Please Enter the Link id no", title: "warning", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
                 }
             }
