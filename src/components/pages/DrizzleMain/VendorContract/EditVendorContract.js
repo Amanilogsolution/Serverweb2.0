@@ -48,7 +48,8 @@ function EditVendorCode() {
             if (vendcontract[0].tds === 'true') {
                 document.getElementById('tds').checked = true
             }
-            const tablelocation = await ActiveLocation();
+            const org = sessionStorage.getItem('Database')
+            const tablelocation = await ActiveLocation(org);
             setLocationlist(tablelocation)
 
             const contract = await ActiveContractType();

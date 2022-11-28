@@ -22,7 +22,8 @@ function EditEmployee() {
         const fetchdata = async () => {
             const result = await GetEmployees(sessionStorage.getItem('employeesno'))
             setData(result[0]);
-            const tablelocation = await ActiveLocation();
+            const org = sessionStorage.getItem('Database')
+            const tablelocation = await ActiveLocation(org);
             setLocationlist(tablelocation)
             setLoading(true)
 

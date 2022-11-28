@@ -48,7 +48,8 @@ const AddNewAssets = () => {
             const manufacture = await ActiveManufacturer();
             setManufacturerlist(manufacture)
 
-            const location = await ActiveLocation();
+            const org = sessionStorage.getItem('Database')
+            const location = await ActiveLocation(org);
             setLocationlist(location)
 
             const assetstatus = await ActiveAssetStatus();
@@ -145,8 +146,9 @@ const AddNewAssets = () => {
             document.getElementById('softwarediv').style.display = 'none'
 
         }
+        const org = sessionStorage.getItem('Database')
 
-        const count = await CountNewAssets(sessionStorage.getItem('Database'), devicetype)
+        const count = await CountNewAssets(org,devicetype)
         let asset_count = Number(count.count) + 1 + '';
         document.getElementById('assetetag').value = devicetype.substring(0, 3).toUpperCase() + '-' + asset_count.padStart(6, '0');
     }

@@ -75,7 +75,8 @@ const columns = [
         cell: (row) => [
             <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                 const status = e.target.value;
-                await UpdateLocationStatus(status, row.sno)
+                const org = sessionStorage.getItem('Database')
+                await UpdateLocationStatus(org,status, row.sno)
                 window.location.reload()
             }}>
                 <option hidden value={row.Status}>{row.Status}</option>
@@ -104,7 +105,8 @@ function TotalLocations() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalLocation();
+            const org = sessionStorage.getItem('Database')
+            const tabledata = await TotalLocation(org);
             console.log(tabledata)
             setData(tabledata)
             setLoading(true)

@@ -50,7 +50,7 @@ const EditAsset = () => {
             const manufacture = await ActiveManufacturer();
             setManufacturerlist(manufacture)
 
-            const location = await ActiveLocation();
+            const location = await ActiveLocation(org);
             setLocationlist(location)
 
             const assetstatus = await ActiveAssetStatus();
