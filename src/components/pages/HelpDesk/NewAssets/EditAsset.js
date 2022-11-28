@@ -262,11 +262,10 @@ const EditAsset = () => {
 
             if (errorcount === 0) {
                 const org = sessionStorage.getItem('Database')
-
+                setLoading(true)
                 const result = await UpdateNewAssets(org, asset_type, assetetag, serialno, location, manufacture, software,
                     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, userid, sno)
-                setLoading(true)
 
                 if (result === 'Data Updated') {
                     setLoading(true)
