@@ -6,6 +6,7 @@ import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { FaMinusCircle } from 'react-icons/fa'
 // import Snackbar from '../../../../Snackbar/Snackbar';
+import { GrFormClose } from "react-icons/gr"
 
 
 function EditVendorCode() {
@@ -19,19 +20,18 @@ function EditVendorCode() {
     const [statelist, setStatelist] = useState([]);
     const [citylist, setCitylist] = useState([]);
 
-    // const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
             const tabledata = await GetVendorCode(sessionStorage.getItem('VendorCodeSno'))
             setData(tabledata[0])
-            console.log(tabledata[0])
             const totalCountry = await TotalCountry();
             setCountrylist(totalCountry)
 
@@ -54,7 +54,7 @@ function EditVendorCode() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        // setLoading(false)
+        setLoading(false)
         const vendor_code = document.getElementById('vendor_code').value;
         const vendor_name = document.getElementById('vendor_name').value;
         const comp_gst = document.getElementById('comp_gst').value;
@@ -85,35 +85,36 @@ function EditVendorCode() {
 
         if (!vendor_code || !vendor_name || !comp_country_id || !comp_city || !comp_state_id
             || !comp_email || !contact_person || !contact_no || !contact_email) {
-            // setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
-            // document.getElementById('snackbar').style.display = "block"
-            alert('Please Enter Madatory field ')
+            // alert('Please Enter Madatory field ')
             setLoading(true)
+            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
+
         }
         else {
-            setLoading(true)
+            // setLoading(true)
             const result = await UpdateVendorCode(sno, vendor_code, vendor_name, comp_gst, comp_website, comp_email, comp_phone, comp_country_id, comp_country,
                 comp_state_id, comp_state, comp_city, comp_addr1, comp_addr2, comp_pincode, vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Updated') {
-                sessionStorage.removeItem('VendorCodeSno');
-                alert('Vendor Code Added ')
                 setLoading(true)
-                window.location.href='/TotalVendorCode'
-                // setDatas({ ...datas, message: "Vendor Code Updated", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
+                sessionStorage.removeItem('VendorCodeSno');
+                // alert('Vendor Code Added ')
+                // window.location.href = '/TotalVendorCode'
+                setDatas({ ...datas, message: "Vendor Code Updated", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
-                alert('Vendor Code already Exist')
+                // alert('Vendor Code already Exist')
                 setLoading(true)
-                // setDatas({ ...datas, message: "Vendor Code Already Exist", title: "warning", type: "Error", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
+                setDatas({ ...datas, message: "Vendor Code Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                alert('Server Error')
+                // alert('Server Error')
                 setLoading(true)
-                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditVendorCode", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditVendorCode", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -189,9 +190,27 @@ function EditVendorCode() {
             {
                 loading ?
                     <Sidebar >
-                        {/* <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div> */}
+                        {/* ################# Snackbar ##################### */}
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
+                                <div className={`notification__message message--${datas.type}`}>
+                                    <h1>{datas.title}</h1>
+                                    <p>{datas.message}</p>
+
+                                    <button
+                                        onClick={() => {
+                                            setDatas({ ...datas, toggle: 'false' });
+                                            window.location.href = datas.route
+
+                                        }}
+                                    >
+                                        <GrFormClose />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {/* ################# Snackbar ##################### */}
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Master</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Master</span> </h2>

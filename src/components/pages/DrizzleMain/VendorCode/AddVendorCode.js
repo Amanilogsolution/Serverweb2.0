@@ -9,6 +9,7 @@ import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { FaMinusCircle } from 'react-icons/fa'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 // import Snackbar from '../../../../Snackbar/Snackbar';
+import { GrFormClose } from "react-icons/gr"
 
 
 function AddVendorCode() {
@@ -24,13 +25,13 @@ function AddVendorCode() {
     const [statelist, setStatelist] = useState([]);
     const [citylist, setCitylist] = useState([]);
 
-    // const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -54,12 +55,12 @@ function AddVendorCode() {
         let comp_country = document.getElementById('comp_country');
         const company_country_id = comp_country.value;
         comp_country = comp_country.options[comp_country.selectedIndex].text;
-        
+
 
         let comp_state = document.getElementById('comp_state');
         const comp_state_id = comp_state.value;
         comp_state = comp_state.options[comp_state.selectedIndex].text;
-        
+
         const comp_city = document.getElementById('comp_city').value;
 
         const comp_addr1 = document.getElementById('comp_addr1').value;
@@ -71,40 +72,41 @@ function AddVendorCode() {
         const contact_email = document.getElementById('contact_email').value;
 
         const user_id = sessionStorage.getItem('UserId');
-        setLoading(true)
+        // setLoading(true)
 
-        if (!vendor_code || !vendor_name || !company_country_id || !comp_city || !comp_state_id 
+        if (!vendor_code || !vendor_name || !company_country_id || !comp_city || !comp_state_id
             || !comp_email || !contact_person || !contact_no || !contact_email) {
-            //  setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
-            // document.getElementById('snackbar').style.display = "block"
-            alert('Please Enter Madatory field ')
             setLoading(true)
+            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
+            // alert('Please Enter Madatory field ')
+            // setLoading(true)
         }
         else {
             const result = await InsertVendorCode(vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
-                comp_phone, company_country_id, comp_country, comp_state_id,comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
+                comp_phone, company_country_id, comp_country, comp_state_id, comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
                 vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Added') {
-                // setDatas({ ...datas, message: "Vendor Code Added", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
-                alert('Vendor Code Added ')
                 setLoading(true)
-                window.location.href='/TotalVendorCode'
+                setDatas({ ...datas, message: "Vendor Code Added", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+                // alert('Vendor Code Added ')
+                // window.location.href = '/TotalVendorCode'
 
             }
             else if (result === 'Already') {
-                alert('Vendor Code already Exist')
+                // alert('Vendor Code already Exist')
                 setLoading(true)
-                // setDatas({ ...datas, message: "Vendor Code Already Exist", title: "warning", type: "Error", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
-                
+                setDatas({ ...datas, message: "Vendor Code Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+
             }
             else {
-                alert('Server Error')
+                // alert('Server Error')
                 setLoading(true)
-                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddVendorCode", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddVendorCode", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -156,9 +158,27 @@ function AddVendorCode() {
             {
                 loading ?
                     <Sidebar >
-                        {/* <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div> */}
+                        {/* ################# Snackbar ##################### */}
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
+                                <div className={`notification__message message--${datas.type}`}>
+                                    <h1>{datas.title}</h1>
+                                    <p>{datas.message}</p>
+
+                                    <button
+                                        onClick={() => {
+                                            setDatas({ ...datas, toggle: 'false' });
+                                            window.location.href = datas.route
+
+                                        }}
+                                    >
+                                        <GrFormClose />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {/* ################# Snackbar ##################### */}
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Code</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Master</span> </h2>
@@ -172,7 +192,7 @@ function AddVendorCode() {
                                             <ul>
 
                                                 {/* #################### Device Detail  Box Start #####################*/}
-                                                <li  style={{listStyle:"none"}}>
+                                                <li style={{ listStyle: "none" }}>
                                                     <div>
                                                         <span style={{ display: "flex", cursor: "pointer" }} onClick={handleToggleVendorDetail}>
                                                             <div className="link_text " >
@@ -289,7 +309,7 @@ function AddVendorCode() {
                                                     </div>
                                                 </li>
 
-                                                <li style={{listStyle:"none"}}>
+                                                <li style={{ listStyle: "none" }}>
                                                     <div>
                                                         <span style={{ display: "flex", cursor: "pointer" }} onClick={handleTogglePersonDetail}>
                                                             <div className="link_text mt-2" >

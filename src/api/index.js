@@ -1038,6 +1038,7 @@ export const DeleteNewAssets = async (org,status, sno) => {
 }
 export const GetNewAssets = async (org,sno) => {
     const url =`https://drizzlebackend.awlworldwide.com/api/GetNewAssets`
+    console.log(org,sno )
     return axios.post(url, {org,sno }).then(response => response.data).catch(error => console.log(error));
 }
 

@@ -7,6 +7,7 @@ import { FaMinusCircle } from 'react-icons/fa'
 import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, ActivePurchaseTypeapi, GetNewAssets, CountNewAssets, UpdateNewAssets } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { GiLuger } from 'react-icons/gi';
+import { GrFormClose } from "react-icons/gr"
 
 
 const EditAsset = () => {
@@ -27,11 +28,18 @@ const EditAsset = () => {
     const [purchasesdetail, setPurchasesdetail] = useState(false)
     const [otherdetail, setOtherdetail] = useState(false)
 
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
     useEffect(() => {
         const fetchdata = async () => {
             const org = sessionStorage.getItem('Database')
 
-            const getdata = await GetNewAssets(org,sessionStorage.getItem('newassetsno'))
+            const getdata = await GetNewAssets(org, sessionStorage.getItem('newassetsno'))
             setData(getdata[0])
 
             const devices = await ActiveAssetesType();
@@ -60,7 +68,7 @@ const EditAsset = () => {
 
             setLoading(true)
 
-            if (getdata[0].asset_type === 'Laptop') {
+            if (getdata[0].asset_type === 'Laptops') {
                 document.getElementById('softwarediv').style.display = 'block'
             }
             else {
@@ -144,7 +152,7 @@ const EditAsset = () => {
         else {
             const org = sessionStorage.getItem('Database')
 
-            const count = await CountNewAssets(org,devicetype)
+            const count = await CountNewAssets(org, devicetype)
             let asset_count = Number(count.count) + 1 + '';
             document.getElementById('assetetag').value = devicetype.substring(0, 3).toUpperCase() + '-' + asset_count.padStart(6, '0');
         }
@@ -182,7 +190,7 @@ const EditAsset = () => {
         const purchasesdate = document.getElementById('purchasesdate').value;
         const company = document.getElementById('company').value;
         const vendor = document.getElementById('vendor').value;
-        const invoiceno = document.getElementById('invoiceno').value;
+        let invoiceno = document.getElementById('invoiceno').value;
         let purchaseprice = document.getElementById('purchaseprice').value;
         let rentpermonth = document.getElementById('rentpermonth').value;
         const latestinventory = document.getElementById('latestinventory').value;
@@ -196,17 +204,19 @@ const EditAsset = () => {
         const sno = sessionStorage.getItem('newassetsno')
 
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
-            !company || !vendor || !invoiceno || !latestinventory || !assetname || !asset_assign_empid) {
-            alert('Please enter the Mandatory field')
+            !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
             setLoading(true)
+            setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
             let errorcount = 0;
-            if (asset_type === 'Laptop') {
+            if (asset_type === 'Laptops') {
                 if (!software) {
-                    alert('Please enter the Software Field')
                     setLoading(true)
+                    setDatas({ ...datas, message: "Please enter the Software Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -217,8 +227,9 @@ const EditAsset = () => {
             }
             if (purchase_type === 'Rental') {
                 if (!rentpermonth) {
-                    alert('Please enter the RentPerMonth Field')
                     setLoading(true)
+                    setDatas({ ...datas, message: "Please enter the Rent Per Month Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -229,8 +240,16 @@ const EditAsset = () => {
             }
             if (purchase_type === 'Owned') {
                 if (!purchaseprice) {
-                    alert('Please enter the Purchase Price Field')
                     setLoading(true)
+                    setDatas({ ...datas, message: "Please enter the Purchase Price Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
+                    errorcount = errorcount + 1;
+                    return false;
+                }
+                if (!invoiceno) {
+                    setLoading(true)
+                    setDatas({ ...datas, message: "Please enter the Invoice no.", title: "Error", type: "warning", route: "#", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -238,23 +257,27 @@ const EditAsset = () => {
             }
             else {
                 purchaseprice = '';
+                invoiceno = '';
             }
 
             if (errorcount === 0) {
                 const org = sessionStorage.getItem('Database')
 
-                const result = await UpdateNewAssets(org,asset_type, assetetag, serialno, location, manufacture, software,
+                const result = await UpdateNewAssets(org, asset_type, assetetag, serialno, location, manufacture, software,
                     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, userid, sno)
+                setLoading(true)
 
                 if (result === 'Data Updated') {
-                    alert('Asset Updated')
+                    setLoading(true)
                     sessionStorage.removeItem('newassetsno')
-                    window.location.href = '/TotalNewAssets'
+                    setDatas({ ...datas, message: "Asset Updated", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
                 }
                 else {
-                    alert('Server Not Response')
                     setLoading(true)
+                    setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
                 }
             }
         }
@@ -264,6 +287,25 @@ const EditAsset = () => {
             {
                 loading ?
                     <Sidebar >
+                        {/* ############## Snackbar  ###########################*/}
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
+                                <div className={`notification__message message--${datas.type}`}>
+                                    <h1>{datas.title}</h1>
+                                    <p>{datas.message}</p>
+
+                                    <button
+                                        onClick={() => {
+                                            setDatas({ ...datas, toggle: 'false' });
+                                            window.location.href = datas.route
+                                        }}>
+                                        <GrFormClose />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {/* ############## Snackbar  ###########################*/}
 
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
@@ -279,7 +321,7 @@ const EditAsset = () => {
                                             <ul>
 
                                                 {/* #################### Device Detail  Box Start #####################*/}
-                                                <li style={{listStyle:"none"}}>
+                                                <li style={{ listStyle: "none" }}>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <span style={{ display: "flex" }} >
                                                             <div className="link_text " onClick={handleClickDeviceDetail}>
@@ -381,7 +423,7 @@ const EditAsset = () => {
                                                 {/* #################### Device Detail  Box End #####################*/}
 
                                                 {/* #################### Purchases Detail  Box Start ############### */}
-                                                <li className='mt-3' style={{listStyle:"none"}}>
+                                                <li className='mt-3' style={{ listStyle: "none" }}>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <div className="icon" ></div>
                                                         <span style={{ display: "flex" }} >
@@ -438,7 +480,7 @@ const EditAsset = () => {
                                                 {/* #################### Purchases Detail  Box End ############### */}
                                                 {/* #################### Other Detail  Box Start ############### */}
 
-                                                <li className='mt-3' style={{listStyle:"none"}}>
+                                                <li className='mt-3' style={{ listStyle: "none" }}>
                                                     <div style={{ cursor: "pointer" }}  >
                                                         <div className="icon" ></div>
                                                         <span style={{ display: "flex" }} >
