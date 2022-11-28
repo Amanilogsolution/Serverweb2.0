@@ -178,7 +178,7 @@ function EditVendorCode() {
 
             if (errorcount === 0) {
                 console.log(link_id_no)
-
+                setLoading(true)
                 const callapi = await UpdateVendorContract(org,sno, vendor, type_of_contract,
                     major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
                     rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,

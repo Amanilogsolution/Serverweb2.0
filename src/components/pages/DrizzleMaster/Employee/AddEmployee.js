@@ -16,7 +16,7 @@ function AddEmployee() {
         title: "title",
         type: "type",
         route: "#",
-        toggle:"true",
+        toggle: "true",
     })
 
     useEffect(() => {
@@ -50,18 +50,18 @@ function AddEmployee() {
             setLoading(true)
             const org = sessionStorage.getItem('Database')
 
-            const result = await AddEmployees(org,employee_id, employee_name, location, employee_email, employee_number, company, username);
+            const result = await AddEmployees(org, employee_id, employee_name, location, employee_email, employee_number, company, username);
             if (result === 'Added') {
-                setDatas({...datas,message:"Employee Added",title:"success",type:"success",route:"/TotalEmployee",toggle:"true"})
-                document.getElementById('snackbar').style.display="block"
+                setDatas({ ...datas, message: "Employee Added", title: "success", type: "success", route: "/TotalEmployee", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
-            else if(result === 'Already'){
-                setDatas({...datas,message:"Employee Already Exist",title:"warning",type:"Error",toggle:"true"})
-                document.getElementById('snackbar').style.display="block" 
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Employee Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/AddEmployee",toggle:"true"})
-                document.getElementById('snackbar').style.display="block"  
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddEmployee", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -73,7 +73,7 @@ function AddEmployee() {
                     <Sidebar >
 
                         <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle}/>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
 
                         <div className='main_container pb-2'  >
@@ -81,59 +81,67 @@ function AddEmployee() {
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Employee</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Employee</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalEmployee' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div">
-                                <article className="card-body" >
-                                    <form className='px-3' autoComplete='off'>
-                                        <div className="row">
+                            <div className="contract-div" style={{ width: "70%" }}>
+                                <div className="card inner-card">
+                                    <div className='card-header'>Add Assets</div>
+                                    <article className="card-body" >
+                                        <form className='px-3' autoComplete='off'>
+                                            <div className="row">
 
-                                            <div className="col-md-6" >
-                                                <label htmlFor='company'>Company</label>
-                                                <input type="text" className="form-control" id='company' />
+                                                <div className="col-md-6" >
+                                                    <label htmlFor='company'>Company</label>
+                                                    <input type="text" className="form-control" id='company' />
+                                                </div>
+                                                <div className="col-md-6" >
+                                                    <label htmlFor='location'>Location <span className='text-danger'>*</span></label>
+                                                    <select className="form-select" id='location' required >
+                                                        <option value='' hidden>Select Location</option>
+                                                        {
+                                                            locationlist.map((item, index) =>
+                                                                <option key={index}>{item.location_name}</option>
+                                                            )
+                                                        }
+                                                    </select>
+                                                </div>
+
+
                                             </div>
-                                            <div className="col-md-6" >
-                                                <label htmlFor='location'>Location <span className='text-danger'>*</span></label>
-                                                <select className="form-select" id='location' required >
-                                                    <option value='' hidden>Select Location</option>
-                                                    {
-                                                        locationlist.map((item, index) =>
-                                                            <option key={index}>{item.location_name}</option>
-                                                        )
-                                                    }
-                                                </select>
+                                            <div className="row mt-2">
+                                                <div className="col-md-6" >
+                                                    <label htmlFor='employee_name'>Employee Name <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='employee_name' />
+                                                </div>
+                                                <div className="col-md-6" >
+                                                    <label htmlFor='employee_email'>Employee Email <span className='text-danger'>*</span></label>
+                                                    <input type="email" className="form-control" id='employee_email' />
+                                                </div>
+
+
+
                                             </div>
-                                           
 
-                                        </div>
-                                        <div className="row mt-2">
-                                        <div className="col-md-6" >
-                                                <label htmlFor='employee_name'>Employee Name <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='employee_name' />
+                                            <div className="row mt-2">
+                                                <div className="col-md-6" >
+                                                    <label htmlFor='employee_number'>Phone Number </label>
+                                                    <input type="number" className="form-control" id='employee_number' value={numcount}
+                                                        onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumcount(e.target.value) } }} />
+                                                </div>
+                                                <div className="col-md-6" style={{border:"2px solid red"}}>
+                                                    <div className="row" style={{border:"2px solid red"}}>
+                                                        <label htmlFor='employee_number'>Phone Number </label>
+                                                        <input type="checkbox" className="" id='employee_number' />
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="col-md-6" >
-                                                <label htmlFor='employee_email'>Employee Email <span className='text-danger'>*</span></label>
-                                                <input type="email" className="form-control" id='employee_email' />
+
+
+                                            <div className="form-group mt-3" >
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Employee</button>&nbsp;
+                                                <button type="reset" className="btn btn-secondary ">Reset</button>
                                             </div>
-                                          
-
-
-                                        </div>
-
-                                        <div className="row mt-2">
-                                            <div className="col-md-6" >
-                                                <label htmlFor='employee_number'>Phone Number </label>
-                                                <input type="number" className="form-control" id='employee_number' value={numcount}
-                                                    onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumcount(e.target.value) } }}
-                                                />
-                                            </div>
-                                        </div>
-
-
-                                        <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Employee</button>&nbsp;
-                                            <button type="reset" className="btn btn-secondary ">Reset</button>
-                                        </div>
-                                    </form>
-                                </article>
+                                        </form>
+                                    </article>
+                                </div>
                             </div>
                         </div>
                     </Sidebar>
