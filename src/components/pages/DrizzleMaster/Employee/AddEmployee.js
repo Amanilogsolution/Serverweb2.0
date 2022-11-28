@@ -114,7 +114,7 @@ function AddEmployee() {
                             </div>
                             <div className="contract-div" style={{ width: "70%" }}>
                                 <div className="card inner-card">
-                                    <div className='card-header'>Add Assets</div>
+                                    <div className='card-header'>Add Employee</div>
                                     <article className="card-body" >
                                         <form className='px-3' autoComplete='off'>
                                             <div className="row">
