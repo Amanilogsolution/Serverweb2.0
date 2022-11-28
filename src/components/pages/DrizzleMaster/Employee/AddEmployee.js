@@ -1,6 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect } from 'react';
-import { AddEmployees, ActiveLocation } from '../../../../api'
+import { AddEmployees, ActiveLocation,insertUserLogin } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
@@ -43,6 +43,8 @@ function AddEmployee() {
         const company = document.getElementById('company').value;
         const location = document.getElementById('location').value;
         const username = sessionStorage.getItem('UserName');
+        const user_id = document.getElementById('user_id').value
+        const password = document.getElementById('password').value
         setLoading(true)
 
         if (!location || !employee_name || !employee_email) {
@@ -52,6 +54,8 @@ function AddEmployee() {
         else {
             setLoading(true)
             const org = sessionStorage.getItem('Database')
+            if(agentcheck== true){
+                const inserLogin = await insertUserLogin(employee_name,user_id,password,org);
 
             const result = await AddEmployees(org, employee_id, employee_name, location, employee_email, employee_number, company, username);
             if (result === 'Added') {
@@ -66,6 +70,22 @@ function AddEmployee() {
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddEmployee", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
+        }else{
+            const result = await AddEmployees(org, employee_id, employee_name, location, employee_email, employee_number, company, username);
+            if (result === 'Added') {
+                setDatas({ ...datas, message: "Employee Added", title: "success", type: "success", route: "/TotalEmployee", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: "Employee Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else {
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddEmployee", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+
+        }
         }
 
     }

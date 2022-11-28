@@ -23,6 +23,7 @@ function EditVendorInvoice() {
             const org = sessionStorage.getItem('Database')
 
             const datas = await GetVendorInvoice(org,sessionStorage.getItem('vendorinvoicesno'))
+            console.log(datas)
             setData(datas[0])
 
             const vendorcontract = await ActiveVendorContract(org);
@@ -59,6 +60,7 @@ function EditVendorInvoice() {
         const printercount = document.getElementById('printercount').value;
         const sno = sessionStorage.getItem('vendorinvoicesno')
         const org = sessionStorage.getItem('Database')
+        console.log(sno)
 
 
 
