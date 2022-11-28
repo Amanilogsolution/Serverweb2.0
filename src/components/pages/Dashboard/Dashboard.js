@@ -60,7 +60,7 @@ const Dashboard = () => {
 
 
           {/* ============================= */}
-          {/* <div className='home_content'>
+          <div className='home_content'>
             <img className='home_logo' src={logo} alt='Drizzle Logo' />
             <h1>Hello from Us</h1>
             <p>
@@ -68,10 +68,10 @@ const Dashboard = () => {
               and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
               Various versions have evolved over the years, sometimes by accident
             </p>
-          </div> */}
+          </div>
           {/* ======================= */}
 
-          <div className='cards'>
+          {/* <div className='cards'>
 
             <div class="card" id="above_card">
               <div class="card-body">
@@ -107,9 +107,9 @@ const Dashboard = () => {
               </div>
             </div>
 
-          </div>
+          </div> */}
 
-          <div className='cards'>
+          {/* <div className='cards'>
 
             <div class="card" id="center_card1">
               <div class="card-body">
@@ -129,7 +129,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-          </div>
+          </div> */}
 
 
         </div>

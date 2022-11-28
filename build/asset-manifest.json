@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d093ec44.css",
+    "main.js": "/static/js/main.404ffa7d.js",
+    "static/js/787.446a2371.chunk.js": "/static/js/787.446a2371.chunk.js",
+    "static/media/footer_img.jpg": "/static/media/footer_img.20611d84c713faa1fb6b.jpg",
+    "static/media/drizzle_logo.jpg": "/static/media/drizzle_logo.21a1fcb61061a24d4f0e.jpg",
+    "static/media/homebgnew.png": "/static/media/homebgnew.512d4d6bab73a5d0164f.png",
+    "static/media/homebgnew2.png": "/static/media/homebgnew2.ff3f7084ea0d110dcd6d.png",
+    "static/media/404.png": "/static/media/404.9d8077527f82d9f650d9.png",
+    "static/media/homebgnew3.png": "/static/media/homebgnew3.5f6558f2e2a5a6b15234.png",
+    "static/media/forgetpassword.svg": "/static/media/forgetpassword.9b3213c88de7aab3bad50835bd9a1d8a.svg",
+    "static/media/themeimg.png": "/static/media/themeimg.d98fd1c8178842153edd.png",
+    "static/media/drizzle_logo.png": "/static/media/drizzle_logo.bcf27ef26361de29cd5b.png",
+    "static/media/draw2.png": "/static/media/draw2.096f135735c10089375b.png",
+    "static/media/landingimg.svg": "/static/media/landingimg.1b8bcd8260570b3aa0867e36c5cc131e.svg",
+    "static/media/services.svg": "/static/media/services.8ce15076535800541a4e0264ea92341f.svg",
+    "index.html": "/index.html",
+    "main.d093ec44.css.map": "/static/css/main.d093ec44.css.map",
+    "main.404ffa7d.js.map": "/static/js/main.404ffa7d.js.map",
+    "787.446a2371.chunk.js.map": "/static/js/787.446a2371.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d093ec44.css",
+    "static/js/main.404ffa7d.js"
+  ]
+}

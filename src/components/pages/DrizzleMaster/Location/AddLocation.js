@@ -66,7 +66,9 @@ function AddLocation() {
         }
         else {
             setLoading(true)
-            const result = await AddLocationapi(location_id, company, locationcode, locationname, address1, address2, city, state,
+            const org = sessionStorage.getItem('Database')
+
+            const result = await AddLocationapi(org,location_id, company, locationcode, locationname, address1, address2, city, state,
                 pincode, gstno, contactpersonname, email, contNum, latitude, longitude, username);
 
             if (result === 'Added') {
@@ -129,7 +131,7 @@ function AddLocation() {
                                             <div className="col-md-4" >
                                                 <label htmlFor='state'>State <span className='text-danger'>*</span></label>
                                                 {/* <input type="text" className="form-control" id='state' /> */}
-                                                <select id='state' className="form-select"
+                                                <select id='state' className="form-select" style={{backgroundColor:"#dcdcde"}}
                                                     onChange={handleStateMaster}
                                                 >
                                                     <option value='' hidden>Select...</option>
@@ -149,8 +151,7 @@ function AddLocation() {
                                             <div className="col-md-4" >
                                                 <label htmlFor='city'>City <span className='text-danger'>*</span></label>
                                                 {/* <input type="text" className="form-control" id='city' max={10} /> */}
-                                                <select id='city' className="form-select"
-                                                >
+                                                <select id='city' style={{backgroundColor:"#dcdcde"}} className="form-select">
                                                     <option value='' hidden>Select...</option>
 
                                                     {

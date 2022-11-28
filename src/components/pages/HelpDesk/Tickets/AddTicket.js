@@ -29,8 +29,9 @@ export default function AddTicket() {
         const fetchdata = async () => {
             const employee = await ActiveEmployees()
             setEmployeelist(employee)
+            const org = sessionStorage.getItem('Database')
 
-            const location = await ActiveLocation();
+            const location = await ActiveLocation(org);
             setLocationlist(location)
 
             const allissue = await ActiveIssue();

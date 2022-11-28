@@ -7,7 +7,7 @@
         padding: 23px;
 }
 /* ====================================================== */
-/* .home_logo{
+.home_logo{
     width: 300px;
 }
 .home_container p{
@@ -76,16 +76,15 @@
 width: 150px;
 }
 
-} */
+}
 /* ================================================ */
-.card{
+/* .card{
     transition: transform 0.2s;
     box-shadow: 2px 2px 7px 1px gray;
     box-shadow: 2px 2px 7px 1px gray;
     border: none;
 }
 .home_container .cards{
-    /* border: 1px solid black; */
     justify-content: center;
     display: flex;
     margin-bottom: 20px;
@@ -106,7 +105,7 @@ width: 150px;
     margin: 0 12px; 
     width: 40%;
     min-height: 270px;
-}
+} */
 /* .card:hover {
     -ms-transform: scale(1.05); 
     -webkit-transform: scale(1.05); 

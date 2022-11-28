@@ -19,7 +19,8 @@ function EditLocation() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetLocation(sessionStorage.getItem('locationsno'))
+            const org = sessionStorage.getItem('Database')
+            const result = await GetLocation(org,sessionStorage.getItem('locationsno'))
             setData(result);
             setLoading(true)
         }
@@ -29,6 +30,7 @@ function EditLocation() {
     const handleUpdateLocation = async (e) => {
         e.preventDefault();
         setLoading(false)
+        const org = sessionStorage.getItem('Database')
         const company = document.getElementById('company').value;
         const locationcode = document.getElementById('locationcode').value;
         const locationname = document.getElementById('locationname').value;
@@ -55,7 +57,7 @@ function EditLocation() {
         }
         else {
             setLoading(true)
-            const result = await UpdateLocation(sno, company, locationcode, locationname, address1, address2, city, state, pincode, gstno,
+            const result = await UpdateLocation(org,sno, company, locationcode, locationname, address1, address2, city, state, pincode, gstno,
                 contactpersonname, email, contNum, latitude, longitude, username);
 
             if (result === 'Updated') {

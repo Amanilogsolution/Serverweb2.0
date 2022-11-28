@@ -21,7 +21,9 @@ function AddEmployee() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tablelocation = await ActiveLocation();
+            const org = sessionStorage.getItem('Database')
+
+            const tablelocation = await ActiveLocation(org);
             setLocationlist(tablelocation)
         }
         fetchdata();
