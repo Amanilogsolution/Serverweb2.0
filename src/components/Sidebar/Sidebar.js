@@ -401,7 +401,7 @@ const Sidebar = ({ children }) => {
                                             <div style={{ display: isOpen ? "block" : "none", fontSize: "17px" }} >Service Group Type</div>
                                         </NavLink>
                                     </li>
-                                    <li className='innerlink' style={{ borderBottom: "2px solid black" }}>
+                                    <li className='innerlink' style={{ borderBottom: "2px solid rgb(200, 195, 195)" }}>
                                         <NavLink to='/TotalVendorCode' className='navlink d-flex' activeclassname="sidebaractive">
                                             <BsJournalCode style={{ fill: "#a12e7a" }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Vendor Master</div>
@@ -424,7 +424,7 @@ const Sidebar = ({ children }) => {
                                             <div style={{ display: isOpen ? "block" : "none" }} > Vendor Invoice</div>
                                         </NavLink>
                                     </li>
-                                    <li className='innerlink' style={{ borderBottom: "2px solid black" }}>
+                                    <li className='innerlink' style={{ borderBottom: "2px solid rgb(200, 195, 195)" }}>
                                         <NavLink to='/TotalVendorPayment' className='navlink d-flex' activeclassname="sidebaractive">
                                             <MdAttachMoney style={{ fill: "#a12e7a" }} />
                                             <div style={{ display: isOpen ? "block" : "none" }} > Vendor Payment</div>

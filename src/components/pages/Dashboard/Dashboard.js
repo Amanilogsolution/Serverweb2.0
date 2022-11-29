@@ -40,17 +40,12 @@ import {
 const Dashboard = () => {
 
   const chartData = [
-    { course: "Laptop", Employee: 60, Asset: 200 },
-
-    { course: "LED", Employee: 150, Asset: 410 },
-
-    { course: "Smartphone", Employee: 390, Asset: 300 },
-
-    { course: "Printer", Employee: 231, Asset: 325 },
-
+    { course: "Laptop", Employee: 70, Asset: 129 },
+    { course: "LED", Employee: 200, Asset: 231 },
+    { course: "Smartphone", Employee: 123, Asset: 170 },
+    { course: "Printer", Employee: 221, Asset: 325 },
     { course: "Mouse", Employee: 301, Asset: 225 },
-
-    { course: "Charger", Employee: 671, Asset: 400 }
+    { course: "Charger", Employee: 341, Asset: 200 }
   ];
 
   const data01 = [
@@ -117,38 +112,38 @@ const Dashboard = () => {
           <div className='dashboard_cards_1st_row'>
             <div className='card1' id="card11">
               <div>
-                <h1>453</h1>
-                <p>Total Assets</p>
+                <h1 className='dash_card_head'>453</h1>
+                <p className='dash_card_para'>Total Assets</p>
               </div>
-              <div style={{ background: "rgba(0, 0, 0, 0.4)", height: "54px", width: "54px", padding: "10px", borderRadius: "50px", margin: "0 40px" }}>
-                <BsLaptopFill style={{ fontSize: "33px" }} />
+              <div className='dash_card_icon_div'>
+                <BsLaptopFill className='icon'/>
               </div>
             </div>
             <div className='card1' id="card12">
               <div>
-                <h1>154</h1>
-                <p>Total Vendor</p>
+                <h1 className='dash_card_head'>154</h1>
+                <p className='dash_card_para'>Total Vendors</p>
               </div>
-              <div style={{ background: "rgba(0, 0, 0, 0.4)", height: "54px", width: "54px", padding: "10px", borderRadius: "50px", margin: "0 40px" }}>
-                <HiUsers style={{ fontSize: "33px" }} />
+              <div className='dash_card_icon_div'>
+                <HiUsers className='icon'/>
               </div>
             </div>
             <div className='card1' id="card13">
               <div>
-                <h1>54</h1>
-                <p>Locations</p>
+                <h1 className='dash_card_head'>54</h1>
+                <p className='dash_card_para'>Locations</p>
               </div>
-              <div style={{ background: "rgba(0, 0, 0, 0.4)", height: "54px", width: "54px", padding: "10px", borderRadius: "50px", margin: "0 70px" }}>
-                <ImLocation style={{ fontSize: "33px" }} />
+              <div className='dash_card_icon_div'>
+                <ImLocation className='icon'/>
               </div>
             </div>
             <div className='card1' id="card14">
-              <div>
-                <h1>336</h1>
-                <p>Softwares</p>
+              <div >
+                <h1 className='dash_card_head'>336</h1>
+                <p className='dash_card_para'>Softwares</p>
               </div>
-              <div style={{ background: "rgba(0, 0, 0, 0.4)", height: "54px", width: "54px", padding: "10px", borderRadius: "50px", margin: "0 60px" }}>
-                <SiMicrosoftedge style={{ fontSize: "33px" }} />
+              <div className='dash_card_icon_div'>
+                <SiMicrosoftedge className='icon'/>
               </div>
             </div>
           </div>
@@ -187,10 +182,10 @@ const Dashboard = () => {
             <div className='card22' >
               <h4 style={{ margin: "10px 30px 0px 30px"}}>Pie Chart</h4>
              
-              <ResponsiveContainer>
+              <ResponsiveContainer width="100%" aspect={1.9}>
                 <PieChart width={780} height={320}>
-                  <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="red" />
-                  <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="rgb(113, 17, 69)" label />
+                  <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={70} fill="red" />
+                  <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={80} outerRadius={100} fill="rgb(113, 17, 69)" label />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -208,4 +203,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Dashboard; 
