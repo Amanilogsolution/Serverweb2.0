@@ -10,14 +10,13 @@ const Profile = () => {
          <Sidebar>
             <div className='Profile_container'>
 
-               <div className='pofile_card'>
+               {/* <div className='pofile_card'> */}
                   <div className='profile'>
                      <div className='photo_sec'>
                         <h2 className='text-light' >Profile Details</h2>
                         <HiUserCircle className='profile_log' />
                      </div>
                      <div className='details'>
-                        {/* <h4>Profile Details</h4> */}
                         <form>
                            <div className='row my-2'>
                               <div className='col-md-6'>
@@ -57,10 +56,9 @@ const Profile = () => {
                            </div>
 
                            <hr />
-                           <label> Security:- </label>
+                           <label> TOTP Authentication:- </label>
                            <div className='row mt-0' >
                               <div className='col-md-4 d-flex flex-column mx-5'>
-                                 <label>TOTP Authentication</label>
                                  <div className='d-flex align-items-center'>
                                     <img src={Qrcode} alt='Qr code for totp' height='100' width='100' />&nbsp;
                                     <input type='text' className="form-control " placeholder='Enter Token' />&nbsp;
@@ -71,7 +69,7 @@ const Profile = () => {
                         </form>
                      </div>
                   </div>
-               </div>
+               {/* </div> */}
             </div>
          </Sidebar>
       </>
