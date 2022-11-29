@@ -22,7 +22,6 @@ function EditVendorPayments() {
             const org = sessionStorage.getItem('Database')
 
             const datas = await GetVendorPayment(org,sessionStorage.getItem('vendorpaymentssno'))
-            console.log(datas)
             setData(datas[0])
 
             const invoice = await PendingVendorInvoice(org);
