@@ -183,7 +183,7 @@ const Dashboard = () => {
               <h4 style={{ margin: "10px 30px 0px 30px"}}>Pie Chart</h4>
              
               <ResponsiveContainer width="100%" aspect={1.9}>
-                <PieChart width={780} height={320}>
+                <PieChart width={780} height={320} >
                   <Pie data={data01} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={70} fill="red" />
                   <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={80} outerRadius={100} fill="rgb(113, 17, 69)" label />
                 </PieChart>
