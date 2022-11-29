@@ -73,7 +73,9 @@ function TotalVendorCode() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    await DeleteVendorCode(status, row.sno)
+                    const org = sessionStorage.getItem('Database')
+
+                    await DeleteVendorCode(org,status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -98,7 +100,9 @@ function TotalVendorCode() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalVendorCodeapi();
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await TotalVendorCodeapi(org);
             setData(tabledata)
             console.log(tabledata)
             setLoading(true)

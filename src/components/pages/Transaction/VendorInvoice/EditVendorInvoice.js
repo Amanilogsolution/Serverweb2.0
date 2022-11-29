@@ -20,10 +20,13 @@ function EditVendorInvoice() {
     })
     useEffect(() => {
         const fetchdata = async () => {
-            const datas = await GetVendorInvoice(sessionStorage.getItem('vendorinvoicesno'))
+            const org = sessionStorage.getItem('Database')
+
+            const datas = await GetVendorInvoice(org,sessionStorage.getItem('vendorinvoicesno'))
+            console.log(datas)
             setData(datas[0])
 
-            const vendorcontract = await ActiveVendorContract();
+            const vendorcontract = await ActiveVendorContract(org);
             setVendorcontractlist(vendorcontract)
             setLoading(true)
         }
@@ -56,6 +59,9 @@ function EditVendorInvoice() {
         const refno = document.getElementById('refno').value;
         const printercount = document.getElementById('printercount').value;
         const sno = sessionStorage.getItem('vendorinvoicesno')
+        const org = sessionStorage.getItem('Database')
+        console.log(sno)
+
 
 
         if (!vendor || !invamt || !invno ) {
@@ -66,7 +72,7 @@ function EditVendorInvoice() {
         }
         else {
             setLoading(true)
-            const result = await UpdatePendingVendorInvoice( vendor,accountno,invno,invamt,invdate,invduedate,invsubdate,remark,refno,printercount,sno)
+            const result = await UpdatePendingVendorInvoice(org, vendor,accountno,invno,invamt,invdate,invduedate,invsubdate,remark,refno,printercount,sno)
             if (result === 'Data Updated') {
                 sessionStorage.removeItem('vendorinvoicesno')
                 setDatas({ ...datas, message: "Invoice Updated", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
@@ -84,9 +90,11 @@ function EditVendorInvoice() {
 
     const handleChnageVendorDetail = async (e) => {
         const val = e.target.value;
+        const org = sessionStorage.getItem('Database')
+
         const toindex = val.indexOf(",")
         const vebndconid = val.slice(0, toindex)
-        const detail = await VendorContractDetail(vebndconid);
+        const detail = await VendorContractDetail(org,vebndconid);
         document.getElementById('accountno').value = detail.customer_account_no;
         document.getElementById('refno').value = detail.reference_no;
         

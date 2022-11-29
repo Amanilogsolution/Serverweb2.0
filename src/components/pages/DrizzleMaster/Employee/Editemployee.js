@@ -20,9 +20,10 @@ function EditEmployee() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetEmployees(sessionStorage.getItem('employeesno'))
+            const org = sessionStorage.getItem('Database')
+            const result = await GetEmployees(org,sessionStorage.getItem('employeesno'))
             setData(result[0]);
-            const tablelocation = await ActiveLocation();
+            const tablelocation = await ActiveLocation(org);
             setLocationlist(tablelocation)
             setLoading(true)
 
@@ -48,7 +49,9 @@ function EditEmployee() {
         }
         else {
             setLoading(true)
-            const result = await UpdateEmployees(sno, employee_name, location, employee_email, employee_number, company, username);
+            const org = sessionStorage.getItem('Database')
+
+            const result = await UpdateEmployees(org,sno, employee_name, location, employee_email, employee_number, company, username);
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('employeesno');

@@ -24,6 +24,8 @@ function AddServiceGroup() {
         const service_action_id = service_group_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
+        const org = sessionStorage.getItem('Database')
+
 
         if (!service_group_type) {
             setLoading(true)
@@ -34,7 +36,7 @@ function AddServiceGroup() {
         else {
             setLoading(true)
 
-            const result = await InsertServiceGroup(service_action_id, service_group_type, remark, username);
+            const result = await InsertServiceGroup(org,service_action_id, service_group_type, remark, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Service Group Type Added", title: "success", type: "success", route: "/TotalServiceGroup", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

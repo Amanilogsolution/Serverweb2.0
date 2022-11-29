@@ -60,7 +60,9 @@ function TotalVendorCategory() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const result = await DeleteVendorCategoryapi(status, row.sno)
+                    const org = sessionStorage.getItem('Database')
+
+                    const result = await DeleteVendorCategoryapi(org,status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -85,7 +87,9 @@ function TotalVendorCategory() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalVendorCategoryapi();
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await TotalVendorCategoryapi(org);
             setData(tabledata)
             setLoading(true)
 

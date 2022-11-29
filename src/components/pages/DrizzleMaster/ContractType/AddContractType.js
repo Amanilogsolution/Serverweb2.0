@@ -23,6 +23,8 @@ function AddContractType() {
         const contract_type_id = contract_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
+        const org = sessionStorage.getItem('Database')
+
         console.log('outer', contract_type)
 
         if (!contract_type) {
@@ -32,7 +34,7 @@ function AddContractType() {
         }
         else {
             setLoading(true)
-            const result = await InsertContractType(contract_type_id, contract_type, remark, username);
+            const result = await InsertContractType(org,contract_type_id, contract_type, remark, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Contract Type Added", title: "success", type: "success", route: "/TotalContractType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

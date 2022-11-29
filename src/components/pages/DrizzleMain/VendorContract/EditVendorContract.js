@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { GetVendorContract, ActiveLocation, ActiveContractType, ActiveVendorCategory, ActiveVendorCode, ActiveVendSubCate, UpdateVendorContract } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import { GrFormClose } from "react-icons/gr"
 
 
 function EditVendorCode() {
@@ -14,13 +15,20 @@ function EditVendorCode() {
     const [vendorcatlist, setVendorcatlist] = useState([])
     const [vendorsubcatlist, setVendorsubcatlist] = useState([])
     const [vendorlist, setVendorlist] = useState([])
-
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
             setLoading(true)
+            const org = sessionStorage.getItem('Database')
 
-            const vendcontract = await GetVendorContract(sessionStorage.getItem('VendorContractSno'));
+            const vendcontract = await GetVendorContract(org,sessionStorage.getItem('VendorContractSno'));
             console.log(vendcontract)
             setData(vendcontract[0])
 
@@ -32,7 +40,6 @@ function EditVendorCode() {
                 document.getElementById('link_id_div').style.display = 'none'
             }
 
-            // const valnkjn= 'Recurring'
             if (vendcontract[0].type_of_contract === 'Recurring') {
                 document.getElementById('recurringdiv').style.display = "block"
             }
@@ -43,19 +50,19 @@ function EditVendorCode() {
             if (vendcontract[0].tds === 'true') {
                 document.getElementById('tds').checked = true
             }
-            const tablelocation = await ActiveLocation();
+            const tablelocation = await ActiveLocation(org);
             setLocationlist(tablelocation)
 
-            const contract = await ActiveContractType();
+            const contract = await ActiveContractType(org);
             setContractlist(contract)
 
-            const vendorCategory = await ActiveVendorCategory()
+            const vendorCategory = await ActiveVendorCategory(org)
             setVendorcatlist(vendorCategory)
 
-            const vendorall = await ActiveVendorCode();
+            const vendorall = await ActiveVendorCode(org);
             setVendorlist(vendorall)
 
-            const subcate = await ActiveVendSubCate(vendcontract[0].major_category);
+            const subcate = await ActiveVendSubCate(org,vendcontract[0].major_category);
             setVendorsubcatlist(subcate)
         }
         fetchdata()
@@ -74,6 +81,8 @@ function EditVendorCode() {
 
     const handleChangeCategory = async (e) => {
         const val = e.target.value;
+        const org = sessionStorage.getItem('Database')
+
 
         if (val === 'Internet' || val === 'Data' || val === 'Telecom') {
             document.getElementById('link_id_div').style.display = 'block'
@@ -81,7 +90,7 @@ function EditVendorCode() {
         else {
             document.getElementById('link_id_div').style.display = 'none'
         }
-        const subcate = await ActiveVendSubCate(e.target.value);
+        const subcate = await ActiveVendSubCate(org,e.target.value);
         setVendorsubcatlist(subcate)
     }
 
@@ -108,21 +117,29 @@ function EditVendorCode() {
         const help_desk_no = document.getElementById('help_desk_no').value;
         const user_id = sessionStorage.getItem('UserId')
         const sno = sessionStorage.getItem('VendorContractSno');
+        const org = sessionStorage.getItem('Database')
+
 
         if (!vendor ||
             !type_of_contract || !major_category || !sub_category || !customer_account_no || !payee_name || !tds || !help_desk_no) {
-            alert('Please Fill the Mandatory Field')
+            // alert('Please Fill the Mandatory Field')
             setLoading(true)
+            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
 
         }
         else {
+            // const refno = document.getElementById('ref_no').checked ? true : false;
+
             let errorcount = 0;
 
             if (type_of_contract === 'Recurring') {
                 if (!contact_plain_details || !rate_per_month || !contract_start_date || !invoice_generation_date || !billing_freq) {
                     errorcount = errorcount + 1
-                    alert('Please fill the Contract Detail')
+                    // alert('Please fill the Contract Detail')
                     setLoading(true)
+                    setDatas({ ...datas, message: "Please fill the Contract Detail", title: "success", type: "success", route: "#", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
                 }
             }
             else {
@@ -132,13 +149,28 @@ function EditVendorCode() {
                 invoice_generation_date = '';
                 billing_freq = ''
             }
+            // if (!refno) {
+            //     if (!reference_no) {
+            //         errorcount = errorcount + 1
+            //         // alert('Please Enter the Reference no')
+            //         setLoading(true)
+            //         setDatas({ ...datas, message: "Please Enter the Reference no", title: "success", type: "success", route: "#", toggle: "true" })
+            //         document.getElementById('snackbar').style.display = "block"
+            //     }
+            // }
+            // else {
+            //     reference_no = customer_account_no;
+            // }
 
 
             if (major_category === 'Internet' || major_category === 'Data' || major_category === 'Telecom') {
                 if (!link_id_no) {
                     errorcount = errorcount + 1
-                    alert('Please Enter the Link id no')
+                    // alert('Please Enter the Link id no')
+                    // setLoading(true)
                     setLoading(true)
+                    setDatas({ ...datas, message: "Please Enter the Link id no", title: "success", type: "success", route: "#", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
                 }
             }
             else { link_id_no = '' }
@@ -146,19 +178,26 @@ function EditVendorCode() {
 
             if (errorcount === 0) {
                 console.log(link_id_no)
+                setLoading(true)
 
-                const callapi = await UpdateVendorContract(sno, vendor, type_of_contract,
+                const callapi = await UpdateVendorContract(org,sno, vendor, type_of_contract,
                     major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
                     rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
                     help_desk_no, user_id)
 
                 if (callapi === 'Updated') {
-                    alert('Vendor Contract Update');
-                    window.location.href = './TotalVendorContract'
+                    // alert('Vendor Contract Update');
+                    // window.location.href = './TotalVendorContract'
+                    sessionStorage.removeItem('VendorContractSno');
+                    setDatas({ ...datas, message: "Vendor Contract Update", title: "success", type: "success", toggle: "true", route: '/TotalVendorContract' })
+                    document.getElementById('snackbar').style.display = "block"
                 }
                 else {
-                    alert('Server not Response')
+                    // alert('Server not Response')
+                    // setLoading(true)
                     setLoading(true)
+                    setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditVendorContract", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
                 }
             }
         }
@@ -173,10 +212,34 @@ function EditVendorCode() {
             {
                 loading ?
                     <Sidebar >
+
+
+                        {/* ################# Snackbar ##################### */}
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
+                                <div className={`notification__message message--${datas.type}`}>
+                                    <h1>{datas.title}</h1>
+                                    <p>{datas.message}</p>
+
+                                    <button
+                                        onClick={() => {
+                                            setDatas({ ...datas, toggle: 'false' });
+                                            window.location.href = datas.route
+
+                                        }}
+                                    >
+                                        <GrFormClose />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {/* ################# Snackbar ##################### */}
+
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Contract</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Contract</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorContract' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary btn ' onClick={() => {sessionStorage.removeItem('VendorContractSno'); window.location.href = '/TotalVendorContract' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
                                 <div className="card inner-card">
@@ -291,11 +354,11 @@ function EditVendorCode() {
                                                 <div className="row mt-2">
                                                     <div className="col-md-4" >
                                                         <label htmlFor='invoice_generation_date'>Invoice Generation Date <span className='text-danger'>*</span></label>
-                                                        <input type="number" className="form-control" id='invoice_generation_date' required value={data.invoice_generation_date} 
-                                                               onChange={(e) => {
-                                                            if (e.target.value > 31) return false;
-                                                            setData({...data,invoice_generation_date:e.target.value})
-                                                        }}
+                                                        <input type="number" className="form-control" id='invoice_generation_date' required value={data.invoice_generation_date}
+                                                            onChange={(e) => {
+                                                                if (e.target.value > 31) return false;
+                                                                setData({ ...data, invoice_generation_date: e.target.value })
+                                                            }}
                                                         />
                                                     </div>
                                                     <div className="col-md-4" >

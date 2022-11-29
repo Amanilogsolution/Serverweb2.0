@@ -87,7 +87,9 @@ const  TotalVendorPayment=()=> {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalVendorPaymentapi();
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await TotalVendorPaymentapi(org);
             console.log(tabledata)
             setData(tabledata)
             setLoading(true)

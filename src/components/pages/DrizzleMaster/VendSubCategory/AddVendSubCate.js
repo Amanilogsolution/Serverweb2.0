@@ -21,7 +21,9 @@ function AddVendorSubCategory() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const vendorCategory = await ActiveVendorCategory()
+            const org = sessionStorage.getItem('Database')
+
+            const vendorCategory = await ActiveVendorCategory(org)
             setVendorcatlist(vendorCategory)
 
         }
@@ -37,6 +39,8 @@ function AddVendorSubCategory() {
         const vendor_sub_category = document.getElementById('vendor_sub_category').value;
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!vendor_category || !vendor_sub_category) {
@@ -45,7 +49,7 @@ function AddVendorSubCategory() {
         }
         else {
             setLoading(true)
-            const result = await InsertVendSubCate(vend_sub_cate_id, vendor_category, vendor_sub_category, remark, username);
+            const result = await InsertVendSubCate(org,vend_sub_cate_id, vendor_category, vendor_sub_category, remark, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Vendor Sub Category Added", title: "success", type: "success", route: "/TotalVendSubCate", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

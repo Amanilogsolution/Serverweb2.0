@@ -19,7 +19,9 @@ function EditBillingFreq() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetBillingFreqapi(sessionStorage.getItem('billingfreqsno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetBillingFreqapi(org,sessionStorage.getItem('billingfreqsno'))
             setData(result[0]);
             setLoading(true)
 
@@ -34,6 +36,8 @@ function EditBillingFreq() {
         const billing_freq_desc = document.getElementById('billing_freq_desc').value;
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('billingfreqsno')
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!billing_freq) {
@@ -43,7 +47,7 @@ function EditBillingFreq() {
         }
         else {
             setLoading(true)
-            const result = await UpdateBillingFreqapi(sno, billing_freq, billing_freq_desc, username);
+            const result = await UpdateBillingFreqapi(org,sno, billing_freq, billing_freq_desc, username);
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('billingfreqsno');

@@ -19,7 +19,9 @@ function EditPriority() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetPriorityapi(sessionStorage.getItem('prioritysno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetPriorityapi(org,sessionStorage.getItem('prioritysno'))
             setData(result[0]);
             setLoading(true)
         }
@@ -33,6 +35,8 @@ function EditPriority() {
         const priority_desc = document.getElementById('priority_desc').value;
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('prioritysno')
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!priority) {
@@ -40,7 +44,7 @@ function EditPriority() {
             document.getElementById('snackbar').style.display = "block"
         }
         else {
-            const result = await UpdatePriorityapi(sno, priority, priority_desc, username);
+            const result = await UpdatePriorityapi(org,sno, priority, priority_desc, username);
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('prioritysno');

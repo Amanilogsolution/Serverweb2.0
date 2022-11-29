@@ -24,6 +24,7 @@ function AddBillingFreq() {
         const billing_freq = document.getElementById('billing_freq').value;
         const billing_freq_id = billing_freq.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const billing_freq_desc = document.getElementById('billing_freq_desc').value;
+        const org = sessionStorage.getItem('Database')
 
         const username = sessionStorage.getItem('UserId');
         setLoading(true)
@@ -36,7 +37,7 @@ function AddBillingFreq() {
 
             setLoading(true)
 
-            const result = await AddBillingFreqapi(billing_freq_id, billing_freq, billing_freq_desc, username);
+            const result = await AddBillingFreqapi(org,billing_freq_id, billing_freq, billing_freq_desc, username);
             if (result === 'Added') {
                 setDatas({...datas,message:"Billing frequency Added",title:"success",type:"success",route:"/TotalBillingFreq",toggle:"true"})
                 document.getElementById('snackbar').style.display="block"

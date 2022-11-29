@@ -19,7 +19,9 @@ function EditSoftware() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetSoftwareapi(sessionStorage.getItem('softwaresno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetSoftwareapi(org,sessionStorage.getItem('softwaresno'))
             setData(result[0]);
             setLoading(true)
 
@@ -42,7 +44,9 @@ function EditSoftware() {
         }
         else {
             setLoading(true)
-            const result = await UpdateSoftwareapi(sno, software, software_desc, username);
+            const org = sessionStorage.getItem('Database')
+
+            const result = await UpdateSoftwareapi(org,sno, software, software_desc, username);
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('softwaresno');

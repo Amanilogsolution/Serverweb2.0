@@ -8,6 +8,7 @@ import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { GiLuger } from 'react-icons/gi';
 import Select from 'react-select';
+import { GrFormClose } from "react-icons/gr"
 
 
 const AddNewAssets = () => {
@@ -30,29 +31,38 @@ const AddNewAssets = () => {
     const [purchasesdetail, setPurchasesdetail] = useState(false)
     const [otherdetail, setOtherdetail] = useState(false)
 
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: "#",
+        toggle: "true",
+    })
     useEffect(() => {
         const fetchdata = async () => {
-            const devices = await ActiveAssetesType();
+            const org = sessionStorage.getItem('Database')
+
+            const devices = await ActiveAssetesType(org);
             setAssettypelist(devices)
-            const vendor = await ActiveVendorCode()
+            const vendor = await ActiveVendorCode(org)
             setVendorlist(vendor)
 
-            const manufacture = await ActiveManufacturer();
+            const manufacture = await ActiveManufacturer(org);
             setManufacturerlist(manufacture)
 
-            const location = await ActiveLocation();
+            const location = await ActiveLocation(org);
             setLocationlist(location)
 
-            const assetstatus = await ActiveAssetStatus();
+            const assetstatus = await ActiveAssetStatus(org);
             setAssetstatuslist(assetstatus)
 
-            const software = await ActiveSoftware();
+            const software = await ActiveSoftware(org);
             setSoftwarelist(software)
 
-            const employee = await ActiveEmployees()
+            const employee = await ActiveEmployees(org)
             setEmployeelist(employee)
 
-            const purchase = await ActivePurchaseTypeapi()
+            const purchase = await ActivePurchaseTypeapi(org)
             setPurchaseslist(purchase)
 
             setLoading(true)
@@ -64,7 +74,7 @@ const AddNewAssets = () => {
     let options = softwarelist.map((ele) => {
         return { value: ele.software_name, label: ele.software_name };
     })
-    const handleChange = (selectedOption) =>{
+    const handleChange = (selectedOption) => {
         setSoftwares(selectedOption)
     }
 
@@ -129,15 +139,17 @@ const AddNewAssets = () => {
 
     const handleToggleSoftware = async (e) => {
         const devicetype = e.target.value;
-        if (devicetype === 'Laptop') {
+        console.log(devicetype)
+        if (devicetype === 'Laptops') {
             document.getElementById('softwarediv').style.display = 'block'
         }
         else {
             document.getElementById('softwarediv').style.display = 'none'
 
         }
+        const org = sessionStorage.getItem('Database')
 
-        const count = await CountNewAssets(devicetype)
+        const count = await CountNewAssets(org, devicetype)
         let asset_count = Number(count.count) + 1 + '';
         document.getElementById('assetetag').value = devicetype.substring(0, 3).toUpperCase() + '-' + asset_count.padStart(6, '0');
     }
@@ -187,16 +199,19 @@ const AddNewAssets = () => {
 
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
             !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
-            alert('Please enter the Mandatory field')
+            // alert('Please enter the Mandatory field')
             setLoading(true)
+            setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
             let errorcount = 0;
-            if (asset_type === 'Laptop') {
-                if (!softwares) {
-                    alert('Please enter the Software Field')
+            if (asset_type === 'Laptops') {
+                if (softwares.length === 0) {
                     setLoading(true)
+                    setDatas({ ...datas, message: "Please enter the Software Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -207,8 +222,9 @@ const AddNewAssets = () => {
             }
             if (purchase_type === 'Rental') {
                 if (!rentpermonth) {
-                    alert('Please enter the RentPerMonth Or Invoice no. Field')
                     setLoading(true)
+                    setDatas({ ...datas, message: "Please enter the RentPerMonth Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -219,8 +235,16 @@ const AddNewAssets = () => {
             }
             if (purchase_type === 'Owned') {
                 if (!purchaseprice) {
-                    alert('Please enter the Purchase Price Field')
                     setLoading(true)
+                    setDatas({ ...datas, message: "Please enter the Purchase Price Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
+                    errorcount = errorcount + 1;
+                    return false;
+                }
+                if (!invoiceno) {
+                    setLoading(true)
+                    setDatas({ ...datas, message: "Please enter the Invoice no.", title: "Error", type: "warning", route: "#", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -232,29 +256,34 @@ const AddNewAssets = () => {
             }
 
             if (errorcount === 0) {
-                if(asset_type === 'Laptop'){
-                    softwares.forEach(async (datas)=>{
-                       const software = datas.value
-                       const result = await InsertNewAssets(org,asset_id, asset_type, assetetag, serialno, location, manufacture, software,
-                       model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
-                       rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+                if (asset_type === 'Laptops') {
+                    softwares.forEach(async (datas) => {
+                        const software = datas.value
+                        const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, software,
+                            model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
+                            rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+
                     })
-                    window.location.href = '/TotalNewAssets'
-
-                }else{
-                const result = await InsertNewAssets(org,asset_id, asset_type, assetetag, serialno, location, manufacture, '',
-                    model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
-                    rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
-
-                if (result === 'Data Added') {
-                    alert('Asset Added')
-                    window.location.href = '/TotalNewAssets'
-                }
-                else {
-                    alert('Server Not Response')
                     setLoading(true)
+                    setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true" })
+                    document.getElementById('snackbar').style.display = "block"
+
+                } else {
+                    setLoading(true)
+                    const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
+                        model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
+                        rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+                    
+                    if (result === 'Data Added') {
+                        setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true" })
+                        document.getElementById('snackbar').style.display = "block"
+                    }
+                    else {
+                        setLoading(true)
+                        setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                        document.getElementById('snackbar').style.display = "block"
+                    }
                 }
-            }
             }
         }
     }
@@ -264,6 +293,28 @@ const AddNewAssets = () => {
             {
                 loading ?
                     <Sidebar >
+                        {/* ################# Snackbar ##################### */}
+
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
+                                <div className={`notification__message message--${datas.type}`}>
+                                    <h1>{datas.title}</h1>
+                                    <p>{datas.message}</p>
+
+                                    <button
+                                        onClick={() => {
+                                            setDatas({ ...datas, toggle: 'false' });
+                                            window.location.href = datas.route
+
+                                        }}
+                                    >
+                                        <GrFormClose />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {/* ################# Snackbar ##################### */}
+
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}> Assets</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Assets</span> </h2>
@@ -293,7 +344,7 @@ const AddNewAssets = () => {
 
                                                             <div className="col-md-4">
                                                                 <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
-                                                               
+
                                                                 <select id='asset_type' className="form-select" onChange={handleToggleSoftware}>
                                                                     <option value='' hidden>Select...</option>
 

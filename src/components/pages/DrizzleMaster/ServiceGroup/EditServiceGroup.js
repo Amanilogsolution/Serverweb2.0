@@ -19,7 +19,9 @@ function EditServiceGroup() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetServiceGroup(sessionStorage.getItem('servicegroupsno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetServiceGroup(org,sessionStorage.getItem('servicegroupsno'))
             setData(result[0]);
             setLoading(true)
         }
@@ -33,6 +35,8 @@ function EditServiceGroup() {
         const remark = document.getElementById('remark').value;
         const UserId = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('servicegroupsno')
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!service_group_type) {
@@ -41,7 +45,7 @@ function EditServiceGroup() {
         }
         else {
             setLoading(true)
-            const result = await UpdateServiceGroup(sno, service_group_type, remark, UserId);
+            const result = await UpdateServiceGroup(org,sno, service_group_type, remark, UserId);
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('servicegroupsno');
@@ -82,7 +86,7 @@ function EditServiceGroup() {
 
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Service Action Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Service Action Type</span> </h2>
+                                <h2><span style={{ color: "rgb(123,108,200)" }}>Service Action Group</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Service Action Group</span> </h2>
                                 <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('servicegroupsno'); window.location.href = '/TotalServiceGroup' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div" style={{ width: "50%" }}>

@@ -4,9 +4,9 @@ import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import {TotalTicket,DeleteTickets} from '../../../../api'
+import { TotalTicket, DeleteTickets } from '../../../../api'
 import DataTable from 'react-data-table-component';
-import DataTableExtensions from 'react-data-table-component-extensions';  
+import DataTableExtensions from 'react-data-table-component-extensions';
 
 const customStyles = {
     title: {
@@ -70,7 +70,9 @@ const columns = [
             <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} 
             onChange={async (e) => {
                 const status = e.target.value;
-                await DeleteTickets(status, row.sno)
+                const org = sessionStorage.getItem('Database')
+
+                await DeleteTickets(org,status, row.sno)
                 window.location.reload()
             }}
             >
@@ -95,14 +97,16 @@ const columns = [
 ];
 
 
-const TotalTickets=() =>{
+const TotalTickets = () => {
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState([])
 
 
-  useEffect(() => {
+    useEffect(() => {
         const fetchdata = async () => {
-            const tabledata = await TotalTicket();
+            const org = sessionStorage.getItem('Database')
+
+            const tabledata = await TotalTicket(org);
             console.log(tabledata)
             setData(tabledata)
             setLoading(true)
@@ -127,8 +131,8 @@ const TotalTickets=() =>{
                                     <h3><span style={{ color: "rgb(123,108,200)" }}> Ticket</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Total Ticket</span> </h3>
                                     <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddTickets' }} >Add Ticket<MdAdd /></button>
                                 </div>
-                                <div >
-                                <DataTableExtensions {...tableData}  >
+                                <div>
+                                    <DataTableExtensions {...tableData}  >
                                         <DataTable
                                             noHeader
                                             defaultSortField="id"
@@ -149,4 +153,4 @@ const TotalTickets=() =>{
 }
 
 
-export default  TotalTickets;
+export default TotalTickets;

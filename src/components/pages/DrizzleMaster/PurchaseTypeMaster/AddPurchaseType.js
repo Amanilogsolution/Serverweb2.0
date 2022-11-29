@@ -34,7 +34,8 @@ function AddPurchaseType() {
         }
         else {
             setLoading(true)
-            const result = await AddPurchaseTypeeapi(purchase_type_id, purchase_type, purchase_type_desc, username);
+            const org = sessionStorage.getItem('Database')
+            const result = await AddPurchaseTypeeapi(org,purchase_type_id, purchase_type, purchase_type_desc, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Purchase Type Added", title: "success", type: "success", route: "/TotalPurchaseType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

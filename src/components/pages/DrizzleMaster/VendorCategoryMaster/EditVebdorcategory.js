@@ -19,7 +19,9 @@ function EditVendorcategory() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await GetVendorCategoryapi(sessionStorage.getItem('vendorcatsno'))
+            const org = sessionStorage.getItem('Database')
+
+            const result = await GetVendorCategoryapi(org,sessionStorage.getItem('vendorcatsno'))
             setData(result[0]);
             setLoading(true)
 
@@ -33,7 +35,9 @@ function EditVendorcategory() {
         const vendor_category = document.getElementById('vendor_category').value;
         const vendor_category_description = document.getElementById('vendor_category_description').value;
         const username = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('vendorcatsno')
+        const sno = sessionStorage.getItem('vendorcatsno');
+        const org = sessionStorage.getItem('Database')
+
         setLoading(true)
 
         if (!vendor_category) {
@@ -42,7 +46,7 @@ function EditVendorcategory() {
         }
         else {
             setLoading(true)
-            const result = await UpdateVendorCategoryapi(sno, vendor_category, vendor_category_description, username);
+            const result = await UpdateVendorCategoryapi(org,sno, vendor_category, vendor_category_description, username);
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('vendorcatsno');

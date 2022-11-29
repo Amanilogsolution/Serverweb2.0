@@ -26,7 +26,9 @@ function AddVendorPayment() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const invoice = await PendingVendorInvoice();
+            const org = sessionStorage.getItem('Database')
+
+            const invoice = await PendingVendorInvoice(org);
             setPendinginvoicelist(invoice)
             todaydate()
             setLoading(true)
@@ -97,6 +99,8 @@ function AddVendorPayment() {
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
         setLoading(false)
+        const org = sessionStorage.getItem('Database')
+
        
         let errorcount = 0;
         for (let i = 0; i < arryval.length; i++) {
@@ -126,9 +130,9 @@ function AddVendorPayment() {
         if (errorcount === 0) {
             setLoading(true)
 
-            const result = await UpdateVendorInvoice(arryval, sessionStorage.getItem('UserId'))
+            const result = await UpdateVendorInvoice(org,arryval, sessionStorage.getItem('UserId'))
             if (result === 'Data Updated') {
-                setDatas({ ...datas, message: "Vendor Payment Updated", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
+                setDatas({ ...datas, message: "Vendor Payment Added", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
