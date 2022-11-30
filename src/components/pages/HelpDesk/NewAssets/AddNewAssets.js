@@ -273,7 +273,7 @@ const AddNewAssets = () => {
                     const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
                         model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                         rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
-                    
+
                     if (result === 'Data Added') {
                         setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true" })
                         document.getElementById('snackbar').style.display = "block"

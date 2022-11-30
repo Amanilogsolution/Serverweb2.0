@@ -53,11 +53,7 @@ function TotalVendorContract() {
             selector:'location',
             sortable: true,
         },
-        {
-            name: 'Type of Contract',
-            selector: 'type_of_contract',
-            sortable: true,
-        },
+       
         {
             name: 'Major Category',
             selector: 'major_category',
@@ -68,7 +64,26 @@ function TotalVendorContract() {
             selector: 'sub_category',
             sortable: true,
         },
-       
+        {
+            name: 'Account no',
+            selector: 'customer_account_no',
+            sortable: true,
+        },
+        {
+            name: 'Reference no',
+            selector: 'reference_no',
+            sortable: true,
+        },
+        {
+            name: 'Help Desk no',
+            selector: 'help_desk_no',
+            sortable: true,
+        },
+        {
+            name: 'Billing Frequency',
+            selector: 'billling_freq',
+            sortable: true,
+        },
         {
             name: 'Status',
             sortable: true,
@@ -104,6 +119,7 @@ function TotalVendorContract() {
         const fetchdata = async () => {
             const org = sessionStorage.getItem('Database')
             const tabledata = await TotalVendorContractapi(org);
+            console.log(tabledata)
             setData(tabledata)
             setLoading(true)
 

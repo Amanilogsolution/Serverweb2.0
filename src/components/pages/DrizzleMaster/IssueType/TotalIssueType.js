@@ -39,12 +39,12 @@ const customStyles = {
 
 const columns = [
     {
-        name: 'issue_type',
+        name: 'Issue Type',
         selector: 'issue_type',
         sortable: true,
     },
     {
-        name: 'issue_description',
+        name: 'Issue Description',
         selector:'issue_description',
         sortable: true,
     },
