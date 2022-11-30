@@ -1,0 +1,56 @@
+.AssetDash{
+    width: 99%;
+    /* border: 1px solid black; */
+    margin: 12px 8px;
+    height: 63vh;
+    display: flex;
+}
+.AssetDash .Asset_cards{
+  /* border: 1px solid blue; */
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+.AssetDash .Asset_card{
+    width: 100%;
+    height: 20vh;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 12%;
+    margin:0 0 5px 0;
+    color: white;
+    background:linear-gradient(45deg,rgb(96,58,233),rgb(50, 15, 176));
+}
+.AssetDash .Asset_card2{
+    width: 98%;
+    height: 11.8vh;
+    border-radius: 5px;
+    margin: 0 5px 5px;
+    text-align: center;
+    padding-top: 6%;
+    color: white;
+    background:linear-gradient(45deg,rgb(164,43,122),rgb(106, 6, 71));
+}
+.AssetDash .for_graph{
+    width: 70%;
+    /* border: 1px solid yellow; */
+}
+.bar_location{
+    margin: 0 5px 5px 5px;
+    height:49%;
+    width: 98.5%;
+    /* border: 1px solid black; */
+}
+.graph_2nd_row{
+    display: flex;
+    height:49%;
+    justify-content: center;
+}
+.manufacturer_graph{
+   width: 39%;
+   /* border: 1px solid black; */
+}
+.software_graph{
+   width: 59%;
+   /* border: 1px solid black; */
+}
