@@ -186,8 +186,10 @@ export default function AssetsDash() {
                   type="monotone"
                   dataKey="softwares"
                   stroke="maroon"
-                  activeDot={{ r: 8 }}
-                  strokeWidth="5px"
+                  activeDot={{ r: 8}}
+                  strokeWidth="4px"
+                  // fillOpacity={0}
+                  dot={{r: 0}}
                 />
               </LineChart>
             </ResponsiveContainer>
