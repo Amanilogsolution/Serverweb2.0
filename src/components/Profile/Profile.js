@@ -8,15 +8,15 @@ const Profile = () => {
    return (
       <>
          <Sidebar>
-            <div className='Profile_container'>
+            <div className='Profile_container bg-light d-flex align-items-center'>
 
                {/* <div className='pofile_card'> */}
-                  <div className='profile'>
-                     <div className='photo_sec'>
-                        <h2 className='text-light' >Profile Details</h2>
-                        <HiUserCircle className='profile_log' />
+                  <div className='profile d-flex'>
+                     <div className='photo_sec text-center py-3 text-light position-relative'>
+                        <h2 >Profile Details</h2>
+                        <HiUserCircle className='profile_log ' />
                      </div>
-                     <div className='details'>
+                     <div className='details px-5 py-3'>
                         <form>
                            <div className='row my-2'>
                               <div className='col-md-6'>
@@ -57,8 +57,8 @@ const Profile = () => {
 
                            <hr />
                            <label> TOTP Authentication:- </label>
-                           <div className='row mt-0' >
-                              <div className='col-md-4 d-flex flex-column mx-5'>
+                           <div className='row mt-0 auth-div' >
+                              <div className='auth-inner-div col-md-4 d-flex flex-column'>
                                  <div className='d-flex align-items-center'>
                                     <img src={Qrcode} alt='Qr code for totp' height='100' width='100' />&nbsp;
                                     <input type='text' className="form-control " placeholder='Enter Token' />&nbsp;
