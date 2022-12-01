@@ -62,7 +62,7 @@ function TotalBillingFreq() {
                     const status = e.target.value;
                     const org = sessionStorage.getItem('Database')
 
-                    const result = await DeleteBillingFreqapi(org,status, row.sno)
+                     await DeleteBillingFreqapi(org,status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>

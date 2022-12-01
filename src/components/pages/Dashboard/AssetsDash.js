@@ -1,12 +1,12 @@
 import React from 'react'
 import './AssetsDash.css'
-import { BarChart, PieChart, Pie, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, } from "recharts";
+import { BarChart, PieChart, Pie, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, } from "recharts";
 
 
 const AssetsDash = () => {
 
   const data02 = [
-    {
+    { 
       "name": "Group A",
       "value": 2400
     },
