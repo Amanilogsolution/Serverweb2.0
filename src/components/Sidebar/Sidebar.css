@@ -182,7 +182,7 @@
 }
 
 .innerlink:not(:last-child) {
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid rgb(200, 195, 195);
 }
 
 .innerlink:hover {
