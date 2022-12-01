@@ -156,10 +156,10 @@ export default function AssetsDash() {
           <ResponsiveContainer width="100%" aspect={5.4}>
             <BarChart data={chartData} margin={{ top: 20, right: 45 }}>
               <CartesianGrid />
-              <XAxis dataKey="Location" interval={"preserveStartEnd"} />
+              <XAxis dataKey="Location" interval={"preserveStartEnd"} style={{ fontSize:"14px" }}/>
               <YAxis />
               <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
-              <Bar dataKey="Assets" fill="maroon" />
+              <Bar dataKey="Assets" fill="maroon" barSize={20} />
               <Tooltip />
             </BarChart>
           </ResponsiveContainer>
