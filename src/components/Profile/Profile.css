@@ -21,6 +21,8 @@
 
 .Profile_container .profile .photo_sec {
    width: 20%;
+   text-align: center;
+   flex-direction: column;
    background: rgb(95, 33, 73);
 }
 
@@ -37,7 +39,7 @@
    width: 80%;
 }
 
-.auth-div .auth-inner-div{
+.auth-div .auth-inner-div {
    margin-left: 50px;
 }
 
@@ -46,7 +48,8 @@
    .profile_log {
       font-size: 100px;
    }
-   .auth-div .auth-inner-div{
+
+   .auth-div .auth-inner-div {
       margin-left: 0px;
    }
 }
@@ -64,19 +67,59 @@
    }
 
    .Profile_container .profile .photo_sec {
-      /* border: 1px solid black; */
+      /* border: 1px solid yellow; */
       height: 90px;
       /* border-radius: 5px; */
       text-align: justify;
+      flex-direction: row;
       width: 100%;
-      border: 2px solid red;
+      /* border: 2px solid red; */
+   }
+
+   .profile_log {
+      position: absolute;
+      top: 50%;
+      right: 0%;
+      /* border: 2px solid red;/ */
+      font-size: 60px;
    }
 
    .Profile_container .profile .details {
       width: 100%;
       padding: 30px 30px;
-      margin-top: 70px;
+      /* margin-top: 70px; */
 
    }
 
+}
+
+
+@media screen and (min-height:850px) {
+   .Profile_container {
+       min-height: 85vh;
+   }
+}
+
+@media screen and (min-height:1000px) {
+   .Profile_container {
+       min-height: 90vh;
+   }
+}
+
+@media screen and (min-height:735px) {
+   .Profile_container {
+       min-height: 81vh;
+   }
+}
+
+@media screen and (max-width:1200px) {
+   .Profile_container {
+       min-height: 87.3vh;
+   }
+}
+
+@media screen and (max-width:800px) {
+   .Profile_container {
+       min-height: 87.3vh;
+   }
 }

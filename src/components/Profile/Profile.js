@@ -12,7 +12,7 @@ const Profile = () => {
 
                {/* <div className='pofile_card'> */}
                   <div className='profile d-flex'>
-                     <div className='photo_sec text-center py-3 text-light position-relative'>
+                     <div className='photo_sec d-flex  py-3 text-light position-relative'>
                         <h2 >Profile Details</h2>
                         <HiUserCircle className='profile_log ' />
                      </div>
