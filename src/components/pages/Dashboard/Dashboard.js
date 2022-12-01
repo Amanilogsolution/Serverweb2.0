@@ -30,6 +30,8 @@ const Dashboard = () => {
         return <Compliance />
       case 4:
         return <TickteDash />
+      default:
+        return false
     }
   }
 

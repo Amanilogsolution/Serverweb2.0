@@ -24,7 +24,7 @@ const LandingPage = () => {
     return (
         <>
             <div className='landingContainer'>
-                <LandingHeader/>
+                <LandingHeader />
                 <div className='landingContent' >
                     <section className='topbottomdiv' id='topdiv'>
                         <header className="masthead pb-4" >
@@ -33,7 +33,7 @@ const LandingPage = () => {
                                     <div className="col-lg-5" data-aos="fade-right"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="mb-5 mb-lg-1 text-center text-lg-start">
-                                            <h3 className="display-3 lh-1 mb-3" style={{fontWeight:"500"}}>Uncomplicate IT Asset Management</h3>
+                                            <h3 className="display-3 lh-1 mb-3" style={{ fontWeight: "500" }}>Uncomplicate IT Asset Management</h3>
                                             <p className="lead fw-normal text-muted mb-5">Automate and manage accounting, deployement, and maintenance of IT Assets for you and your clients on one plateform</p>
                                             <div className="d-flex flex-column flex-lg-row align-items-center">
                                                 <button className='btn btn-voilet' onClick={() => { window.location.href = './signup' }}>Get Started</button>
@@ -82,7 +82,7 @@ const LandingPage = () => {
                                     <div className="col-lg-5" data-aos="fade-right" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="mb-5 mb-lg-0 text-center text-lg-start">
-                                            <h3 className="display-5 lh-1 mb-3" style={{fontWeight:"500"}}>Centralize your IT Management</h3>
+                                            <h3 className="display-5 lh-1 mb-3" style={{ fontWeight: "500" }}>Centralize your IT Management</h3>
                                             <p className="lead fw-normal text-muted mb-5">Increase company-wide understanding of IT’s business value, improve communications and understanding by capturing asset data in Drizzle to maximize returns and minimize risks.</p>
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@ const LandingPage = () => {
                                 <p>Behind every great experience is a great process. Teams are using Drizzle to update and get data on the run, making data available to stakeholders in real-time.</p>
                                 <button className='btn btn-voilet'>Get Details</button>
                             </div>
-                            <div className='img_div'data-aos="fade-left" data-aos-offset="200"
+                            <div className='img_div' data-aos="fade-left" data-aos-offset="200"
                                 data-aos-delay="50" data-aos-duration="1000" data-aos-once="true"></div>
                         </div>
                     </section>
@@ -198,7 +198,7 @@ const LandingPage = () => {
                                             <h5>Free</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h3><BiRupee style={{marginTop:"-4px"}}/>0</h3>
+                                            <h3><BiRupee style={{ marginTop: "-4px" }} />0</h3>
                                             <ul>
                                                 <li>1 Organisation</li>
                                                 <li>1 Location</li>
@@ -221,7 +221,7 @@ const LandingPage = () => {
                                             <h5>Standard</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h3><BiRupee style={{marginTop:"-4px"}}/>2999<p style={{fontSize:"14px",margin:"-20px 0 0 145px"}}>/month</p></h3>
+                                            <h3><BiRupee style={{ marginTop: "-4px" }} />2999<p style={{ fontSize: "14px", margin: "-20px 0 0 145px" }}>/month</p></h3>
                                             <ul className=''>
                                                 <li>1 Organisation</li>
                                                 <li>3 Locations</li>
@@ -244,7 +244,7 @@ const LandingPage = () => {
                                             <h5>Professional</h5>
                                         </div>
                                         <div className='card-body'>
-                                            <h3><BiRupee style={{marginTop:"-4px"}}/>4999<p style={{fontSize:"14px",margin:"-20px 0 0 145px"}}>/month</p></h3>
+                                            <h3><BiRupee style={{ marginTop: "-4px" }} />4999<p style={{ fontSize: "14px", margin: "-20px 0 0 145px" }}>/month</p></h3>
                                             <ul>
                                                 <li>2 Organisations</li>
                                                 <li>10 Locations</li>

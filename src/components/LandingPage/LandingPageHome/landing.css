@@ -50,7 +50,7 @@
 }
 
 
-/* Landing Page */
+/* ######################### Landing Page  ####################################*/
 .landingContent {
     min-height: 65vh;
     /* margin-top: -70px; */
@@ -80,7 +80,7 @@
 }
 
 
-/* About */
+/* ####################################### About ##################################### */
 
 .about {
     min-height: 30vh;
@@ -97,7 +97,7 @@
 
 
 
-/*  */
+/* ############################### Why Choose Section ##################################### */
 .parent_choose_div {
     width: 90%;
     display: grid;
@@ -142,7 +142,7 @@
 
 }
 
-/* Pricing Setion */
+/* ############################################# Pricing Setion  ######################################*/
 .pricing .pricinghead .container .pricing_cards {
     width: 100%;
     display: grid;
@@ -187,7 +187,7 @@
 
 
 
-/* Footer Link */
+/* ############################################### Footer Link ############################################ */
 .landingfooter_main {
     background: url("../../../image/footer_img.jpg");
     background-size: 100% 100%;
@@ -203,22 +203,15 @@
 .landingfooter .div_for_list {
     width: 80%;
     display: grid;
-    /* align-items: center; */
-    /* justify-items: center; */
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 4%;
     grid-row-gap: 0px;
-    /* border: 2px solid red; */
 }
 
 
 .landingfooter .div_for_list .footer_link-list {
     margin: 0 40px;
-    /* border: 2px solid red; */
-    /* width: 200px; */
-
-
 }
 
 .landingfooter .div_for_list .footer_link-list li:first-child {
@@ -245,18 +238,65 @@
 .landingfooter_main .div_for_icon span:nth-child(2):hover {
     color: blue;
 }
+
 .landingfooter_main .div_for_icon span:nth-child(3):hover {
     color: red;
 }
+
 .landingfooter_main .div_for_icon span:nth-child(4):hover {
     color: blue;
 }
+
 .landingfooter_main .div_for_icon span:nth-child(5):hover {
     color: rgb(143, 24, 42);
 }
+
 .landingfooter_main .div_for_icon span:nth-child(6):hover {
     color: rgb(2, 165, 240);
 }
+
+/* ============================================ Content with photos ======================================================= */
+
+.photos_content {
+    /* border: 1px solid black; */
+    padding: 20px;
+}
+
+.photos_content1 {
+    /* border: 1px solid blue; */
+    justify-content: center;
+    display: flex;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.photos_content1 .img_div {
+    width: 1290px;
+    height: 320px;
+    background: url('https://www.servicenow.com/content/dam/servicenow-assets/public/en-us/images/homepage/hp-now-platform.jpg.thumb.1024.1024.png');
+    background-size: 100% 100%;
+    border-radius: 6px;
+}
+
+.photos_content1 .content_ {
+    margin: 70px;
+}
+
+.photos_content1 .img_div3 {
+    width: 1290px;
+    height: 320px;
+    background: url('https://images.unsplash.com/photo-1581091870598-36ce9bad5c77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+    background-size: 100% 100%;
+    border-radius: 6px;
+    margin: auto;
+}
+
+.content_diff {
+    display: none;
+    padding: 20px;
+}
+
+/* #################################  Media Query ##################################################### */
 @media screen and (max-width:1400px) {
     .parent_choose_div {
         width: 100%;
@@ -276,7 +316,6 @@
         grid-template-rows: repeat(2, 1fr);
         grid-column-gap: 0px;
         grid-row-gap: 12px;
-
     }
 
     .pricing .pricinghead .container .pricing_cards .pricing_card {
@@ -303,7 +342,6 @@
 }
 
 @media screen and (max-width:795px) {
-
     .comp_name {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
@@ -327,7 +365,6 @@
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: 1fr;
         grid-row-gap: 5px;
-        /* border: 2px solid #000; */
     }
 
     .pricing .pricinghead .container .pricing_cards .pricing_card {
@@ -338,7 +375,6 @@
 
     .landingfooter .div_for_list {
         width: 88%;
-
         grid-template-columns: repeat(2, 1fr);
         /* grid-template-rows: 2fr; */
         grid-column-gap: 0%;
@@ -401,46 +437,7 @@
     }
 }
 
-/* ============================================ Content with photos ======================================================= */
 
-.photos_content {
-    /* border: 1px solid black; */
-    padding: 20px;
-}
-
-.photos_content1 {
-    /* border: 1px solid blue; */
-    justify-content: center;
-    display: flex;
-    width: 90%;
-    margin-left: 5%;
-}
-
-.photos_content1 .img_div {
-    width: 1290px;
-    height: 320px;
-    background: url('https://www.servicenow.com/content/dam/servicenow-assets/public/en-us/images/homepage/hp-now-platform.jpg.thumb.1024.1024.png');
-    background-size: 100% 100%;
-    border-radius: 6px;
-}
-
-.photos_content1 .content_ {
-    margin: 70px;
-}
-
-.photos_content1 .img_div3 {
-    width: 1290px;
-    height: 320px;
-    background: url('https://images.unsplash.com/photo-1581091870598-36ce9bad5c77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
-    background-size: 100% 100%;
-    border-radius: 6px;
-    margin: auto;
-}
-
-.content_diff {
-    display: none;
-    padding: 20px;
-}
 
 @media screen and (max-width:990px) {
     .photos_content1 {
@@ -451,7 +448,6 @@
     }
 
     .photos_content {
-        /* border: 1px solid black; */
         padding: 20px;
     }
 
