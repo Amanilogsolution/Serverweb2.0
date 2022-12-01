@@ -137,6 +137,8 @@ const AssetsDash = () => {
             <p className='bg-dark text-white px-4 mx-2'>Manufacturer</p>
             <ResponsiveContainer width="100%" aspect={1.8}>
               <PieChart width={730} height={250}>
+                <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
+                <Tooltip />
                 <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={45} outerRadius={66} fill="rgb(94, 4, 69)" label />
               </PieChart>
             </ResponsiveContainer>

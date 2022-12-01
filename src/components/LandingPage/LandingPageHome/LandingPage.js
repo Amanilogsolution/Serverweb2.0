@@ -60,7 +60,7 @@ const LandingPage = () => {
                     </section>
 
                     <section className='portfoliodiv'>
-                        <div className="comp_name" >
+                        <div className="comp_name text-white" >
                             <div className="comp1 text-center "><h3 style={{ fontSize: "20px" }}>Modernize & Automate</h3></div>
                             <div className="comp2 text-center "><h3 style={{ fontSize: "20px" }}>Intelligent ITAM</h3></div>
                             <div className="comp3 text-center "><h3 style={{ fontSize: "20px" }} >IT Expense Management</h3></div>

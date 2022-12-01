@@ -66,7 +66,6 @@
 .portfoliodiv {
     min-height: 70px;
     background-color: rgb(164, 43, 122);
-    color: white;
 
 }
 
@@ -74,7 +73,6 @@
     min-height: 70px;
     display: grid;
     align-items: center;
-    color: white;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 24px;
