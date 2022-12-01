@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Sidebar from '../../../Sidebar/Sidebar';
 import { Getdevicegroup, Updatedevicegroup } from '../../../../api'
-import './EditDeviceGroup.css'
 import {MdOutlineArrowForward,MdOutlineKeyboardArrowRight} from 'react-icons/md'
 
 function EditDevicegroup() {
