@@ -20,13 +20,16 @@
      -moz-appearance: textfield;
  }
 
+ .curser-pointer {
+     cursor: pointer;
+ }
 
  .main_container {
      background: #fff;
      background: url("./image/themeimg.png");
      background-size: 100% 100%;
      min-height: 77vh;
-     font-family: 'Roboto'; 
+     font-family: 'Roboto';
      /* max-width: 90%; */
      max-width: 100%;
      box-shadow: 2px 1px 10px gray, -3px -3px 10px gray;
@@ -56,7 +59,7 @@
      width: 97%;
  }
 
- 
+
 
  @media screen and (min-height:850px) {
      .main_container {
@@ -72,7 +75,7 @@
 
  @media screen and (min-height:735px) {
      .main_container {
-        min-height: 85vh;
+         min-height: 85vh;
      }
  }
 
