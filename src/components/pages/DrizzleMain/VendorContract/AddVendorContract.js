@@ -135,7 +135,7 @@ function AddVendorContract() {
             !customer_account_no || !payee_name || !help_desk_no) {
             // alert("Please enter Mandatory field")
             setLoading(true)
-            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "warning", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
         else {
@@ -147,7 +147,7 @@ function AddVendorContract() {
                     errorcount = errorcount + 1
                     // alert('Please fill the Contract Detail')
                     setLoading(true)
-                    setDatas({ ...datas, message: "Please fill the Contract Detail", title: "success", type: "success", route: "#", toggle: "true" })
+                    setDatas({ ...datas, message: "Please fill the Contract Detail", title: "warning", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
                 }
             }
@@ -163,7 +163,7 @@ function AddVendorContract() {
                     errorcount = errorcount + 1
                     // alert('Please Enter the Reference no')
                     setLoading(true)
-                    setDatas({ ...datas, message: "Please Enter the Reference no", title: "success", type: "success", route: "#", toggle: "true" })
+                    setDatas({ ...datas, message: "Please Enter the Reference no", title: "warning", type: "Warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
                 }
             }
@@ -175,7 +175,7 @@ function AddVendorContract() {
                     errorcount = errorcount + 1
                     // alert('Please Enter the Link id no')
                     setLoading(true)
-                    setDatas({ ...datas, message: "Please Enter the Link id no", title: "success", type: "success", route: "#", toggle: "true" })
+                    setDatas({ ...datas, message: "Please Enter the Link id no", title: "Warning", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
                 }
             }
@@ -190,7 +190,7 @@ function AddVendorContract() {
                 if (callapi === 'Added') {
                     // alert('Vendor Contract Added');
                     // window.location.href = './TotalVendorContract'
-                    setDatas({ ...datas, message: "Vendor Contract Added", title: "warning", type: "Error", toggle: "true", route: '/TotalVendorContract' })
+                    setDatas({ ...datas, message: "Vendor Contract Added", title: "success", type: "success", toggle: "true", route: '/TotalVendorContract' })
                     document.getElementById('snackbar').style.display = "block"
                 }
                 else {

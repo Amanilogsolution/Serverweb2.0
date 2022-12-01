@@ -22,7 +22,6 @@ function EditVendorPayments() {
             const org = sessionStorage.getItem('Database')
 
             const datas = await GetVendorPayment(org,sessionStorage.getItem('vendorpaymentssno'))
-            console.log(datas)
             setData(datas[0])
 
             const invoice = await PendingVendorInvoice(org);
@@ -65,7 +64,7 @@ function EditVendorPayments() {
 
         if (!paymentdetail || !paymentamt || !paymentdate) {
             setLoading(true)
-            setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+            setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "warning", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
             return false;
         }

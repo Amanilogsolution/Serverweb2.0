@@ -106,21 +106,21 @@ function AddVendorPayment() {
         for (let i = 0; i < arryval.length; i++) {
              if(!arryval[i].InvoiceNo){
                 setLoading(true)
-                setDatas({ ...datas, message: " Please Select the Invoice no ", title: "Error", type: "warning", route: "#", toggle: "true" })
+                setDatas({ ...datas, message: " Please Select the Invoice no ", title: "warning", type: "warning", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
             else if (arryval[i].InvoiceNo === 'elect Invoice n') {
                 setLoading(true)
-                setDatas({ ...datas, message: "Please Select the Invoice no", title: "Error", type: "warning", route: "#", toggle: "true" })
+                setDatas({ ...datas, message: "Please Select the Invoice no", title: "warning", type: "warning", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
             else if (!arryval[i].paymentDetail || !arryval[i].PaymentAmt) {
                 setLoading(true)
-                setDatas({ ...datas, message: "Please enter the Mandatory field", title: "Error", type: "warning", route: "#", toggle: "true" })
+                setDatas({ ...datas, message: "Please enter the Mandatory field", title: "warning", type: "warning", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
