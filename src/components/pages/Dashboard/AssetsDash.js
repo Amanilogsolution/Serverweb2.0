@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './AssetsDash.css'
 import { BarChart, PieChart, Pie, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, } from "recharts";
+import {DashboarProcedure} from '../../../api/index'
 
-
-const AssetsDash = () => {
-
+export default function AssetsDash() {
+  const [Assetsdata,setAssetData] = useState({
+    "TotalAsset":0,
+    "ActiveAsset":0,
+    "RentalAssets":0,
+    "RentMonth":0,
+    "PurchaseVal":0
+  })
+  useEffect(()=>{
+    const fetch = async() =>{
+      const type = 'Asset'
+      const result = await DashboarProcedure(type)
+      setAssetData({...Assetsdata,TotalAsset:result[0][0].TotalDevice,ActiveAsset:result[1][0].ActiveDevice,RentalAssets:result[2][0].RentalDevice,RentMonth:result[3][0].rent,PurchaseVal:result[4][0].purchase})
+      console.log(result)
+    }
+    fetch()
+  },[])
   const data02 = [
-    {
+    { 
       "name": "Group A",
       "value": 2400
     },
@@ -78,43 +93,42 @@ const AssetsDash = () => {
     { softwareName: "Linux", softwares: 400 }
   ];
   return (
-
     <div className='AssetDash d-flex'>
-      <div className='Asset_cards text-white text-center d-flex justify-content-center'>
+      <div className='Asset_cards text-white text-center d-flex justify-Content-center'>
         <div className='Asset_inner_card1 d-flex justify-content-around'>
           <div className='Asset_card rounded'>
-            <p className='mb-0'>Total Devices</p>
-            <h1>3700</h1>
+            <p className="mb-0">Total Devices</p>
+            <h1>{Assetsdata.TotalAsset}</h1>
           </div>
           <div className='Asset_card rounded'>
-            <p className='mb-0' >Active Devices</p>
-            <h1>993</h1>
+            <p className="mb-0">Active Devices</p>
+            <h1 >{Assetsdata.ActiveAsset}</h1>
           </div>
           <div className='Asset_card rounded'>
-            <p className='mb-0'>Rental Devices</p>
-            <h1 >993</h1>
+            <p className="mb-0">Rental Devices</p>
+            <h1 >{Assetsdata.RentalAssets}</h1>
           </div>
         </div>
         <div className='Asset_inner_card1 d-flex justify-content-around'>
-          <div className='Asset_card2 rounded'>
-            <p className='mb-0'>Asset Value</p>
-            <h5 >$ 71,06,321</h5>
+        <div className='Asset_card2 rounded'>
+        <p className='mb-0'>Asset Value</p>
+            <h5>₹ {Assetsdata.PurchaseVal}</h5>
           </div>
           <div className='Asset_card2 rounded'>
             <p className='mb-0'>Rental / Month</p>
-            <h5>$ 62,36,31</h5>
+            <h5 >₹ {Assetsdata.RentMonth}</h5>
           </div>
           <div className='Asset_card2 rounded'>
             <p className='mb-0'>MS OS</p>
-            <h5>204</h5>
+            <h5 >0</h5>
           </div>
           <div className='Asset_card2 rounded'>
             <p className='mb-0'>MS OS</p>
-            <h5>171</h5>
+            <h5 >0</h5>
           </div>
           <div className='Asset_card2 rounded'>
             <p className='mb-0'>MS OS</p>
-            <h5>175</h5>
+            <h5 >0</h5>
           </div>
         </div>
       </div>
@@ -137,6 +151,8 @@ const AssetsDash = () => {
             <p className='bg-dark text-white px-4 mx-2'>Manufacturer</p>
             <ResponsiveContainer width="100%" aspect={3}>
               <PieChart width={730} height={250}>
+                <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
+                <Tooltip />
                 <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={45} outerRadius={66} fill="rgb(94, 4, 69)" label />
               </PieChart>
             </ResponsiveContainer>
@@ -169,4 +185,4 @@ const AssetsDash = () => {
   )
 }
 
-export default AssetsDash;
+// export default AssetsDash;

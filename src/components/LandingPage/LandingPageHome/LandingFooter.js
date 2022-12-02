@@ -5,7 +5,7 @@ import { FaInstagramSquare } from 'react-icons/fa';
 const LandingFooter = () => {
     return (
         <>
-            <div className='landingfooter_main'>
+            <footer className='landingfooter_main'>
                 <div className="landingfooter justify-content-around">
                     <div className="div_for_list">
                         <ul className='footer_link-list p-0'>
@@ -35,16 +35,16 @@ const LandingFooter = () => {
                         </ul>
                     </div>
                 </div>
-                {/* <hr/> */}
-                <div className='div_for_icon d-flex justify-content-center py-3 align-items-center'>
+                {/* ################################## Social Icon Section ############################################# */}
+                <section className='div_for_icon d-flex justify-content-center py-3 align-items-center'>
                     <h7 className='footertitle'>Connect with Us</h7>
                     <span><MdFacebook className='social-icons' /></span>
                     <span> <BsYoutube className='social-icons' /></span>
                     <span> <BsLinkedin className='social-icons' /></span>
                     <span><FaInstagramSquare className='social-icons' /></span>
                     <span><BsTwitter className='social-icons' /></span>
-                </div>
-            </div>
+                </section>
+            </footer>
         </>
     )
 }

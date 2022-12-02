@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { VendorContractDetail, UpdateVendorPayment, GetVendorPayment, PendingVendorInvoice } from '../../../../api'
+import { UpdateVendorPayment, GetVendorPayment, PendingVendorInvoice } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';

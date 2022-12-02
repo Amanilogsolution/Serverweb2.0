@@ -61,7 +61,7 @@ function TotalAssetStatus() {
                     const status = e.target.value;
                     const org = sessionStorage.getItem('Database')
 
-                    const result = await DeleteAssetStatusapi(org,status, row.sno)
+                     await DeleteAssetStatusapi(org,status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>

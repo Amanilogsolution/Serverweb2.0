@@ -6,7 +6,6 @@ import { FaMinusCircle } from 'react-icons/fa'
 
 import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, ActivePurchaseTypeapi, GetNewAssets, CountNewAssets, UpdateNewAssets } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import { GiLuger } from 'react-icons/gi';
 import { GrFormClose } from "react-icons/gr"
 
 

@@ -32,7 +32,7 @@ function ChangePassword() {
         if(UpdatePassword === ConfirmPassword){
 
         const result = await changePassword(userid,UpdatePassword,CurrentPassword)
-        if(result == 'Password Changed'){
+        if(result === 'Password Changed'){
             alert('Password Updated')
             window.location.href='/Dashboard'
         }else{

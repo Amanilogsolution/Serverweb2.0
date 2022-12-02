@@ -256,7 +256,7 @@ const Sidebar = ({ children }) => {
                     </div> */}
 
 
-                    {/* Drizzle */}
+                    {/* ############################# Drizzle  ##############################*/}
 
 
                     <div onClick={handleinnertoggledrizzle}>
@@ -291,7 +291,7 @@ const Sidebar = ({ children }) => {
                                 </div>
                             </li>
 
-                            {/* Master list */}
+                            {/*################## Drizzle Master list */}
                             <div className="innersubdiv" id="subdrizzleinner" style={{ display: "none" }}>
                                 <ul style={{ paddingLeft: "0px", marginBottom: "0px" }}>
                                     <li className='innerlink' >
@@ -434,7 +434,7 @@ const Sidebar = ({ children }) => {
                             </div>
                         </ul>
                     </div>
-                    {/* Transaction */}
+                    {/* ####################################### Transaction ############################################### */}
 
                     <div onClick={handleinnertogglehelpdesk} style={{ marginTop: "0px" }}>
                         <div className="link" id='masterdrizelltitlelink' style={{ cursor: "pointer" }}>
