@@ -1067,10 +1067,10 @@ export const UpdateNewAssets = async ( org, asset_type, assetetag, serialno, loc
 
 //  #########################   New Assets SubCode ##############################
 
-export const InsertAssetSubCode = async (org,asset_id,asset_tag,asset_tag) => {
-    const url = `http://localhost:2008/api/InsertTicket`
-    return axios.post(url, {org,asset_id,asset_tag,asset_tag}).then(response => response.data).catch(error => console.log(error));
-}
+// export const InsertAssetSubCode = async (org,asset_id,asset_tag,asset_tag) => {
+//     const url = `http://localhost:2008/api/InsertTicket`
+//     return axios.post(url, {org,asset_id,asset_tag,asset_tag}).then(response => response.data).catch(error => console.log(error));
+// }
 
 //  #########################   Ticketes ##############################
 
