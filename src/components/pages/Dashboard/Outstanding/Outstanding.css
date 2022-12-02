@@ -1,0 +1,13 @@
+.outstanding-container {
+    border: 2px solid red;
+    height: 100%;
+}
+
+.outstanding-container .oustanding-details{
+    border: 2px solid blue;
+    width: 25%;
+}
+.outstanding-container .oustanding-table{
+    border: 2px solid blue;
+    width: 71%;
+}
