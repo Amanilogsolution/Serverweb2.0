@@ -535,7 +535,6 @@ export const UpdateSoftwareapi = async (org,sno, software_name, software_descrip
     return axios.post(url, { org,sno, software_name, software_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
 
-
 export const ActiveSoftware = async (org) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/ActiveSoftware`
     return axios.post(url,{org}).then(response => response.data).catch(error => console.log(error));
@@ -586,7 +585,6 @@ export const AddPriorityapi = async (org,priority_id, priority_type, priority_de
     const url = `https://drizzlebackend.awlworldwide.com/api/insertPriority`
     return axios.post(url, {org, priority_id, priority_type, priority_description, user_id }).then(response => response.data).catch(error => console.log(error));
 }
-
 
 export const DeletePriorityapi = async (org,status, sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/deletePriority`
@@ -1067,6 +1065,13 @@ export const UpdateNewAssets = async ( org, asset_type, assetetag, serialno, loc
     }).then(response => response.data).catch(error => console.log(error));
 }
 
+//  #########################   New Assets SubCode ##############################
+
+export const InsertAssetSubCode = async (org,asset_id,asset_tag,asset_tag) => {
+    const url = `http://localhost:2008/api/InsertTicket`
+    return axios.post(url, {org,asset_id,asset_tag,asset_tag}).then(response => response.data).catch(error => console.log(error));
+}
+
 //  #########################   Ticketes ##############################
 
 export const InsertTicket = async (org,emp_id, emp_name, asset_type, asset_serial, location, assign_ticket, type_of_issue, email_id,
@@ -1146,4 +1151,16 @@ export const GetVendorPayment = async (org,sno) => {
 export const UpdateVendorPayment = async (org,paymentdetail,paymentamt,paymentdate,remark,sno) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/UpdateVendorPayment`
     return axios.post(url, {org, paymentdetail,paymentamt,paymentdate,remark,sno }).then(response => response.data).catch(error => console.log(error));
+}
+
+// Dashboard 
+
+export const DashboarDetails = async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/dashboard_details`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DashboarProcedure = async (type) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/dashboard_procedure`
+    return axios.post(url, { type }).then(response => response.data).catch(error => console.log(error));
 }

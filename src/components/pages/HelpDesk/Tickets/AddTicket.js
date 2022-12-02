@@ -92,8 +92,7 @@ export default function AddTicket() {
         let assettype = document.getElementById('assettype');
 
         assettype = assettype.options[assettype.selectedIndex].text;
-        let toindex2 = assettype.indexOf(",")
-        assettype = assettype.slice(0, toindex2)
+        assettype = assettype.split(",")
 
         const assetserial = document.getElementById('assetserial').value;
         const location = document.getElementById('location').value;

@@ -510,3 +510,9 @@ CREATE TABLE IPERISCOPE.dbo.tbl_ticket (
                 status nvarchar(30) NULL,
                 ticket_uuid nvarchar(350) NULL
 )
+CREATE TABLE IPERISCOPE.dbo.tbl_asset_subtable (
+	sno int IDENTITY(0,1) NOT NULL,
+	asset_id varchar(100) NULL,
+	asset_tag varchar(100) NULL,
+	software varchar(100) NULL
+);
