@@ -93,42 +93,42 @@ export default function AssetsDash() {
     { softwareName: "Linux", softwares: 400 }
   ];
   return (
-    <div className='AssetDash'>
-      <div className='Asset_cards'>
-        <div style={{ width: "50%" }}>
-          <div className='Asset_card'>
-            <p>Total Devices</p>
-            <h1 style={{ marginTop: "-10px" }}>{Assetsdata.TotalAsset}</h1>
+    <div className='AssetDash d-flex'>
+      <div className='Asset_cards text-white text-center d-flex justify-Content-center'>
+        <div className='Asset_inner_card1 d-flex justify-content-around'>
+          <div className='Asset_card rounded'>
+            <p className="mb-0">Total Devices</p>
+            <h1>{Assetsdata.TotalAsset}</h1>
           </div>
-          <div className='Asset_card'>
-            <p>Active Devices</p>
-            <h1 style={{ marginTop: "-10px" }}>{Assetsdata.ActiveAsset}</h1>
+          <div className='Asset_card rounded'>
+            <p className="mb-0">Active Devices</p>
+            <h1 >{Assetsdata.ActiveAsset}</h1>
           </div>
-          <div className='Asset_card'>
-            <p>Rental Devices</p>
-            <h1 style={{ marginTop: "-10px" }}>{Assetsdata.RentalAssets}</h1>
+          <div className='Asset_card rounded'>
+            <p className="mb-0">Rental Devices</p>
+            <h1 >{Assetsdata.RentalAssets}</h1>
           </div>
         </div>
-        <div style={{ width: "50%" }}>
-          <div className='Asset_card2'>
-            <p>Asset Value</p>
-            <h5 style={{ marginTop: "-14px" }}>₹ {Assetsdata.PurchaseVal}</h5>
+        <div className='Asset_inner_card1 d-flex justify-content-around'>
+        <div className='Asset_card2 rounded'>
+        <p className='mb-0'>Asset Value</p>
+            <h5>₹ {Assetsdata.PurchaseVal}</h5>
           </div>
-          <div className='Asset_card2'>
-            <p>Rental / Month</p>
-            <h5 style={{ marginTop: "-14px" }}>₹ {Assetsdata.RentMonth}</h5>
+          <div className='Asset_card2 rounded'>
+            <p className='mb-0'>Rental / Month</p>
+            <h5 >₹ {Assetsdata.RentMonth}</h5>
           </div>
-          <div className='Asset_card2'>
-            <p>MS OS</p>
-            <h5 style={{ marginTop: "-14px" }}>0</h5>
+          <div className='Asset_card2 rounded'>
+            <p className='mb-0'>MS OS</p>
+            <h5 >0</h5>
           </div>
-          <div className='Asset_card2'>
-            <p>MS OS</p>
-            <h5 style={{ marginTop: "-14px" }}>0</h5>
+          <div className='Asset_card2 rounded'>
+            <p className='mb-0'>MS OS</p>
+            <h5 >0</h5>
           </div>
-          <div className='Asset_card2'>
-            <p>MS OS</p>
-            <h5 style={{ marginTop: "-14px" }}>0</h5>
+          <div className='Asset_card2 rounded'>
+            <p className='mb-0'>MS OS</p>
+            <h5 >0</h5>
           </div>
         </div>
       </div>

@@ -56,45 +56,45 @@ const Dashboard = () => {
           <Sidebar>
             <div className='dashboard_container pt-2'>
 
-              <div className='dashboard_cards'>
-                <div onClick={() => setStep(1)} className='card1' id="card11">
+              <div className='dashboard_cards text-white d-flex justify-content-around'>
+                <div onClick={() => setStep(1)} className='card1 d-flex rounded curser-pointer'>
                   <div>
-                    <h1 className='dash_card_head'>{dashboarddetails.Assetdata}</h1>
+                    <h1 className='dash_card_head mb-0'>{dashboarddetails.Assetdata}</h1>
                     <p className='dash_card_para'>Assets</p>
                   </div>
-                  <div className='dash_card_icon_div'>
+                  <div className='dash_card_icon_div rounded-circle'>
                     <BsLaptopFill className='icon' />
                   </div>
                 </div>
-                <div onClick={() => setStep(2)} className='card1' id="card12">
+                <div onClick={() => setStep(2)} className='card1 d-flex rounded curser-pointer'>
                   <div>
-                    <h1 className='dash_card_head'>{dashboarddetails.Vendordata}</h1>
+                    <h1 className='dash_card_head mb-0'>{dashboarddetails.Vendordata}</h1>
                     <p className='dash_card_para'>Vendors</p>
                   </div>
-                  <div className='dash_card_icon_div'>
+                  <div className='dash_card_icon_div rounded-circle'>
                     <HiUsers className='icon' />
                   </div>
                 </div>
-                <div onClick={() => setStep(3)} className='card1' id="card13">
+                <div onClick={() => setStep(3)} className='card1 d-flex rounded curser-pointer'>
                   <div>
-                    <h1 className='dash_card_head'>{dashboarddetails.Compliance}</h1>
+                    <h1 className='dash_card_head mb-0'>{dashboarddetails.Compliance}</h1>
                     <p className='dash_card_para'>Compliances</p>
                   </div>
-                  <div className='dash_card_icon_div'>
+                  <div className='dash_card_icon_div rounded-circle'>
                     <MdStickyNote2 className='icon' />
                   </div>
                 </div>
-                <div onClick={() => setStep(4)} className='card1' id="card14">
+                <div onClick={() => setStep(4)} className='card1 d-flex rounded curser-pointer'>
                   <div >
-                    <h1 className='dash_card_head'>{dashboarddetails.Ticket}</h1>
+                    <h1 className='dash_card_head mb-0'>{dashboarddetails.Ticket}</h1>
                     <p className='dash_card_para'>Tickets</p>
                   </div>
-                  <div className='dash_card_icon_div'>
+                  <div className='dash_card_icon_div rounded-circle'>
                     <FaTicketAlt className='icon' />
                   </div>
-                  {showStep(currentStep)}
                 </div>
               </div>
+              {showStep(currentStep)}
               </div>
 
           </Sidebar>
