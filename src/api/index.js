@@ -1147,3 +1147,15 @@ export const UpdateVendorPayment = async (org,paymentdetail,paymentamt,paymentda
     const url = `https://drizzlebackend.awlworldwide.com/api/UpdateVendorPayment`
     return axios.post(url, {org, paymentdetail,paymentamt,paymentdate,remark,sno }).then(response => response.data).catch(error => console.log(error));
 }
+
+// Dashboard 
+
+export const DashboarDetails = async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/dashboard_details`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const DashboarProcedure = async (type) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/dashboard_procedure`
+    return axios.post(url, { type }).then(response => response.data).catch(error => console.log(error));
+}

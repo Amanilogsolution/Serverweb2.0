@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './AssetsDash.css'
 import { BarChart, PieChart, Pie, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, } from "recharts";
+import {DashboarProcedure} from '../../../api/index'
 
 export default function AssetsDash() {
+  const [Assetsdata,setAssetData] = useState({
+    "TotalAsset":0,
+    "ActiveAsset":0,
+    "RentalAssets":0,
+    "RentMonth":0,
+    "PurchaseVal":0
+  })
+  useEffect(()=>{
+    const fetch = async() =>{
+      const type = 'Asset'
+      const result = await DashboarProcedure(type)
+      setAssetData({...Assetsdata,TotalAsset:result[0][0].TotalDevice,ActiveAsset:result[1][0].ActiveDevice,RentalAssets:result[2][0].RentalDevice,RentMonth:result[3][0].rent,PurchaseVal:result[4][0].purchase})
+      console.log(result)
+    }
+    fetch()
+  },[])
   const data02 = [
     {
       "name": "Group A",
@@ -116,37 +133,37 @@ export default function AssetsDash() {
         <div style={{ width: "50%" }}>
           <div className='Asset_card'>
             <p>Total Devices</p>
-            <h1 style={{ marginTop: "-10px" }}>3700</h1>
+            <h1 style={{ marginTop: "-10px" }}>{Assetsdata.TotalAsset}</h1>
           </div>
           <div className='Asset_card'>
             <p>Active Devices</p>
-            <h1 style={{ marginTop: "-10px" }}>993</h1>
+            <h1 style={{ marginTop: "-10px" }}>{Assetsdata.ActiveAsset}</h1>
           </div>
           <div className='Asset_card'>
             <p>Rental Devices</p>
-            <h1 style={{ marginTop: "-10px" }}>993</h1>
+            <h1 style={{ marginTop: "-10px" }}>{Assetsdata.RentalAssets}</h1>
           </div>
         </div>
         <div style={{ width: "50%" }}>
           <div className='Asset_card2'>
             <p>Asset Value</p>
-            <h5 style={{ marginTop: "-14px" }}>$ 71,06,321</h5>
+            <h5 style={{ marginTop: "-14px" }}>₹ {Assetsdata.PurchaseVal}</h5>
           </div>
           <div className='Asset_card2'>
             <p>Rental / Month</p>
-            <h5 style={{ marginTop: "-14px" }}>$ 62,36,31</h5>
+            <h5 style={{ marginTop: "-14px" }}>₹ {Assetsdata.RentMonth}</h5>
           </div>
           <div className='Asset_card2'>
             <p>MS OS</p>
-            <h5 style={{ marginTop: "-14px" }}>204</h5>
+            <h5 style={{ marginTop: "-14px" }}>0</h5>
           </div>
           <div className='Asset_card2'>
             <p>MS OS</p>
-            <h5 style={{ marginTop: "-14px" }}>171</h5>
+            <h5 style={{ marginTop: "-14px" }}>0</h5>
           </div>
           <div className='Asset_card2'>
             <p>MS OS</p>
-            <h5 style={{ marginTop: "-14px" }}>175</h5>
+            <h5 style={{ marginTop: "-14px" }}>0</h5>
           </div>
         </div>
       </div>

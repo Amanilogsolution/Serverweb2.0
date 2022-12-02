@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import Sidebar from '../../Sidebar/Sidebar';
 import './Dashboard.css'
 import { BsLaptopFill } from 'react-icons/bs';
@@ -9,10 +9,26 @@ import AssetsDash from './AssetsDash'
 import VendorDash from './VendorDash'
 import Compliance from './Compliance'
 import TickteDash from './TicketDash'
+import {DashboarDetails} from '../../../api/index'
 
 
 const Dashboard = () => {
   const [currentStep, setStep] = useState(1);
+  const [dashboarddetails,setDashboarddetails] = useState({
+    "Assetdata":0,
+    "Vendordata":0,
+    "Compliance":0,
+    "Ticket":0,
+  })
+  useEffect(()=>{
+    const fetch = async() =>{
+      const org = sessionStorage.getItem('Database')
+
+      const result = await DashboarDetails(org)
+      setDashboarddetails({...dashboarddetails,Assetdata:result.Assets.asset,Vendordata:result.Vendor.Vendor_code,Ticket:result.Ticket.ticket})
+    }
+    fetch();
+  },[])
 
   const showStep = (step) => {
     switch (step) {
@@ -35,7 +51,7 @@ const Dashboard = () => {
           <div className='dashboard_cards'>
             <div onClick={() => setStep(1)} className='card1' id="card11">
               <div>
-                <h1 className='dash_card_head'>453</h1>
+                <h1 className='dash_card_head'>{dashboarddetails.Assetdata}</h1>
                 <p className='dash_card_para'>Assets</p>
               </div>
               <div className='dash_card_icon_div'>
@@ -44,7 +60,7 @@ const Dashboard = () => {
             </div>
             <div onClick={() => setStep(2)} className='card1' id="card12">
               <div>
-                <h1 className='dash_card_head'>258</h1>
+                <h1 className='dash_card_head'>{dashboarddetails.Vendordata}</h1>
                 <p className='dash_card_para'>Vendors</p>
               </div>
               <div className='dash_card_icon_div'>
@@ -53,7 +69,7 @@ const Dashboard = () => {
             </div>
             <div onClick={() => setStep(3)} className='card1' id="card13">
               <div>
-                <h1 className='dash_card_head'>54</h1>
+                <h1 className='dash_card_head'>{dashboarddetails.Compliance}</h1>
                 <p className='dash_card_para'>Compliances</p>
               </div>
               <div className='dash_card_icon_div'>
@@ -62,7 +78,7 @@ const Dashboard = () => {
             </div>
             <div onClick={() => setStep(4)} className='card1' id="card14">
               <div >
-                <h1 className='dash_card_head'>336</h1>
+                <h1 className='dash_card_head'>{dashboarddetails.Ticket}</h1>
                 <p className='dash_card_para'>Tickets</p>
               </div>
               <div className='dash_card_icon_div'>
