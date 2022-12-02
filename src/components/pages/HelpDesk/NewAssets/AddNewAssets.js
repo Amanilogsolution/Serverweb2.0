@@ -4,7 +4,7 @@ import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { FaMinusCircle } from 'react-icons/fa'
 
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi,InsertAssetSubCode } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Select from 'react-select';
 import { GrFormClose } from "react-icons/gr"
@@ -139,7 +139,7 @@ const AddNewAssets = () => {
     const handleToggleSoftware = async (e) => {
         const devicetype = e.target.value;
         console.log(devicetype)
-        if (devicetype === 'Laptops') {
+        if (devicetype === 'Laptop') {
             document.getElementById('softwarediv').style.display = 'block'
         }
         else {
@@ -206,7 +206,7 @@ const AddNewAssets = () => {
         }
         else {
             let errorcount = 0;
-            if (asset_type === 'Laptops') {
+            if (asset_type === 'Laptop') {
                 if (softwares.length === 0) {
                     setLoading(true)
                     setDatas({ ...datas, message: "Please enter the Software Field", title: "Error", type: "warning", route: "#", toggle: "true" })
@@ -255,13 +255,13 @@ const AddNewAssets = () => {
             }
 
             if (errorcount === 0) {
-                if (asset_type === 'Laptops') {
+                if (asset_type === 'Laptop') {
+                    const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
+                    model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
+                    rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
                     softwares.forEach(async (datas) => {
                         const software = datas.value
-                         await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, software,
-                            model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
-                            rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
-
+                         await InsertAssetSubCode(org, asset_id,assetetag,software )
                     })
                     setLoading(true)
                     setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true" })
