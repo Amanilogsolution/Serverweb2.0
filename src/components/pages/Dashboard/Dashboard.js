@@ -7,7 +7,7 @@ import { FaTicketAlt } from 'react-icons/fa';
 import { MdStickyNote2 } from 'react-icons/md';
 import AssetsDash from './AssetsDash'
 import VendorDash from './VendorDash'
-import Compliance from './Compliance'
+import Outstanding from './Outstanding/Outstanding'
 import TickteDash from './TicketDash'
 import LoadingPage from '../../LoadingPage/LoadingPage';
 
@@ -27,7 +27,7 @@ const Dashboard = () => {
       case 2:
         return <VendorDash />
       case 3:
-        return <Compliance />
+        return <Outstanding />
       case 4:
         return <TickteDash />
       default:
@@ -64,7 +64,7 @@ const Dashboard = () => {
                 <div onClick={() => setStep(3)} className='card1  d-flex rounded curser-pointer'  >
                   <div>
                     <h1 className='dash_card_head mb-0'>54</h1>
-                    <p className='dash_card_para'>Compliances</p>
+                    <p className='dash_card_para'>Outstanding</p>
                   </div>
                   <div className='dash_card_icon_div rounded-circle'>
                     <MdStickyNote2 className='icon' />

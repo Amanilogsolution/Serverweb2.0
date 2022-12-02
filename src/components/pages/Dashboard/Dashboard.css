@@ -10,6 +10,7 @@
     transition: transform .2s;
     padding: 8px 10px;
     position: relative;
+    border: 2px solid red;
 }
  
 .dash_card_head {
@@ -64,8 +65,20 @@
     }
 
     .dashboard_cards .card1 {
-        width: 98%;
+        width: 22%;
         margin: 10px 0;
+        border: 2px solid black;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .dash_card_icon_div {
+        height: 44px;
+        width: 44px;
+        position: absolute;
+        right: 5%;
+    }
+    .dash_card_icon_div .icon {
+        font-size: 23px;
     }
 }
 
