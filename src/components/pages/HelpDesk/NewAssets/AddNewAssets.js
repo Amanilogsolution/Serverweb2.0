@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { FaMinusCircle } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi } from '../../../../api'
+
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi,InsertAssetSubCode } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Select from 'react-select';
 import { GrFormClose } from "react-icons/gr"
@@ -263,12 +263,12 @@ const AddNewAssets = () => {
 
             if (errorcount === 0) {
                 if (asset_type === 'Laptop') {
+                    const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
+                    model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
+                    rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
                     softwares.forEach(async (datas) => {
                         const software = datas.value
-                        await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, software,
-                            model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
-                            rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
-
+                         await InsertAssetSubCode(org, asset_id,assetetag,software )
                     })
                     document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
