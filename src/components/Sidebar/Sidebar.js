@@ -49,6 +49,7 @@ const Sidebar = ({ children }) => {
 
         }
     };
+  
 
     const icononstyle = {
         transform: "rotate(-180deg)",
@@ -85,6 +86,7 @@ const Sidebar = ({ children }) => {
         setToggleinnermain(!toggleinnermain);
     };
     const handleinnertoggledrizzle = () => {
+        setIsOpen(true)
         if (!toggleinnerdrizzle) {
             document.getElementById("innerdrizzle").style.display = "block";
             document.getElementById("subhelpdeskinner").style.display = "none";
@@ -110,6 +112,7 @@ const Sidebar = ({ children }) => {
 
 
     const handleinnertogglehelpdesk = () => {
+        setIsOpen(true)
         if (!togglesubtickets) {
             document.getElementById("subhelpdeskinner").style.display = "block";
             document.getElementById("innerdrizzle").style.display = "none";
