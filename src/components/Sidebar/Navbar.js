@@ -32,7 +32,7 @@ const Navbar = (propes) => {
             <div className="navbarcontainer bg-white mb-3 d-flex " style={navheight} >
             {propes.isOpen?
                 <h5 style={{ color: "#603AE9",margin:"7px" }}>Drizzle
-                </h5>:<img src={DrizzleLogo} style={{height:"80%"}}/>}
+                </h5>:<img src={DrizzleLogo} style={{height:"80%"}} alt='Drizzle Landing Page'/>}
 
                 <div className=" dropdown show w-100">
                    <a className=" " href="/rofile" role="button" id="dropdownMenuLink" 

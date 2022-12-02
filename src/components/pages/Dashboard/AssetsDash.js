@@ -21,7 +21,7 @@ export default function AssetsDash() {
     fetch()
   },[])
   const data02 = [
-    {
+    { 
       "name": "Group A",
       "value": 2400
     },
@@ -48,83 +48,48 @@ export default function AssetsDash() {
   ];
   const chartData = [
     { Location: "WH", Assets: 60 },
-
     { Location: "HO", Assets: 150 },
-
     { Location: "Bhiwandi", Assets: 390 },
-
     { Location: "Mumbai", Assets: 231 },
-
     { Location: "Nagpur", Assets: 301 },
-
     { Location: "Banglore", Assets: 200 },
     { Location: "WH", Assets: 60 },
-
     { Location: "HO", Assets: 150 },
-
     { Location: "Bhiwandi", Assets: 390 },
-
     { Location: "Mumbai", Assets: 231 },
-
     { Location: "Nagpur", Assets: 301 },
-
     { Location: "Banglore", Assets: 200 },
     { Location: "WH", Assets: 60 },
-
     { Location: "HO", Assets: 150 },
-
     { Location: "Bhiwandi", Assets: 390 },
-
     { Location: "Mumbai", Assets: 231 },
-
     { Location: "Nagpur", Assets: 301 },
-
     { Location: "Banglore", Assets: 200 },
     { Location: "WH", Assets: 60 },
-
     { Location: "HO", Assets: 150 },
-
     { Location: "Bhiwandi", Assets: 390 },
-
     { Location: "Mumbai", Assets: 231 },
-
     { Location: "Nagpur", Assets: 301 },
-
     { Location: "Banglore", Assets: 200 }
   ];
   const chartData2 = [
     { softwareName: "Windows", softwares: 200 },
-
     { softwareName: "Seqrite", softwares: 410 },
-
     { softwareName: "SQL Manag.", softwares: 300 },
-
     { softwareName: "Vs Code", softwares: 325 },
-
     { softwareName: "Sep14", softwares: 225 },
-
     { softwareName: "Linux", softwares: 400 },
     { softwareName: "Windows", softwares: 200 },
-
     { softwareName: "Seqrite", softwares: 100 },
-
     { softwareName: "SQL Manag.", softwares: 300 },
-
     { softwareName: "Vs Code", softwares: 325 },
-
     { softwareName: "Sep14", softwares: 590 },
-
     { softwareName: "Linux", softwares: 400 },
     { softwareName: "Windows", softwares: 200 },
-
     { softwareName: "Seqrite", softwares: 410 },
-
     { softwareName: "SQL Manag.", softwares: 360 },
-
     { softwareName: "Vs Code", softwares: 23 },
-
     { softwareName: "Sep14", softwares: 225 },
-
     { softwareName: "Linux", softwares: 400 }
   ];
   return (
@@ -169,7 +134,7 @@ export default function AssetsDash() {
       </div>
       <div className='for_graph'>
         <div className='bar_location'>
-          <p style={{ background: "rgb(18, 22, 33)", color: "white", padding: "0 20px" }}>IT Asset Allotment Summary</p>
+          <p className='bg-dark text-white px-4'>IT Asset Allotment Summary</p>
           <ResponsiveContainer width="100%" aspect={5.4}>
             <BarChart data={chartData} margin={{ top: 20, right: 45 }}>
               <CartesianGrid />
@@ -181,17 +146,19 @@ export default function AssetsDash() {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <div className='graph_2nd_row'>
+        <div className='graph_2nd_row d-flex justify-content-center' >
           <div className='manufacturer_graph'>
-            <p style={{ background: "rgb(18, 22, 33)", color: "white", padding: "0 20px", margin: "0 3px 0 0" }}>Manufacturer</p>
+            <p className='bg-dark text-white px-4 mx-2'>Manufacturer</p>
             <ResponsiveContainer width="100%" aspect={1.8}>
               <PieChart width={730} height={250}>
+                <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
+                <Tooltip />
                 <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={45} outerRadius={66} fill="rgb(94, 4, 69)" label />
               </PieChart>
             </ResponsiveContainer>
           </div>
           <div className='software_graph'>
-            <p style={{ background: "rgb(18, 22, 33)", color: "white", padding: "0 20px" }}>Software</p>
+            <p className='bg-dark text-white px-4'>Software</p>
             <ResponsiveContainer width="100%" aspect={3}>
               <LineChart data={chartData2} margin={{ top: 20, right: 45 }}>
                 <CartesianGrid />
@@ -212,5 +179,8 @@ export default function AssetsDash() {
         </div>
       </div>
     </div>
+
   )
 }
+
+// export default AssetsDash;

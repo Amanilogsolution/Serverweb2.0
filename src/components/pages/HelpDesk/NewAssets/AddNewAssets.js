@@ -6,7 +6,6 @@ import { FaMinusCircle } from 'react-icons/fa'
 
 import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import { GiLuger } from 'react-icons/gi';
 import Select from 'react-select';
 import { GrFormClose } from "react-icons/gr"
 
@@ -259,7 +258,7 @@ const AddNewAssets = () => {
                 if (asset_type === 'Laptops') {
                     softwares.forEach(async (datas) => {
                         const software = datas.value
-                        const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, software,
+                         await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, software,
                             model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                             rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
 

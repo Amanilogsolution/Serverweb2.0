@@ -4,7 +4,6 @@ import './VendorPayment.css'
 import { PendingVendorInvoice, UpdateVendorInvoice } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Select from 'react-select';
 import Snackbar from '../../../../Snackbar/Snackbar';
 
 function AddVendorPayment() {
@@ -147,7 +146,6 @@ function AddVendorPayment() {
     const handleChnageVendorDetail = async (index, e) => {
         const val = e;
         const toindex = val.indexOf(",")
-        const vebndconid = val.slice(0, toindex)
         document.getElementById(`invamt-${index}`).value = val.slice(toindex + 1)
 
         let val2 = document.getElementById(`invno-${index}`);

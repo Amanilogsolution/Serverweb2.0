@@ -61,7 +61,7 @@ function TotalServiceActionType() {
                     const status = e.target.value;
                     const org = sessionStorage.getItem('Database')
 
-                    const result = await DeleteServiceActionTypeStatus(org,status, row.sno)
+                     await DeleteServiceActionTypeStatus(org,status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>

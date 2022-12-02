@@ -30,12 +30,9 @@ const Login = () => {
     if (!user_id || !password) {
       setLoading(true)
       document.getElementById('emptyVal').style.display = 'flex'
-
-
     }
     else {
       const result = await UserLogin(user_id, password);
-      console.log(result)
       if (result.status === 'Success') {
         sessionStorage.setItem('UserName', result.name);
         sessionStorage.setItem('UserId', result.user_id);
@@ -49,8 +46,6 @@ const Login = () => {
         setTimeout(() => {
           document.getElementById('validVal').style.display = 'flex'
         }, 1000)
-
-
       }
 
     }
@@ -59,8 +54,8 @@ const Login = () => {
 
   const styleheight = {
     minHeight: "71vh"
-
   }
+  
   return (
     <>
       {
@@ -70,7 +65,7 @@ const Login = () => {
             <div className="container-fluid " style={styleheight}>
               <div className="row d-flex justify-content-center align-items-center h-100 pb-5 pt-5">
                 <div className="col-md-9 col-lg-6 col-xl-5">
-                  <img src={Loginimg} className="img-fluid" alt="Login " loading="lazy"/>
+                  <img src={Loginimg} className="img-fluid" alt="Login " loading="lazy" />
                 </div>
                 <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                   <form autoComplete='off'>

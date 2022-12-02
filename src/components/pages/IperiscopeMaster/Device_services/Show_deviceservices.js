@@ -73,7 +73,7 @@ function Show_deviceservices() {
             cell: (row) => [
                 <select onChange={async (e) => {
                     e.preventDefault();
-                    const result = await Updatestatusdeviceservices(e.target.value, row.sno);
+                    await Updatestatusdeviceservices(e.target.value, row.sno);
                     window.location.reload();
                 }}>
                     <option hidden value={row.status}>{row.status}</option>

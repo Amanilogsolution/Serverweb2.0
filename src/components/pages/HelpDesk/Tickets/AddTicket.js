@@ -49,7 +49,8 @@ export default function AddTicket() {
             const countTickets = await CountTickets(org)
             let count = Number(countTickets[0].count);
             count = count + 1 + ''
-            document.getElementById('assignticket').value = 'Ticket' + '-' + count.padStart(5, '0');
+            const val='Ticket' + '-' + count.padStart(5, '0');
+            document.getElementById('assignticket').value = val
         }
         fetchdata();
         todaydate()

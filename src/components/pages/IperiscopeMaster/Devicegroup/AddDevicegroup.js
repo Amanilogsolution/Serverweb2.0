@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import { Adddevicegroup, ActiveSeries, TotalCount } from '../../../../api'
-// import './AddDeviceGroup.css'
 
 function AddDevicegroup() {
     const [agentgroupid, setAgentGroupID] = useState()
