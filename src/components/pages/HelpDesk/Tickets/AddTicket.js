@@ -121,6 +121,7 @@ export default function AddTicket() {
 
             const result = await InsertTicket(org,employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id)
+                console.log(result)
             if (result === 'Data Added') {
                 setDatas({ ...datas, message: "Ticket Added", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

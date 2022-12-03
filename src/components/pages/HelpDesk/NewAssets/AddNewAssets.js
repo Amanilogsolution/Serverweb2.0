@@ -263,6 +263,8 @@ const AddNewAssets = () => {
 
             if (errorcount === 0) {
                 if (asset_type === 'Laptop') {
+                    setLoading(true)
+
                     const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
                     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
@@ -271,7 +273,7 @@ const AddNewAssets = () => {
                          await InsertAssetSubCode(org, asset_id,assetetag,software )
                     })
                     document.getElementById('subnitbtn').disabled = false
-                    setLoading(true)
+                    // setLoading(true)
                     setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true", showbtn: 'true' })
                     document.getElementById('snackbar').style.display = "block"
 
