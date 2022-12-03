@@ -174,10 +174,8 @@ const EditAsset = () => {
 
     const handleUpdateData = async (e) => {
         e.preventDefault();
-        document.getElementById('subnitbtn').disabled = 'true'
-
         setLoading(false)
-
+        document.getElementById('subnitbtn').disabled = 'true'
         const asset_type = document.getElementById('asset_type').value;
         const assetetag = document.getElementById('assetetag').value;
         let software = document.getElementById('software').value;

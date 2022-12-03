@@ -49,7 +49,7 @@ export default function AddTicket() {
             const countTickets = await CountTickets(org)
             let count = Number(countTickets[0].count);
             count = count + 1 + ''
-            const val='Ticket' + '-' + count.padStart(5, '0');
+            const val = 'Ticket' + '-' + count.padStart(5, '0');
             document.getElementById('assignticket').value = val
         }
         fetchdata();
@@ -70,7 +70,7 @@ export default function AddTicket() {
         let employee_id = e.target.value;
         const org = sessionStorage.getItem('Database')
 
-        const detail = await EmployeesDetail(org,employee_id);
+        const detail = await EmployeesDetail(org, employee_id);
         setEmployeedetail(detail)
 
         const assetall = await GetNewAssetAssign(org, employee_id)
@@ -85,11 +85,14 @@ export default function AddTicket() {
     const handleSaveTicket = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
+
         let employee_id = document.getElementById('employee');
         const employee_name = employee_id.options[employee_id.selectedIndex].text;
         employee_id = employee_id.value;
 
         let assettype = document.getElementById('assettype');
+        const assetval = assettype.value;
 
         assettype = assettype.options[assettype.selectedIndex].text;
         assettype = assettype.split(",")
@@ -109,9 +112,10 @@ export default function AddTicket() {
         const org = sessionStorage.getItem('Database')
 
         const user_id = sessionStorage.getItem('UserId')
-        
-        if (!employee_id || !assettype || !location || !ticketstatus || !ticketsubject) {
+
+        if (!employee_id || !assetval || !location || !ticketstatus || !ticketsubject) {
             setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
             return false;
@@ -119,13 +123,15 @@ export default function AddTicket() {
         else {
             setLoading(true)
 
-            const result = await InsertTicket(org,employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
+            const result = await InsertTicket(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id)
+                console.log(result)
             if (result === 'Data Added') {
                 setDatas({ ...datas, message: "Ticket Added", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

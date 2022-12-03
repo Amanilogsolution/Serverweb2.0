@@ -13,13 +13,13 @@ function AddAssetType() {
         title: "title",
         type: "type",
         route: "#",
-        toggle:"true",
+        toggle: "true",
     })
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
         setLoading(false)
-        
+        document.getElementById('subnitbtn').disabled = 'true'
         // const software = document.getElementById('software').checked=== true?true:false;
         const asset_type = document.getElementById('asset_type').value;
         const assettype_id = asset_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
@@ -30,26 +30,27 @@ function AddAssetType() {
         // console.log(software)
         if (!asset_type) {
             setLoading(true)
-
-            setDatas({...datas,message:"Please enter the Asset Type",title:"Error",type:"warning",route:"#",toggle:"true"})
-            document.getElementById('snackbar').style.display="block"
+            document.getElementById('subnitbtn').disabled = false
+            setDatas({ ...datas, message: "Please enter the Asset Type", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
-        setLoading(true)
-        const org = sessionStorage.getItem('Database')
-
-            const result = await AddAssetTypeapi(org,assettype_id, asset_type, asset_type_desc, username);
+            setLoading(true)
+            const org = sessionStorage.getItem('Database')
+            const result = await AddAssetTypeapi(org, assettype_id, asset_type, asset_type_desc, username);
             if (result === 'Added') {
-                setDatas({...datas,message:"Asset Type Added",title:"success",type:"success",route:"/TotalAssetType",toggle:"true"})
-                document.getElementById('snackbar').style.display="block"
-             }
-            else if(result === 'Already'){
-                setDatas({...datas,message:"This Asset Already Exist",title:"warning",type:"Error"})
-                document.getElementById('snackbar').style.display="block" 
+                setDatas({ ...datas, message: "Asset Type Added", title: "success", type: "success", route: "/TotalAssetType", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
+            }
+            else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
+                setDatas({ ...datas, message: "This Asset Already Exist", title: "warning", type: "Error" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/AddAssetType",toggle:"true"})
-                document.getElementById('snackbar').style.display="block"  
+                document.getElementById('subnitbtn').disabled = false
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddAssetType", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -60,9 +61,9 @@ function AddAssetType() {
                 loading ?
                     <Sidebar >
 
-                         <div id="snackbar" style={{display:"none"}}>
-                                <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle}/> 
-                            </div>
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
+                        </div>
 
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>

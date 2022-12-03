@@ -18,32 +18,40 @@ function AddContractType() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        // setLoading(false)
+        setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
+
         const contract_type = document.getElementById('contract_type').value;
         const contract_type_id = contract_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
         const username = sessionStorage.getItem('UserId');
         const org = sessionStorage.getItem('Database')
 
-        console.log('outer', contract_type)
 
         if (!contract_type) {
             setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
+
             setDatas({ ...datas, message: "Please enter Contract Type", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
         else {
             setLoading(true)
-            const result = await InsertContractType(org,contract_type_id, contract_type, remark, username);
+            const result = await InsertContractType(org, contract_type_id, contract_type, remark, username);
+           
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Contract Type Added", title: "success", type: "success", route: "/TotalContractType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
+
                 setDatas({ ...datas, message: "Contract Type Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
+
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddContractType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

@@ -16,8 +16,8 @@ function AddVendorInvoice() {
     const [arry, setArry] = useState([0]);
     const [arryval, setArryval] = useState([{}]);
     const [vendorcontractlist, setVendorcontractlist] = useState([])
-    const [Vendorname,setVendorname] = useState([])
-      const [datas, setDatas] = useState({
+    const [Vendorname, setVendorname] = useState([])
+    const [datas, setDatas] = useState({
         message: "abc",
         title: "title",
         type: "type",
@@ -37,7 +37,7 @@ function AddVendorInvoice() {
         fetchdata();
     }, [])
 
-    let options= vendorcontractlist.map((ele) => {
+    let options = vendorcontractlist.map((ele) => {
         return { value: `${ele.sno},${ele.vendor}`, label: `${ele.vendor}, ${ele.reference_no}` };
     })
     const todaydate = () => {
@@ -64,7 +64,7 @@ function AddVendorInvoice() {
             setCount(val.length);
             setArry(val);
 
-            let objval=[...arryval] ;
+            let objval = [...arryval];
             objval.pop();
             setArryval(objval)
 
@@ -100,21 +100,25 @@ function AddVendorInvoice() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
+        setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
         const org = sessionStorage.getItem('Database')
 
-        setLoading(false)
         let errorcount = 0;
         for (let i = 0; i < arryval.length; i++) {
             if (!arryval[i]) {
                 setLoading(true)
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Please Select the vendor", title: "warning", type: "warning", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
 
             }
-            else if(!arryval[i].vendor){
+            else if (!arryval[i].vendor) {
                 setLoading(true)
+                document.getElementById('subnitbtn').disabled = false
+
                 setDatas({ ...datas, message: "Please Select the vendor", title: "warning", type: "warning", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
@@ -122,6 +126,8 @@ function AddVendorInvoice() {
             }
             else if (!arryval[i].invno || !arryval[i].invamt) {
                 setLoading(true)
+                document.getElementById('subnitbtn').disabled = false
+
                 setDatas({ ...datas, message: "Please enter the Mandatory field", title: "warning", type: "warning", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
@@ -131,20 +137,23 @@ function AddVendorInvoice() {
         }
         if (errorcount === 0) {
             setLoading(true)
-            const result = await InsertVendorInvoice(org,arryval, sessionStorage.getItem('UserId'))
-         
-            if(result==='Data Added'){
+
+            const result = await InsertVendorInvoice(org, arryval, sessionStorage.getItem('UserId'))
+
+            if (result === 'Data Added') {
                 setDatas({ ...datas, message: "Vendor Invoice Added", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
-            else{ 
+            else {
+                document.getElementById('subnitbtn').disabled = false
+
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
 
         }
 
-    
+
 
     }
 
@@ -156,7 +165,7 @@ function AddVendorInvoice() {
         Vendorname[e.Index] = toindex[1]
         console.log(toindex[1])
         const vebndconid = toindex[0]
-        const detail = await VendorContractDetail(org,vebndconid);
+        const detail = await VendorContractDetail(org, vebndconid);
         document.getElementById(`accountno-${e.Index}`).value = detail.customer_account_no;
         document.getElementById(`refno-${e.Index}`).value = detail.reference_no;
     }
@@ -167,7 +176,7 @@ function AddVendorInvoice() {
             {
                 loading ?
                     <Sidebar>
-                    <div id="snackbar" style={{ display: "none" }}>
+                        <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
                         <div className='main_container pb-2'>
@@ -175,7 +184,7 @@ function AddVendorInvoice() {
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Invoice</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Invoice</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorInvoice' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className=" card contract-div" style={{ width: "98%",minHeight:"62vh"}}>
+                            <div className=" card contract-div" style={{ width: "98%", minHeight: "62vh" }}>
                                 <header className="card-header d-flex justify-content-between" >
                                     <h5 >Add Vendor Invoice</h5>
                                     <div>
@@ -184,7 +193,7 @@ function AddVendorInvoice() {
                                     </div>
                                 </header>
                                 <article className="card-body" >
-                                    <form className='invoice-form' autoComplete='off' style={{minHeight:"62vh"}}>
+                                    <form className='invoice-form' autoComplete='off' style={{ minHeight: "62vh" }}>
                                         <table className="table table-bordered" >
                                             <thead>
 
@@ -206,10 +215,10 @@ function AddVendorInvoice() {
                                                 {arry.map((item, index) => (
                                                     <tr key={index}>
                                                         <td className='p-0 invoice-td'>
-                                                        <Select options={options} className="col" isMulti={false} 
-                                                         onBlur={() => savatoarry(index)}
-                                                        onChange={(e)=>handleChnageVendorDetail({...e,Index:index})}
-                                                         />
+                                                            <Select options={options} className="col" isMulti={false}
+                                                                onBlur={() => savatoarry(index)}
+                                                                onChange={(e) => handleChnageVendorDetail({ ...e, Index: index })}
+                                                            />
 
                                                             {/* <select type='text' id={`vendor-${index}`} className='form-select m-0 invoice-inp' onChange={(e) => handleChnageVendorDetail(index, e.target.value)} onBlur={() => savatoarry(index)}>
                                                                 <option value='' hidden>Select</option>
@@ -241,9 +250,9 @@ function AddVendorInvoice() {
                                     </form>
                                 </article>
                             </div>
-                         </div>
+                        </div>
                     </Sidebar>
-                : <LoadingPage/>
+                    : <LoadingPage />
             }
         </>
     )

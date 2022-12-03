@@ -33,7 +33,7 @@ function AddVendorSubCategory() {
     const handleinsertdata = async (e) => {
         e.preventDefault();
         setLoading(false)
-
+        document.getElementById('subnitbtn').disabled = 'true'
         const vendor_category = document.getElementById('vendor_category').value;
         const vend_sub_cate_id = vendor_category.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const vendor_sub_category = document.getElementById('vendor_sub_category').value;
@@ -41,24 +41,27 @@ function AddVendorSubCategory() {
         const username = sessionStorage.getItem('UserId');
         const org = sessionStorage.getItem('Database')
 
-        setLoading(true)
 
         if (!vendor_category || !vendor_sub_category) {
+            setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
         else {
             setLoading(true)
-            const result = await InsertVendSubCate(org,vend_sub_cate_id, vendor_category, vendor_sub_category, remark, username);
+            const result = await InsertVendSubCate(org, vend_sub_cate_id, vendor_category, vendor_sub_category, remark, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Vendor Sub Category Added", title: "success", type: "success", route: "/TotalVendSubCate", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Vendor Sub Category Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddVendSubCate", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

@@ -29,7 +29,8 @@ function EditAssetType() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-  
+        setLoading(true)
+        document.getElementById('subnitbtn').disabled = 'true'
         const asset_type = document.getElementById('asset_type').value;
         const asset_type_desc = document.getElementById('asset_type_desc').value;
         const username = sessionStorage.getItem('UserName');
@@ -39,6 +40,7 @@ function EditAssetType() {
 
         if (!asset_type) {
             setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({...datas,message:"Please enter the Asset Type",title:"warning",type:"Error"})
             document.getElementById('snackbar').style.display="block"    
         }
@@ -54,6 +56,7 @@ function EditAssetType() {
       
               }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/EditAssetType"})
                 document.getElementById('snackbar').style.display="block"   
             }

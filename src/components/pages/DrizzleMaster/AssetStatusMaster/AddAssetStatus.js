@@ -20,6 +20,7 @@ function AddAssetStatus() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = 'true'
         setLoading(false)
         const asset_status = document.getElementById('asset_status').value;
         const assetstatus_id = asset_status.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
@@ -29,6 +30,7 @@ function AddAssetStatus() {
         setLoading(true)
 
         if (!asset_status) {
+            document.getElementById('subnitbtn').disabled = false
             setDatas({...datas,message:"Please enter the Asset Status",title:"Error",type:"warning",route:"#",toggle:"true"})
             document.getElementById('snackbar').style.display="block"
 

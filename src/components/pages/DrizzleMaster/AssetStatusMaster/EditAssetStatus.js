@@ -32,6 +32,7 @@ function EditAssetStatus() {
     const handleadddevice = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled ='true'
         const asset_status = document.getElementById('asset_status').value;
         const asset_status_desc = document.getElementById('asset_status_desc').value;
         const username = sessionStorage.getItem('UserId');
@@ -39,6 +40,7 @@ function EditAssetStatus() {
         setLoading(true)
 
         if (!asset_status) {
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter the Asset Status", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
@@ -53,10 +55,12 @@ function EditAssetStatus() {
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: " Asset Status Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditAssetStatus", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

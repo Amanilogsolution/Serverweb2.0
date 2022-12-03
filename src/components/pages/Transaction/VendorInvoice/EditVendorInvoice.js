@@ -42,16 +42,15 @@ function EditVendorInvoice() {
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
         setLoading(false)
-        let vendor = document.getElementById('vendor').value;
+        document.getElementById('subnitbtn').disabled = 'true'
 
+        let vendor = document.getElementById('vendor').value;
         const val = vendor;
         const toindex = val.indexOf(",")
         vendor = val.slice(toindex + 1)
-
         const accountno = document.getElementById('accountno').value;
         const invno = document.getElementById('invno').value;
         const invamt = document.getElementById('invamt').value;
-
         const invdate = document.getElementById('invdate').value;
         const invduedate = document.getElementById('invduedate').value;
         const invsubdate = document.getElementById('invsubdate').value;
@@ -60,12 +59,10 @@ function EditVendorInvoice() {
         const printercount = document.getElementById('printercount').value;
         const sno = sessionStorage.getItem('vendorinvoicesno')
         const org = sessionStorage.getItem('Database')
-        console.log(sno)
-
-
 
         if (!vendor || !invamt || !invno ) {
             setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "warning", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
             return false;
@@ -79,6 +76,7 @@ function EditVendorInvoice() {
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
