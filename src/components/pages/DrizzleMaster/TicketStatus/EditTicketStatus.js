@@ -21,7 +21,7 @@ function EditTicketStatus() {
         const fetchdata = async () => {
             const org = sessionStorage.getItem('Database')
 
-            const result = await GetTicketstatus(org,sessionStorage.getItem('ticketstatussno'))
+            const result = await GetTicketstatus(org, sessionStorage.getItem('ticketstatussno'))
             setData(result[0]);
             setLoading(true)
 
@@ -32,34 +32,34 @@ function EditTicketStatus() {
     const handleUpdateContractType = async (e) => {
         e.preventDefault();
         setLoading(false)
-
+        document.getElementById('subnitbtn').disabled = 'true'
         const ticket_status = document.getElementById('ticket_status').value;
         const remark = document.getElementById('remark').value;
-
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('ticketstatussno')
         const org = sessionStorage.getItem('Database')
 
-        setLoading(true)
-
         if (!ticket_status) {
+            setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter Ticket Status", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
-
         }
         else {
             setLoading(true)
-            const result = await UpdateTicketstatus(org,sno, ticket_status, remark, username);
+            const result = await UpdateTicketstatus(org, sno, ticket_status, remark, username);
             if (result === 'Updated') {
                 sessionStorage.removeItem('ticketstatussno');
                 setDatas({ ...datas, message: "Ticket Status Updated", title: "success", type: "success", route: "/TotalTicketStatus", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Ticket Status Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditTicketStatus", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

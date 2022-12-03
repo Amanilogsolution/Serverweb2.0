@@ -38,7 +38,8 @@ function AddLocation() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        // setLoading(false)
+        setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
         const company = document.getElementById('company').value;
         const locationcode = document.getElementById('locationcode').value;
         const locationname = document.getElementById('locationname').value;
@@ -61,6 +62,7 @@ function AddLocation() {
         setLoading(true)
 
         if (!company || !locationcode || !locationname || !address1 || !city || !state || !pincode || !contactpersonname || !email || !contNum) {
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter All mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
@@ -76,10 +78,12 @@ function AddLocation() {
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Location Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddLocation", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

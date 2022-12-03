@@ -21,7 +21,7 @@ function EditIssueType() {
         const fetchdata = async () => {
             const org = sessionStorage.getItem('Database')
 
-            const result = await GetIssueType(org,sessionStorage.getItem('IssueTypesno'))
+            const result = await GetIssueType(org, sessionStorage.getItem('IssueTypesno'))
             setData(result[0]);
             setLoading(true)
         }
@@ -32,31 +32,35 @@ function EditIssueType() {
         e.preventDefault();
 
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
         const issue_type = document.getElementById('issue_type').value;
         const remark = document.getElementById('remark').value;
-            const org = sessionStorage.getItem('Database')
+        const org = sessionStorage.getItem('Database')
 
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('IssueTypesno')
         setLoading(true)
 
         if (!issue_type) {
-             setDatas({ ...datas, message: "Please enter All mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('subnitbtn').disabled = false
+            setDatas({ ...datas, message: "Please enter All mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
         else {
             setLoading(true)
-            const result = await UpdateIssueType(org,sno, issue_type, remark, username);
+            const result = await UpdateIssueType(org, sno, issue_type, remark, username);
             if (result === 'Updated') {
                 sessionStorage.removeItem('IssueTypesno');
                 setDatas({ ...datas, message: "Issue Type Updated", title: "success", type: "success", route: "/TotalIssueType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Issue Type Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditIssueType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

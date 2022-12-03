@@ -4,7 +4,7 @@ import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { FaMinusCircle } from 'react-icons/fa'
 
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi,InsertAssetSubCode } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi, InsertAssetSubCode } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Select from 'react-select';
 import { GrFormClose } from "react-icons/gr"
@@ -239,8 +239,8 @@ const AddNewAssets = () => {
             }
             if (purchase_type === 'Owned') {
                 if (!purchaseprice) {
-                    document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
+                    document.getElementById('subnitbtn').disabled = false
                     setDatas({ ...datas, message: "Please enter the Purchase Price Field", title: "Error", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
@@ -266,14 +266,15 @@ const AddNewAssets = () => {
                     setLoading(true)
 
                     const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
-                    model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
-                    rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+                        model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
+                        rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
                     softwares.forEach(async (datas) => {
                         const software = datas.value
-                         await InsertAssetSubCode(org, asset_id,assetetag,software )
+                        await InsertAssetSubCode(org, asset_id, assetetag, software)
                     })
                     document.getElementById('subnitbtn').disabled = false
                     // setLoading(true)
+
                     setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true", showbtn: 'true' })
                     document.getElementById('snackbar').style.display = "block"
 
@@ -323,8 +324,8 @@ const AddNewAssets = () => {
                                     </button>
                                     {datas.showbtn === 'true' ?
                                         <div >
-                                        <a className='btn btn-primary py-0 px-1 ' href='.' style={{fontSize:"16px"}}>Add more</a>&nbsp;
-                                            <a  className='btn btn-voilet py-0 px-1 ' href='./TotalNewAssets' style={{fontSize:"16px"}}>Submit</a></div>
+                                            <a className='btn btn-primary py-0 px-1 ' href='.' style={{ fontSize: "16px" }}>Add more</a>&nbsp;
+                                            <a className='btn btn-voilet py-0 px-1 ' href='./TotalNewAssets' style={{ fontSize: "16px" }}>Submit</a></div>
                                         : null
                                     }
 

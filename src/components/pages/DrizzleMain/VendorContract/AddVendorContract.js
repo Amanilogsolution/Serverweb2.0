@@ -96,7 +96,7 @@ function AddVendorContract() {
             document.getElementById('link_id_div').style.display = 'none'
 
         }
-        const subcate = await ActiveVendSubCate(org,e.target.value);
+        const subcate = await ActiveVendSubCate(org, e.target.value);
         setVendorsubcatlist(subcate)
     }
 
@@ -104,6 +104,8 @@ function AddVendorContract() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
+
         let vendor = document.getElementById('vendor').value;
         let vendorlast = vendor.indexOf("sno");
         vendorlast = vendorlast - 1
@@ -133,8 +135,8 @@ function AddVendorContract() {
 
         if (!vendor || !company || !type_of_contract || !major_category || !sub_category ||
             !customer_account_no || !payee_name || !help_desk_no) {
-            // alert("Please enter Mandatory field")
             setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter all mandatory fields", title: "warning", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
@@ -145,8 +147,8 @@ function AddVendorContract() {
             if (type_of_contract === 'Recurring') {
                 if (!contact_plain_details || !rate_per_month || !contract_start_date || !invoice_generation_date || !billing_freq) {
                     errorcount = errorcount + 1
-                    // alert('Please fill the Contract Detail')
                     setLoading(true)
+                    document.getElementById('subnitbtn').disabled = false
                     setDatas({ ...datas, message: "Please fill the Contract Detail", title: "warning", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
                 }
@@ -161,8 +163,8 @@ function AddVendorContract() {
             if (!refno) {
                 if (!reference_no) {
                     errorcount = errorcount + 1
-                    // alert('Please Enter the Reference no')
                     setLoading(true)
+                    document.getElementById('subnitbtn').disabled = false
                     setDatas({ ...datas, message: "Please Enter the Reference no", title: "warning", type: "Warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
                 }
@@ -173,8 +175,8 @@ function AddVendorContract() {
             if (major_category === 'Internet' || major_category === 'Data' || major_category === 'Telecom') {
                 if (!link_id_no) {
                     errorcount = errorcount + 1
-                    // alert('Please Enter the Link id no')
                     setLoading(true)
+                    document.getElementById('subnitbtn').disabled = false
                     setDatas({ ...datas, message: "Please Enter the Link id no", title: "Warning", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
                 }
@@ -183,19 +185,16 @@ function AddVendorContract() {
 
             if (errorcount === 0) {
                 setLoading(true)
-                const callapi = await InsertVendorContract(org,vendor_contract_id, vendor, type_of_contract,
+                const callapi = await InsertVendorContract(org, vendor_contract_id, vendor, type_of_contract,
                     major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
                     rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
                     help_desk_no, user_id)
                 if (callapi === 'Added') {
-                    // alert('Vendor Contract Added');
-                    // window.location.href = './TotalVendorContract'
                     setDatas({ ...datas, message: "Vendor Contract Added", title: "success", type: "success", toggle: "true", route: '/TotalVendorContract' })
                     document.getElementById('snackbar').style.display = "block"
                 }
                 else {
-                    // alert('Server not Response')
-                    setLoading(true)
+                    document.getElementById('subnitbtn').disabled = false
                     setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddVendorContract", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
                 }

@@ -19,7 +19,7 @@ function AddIssueType() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
         setLoading(false)
-
+        document.getElementById('subnitbtn').disabled = 'true'
         const issue_type = document.getElementById('issue_type').value;
         const issue_type_id = issue_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
@@ -29,6 +29,7 @@ function AddIssueType() {
         setLoading(true)
 
         if (!issue_type) {
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter Issue Type", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
@@ -40,10 +41,12 @@ function AddIssueType() {
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Issue Type Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddIssueType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

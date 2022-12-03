@@ -44,6 +44,8 @@ function AddVendorCode() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
+
         const vendor_code = document.getElementById('vendor_code').value;
         const vendor_name = document.getElementById('vendor_name').value;
         const vendor_code_id = vendor_name.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
@@ -78,34 +80,28 @@ function AddVendorCode() {
         if (!vendor_code || !vendor_name || !company_country_id || !comp_city || !comp_state_id
             || !comp_email || !contact_person || !contact_no || !contact_email) {
             setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
-            // alert('Please Enter Madatory field ')
-            // setLoading(true)
         }
         else {
-            const result = await InsertVendorCode(org,vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
-                comp_phone, company_country_id, comp_country, comp_state_id,comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
+            setLoading(true)
+            const result = await InsertVendorCode(org, vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
+                comp_phone, company_country_id, comp_country, comp_state_id, comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
                 vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Added') {
-                setLoading(true)
                 setDatas({ ...datas, message: "Vendor Code Added", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
-                // alert('Vendor Code Added ')
-                // window.location.href = '/TotalVendorCode'
-
             }
             else if (result === 'Already') {
-                // alert('Vendor Code already Exist')
-                setLoading(true)
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Vendor Code Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
 
             }
             else {
-                // alert('Server Error')
-                setLoading(true)
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddVendorCode", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

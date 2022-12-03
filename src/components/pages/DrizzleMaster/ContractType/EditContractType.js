@@ -21,7 +21,7 @@ function EditContractType() {
         const fetchdata = async () => {
             const org = sessionStorage.getItem('Database')
 
-            const result = await GetContractType(org,sessionStorage.getItem('contracttypesno'))
+            const result = await GetContractType(org, sessionStorage.getItem('contracttypesno'))
             setData(result[0]);
             setLoading(true)
 
@@ -32,6 +32,8 @@ function EditContractType() {
     const handleUpdateContractType = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
+
         const contract_type = document.getElementById('contract_type').value;
         const remark = document.getElementById('remark').value;
         setLoading(true)
@@ -41,13 +43,15 @@ function EditContractType() {
         const sno = sessionStorage.getItem('contracttypesno')
 
         if (!contract_type) {
+            document.getElementById('subnitbtn').disabled = false
+
             setDatas({ ...datas, message: "Please enter Contract Type ", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
 
         else {
             setLoading(true)
-            const result = await UpdateContractType(org,sno, contract_type, remark, username);
+            const result = await UpdateContractType(org, sno, contract_type, remark, username);
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('contracttypesno');
@@ -55,10 +59,14 @@ function EditContractType() {
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
+
                 setDatas({ ...datas, message: " Contract Type Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
+
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditContractType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

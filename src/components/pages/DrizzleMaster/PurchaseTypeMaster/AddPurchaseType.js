@@ -20,15 +20,17 @@ function AddPurchaseType() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
         setLoading(false)
-
+        document.getElementById('subnitbtn').disabled = 'true'
         const purchase_type = document.getElementById('purchase_type').value;
         const purchase_type_id = purchase_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const purchase_type_desc = document.getElementById('purchase_type_desc').value;
-        setLoading(true)
+        // setLoading(true)
 
         const username = sessionStorage.getItem('UserId');
 
         if (!purchase_type) {
+            setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter Purchase Type", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
@@ -41,10 +43,12 @@ function AddPurchaseType() {
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Purchase Type Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddPurchaseType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

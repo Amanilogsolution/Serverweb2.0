@@ -21,6 +21,7 @@ function AddBillingFreq() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
         const billing_freq = document.getElementById('billing_freq').value;
         const billing_freq_id = billing_freq.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const billing_freq_desc = document.getElementById('billing_freq_desc').value;
@@ -30,6 +31,7 @@ function AddBillingFreq() {
         setLoading(true)
 
         if (!billing_freq) {
+            document.getElementById('subnitbtn').disabled = false
             setDatas({...datas,message:"Please enter Billing frequency",title:"Error",type:"warning",route:"#",toggle:"true"})
             document.getElementById('snackbar').style.display="block"
         }
@@ -43,10 +45,12 @@ function AddBillingFreq() {
                 document.getElementById('snackbar').style.display="block"
             }
             else if(result === 'Already'){
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({...datas,message:"Billing frequency Already Exist",title:"warning",type:"Error",toggle:"true"})
                 document.getElementById('snackbar').style.display="block" 
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/AddBillingFreq",toggle:"true"})
                 document.getElementById('snackbar').style.display="block"  
             }

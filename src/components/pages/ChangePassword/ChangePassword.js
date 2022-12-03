@@ -2,7 +2,7 @@ import Sidebar from '../../Sidebar/Sidebar';
 import React, { useState } from 'react';
 import { MdOutlineArrowForward } from 'react-icons/md'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
-import {changePassword} from '../../../api/index'
+import { changePassword } from '../../../api/index'
 
 
 function ChangePassword() {
@@ -22,27 +22,30 @@ function ChangePassword() {
         e.preventDefault();
         setCnfpass(!cnfpass)
     }
-    const handleClick = async(e) =>{
+    const handleClick = async (e) => {
         e.preventDefault()
+        document.getElementById('subnitbtn').disabled = 'true'
+
         const userid = sessionStorage.getItem('UserId')
         const CurrentPassword = document.getElementById('current_password').value
         const UpdatePassword = document.getElementById('new-password').value
         const ConfirmPassword = document.getElementById('confirm-password').value
 
-        if(UpdatePassword === ConfirmPassword){
-
-        const result = await changePassword(userid,UpdatePassword,CurrentPassword)
-        if(result === 'Password Changed'){
-            alert('Password Updated')
-            window.location.href='/Dashboard'
-        }else{
-            alert('Something Broke')
-
+        if (UpdatePassword === ConfirmPassword) {
+            const result = await changePassword(userid, UpdatePassword, CurrentPassword)
+            if (result === 'Password Changed') {
+                alert('Password Updated')
+                window.location.href = '/Dashboard'
+            }
+            else {
+                document.getElementById('subnitbtn').disabled = false
+                alert('Something Broke')
+            }
         }
-    }
-    else{
-        alert('Current Password and Confirm Password Not Match')
-    }
+        else {
+            document.getElementById('subnitbtn').disabled = false
+            alert('Current Password and Confirm Password Not Match')
+        }
 
     }
 

@@ -1,6 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
-import { GetVendSubCate, UpdateVendSubCate,ActiveVendorCategory } from '../../../../api'
+import { GetVendSubCate, UpdateVendSubCate, ActiveVendorCategory } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
@@ -22,7 +22,7 @@ function EditVendorSubCategory() {
         const fetchdata = async () => {
             const org = sessionStorage.getItem('Database')
 
-            const result = await GetVendSubCate(org,sessionStorage.getItem('vendsubcatesno'))
+            const result = await GetVendSubCate(org, sessionStorage.getItem('vendsubcatesno'))
             setData(result[0]);
             const vendorCategory = await ActiveVendorCategory(org)
             setVendorcatlist(vendorCategory)
@@ -35,6 +35,8 @@ function EditVendorSubCategory() {
     const handleadddevice = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
+
         const vendor_category = document.getElementById('vendor_category').value;
         const vendor_sub_category = document.getElementById('vendor_sub_category').value;
         const remark = document.getElementById('remark').value;
@@ -42,24 +44,26 @@ function EditVendorSubCategory() {
         const sno = sessionStorage.getItem('vendsubcatesno')
         const org = sessionStorage.getItem('Database')
 
-        setLoading(true)
-
         if (!vendor_category || !vendor_sub_category) {
+            setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
         else {
-            const result = await UpdateVendSubCate(org,sno, vendor_category, vendor_sub_category, remark, UserId);
+            const result = await UpdateVendSubCate(org, sno, vendor_category, vendor_sub_category, remark, UserId);
 
             if (result === 'Updated') {
                 setDatas({ ...datas, message: "Vendor Sub Category Updated", title: "success", type: "success", route: "/TotalVendSubCate", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Vendor Sub Category Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditVendSubCate", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -113,7 +117,7 @@ function EditVendorSubCategory() {
                                         </div>
                                         <div className="form-group col-md mt-3" >
                                             <label htmlFor='remark'>Remarks</label>
-                                            <textarea  className="form-control" id='remark' rows='3' value={data.vendor_sub_category_description} onChange={handleChangeRemark} />
+                                            <textarea className="form-control" id='remark' rows='3' value={data.vendor_sub_category_description} onChange={handleChangeRemark} />
                                         </div>
 
 

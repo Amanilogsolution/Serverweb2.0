@@ -41,6 +41,8 @@ function EditVendorPayments() {
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
+
         // let val2 = document.getElementById('invno');
         // let text = val2.options[val2.selectedIndex].text;
         // let toindex2 = text.indexOf(",")
@@ -52,7 +54,6 @@ function EditVendorPayments() {
         // );
         // const invno = middle;
 
-
         const paymentdetail = document.getElementById('paymentdetail').value;
         const paymentamt = document.getElementById('paymentamt').value;
         const paymentdate = document.getElementById('paymentdate').value;
@@ -60,10 +61,9 @@ function EditVendorPayments() {
         const sno = sessionStorage.getItem('vendorpaymentssno')
         const org = sessionStorage.getItem('Database')
 
-
-
         if (!paymentdetail || !paymentamt || !paymentdate) {
             setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "warning", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
             return false;
@@ -78,6 +78,7 @@ function EditVendorPayments() {
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
