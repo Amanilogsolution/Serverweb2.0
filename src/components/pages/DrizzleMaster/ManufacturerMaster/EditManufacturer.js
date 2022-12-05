@@ -32,6 +32,7 @@ function EditManufacturer() {
     const handleUpdateManufacturer = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
         const manufacturername = document.getElementById('manufacturername').value;
         const remark = document.getElementById('remark').value;
 
@@ -42,6 +43,7 @@ function EditManufacturer() {
         setLoading(true)
 
         if (!manufacturername) {
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter Manfacturer", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
@@ -54,10 +56,12 @@ function EditManufacturer() {
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Manfacturer Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditManufacturer", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

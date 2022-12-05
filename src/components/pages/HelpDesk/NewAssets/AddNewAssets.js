@@ -4,7 +4,7 @@ import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { FaMinusCircle } from 'react-icons/fa'
 
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi, InsertAssetSubCode } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Select from 'react-select';
 import { GrFormClose } from "react-icons/gr"
@@ -36,6 +36,7 @@ const AddNewAssets = () => {
         type: "type",
         route: "#",
         toggle: "true",
+        showbtn: 'false'
     })
     useEffect(() => {
         const fetchdata = async () => {
@@ -139,7 +140,7 @@ const AddNewAssets = () => {
     const handleToggleSoftware = async (e) => {
         const devicetype = e.target.value;
         console.log(devicetype)
-        if (devicetype === 'Laptops') {
+        if (devicetype === 'Laptop') {
             document.getElementById('softwarediv').style.display = 'block'
         }
         else {
@@ -169,6 +170,7 @@ const AddNewAssets = () => {
 
     const handleInsertData = async (e) => {
         e.preventDefault();
+        document.getElementById('subnitbtn').disabled = 'true'
         setLoading(false)
 
         const org = sessionStorage.getItem('Database')
@@ -199,6 +201,7 @@ const AddNewAssets = () => {
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
             !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
             // alert('Please enter the Mandatory field')
+            document.getElementById('subnitbtn').disabled = false
             setLoading(true)
             setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
@@ -206,8 +209,9 @@ const AddNewAssets = () => {
         }
         else {
             let errorcount = 0;
-            if (asset_type === 'Laptops') {
+            if (asset_type === 'Laptop') {
                 if (softwares.length === 0) {
+                    document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
                     setDatas({ ...datas, message: "Please enter the Software Field", title: "Error", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
@@ -221,6 +225,7 @@ const AddNewAssets = () => {
             }
             if (purchase_type === 'Rental') {
                 if (!rentpermonth) {
+                    document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
                     setDatas({ ...datas, message: "Please enter the RentPerMonth Field", title: "Error", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
@@ -235,12 +240,14 @@ const AddNewAssets = () => {
             if (purchase_type === 'Owned') {
                 if (!purchaseprice) {
                     setLoading(true)
+                    document.getElementById('subnitbtn').disabled = false
                     setDatas({ ...datas, message: "Please enter the Purchase Price Field", title: "Error", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
                 if (!invoiceno) {
+                    document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
                     setDatas({ ...datas, message: "Please enter the Invoice no.", title: "Error", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
@@ -255,29 +262,34 @@ const AddNewAssets = () => {
             }
 
             if (errorcount === 0) {
-                if (asset_type === 'Laptops') {
-                    softwares.forEach(async (datas) => {
-                        const software = datas.value
-                         await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, software,
-                            model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
-                            rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
-
-                    })
-                    setLoading(true)
-                    setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true" })
-                    document.getElementById('snackbar').style.display = "block"
-
-                } else {
+                if (asset_type === 'Laptop') {
                     setLoading(true)
                     const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
                         model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                         rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+                    softwares.forEach(async (datas) => {
+                        const software = datas.value
+                        await InsertAssetSubCode(org, asset_id, assetetag, software)
+                    })
+                    document.getElementById('subnitbtn').disabled = false
 
+                    setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true", showbtn: 'true' })
+                    document.getElementById('snackbar').style.display = "block"
+
+                } else {
+
+                    setLoading(true)
+                    const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
+                        model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
+                        rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+                    document.getElementById('subnitbtn').disabled = false
                     if (result === 'Data Added') {
-                        setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true" })
+                        document.getElementById('subnitbtn').disabled = false
+                        setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true", showbtn: 'true' })
                         document.getElementById('snackbar').style.display = "block"
                     }
                     else {
+                        document.getElementById('subnitbtn').disabled = false
                         setLoading(true)
                         setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
                         document.getElementById('snackbar').style.display = "block"
@@ -297,9 +309,8 @@ const AddNewAssets = () => {
                         <div id="snackbar" style={{ display: "none" }}>
                             <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
                                 <div className={`notification__message message--${datas.type}`}>
-                                    <h1>{datas.title}</h1>
-                                    <p>{datas.message}</p>
-
+                                    <h1 className='mb-0'>{datas.title}</h1>
+                                    <p className='mb-0'>{datas.message}</p>
                                     <button
                                         onClick={() => {
                                             setDatas({ ...datas, toggle: 'false' });
@@ -309,6 +320,13 @@ const AddNewAssets = () => {
                                     >
                                         <GrFormClose />
                                     </button>
+                                    {datas.showbtn === 'true' ?
+                                        <div >
+                                            <a className='btn btn-primary py-0 px-1 ' href='.' style={{ fontSize: "16px" }}>Add more</a>&nbsp;
+                                            <a className='btn btn-voilet py-0 px-1 ' href='./TotalNewAssets' style={{ fontSize: "16px" }}>Submit</a></div>
+                                        : null
+                                    }
+
                                 </div>
                             </div>
                         </div>

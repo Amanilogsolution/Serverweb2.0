@@ -31,15 +31,16 @@ function EditServiceActionType() {
     const handleUpdateServiceActionType = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
         const service_action_type = document.getElementById('service_action_type').value;
         const remark = document.getElementById('remark').value;
         const UserId = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('serviceactiontypesno')
         const org = sessionStorage.getItem('Database')
 
-        setLoading(true)
-
         if (!service_action_type) {
+            setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter Service Action Type", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
@@ -53,10 +54,12 @@ function EditServiceActionType() {
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Service Action Type Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditServiceActionType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

@@ -20,14 +20,18 @@ function AddSoftware() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
+
         const software = document.getElementById('software').value;
         const software_id = software.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const software_desc = document.getElementById('software_desc').value;
 
         const username = sessionStorage.getItem('UserId');
-        setLoading(true)
+
 
         if (!software) {
+            setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
@@ -35,16 +39,18 @@ function AddSoftware() {
             setLoading(true)
             const org = sessionStorage.getItem('Database')
 
-            const result = await AddSoftwareapi(org,software_id, software, software_desc, username);
+            const result = await AddSoftwareapi(org, software_id, software, software_desc, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Software Added", title: "success", type: "success", route: "/TotalSoftware", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Software Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddSoftware", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -73,7 +79,7 @@ function AddSoftware() {
                                         </div>
                                         <div className="col-md mt-3" >
                                             <label htmlFor='software_desc'>Remarks </label>
-                                            <textarea className="form-control" id='software_desc' rows='3'/>
+                                            <textarea className="form-control" id='software_desc' rows='3' />
                                         </div>
 
 

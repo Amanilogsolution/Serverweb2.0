@@ -1,0 +1,95 @@
+.VendorDash {
+    width: 99%;
+    margin: 12px 8px;
+    min-height: 63vh;
+    max-width: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+}
+.VendorDash .VendorDash1{
+    /* border: 1px solid green; */
+    width: 82%;
+   
+}
+.VendorDash .VendorDash2{
+    /* border: 1px solid red; */
+    width: 18%;
+    padding: 0 3px;
+}
+.VendorDash .VendorDash3{
+    /* border: 1px solid violet; */
+    width: 18%;
+}
+.VendorDash .VendorDash3 .VendorDash3_card{
+  width: 95%;
+  text-align: center;
+  height: 11.9vh;
+  margin-bottom: 6px;
+  padding-top: 4% ;
+  margin-left: 5px;
+  border-radius: 5px;
+  background: linear-gradient(45deg, rgb(164, 43, 122), rgb(106, 6, 71));
+  color: white;
+}
+.VendorDash .VendorDash2 .VendorDash2_card{
+    width: 100%;
+    text-align: center;
+    height: 13.5vh;
+    margin-bottom: 6px;
+    padding-top: 7% ;
+    border-radius: 5px;
+    background: linear-gradient(45deg, rgb(96, 58, 233), rgb(50, 15, 176));
+    color: white;
+  }
+  .VendorDash2 .select_div{
+    border: 1px solid rgb(174, 171, 171);
+    padding: 7% 10px;
+    border-radius: 5px;
+    height: 9vh;
+    margin-bottom: 6px;
+    text-align: center
+  }
+  #recurring{
+    background: linear-gradient(45deg, rgb(164, 43, 122), rgb(106, 6, 71));
+    color:white;
+    border:none;
+    transition: transform .2s;
+    cursor: pointer;
+  }
+  .VendorDash .VendorDash1 .table1{
+    height: 27vh;
+    padding: 0 3px;
+    overflow: auto;
+    margin-top: -16px;
+    /* border: 1px solid red; */
+  }
+  .VendorDash .VendorDash1 .table2{
+    padding: 0 3px;
+    margin-top: -16px;
+    height: 30vh;
+    overflow: auto;
+  }
+.VendorDash tr {
+  line-height: 8px;
+}
+#recurring:hover {
+  -ms-transform: scale(1.02);
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
+}
+.VendorDash .VendorDash1 .table1::-webkit-scrollbar {
+  width: 8px;
+}
+.VendorDash .VendorDash1 .table1::-webkit-scrollbar-thumb {
+  background: linear-gradient(rgb(193,193,193),rgb(170, 169, 169)); 
+  border-radius: 10px;
+  border: 1px solid white;
+}
+.VendorDash .VendorDash1 .table2::-webkit-scrollbar {
+  width: 8px;
+}
+.VendorDash .VendorDash1 .table2::-webkit-scrollbar-thumb {
+  background: linear-gradient(rgb(193,193,193),rgb(170, 169, 169)); 
+  border-radius: 10px;
+  border: 1px solid white;
+}

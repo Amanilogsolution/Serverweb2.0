@@ -19,6 +19,7 @@ function AddManufacturer() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
         const manufacturername = document.getElementById('manufacturername').value;
         const manufacturer_id = manufacturername.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
@@ -28,6 +29,7 @@ function AddManufacturer() {
         setLoading(true)
 
         if (!manufacturername) {
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter Manufacturer", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
@@ -41,10 +43,12 @@ function AddManufacturer() {
                 sessionStorage.removeItem('seriessno');
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Manufacturer Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddManufacturer", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

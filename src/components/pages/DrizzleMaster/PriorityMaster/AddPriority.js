@@ -20,6 +20,7 @@ function AddPriority() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
         const priority = document.getElementById('priority').value;
         const priority_id = priority.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const priority_desc = document.getElementById('priority_desc').value;
@@ -29,6 +30,7 @@ function AddPriority() {
         setLoading(true)
 
         if (!priority) {
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter Priority Type", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
@@ -41,10 +43,12 @@ function AddPriority() {
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Priority Type Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddPriority", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

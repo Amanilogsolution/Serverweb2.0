@@ -34,6 +34,7 @@ function EditEmployee() {
     const handleadddevice = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
         const employee_name = document.getElementById('employee_name').value;
         const employee_email = document.getElementById('employee_email').value;
         const employee_number = document.getElementById('employee_number').value;
@@ -44,6 +45,7 @@ function EditEmployee() {
         setLoading(true)
 
         if (!location || !employee_name || !employee_email) {
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
@@ -59,6 +61,7 @@ function EditEmployee() {
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditEmployee", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }

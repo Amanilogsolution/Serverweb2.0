@@ -59,7 +59,7 @@ function AddVendorPayment() {
             setCount(val.length);
             setArry(val);
 
-            let objval=[...arryval] ;
+            let objval = [...arryval];
             objval.pop();
             setArryval(objval)
         }
@@ -98,13 +98,13 @@ function AddVendorPayment() {
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
         const org = sessionStorage.getItem('Database')
-
-       
         let errorcount = 0;
         for (let i = 0; i < arryval.length; i++) {
-             if(!arryval[i].InvoiceNo){
+            if (!arryval[i].InvoiceNo) {
                 setLoading(true)
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: " Please Select the Invoice no ", title: "warning", type: "warning", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
@@ -112,6 +112,7 @@ function AddVendorPayment() {
             }
             else if (arryval[i].InvoiceNo === 'elect Invoice n') {
                 setLoading(true)
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Please Select the Invoice no", title: "warning", type: "warning", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
@@ -119,22 +120,24 @@ function AddVendorPayment() {
             }
             else if (!arryval[i].paymentDetail || !arryval[i].PaymentAmt) {
                 setLoading(true)
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Please enter the Mandatory field", title: "warning", type: "warning", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
-          
+
         }
         if (errorcount === 0) {
             setLoading(true)
 
-            const result = await UpdateVendorInvoice(org,arryval, sessionStorage.getItem('UserId'))
+            const result = await UpdateVendorInvoice(org, arryval, sessionStorage.getItem('UserId'))
             if (result === 'Data Updated') {
                 setDatas({ ...datas, message: "Vendor Payment Added", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -165,7 +168,7 @@ function AddVendorPayment() {
             {
                 loading ?
                     <Sidebar>
-                    <div id="snackbar" style={{ display: "none" }}>
+                        <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
                         <div className='main_container pb-2'>

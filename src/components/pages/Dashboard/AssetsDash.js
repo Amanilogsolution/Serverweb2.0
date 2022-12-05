@@ -149,7 +149,7 @@ export default function AssetsDash() {
         <div className='graph_2nd_row d-flex justify-content-center' >
           <div className='manufacturer_graph'>
             <p className='bg-dark text-white px-4 mx-2'>Manufacturer</p>
-            <ResponsiveContainer width="100%" aspect={1.9}>
+            <ResponsiveContainer width="100%" aspect={2.1}>
               <PieChart width={800} height={350}>
                 <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                 <Tooltip />

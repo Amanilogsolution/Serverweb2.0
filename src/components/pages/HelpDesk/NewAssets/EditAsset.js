@@ -67,7 +67,7 @@ const EditAsset = () => {
 
             setLoading(true)
 
-            if (getdata[0].asset_type === 'Laptops') {
+            if (getdata[0].asset_type === 'Laptop') {
                 document.getElementById('softwarediv').style.display = 'block'
             }
             else {
@@ -175,7 +175,7 @@ const EditAsset = () => {
     const handleUpdateData = async (e) => {
         e.preventDefault();
         setLoading(false)
-
+        document.getElementById('subnitbtn').disabled = 'true'
         const asset_type = document.getElementById('asset_type').value;
         const assetetag = document.getElementById('assetetag').value;
         let software = document.getElementById('software').value;
@@ -204,6 +204,7 @@ const EditAsset = () => {
 
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
             !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
+            document.getElementById('subnitbtn').disabled = false
             setLoading(true)
             setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
@@ -211,8 +212,9 @@ const EditAsset = () => {
         }
         else {
             let errorcount = 0;
-            if (asset_type === 'Laptops') {
+            if (asset_type === 'Laptop') {
                 if (!software) {
+                    document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
                     setDatas({ ...datas, message: "Please enter the Software Field", title: "Error", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
@@ -226,6 +228,7 @@ const EditAsset = () => {
             }
             if (purchase_type === 'Rental') {
                 if (!rentpermonth) {
+                    document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
                     setDatas({ ...datas, message: "Please enter the Rent Per Month Field", title: "Error", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
@@ -239,6 +242,7 @@ const EditAsset = () => {
             }
             if (purchase_type === 'Owned') {
                 if (!purchaseprice) {
+                    document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
                     setDatas({ ...datas, message: "Please enter the Purchase Price Field", title: "Error", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
@@ -246,6 +250,7 @@ const EditAsset = () => {
                     return false;
                 }
                 if (!invoiceno) {
+                    document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
                     setDatas({ ...datas, message: "Please enter the Invoice no.", title: "Error", type: "warning", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
@@ -273,6 +278,7 @@ const EditAsset = () => {
                     document.getElementById('snackbar').style.display = "block"
                 }
                 else {
+                    document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
                     setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
@@ -538,8 +544,6 @@ const EditAsset = () => {
                                         </form>
                                     </article>
                                 </div>
-
-
                             </div>
                         </div>
                     </Sidebar>

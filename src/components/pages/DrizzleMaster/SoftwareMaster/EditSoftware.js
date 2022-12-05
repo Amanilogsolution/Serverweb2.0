@@ -21,7 +21,7 @@ function EditSoftware() {
         const fetchdata = async () => {
             const org = sessionStorage.getItem('Database')
 
-            const result = await GetSoftwareapi(org,sessionStorage.getItem('softwaresno'))
+            const result = await GetSoftwareapi(org, sessionStorage.getItem('softwaresno'))
             setData(result[0]);
             setLoading(true)
 
@@ -32,21 +32,23 @@ function EditSoftware() {
     const handleadddevice = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
+
         const software = document.getElementById('software').value;
         const software_desc = document.getElementById('software_desc').value;
         const username = sessionStorage.getItem('UserId');
         const sno = sessionStorage.getItem('softwaresno')
-        setLoading(true)
 
         if (!software) {
+            setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
         else {
             setLoading(true)
             const org = sessionStorage.getItem('Database')
-
-            const result = await UpdateSoftwareapi(org,sno, software, software_desc, username);
+            const result = await UpdateSoftwareapi(org, sno, software, software_desc, username);
 
             if (result === 'Updated') {
                 sessionStorage.removeItem('softwaresno');
@@ -54,10 +56,12 @@ function EditSoftware() {
                 document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Software Already Exist", title: "warning", type: "Error", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditSoftware", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -73,7 +77,7 @@ function EditSoftware() {
         setData({ ...data, software_description: e.target.value })
     }
 
-    return (    
+    return (
         <>
             {
                 loading ?

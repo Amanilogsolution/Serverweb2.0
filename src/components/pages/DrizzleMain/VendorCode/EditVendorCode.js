@@ -32,9 +32,9 @@ function EditVendorCode() {
         const fetchdata = async () => {
             const org = sessionStorage.getItem('Database')
 
-            const tabledata = await GetVendorCode(org,sessionStorage.getItem('VendorCodeSno'))
+            const tabledata = await GetVendorCode(org, sessionStorage.getItem('VendorCodeSno'))
             setData(tabledata[0])
-            console.log(tabledata[0].venodr_portal )
+            console.log(tabledata[0].venodr_portal)
             const totalCountry = await TotalCountry();
             setCountrylist(totalCountry)
 
@@ -58,6 +58,8 @@ function EditVendorCode() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
         setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
+
         const vendor_code = document.getElementById('vendor_code').value;
         const vendor_name = document.getElementById('vendor_name').value;
         const comp_gst = document.getElementById('comp_gst').value;
@@ -89,34 +91,24 @@ function EditVendorCode() {
 
         if (!vendor_code || !vendor_name || !comp_country_id || !comp_city || !comp_state_id
             || !comp_email || !contact_person || !contact_no || !contact_email) {
-            // alert('Please Enter Madatory field ')
             setLoading(true)
+            document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
 
         }
         else {
             setLoading(true)
-            const result = await UpdateVendorCode(org,sno, vendor_code, vendor_name, comp_gst, comp_website, comp_email, comp_phone, comp_country_id, comp_country,
+            const result = await UpdateVendorCode(org, sno, vendor_code, vendor_name, comp_gst, comp_website, comp_email, comp_phone, comp_country_id, comp_country,
                 comp_state_id, comp_state, comp_city, comp_addr1, comp_addr2, comp_pincode, vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Updated') {
-                setLoading(true)
                 sessionStorage.removeItem('VendorCodeSno');
-                // alert('Vendor Code Added ')
-                // window.location.href = '/TotalVendorCode'
                 setDatas({ ...datas, message: "Vendor Code Updated", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
-            // else if (result === 'Already') {
-            //     // alert('Vendor Code already Exist')
-            //     setLoading(true)
-            //     setDatas({ ...datas, message: "Vendor Code Already Exist", title: "warning", type: "Error", toggle: "true" })
-            //     document.getElementById('snackbar').style.display = "block"
-            // }
             else {
-                // alert('Server Error')
-                setLoading(true)
+                document.getElementById('subnitbtn').disabled = false
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditVendorCode", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
