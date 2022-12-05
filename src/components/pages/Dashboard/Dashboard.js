@@ -7,7 +7,7 @@ import { FaTicketAlt } from 'react-icons/fa';
 import { MdStickyNote2 } from 'react-icons/md';
 import AssetsDash from './AssetsDash'
 import VendorDash from './VendorDash'
-import Compliance from './Compliance'
+import Outstanding from './Outstanding/Outstanding'
 import TickteDash from './TicketDash'
 import { DashboarDetails } from '../../../api/index'
 import LoadingPage from '../../LoadingPage/LoadingPage';
@@ -41,7 +41,7 @@ const Dashboard = () => {
       case 2:
         return <VendorDash />
       case 3:
-        return <Compliance />
+        return <Outstanding />
       case 4:
         return <TickteDash />
       default:

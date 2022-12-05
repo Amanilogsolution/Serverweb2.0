@@ -91,14 +91,26 @@
     list-style: none;
 }
 .sidebarinerabc{
-
     overflow:auto;
     max-height: 83.2vh;
 }
+.sidebarinerabc::-webkit-scrollbar {
+    width: 8px;
+  }
+/* .sidebarinerabc::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  } */
+.sidebarinerabc::-webkit-scrollbar-thumb {
+    background: linear-gradient(rgb(131, 131, 131),rgb(94, 94, 94)); 
+    border-radius: 10px;
+    border: 1px solid white;
+  }
+  
 
 .navlink {
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .navlink:active{
@@ -182,7 +194,7 @@
 }
 
 .innerlink:not(:last-child) {
-    border-bottom: 1px solid rgb(200, 195, 195);
+    border-bottom: 1px solid rgb(230, 229, 229);
 }
 
 .innerlink:hover {
