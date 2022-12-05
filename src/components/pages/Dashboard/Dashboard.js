@@ -13,6 +13,7 @@ import TickteDash from './TicketDash/TicketDash'
 
 import { DashboarDetails } from '../../../api/index'
 import LoadingPage from '../../LoadingPage/LoadingPage';
+import Recurring from './VendorDash/Recurring';
 
 
 const Dashboard = () => {
@@ -45,12 +46,14 @@ const Dashboard = () => {
       case 2:
         return <VendorDash />
       case 3:
-        return <Outstanding showStep={showStep} />
+        return <Outstanding setStep={setStep} />
       case 4:
         return <TickteDash />
       case 5:
         console.log('TicketDash')
         return <Outstatndingdetails />
+      case 6:
+        return <Recurring/>
       default:
         return false
     }

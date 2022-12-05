@@ -5,6 +5,7 @@ import {
     FaTasks,
     FaThList, FaFileContract,
     FaElementor,
+    FaTicketAlt,
     FaFileMedicalAlt
 } from "react-icons/fa";
 
@@ -452,7 +453,7 @@ const Sidebar = ({ children }) => {
                         <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
                             <li className='innerlink' >
                                 <NavLink to='/TotalTicket' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <HiOutlineTicket style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                    <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
                                     <div style={{ display: isOpen ? "block" : "none" }} > Ticket</div>
                                 </NavLink>
                             </li>
