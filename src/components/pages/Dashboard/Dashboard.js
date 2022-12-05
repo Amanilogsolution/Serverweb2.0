@@ -8,14 +8,16 @@ import { MdStickyNote2 } from 'react-icons/md';
 import AssetsDash from './AssetsDash'
 import VendorDash from './VendorDash'
 import Outstanding from './Outstanding/Outstanding'
+import Outstatndingdetails from './Outstanding/Outstandingdetails'
 import TickteDash from './TicketDash'
+
 import { DashboarDetails } from '../../../api/index'
 import LoadingPage from '../../LoadingPage/LoadingPage';
 
 
 const Dashboard = () => {
   const [currentStep, setStep] = useState(1);
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [dashboarddetails, setDashboarddetails] = useState({
     "Assetdata": 0,
     "Vendordata": 0,
@@ -35,15 +37,20 @@ const Dashboard = () => {
   }, [])
 
   const showStep = (step) => {
+    console.log(step)
+
     switch (step) {
       case 1:
         return <AssetsDash />
       case 2:
         return <VendorDash />
       case 3:
-        return <Outstanding />
+        return <Outstanding showStep={showStep} />
       case 4:
         return <TickteDash />
+      case 5:
+        console.log('TicketDash')
+        return <Outstatndingdetails />
       default:
         return false
     }
@@ -95,7 +102,7 @@ const Dashboard = () => {
                 </div>
               </div>
               {showStep(currentStep)}
-              </div>
+            </div>
 
           </Sidebar>
           : <LoadingPage />
