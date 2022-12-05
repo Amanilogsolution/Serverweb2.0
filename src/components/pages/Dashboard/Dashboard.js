@@ -64,7 +64,7 @@ const Dashboard = () => {
       {
         loading ?
           <Sidebar>
-            <div className='dashboard_container pt-2 pb-2'>
+            <div className='dashboard_container'>
 
               <div className='dashboard_cards text-white d-flex justify-content-around'>
                 <div onClick={() => setStep(1)} className='card1 d-flex rounded curser-pointer'>
@@ -76,7 +76,7 @@ const Dashboard = () => {
                     <BsLaptopFill className='icon' />
                   </div>
                 </div>
-                <div onClick={() => setStep(2)} className='card1 d-flex rounded curser-pointer'>
+                <div onClick={() => setStep(2)} className='card1 d-flex rounded curser-pointer' >
                   <div>
                     <h1 className='dash_card_head mb-0'>{dashboarddetails.Vendordata}</h1>
                     <p className='dash_card_para'>Vendors</p>

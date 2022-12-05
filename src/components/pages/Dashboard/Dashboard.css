@@ -11,7 +11,7 @@
 .dashboard_cards .card1 {
     width: 23.5%;
     height: 90px;
-    transition: transform .2s;
+    transition: transform 0.2s;
     padding: 8px 10px;
     position: relative;
 }
