@@ -3,21 +3,27 @@ import {
     FaTh,
     FaUserAlt,
     FaTasks,
-    FaThList, FaFileContract
+    FaThList, FaFileContract,
+    FaElementor,
+    FaTicketAlt,
+    FaFileMedicalAlt
 } from "react-icons/fa";
 
 import { IoIosArrowDown, IoMdLogOut } from 'react-icons/io'
+import { AiFillTag } from 'react-icons/ai'
 import {
-    MdOutlineDoubleArrow, MdDevicesOther, MdLiveHelp,
-    MdAttachMoney, MdLowPriority, MdOutlinePrecisionManufacturing,
-    MdOutlineMiscellaneousServices, MdOutlineDevicesOther, MdAddTask
+    MdOutlineDoubleArrow, MdDevicesOther,MdHelp,
+    MdAttachMoney, MdPrecisionManufacturing,
+    MdOutlineMiscellaneousServices, MdOutlineDevicesOther, MdAddTask,MdLocationPin
 } from 'react-icons/md'
-import { BsJournalCode, BsBugFill } from 'react-icons/bs'
-import { BiPurchaseTag, BiCategory, BiCategoryAlt, BiDevices } from 'react-icons/bi'
+import { BsJournalCode,BsInboxesFill,BsTriangleHalf,BsArrowUpRightCircleFill,BsFillLaptopFill,BsFileBarGraphFill } from 'react-icons/bs'
+import { BiCategory, BiCategoryAlt, BiDevices } from 'react-icons/bi'
 
-import { HiOutlineTicket, HiOutlineRefresh, HiLink } from 'react-icons/hi'
+import { HiOutlineTicket,HiDuplicate } from 'react-icons/hi'
 import { GrStatusGood, GrServices, GrCompliance } from 'react-icons/gr'
+import { GoIssueOpened } from 'react-icons/go'
 import { GiContract } from 'react-icons/gi'
+import { RiArrowUpDownFill,RiBillFill,RiServiceFill,RiMoneyEuroCircleFill } from 'react-icons/ri'
 
 import { VscLocation, VscTypeHierarchySub } from 'react-icons/vsc'
 import { TiVendorMicrosoft } from 'react-icons/ti'
@@ -160,7 +166,7 @@ const Sidebar = ({ children }) => {
                     <span className='internalsidebar'>
                         <span className='ul'>
                             <span className='li'>
-                                <NavLink to='/Dashboard' className="link navlink" title='Dashboard'>
+                                <NavLink to='/Dashboard' className="link" title='Dashboard'>
                                     <div className="icon"><FaTh /></div>
                                     <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Dashboard</div>
                                 </NavLink>
@@ -209,49 +215,49 @@ const Sidebar = ({ children }) => {
                         <ul style={{ paddingLeft: "0px", marginBottom: "0px" }}>
                             <li className='innerlink'>
                                 <NavLink to='/Totalseries' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <HiLink style={{ color: "#a12e7a" }} />&nbsp;
+                                    <HiLink style={{ color: "rgb(66, 4, 69)" }} />&nbsp;
                                     <div style={{ display: isOpen ? "block" : "none" }} >Series</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/TotalDeviceType' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <VscTypeHierarchySub style={{ fill: "#a12e7a" }} />&nbsp;
+                                    <VscTypeHierarchySub style={{ fill: "rgb(66, 4, 69)" }} />&nbsp;
                                     <div style={{ display: isOpen ? "block" : "none" }} >Device Type</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/Showdevicegroup' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <MdOutlineDevicesOther style={{ fill: "#a12e7a" }} />&nbsp;
+                                    <MdOutlineDevicesOther style={{ fill: "rgb(66, 4, 69)" }} />&nbsp;
                                     <div style={{ display: isOpen ? "block" : "none" }} >Device Group</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/TotalOperatingSystem' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <TiVendorMicrosoft style={{ color: "#a12e7a" }} />&nbsp;
+                                    <TiVendorMicrosoft style={{ color: "rgb(66, 4, 69)" }} />&nbsp;
                                     <div style={{ display: isOpen ? "block" : "none" }} >Operating System</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/ShowDeviceservices ' className='navlink  d-flex' activeclassname="sidebaractive">
-                                    <BiDevices style={{ color: "#a12e7a" }} />&nbsp;
+                                    <BiDevices style={{ color: "rgb(66, 4, 69)" }} />&nbsp;
                                     <div style={{ display: isOpen ? "block" : "none" }} >Device Services</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/TotalServicecompliance' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <GrCompliance style={{ color: "#a12e7a" }} />&nbsp;
+                                    <GrCompliance style={{ color: "rgb(66, 4, 69)" }} />&nbsp;
                                     <div style={{ display: isOpen ? "block" : "none" }} >Series Compliances</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/TotalDeviceTask' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <MdAddTask style={{ color: "#a12e7a" }} />&nbsp;
+                                    <MdAddTask style={{ color: "rgb(66, 4, 69)" }} />&nbsp;
                                     <div style={{ display: isOpen ? "block" : "none" }} >Devices Task</div>
                                 </NavLink>
                             </li>
                             <li className='innerlink'>
                                 <NavLink to='/TotalAgent' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <FaUserAlt style={{ color: "#a12e7a" }} />&nbsp;
+                                    <FaUserAlt style={{ color: "rgb(66, 4, 69)" }} />&nbsp;
                                     <div style={{ display: isOpen ? "block" : "none" }} >Agent Master</div>
                                 </NavLink>
                             </li>
@@ -275,13 +281,13 @@ const Sidebar = ({ children }) => {
                         <ul style={{ marginBottom: "0px" }}>
                             <li title='Assets' style={{ listStyle: "none" }}>
                                 <NavLink to='/TotalNewAssets' className="link" activeclassname="sidebaractive">
-                                    <div className="icon"><FaFileContract /></div>
+                                    <div className="icon"><BsFillLaptopFill  style={{fontSize:"18px"}} /></div>
                                     <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Assets</div>
                                 </NavLink>
                             </li>
                             <li title='Vendor Contract' style={{ listStyle: "none" }}>
                                 <NavLink to='/TotalVendorContract' className="link" activeclassname="sidebaractive">
-                                    <div className="icon"><FaFileContract /></div>
+                                    <div className="icon"><FaFileMedicalAlt style={{fontSize:"17px"}}/></div>
                                     <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Contract</div>
                                 </NavLink>
                             </li>
@@ -289,7 +295,7 @@ const Sidebar = ({ children }) => {
 
                             <li onClick={handleinner2toggledrizzle} style={{ listStyle: "none" }}>
                                 <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
-                                    <div className="icon" onClick={toggle}><FaUserAlt /></div>
+                                    <div className="icon" onClick={toggle}><FaElementor style={{fontSize:"17px"}}/></div>
                                     <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text "> &nbsp; Master<span className="icon"><IoIosArrowDown /></span> </div>
                                 </div>
                             </li>
@@ -298,14 +304,14 @@ const Sidebar = ({ children }) => {
                             <div className="innersubdiv" id="subdrizzleinner" style={{ display: "none" }}>
                                 <ul style={{ paddingLeft: "0px", marginBottom: "0px" }}>
                                     <li className='innerlink' >
-                                        <NavLink to='/TotalLocations' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <VscLocation style={{ color: "#a12e7a" }} />&nbsp;
+                                        <NavLink to='/TotalLocations' style={{borderTop:"1px solid silver"}} className='navlink d-flex' activeclassname="sidebaractive">
+                                            <MdLocationPin style={{ color: "rgb(66, 4, 69)",fontSize:"20px",margin:"0 7px" }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} > Location</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalEmployee' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <FaUserAlt style={{ color: "#a12e7a" }} /> &nbsp;
+                                            <FaUserAlt style={{color: "rgb(66, 4, 69)",fontSize:"16px",margin:"0 8px" }} /> &nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Employee</div>
                                         </NavLink>
                                     </li>
@@ -316,97 +322,91 @@ const Sidebar = ({ children }) => {
                                 </li> */}
                                     <li className='innerlink'>
                                         <NavLink to='/TotalAssetType' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <VscTypeHierarchySub style={{ fill: "#a12e7a" }} />&nbsp;
+                                            <BsInboxesFill style={{ fill: "rgb(66, 4, 69)",fontSize:"16px",margin:"0 8px"  }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Asset Type</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalAssetStatus' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <GrStatusGood style={{ fill: "#a12e7a" }} />&nbsp;
+                                            <BsTriangleHalf style={{ fill: "rgb(66, 4, 69)",fontSize:"17px",margin:"0 7px"  }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Asset Status</div>
                                         </NavLink>
                                     </li>
-                                    {/* <li className='innerlink'>
-                                        <NavLink to='/TotalNewAssets' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <BiDevices style={{ color: "#a12e7a" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} > Assets</div>
-                                        </NavLink>
-                                    </li> */}
                                     <li className='innerlink'>
                                         <NavLink to='/TotalManufacturer' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <MdOutlinePrecisionManufacturing style={{ color: "#a12e7a" }} />&nbsp;
+                                            <MdPrecisionManufacturing style={{ color: "rgb(66, 4, 69)",fontSize:"20px",margin:"0 6px"  }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Manufacturer</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalSoftware' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <TiVendorMicrosoft style={{ color: "#a12e7a" }} />&nbsp;
+                                            <TiVendorMicrosoft style={{ color: "rgb(66, 4, 69)",fontSize:"20px",margin:"0 6px" }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Software</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalIssueType' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <BsBugFill style={{ color: "#a12e7a" }} />&nbsp;
+                                            <GoIssueOpened style={{ color: "rgb(66, 4, 69)",fontSize:"20px",margin:"0 6px"  }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Issue Type</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalPurchaseType' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <BiPurchaseTag style={{ color: "#a12e7a" }} />&nbsp;
+                                            <AiFillTag style={{ color: "rgb(66, 4, 69)",fontSize:"19px",margin:"0 5px" }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Purchase Type</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalContractType' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <GiContract style={{ color: "#a12e7a" }} />&nbsp;
+                                            <RiArrowUpDownFill style={{ color: "rgb(66, 4, 69)",fontSize:"20px",margin:"0 5px"}} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Contract Type</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalPriority' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <MdLowPriority style={{ color: "#a12e7a" }} />&nbsp;
+                                            <BsArrowUpRightCircleFill style={{ color: "rgb(66, 4, 69)",fontSize:"16px",margin:"0 7px"}} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Priority</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalTicketStatus' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <GrStatusGood style={{ fill: "#a12e7a" }} />&nbsp;
+                                            <BsTriangleHalf  style={{ fill: "rgb(66, 4, 69)",fontSize:"17px",margin:"0 6px"  }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Ticket Status</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalBillingFreq' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <HiOutlineRefresh style={{ color: "#a12e7a" }} />&nbsp;
+                                            <RiBillFill style={{ color: "rgb(66, 4, 69)",fontSize:"17px",margin:"0 6px" }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Billing Frequency</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalVendorCategory' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <BiCategory style={{ color: "#a12e7a" }} />&nbsp;
+                                            <HiDuplicate style={{ color: "rgb(66, 4, 69)",fontSize:"20px",margin:"0 4px" }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Vendor Category</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalVendSubCate' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <BiCategoryAlt style={{ color: "#a12e7a" }} />
-                                            <div style={{ display: isOpen ? "block" : "none", fontSize: "17px" }} >Vendor SubCategory</div>
+                                            <HiDuplicate style={{ color: "rgb(66, 4, 69)",fontSize:"20px",margin:"0 5px" }} />
+                                            <div style={{ display: isOpen ? "block" : "none", fontSize: "14px" }} >Vendor SubCategory</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalServiceActionType' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <MdOutlineMiscellaneousServices style={{ color: "#a12e7a" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none", fontSize: "17px" }} >Service Action Type</div>
+                                            <RiServiceFill style={{ color: "rgb(66, 4, 69)",fontSize:"18px",margin:"0 4px" }} />&nbsp;
+                                            <div style={{ display: isOpen ? "block" : "none", fontSize: "14px" }} >Service Action Type</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalServiceGroup' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <GrServices style={{ fill: "#a12e7a" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none", fontSize: "17px" }} >Service Group Type</div>
+                                            <RiServiceFill style={{ color: "rgb(66, 4, 69)",fontSize:"18px",margin:"0 4px" }} />&nbsp;
+                                            <div style={{ display: isOpen ? "block" : "none", fontSize: "14px" }} >Service Group Type</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink' style={{ borderBottom: "2px solid rgb(200, 195, 195)" }}>
                                         <NavLink to='/TotalVendorCode' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <BsJournalCode style={{ fill: "#a12e7a" }} />&nbsp;
+                                            <FaElementor style={{ color: "rgb(66, 4, 69)",fontSize:"17px",margin:"0 5px" }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Vendor Master</div>
                                         </NavLink>
                                     </li>
@@ -415,7 +415,7 @@ const Sidebar = ({ children }) => {
                             </div>
                             <li onClick={handleinnertoggletransation} style={{ listStyle: "none" }}>
                                 <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
-                                    <div className="icon" onClick={toggle}><MdAttachMoney /></div>
+                                    <div className="icon" onClick={toggle}><RiMoneyEuroCircleFill style={{fontSize:"22px"}}/></div>
                                     <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text "> &nbsp; Transaction<span className="icon"><IoIosArrowDown /></span> </div>
                                 </div>
                             </li>
@@ -423,13 +423,13 @@ const Sidebar = ({ children }) => {
                                 <ul style={{ paddingLeft: "0px" }}>
                                     <li className='innerlink' style={{ margingLeft: "0px" }}>
                                         <NavLink to='/TotalVendorInvoice' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <MdAttachMoney style={{ fill: "#a12e7a" }} />
+                                            <RiMoneyEuroCircleFill style={{ fill: "rgb(66, 4, 69)",fontSize:"17px",margin:"0 7px" }} />
                                             <div style={{ display: isOpen ? "block" : "none" }} > Vendor Invoice</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink' style={{ borderBottom: "2px solid rgb(200, 195, 195)" }}>
                                         <NavLink to='/TotalVendorPayment' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <MdAttachMoney style={{ fill: "#a12e7a" }} />
+                                            <RiMoneyEuroCircleFill style={{ fill: "rgb(66, 4, 69)",fontSize:"17px",margin:"0 7px" }} />
                                             <div style={{ display: isOpen ? "block" : "none" }} > Vendor Payment</div>
                                         </NavLink>
                                     </li>
@@ -441,7 +441,7 @@ const Sidebar = ({ children }) => {
 
                     <div onClick={handleinnertogglehelpdesk} style={{ marginTop: "0px" }}>
                         <div className="link" id='masterdrizelltitlelink' style={{ cursor: "pointer" }}>
-                            <div className="icon" onClick={toggle}><MdLiveHelp /></div>
+                            <div className="icon" onClick={toggle}><MdHelp style={{fontSize:"20px",marginLeft:"-3px"}} /></div>
                             <span style={{ display: "flex" }} >
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text ">Help Desk</div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
@@ -453,7 +453,7 @@ const Sidebar = ({ children }) => {
                         <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
                             <li className='innerlink' >
                                 <NavLink to='/TotalTicket' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <HiOutlineTicket style={{ color: "#a12e7a", marginTop: "5px" }} />&nbsp;
+                                    <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
                                     <div style={{ display: isOpen ? "block" : "none" }} > Ticket</div>
                                 </NavLink>
                             </li>

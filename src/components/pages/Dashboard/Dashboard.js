@@ -6,13 +6,14 @@ import { HiUsers } from 'react-icons/hi';
 import { FaTicketAlt } from 'react-icons/fa';
 import { MdStickyNote2 } from 'react-icons/md';
 import AssetsDash from './AssetsDash'
-import VendorDash from './VendorDash'
+import VendorDash from './VendorDash/VendorDash'
 import Outstanding from './Outstanding/Outstanding'
 import Outstatndingdetails from './Outstanding/Outstandingdetails'
-import TickteDash from './TicketDash'
+import TickteDash from './TicketDash/TicketDash'
 
 import { DashboarDetails } from '../../../api/index'
 import LoadingPage from '../../LoadingPage/LoadingPage';
+import Recurring from './VendorDash/Recurring';
 
 
 const Dashboard = () => {
@@ -43,14 +44,15 @@ const Dashboard = () => {
       case 1:
         return <AssetsDash />
       case 2:
-        return <VendorDash />
+        return <VendorDash setStep={setStep} />
       case 3:
         return <Outstanding setStep={setStep} />
       case 4:
         return <TickteDash />
       case 5:
-        console.log('TicketDash')
         return <Outstatndingdetails />
+      case 6:
+        return <Recurring/>
       default:
         return false
     }
@@ -85,7 +87,7 @@ const Dashboard = () => {
                 <div onClick={() => setStep(3)} className='card1 d-flex rounded curser-pointer'>
                   <div>
                     <h1 className='dash_card_head mb-0'>{dashboarddetails.Compliance}</h1>
-                    <p className='dash_card_para'>Outstanding</p>
+                    <p className='dash_card_para'>Compliances</p>
                   </div>
                   <div className='dash_card_icon_div rounded-circle'>
                     <MdStickyNote2 className='icon' />

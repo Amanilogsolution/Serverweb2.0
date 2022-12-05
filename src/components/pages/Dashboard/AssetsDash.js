@@ -138,10 +138,10 @@ export default function AssetsDash() {
           <ResponsiveContainer width="100%" aspect={5.4}>
             <BarChart data={chartData} margin={{ top: 20, right: 45 }}>
               <CartesianGrid />
-              <XAxis dataKey="Location" interval={"preserveStartEnd"} />
+              <XAxis dataKey="Location" interval={"preserveStartEnd"} style={{ fontSize:"14px" }}/>
               <YAxis />
               <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
-              <Bar dataKey="Assets" fill="maroon" />
+              <Bar dataKey="Assets" fill="maroon" barSize={20} />
               <Tooltip />
             </BarChart>
           </ResponsiveContainer>
@@ -149,7 +149,7 @@ export default function AssetsDash() {
         <div className='graph_2nd_row d-flex justify-content-center' >
           <div className='manufacturer_graph'>
             <p className='bg-dark text-white px-4 mx-2'>Manufacturer</p>
-            <ResponsiveContainer width="100%" aspect={1.8}>
+            <ResponsiveContainer width="100%" aspect={2.4}>
               <PieChart width={730} height={250}>
                 <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                 <Tooltip />
@@ -159,7 +159,7 @@ export default function AssetsDash() {
           </div>
           <div className='software_graph'>
             <p className='bg-dark text-white px-4'>Software</p>
-            <ResponsiveContainer width="100%" aspect={3}>
+            <ResponsiveContainer width="100%" aspect={3.2}>
               <LineChart data={chartData2} margin={{ top: 20, right: 45 }}>
                 <CartesianGrid />
                 <XAxis dataKey="softwareName" interval={"preserveStartEnd"} />
@@ -170,8 +170,10 @@ export default function AssetsDash() {
                   type="monotone"
                   dataKey="softwares"
                   stroke="maroon"
-                  activeDot={{ r: 8 }}
-                  strokeWidth="5px"
+                  activeDot={{ r: 8}}
+                  strokeWidth="4px"
+                  // fillOpacity={0}
+                  dot={{r: 0}}
                 />
               </LineChart>
             </ResponsiveContainer>

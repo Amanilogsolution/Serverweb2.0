@@ -37,7 +37,7 @@ const Navbar = (propes) => {
                 <div className=" dropdown show w-100">
                    <a className=" " href="/rofile" role="button" id="dropdownMenuLink" 
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={profile}>
-                         <FaUserCircle  />
+                         <FaUserCircle />
                    </a>
 
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
