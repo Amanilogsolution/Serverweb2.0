@@ -45,7 +45,7 @@ const Dashboard = () => {
       case 2:
         return <VendorDash />
       case 3:
-        return <Outstanding showStep={showStep} />
+        return <Outstanding setStep={setStep} />
       case 4:
         return <TickteDash />
       case 5:

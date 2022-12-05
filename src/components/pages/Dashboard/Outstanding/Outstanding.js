@@ -2,8 +2,7 @@ import React from 'react'
 import './Outstanding.css'
 
 
-const Outstanding = (props) => {
-console.log(props.showStep)
+const Outstanding = ({setStep}) => {
   return (
     <section className='outstanding-container d-flex justify-content-around mt-2'>
       <div className='oustanding-details '>
@@ -52,7 +51,7 @@ console.log(props.showStep)
       </div>
       <div className='outstanding-table border border-dark'>
         <p className='bg-dark text-white d-flex justify-content-between h5 py-1 px-2'>ILOG- IT OUTSTANDING as on DATE
-          <a onClick={()=>{props.showStep(5)}} className='curser-pointer'>Outstanding details</a>
+          <a onClick={()=>{setStep(5)}} className='curser-pointer'>Outstanding details</a>
         </p>
       </div>
     </section>
