@@ -3,6 +3,7 @@
     margin: 12px 8px;
     min-height: 63vh;
     max-width: 100%;
+    
 }
 
 .AssetDash .Asset_cards {
@@ -11,7 +12,7 @@
 
 .AssetDash .Asset_inner_card1 {
     width: 50%;
-    flex-direction: column;
+    flex-direction: column;   
 }
 
 .AssetDash .Asset_card {

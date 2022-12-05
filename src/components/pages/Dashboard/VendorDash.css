@@ -1,0 +1,23 @@
+.VendorDash {
+    width: 99%;
+    margin: 12px 8px;
+    min-height: 63vh;
+    max-width: 100%;
+    border: 1px solid black;
+    display: flex;
+}
+.VendorDash .VendorDash1{
+    border: 1px solid red;
+    width: 60%;
+} 
+.VendorDash .VendorDash2{
+    border: 1px solid green;
+    width: 20%;
+} 
+.VendorDash .VendorDash3{
+    border: 1px solid violet;
+    width: 20%;
+} 
+.VendorDash .VendorDash3 .VendorDash3_card{
+    border: 1px solid black;
+}
