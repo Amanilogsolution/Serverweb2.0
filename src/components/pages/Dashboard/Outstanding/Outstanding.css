@@ -1,13 +1,52 @@
 .outstanding-container {
-    border: 2px solid red;
-    height: 100%;
+    /* border: 2px solid red; */
+    /* height: 100%; */
 }
 
-.outstanding-container .oustanding-details{
-    border: 2px solid blue;
+.outstanding-container .oustanding-details {
+    /* border: 2px solid blue; */
     width: 25%;
 }
-.outstanding-container .oustanding-table{
-    border: 2px solid blue;
+
+.outstanding-container .oustanding-details .outstanding-top-detail-div {
+    /* border: 2px solid green; */
+    height: 100px;
+}
+
+.outstanding-totalinv {
+    width: 35%;
+    /* border: 2px solid blue; */
+}
+
+.outstanding-totalamt {
+    width: 61%;
+    /* border: 2px solid red; */
+}
+
+.outstanding-totalhead {
+    font-size: 18px;
+    background-color: rgb(73, 0, 141);
+}
+
+.outstanding-value {
+    font-size: 20px;
+}
+
+.outstanding-container .outstanding-table {
+    /* border: 2px solid blue; */
     width: 71%;
+}
+
+@media screen and (max-width:786px){
+    .outstanding-container{
+        flex-direction: column;
+    }
+    .outstanding-container .oustanding-details {
+        width: 100%;
+        padding: 0px 2%;
+    }
+    .outstanding-container .outstanding-table {
+        width: 96%;
+        margin:2%;
+    }
 }
