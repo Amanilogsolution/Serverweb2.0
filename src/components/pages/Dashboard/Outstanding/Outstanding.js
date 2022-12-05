@@ -1,9 +1,37 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './Outstanding.css'
-
+import DataTable from 'react-data-table-component';
+import DataTableExtensions from 'react-data-table-component-extensions';
+import 'react-data-table-component-extensions/dist/index.css';
+import { AiFillEdit } from 'react-icons/ai';
 
 const Outstanding = (props) => {
-console.log(props.showStep)
+  const [data, setdata] = useState([])
+
+  console.log(props.showStep)
+  const columns = [
+    {
+      name: 'Asset Name',
+      selector: 'asset_name',
+      sortable: true,
+    },
+    {
+      name: "Actions",
+      sortable: false,
+      selector: 'null',
+      cell: (row) => [
+        <a title='Edit Asset' href="/EditAsset">
+          <p  >
+            <AiFillEdit />
+          </p></a>
+      ]
+    }
+
+  ];
+  const tableData = {
+    columns,
+    data
+  };
   return (
     <section className='outstanding-container d-flex justify-content-around mt-2'>
       <div className='oustanding-details '>
@@ -52,8 +80,19 @@ console.log(props.showStep)
       </div>
       <div className='outstanding-table border border-dark'>
         <p className='bg-dark text-white d-flex justify-content-between h5 py-1 px-2'>ILOG- IT OUTSTANDING as on DATE
-          <a onClick={()=>{props.showStep(5)}} className='curser-pointer'>Outstanding details</a>
+          <a onClick={() => { props.showStep(5) }} className='curser-pointer'>Outstanding details</a>
         </p>
+        <div>
+          <DataTableExtensions {...tableData}>
+            <DataTable
+              noHeader
+              defaultSortField="id"
+              defaultSortAsc={false}
+              pagination
+              highlightOnHover
+            />
+          </DataTableExtensions>
+        </div>
       </div>
     </section>
   )

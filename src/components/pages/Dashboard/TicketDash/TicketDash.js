@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function TicketDash() {
+const TicketDash=()=> {
   return (
     <div style={{margin:"5px 15px",height:"400px"}}>
       <h3>Tickets</h3>
@@ -8,3 +8,5 @@ export default function TicketDash() {
     </div>
   )
 }
+
+export default TicketDash;

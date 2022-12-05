@@ -9,7 +9,7 @@ import AssetsDash from './AssetsDash'
 import VendorDash from './VendorDash'
 import Outstanding from './Outstanding/Outstanding'
 import Outstatndingdetails from './Outstanding/Outstandingdetails'
-import TickteDash from './TicketDash'
+import TickteDash from './TicketDash/TicketDash'
 
 import { DashboarDetails } from '../../../api/index'
 import LoadingPage from '../../LoadingPage/LoadingPage';
