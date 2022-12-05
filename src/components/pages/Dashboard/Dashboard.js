@@ -64,7 +64,7 @@ const Dashboard = () => {
       {
         loading ?
           <Sidebar>
-            <div className='dashboard_container'>
+            <div className='dashboard_container py-2'>
 
               <div className='dashboard_cards text-white d-flex justify-content-around'>
                 <div onClick={() => setStep(1)} className='card1 d-flex rounded curser-pointer'>
