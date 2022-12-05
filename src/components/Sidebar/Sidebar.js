@@ -162,7 +162,7 @@ const Sidebar = ({ children }) => {
                     <span className='internalsidebar'>
                         <span className='ul'>
                             <span className='li'>
-                                <NavLink to='/Dashboard' className="link navlink" title='Dashboard'>
+                                <NavLink to='/Dashboard' className="link" title='Dashboard'>
                                     <div className="icon"><FaTh /></div>
                                     <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Dashboard</div>
                                 </NavLink>
@@ -277,7 +277,7 @@ const Sidebar = ({ children }) => {
                         <ul style={{ marginBottom: "0px" }}>
                             <li title='Assets' style={{ listStyle: "none" }}>
                                 <NavLink to='/TotalNewAssets' className="link" activeclassname="sidebaractive">
-                                    <div className="icon"><BsFillLaptopFill style={{fontSize:"18px"}} /></div>
+                                    <div className="icon"><BsFillLaptopFill  style={{fontSize:"18px"}} /></div>
                                     <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Assets</div>
                                 </NavLink>
                             </li>
@@ -300,14 +300,14 @@ const Sidebar = ({ children }) => {
                             <div className="innersubdiv" id="subdrizzleinner" style={{ display: "none" }}>
                                 <ul style={{ paddingLeft: "0px", marginBottom: "0px" }}>
                                     <li className='innerlink' >
-                                        <NavLink to='/TotalLocations' className='navlink d-flex' activeclassname="sidebaractive">
+                                        <NavLink to='/TotalLocations' style={{borderTop:"1px solid silver"}} className='navlink d-flex' activeclassname="sidebaractive">
                                             <MdLocationPin style={{ color: "rgb(66, 4, 69)",fontSize:"20px",margin:"0 7px" }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} > Location</div>
                                         </NavLink>
                                     </li>
                                     <li className='innerlink'>
                                         <NavLink to='/TotalEmployee' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <FaUserAlt style={{ color: "rgb(66, 4, 69)",fontSize:"16px",margin:"0 8px" }} /> &nbsp;
+                                            <FaUserAlt style={{color: "rgb(66, 4, 69)",fontSize:"16px",margin:"0 8px" }} /> &nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Employee</div>
                                         </NavLink>
                                     </li>
