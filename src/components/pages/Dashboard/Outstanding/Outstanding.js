@@ -78,10 +78,13 @@ const Outstanding = ({ setStep }) => {
             </thead>
           </table>
         </div>
+        <div className='curser-pointer  text-light  mt-1 h-25 d-flex justify-content-center align-items-center' style={{cursor:"pointer"}} onClick={() => { setStep(5) }}>
+          Click for Outstanding Details
+        </div>
       </div>
       <div className='outstanding-table border border-dark'>
         <p className='bg-dark text-white d-flex justify-content-between h5 py-1 px-2'>ILOG- IT OUTSTANDING as on DATE
-          <a onClick={() => { setStep(5) }} className='curser-pointer'>Outstanding details</a>
+          {/* <a onClick={() => { setStep(5) }} className='curser-pointer'>Outstanding details</a> */}
         </p>
         <div>
           <DataTableExtensions {...tableData}>

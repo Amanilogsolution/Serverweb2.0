@@ -2,7 +2,7 @@ import './Outstandingdetail.css'
 const Outstatndingdetails = () => {
     return (
         <>
-            <div className="Outstanding_container_details d-flex justify-content-between mt-2">
+            <div className="Outstanding_container_details d-flex justify-content-between mt-2 mx-1">
                 <div className="card1 flex-fill ">
                     <p className="bg-dark text-center text-white">Search Vendor Invoice</p>
                     <div className="d-flex justify-content-center">
@@ -28,10 +28,10 @@ const Outstatndingdetails = () => {
                 </div>
 
             </div>
-            <div className="d-flex flex-column mt-2" style={{ minHeight: "60vh" }}>
+            <div className="d-flex flex-column mt-2 mx-1" style={{ minHeight: "60vh" }}>
                 <div style={{ maxHeight: "30vh" }}>
                     <p className="bg-dark text-center text-white">Vendor Invoices - Detailed</p>
-                    <div style={{ overflow: "auto", height: "20vh" }}>
+                    <div className="Outstanding_table" style={{ overflow: "auto", height: "20vh" }}>
                         <table class="table table-striped" >
                             <thead>
                                 <tr>
@@ -77,7 +77,7 @@ const Outstatndingdetails = () => {
                 </div>
                 <div style={{ minHeight: "30vh" }}>
                     <p className="bg-dark text-center text-white">Paid Invoices - Detailed</p>
-                    <div style={{ overflow: "auto", height: "20vh" }}>
+                    <div className="Outstanding_table" style={{ overflow: "auto", height: "20vh" }}>
                         <table class="table table-striped" >
                             <thead>
                                 <tr>
