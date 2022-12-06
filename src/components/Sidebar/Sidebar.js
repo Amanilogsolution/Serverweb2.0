@@ -9,12 +9,12 @@ import {
     FaFileMedicalAlt
 } from "react-icons/fa";
 
-import { IoIosArrowDown, IoMdLogOut } from 'react-icons/io'
+import { IoIosArrowDown } from 'react-icons/io'
 import { AiFillTag } from 'react-icons/ai'
 import {
     MdOutlineDoubleArrow, MdDevicesOther,MdHelp,
     MdAttachMoney, MdPrecisionManufacturing,
-    MdOutlineMiscellaneousServices, MdOutlineDevicesOther, MdAddTask,MdLocationPin
+    MdOutlineMiscellaneousServices, MdOutlineDevicesOther, MdAddTask,MdLocationPin,MdOutlineExitToApp
 } from 'react-icons/md'
 import { BsJournalCode,BsInboxesFill,BsTriangleHalf,BsArrowUpRightCircleFill,BsFillLaptopFill,BsFileBarGraphFill } from 'react-icons/bs'
 import { BiCategory, BiCategoryAlt, BiDevices } from 'react-icons/bi'
@@ -404,7 +404,7 @@ const Sidebar = ({ children }) => {
                                             <div style={{ display: isOpen ? "block" : "none", fontSize: "14px" }} >Service Group Type</div>
                                         </NavLink>
                                     </li>
-                                    <li className='innerlink' style={{ borderBottom: "2px solid rgb(200, 195, 195)" }}>
+                                    <li className='innerlink' style={{ borderBottom: "1px solid silver" }}>
                                         <NavLink to='/TotalVendorCode' className='navlink d-flex' activeclassname="sidebaractive">
                                             <FaElementor style={{ color: "rgb(66, 4, 69)",fontSize:"17px",margin:"0 5px" }} />&nbsp;
                                             <div style={{ display: isOpen ? "block" : "none" }} >Vendor Master</div>
@@ -427,7 +427,7 @@ const Sidebar = ({ children }) => {
                                             <div style={{ display: isOpen ? "block" : "none" }} > Vendor Invoice</div>
                                         </NavLink>
                                     </li>
-                                    <li className='innerlink' style={{ borderBottom: "2px solid rgb(200, 195, 195)" }}>
+                                    <li className='innerlink' style={{ borderBottom: "1px solid silver" }}>
                                         <NavLink to='/TotalVendorPayment' className='navlink d-flex' activeclassname="sidebaractive">
                                             <RiMoneyEuroCircleFill style={{ fill: "rgb(66, 4, 69)",fontSize:"17px",margin:"0 7px" }} />
                                             <div style={{ display: isOpen ? "block" : "none" }} > Vendor Payment</div>
@@ -463,8 +463,8 @@ const Sidebar = ({ children }) => {
                 </div>
 
                 <div className="footer_section" title='Logout' id='footerdivsection'>
-                    <a className="link" activeclassname="sidebaractive" style={{ borderTop: "1px solid #333" }}>
-                        <div className="icon text-danger" onClick={toggle}><IoMdLogOut /></div>
+                    <a className="link" activeclassname="sidebaractive" style={{background:"rgb(222, 222, 222)",marginTop:"5px" }}>
+                        <div className="icon text-danger" onClick={toggle}><MdOutlineExitToApp style={{fontSize:"20px"}} /></div>
                         <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text text-danger" onClick={handleLogout}>Logout</div>
                     </a>
                 </div>

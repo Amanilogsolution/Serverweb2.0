@@ -2,6 +2,7 @@ import React from 'react'
 import './Navbar.css'
 import { FaUserCircle } from 'react-icons/fa'
 import { IoMdLogOut } from 'react-icons/io'
+import { RiNotification2Fill } from 'react-icons/ri'
 import DrizzleLogo from '../../image/drizzle_logo.jpg'
 import {Link} from 'react-router-dom'
 const Navbar = (propes) => {
@@ -18,9 +19,10 @@ const Navbar = (propes) => {
     const profile = {
        position:"absolute",
        right:"5%",
-        fontSize: "36px",
-        color:"rgb(164,43,122)",
-        cursor:"pointer"
+        fontSize: "47px",
+        color:"rgb(96,58,233)",
+        cursor:"pointer",
+        marginTop:"-13px"
     }
 
     const handleLogout=()=>{
@@ -35,11 +37,12 @@ const Navbar = (propes) => {
                 </h5>:<img src={DrizzleLogo} style={{height:"80%"}} alt='Drizzle Landing Page'/>}
 
                 <div className=" dropdown show w-100">
+                    
+                    <RiNotification2Fill style={{position:"absolute",right:"11%",marginTop:"12px",fontSize:"25px",color:"rgb(96,58,233)",cursor:"pointer"}}/>
                    <a className=" " href="/rofile" role="button" id="dropdownMenuLink" 
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={profile}>
-                         <FaUserCircle />
+                         <FaUserCircle/>
                    </a>
-
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                     <a className="dropdown-item" href="/Profile">Profile</a>
                        <Link className="dropdown-item" to="/ChangePassword">Change Password </Link>

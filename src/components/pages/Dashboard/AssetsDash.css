@@ -23,9 +23,7 @@
     transition: all 0.5s linear;
 }
 
- .AssetDash .Asset_card:hover {
-    transform: scale(1.1);
-}
+
 
 .AssetDash .Asset_card2 {
     width: 95.4%;
@@ -35,10 +33,6 @@
     background: linear-gradient(45deg, rgb(164, 43, 122), rgb(106, 6, 71));
     transition: all 0.5s linear;
 }
-
- .AssetDash .Asset_card2:hover {
-    transform: scale(1.1);
-} 
 
 .AssetDash .for_graph {
     width: 70%;
