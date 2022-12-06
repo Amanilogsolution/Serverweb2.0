@@ -36,11 +36,11 @@ const Navbar = (propes) => {
                     <h5></h5> : <img src={DrizzleLogo} style={{ height: "80%" }} alt='Drizzle Landing Page' />}
                 <div className='nav_icon'>
                     <BsFillClockFill style={{ fontSize: "23px" }} />
-                    <MdOutlineArrowDropDown style={{ fontSize: "30px", margin: "-4px 0"}}/>
+                    <MdOutlineArrowDropDown style={{ fontSize: "30px", margin: "-3px -5px "}}/>
                 </div>
                 <div className='nav_icon2'>
                     <RiNotification4Fill style={{ fontSize: "23px" }}/>
-                    <MdOutlineArrowDropDown style={{ fontSize: "30px", margin: "-4px 0"}} />
+                    <MdOutlineArrowDropDown style={{ fontSize: "30px", margin: "-3px -5px "}} />
                 </div>
 
                 <div className=" dropdown show w-100">
