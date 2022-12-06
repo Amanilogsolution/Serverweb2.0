@@ -14,5 +14,20 @@
     background:white;
     text-align: center;
     border: 2px ;
-
-  }
+ }
+ .nav_icon{
+  display: flex;
+  right:20%;
+  position:absolute;
+  margin-top:9px;
+  cursor: pointer;
+  color: rgb(95,33,73);
+ }
+ .nav_icon2{
+  display: flex;
+  right:24%;
+  position:absolute;
+  margin-top:9px;
+  cursor: pointer;
+  color: rgb(95,33,73);
+ }
