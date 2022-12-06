@@ -38,8 +38,7 @@ const Dashboard = () => {
   }, [])
 
   const showStep = (step) => {
-    console.log(step)
-
+    // console.log(step)
     switch (step) {
       case 1:
         return <AssetsDash />
