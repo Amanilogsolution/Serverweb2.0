@@ -49,7 +49,7 @@ const Navbar = (propes) => {
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                         <div style={{ display: "flex" }}>
                             <FaUserCircle style={{ fontSize: "30px", margin: "-2px 5px 0 5px" }} />
-                            <p>Akash Kaushik</p>
+                            <p>{sessionStorage.getItem('UserName')}</p>
                             <MdOutlineArrowDropDown style={{ fontSize: "30px", margin: "-4px 0"}} />
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 import './Outstandingdetail.css'
+import {BiSearchAlt2} from 'react-icons/bi'
 const Outstatndingdetails = () => {
     return (
         <>
@@ -7,7 +8,8 @@ const Outstatndingdetails = () => {
                     <p className="bg-dark text-center text-white">Search Vendor Invoice</p>
                     <div className="d-flex justify-content-center">
                         <input className=" form-control w-50" type="search" placeholder="Search ..." />
-                        <button class=" btn btn-outline-success " type="submit">Search</button>
+                        <BiSearchAlt2 style={{fontSize:"25px",margin:"4px 3px",cursor:"pointer"}}/>
+                        {/* <button class=" btn btn-outline-success " type="submit">Search</button> */}
                     </div>
                 </div>
                 <div className="card1 flex-fill">
@@ -15,7 +17,9 @@ const Outstatndingdetails = () => {
                     <div className="d-flex justify-content-center">
 
                         <input className=" form-control w-50" type="search" placeholder="Search ..." />
-                        <button class="  btn btn-outline-success " type="submit">Search</button>
+                        <BiSearchAlt2 style={{fontSize:"25px",margin:"4px 3px",cursor:"pointer"}}/>
+
+                        {/* <button class="  btn btn-outline-success " type="submit">Search</button> */}
                     </div>
                 </div>
                 <div className="card1 flex-fill">
@@ -23,7 +27,9 @@ const Outstatndingdetails = () => {
                     <div className="d-flex justify-content-center">
 
                         <input className=" form-control w-50" type="search" placeholder="Search ..." />
-                        <button class="  btn btn-outline-success " type="submit">Search</button>
+                        <BiSearchAlt2 style={{fontSize:"25px",margin:"4px 3px",cursor:"pointer"}}/>
+
+                        {/* <button class="  btn btn-outline-success " type="submit">Search</button> */}
                     </div>
                 </div>
 
