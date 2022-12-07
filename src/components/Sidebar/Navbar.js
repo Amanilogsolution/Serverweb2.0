@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './Navbar.css'
 import { FaUserCircle } from 'react-icons/fa'
 import { IoMdLogOut } from 'react-icons/io'
@@ -8,6 +8,8 @@ import { RiNotification4Fill, RiServiceFill } from 'react-icons/ri'
 import DrizzleLogo from '../../image/drizzle_logo.jpg'
 import { Link } from 'react-router-dom'
 const Navbar = (propes) => {
+    const [time, setTime] = useState(false)
+    
     const navheight = {
         height: "60px",
         width: "100%",
@@ -35,14 +37,13 @@ const Navbar = (propes) => {
                 {propes.isOpen ?
                     <h5></h5> : <img src={DrizzleLogo} style={{ height: "80%" }} alt='Drizzle Landing Page' />}
                 <div className='nav_icon'>
-                    <RiNotification4Fill style={{ fontSize: "23px" }} />
-                    <MdOutlineArrowDropDown style={{ fontSize: "30px", margin: "-3px -5px "}}/>
+                    <BsFillClockFill style={{ fontSize: "23px" }} />
+                    <MdOutlineArrowDropDown style={{ fontSize: "30px", margin: "-3px -5px " }} />
                 </div>
                 <div className='nav_icon2'>
-                    <BsFillClockFill style={{ fontSize: "23px" }}/>
-                    <MdOutlineArrowDropDown style={{ fontSize: "30px", margin: "-3px -5px "}} />
+                    <RiNotification4Fill style={{ fontSize: "23px" }} />
+                    <MdOutlineArrowDropDown style={{ fontSize: "30px", margin: "-3px -5px " }} />
                 </div>
-
                 <div className=" dropdown show w-100">
 
                     <div style={profile} className=" " href="/rofile" role="button" id="dropdownMenuLink"
@@ -50,7 +51,7 @@ const Navbar = (propes) => {
                         <div style={{ display: "flex" }}>
                             <FaUserCircle style={{ fontSize: "30px", margin: "-2px 5px 0 5px" }} />
                             <p>Akash Kaushik</p>
-                            <MdOutlineArrowDropDown style={{ fontSize: "30px", margin: "-4px 0"}} />
+                            <MdOutlineArrowDropDown style={{ fontSize: "30px", margin: "-4px 0" }} />
                         </div>
                     </div>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" >
