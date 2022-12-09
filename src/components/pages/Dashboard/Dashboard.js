@@ -86,7 +86,7 @@ const Dashboard = () => {
                 <div onClick={() => setStep(3)} className='card1 d-flex rounded curser-pointer'>
                   <div>
                     <h1 className='dash_card_head mb-0'>{dashboarddetails.Compliance}</h1>
-                    <p className='dash_card_para'>Compliances</p>
+                    <p className='dash_card_para'>Invoice</p>
                   </div>
                   <div className='dash_card_icon_div rounded-circle'>
                     <MdStickyNote2 className='icon' />

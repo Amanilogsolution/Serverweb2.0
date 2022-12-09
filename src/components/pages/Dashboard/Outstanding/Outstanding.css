@@ -1,7 +1,7 @@
-.outstanding-container {
+/* .outstanding-container { */
     /* border: 2px solid red; */
     /* height: 100%; */
-}
+/* } */
 
 .outstanding-container .oustanding-details {
     /* border: 2px solid blue; */
@@ -35,6 +35,15 @@
 .outstanding-container .outstanding-table {
     /* border: 2px solid blue; */
     width: 71%;
+}
+.curser-pointer{
+    transition: all 0.1s linear;
+    border-radius:5px;
+    background: linear-gradient(45deg,#de6262 , #ffb88c)
+
+}
+.curser-pointer:hover {
+    transform: scale(1.06);
 }
 
 @media screen and (max-width:786px){

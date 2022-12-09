@@ -1,13 +1,15 @@
 import './Outstandingdetail.css'
+import {BiSearchAlt2} from 'react-icons/bi'
 const Outstatndingdetails = () => {
     return (
         <>
-            <div className="Outstanding_container_details d-flex justify-content-between mt-2">
+            <div className="Outstanding_container_details d-flex justify-content-between mt-2 mx-1">
                 <div className="card1 flex-fill ">
                     <p className="bg-dark text-center text-white">Search Vendor Invoice</p>
                     <div className="d-flex justify-content-center">
                         <input className=" form-control w-50" type="search" placeholder="Search ..." />
-                        <button class=" btn btn-outline-success " type="submit">Search</button>
+                        <BiSearchAlt2 style={{fontSize:"25px",margin:"4px 3px",cursor:"pointer"}}/>
+                        {/* <button class=" btn btn-outline-success " type="submit">Search</button> */}
                     </div>
                 </div>
                 <div className="card1 flex-fill">
@@ -15,7 +17,9 @@ const Outstatndingdetails = () => {
                     <div className="d-flex justify-content-center">
 
                         <input className=" form-control w-50" type="search" placeholder="Search ..." />
-                        <button class="  btn btn-outline-success " type="submit">Search</button>
+                        <BiSearchAlt2 style={{fontSize:"25px",margin:"4px 3px",cursor:"pointer"}}/>
+
+                        {/* <button class="  btn btn-outline-success " type="submit">Search</button> */}
                     </div>
                 </div>
                 <div className="card1 flex-fill">
@@ -23,15 +27,17 @@ const Outstatndingdetails = () => {
                     <div className="d-flex justify-content-center">
 
                         <input className=" form-control w-50" type="search" placeholder="Search ..." />
-                        <button class="  btn btn-outline-success " type="submit">Search</button>
+                        <BiSearchAlt2 style={{fontSize:"25px",margin:"4px 3px",cursor:"pointer"}}/>
+
+                        {/* <button class="  btn btn-outline-success " type="submit">Search</button> */}
                     </div>
                 </div>
 
             </div>
-            <div className="d-flex flex-column mt-2" style={{ minHeight: "60vh" }}>
+            <div className="d-flex flex-column mt-2 mx-1" style={{ minHeight: "60vh" }}>
                 <div style={{ maxHeight: "30vh" }}>
                     <p className="bg-dark text-center text-white">Vendor Invoices - Detailed</p>
-                    <div style={{ overflow: "auto", height: "20vh" }}>
+                    <div className="Outstanding_table" style={{ overflow: "auto", height: "20vh" }}>
                         <table class="table table-striped" >
                             <thead>
                                 <tr>
@@ -77,7 +83,7 @@ const Outstatndingdetails = () => {
                 </div>
                 <div style={{ minHeight: "30vh" }}>
                     <p className="bg-dark text-center text-white">Paid Invoices - Detailed</p>
-                    <div style={{ overflow: "auto", height: "20vh" }}>
+                    <div className="Outstanding_table" style={{ overflow: "auto", height: "20vh" }}>
                         <table class="table table-striped" >
                             <thead>
                                 <tr>

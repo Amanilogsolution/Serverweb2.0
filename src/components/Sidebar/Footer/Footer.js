@@ -3,7 +3,7 @@ const Footer = () => {
     return (
         <>
             <div className="footer">
-               <p className='footer-head text-center'>© 2022 Drizzle. All rights reserved.</p> 
+               <p className='footer-head text-center'>© 2022 Drizzle. All rights reserved</p> 
             </div>
 
         </>
