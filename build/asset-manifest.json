@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.5ad5a0f6.css",
-    "main.js": "/static/js/main.ca0bab8c.js",
+    "main.js": "/static/js/main.bc98fc8c.js",
     "static/js/787.446a2371.chunk.js": "/static/js/787.446a2371.chunk.js",
     "static/media/footer_img.jpg": "/static/media/footer_img.20611d84c713faa1fb6b.jpg",
     "static/media/drizzle_logo.jpg": "/static/media/drizzle_logo.21a1fcb61061a24d4f0e.jpg",
@@ -14,11 +14,11 @@
     "static/media/services.svg": "/static/media/services.8ce15076535800541a4e0264ea92341f.svg",
     "index.html": "/index.html",
     "main.5ad5a0f6.css.map": "/static/css/main.5ad5a0f6.css.map",
-    "main.ca0bab8c.js.map": "/static/js/main.ca0bab8c.js.map",
+    "main.bc98fc8c.js.map": "/static/js/main.bc98fc8c.js.map",
     "787.446a2371.chunk.js.map": "/static/js/787.446a2371.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5ad5a0f6.css",
-    "static/js/main.ca0bab8c.js"
+    "static/js/main.bc98fc8c.js"
   ]
 }

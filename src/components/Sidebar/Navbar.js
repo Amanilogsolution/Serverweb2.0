@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Navbar.css'
 import { FaUserCircle } from 'react-icons/fa'
 import { MdOutlineExitToApp, MdOutlineArrowDropDown, MdOutlineHelp, MdGroups, MdEmail, MdPermContactCalendar } from 'react-icons/md'
@@ -12,7 +12,7 @@ import { HiDocumentText } from 'react-icons/hi'
 
 
 const Navbar = (propes) => {
- 
+
 
     const handleLogout = () => {
         sessionStorage.clear()
@@ -24,7 +24,7 @@ const Navbar = (propes) => {
                 {propes.isOpen ?
                     null : <img className='navbar-brand' src={DrizzleLogo} style={{ height: "80%" }} alt='Drizzle Landing Page' />}
                 <div className='mx-2 d-flex'>
-                    <div className={propes.isOpen ? 'd-flex  ' : 'd-flex'} style={{ width: '150px',marginLeft:'30px' }}>
+                    <div className={propes.isOpen ? 'd-flex  ' : 'd-flex'} style={{ width: '150px', marginLeft: '30px' }}>
                         <div className='d-flex align-items-center' role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <VscSettings style={{ fontSize: "25px" }} />
