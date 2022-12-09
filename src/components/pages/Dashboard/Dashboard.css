@@ -54,13 +54,11 @@
 .dash_card_icon_div .icon {
     font-size: 33px;
 }
+.dashboard_cards {
+    display: flex;
+}
 
 @media only screen and (min-width: 0px) and (max-width: 970px) {
-    .dashboard_cards {
-        display: block;
-        margin: auto;
-        width: 95%;
-    }
 
     .dashboard_cards .card1 {
         width: 22%;
@@ -108,5 +106,15 @@
     .dashboard_container {
         min-height: 87.3vh;
 
+    }
+}
+@media screen and (min-width:0) and (max-width:580px) {
+    .dashboard_cards {
+        display: block;
+        width: 95%;
+        margin: 0 15px;
+    }
+    .dashboard_cards .card1 {
+        width: 95%;
     }
 }

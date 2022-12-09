@@ -4,11 +4,12 @@
     margin: 10px 8px;
     min-height: 63vh;
     max-width: 100%;
+    padding-top: 80px;
 }
 .ticket_dash .ticket_card{
-    height: 29vh;
+    height: 13vh;
     margin: 6px 10px 15px 10px;
-    width: 31%;
+    width: 26%;
     box-shadow: 1px 1px 2px 1px silver;
     border-radius: 3px;
     /* border: 1px solid red; */
@@ -22,7 +23,7 @@
     display: flex;
     justify-content: center;
     /* border: 1px solid red; */
-    padding-top:80px;
+    padding-top:14px;
 }
 .tickets_icon{
     margin-right:6px;
@@ -39,7 +40,10 @@
         height: 17vh;
     }
     .ticket_card_content{
-        padding-top:40px;
+        padding-top:27px;
+    }
+    .ticket_dash{
+        padding-top: 0px;
     }
 }
 @media screen and (max-width: 400px) {

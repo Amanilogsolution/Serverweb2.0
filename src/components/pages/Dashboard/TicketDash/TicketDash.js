@@ -5,6 +5,7 @@ import { FaEnvelopeOpen, FaUserTimes, FaCalendarTimes, FaUser, FaCheck, FaTelegr
 const TicketDash = () => {
   return (
     <div className='ticket_dash'>
+
       <div className='ticket_card_div'>
         <div className='ticket_card'>
           <div className='ticket_card_content' style={{ marginRight: "43px" }}>
@@ -17,6 +18,7 @@ const TicketDash = () => {
             </div>
           </div>
         </div>
+
         <div className='ticket_card'>
           <div className='ticket_card_content'>
             <div className='tickets_icon' style={{ padding: "10px 11px" }}>
@@ -28,6 +30,7 @@ const TicketDash = () => {
             </div>
           </div>
         </div>
+
         <div className='ticket_card'>
           <div className='ticket_card_content' style={{ marginRight: "20px" }}>
             <div className='tickets_icon' style={{ padding: "10px 11px" }}>
@@ -39,7 +42,9 @@ const TicketDash = () => {
             </div>
           </div>
         </div>
+
       </div>
+
       <div className='ticket_card_div'>
         <div className='ticket_card'>
           <div className='ticket_card_content'>
@@ -52,6 +57,7 @@ const TicketDash = () => {
             </div>
           </div>
         </div>
+
         <div className='ticket_card'>
           <div className='ticket_card_content' style={{ marginRight: "30px" }}>
             <div className='tickets_icon' style={{ padding: "12px 12px" }}>
@@ -63,6 +69,7 @@ const TicketDash = () => {
             </div>
           </div>
         </div>
+        
         <div className='ticket_card'>
           <div className='ticket_card_content'>
             <div className='tickets_icon' style={{ padding: "12px 14px" }}>
