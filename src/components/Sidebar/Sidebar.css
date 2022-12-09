@@ -94,18 +94,16 @@
     overflow:auto;
     max-height: 83.2vh;
 }
-.sidebarinerabc::-webkit-scrollbar {
-    width: 8px;
+::-webkit-scrollbar {
+    width: 7px;
   }
-/* .sidebarinerabc::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 10px;
-  } */
-.sidebarinerabc::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: linear-gradient(rgb(193,193,193),rgb(170, 169, 169)); 
     border-radius: 10px;
     border: 1px solid white;
 }
+
+
 
 .main {
     max-width: 96.5%;

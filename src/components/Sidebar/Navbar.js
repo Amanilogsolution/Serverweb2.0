@@ -20,50 +20,7 @@ const Navbar = (propes) => {
                 {propes.isOpen ?
                     <h5></h5> : <img src={DrizzleLogo} style={{ height: "80%" }} alt='Drizzle Landing Page' />}
 
-                <div  className="navbar_content" >
-
-                <div className="dropdown">
-                        <div href="/rofile" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                            <div style={{ display: "flex" }}>
-                            <BsFillClockFill style={{ fontSize: "19px",marginTop:"2px"}} />
-                            <MdOutlineArrowDropDown style={{ fontSize: "22px", margin: "-1px -4px " }} />
-                            </div>
-                        </div>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                            <a className="dropdown-item" href="/Profile">Profile</a>
-                        </div>
-                    </div>
-
-                    <div className="dropdown">
-                        <div href="/rofile" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                            <div style={{ display: "flex" }}>
-                            <MdHelp style={{ fontSize: "21px",marginTop:"2px" }} />
-                            <MdOutlineArrowDropDown style={{ fontSize: "22px", margin: "-1px -5px " }} />
-                            </div>
-                        </div>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                            <a className="dropdown-item" href="/Profile">Profile</a>
-                        </div>
-                    </div>
-
-
-                    <div className="dropdown">
-                        <div href="/rofile" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                            <div style={{ display: "flex" }}>
-                                <RiNotification4Fill style={{ fontSize: "21px",marginTop:"2px"}} />
-                                <MdOutlineArrowDropDown style={{ fontSize: "22px", margin: "-1px -5px " }} />
-                            </div>
-                        </div>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                            <a className="dropdown-item" href="/Profile">Profile</a>
-                        </div>
-                    </div>
-
-
-
+        
                     <div className="dropdown" >
                         <div className='Nav_profile' href="/rofile" role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -87,7 +44,6 @@ const Navbar = (propes) => {
 
 
                 </div>
-            </div>
         </>
     )
 }

@@ -33,11 +33,3 @@
 .Recurring_div .recurring_table .recurring_table_inside tr{
     line-height: 8px;
 }
-.Recurring_div .recurring_table .recurring_table_inside::-webkit-scrollbar {
-    width: 8px;
-  }
-  .Recurring_div .recurring_table .recurring_table_inside::-webkit-scrollbar-thumb {
-    background: linear-gradient(rgb(193,193,193),rgb(170, 169, 169)); 
-    border-radius: 10px;
-    border: 1px solid white;
-  }

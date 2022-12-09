@@ -62,19 +62,3 @@
   -webkit-transform: scale(1.02);
   transform: scale(1.02);
 }
-.VendorDash .VendorDash1 .table1::-webkit-scrollbar {
-  width: 8px;
-}
-.VendorDash .VendorDash1 .table1::-webkit-scrollbar-thumb {
-  background: linear-gradient(rgb(193,193,193),rgb(170, 169, 169)); 
-  border-radius: 10px;
-  border: 1px solid white;
-}
-.VendorDash .VendorDash1 .table2::-webkit-scrollbar {
-  width: 8px;
-}
-.VendorDash .VendorDash1 .table2::-webkit-scrollbar-thumb {
-  background: linear-gradient(rgb(193,193,193),rgb(170, 169, 169)); 
-  border-radius: 10px;
-  border: 1px solid white;
-}
