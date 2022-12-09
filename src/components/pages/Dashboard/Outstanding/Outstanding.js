@@ -78,7 +78,7 @@ const Outstanding = ({ setStep }) => {
             </thead>
           </table>
         </div>
-        <div className='curser-pointer  text-light  mt-1 h-25 d-flex justify-content-center align-items-center' style={{cursor:"pointer"}} onClick={() => { setStep(5) }}>
+        <div className='nextoutstanding-detail curser-pointer  text-light  mt-1 h-25 d-flex justify-content-center align-items-center' style={{cursor:"pointer"}} onClick={() => { setStep(5) }}>
           Click for Outstanding Details
         </div>
       </div>
