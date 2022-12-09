@@ -36,13 +36,13 @@
     /* border: 2px solid blue; */
     width: 71%;
 }
-.curser-pointer{
+.nextoutstanding-detail{
     transition: all 0.1s linear;
     border-radius:5px;
     background: linear-gradient(45deg,#de6262 , #ffb88c)
 
 }
-.curser-pointer:hover {
+.nextoutstanding-detail:hover {
     transform: scale(1.06);
 }
 

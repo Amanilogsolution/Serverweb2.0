@@ -160,6 +160,12 @@ import Profile from './components/Profile/Profile';
 import ChangePassword from './components/pages/ChangePassword/ChangePassword';
 
 
+import Contactus from './components/Sidebar/Contactus/Contactus';
+
+import TotalRoles from './components/pages/Setting/Roles/TotalRoles';
+import AddRoles from './components/pages/Setting/Roles/AddRole';
+
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -311,6 +317,13 @@ const App = () => {
 
           
           <Route path="/Profile" element={<Profile />} />
+
+          <Route path='/Contactus' element={<Contactus/>}/>
+
+          
+          <Route path='/TotalRoles' element={<TotalRoles/>}/>
+          <Route path='/NewRoles' element={<AddRoles/>}/>
+          
 
         </Route>
 
