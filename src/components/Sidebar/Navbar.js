@@ -9,7 +9,6 @@ import DrizzleLogo from '../../image/drizzle_logo.jpg'
 import { Link } from 'react-router-dom'
 const Navbar = (propes) => {
 
-
     const handleLogout = () => {
         sessionStorage.clear()
         window.location.href = '/'
@@ -45,7 +44,7 @@ const Navbar = (propes) => {
 
                 </div>
         </>
-    )
+     )
 }
 
 export default Navbar;
