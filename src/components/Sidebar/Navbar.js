@@ -13,7 +13,6 @@ import { HiDocumentText } from 'react-icons/hi'
 
 const Navbar = (propes) => {
 
-
     const handleLogout = () => {
         sessionStorage.clear()
         window.location.href = '/'
@@ -94,7 +93,7 @@ const Navbar = (propes) => {
                 </div>
             </div>
         </>
-    )
+     )
 }
 
 export default Navbar;
