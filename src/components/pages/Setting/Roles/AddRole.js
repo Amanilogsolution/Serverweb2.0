@@ -7,7 +7,7 @@ import Snackbar from '../../../../Snackbar/Snackbar';
 
 function AddRoles() {
     const [loading, setLoading] = useState(false)
-    const [togglecheck,setTogglecheck]= useState(false)
+
     const [datas, setDatas] = useState({
         message: "abc",
         title: "title",
@@ -22,19 +22,48 @@ function AddRoles() {
         setLoading(true)
     }, [])
 
-    const changeDisabledBox = (type) => {
-        if(!togglecheck){
-            document.getElementById(`${type}-create`).disabled = false
-            document.getElementById(`${type}-edit`).disabled = false
-            document.getElementById(`${type}-deactive`).disabled = false
+    const fullaccess = (fullaccess) => {
+        const fullval = document.getElementById(`${fullaccess}-full`).checked === true ? true : false;
+        if (fullval === true) {
+            document.getElementById(`${fullaccess}-view`).disabled = false;
+            document.getElementById(`${fullaccess}-create`).disabled = false;
+            document.getElementById(`${fullaccess}-edit`).disabled = false;
+            document.getElementById(`${fullaccess}-deactive`).disabled = false;
+
+            document.getElementById(`${fullaccess}-view`).checked = true;
+            document.getElementById(`${fullaccess}-create`).checked = true;
+            document.getElementById(`${fullaccess}-edit`).checked = true;
+            document.getElementById(`${fullaccess}-deactive`).checked = true;
         }
-        else{
-            document.getElementById(`${type}-create`).disabled = true
-            document.getElementById(`${type}-edit`).disabled = true
-            document.getElementById(`${type}-deactive`).disabled = true
+        else {
+            // document.getElementById(`${fullaccess}-view`).disabled = true;
+            document.getElementById(`${fullaccess}-create`).disabled = true;
+            document.getElementById(`${fullaccess}-edit`).disabled = true;
+            document.getElementById(`${fullaccess}-deactive`).disabled = true;
+
+            document.getElementById(`${fullaccess}-view`).checked = false;
+            document.getElementById(`${fullaccess}-create`).checked = false;
+            document.getElementById(`${fullaccess}-edit`).checked = false;
+            document.getElementById(`${fullaccess}-deactive`).checked = false;
         }
-    
-        setTogglecheck(!togglecheck)
+    }
+
+    const viewoff = (viewtype) => {
+        const view_val = document.getElementById(`${viewtype}-view`).checked === true ? true : false
+        if (view_val) {
+            document.getElementById(`${viewtype}-edit`).disabled = false;
+            document.getElementById(`${viewtype}-deactive`).disabled = false;
+        }
+        else {
+            document.getElementById(`${viewtype}-full`).checked = false;
+            document.getElementById(`${viewtype}-create`).checked = false;
+            document.getElementById(`${viewtype}-edit`).checked = false;
+            document.getElementById(`${viewtype}-deactive`).checked = false;
+
+            document.getElementById(`${viewtype}-create`).disabled = true;
+            document.getElementById(`${viewtype}-edit`).disabled = true;
+            document.getElementById(`${viewtype}-deactive`).disabled = true;
+        }
     }
 
     const handleaddinsert = async (e) => {
@@ -112,7 +141,8 @@ function AddRoles() {
                                             <table className="table">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">#</th>
+                                                        <th scope="col">Category</th>
+                                                        <th scope="col">View</th>
                                                         <th scope="col">Create</th>
                                                         <th scope="col">Edit</th>
                                                         <th scope="col">Deactive</th>
@@ -120,25 +150,59 @@ function AddRoles() {
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <th scope="row"><input type='checkbox' style={{ height: '20px', width: '20px' }} onChange={()=>changeDisabledBox('assets')} /> Assets</th>
+                                                        <th scope="row"><input type='checkbox' id='assets-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('assets')} /> Assets</th>
+                                                        <td><input type='checkbox' id='assets-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('assets')} /></td>
                                                         <td><input type='checkbox' id='assets-create' style={{ height: '20px', width: '20px' }} disabled /></td>
                                                         <td><input type='checkbox' id='assets-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
                                                         <td><input type='checkbox' id='assets-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row"><input type='checkbox' style={{ height: '20px', width: '20px' }} onChange={()=>changeDisabledBox('vendCont')} /> Vendor Contract</th>
+                                                        <th scope="row"><input type='checkbox' id='vendCont-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('vendCont')} /> Vendor Contract</th>
+                                                        <td><input type='checkbox' id='vendCont-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('vendCont')} /></td>
                                                         <td><input type='checkbox' id='vendCont-create' style={{ height: '20px', width: '20px' }} disabled /></td>
                                                         <td><input type='checkbox' id='vendCont-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
                                                         <td><input type='checkbox' id='vendCont-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row"><input type='checkbox' style={{ height: '20px', width: '20px' }} onChange={()=>changeDisabledBox('ticket')} /> Ticket</th>
-                                                        <td><input type='checkbox'  id='ticket-create' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                        <td><input type='checkbox'  id='ticket-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                        <td><input type='checkbox'  id='ticket-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                        <th scope="row"><input type='checkbox' id='ticket-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('ticket')} /> Ticket</th>
+                                                        <td><input type='checkbox' id='ticket-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('ticket')} /></td>
+                                                        <td><input type='checkbox' id='ticket-create' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                        <td><input type='checkbox' id='ticket-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                        <td><input type='checkbox' id='ticket-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
                                                     </tr>
+                                                    <tr>
+                                                        <th scope="row"><input type='checkbox' id='master-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('master')} /> Masters</th>
+                                                        <td><input type='checkbox' id='master-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('master')} /></td>
+                                                        <td><input type='checkbox' id='master-create' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                        <td><input type='checkbox' id='master-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                        <td><input type='checkbox' id='master-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row"><input type='checkbox' id='transaction-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('transaction')} /> Transaction</th>
+                                                        <td><input type='checkbox' id='transaction-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('transaction')} /></td>
+                                                        <td><input type='checkbox' id='transaction-create' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                        <td><input type='checkbox' id='transaction-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                        <td><input type='checkbox' id='transaction-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row"><input type='checkbox' id='setting-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('setting')} /> Setting</th>
+                                                        <td><input type='checkbox' id='setting-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('setting')} /></td>
+                                                        <td><input type='checkbox' id='setting-create' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                        <td><input type='checkbox' id='setting-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                        <td><input type='checkbox' id='setting-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row"><input type='checkbox' id='reports-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('reports')} /> Reports</th>
+                                                        <td><input type='checkbox' id='reports-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('reports')} /></td>
+                                                        <td><input type='checkbox' id='reports-create' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                        <td><input type='checkbox' id='reports-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                        <td><input type='checkbox' id='reports-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                    </tr>
+
                                                 </tbody>
                                             </table>
+
+
                                             <div className="form-group mt-3" >
                                                 <button type="submit" className="btn btn-voilet " id="subnitbtn" >Add Role</button>
                                                 <button type="reset" className="btn btn-secondary" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
