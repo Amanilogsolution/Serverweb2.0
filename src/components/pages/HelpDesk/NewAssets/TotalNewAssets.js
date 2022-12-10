@@ -59,6 +59,11 @@ const columns = [
         selector: 'asset_assign',
         sortable: true,
     },
+    {
+        name: 'Asset Status',
+        selector: 'asset_status',
+        sortable: true,
+    },
   
     // {
     //     name: 'Status',
