@@ -12,44 +12,46 @@
     box-shadow: 1px 1px 3px 1px rgb(138, 132, 132);
     background: white;
     text-align: center;
-    border: 2px ;
- }
- .navbarcontainer{
-        height: 60px;
-        width: 100%;
-        padding: 5px 0px 0px 15px;
-        box-shadow: 3px 3px 10px gray;
-        border-radius: 10px 0px 0px 10px;
-        position: relative;
-        font-family: Roboto;
- }
- .navbar_content{
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    padding: 10px 14px 0 0;
- }
- .navbar_content .dropdown{
-    margin: 0 0.5%;
-    color: rgb(95,33,73);
- }
-
-.Nav_Pro_para2{
-    margin: 0 17px;
-    display: none;
-    color: rgb(95,33,73);
-    font-weight: 800;
+    border: 2px;
 }
-@media only screen and (max-width: 600px) {
-    .Nav_Pro_para{
+
+.innernavbarcontainer {
+    height: 60px;
+    width: 100%;
+    padding: 5px 0px 0px 15px;
+    box-shadow: 3px 3px 10px gray;
+    border-radius: 10px 0px 0px 10px;
+    font-family: 'Roboto'
+}
+
+
+.navcontainer-second {
+    height: 80%;
+    width: 25%;
+    right: 5%;
+}
+
+@media screen and (max-width:1250px) {
+    .navcontainer-second {
+        width: 35%;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .name-text {
         display: none;
     }
-    .Nav_Pro_para2{
-        display: block;
+}
+
+@media screen and (max-width:850px) {
+    .navcontainer-second {
+        width: 35%;
     }
 }
-@media only screen and (min-width: 1000px) {
-    .Nav_profile{
-        margin:0 20px;
+
+@media screen and (max-width:650px) {
+    .navcontainer-second {
+        width: 60%;
     }
+
 }
