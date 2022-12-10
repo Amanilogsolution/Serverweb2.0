@@ -100,8 +100,8 @@ function AddVendorInvoice() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
-        setLoading(false)
         document.getElementById('subnitbtn').disabled = 'true'
+        setLoading(false)
         const org = sessionStorage.getItem('Database')
 
         let errorcount = 0;
@@ -244,7 +244,7 @@ function AddVendorInvoice() {
                                         </table>
 
                                         <div className='btn_div '>
-                                            <button className='btn btn-voilet' onClick={handleAddVendorIvoice}>Add Vendor Invoice</button>
+                                            <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Add Vendor Invoice</button>
                                             <button type='reset' className='btn btn-secondary mx-2'>Reset</button>
                                         </div>
                                     </form>
