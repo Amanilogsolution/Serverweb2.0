@@ -229,7 +229,7 @@ function AddVendorPayment() {
                                         </table>
 
                                         <div className='btn_div '>
-                                            <button className='btn btn-voilet' onClick={handleAddVendorIvoice}>Add Vendor Payment</button>
+                                            <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Add Vendor Payment</button>
                                             <button type='reset' className='btn btn-secondary mx-2'>Reset</button>
                                         </div>
                                     </form>

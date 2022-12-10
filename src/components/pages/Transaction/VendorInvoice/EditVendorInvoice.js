@@ -41,9 +41,9 @@ function EditVendorInvoice() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
-        setLoading(false)
+       
         document.getElementById('subnitbtn').disabled = 'true'
-
+        setLoading(false)
         let vendor = document.getElementById('vendor').value;
         const val = vendor;
         const toindex = val.indexOf(",")
@@ -181,8 +181,7 @@ function EditVendorInvoice() {
                                         </div>
 
                                         <div className='btn_div mt-3'>
-                                            <button className='btn btn-voilet' onClick={handleAddVendorIvoice}>Update Vendor Invoice</button>
-                                            <button type='reset' className='btn btn-secondary mx-2'>Reset</button>
+                                            <button className='btn btn-voilet'  id='subnitbtn' onClick={handleAddVendorIvoice}>Update Vendor Invoice</button>
                                         </div>
                                     </form>
                                 </article>

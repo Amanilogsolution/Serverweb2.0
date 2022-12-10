@@ -166,7 +166,7 @@ function EditVendorPayments() {
                                         </div>
 
                                         <div className='btn_div mt-3'>
-                                            <button className='btn btn-voilet' onClick={handleAddVendorIvoice}>Update Vendor Payment</button>
+                                            <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Update Vendor Payment</button>
                                         </div>
                                     </form>
                                 </article>
