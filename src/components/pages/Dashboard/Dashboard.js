@@ -22,7 +22,7 @@ const Dashboard = () => {
   const [dashboarddetails, setDashboarddetails] = useState({
     "Assetdata": 0,
     "Vendordata": 0,
-    "Compliance": 0,
+    "Invoice": 0,
     "Ticket": 0,
   })
   useEffect(() => {
@@ -30,9 +30,10 @@ const Dashboard = () => {
       const org = sessionStorage.getItem('Database')
 
       const result = await DashboarDetails(org)
+      console.log(result)
       setLoading(true)
 
-      setDashboarddetails({ ...dashboarddetails, Assetdata: result.Assets.asset, Vendordata: result.Vendor.Vendor_code, Ticket: result.Ticket.ticket })
+      setDashboarddetails({ ...dashboarddetails, Assetdata: result.Assets.asset, Vendordata: result.Vendor.Vendor_code,Invoice:result.Invoice.vendor, Ticket: result.Ticket.ticket })
     }
     fetch();
   }, [])
@@ -85,7 +86,7 @@ const Dashboard = () => {
                 </div>
                 <div onClick={() => setStep(3)} className='card1 d-flex rounded curser-pointer'>
                   <div>
-                    <h1 className='dash_card_head mb-0'>{dashboarddetails.Compliance}</h1>
+                    <h1 className='dash_card_head mb-0'>{dashboarddetails.Invoice}</h1>
                     <p className='dash_card_para'>Invoice</p>
                   </div>
                   <div className='dash_card_icon_div rounded-circle'>
