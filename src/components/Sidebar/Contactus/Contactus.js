@@ -1,22 +1,24 @@
 import React from 'react'
+import './Contactus.css'
 import Sidebar from '../Sidebar'
+import { RiContactsBookFill } from 'react-icons/ri';
 
 export default function Contactus() {
     return (
         <>
             <Sidebar>
-                <div className='main_container px-3 py-3 px-sm-5 py-sm-5'>
-                    <div className='card w-50' style={{border:"none",boxShadow:"1px 1px 4px 1px silver"}}>
-                        <div className='card-header' style={{border:"none",background:"#eff3f6"}}>
-                            <h5>Contact Us</h5>
-                        </div>
-                        <div className='card-body px-4 py-4'>
-                            <h5>Support Phones</h5>
-                            <p> US Enterprise: +1.877.422.3865</p>
-                            <p style={{marginTop:"-14px"}}>US MSP: +1.877.422.3865</p>
-                            <h5>Support Email</h5>
-                            <a class="nav-link" aria-expanded="false">support@itarian.com</a>
-                        </div>
+                <div className='contact_us'>
+                    <div className='contact_us_card'>
+                         <div className='contact_us_logo'>
+                           <RiContactsBookFill/>
+                           <h4>Contact Us</h4>
+                         </div>
+                         <div className='contact_us_content'>
+                             <h4>AWL INDIA PRIVATE LIMITED</h4>
+                             <p>Vatika Atrium Ground Floor Tower-B Golf Course Road Sector-53 Gurgaon - 122002,India</p>
+                             <p>Phone:  +91-124-427-9462</p>
+                             <p>Fax:  +91-101-124-5999</p>
+                         </div>
                     </div>
                 </div>
             </Sidebar>
