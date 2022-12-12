@@ -3,7 +3,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import './Profile.css'
 import { HiUserCircle } from 'react-icons/hi';
 import Qrcode from '../../image/qrcode.png';
-import { getUserdetails } from '../../api/index'
+import { getUserdetails,updateUserdetails } from '../../api/index'
 
 const Profile = () => {
    const [details, setDetails] = useState({})
@@ -20,6 +20,20 @@ const Profile = () => {
 
    }, [])
 
+   const handleadddevice = async (e) => {
+      e.preventDefault();
+      const org = sessionStorage.getItem('Database')
+      const employee_name = document.getElementById('employee_name').value
+      const employee_number = document.getElementById('employee_number').value
+      const employee_email= document.getElementById('employee_email').value
+      const location = document.getElementById('location').value
+      const company = document.getElementById('company').value
+      const user_id = sessionStorage.getItem('UserId')
+
+      const result = await updateUserdetails(org, employee_name, location, employee_email, employee_number, company, user_id)
+      console.log(result)
+   }
+
    const handleToggleQr = () => {
       const checkboxval = document.getElementById('authdivbox').checked == true ? true : false;
       if (checkboxval) {
@@ -30,6 +44,18 @@ const Profile = () => {
 
       }
    }
+   const handlechangeempname = (e) => {
+      setDetails({ ...details, employee_name: e.target.value })
+  }
+
+  const handlechangeempno = (e) => {
+   if (e.target.value.length === 11) return false;
+   setDetails({ ...details, employee_number: e.target.value })
+}
+const handlechangeempemail = (e) => {
+   setDetails({ ...details, employee_email: e.target.value })
+}
+
    return (
       <>
          <Sidebar>
@@ -47,36 +73,36 @@ const Profile = () => {
                            <div className='col-md-6'>
                               <label>Name</label>
                               <br />
-                              <input className="form-control" value={details.employee_name} disabled></input>
+                              <input className="form-control" id='employee_name' value={details.employee_name} onChange={handlechangeempname} ></input>
                            </div>
                            <div className='col-md-6'>
                               <label>Mobile</label>
                               <br />
-                              <input className="form-control" value={details.employee_number} disabled></input>
+                              <input className="form-control" id='employee_number' value={details.employee_number} onChange={handlechangeempno}></input>
                            </div>
                         </div>
                         <div className='row my-2'>
                            <div className='col-md-6'>
                               <label>Email</label>
                               <br />
-                              <input className="form-control" value={details.employee_email} disabled></input>
+                              <input className="form-control" id='employee_email' value={details.employee_email} onChange={handlechangeempemail} ></input>
                            </div>
                            <div className='col-md-6'>
                               <label>Address</label>
                               <br />
-                              <input className="form-control" value={details.location} disabled></input>
+                              <input className="form-control" id="Address" value={details.location} disabled></input>
                            </div>
                         </div>
                         <div className='row my-2'>
                            <div className='col-md-6'>
                               <label>Location</label>
                               <br />
-                              <input className="form-control" value={details.location} disabled></input>
+                              <input className="form-control" id="location" value={details.location} disabled></input>
                            </div>
                            <div className='col-md-6'>
                               <label>Organization Name</label>
                               <br />
-                              <input className="form-control" value={details.company} disabled></input>
+                              <input className="form-control" id="company" value={details.company} disabled></input>
                            </div>
                         </div>
                   {/* </div> */}
@@ -93,6 +119,12 @@ const Profile = () => {
                         </div>
                      </div>
                   </div>
+
+                  <div className="form-group mt-3" >
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn"
+                                             onClick={handleadddevice}
+                                             >Update</button>
+                                        </div>
 
                </form>
             </div>

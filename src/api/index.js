@@ -1167,6 +1167,11 @@ export const DashboarProcedure = async (type) => {
 
 // User Details
 export const getUserdetails = async (org,user_id) => {
-    const url = `http://localhost:2008/api/getuserdetails`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getuserdetails`
     return axios.post(url, { org ,user_id}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const updateUserdetails = async (org, employee_name, location, employee_email, employee_number, company, user_id) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateuserdetails`
+    return axios.post(url, {org, employee_name, location, employee_email, employee_number, company, user_id }).then(response => response.data).catch(error => console.log(error));
 }
