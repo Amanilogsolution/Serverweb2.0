@@ -1,17 +1,56 @@
 import LandingFooter from '../LandingPageHome/LandingFooter'
 import LandingHeader from '../LandingPageHome/LandingHeader';
 import './Resister.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { CgOrganisation } from 'react-icons/cg';
 import { BsPersonCircle } from 'react-icons/bs';
 import ReCAPTCHA from "react-google-recaptcha";
 import { Link } from 'react-router-dom'
-
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+import {
+    TotalCountry, TotalState,
+    TotalCity
+} from '../../../api/index'
 
 
 export default function Resister() {
     const [verified, setVerified] = useState(false)
     const [currentStep, setStep] = useState(1);
+    const [countrylist, setCountrylist] = useState([]);
+    const [statelist, setStatelist] = useState([]);
+    const [citylist, setCitylist] = useState([]);
+
+    const [passwordshow, setPasswordshow] = useState(false);
+    const [cnfpasswordshow, setCnfpasswordshow] = useState(false);
+
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            const totalCountry = await TotalCountry();
+            setCountrylist(totalCountry)
+        }
+        fetchdata()
+    }, [])
+
+    const handleGetState = async (e) => {
+        const result = await TotalState(e.target.value)
+        setStatelist(result)
+    }
+    const handleGetCity = async (e) => {
+        const result = await TotalCity(e.target.value)
+        setCitylist(result)
+
+    }
+
+    const handleClickToogle = (e) => {
+        e.preventDefault();
+        console.log(passwordshow);
+        setPasswordshow(!passwordshow)
+    }
+    const handleClickTooglecnfpass = (e) => {
+        e.preventDefault();
+        setCnfpasswordshow(!cnfpasswordshow)
+    }
 
     //recaptcha function
     function captchaChange(value) {
@@ -60,16 +99,26 @@ export default function Resister() {
                                     <div className="row mt-3">
                                         <div className="form-group col">
                                             <label htmlFor='country'>Country <span className='text-danger'>*</span></label>
-                                            <select id="country" className="form-select">
-                                                <option value='' hidden>Choose...</option>
-                                                <option>...</option>
+                                            <select id="country" className="form-select" onChange={handleGetState}>
+                                                <option value='' hidden>Select Country</option>
+                                                {
+                                                    countrylist.map((item, index) => (
+                                                        <option key={index} value={item.country_id}>{item.country_name}</option>
+                                                    ))
+                                                }
                                             </select>
                                         </div>
                                         <div className="form-group col">
                                             <label htmlFor='state'>State <span className='text-danger'>*</span></label>
-                                            <select id="state" className="form-select">
-                                                <option value='' hidden>Choose...</option>
-                                                <option>...</option>
+                                            <select id="state" className="form-select" onChange={handleGetCity}>
+                                                <option value='' hidden>Select State</option>
+                                                {
+                                                    statelist.length ?
+                                                        statelist.map((item, index) => (
+                                                            <option key={index} value={item.state_id}>{item.state_name}</option>
+                                                        ))
+                                                        : <option value=''> Please Select Country</option>
+                                                }
                                             </select>
                                         </div>
                                     </div>
@@ -163,13 +212,24 @@ export default function Resister() {
                                     </div>
 
                                     <div className="row mt-1">
-                                        <div className="form-group col-md-6">
-                                            <label htmlFor='password'>Password <span className='text-danger'>*</span></label>
-                                            <input type="password" id='password' className="form-control" />
+                                        <div className=" form-group col-md-6">
+                                            <label htmlFor="password">Password <span className='text-danger'>*</span></label>
+                                            <div className="input-group ">
+                                                <input type={passwordshow ? "text" : "password"} className="form-control" placeholder="Enter password" id="password" />
+                                                <div className="input-group-append" >
+                                                    <span className="input-group-text h-100 w-100" onClick={handleClickToogle}>{passwordshow ? <AiFillEye style={{ fontSize: "22px" }} /> : <AiFillEyeInvisible style={{ fontSize: "22px" }} />}</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="form-group col-md-6">
-                                            <label htmlFor="cnf_pass">Confirm Password <span className='text-danger'>*</span></label>
-                                            <input type="password" id='cnf_pass' className="form-control" />
+
+                                        <div className=" form-group col-md-6">
+                                            <label htmlFor="cnf_pass"> Confirm Password <span className='text-danger'>*</span></label>
+                                            <div className="input-group ">
+                                                <input type={cnfpasswordshow ? "text" : "password"} className="form-control" placeholder="Confirm password" id="cnf_pass" />
+                                                <div className="input-group-append" >
+                                                    <span className="input-group-text h-100 w-100" onClick={handleClickTooglecnfpass}>{cnfpasswordshow ? <AiFillEye style={{ fontSize: "22px" }} /> : <AiFillEyeInvisible style={{ fontSize: "22px" }} />}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -178,17 +238,17 @@ export default function Resister() {
                                         className='mt-3'
                                         sitekey="6LfhsLgiAAAAAAGeb1jYsf0mBw6rzfJJaZ-iVYNJ"
                                         onChange={captchaChange}
-                                    />,
+                                    />
                                     <button type="submit" onClick={() => setStep(1)} className="btn btn-secondary my-3">Back</button>
                                     <button type="submit" className="btn btn-voilet mx-2" disabled={!verified}>Submit</button>
                                 </form>
                             </article>
                         </div>
-                        <div className='for_icon' >
+                        <div className='for_icon'>
                             <BsPersonCircle id="organisation" /><br />
-                            <h5 className='text-center' style={{fontSize: "25px" }}>Personal Profile Details</h5>
+                            <h5 className='text-center' style={{ fontSize: "25px" }}>Personal Profile Details</h5>
                             <p className='mx-3 my-5 text-center'>Fill out the form here for your complete details about personal. You can always edit these details</p>
-                            <h6 style={{ marginTop: "150px" }} className='pagechange text-center text-white rounded-circle'>2</h6>
+                            <h6 style={{ marginTop: "120px" }} className='pagechange text-center text-white rounded-circle'>2</h6>
                         </div>
                     </div>
                 </div>

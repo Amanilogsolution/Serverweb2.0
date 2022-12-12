@@ -55,7 +55,7 @@ const Login = () => {
   const styleheight = {
     minHeight: "71vh"
   }
-  
+
   return (
     <>
       {
@@ -85,6 +85,8 @@ const Login = () => {
                         </div>
                       </div>
                     </div>
+
+                  
 
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="form-check mb-0">
