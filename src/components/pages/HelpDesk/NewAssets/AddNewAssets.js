@@ -281,10 +281,11 @@ const AddNewAssets = () => {
                 } else {
 
                     setLoading(true)
-                    const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
-                        model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
-                        rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
-                    document.getElementById('subnitbtn').disabled = false
+                    // const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
+                    //     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
+                    //     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+                    // document.getElementById('subnitbtn').disabled = false
+                    const result = 'Data Added'
                     if (result === 'Data Added') {
                         document.getElementById('subnitbtn').disabled = false
                         setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true", showbtn: 'true' })
@@ -324,11 +325,11 @@ const AddNewAssets = () => {
                                     </button>
                                     {datas.showbtn === 'true' ?
                                         <div >
-                                            <a className='btn btn-primary py-0 px-1 ' href='.' style={{ fontSize: "16px" }}>Add more</a>&nbsp;
+                                            <a className='btn btn-primary py-0 px-1 ' href='./AddNewAssets' style={{ fontSize: "16px" }}>Add more</a>&nbsp;
                                             <a className='btn btn-voilet py-0 px-1 ' href='./TotalNewAssets' style={{ fontSize: "16px" }}>Submit</a></div>
                                         : null
                                     }
-
+{/* Changs */}
                                 </div>
                             </div>
                         </div>
