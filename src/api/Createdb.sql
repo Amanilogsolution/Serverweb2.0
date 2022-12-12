@@ -1,3 +1,7 @@
+-- Add Company name in localStorage at login from backend   ----------------------
+
+
+
 
 CREATE TABLE tbl_location_master (
                 sno bigint IDENTITY(1,1) NOT NULL,
@@ -53,7 +57,9 @@ CREATE TABLE tbl_employee_master (
                 status nvarchar(30) NULL,
                 emp_uuid nvarchar(350) NULL
 )
--- Insert into tbl_employee_master( Run After Created tables whoses Resister)
+
+-- Insert into tbl_employee_master( Run After Created tables whoses Resister) as a Admin
+
 
 CREATE TABLE tbl_asset_type_master (
                 sno bigint IDENTITY(1,1) NOT NULL,
