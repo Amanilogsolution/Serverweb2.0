@@ -49,6 +49,7 @@ CREATE TABLE tbl_employee_master (
                 update_system_name nvarchar(100) NULL,
                 update_ip_address nvarchar(30) NULL,
                 update_date_time datetime NULL,
+                user_id nvarchar(100) NULL,
                 status nvarchar(30) NULL,
                 emp_uuid nvarchar(350) NULL
 )
