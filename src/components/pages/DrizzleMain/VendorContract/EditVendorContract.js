@@ -221,7 +221,7 @@ function EditVendorCode() {
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
                                 <div className="card inner-card">
-                                    <div className='card-header'>Vendor Company Details:</div>
+                                    <div className='card-header'>Vendor Company Details</div>
                                     <article className="card-body" >
                                         <form className='px-3' autoComplete='off'>
                                             <div className="row">
