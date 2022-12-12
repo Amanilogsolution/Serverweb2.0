@@ -1,0 +1,45 @@
+.contact_us{
+    min-height: 80vh;
+   max-width: 100%;
+   box-shadow: 2px 1px 10px gray, -3px -3px 10px gray;
+   border-radius: 10px 0px 0px 10px;
+   padding: 15px 30px;
+   display: flex;
+   justify-content: center;
+   padding-top: 120px;
+}
+.contact_us_card{
+    box-shadow: 1px 1px 4px 1px silver;
+    display: flex;
+    width: 80%;
+    border-radius: 10px;
+    height: 99%;
+    overflow: hidden;
+}
+.contact_us_logo{
+    font-size: 80px;
+    width: 25%;
+    background: #5f2149;
+    color: white;
+    text-align: center;
+    padding-top: 24px;
+}
+.contact_us_content{
+    width: 75%;
+    padding: 4%;
+}
+@media screen and (max-device-width: 850px) {
+    .contact_us_card{
+        display: block;
+        width: 100%;
+    }
+    .contact_us_logo{
+        width: 100%;
+        padding-top: 0px;
+        font-size: 40px;
+    }
+    .contact_us{
+       padding-top: 60px;
+    }
+    
+}
