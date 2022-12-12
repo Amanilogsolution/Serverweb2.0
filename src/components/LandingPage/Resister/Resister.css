@@ -4,9 +4,9 @@
 }
 
 .reg_main_div{
-    display: flex;
-    box-shadow: 1px 1px 9px 1px silver;
-    border-radius: 5px;
+    /* display: flex; */
+    box-shadow: 1px 1px 9px 1px #c0c0c0;
+    /* border-radius: 5px; */
   }
   .for_reg{
       /* width:100%; */
@@ -25,7 +25,7 @@
       background: rgb(21, 12, 51);
       width: 31px;
       padding: 6px 0;
-      border-radius: 50%;
+      /* border-radius: 50%; */
   }
   #organisation{
       font-size: 80px;
