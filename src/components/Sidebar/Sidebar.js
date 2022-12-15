@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import {
     FaTh,
     FaUserAlt,
-    FaTasks,
-    FaThList, FaFileContract,
+    // FaTasks,
+    // FaThList, FaFileContract,
     FaElementor,
     FaTicketAlt,
     FaFileMedicalAlt
@@ -12,11 +12,19 @@ import {
 import { IoIosArrowDown } from 'react-icons/io'
 import { AiFillTag } from 'react-icons/ai'
 import {
-    MdOutlineDoubleArrow, MdDevicesOther,MdHelp,
-    MdAttachMoney, MdPrecisionManufacturing,
-    MdOutlineMiscellaneousServices, MdOutlineDevicesOther, MdAddTask,MdLocationPin,MdOutlineExitToApp
+    MdOutlineDoubleArrow,
+    //  MdDevicesOther,
+     MdHelp,
+    // MdAttachMoney, 
+    MdPrecisionManufacturing,
+    // MdOutlineMiscellaneousServices,
+    //  MdOutlineDevicesOther,
+    //   MdAddTask,
+      MdLocationPin,MdOutlineExitToApp
 } from 'react-icons/md'
-import { BsJournalCode,BsInboxesFill,BsTriangleHalf,BsArrowUpRightCircleFill,BsFillLaptopFill,BsFileBarGraphFill } from 'react-icons/bs'
+import { 
+    // BsJournalCode,
+    BsInboxesFill,BsTriangleHalf,BsArrowUpRightCircleFill,BsFillLaptopFill,BsFileBarGraphFill } from 'react-icons/bs'
 import { BiCategory, BiCategoryAlt, BiDevices } from 'react-icons/bi'
 
 import { HiOutlineTicket,HiDuplicate } from 'react-icons/hi'
@@ -291,8 +299,6 @@ const Sidebar = ({ children }) => {
                                     <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Contract</div>
                                 </NavLink>
                             </li>
-
-
                             <li onClick={handleinner2toggledrizzle} style={{ listStyle: "none" }}>
                                 <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
                                     <div className="icon" onClick={toggle}><FaElementor style={{fontSize:"17px"}}/></div>
@@ -452,13 +458,22 @@ const Sidebar = ({ children }) => {
                     <div className="innerdiv" id="subhelpdeskinner" style={{ display: "none" }}>
                         <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
                             <li className='innerlink' >
+                                <NavLink to='/OpenTotalTickets' className='navlink d-flex' activeclassname="sidebaractive">
+                                    <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                    <div style={{ display: isOpen ? "block" : "none" }} > Open Ticket</div>
+                                </NavLink>
+                            </li>
+                            <li className='innerlink' >
                                 <NavLink to='/TotalTicket' className='navlink d-flex' activeclassname="sidebaractive">
                                     <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                    <div style={{ display: isOpen ? "block" : "none" }} > Ticket</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} > Close Ticket</div>
                                 </NavLink>
                             </li>
                         </ul>
                     </div>
+
+
+                  
 
                 </div>
 

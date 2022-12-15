@@ -523,3 +523,18 @@ CREATE TABLE IPERISCOPE.dbo.tbl_asset_subtable (
 	asset_tag varchar(100) NULL,
 	software varchar(100) NULL
 );
+
+-- // Organistaion //
+
+CREATE TABLE IPERISCOPE.dbo.tbl_Organisation (
+	sno int IDENTITY(0,1) NOT NULL,
+	org_id nvarchar(200) NULL,
+	org_name varchar(300) NULL,
+	org_country varchar(100) NULL,
+	org_state varchar(100) NULL,
+		org_city varchar(100) NULL,
+
+	org_currency varchar(100) NULL,
+	org_gst varchar(100) NULL,
+	org_logo varchar(100) NULL
+);

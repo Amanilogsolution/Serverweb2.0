@@ -1,12 +1,36 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './TicketDash.css'
 import { FaEnvelopeOpen, FaUserTimes, FaCalendarTimes, FaUser, FaCheck, FaTelegramPlane } from 'react-icons/fa';
+import TicketDepartment from './TicketDepartment';
+import TicketTopics from './TicketTopics'
+import TicketPriority from './TicketPriority'
+import TicketStaff from './TicketStaff'
 
 const TicketDash = () => {
+  const [currentStep, setStep] = useState(1);
+  const showStep = (step) => {
+    switch (step){
+      case 1:
+        return <TicketDepartment />
+        case 2: return <TicketTopics/>
+        case 3: return <TicketStaff/>
+
+        case 4: return <TicketPriority/>
+
+    }
+  }
+
   return (
     <div className='ticket_dash'>
+      <div className="d-flex flex " style={{ overflow: "hidden", border: "1px solid black", width: "30%", height: "5vh", borderRadius: "10px" }}>
+        <div className='ticket_details' onClick={() => setStep(1)} style={{ borderRight: "1px solid black" }}>Department</div>
+        <div className='ticket_details' onClick={() => setStep(2)} style={{ borderRight: "1px solid black" }}>Topics</div>
+        <div className='ticket_details'onClick={() => setStep(3)} style={{ borderRight: "1px solid black" }}>Staff</div>
+        <div className='ticket_details' onClick={() => setStep(4)} >Priority</div>
 
-      <div className='ticket_card_div'>
+      </div>
+
+      {/* <div className='ticket_card_div'>
         <div className='ticket_card'>
           <div className='ticket_card_content' style={{ marginRight: "43px" }}>
             <div className='tickets_icon' style={{ padding: "10px 15px" }}>
@@ -69,7 +93,7 @@ const TicketDash = () => {
             </div>
           </div>
         </div>
-        
+
         <div className='ticket_card'>
           <div className='ticket_card_content'>
             <div className='tickets_icon' style={{ padding: "12px 14px" }}>
@@ -81,7 +105,8 @@ const TicketDash = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+      {showStep(currentStep)}
     </div>
   )
 }

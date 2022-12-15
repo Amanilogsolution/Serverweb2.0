@@ -4,7 +4,9 @@
     margin: 10px 8px;
     min-height: 63vh;
     max-width: 100%;
-    padding-top: 80px;
+    padding-top: 10px;
+    padding-left: 10px;
+
 }
 .ticket_dash .ticket_card{
     height: 13vh;
@@ -30,6 +32,19 @@
     border-radius:50px;
     background:linear-gradient(45deg, #dc3545, #a32e39);
     color:white
+}
+
+.ticket_details{
+    /* border: 1px solid black; */
+    cursor: pointer;
+    /* background:red; */
+    text-align: center;
+    width:100%;
+}
+.ticket_details:hover {
+    -ms-transform: scale(1.06);
+    -webkit-transform: scale(1.06);
+    transform: scale(1.06);
 }
 @media screen and (max-width: 751px) {
     .ticket_card_div{

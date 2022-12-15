@@ -150,6 +150,7 @@ import EditAsset from './components/pages/HelpDesk/NewAssets/EditAsset';
 import AddTicket from './components/pages/HelpDesk/Tickets/AddTicket';
 import EditTicket from './components/pages/HelpDesk/Tickets/EditTicket';
 import TotalTicket from './components/pages/HelpDesk/Tickets/TotalTicket';
+import OpenTotalTickets from './components/pages/HelpDesk/Tickets/OpenTicket';
 
 
 
@@ -164,6 +165,8 @@ import Contactus from './components/Sidebar/Contactus/Contactus';
 
 import TotalRoles from './components/pages/Setting/Roles/TotalRoles';
 import AddRoles from './components/pages/Setting/Roles/AddRole';
+
+import OrganisationDetails from './components/LandingPage/Resister/Organistion';
 
 
 const App = () => {
@@ -275,6 +278,7 @@ const App = () => {
           <Route path="/TotalTicketStatus" element={<TotalTicketStatus />} />
           <Route path="/AddTicketStatus" element={<AddTicketStatus />} />
           <Route path="/EditTicketStatus" element={<EditTicketStatus />} />
+          <Route path="/OpenTotalTickets" element={<OpenTotalTickets />} />
 
           <Route path="/TotalVendSubCate" element={<TotalVendSubCate />} />
           <Route path="/AddVendorSubCategory" element={<AddVendorSubCategory />} />
@@ -317,6 +321,8 @@ const App = () => {
 
           
           <Route path="/Profile" element={<Profile />} />
+          <Route path='/OrganisationDetails' element={<OrganisationDetails/>}/>
+
 
           <Route path='/Contactus' element={<Contactus/>}/>
 

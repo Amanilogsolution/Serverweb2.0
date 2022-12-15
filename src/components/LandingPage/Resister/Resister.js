@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import {
     TotalCountry, TotalState,
-    TotalCity
+    TotalCity,
+    AddOrganisation
 } from '../../../api/index'
 
 
@@ -17,11 +18,19 @@ export default function Resister() {
     const [verified, setVerified] = useState(false)
     const [currentStep, setStep] = useState(1);
     const [countrylist, setCountrylist] = useState([]);
-    const [statelist, setStatelist] = useState([]);
-    const [citylist, setCitylist] = useState([]);
-
     const [passwordshow, setPasswordshow] = useState(false);
     const [cnfpasswordshow, setCnfpasswordshow] = useState(false);
+
+    const handleClick =(e)=>{
+        e.preventDefault()
+        const Orgname = document.getElementById('org_name').value;
+        const Country = document.getElementById('country').value;
+        const State = document.getElementById('state').value;
+        const City = document.getElementById('city').value;
+        const currency = document.getElementById('currency').value;
+        const gst = document.getElementById('gstno').value;
+        console.log(Orgname,Country,State,City,currency,gst)
+    }
 
 
     useEffect(() => {
@@ -32,16 +41,7 @@ export default function Resister() {
         fetchdata()
     }, [])
 
-    const handleGetState = async (e) => {
-        const result = await TotalState(e.target.value)
-        setStatelist(result)
-    }
-    const handleGetCity = async (e) => {
-        const result = await TotalCity(e.target.value)
-        setCitylist(result)
-
-    }
-
+ 
     const handleClickToogle = (e) => {
         e.preventDefault();
         console.log(passwordshow);
@@ -62,19 +62,47 @@ export default function Resister() {
         }
 
     }
+
+    const handletoggleGSt = () => {
+
+        const check_val = document.getElementById('gst-checkbox').checked === true ? false : true;
+        if (check_val) {
+            document.getElementById('gstno-div').style.display = 'none'
+        }
+        else {
+            document.getElementById('gstno-div').style.display = 'block'
+        }
+    }
     // =============================================== STEP 1 =======================================================
     const Step1 = () => {
+        const [statelist, setStatelist] = useState([]);
+        const [citylist, setCitylist] = useState([]);
 
-        const handletoggleGSt = () => {
 
-            const check_val = document.getElementById('gst-checkbox').checked === true ? false : true;
-            if (check_val) {
-                document.getElementById('gstno-div').style.display = 'none'
-            }
-            else {
-                document.getElementById('gstno-div').style.display = 'block'
-            }
+        useEffect(()=>{
+
+        },[])
+
+        const handleGetState = async (e) => {
+            e.preventDefault();
+            const value = e.target.value
+            console.log(value)
+         
+            const result = await TotalState(value)
+            setStatelist(result)
         }
+
+        const handleGetCity = async (e) => {
+            e.preventDefault();
+            const result = await TotalCity(e.target.value)
+            setCitylist(result)
+            console.log(result)
+    
+        }
+        
+      
+
+       
         return (
             <>
                 <div className="container">
@@ -99,7 +127,8 @@ export default function Resister() {
                                     <div className="row mt-3">
                                         <div className="form-group col">
                                             <label htmlFor='country'>Country <span className='text-danger'>*</span></label>
-                                            <select id="country" className="form-select" onChange={handleGetState}>
+                                            <select id="country" className="form-select"
+                                             onChange={handleGetState}>
                                                 <option value='' hidden>Select Country</option>
                                                 {
                                                     countrylist.map((item, index) => (
@@ -110,7 +139,9 @@ export default function Resister() {
                                         </div>
                                         <div className="form-group col">
                                             <label htmlFor='state'>State <span className='text-danger'>*</span></label>
-                                            <select id="state" className="form-select" onChange={handleGetCity}>
+                                            <select id="state" className="form-select" 
+                                            onChange={handleGetCity}
+                                            >
                                                 <option value='' hidden>Select State</option>
                                                 {
                                                     statelist.length ?
@@ -128,7 +159,13 @@ export default function Resister() {
                                             <label htmlFor='city'>City <span className='text-danger'>*</span></label>
                                             <select id="city" className="form-select">
                                                 <option value='' hidden>Choose...</option>
-                                                <option>...</option>
+                                                {
+                                                    citylist.length ?
+                                                        citylist.map((item, index) => (
+                                                            <option key={index} value={item.city_name}>{item.city_name}</option>
+                                                        ))
+                                                        : <option value=''> Please Select Country</option>
+                                                }
                                             </select>
                                         </div>
                                         <div className="form-group col">
@@ -240,7 +277,7 @@ export default function Resister() {
                                         onChange={captchaChange}
                                     />
                                     <button type="submit" onClick={() => setStep(1)} className="btn btn-secondary my-3">Back</button>
-                                    <button type="submit" className="btn btn-voilet mx-2" disabled={!verified}>Submit</button>
+                                    <button type="submit" className="btn btn-voilet mx-2" onClick={handleClick} disabled={!verified}>Submit</button>
                                 </form>
                             </article>
                         </div>

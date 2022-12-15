@@ -1112,6 +1112,11 @@ export const UpdateTicket = async (org,emp_id, emp_name, asset_type, asset_seria
         ticket_date, ticket_status, ticket_subject, priority, issue_discription, remarks, user_id,sno }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const OpenTotalTicket = async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/OpenTotalTicket`
+    return axios.post(url,{org}).then(response => response.data).catch(error => console.log(error));
+}
+
 //     Voice Invoice
 
 export const InsertVendorInvoice = async (org,data, userid) => {
@@ -1175,3 +1180,10 @@ export const updateUserdetails = async (org, employee_name, location, employee_e
     const url = `https://drizzlebackend.awlworldwide.com/api/updateuserdetails`
     return axios.post(url, {org, employee_name, location, employee_email, employee_number, company, user_id }).then(response => response.data).catch(error => console.log(error));
 }
+
+// Organisation
+export const AddOrganisation = async (org_id,org_name,org_country,org_state,org_city,org_currency,org_gst,org_logo) => {
+    const url = `http://localhost:2008/api/addorganisation`
+    return axios.post(url, {org_id,org_name,org_country,org_state,org_city,org_currency,org_gst,org_logo}).then(response => response.data).catch(error => console.log(error));
+}
+
