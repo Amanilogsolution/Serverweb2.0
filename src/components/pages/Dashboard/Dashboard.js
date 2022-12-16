@@ -63,7 +63,7 @@ const Dashboard = () => {
       {
         loading ?
           <Sidebar>
-            <div className='dashboard_container pt-2 pb-2'>
+            <div className='dashboard_container bg-light pt-2 pb-2'>
 
               <div className='dashboard_cards text-white justify-content-around'>
                 <div onClick={() => setStep(1)} className='card1 d-flex rounded curser-pointer'>

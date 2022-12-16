@@ -505,6 +505,8 @@ CREATE TABLE IPERISCOPE.dbo.tbl_ticket (
                 priority nvarchar(100) NULL ,
                 issue_discription nvarchar(100) NULL ,
                 remarks nvarchar(300) NULL ,
+                asset_tag nvarchar(150) NULL,
+                asset_condition nvarchar(150) NULL
                 
                 add_user_name nvarchar(50) NULL,
                 add_system_name nvarchar(100) NULL,

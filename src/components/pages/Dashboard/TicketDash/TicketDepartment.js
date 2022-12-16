@@ -1,13 +1,47 @@
 import React from 'react'
 import './TicketDash.css'
 import { FaEnvelopeOpen, FaUserTimes, FaCalendarTimes, FaUser, FaCheck, FaTelegramPlane } from 'react-icons/fa';
+import { BarChart, PieChart, Pie, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, LineChart, Line, } from "recharts";
+
 const TicketDepartment = () => {
-    return (
-        <div>
-          <div className='ticket_card_div'>
+  const data02 = [
+    {
+      "name": "Created",
+      "value": 4400,
+
+    },
+    {
+      "name": "Assigned",
+      "value": 3567
+    },
+    {
+      "name": "Overdue",
+      "value": 1398
+    },
+    {
+      "name": "Closed",
+      "value": 2000
+    },
+    {
+      "name": "Reopened",
+      "value": 3908
+    },
+    {
+      "name": "Deleted",
+      "value": 1800
+    },
+    {
+      "name": "Warningd",
+      "value": 800
+    }
+  ];
+  const COLORS = ['#7675C4', '#DB49F2', '#F4397A', '#039B28', '#A5A704', '#014FB5'];
+  return (
+    <div className='d-flex flex-column justify-content-center '>
+      <div className='ticket_card_div'>
         <div className='ticket_card'>
           <div className='ticket_card_content' style={{ marginRight: "43px" }}>
-            <div className='tickets_icon' style={{ padding: "10px 15px" }}>
+            <div className='tickets_icon text-light' style={{ padding: "10px 15px" }}>
               <FaEnvelopeOpen style={{ fontSize: "30px" }} />
             </div>
             <div>
@@ -19,7 +53,7 @@ const TicketDepartment = () => {
 
         <div className='ticket_card'>
           <div className='ticket_card_content'>
-            <div className='tickets_icon' style={{ padding: "10px 11px" }}>
+            <div className='tickets_icon text-light' style={{ padding: "10px 11px" }}>
               <FaUserTimes style={{ fontSize: "30px", margin: "4px" }} />
             </div>
             <div>
@@ -31,7 +65,7 @@ const TicketDepartment = () => {
 
         <div className='ticket_card'>
           <div className='ticket_card_content' style={{ marginRight: "20px" }}>
-            <div className='tickets_icon' style={{ padding: "10px 11px" }}>
+            <div className='tickets_icon text-light' style={{ padding: "10px 11px" }}>
               <FaCalendarTimes style={{ fontSize: "30px", margin: "4px" }} />
             </div>
             <div>
@@ -46,7 +80,7 @@ const TicketDepartment = () => {
       <div className='ticket_card_div'>
         <div className='ticket_card'>
           <div className='ticket_card_content'>
-            <div className='tickets_icon' style={{ padding: "10px 11px" }}>
+            <div className='tickets_icon text-light' style={{ padding: "10px 11px" }}>
               <FaUser style={{ fontSize: "27px", margin: "4px" }} />
             </div>
             <div>
@@ -58,7 +92,7 @@ const TicketDepartment = () => {
 
         <div className='ticket_card'>
           <div className='ticket_card_content' style={{ marginRight: "30px" }}>
-            <div className='tickets_icon' style={{ padding: "12px 12px" }}>
+            <div className='tickets_icon text-light' style={{ padding: "12px 12px" }}>
               <FaCheck style={{ fontSize: "27px", margin: "4px" }} />
             </div>
             <div>
@@ -70,7 +104,7 @@ const TicketDepartment = () => {
 
         <div className='ticket_card'>
           <div className='ticket_card_content'>
-            <div className='tickets_icon' style={{ padding: "12px 14px" }}>
+            <div className='tickets_icon text-light' style={{ padding: "12px 14px" }}>
               <FaTelegramPlane style={{ fontSize: "27px", margin: "2px" }} />
             </div>
             <div>
@@ -80,9 +114,22 @@ const TicketDepartment = () => {
           </div>
         </div>
       </div>
-
-        </div>
-    )
+      <div className='m-auto' style={{height:'250px',width:'400px'}}>
+        <ResponsiveContainer width="100%" aspect={1.8}>
+          <PieChart width={700} height={200}>
+            <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
+            <Tooltip />
+            <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label >
+              {data02.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Legend layout="vertical" verticalAlign="center" align="right" />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+    </div> 
+  )
 }
 
 export default TicketDepartment; 
