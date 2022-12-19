@@ -1075,11 +1075,11 @@ export const InsertAssetSubCode = async (org,asset_id,asset_tag,software) => {
 //  #########################   Ticketes ##############################
 
 export const InsertTicket = async (org,emp_id, emp_name, asset_type, asset_serial, location, assign_ticket, type_of_issue, email_id,
-    ticket_date, ticket_status, ticket_subject, priority, issue_discription, remarks, user_id) => {
+    ticket_date, ticket_status, ticket_subject, priority, issue_discription, remarks, user_id,AssetTag,AssetCondition) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/InsertTicket`
     return axios.post(url, {org,
         emp_id, emp_name, asset_type, asset_serial, location, assign_ticket, type_of_issue, email_id,
-        ticket_date, ticket_status, ticket_subject, priority, issue_discription, remarks, user_id
+        ticket_date, ticket_status, ticket_subject, priority, issue_discription, remarks, user_id,AssetTag,AssetCondition
     }).then(response => response.data).catch(error => console.log(error));
 }
 

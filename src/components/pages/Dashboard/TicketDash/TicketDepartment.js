@@ -3,7 +3,7 @@ import './TicketDash.css'
 import { FaEnvelopeOpen, FaUserTimes, FaCalendarTimes, FaUser, FaCheck, FaTelegramPlane } from 'react-icons/fa';
 const TicketDepartment = () => {
     return (
-        <div>
+        <div >
           <div className='ticket_card_div'>
         <div className='ticket_card'>
           <div className='ticket_card_content' style={{ marginRight: "43px" }}>
