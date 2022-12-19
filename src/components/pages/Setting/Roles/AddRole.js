@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { ActiveAgent } from '../../../../api/index'
 
 
 function AddRoles() {
     const [loading, setLoading] = useState(false)
+    const [agentlist, setAgentlist] = useState({})
 
     const [datas, setDatas] = useState({
         message: "abc",
@@ -19,7 +21,13 @@ function AddRoles() {
 
 
     useEffect(() => {
-        setLoading(true)
+        const fetchdata = async () => {
+            const agents = await ActiveAgent()
+            console.log(agents)
+            setAgentlist(agents)
+            setLoading(true)
+        }
+        fetchdata()
     }, [])
 
     const fullaccess = (fullaccess) => {
@@ -128,6 +136,21 @@ function AddRoles() {
                                         <form className='px-3' autoComplete='off'>
                                             <div className='row'>
                                                 <div className="col-md-5" >
+                                                    <label htmlFor='role'>Agent <span className='text-danger'>*</span></label>
+                                                    <select className="form-select" id='agent'>
+                                                        <option value='' hidden>Select Agent</option>
+                                                        {
+                                                            agentlist.map((item, index) =>
+                                                                <option key={index} value={item.agent_name}>{item.agent_name}</option>)
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-5 mt-4" >
+                                                    <button className='btn btn-voilet' onClick={(e) => { e.preventDefault(); window.location.href = './AddEmployee' }}> + Add Agent</button>
+                                                </div>
+                                            </div>
+                                            <div className='row mt-2'>
+                                                <div className="col-md-5" >
                                                     <label htmlFor='role'>Role <span className='text-danger'>*</span></label>
                                                     <input type="text" className="form-control" id='role' />
                                                 </div>
@@ -137,7 +160,6 @@ function AddRoles() {
                                                 </div>
                                             </div>
                                             <br />
-
                                             <table className="table">
                                                 <thead>
                                                     <tr>
