@@ -85,8 +85,16 @@ export default function AddTicket() {
         console.log(e.target.value) 
         if(e.target.value == 'Handover'){
             document.getElementById('Handoverdetails').style.display="flex"
+            document.getElementById('AssetCondition').value = ""
+
             // alert('Handover')
-        }else{
+        }
+        else if(e.target.value == 'Allocation'){
+            document.getElementById('Handoverdetails').style.display="flex"
+            document.getElementById('AssetCondition').value = "Good and Working"
+
+        }
+        else{
             document.getElementById('Handoverdetails').style.display="none"
         }
     }
