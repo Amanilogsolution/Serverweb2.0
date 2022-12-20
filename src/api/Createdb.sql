@@ -1,21 +1,6 @@
 -- Add Company name in localStorage at login from backend   ----------------------
 
--- const axios = require("axios");
 
--- const options = {
---   method: 'GET',
---   url: 'https://country-info.p.rapidapi.com/',
---   headers: {
---     'X-RapidAPI-Key': '86b0c2197amshffb1cfe02f00926p1f0330jsn8771bfdd86c5',
---     'X-RapidAPI-Host': 'country-info.p.rapidapi.com'
---   }
--- };
-
--- axios.request(options).then(function (response) {
--- 	console.log(response.data);
--- }).catch(function (error) {
--- 	console.error(error);
--- });
 
 
 CREATE TABLE tbl_location_master (
