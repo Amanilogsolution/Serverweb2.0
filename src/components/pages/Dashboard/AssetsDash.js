@@ -15,6 +15,7 @@ export default function AssetsDash() {
     const fetch = async() =>{
       const type = 'Asset'
       const result = await DashboarProcedure(type)
+      
       setAssetData({...Assetsdata,TotalAsset:result[0][0].TotalDevice,ActiveAsset:result[1][0].ActiveDevice,RentalAssets:result[2][0].RentalDevice,RentMonth:result[3][0].rent,PurchaseVal:result[4][0].purchase})
       console.log(result)
     }

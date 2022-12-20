@@ -464,6 +464,7 @@ CREATE TABLE IPERISCOPE.dbo.tbl_new_assets (
                 purchase_date date NULL ,
                 company nvarchar(100) NULL ,
                 vendor nvarchar(100) NULL ,
+                vendor_code nvarchar(100) NULL,
                 invoice_no nvarchar(100) NULL ,
                 rent_per_month nvarchar(100) NULL ,
                 purchases_price nvarchar(100) NULL ,

@@ -175,7 +175,7 @@ const AddNewAssets = () => {
 
         const org = sessionStorage.getItem('Database')
         const asset_type = document.getElementById('asset_type').value;
-        const asset_id = asset_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
+        const asset_id = asset_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 100000);
         const assetetag = document.getElementById('assetetag').value;
         // let software = document.getElementById('software').value;
         const serialno = document.getElementById('serialno').value;
