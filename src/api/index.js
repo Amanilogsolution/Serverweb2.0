@@ -1166,7 +1166,7 @@ export const DashboarDetails = async (org) => {
 }
 
 export const DashboarProcedure = async (type) => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/dashboard_procedure`
+    const url = `http://localhost:2008/api/dashboard_procedure`
     return axios.post(url, { type }).then(response => response.data).catch(error => console.log(error));
 }
 
