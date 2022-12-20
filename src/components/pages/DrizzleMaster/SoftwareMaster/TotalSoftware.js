@@ -58,7 +58,7 @@ function TotalSoftware() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const org = sessionStorage.getItem('Database')
+                    const org = localStorage.getItem('Database')
 
                      await DeleteSoftwaresapi(org,status, row.sno)
                     window.location.reload()
@@ -75,7 +75,7 @@ function TotalSoftware() {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit Software' href="/EditSoftware">
-                    <p onClick={() => sessionStorage.setItem('softwaresno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('softwaresno', `${row.sno}`)} >
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>
             ]
@@ -85,7 +85,7 @@ function TotalSoftware() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await TotalSoftwareapi(org);
             setData(tabledata)

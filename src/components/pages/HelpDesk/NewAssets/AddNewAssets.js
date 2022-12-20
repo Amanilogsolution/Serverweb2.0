@@ -40,7 +40,7 @@ const AddNewAssets = () => {
     })
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const devices = await ActiveAssetesType(org);
             setAssettypelist(devices)
@@ -147,7 +147,7 @@ const AddNewAssets = () => {
             document.getElementById('softwarediv').style.display = 'none'
 
         }
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
         const count = await CountNewAssets(org, devicetype)
         let asset_count = Number(count.count) + 1 + '';
@@ -173,7 +173,7 @@ const AddNewAssets = () => {
         document.getElementById('subnitbtn').disabled = 'true'
         setLoading(false)
 
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
         const asset_type = document.getElementById('asset_type').value;
         const asset_id = asset_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 100000);
         const assetetag = document.getElementById('assetetag').value;
@@ -267,7 +267,7 @@ const AddNewAssets = () => {
 
                     const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
                         model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
-                        rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+                        rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, localStorage.getItem('UserId'))
                     softwares.forEach(async (datas) => {
                         const software = datas.value
                         await InsertAssetSubCode(org, asset_id, assetetag, software)
@@ -283,7 +283,7 @@ const AddNewAssets = () => {
                     setLoading(true)
                     // const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
                     //     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
-                    //     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, sessionStorage.getItem('UserId'))
+                    //     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, localStorage.getItem('UserId'))
                     // document.getElementById('subnitbtn').disabled = false
                     const result = 'Data Added'
                     if (result === 'Data Added') {
@@ -553,7 +553,7 @@ const AddNewAssets = () => {
                                                             <div className="col-md-4">
                                                                 <label htmlFor='assetassign'>Asset Assign <span className='text-danger'>*</span></label>
                                                                 <select id='assetassign' className="form-select" >
-                                                                    <option value={sessionStorage.getItem('UserId')} hidden>{sessionStorage.getItem('UserName')}</option>
+                                                                    <option value={localStorage.getItem('UserId')} hidden>{localStorage.getItem('UserName')}</option>
                                                                     {
                                                                         employeelist.map((item, index) => (
                                                                             <option key={index} value={item.employee_id}>{item.employee_name}</option>

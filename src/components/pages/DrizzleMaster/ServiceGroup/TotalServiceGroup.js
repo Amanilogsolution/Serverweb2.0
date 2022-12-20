@@ -58,7 +58,7 @@ function TotalServiceGroup() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const org = sessionStorage.getItem('Database')
+                    const org = localStorage.getItem('Database')
 
                      await DeleteServiceGroupStatus(org,status, row.sno)
                     window.location.reload()
@@ -75,7 +75,7 @@ function TotalServiceGroup() {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit ServiceGroup' href="/EditServiceGroup">
-                    <p onClick={() => sessionStorage.setItem('servicegroupsno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('servicegroupsno', `${row.sno}`)} >
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>
             ]
@@ -85,7 +85,7 @@ function TotalServiceGroup() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await TotalServiceGroupapi(org);
             setData(tabledata)

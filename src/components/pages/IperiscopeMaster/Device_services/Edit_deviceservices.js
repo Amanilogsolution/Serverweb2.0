@@ -8,7 +8,7 @@ function EditDeviceServices() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const snodata = sessionStorage.getItem('deviceservicesSno');
+            const snodata = localStorage.getItem('deviceservicesSno');
             const getdata = await Getdeviceservicesdata(snodata);
             setData(getdata)
         }
@@ -31,11 +31,11 @@ function EditDeviceServices() {
     const handlesubmitdata = async (e) => {
         e.preventDefault();
         document.getElementById('subnitbtn').disabled = true;
-        const sno = sessionStorage.getItem('deviceservicesSno');
+        const sno = localStorage.getItem('deviceservicesSno');
         const deviceserviceid = document.getElementById('id').value;
         const device_service = document.getElementById('deviceservices').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!device_service) {
             alert("Please Enter the ID and Services");
@@ -46,7 +46,7 @@ function EditDeviceServices() {
             const updataresult = await Updatedeviceservice(sno, deviceserviceid, device_service, remark, username);
             if (updataresult === 'Updated') {
                 alert("Data updated")
-                sessionStorage.removeItem('deviceservicesSno');
+                localStorage.removeItem('deviceservicesSno');
                 window.location.href = './ShowDeviceservices';
             }
             else {
@@ -64,7 +64,7 @@ function EditDeviceServices() {
                 <div className='main_container pb-2' >
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Device Services</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Device Services</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('deviceservicesSno'); window.location.href = '/ShowDeviceservices' }} >Back <MdOutlineArrowForward /></button>
+                        <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('deviceservicesSno'); window.location.href = '/ShowDeviceservices' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div">
                         <article className="card-body" >

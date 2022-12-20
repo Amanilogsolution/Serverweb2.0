@@ -30,7 +30,7 @@ function AddDevicetask() {
         const devicetask = document.getElementById('devicetask').value;
         const devicetaskfreq = document.getElementById('devicetaskfreq').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!devicetask || !devicetaskfreq) {
             alert("Please enter the data")

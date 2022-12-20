@@ -34,11 +34,11 @@ const Login = () => {
     else {
       const result = await UserLogin(user_id, password);
       if (result.status === 'Success') {
-        sessionStorage.setItem('UserName', result.name);
-        sessionStorage.setItem('UserId', result.user_id);
-        sessionStorage.setItem('Token', result.token);
-        sessionStorage.setItem('Permission', result.permission)
-        sessionStorage.setItem('Database', result.database)
+        localStorage.setItem('UserName', result.name);
+        localStorage.setItem('UserId', result.user_id);
+        localStorage.setItem('Token', result.token);
+        localStorage.setItem('Permission', result.permission)
+        localStorage.setItem('Database', result.database)
         window.location.href = './Dashboard'
       }
       else {

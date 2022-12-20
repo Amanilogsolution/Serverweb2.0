@@ -71,7 +71,7 @@ const columns = [
     //     cell: (row) => [
     //         <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} 
     //         onChange={async (e) => {
-        // const org = sessionStorage.getItem('Database')
+        // const org = localStorage.getItem('Database')
 
     //             const status = e.target.value;
     //             await DeleteNewAssets(org,status, row.sno)
@@ -90,7 +90,7 @@ const columns = [
         selector: 'null',
         cell: (row) => [
             <a title='Edit Asset' href="/EditAsset">
-                <p onClick={() => sessionStorage.setItem('newassetsno', `${row.sno}`)} >
+                <p onClick={() => localStorage.setItem('newassetsno', `${row.sno}`)} >
                     <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                 </p></a>
         ]
@@ -108,7 +108,7 @@ function TotalNewAssetes() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
             const datas = await TotalNewAssets(org)
             setdata(datas)
             setLoading(true)

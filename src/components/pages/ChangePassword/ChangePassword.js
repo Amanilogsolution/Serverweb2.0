@@ -26,7 +26,7 @@ function ChangePassword() {
         e.preventDefault()
         document.getElementById('subnitbtn').disabled = 'true'
 
-        const userid = sessionStorage.getItem('UserId')
+        const userid = localStorage.getItem('UserId')
         const CurrentPassword = document.getElementById('current_password').value
         const UpdatePassword = document.getElementById('new-password').value
         const ConfirmPassword = document.getElementById('confirm-password').value

@@ -38,7 +38,7 @@ function AddDeviceServiceTask() {
         const services = document.getElementById('services').value;
         const completion_date = document.getElementById('completion_date').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!devicename || !services || !task.length || !completion_date) {
             alert("Please enter Mandatory field")

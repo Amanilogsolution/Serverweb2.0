@@ -26,9 +26,9 @@ function EditVendorCode() {
     useEffect(() => {
         const fetchdata = async () => {
             setLoading(true)
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const vendcontract = await GetVendorContract(org, sessionStorage.getItem('VendorContractSno'));
+            const vendcontract = await GetVendorContract(org, localStorage.getItem('VendorContractSno'));
             console.log(vendcontract)
             setData(vendcontract[0])
 
@@ -81,7 +81,7 @@ function EditVendorCode() {
 
     const handleChangeCategory = async (e) => {
         const val = e.target.value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
 
         if (val === 'Internet' || val === 'Data' || val === 'Telecom') {
@@ -116,9 +116,9 @@ function EditVendorCode() {
         const tds = document.getElementById('tds').checked ? 'true' : 'false';
         let link_id_no = document.getElementById('link_id_no').value;
         const help_desk_no = document.getElementById('help_desk_no').value;
-        const user_id = sessionStorage.getItem('UserId')
-        const sno = sessionStorage.getItem('VendorContractSno');
-        const org = sessionStorage.getItem('Database')
+        const user_id = localStorage.getItem('UserId')
+        const sno = localStorage.getItem('VendorContractSno');
+        const org = localStorage.getItem('Database')
 
 
         if (!vendor ||
@@ -168,7 +168,7 @@ function EditVendorCode() {
                     help_desk_no, user_id)
 
                 if (callapi === 'Updated') {
-                    sessionStorage.removeItem('VendorContractSno');
+                    localStorage.removeItem('VendorContractSno');
                     setDatas({ ...datas, message: "Vendor Contract Update", title: "success", type: "success", toggle: "true", route: '/TotalVendorContract' })
                     document.getElementById('snackbar').style.display = "block"
                 }
@@ -217,7 +217,7 @@ function EditVendorCode() {
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Contract</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Contract</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('VendorContractSno'); window.location.href = '/TotalVendorContract' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('VendorContractSno'); window.location.href = '/TotalVendorContract' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
                                 <div className="card inner-card">

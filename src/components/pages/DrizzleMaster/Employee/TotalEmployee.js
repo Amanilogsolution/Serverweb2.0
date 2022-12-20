@@ -83,7 +83,7 @@ function TotalEmployee() {
             cell: (row) => [
                 <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
                     const status = e.target.value;
-                    const org = sessionStorage.getItem('Database')
+                    const org = localStorage.getItem('Database')
 
                      await DeleteEmployees(org,status, row.sno)
                     window.location.reload()
@@ -100,7 +100,7 @@ function TotalEmployee() {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit Series' href="/EditEmployee">
-                    <p onClick={() => sessionStorage.setItem('employeesno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('employeesno', `${row.sno}`)} >
                     <AiFillEdit style={{fontSize:"20px",marginBottom:"-13px"}}/>
                     </p></a>
             ]
@@ -110,7 +110,7 @@ function TotalEmployee() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await TotalEmployees(org);
             setData(tabledata)

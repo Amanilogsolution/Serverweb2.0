@@ -26,7 +26,7 @@ function AddAssetStatus() {
         const assetstatus_id = asset_status.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const asset_status_desc = document.getElementById('asset_status_desc').value;
 
-        const username = sessionStorage.getItem('UserId');
+        const username = localStorage.getItem('UserId');
         setLoading(true)
 
         if (!asset_status) {
@@ -37,7 +37,7 @@ function AddAssetStatus() {
         }
         else {
             setLoading(true)
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
             const result = await AddAssetStatusapi(org,assetstatus_id, asset_status, asset_status_desc, username);
             if (result === 'Added') {
                setDatas({...datas,message:"Asset Status Added",title:"success",type:"success",route:"/TotalAssetStatus",toggle:"true"})

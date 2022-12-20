@@ -53,7 +53,7 @@ const columns = [
         selector: 'assign_ticket',
         sortable: true,
         cell: (row) => [
-            <a title="Click to Edit"  href="/EditTicket" style={{textDecoration:"none"}}  onClick={() => sessionStorage.setItem('TicketSno', `${row.sno}`)} >{row.assign_ticket}</a>
+            <a title="Click to Edit"  href="/EditTicket" style={{textDecoration:"none"}}  onClick={() => localStorage.setItem('TicketSno', `${row.sno}`)} >{row.assign_ticket}</a>
           ]
     },
     {
@@ -83,7 +83,7 @@ const columns = [
     //         <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} 
     //         onChange={async (e) => {
     //             const status = e.target.value;
-    //             const org = sessionStorage.getItem('Database')
+    //             const org = localStorage.getItem('Database')
 
     //             await DeleteTickets(org,status, row.sno)
     //             window.location.reload()
@@ -101,7 +101,7 @@ const columns = [
     //     selector: 'null',
     //     cell: (row) => [
     //         <a title='Edit Ticket' href="/EditTicket">
-    //             <p onClick={() => sessionStorage.setItem('TicketSno', `${row.sno}`)} >
+    //             <p onClick={() => localStorage.setItem('TicketSno', `${row.sno}`)} >
     //                 <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
     //             </p></a>
     //     ]
@@ -117,7 +117,7 @@ const TotalTickets = () => {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await TotalTicket(org);
             console.log(tabledata)

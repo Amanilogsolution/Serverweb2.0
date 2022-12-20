@@ -77,7 +77,7 @@ const  TotalVendorPayment=()=> {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit VendorPayments' href="/EditVendorPayments">
-                    <p onClick={() => sessionStorage.setItem('vendorpaymentssno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('vendorpaymentssno', `${row.sno}`)} >
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>
             ]
@@ -87,7 +87,7 @@ const  TotalVendorPayment=()=> {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await TotalVendorPaymentapi(org);
             console.log(tabledata)

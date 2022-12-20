@@ -25,9 +25,9 @@ function AddBillingFreq() {
         const billing_freq = document.getElementById('billing_freq').value;
         const billing_freq_id = billing_freq.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const billing_freq_desc = document.getElementById('billing_freq_desc').value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
-        const username = sessionStorage.getItem('UserId');
+        const username = localStorage.getItem('UserId');
         setLoading(true)
 
         if (!billing_freq) {

@@ -21,8 +21,8 @@ const Profile = () => {
 
    useEffect(() => {
       const fetchdata = async () => {
-         const org = sessionStorage.getItem('Database')
-         const Userdetails = sessionStorage.getItem('UserId')
+         const org = localStorage.getItem('Database')
+         const Userdetails = localStorage.getItem('UserId')
 
          const Userdata = await getUserdetails(org, Userdetails)
          setDetails(Userdata)
@@ -39,13 +39,13 @@ const Profile = () => {
 
       document.getElementById('subnitbtn').disabled = true
 
-      const org = sessionStorage.getItem('Database')
+      const org = localStorage.getItem('Database')
       const employee_name = document.getElementById('employee_name').value
       const employee_number = document.getElementById('employee_number').value
       const employee_email = document.getElementById('employee_email').value
       const location = document.getElementById('location').value
       const company = document.getElementById('company').value
-      const user_id = sessionStorage.getItem('UserId')
+      const user_id = localStorage.getItem('UserId')
 
       if (!employee_name) {
          setLoading(true)

@@ -25,7 +25,7 @@ function AddAssetType() {
         const assettype_id = asset_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const asset_type_desc = document.getElementById('asset_type_desc').value;
 
-        const username = sessionStorage.getItem('UserId');
+        const username = localStorage.getItem('UserId');
 
         // console.log(software)
         if (!asset_type) {
@@ -36,7 +36,7 @@ function AddAssetType() {
         }
         else {
             setLoading(true)
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
             const result = await AddAssetTypeapi(org, assettype_id, asset_type, asset_type_desc, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Asset Type Added", title: "success", type: "success", route: "/TotalAssetType", toggle: "true" })

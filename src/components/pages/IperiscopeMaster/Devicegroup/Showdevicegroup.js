@@ -78,7 +78,7 @@ function Showdevicegroup() {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit Device Type' href="/EditDevicegroup">
-                    <p onClick={() => sessionStorage.setItem('devicegroupSno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('devicegroupSno', `${row.sno}`)} >
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>
             ]
@@ -107,7 +107,7 @@ function Showdevicegroup() {
                 <div className='main_container' >
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Device Group</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Device Group</span> </h2>
-                        <button className='btn btn-voilet btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/AddDevicegroup' }} >Add Devicegroup <MdAdd /></button>
+                        <button className='btn btn-voilet btn ' onClick={() => { localStorage.removeItem('seriessno'); window.location.href = '/AddDevicegroup' }} >Add Devicegroup <MdAdd /></button>
                     </div>
                     <DataTableExtensions {...tableData}>
                         <DataTable

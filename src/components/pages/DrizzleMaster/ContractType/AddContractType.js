@@ -24,8 +24,8 @@ function AddContractType() {
         const contract_type = document.getElementById('contract_type').value;
         const contract_type_id = contract_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserId');
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserId');
+        const org = localStorage.getItem('Database')
 
 
         if (!contract_type) {

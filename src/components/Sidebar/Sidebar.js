@@ -81,7 +81,7 @@ const Sidebar = ({ children }) => {
         marginLeft: "0%"
     }
     const handleLogout = () => {
-        sessionStorage.clear()
+        localStorage.clear()
         window.location.href = '/'
     }
 

@@ -19,8 +19,8 @@ function EditLocation() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
-            const result = await GetLocation(org,sessionStorage.getItem('locationsno'))
+            const org = localStorage.getItem('Database')
+            const result = await GetLocation(org,localStorage.getItem('locationsno'))
             setData(result);
             setLoading(true)
         }
@@ -31,7 +31,7 @@ function EditLocation() {
         e.preventDefault();
         setLoading(false)
         document.getElementById('subnitbtn').disabled = 'true'
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
         const company = document.getElementById('company').value;
         const locationcode = document.getElementById('locationcode').value;
         const locationname = document.getElementById('locationname').value;
@@ -48,8 +48,8 @@ function EditLocation() {
         const latitude = document.getElementById('latitude').value;
         const longitude = document.getElementById('longitude').value;
 
-        const username = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('locationsno')
+        const username = localStorage.getItem('UserId');
+        const sno = localStorage.getItem('locationsno')
         setLoading(true)
 
         if (!company || !locationcode || !locationname || !address1 || !city || !state || !pincode || !contactpersonname || !email || !contNum) {
@@ -63,7 +63,7 @@ function EditLocation() {
                 contactpersonname, email, contNum, latitude, longitude, username);
 
             if (result === 'Updated') {
-                sessionStorage.removeItem('locationsno');
+                localStorage.removeItem('locationsno');
                 setDatas({ ...datas, message: "Location Updated", title: "success", type: "success", route: "/TotalLocations", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -142,7 +142,7 @@ function EditLocation() {
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Location</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Location</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('locationsno'); window.location.href = '/TotalLocations' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('locationsno'); window.location.href = '/TotalLocations' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div" style={{ width: "90%" }}>
                                 <div className='card-header'>Edit Location:</div>

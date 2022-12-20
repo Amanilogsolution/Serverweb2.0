@@ -24,8 +24,8 @@ function AddVendorSubCategory() {
         const service_action = document.getElementById('service_action').value;
         const service_action_id = service_action.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserId');
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserId');
+        const org = localStorage.getItem('Database')
 
 
         if (!service_action) {

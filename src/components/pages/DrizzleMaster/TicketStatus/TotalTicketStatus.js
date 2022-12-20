@@ -55,7 +55,7 @@ const columns = [
         cell: (row) => [
             <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                 const status = e.target.value;
-                const org = sessionStorage.getItem('Database')
+                const org = localStorage.getItem('Database')
 
                 await UpdateTicketstatusActive(org,status, row.sno)
                 window.location.reload()
@@ -72,7 +72,7 @@ const columns = [
         selector: 'null',
         cell: (row) => [
             <a title='Edit TicketStatus' href="/EditTicketStatus">
-                <p onClick={() => sessionStorage.setItem('ticketstatussno', `${row.sno}`)} >
+                <p onClick={() => localStorage.setItem('ticketstatussno', `${row.sno}`)} >
                     <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                 </p></a>
         ]
@@ -86,7 +86,7 @@ function TotalTicketStatus() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const result = await TotalTicketstatusapi(org);
             setData(result)

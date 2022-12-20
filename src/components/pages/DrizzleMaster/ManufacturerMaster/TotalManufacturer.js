@@ -55,7 +55,7 @@ const columns = [
         cell: (row) => [
             <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                 const status = e.target.value;
-                const org = sessionStorage.getItem('Database')
+                const org = localStorage.getItem('Database')
 
                 await UpdateManufacturerStatus(org,status, row.sno)
                 window.location.reload()
@@ -72,7 +72,7 @@ const columns = [
         selector: 'null',
         cell: (row) => [
             <a title='Edit Manufacturer' href="/EditManufacturer">
-                <p onClick={() => sessionStorage.setItem('manufacturersno', `${row.sno}`)} >
+                <p onClick={() => localStorage.setItem('manufacturersno', `${row.sno}`)} >
                     <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                 </p></a>
         ]
@@ -86,7 +86,7 @@ function TotalManufacturer() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await TotalManufacturerapi(org);
             setData(tabledata)

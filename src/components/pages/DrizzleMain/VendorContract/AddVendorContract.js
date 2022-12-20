@@ -28,7 +28,7 @@ function AddVendorContract() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tablelocation = await ActiveLocation(org);
             setLocationlist(tablelocation)
@@ -87,7 +87,7 @@ function AddVendorContract() {
 
     const handleChangeCategory = async (e) => {
         const val = e.target.value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
         if (val === 'Internet' || val === 'Data' || val === 'Telecom') {
             document.getElementById('link_id_div').style.display = 'block'
@@ -128,8 +128,8 @@ function AddVendorContract() {
         const tds = document.getElementById('tds').checked ? true : false;
         let link_id_no = document.getElementById('link_id_no').value;
         const help_desk_no = document.getElementById('help_desk_no').value;
-        const user_id = sessionStorage.getItem('UserId')
-        const org = sessionStorage.getItem('Database')
+        const user_id = localStorage.getItem('UserId')
+        const org = localStorage.getItem('Database')
 
 
 

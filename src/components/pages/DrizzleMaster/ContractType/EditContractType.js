@@ -19,9 +19,9 @@ function EditContractType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const result = await GetContractType(org, sessionStorage.getItem('contracttypesno'))
+            const result = await GetContractType(org, localStorage.getItem('contracttypesno'))
             setData(result[0]);
             setLoading(true)
 
@@ -37,10 +37,10 @@ function EditContractType() {
         const contract_type = document.getElementById('contract_type').value;
         const remark = document.getElementById('remark').value;
         setLoading(true)
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
-        const username = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('contracttypesno')
+        const username = localStorage.getItem('UserId');
+        const sno = localStorage.getItem('contracttypesno')
 
         if (!contract_type) {
             document.getElementById('subnitbtn').disabled = false
@@ -54,7 +54,7 @@ function EditContractType() {
             const result = await UpdateContractType(org, sno, contract_type, remark, username);
 
             if (result === 'Updated') {
-                sessionStorage.removeItem('contracttypesno');
+                localStorage.removeItem('contracttypesno');
                 setDatas({ ...datas, message: "Contract Type Updated", title: "success", type: "success", route: "/TotalContractType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -96,7 +96,7 @@ function EditContractType() {
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>ContractType</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit ContractType</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('contracttypesno'); window.location.href = '/TotalContractType' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('contracttypesno'); window.location.href = '/TotalContractType' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div" >
 

@@ -90,7 +90,7 @@ function AddDevice() {
             const arryresult = [];
             selectService.forEach(async (datas) => {
                 const deviceservice = datas.value
-                const result = await Adddevice(deviceid, devicename, devicetype, devicegroup, deviceipaddr, devicehost, operatingsystem, deviceservice, createdate, registerdate, agent, remark, sessionStorage.getItem('UserId'))
+                const result = await Adddevice(deviceid, devicename, devicetype, devicegroup, deviceipaddr, devicehost, operatingsystem, deviceservice, createdate, registerdate, agent, remark, localStorage.getItem('UserId'))
                 arryresult.push(result)
             })
             setTimeout(() => {

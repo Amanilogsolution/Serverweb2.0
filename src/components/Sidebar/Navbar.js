@@ -15,7 +15,7 @@ import { HiDocumentText } from 'react-icons/hi'
 const Navbar = (propes) => {
 
     const handleLogout = () => {
-        sessionStorage.clear()
+        localStorage.clear()
         window.location.href = '/'
     }
     return (
@@ -76,7 +76,7 @@ const Navbar = (propes) => {
                                 <Link className="dropdown-item" to="/Contactus"><MdPermContactCalendar /> Contact us</Link>
                             </div>
                         </div>
-                        <div className='d-flex  curser-pointer'>
+                        <div className='d-flex  cursor-pointer'>
                             <BsBellFill style={{ fontSize: "25px" }} />
                         </div>
                     </div>
@@ -84,11 +84,11 @@ const Navbar = (propes) => {
                         <div className='d-flex align-items-center' role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                             <FaUserCircle className='' style={{ fontSize: "30px", marginRight: '3px' }} />
-                            <p className=' mb-0 name-text' style={{ fontSize: '18px' }}>{sessionStorage.getItem('UserName')}</p>
+                            <p className=' mb-0 name-text' style={{ fontSize: '18px' }}>{localStorage.getItem('UserName')}</p>
                             <MdOutlineArrowDropDown style={{ fontSize: "30px" }} />
                         </div>
                         <div className="dropdown-menu " aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
-                            <a className="dropdown-item" href="/Profile">Profile</a>
+                            <Link className="dropdown-item" to="/Profile">Profile</Link>
                             <Link className="dropdown-item" to="/ChangePassword">Change Password</Link>
                             <a className="dropdown-item border-top text-danger" href="#" onClick={handleLogout}>Logout <MdOutlineExitToApp style={{ fontSize: "20px" }} /></a>
                         </div>

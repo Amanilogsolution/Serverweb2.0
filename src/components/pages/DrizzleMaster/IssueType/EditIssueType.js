@@ -19,9 +19,9 @@ function EditIssueType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const result = await GetIssueType(org, sessionStorage.getItem('IssueTypesno'))
+            const result = await GetIssueType(org, localStorage.getItem('IssueTypesno'))
             setData(result[0]);
             setLoading(true)
         }
@@ -35,10 +35,10 @@ function EditIssueType() {
         document.getElementById('subnitbtn').disabled = 'true'
         const issue_type = document.getElementById('issue_type').value;
         const remark = document.getElementById('remark').value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
-        const username = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('IssueTypesno')
+        const username = localStorage.getItem('UserId');
+        const sno = localStorage.getItem('IssueTypesno')
         setLoading(true)
 
         if (!issue_type) {
@@ -50,7 +50,7 @@ function EditIssueType() {
             setLoading(true)
             const result = await UpdateIssueType(org, sno, issue_type, remark, username);
             if (result === 'Updated') {
-                sessionStorage.removeItem('IssueTypesno');
+                localStorage.removeItem('IssueTypesno');
                 setDatas({ ...datas, message: "Issue Type Updated", title: "success", type: "success", route: "/TotalIssueType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -90,7 +90,7 @@ function EditIssueType() {
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>IssueType</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit IssueType</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('IssueTypesno'); window.location.href = '/TotalIssueType' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('IssueTypesno'); window.location.href = '/TotalIssueType' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div" >
 

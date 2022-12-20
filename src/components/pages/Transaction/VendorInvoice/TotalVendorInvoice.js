@@ -77,7 +77,7 @@ function TotalVendorInvoice() {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit Invoice' href="/EditVendorInvoice">
-                    <p onClick={() => sessionStorage.setItem('vendorinvoicesno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('vendorinvoicesno', `${row.sno}`)} >
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>
             ]
@@ -87,7 +87,7 @@ function TotalVendorInvoice() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await PendingVendorInvoice(org);
             console.log(tabledata)

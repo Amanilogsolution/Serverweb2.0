@@ -60,7 +60,7 @@ function TotalVendorCategory() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const org = sessionStorage.getItem('Database')
+                    const org = localStorage.getItem('Database')
 
                      await DeleteVendorCategoryapi(org,status, row.sno)
                     window.location.reload()
@@ -77,7 +77,7 @@ function TotalVendorCategory() {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit Vendor Category' href="/EditVendorcategory">
-                    <p onClick={() => sessionStorage.setItem('vendorcatsno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('vendorcatsno', `${row.sno}`)} >
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>
             ]
@@ -87,7 +87,7 @@ function TotalVendorCategory() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await TotalVendorCategoryapi(org);
             setData(tabledata)

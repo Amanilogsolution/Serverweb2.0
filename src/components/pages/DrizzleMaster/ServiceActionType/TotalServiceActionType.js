@@ -59,7 +59,7 @@ function TotalServiceActionType() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const org = sessionStorage.getItem('Database')
+                    const org = localStorage.getItem('Database')
 
                      await DeleteServiceActionTypeStatus(org,status, row.sno)
                     window.location.reload()
@@ -76,7 +76,7 @@ function TotalServiceActionType() {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit ServiceActionType' href="/EditServiceActionType">
-                    <p onClick={() => sessionStorage.setItem('serviceactiontypesno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('serviceactiontypesno', `${row.sno}`)} >
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>
             ]
@@ -86,7 +86,7 @@ function TotalServiceActionType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await TotalServiceActionTypeapi(org);
             setData(tabledata)

@@ -25,9 +25,9 @@ function AddVendorCategory() {
         const vendor_category = document.getElementById('vendor_category').value;
         const vendor_category_id = vendor_category.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const vendor_category_description = document.getElementById('vendor_category_description').value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
-        const username = sessionStorage.getItem('UserId');
+        const username = localStorage.getItem('UserId');
 
         if (!vendor_category) {
             setLoading(true)

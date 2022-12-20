@@ -18,9 +18,9 @@ function EditAssetType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const result = await GetAssetTypeapi(org,sessionStorage.getItem('assettypesno'))
+            const result = await GetAssetTypeapi(org,localStorage.getItem('assettypesno'))
             setData(result[0]);
             setLoading(true)
         }
@@ -33,9 +33,9 @@ function EditAssetType() {
         document.getElementById('subnitbtn').disabled = 'true'
         const asset_type = document.getElementById('asset_type').value;
         const asset_type_desc = document.getElementById('asset_type_desc').value;
-        const username = sessionStorage.getItem('UserName');
-        const sno = sessionStorage.getItem('assettypesno')
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserName');
+        const sno = localStorage.getItem('assettypesno')
+        const org = localStorage.getItem('Database')
 
 
         if (!asset_type) {
@@ -52,7 +52,7 @@ function EditAssetType() {
             if (result === 'Updated') {
                setDatas({...datas,message:"Asset Type Updated",title:"success",type:"success",route:"/TotalAssetType"})
                document.getElementById('snackbar').style.display="block"    
-               sessionStorage.removeItem('assettypesno');
+               localStorage.removeItem('assettypesno');
       
               }
             else {
@@ -83,7 +83,7 @@ function EditAssetType() {
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Asset Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Asset Type</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('assettypesno'); window.location.href = '/TotalAssetType' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('assettypesno'); window.location.href = '/TotalAssetType' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div" style={{ width: "50%" }}>
 

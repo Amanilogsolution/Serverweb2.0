@@ -21,7 +21,7 @@ const Outstanding = ({ setStep }) => {
       selector: 'null',
       cell: (row) => [
         <a title='Edit Asset' href="/EditAsset">
-          <p onClick={() => sessionStorage.setItem('newassetsno', `${row.sno}`)} >
+          <p onClick={() => localStorage.setItem('newassetsno', `${row.sno}`)} >
             <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
           </p></a>
       ]

@@ -26,7 +26,7 @@ function AddSoftware() {
         const software_id = software.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const software_desc = document.getElementById('software_desc').value;
 
-        const username = sessionStorage.getItem('UserId');
+        const username = localStorage.getItem('UserId');
 
 
         if (!software) {
@@ -37,7 +37,7 @@ function AddSoftware() {
         }
         else {
             setLoading(true)
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const result = await AddSoftwareapi(org, software_id, software, software_desc, username);
             if (result === 'Added') {

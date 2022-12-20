@@ -25,7 +25,7 @@ function EditDeviceServiceTask() {
             const task = await Activedevicetask()
             setActiveDeviceTask(task)
 
-            const gettask = await GetDevicestask(sessionStorage.getItem('devicetaskmSno'))
+            const gettask = await GetDevicestask(localStorage.getItem('devicetaskmSno'))
             console.log(gettask)
             setData(gettask)
             setFreq(gettask.task_frequency)
@@ -48,8 +48,8 @@ function EditDeviceServiceTask() {
         const Frequency = document.getElementById('devicetaskfreq').value;
         const completion_date = document.getElementById('completion_date').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
-        const sno = sessionStorage.getItem('devicetaskmSno');
+        const username = localStorage.getItem('UserName');
+        const sno = localStorage.getItem('devicetaskmSno');
 
         if (!devicename || !services || !task.length || !completion_date) {
             alert("Please enter Mandatory field")
@@ -60,7 +60,7 @@ function EditDeviceServiceTask() {
             const updatedata = await UpdateDevicetaskes(sno, devicename, services, task, Frequency, completion_date, remark, username)
             if (updatedata === 'Updated') {
                 alert("Data Updated ");
-                sessionStorage.removeItem('devicetaskmSno');
+                localStorage.removeItem('devicetaskmSno');
                 window.location.href = '/TotalDeviceServiceTask'
             }
             else {
@@ -102,7 +102,7 @@ function EditDeviceServiceTask() {
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Device Task</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Device Task</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('devicetaskmSno'); window.location.href = '/TotalDeviceServiceTask' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('devicetaskmSno'); window.location.href = '/TotalDeviceServiceTask' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }} >
                             <div className="card inner-card">

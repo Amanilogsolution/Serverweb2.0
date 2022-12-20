@@ -27,7 +27,7 @@ const Dashboard = () => {
   })
   useEffect(() => {
     const fetch = async () => {
-      const org = sessionStorage.getItem('Database')
+      const org = localStorage.getItem('Database')
 
       const result = await DashboarDetails(org)
       console.log(result)

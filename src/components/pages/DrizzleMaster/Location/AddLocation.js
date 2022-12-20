@@ -58,7 +58,7 @@ function AddLocation() {
         const latitude = document.getElementById('latitude').value;
         const longitude = document.getElementById('longitude').value;
 
-        const username = sessionStorage.getItem('UserId');
+        const username = localStorage.getItem('UserId');
         setLoading(true)
 
         if (!company || !locationcode || !locationname || !address1 || !city || !state || !pincode || !contactpersonname || !email || !contNum) {
@@ -68,7 +68,7 @@ function AddLocation() {
         }
         else {
             setLoading(true)
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const result = await AddLocationapi(org,location_id, company, locationcode, locationname, address1, address2, city, state,
                 pincode, gstno, contactpersonname, email, contNum, latitude, longitude, username);
@@ -103,7 +103,7 @@ function AddLocation() {
                         <div className='main_container pb-3'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 '>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Locations</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Location</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalLocations' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('seriessno'); window.location.href = '/TotalLocations' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div" style={{ width: "90%" }}>
                                 <div className='card-header'>Add Location:</div>

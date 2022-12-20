@@ -20,8 +20,8 @@ function EditEmployee() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
-            const result = await GetEmployees(org,sessionStorage.getItem('employeesno'))
+            const org = localStorage.getItem('Database')
+            const result = await GetEmployees(org,localStorage.getItem('employeesno'))
             setData(result[0]);
             const tablelocation = await ActiveLocation(org);
             setLocationlist(tablelocation)
@@ -40,8 +40,8 @@ function EditEmployee() {
         const employee_number = document.getElementById('employee_number').value;
         const company = document.getElementById('company').value;
         const location = document.getElementById('location').value;
-        const username = sessionStorage.getItem('UserName');
-        const sno = sessionStorage.getItem('employeesno')
+        const username = localStorage.getItem('UserName');
+        const sno = localStorage.getItem('employeesno')
         setLoading(true)
 
         if (!location || !employee_name || !employee_email) {
@@ -51,12 +51,12 @@ function EditEmployee() {
         }
         else {
             setLoading(true)
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const result = await UpdateEmployees(org,sno, employee_name, location, employee_email, employee_number, company, username);
 
             if (result === 'Updated') {
-                sessionStorage.removeItem('employeesno');
+                localStorage.removeItem('employeesno');
                 setDatas({ ...datas, message: "Employee Updated", title: "success", type: "success", route: "/TotalEmployee", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -103,7 +103,7 @@ function EditEmployee() {
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Employee</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Employee</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('employeesno'); window.location.href = '/TotalEmployee' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('employeesno'); window.location.href = '/TotalEmployee' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div">
                                 <article className="card-body" >

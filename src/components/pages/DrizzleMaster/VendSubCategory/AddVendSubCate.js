@@ -21,7 +21,7 @@ function AddVendorSubCategory() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const vendorCategory = await ActiveVendorCategory(org)
             setVendorcatlist(vendorCategory)
@@ -38,8 +38,8 @@ function AddVendorSubCategory() {
         const vend_sub_cate_id = vendor_category.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const vendor_sub_category = document.getElementById('vendor_sub_category').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserId');
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserId');
+        const org = localStorage.getItem('Database')
 
 
         if (!vendor_category || !vendor_sub_category) {

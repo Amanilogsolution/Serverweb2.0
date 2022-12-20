@@ -32,7 +32,7 @@ function AddServiceCompliance() {
         const DeviceService = document.getElementById('DeviceService').value
         const ServiceCompliance = document.getElementById('servicecompliance').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!DeviceService || !ServiceCompliance) {
             alert("Please enter Mandatory field")

@@ -11,7 +11,7 @@ function EditServiceCompliance() {
         const fetchdata = async () => {
             const result = await ActiveDeviceService()
             setDeviceService(result)
-            const result1 = await GetServiceCompliance(sessionStorage.getItem('ServiceComplianceSno'))
+            const result1 = await GetServiceCompliance(localStorage.getItem('ServiceComplianceSno'))
             setData(result1)
         }
         fetchdata();
@@ -24,7 +24,7 @@ function EditServiceCompliance() {
         const DeviceService = document.getElementById('DeviceService').value
         const ServiceCompliance = document.getElementById('servicecompliance').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!DeviceService || !ServiceCompliance) {
             alert('Please enter mandatory field')
@@ -33,10 +33,10 @@ function EditServiceCompliance() {
         }
         else {
 
-            const result = await Updateservicecompliance(sessionStorage.getItem('ServiceComplianceSno'), servicecomplianceid, DeviceService, ServiceCompliance, remark, username);
+            const result = await Updateservicecompliance(localStorage.getItem('ServiceComplianceSno'), servicecomplianceid, DeviceService, ServiceCompliance, remark, username);
             if (result==='Updated') {
                 alert("Data Update")
-                sessionStorage.removeItem('ServiceComplianceSno');
+                localStorage.removeItem('ServiceComplianceSno');
                 window.location.href = '/TotalServicecompliance'
             }
             else {
@@ -63,7 +63,7 @@ function EditServiceCompliance() {
                 <div className='main_container' >
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Service Compliance</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Service Compliance</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('ServiceComplianceSno'); window.location.href = '/TotalServicecompliance' }} >Back <MdOutlineArrowForward /></button>
+                        <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('ServiceComplianceSno'); window.location.href = '/TotalServicecompliance' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div" >
 

@@ -19,9 +19,9 @@ function EditManufacturer() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const result = await GetManufacturer(org,sessionStorage.getItem('manufacturersno'))
+            const result = await GetManufacturer(org,localStorage.getItem('manufacturersno'))
             setData(result[0]);
             setLoading(true)
 
@@ -36,9 +36,9 @@ function EditManufacturer() {
         const manufacturername = document.getElementById('manufacturername').value;
         const remark = document.getElementById('remark').value;
 
-        const username = sessionStorage.getItem('UserName');
-        const sno = sessionStorage.getItem('manufacturersno')
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserName');
+        const sno = localStorage.getItem('manufacturersno')
+        const org = localStorage.getItem('Database')
 
         setLoading(true)
 
@@ -51,7 +51,7 @@ function EditManufacturer() {
             setLoading(true)
             const result = await UpdateManufacturer(org,sno, manufacturername, remark, username);
             if (result === 'Updated') {
-                sessionStorage.removeItem('manufacturersno');
+                localStorage.removeItem('manufacturersno');
                 setDatas({ ...datas, message: "Manfacturer Updated", title: "success", type: "success", route: "/TotalManufacturer", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -93,7 +93,7 @@ function EditManufacturer() {
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Manufacturer</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Manufacturer</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('manufacturersno'); window.location.href = '/TotalManufacturer' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('manufacturersno'); window.location.href = '/TotalManufacturer' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div" >
 

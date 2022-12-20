@@ -23,8 +23,8 @@ function AddIssueType() {
         const issue_type = document.getElementById('issue_type').value;
         const issue_type_id = issue_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserId');
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserId');
+        const org = localStorage.getItem('Database')
 
         setLoading(true)
 

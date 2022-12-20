@@ -59,7 +59,7 @@ function TotalPurchaseType() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const org = sessionStorage.getItem('Database')
+                    const org = localStorage.getItem('Database')
 
                      await DeletePurchaseTypeapi(org,status, row.sno)
                     window.location.reload()
@@ -76,7 +76,7 @@ function TotalPurchaseType() {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit PurchaseType' href="/EditPurchaseType">
-                    <p onClick={() => sessionStorage.setItem('purchasesno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('purchasesno', `${row.sno}`)} >
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>
             ]
@@ -86,7 +86,7 @@ function TotalPurchaseType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await TotalPurchaseTypeapi(org);
             setData(tabledata)

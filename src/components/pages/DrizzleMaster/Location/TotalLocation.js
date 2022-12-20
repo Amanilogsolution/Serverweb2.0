@@ -75,7 +75,7 @@ const columns = [
         cell: (row) => [
             <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                 const status = e.target.value;
-                const org = sessionStorage.getItem('Database')
+                const org = localStorage.getItem('Database')
                 await UpdateLocationStatus(org,status, row.sno)
                 window.location.reload()
             }}>
@@ -91,7 +91,7 @@ const columns = [
         selector: 'null',
         cell: (row) => [
             <a title='Edit Location' href="/EditLocation">
-                <p onClick={() => sessionStorage.setItem('locationsno', `${row.sno}`)} >
+                <p onClick={() => localStorage.setItem('locationsno', `${row.sno}`)} >
                     <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                 </p></a>
         ]
@@ -105,7 +105,7 @@ function TotalLocations() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
             const tabledata = await TotalLocation(org);
             console.log(tabledata)
             setData(tabledata)

@@ -91,7 +91,7 @@ function TotaldeviceTask() {
             cell: (row) => [
                 <a title='Edit Device Task ' href="/EditDeviceServiceTask">
 
-                    <p onClick={() => sessionStorage.setItem('devicetaskmSno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('devicetaskmSno', `${row.sno}`)} >
                         {/* Edit */}
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
 

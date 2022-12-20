@@ -8,7 +8,7 @@ function EditDevicegroup() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const getdata = await Getdevicegroup(sessionStorage.getItem('devicegroupSno'));
+            const getdata = await Getdevicegroup(localStorage.getItem('devicegroupSno'));
             setData(getdata)
         }
         fetchdata();
@@ -20,16 +20,16 @@ function EditDevicegroup() {
         const deviceid = document.getElementById('deviceid').value;
         const devicegroup = document.getElementById('devicegroup').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
         
         if (!devicegroup) {
             alert("Please enter the mandatory field")
         }
         else {
-            const result = await Updatedevicegroup(sessionStorage.getItem('devicegroupSno'), deviceid, devicegroup, remark, username);
+            const result = await Updatedevicegroup(localStorage.getItem('devicegroupSno'), deviceid, devicegroup, remark, username);
             if (result) {
                 alert('Updated')
-                sessionStorage.removeItem('devicegroupSno');
+                localStorage.removeItem('devicegroupSno');
                 window.location.href = 'Showdevicegroup'
             }
             else {
@@ -57,7 +57,7 @@ function EditDevicegroup() {
             <div className='main_container pb-2' >
             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{color:"rgb(123,108,200)"}}>Device Group</span> <MdOutlineKeyboardArrowRight/><span style={{fontSize:"25px"}}>Edit Device Group</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('devicegroupSno'); window.location.href = '/Showdevicegroup'}} >Back <MdOutlineArrowForward/></button>
+                        <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('devicegroupSno'); window.location.href = '/Showdevicegroup'}} >Back <MdOutlineArrowForward/></button>
                     </div>
                         <div className="card card-div">
                             <article className="card-body" >

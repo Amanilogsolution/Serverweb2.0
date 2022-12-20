@@ -72,9 +72,9 @@ function AddVendorCode() {
         const contact_person = document.getElementById('contact_person').value;
         const contact_no = document.getElementById('contact_no').value;
         const contact_email = document.getElementById('contact_email').value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
-        const user_id = sessionStorage.getItem('UserId');
+        const user_id = localStorage.getItem('UserId');
         // setLoading(true)
 
         if (!vendor_code || !vendor_name || !company_country_id || !comp_city || !comp_state_id

@@ -19,9 +19,9 @@ function EditVendorPayments() {
     })
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const datas = await GetVendorPayment(org,sessionStorage.getItem('vendorpaymentssno'))
+            const datas = await GetVendorPayment(org,localStorage.getItem('vendorpaymentssno'))
             setData(datas[0])
 
             const invoice = await PendingVendorInvoice(org);
@@ -58,8 +58,8 @@ function EditVendorPayments() {
         const paymentamt = document.getElementById('paymentamt').value;
         const paymentdate = document.getElementById('paymentdate').value;
         const remark = document.getElementById('remark').value;
-        const sno = sessionStorage.getItem('vendorpaymentssno')
-        const org = sessionStorage.getItem('Database')
+        const sno = localStorage.getItem('vendorpaymentssno')
+        const org = localStorage.getItem('Database')
 
         if (!paymentdetail || !paymentamt || !paymentdate) {
             setLoading(true)
@@ -73,7 +73,7 @@ function EditVendorPayments() {
 
             const result = await UpdateVendorPayment(org,paymentdetail, paymentamt, paymentdate, remark, sno)
             if (result === 'Data Updated') {
-                sessionStorage.removeItem('vendorpaymentssno')
+                localStorage.removeItem('vendorpaymentssno')
                 setDatas({ ...datas, message: "Vendor Payment Updated", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -112,7 +112,7 @@ function EditVendorPayments() {
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Payment</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Payment</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('vendorpaymentssno'); window.location.href = '/TotalVendorPayment' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('vendorpaymentssno'); window.location.href = '/TotalVendorPayment' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className=" card contract-div" style={{ width: "90%" }}>
                                 <header className="card-header d-flex justify-content-between" >

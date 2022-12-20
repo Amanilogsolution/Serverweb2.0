@@ -82,7 +82,7 @@ function TotalServicecompliance() {
             cell: (row) => [
                 <a title='Edit Device Type' href="/EditServiceCompliance">
 
-                    <p  onClick={() => sessionStorage.setItem('ServiceComplianceSno', `${row.sno}`)} >
+                    <p  onClick={() => localStorage.setItem('ServiceComplianceSno', `${row.sno}`)} >
                         {/* Edit */}
                     <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>

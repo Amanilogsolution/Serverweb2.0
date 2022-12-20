@@ -24,9 +24,9 @@ function AddPriority() {
         const priority = document.getElementById('priority').value;
         const priority_id = priority.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const priority_desc = document.getElementById('priority_desc').value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
-        const username = sessionStorage.getItem('UserId');
+        const username = localStorage.getItem('UserId');
         setLoading(true)
 
         if (!priority) {

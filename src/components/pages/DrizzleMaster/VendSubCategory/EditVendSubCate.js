@@ -20,9 +20,9 @@ function EditVendorSubCategory() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const result = await GetVendSubCate(org, sessionStorage.getItem('vendsubcatesno'))
+            const result = await GetVendSubCate(org, localStorage.getItem('vendsubcatesno'))
             setData(result[0]);
             const vendorCategory = await ActiveVendorCategory(org)
             setVendorcatlist(vendorCategory)
@@ -40,9 +40,9 @@ function EditVendorSubCategory() {
         const vendor_category = document.getElementById('vendor_category').value;
         const vendor_sub_category = document.getElementById('vendor_sub_category').value;
         const remark = document.getElementById('remark').value;
-        const UserId = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('vendsubcatesno')
-        const org = sessionStorage.getItem('Database')
+        const UserId = localStorage.getItem('UserId');
+        const sno = localStorage.getItem('vendsubcatesno')
+        const org = localStorage.getItem('Database')
 
         if (!vendor_category || !vendor_sub_category) {
             setLoading(true)
@@ -93,7 +93,7 @@ function EditVendorSubCategory() {
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h3><span style={{ color: "rgb(123,108,200)" }}>Vendor Sub Category</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Edit Vendor Sub Category</span> </h3>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('vendsubcatesno'); window.location.href = '/TotalVendSubCate' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('vendsubcatesno'); window.location.href = '/TotalVendSubCate' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div" style={{ width: "50%" }}>
 

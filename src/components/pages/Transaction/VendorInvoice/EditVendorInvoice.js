@@ -20,9 +20,9 @@ function EditVendorInvoice() {
     })
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const datas = await GetVendorInvoice(org,sessionStorage.getItem('vendorinvoicesno'))
+            const datas = await GetVendorInvoice(org,localStorage.getItem('vendorinvoicesno'))
             console.log(datas)
             setData(datas[0])
 
@@ -57,8 +57,8 @@ function EditVendorInvoice() {
         const remark = document.getElementById('remark').value;
         const refno = document.getElementById('refno').value;
         const printercount = document.getElementById('printercount').value;
-        const sno = sessionStorage.getItem('vendorinvoicesno')
-        const org = sessionStorage.getItem('Database')
+        const sno = localStorage.getItem('vendorinvoicesno')
+        const org = localStorage.getItem('Database')
 
         if (!vendor || !invamt || !invno ) {
             setLoading(true)
@@ -71,7 +71,7 @@ function EditVendorInvoice() {
             setLoading(true)
             const result = await UpdatePendingVendorInvoice(org, vendor,accountno,invno,invamt,invdate,invduedate,invsubdate,remark,refno,printercount,sno)
             if (result === 'Data Updated') {
-                sessionStorage.removeItem('vendorinvoicesno')
+                localStorage.removeItem('vendorinvoicesno')
                 setDatas({ ...datas, message: "Invoice Updated", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -88,7 +88,7 @@ function EditVendorInvoice() {
 
     const handleChnageVendorDetail = async (e) => {
         const val = e.target.value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
         const toindex = val.indexOf(",")
         const vebndconid = val.slice(0, toindex)
@@ -113,7 +113,7 @@ function EditVendorInvoice() {
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Invoice</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Invoice</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('vendorinvoicesno');window.location.href = '/TotalVendorInvoice' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('vendorinvoicesno');window.location.href = '/TotalVendorInvoice' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className=" card contract-div" style={{ width: "90%" }}>
                                 <header className="card-header d-flex justify-content-between" >

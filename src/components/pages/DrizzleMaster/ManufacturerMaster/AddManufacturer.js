@@ -23,8 +23,8 @@ function AddManufacturer() {
         const manufacturername = document.getElementById('manufacturername').value;
         const manufacturer_id = manufacturername.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserName');
+        const org = localStorage.getItem('Database')
 
         setLoading(true)
 
@@ -40,7 +40,7 @@ function AddManufacturer() {
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Manufacturer Added", title: "success", type: "success", route: "/TotalManufacturer", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
-                sessionStorage.removeItem('seriessno');
+                localStorage.removeItem('seriessno');
             }
             else if (result === 'Already') {
                 document.getElementById('subnitbtn').disabled = false

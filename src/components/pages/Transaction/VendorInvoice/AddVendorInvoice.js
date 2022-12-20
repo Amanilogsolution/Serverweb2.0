@@ -27,7 +27,7 @@ function AddVendorInvoice() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const vendorcontract = await ActiveVendorContract(org);
             setVendorcontractlist(vendorcontract)
@@ -102,7 +102,7 @@ function AddVendorInvoice() {
         e.preventDefault();
         document.getElementById('subnitbtn').disabled = 'true'
         setLoading(false)
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
         let errorcount = 0;
         for (let i = 0; i < arryval.length; i++) {
@@ -138,7 +138,7 @@ function AddVendorInvoice() {
         if (errorcount === 0) {
             setLoading(true)
 
-            const result = await InsertVendorInvoice(org, arryval, sessionStorage.getItem('UserId'))
+            const result = await InsertVendorInvoice(org, arryval, localStorage.getItem('UserId'))
 
             if (result === 'Data Added') {
                 setDatas({ ...datas, message: "Vendor Invoice Added", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
@@ -158,7 +158,7 @@ function AddVendorInvoice() {
     }
 
     const handleChnageVendorDetail = async (e) => {
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
         console.log(e)
         const toindex = e.value.split(",")

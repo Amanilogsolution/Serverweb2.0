@@ -25,7 +25,7 @@ function AddVendorPayment() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const invoice = await PendingVendorInvoice(org);
             setPendinginvoicelist(invoice)
@@ -99,7 +99,7 @@ function AddVendorPayment() {
         e.preventDefault();
         setLoading(false)
         document.getElementById('subnitbtn').disabled = 'true'
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
         let errorcount = 0;
         for (let i = 0; i < arryval.length; i++) {
             if (!arryval[i].InvoiceNo) {
@@ -131,7 +131,7 @@ function AddVendorPayment() {
         if (errorcount === 0) {
             setLoading(true)
 
-            const result = await UpdateVendorInvoice(org, arryval, sessionStorage.getItem('UserId'))
+            const result = await UpdateVendorInvoice(org, arryval, localStorage.getItem('UserId'))
             if (result === 'Data Updated') {
                 setDatas({ ...datas, message: "Vendor Payment Added", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

@@ -19,9 +19,9 @@ function EditTicketStatus() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const result = await GetTicketstatus(org, sessionStorage.getItem('ticketstatussno'))
+            const result = await GetTicketstatus(org, localStorage.getItem('ticketstatussno'))
             setData(result[0]);
             setLoading(true)
 
@@ -35,9 +35,9 @@ function EditTicketStatus() {
         document.getElementById('subnitbtn').disabled = 'true'
         const ticket_status = document.getElementById('ticket_status').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('ticketstatussno')
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserId');
+        const sno = localStorage.getItem('ticketstatussno')
+        const org = localStorage.getItem('Database')
 
         if (!ticket_status) {
             setLoading(true)
@@ -49,7 +49,7 @@ function EditTicketStatus() {
             setLoading(true)
             const result = await UpdateTicketstatus(org, sno, ticket_status, remark, username);
             if (result === 'Updated') {
-                sessionStorage.removeItem('ticketstatussno');
+                localStorage.removeItem('ticketstatussno');
                 setDatas({ ...datas, message: "Ticket Status Updated", title: "success", type: "success", route: "/TotalTicketStatus", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -86,7 +86,7 @@ function EditTicketStatus() {
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>TicketStatus</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit TicketStatus</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('ticketstatussno'); window.location.href = '/TotalTicketStatus' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('ticketstatussno'); window.location.href = '/TotalTicketStatus' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div" >
 

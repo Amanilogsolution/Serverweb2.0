@@ -88,7 +88,7 @@ function Show_deviceservices() {
             selector: "null",
             cell: (row) => [
                 <a title='Edit Device Services' href="/EditDeviceServices">
-                    <p onClick={() => sessionStorage.setItem('deviceservicesSno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('deviceservicesSno', `${row.sno}`)} >
                         {/* Edit */}
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>

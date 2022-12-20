@@ -79,7 +79,7 @@ function UpdateDevicetaskcomp() {
             selector: "null",
             cell: (row) => [
                 <a title='Edit Device Compliances' href="/EditDeviceComp">
-                    <p onClick={() => sessionStorage.setItem('devicecompSno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('devicecompSno', `${row.sno}`)} >
                         {/* Edit */}
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
 

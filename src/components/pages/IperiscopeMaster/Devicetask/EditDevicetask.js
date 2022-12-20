@@ -8,7 +8,7 @@ function EditDevicetask() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const snodata = sessionStorage.getItem('devicetaskSno');
+            const snodata = localStorage.getItem('devicetaskSno');
             const getdata = await Getdevicetask(snodata);
             setData(getdata)
         }
@@ -34,12 +34,12 @@ function EditDevicetask() {
     const handlesubmitdata = async (e) => {
         e.preventDefault();
         document.getElementById('subnitbtn').disabled = true;
-        const sno = sessionStorage.getItem('devicetaskSno');
+        const sno = localStorage.getItem('devicetaskSno');
         const devicetypeid = document.getElementById('deviceid').value;
         const device_task = document.getElementById('devicetask').value;
         const devicetaskfreq = document.getElementById('devicetaskfreq').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!device_task || !devicetaskfreq) {
             alert("Please enter the data")
@@ -50,7 +50,7 @@ function EditDevicetask() {
             const updataresult = await Updatedevicetask(sno, devicetypeid, device_task, devicetaskfreq, remark, username);
             if (updataresult === 'Updated') {
                 alert("Data updated")
-                sessionStorage.removeItem('devicetaskSno');
+                localStorage.removeItem('devicetaskSno');
                 window.location.href = './TotalDeviceTask';
             }
             else {
@@ -65,7 +65,7 @@ function EditDevicetask() {
                 <div className='main_container' >
                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{ color: "rgb(123,108,200)" }}> Device Task</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit  Device Task</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('devicetaskSno');window.location.href = '/TotalDeviceTask' }} >Back <MdOutlineArrowForward /></button>
+                        <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('devicetaskSno');window.location.href = '/TotalDeviceTask' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div" >
                       

@@ -19,7 +19,7 @@ function EditDeviceComp() {
 
     useEffect(() => {
         const fetch = async () => {
-            const getdata = await getdevicetaskcomp(sessionStorage.getItem('devicecompSno'))
+            const getdata = await getdevicetaskcomp(localStorage.getItem('devicecompSno'))
             setData(getdata);
 
             // const devicename = await Activedevice()
@@ -47,8 +47,8 @@ function EditDeviceComp() {
         const services = document.getElementById('services').value;
         const compliances = document.getElementById('compliances').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
-        const sno = sessionStorage.getItem('devicecompSno')
+        const username = localStorage.getItem('UserName');
+        const sno = localStorage.getItem('devicecompSno')
 
         if (!devicename || !services || !compliances.length) {
             alert("All field are mandatory...")
@@ -59,7 +59,7 @@ function EditDeviceComp() {
             const result = await Updatedevicetaskcomp(sno, devicename, services, compliances, remark, username);
             if (result === 'Updated') {
                 alert("Data Updated");
-                sessionStorage.removeItem('devicecompSno');
+                localStorage.removeItem('devicecompSno');
                 window.location.href = './TotalDeviceComp'
             }
             else {
@@ -79,7 +79,7 @@ function EditDeviceComp() {
                 <div className='main_container pb-3' >
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Device Compliances</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Device Compliances</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => {sessionStorage.removeItem('devicecompSno'); window.location.href = '/TotalDeviceComp' }} >Back <MdOutlineArrowForward /></button>
+                        <button className='btn btn-secondary btn ' onClick={() => {localStorage.removeItem('devicecompSno'); window.location.href = '/TotalDeviceComp' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div" >
                         <header className="card-header" >

@@ -26,7 +26,7 @@ function AddPurchaseType() {
         const purchase_type_desc = document.getElementById('purchase_type_desc').value;
         // setLoading(true)
 
-        const username = sessionStorage.getItem('UserId');
+        const username = localStorage.getItem('UserId');
 
         if (!purchase_type) {
             setLoading(true)
@@ -36,7 +36,7 @@ function AddPurchaseType() {
         }
         else {
             setLoading(true)
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
             const result = await AddPurchaseTypeeapi(org,purchase_type_id, purchase_type, purchase_type_desc, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Purchase Type Added", title: "success", type: "success", route: "/TotalPurchaseType", toggle: "true" })

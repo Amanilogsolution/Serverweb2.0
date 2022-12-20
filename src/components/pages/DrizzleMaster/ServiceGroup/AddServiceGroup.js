@@ -25,8 +25,8 @@ function AddServiceGroup() {
         const service_group_type = document.getElementById('service_group_type').value;
         const service_action_id = service_group_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserId');
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserId');
+        const org = localStorage.getItem('Database')
 
 
         if (!service_group_type) {

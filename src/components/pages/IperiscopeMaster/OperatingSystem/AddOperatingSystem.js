@@ -29,7 +29,7 @@ function AddOperatingSystem() {
         document.getElementById('subnitbtn').disabled = true;
         const operatingsystem = document.getElementById('operatingsystem').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!operatingsystem) {
             alert("Please enter the mandatory Field")

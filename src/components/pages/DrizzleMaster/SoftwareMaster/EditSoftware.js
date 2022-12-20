@@ -19,9 +19,9 @@ function EditSoftware() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const result = await GetSoftwareapi(org, sessionStorage.getItem('softwaresno'))
+            const result = await GetSoftwareapi(org, localStorage.getItem('softwaresno'))
             setData(result[0]);
             setLoading(true)
 
@@ -36,8 +36,8 @@ function EditSoftware() {
 
         const software = document.getElementById('software').value;
         const software_desc = document.getElementById('software_desc').value;
-        const username = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('softwaresno')
+        const username = localStorage.getItem('UserId');
+        const sno = localStorage.getItem('softwaresno')
 
         if (!software) {
             setLoading(true)
@@ -47,11 +47,11 @@ function EditSoftware() {
         }
         else {
             setLoading(true)
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
             const result = await UpdateSoftwareapi(org, sno, software, software_desc, username);
 
             if (result === 'Updated') {
-                sessionStorage.removeItem('softwaresno');
+                localStorage.removeItem('softwaresno');
                 setDatas({ ...datas, message: "Software Updated", title: "success", type: "success", route: "/TotalSoftware", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -90,7 +90,7 @@ function EditSoftware() {
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Software</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Software</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('softwaresno'); window.location.href = '/TotalSoftware' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('softwaresno'); window.location.href = '/TotalSoftware' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div" style={{ width: "50%" }}>
                                 <article className="card-body" >

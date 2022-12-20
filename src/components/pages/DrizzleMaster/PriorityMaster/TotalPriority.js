@@ -60,7 +60,7 @@ function TotalPriority() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const org = sessionStorage.getItem('Database')
+                    const org = localStorage.getItem('Database')
 
                      await DeletePriorityapi(org,status, row.sno)
                     window.location.reload()
@@ -77,7 +77,7 @@ function TotalPriority() {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit Series' href="/EditPriority">
-                    <p onClick={() => sessionStorage.setItem('prioritysno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('prioritysno', `${row.sno}`)} >
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>
             ]
@@ -87,7 +87,7 @@ function TotalPriority() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await TotalPriorityapi(org);
             setData(tabledata)

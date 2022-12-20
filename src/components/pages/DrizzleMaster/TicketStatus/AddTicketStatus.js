@@ -25,8 +25,8 @@ function AddTicketStatus() {
         const ticket_status = document.getElementById('ticket_status').value;
         const ticket_status_id = ticket_status.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserId');
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserId');
+        const org = localStorage.getItem('Database')
 
       
 

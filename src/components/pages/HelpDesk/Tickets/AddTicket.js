@@ -27,7 +27,7 @@ export default function AddTicket() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const employee = await ActiveEmployees(org)
             setEmployeelist(employee)
@@ -68,7 +68,7 @@ export default function AddTicket() {
 
     const handleGetEmpDetail = async (e) => {
         let employee_id = e.target.value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
         const detail = await EmployeesDetail(org, employee_id);
         setEmployeedetail(detail)
@@ -109,9 +109,9 @@ export default function AddTicket() {
         const priority = document.getElementById('priority').value;
         const issuedesc = document.getElementById('issuedesc').value;
         const remark = document.getElementById('remark').value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
-        const user_id = sessionStorage.getItem('UserId')
+        const user_id = localStorage.getItem('UserId')
 
         if (!employee_id || !assetval || !location || !ticketstatus || !ticketsubject) {
             setLoading(true)

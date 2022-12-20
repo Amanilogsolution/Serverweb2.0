@@ -90,7 +90,7 @@ function TotalVendorContract() {
             cell: (row) => [
                 <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const org = sessionStorage.getItem('Database')
+                    const org = localStorage.getItem('Database')
 
                      await DeleteVendorContract(org,status, row.sno)
                     window.location.reload()
@@ -107,7 +107,7 @@ function TotalVendorContract() {
             selector: row => row.null,
             cell: (row) => [
                 <a title='Edit Vendor Contract' href="/EditVendorContract">
-                    <p onClick={() => sessionStorage.setItem('VendorContractSno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('VendorContractSno', `${row.sno}`)} >
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>
             ]
@@ -117,7 +117,7 @@ function TotalVendorContract() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
             const tabledata = await TotalVendorContractapi(org);
             console.log(tabledata)
             setData(tabledata)

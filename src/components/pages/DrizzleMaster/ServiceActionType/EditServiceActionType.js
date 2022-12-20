@@ -19,9 +19,9 @@ function EditServiceActionType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const result = await GetServiceActionType(org,sessionStorage.getItem('serviceactiontypesno'))
+            const result = await GetServiceActionType(org,localStorage.getItem('serviceactiontypesno'))
             setData(result[0]);
             setLoading(true)
         }
@@ -34,9 +34,9 @@ function EditServiceActionType() {
         document.getElementById('subnitbtn').disabled = 'true'
         const service_action_type = document.getElementById('service_action_type').value;
         const remark = document.getElementById('remark').value;
-        const UserId = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('serviceactiontypesno')
-        const org = sessionStorage.getItem('Database')
+        const UserId = localStorage.getItem('UserId');
+        const sno = localStorage.getItem('serviceactiontypesno')
+        const org = localStorage.getItem('Database')
 
         if (!service_action_type) {
             setLoading(true)
@@ -49,7 +49,7 @@ function EditServiceActionType() {
             const result = await UpdateServiceActionType(org,sno, service_action_type, remark, UserId);
 
             if (result === 'Updated') {
-                sessionStorage.removeItem('serviceactiontypesno');
+                localStorage.removeItem('serviceactiontypesno');
                 setDatas({ ...datas, message: "Service Action Type Updated", title: "success", type: "success", route: "/TotalServiceActionType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -89,7 +89,7 @@ function EditServiceActionType() {
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h3><span style={{ color: "rgb(123,108,200)" }}>Service Action Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Edit Service Action Type</span> </h3>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('serviceactiontypesno'); window.location.href = '/TotalServiceActionType' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('serviceactiontypesno'); window.location.href = '/TotalServiceActionType' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div" style={{ width: "50%" }}>
                                 <article className="card-body" >

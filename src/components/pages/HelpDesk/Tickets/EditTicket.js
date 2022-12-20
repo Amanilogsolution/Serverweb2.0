@@ -27,8 +27,8 @@ export default function EditTicket() {
     })
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
-            const result = await getTickets(org, sessionStorage.getItem('TicketSno'))
+            const org = localStorage.getItem('Database')
+            const result = await getTickets(org, localStorage.getItem('TicketSno'))
             setData(result[0]);
             const assetall = await GetNewAssetAssign(result[0].emp_id)
             setAssettypelist(assetall)
@@ -55,7 +55,7 @@ export default function EditTicket() {
 
     const handleGetEmpDetail = async (e) => {
         let employee_id = e.target.value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
         setTogglefields(true)
         const detail = await EmployeesDetail(org, employee_id);
@@ -98,10 +98,10 @@ export default function EditTicket() {
         const priority = document.getElementById('priority').value;
         const issuedesc = document.getElementById('issuedesc').value;
         const remark = document.getElementById('remark').value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
-        const user_id = sessionStorage.getItem('UserId')
-        const sno = sessionStorage.getItem('TicketSno')
+        const user_id = localStorage.getItem('UserId')
+        const sno = localStorage.getItem('TicketSno')
 
         if (!employee_id || !assetval || !location || !ticketstatus || !ticketsubject) {
             setLoading(true)
@@ -115,7 +115,7 @@ export default function EditTicket() {
             const result = await UpdateTicket(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id, sno)
             if (result === 'Data Updated') {
-                sessionStorage.removeItem('TicketSno')
+                localStorage.removeItem('TicketSno')
                 setDatas({ ...datas, message: "Ticket Updated", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -139,7 +139,7 @@ export default function EditTicket() {
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Tickets</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Tickets</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('TicketSno'); window.location.href = '/TotalTicket' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('TicketSno'); window.location.href = '/TotalTicket' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
                                 <div className="card inner-card">
