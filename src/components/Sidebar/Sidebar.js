@@ -9,22 +9,24 @@ import {
     FaFileMedicalAlt
 } from "react-icons/fa";
 
-import { IoIosArrowDown } from 'react-icons/io'
+import { IoIosArrowDown, IoMdHelp } from 'react-icons/io'
 import { AiFillTag } from 'react-icons/ai'
 import {
     MdOutlineDoubleArrow,
     //  MdDevicesOther,
-    MdHelp,
+    MdHelp, MdOutlineHelp,
     // MdAttachMoney, 
     MdPrecisionManufacturing,
     // MdOutlineMiscellaneousServices,
     //  MdOutlineDevicesOther,
     //   MdAddTask,
-    MdLocationPin, MdOutlineExitToApp
+    MdGroups, MdEmail,
+    MdLocationPin, MdOutlineExitToApp, MdPermContactCalendar
 } from 'react-icons/md'
 import {
     // BsJournalCode,
-    BsInboxesFill, BsTriangleHalf, BsArrowUpRightCircleFill, BsFillLaptopFill, BsFileBarGraphFill
+    BsYoutube,
+    BsInboxesFill, BsTriangleHalf, BsArrowUpRightCircleFill, BsFillLaptopFill, BsBellFill, BsFillClockFill
 } from 'react-icons/bs'
 import { BiCategory, BiCategoryAlt, BiDevices } from 'react-icons/bi'
 
@@ -52,6 +54,8 @@ const Sidebar = ({ children }) => {
     const [togglesubtickets, setTogglesubtickets] = useState(false);
     const [toggletickets, setToggletickets] = useState(false);
     const [togglesubtransation, setTogglesubtransation] = useState(false);
+    const [toggleshortcut, setToggleshortcut] = useState(true);
+    const [togglehelp, setTogglehelp] = useState(true);
 
     const toggle = () => {
         setIsOpen(!isOpen)
@@ -62,6 +66,8 @@ const Sidebar = ({ children }) => {
             document.getElementById('subdrizzleinner').style.display = "none"
             document.getElementById('subhelpdeskinner').style.display = "none"
             document.getElementById('subtransationinner').style.display = "none"
+            document.getElementById('shortcutinner').style.display = "none"
+            document.getElementById('helpinner').style.display = "none"
 
         }
     };
@@ -96,6 +102,7 @@ const Sidebar = ({ children }) => {
     const handleinner2toggle = () => {
         if (!toggleinnermain) {
             document.getElementById("subinner").style.display = "block";
+
         } else {
             document.getElementById("subinner").style.display = "none";
         }
@@ -109,6 +116,8 @@ const Sidebar = ({ children }) => {
             document.getElementById("subtransationinner").style.display = "none";
             // document.getElementById("inner").style.display = "none";
             // document.getElementById("subinner").style.display = "none";
+            document.getElementById("helpinner").style.display = "none";
+            document.getElementById("shortcutinner").style.display = "none";
         } else {
             document.getElementById("innerdrizzle").style.display = "none";
             document.getElementById("subdrizzleinner").style.display = "none";
@@ -120,6 +129,8 @@ const Sidebar = ({ children }) => {
         if (!togglesubdrizzle) {
             document.getElementById("subdrizzleinner").style.display = "block";
             document.getElementById("subtransationinner").style.display = "none";
+            document.getElementById("helpinner").style.display = "none";
+            document.getElementById("shortcutinner").style.display = "none";
         } else {
             document.getElementById("subdrizzleinner").style.display = "none";
         }
@@ -136,6 +147,8 @@ const Sidebar = ({ children }) => {
             // document.getElementById("inner").style.display = "none";
             // document.getElementById("subinner").style.display = "none";
             document.getElementById("subdrizzleinner").style.display = "none";
+            document.getElementById("helpinner").style.display = "none";
+            document.getElementById("shortcutinner").style.display = "none";
         } else {
             document.getElementById("subhelpdeskinner").style.display = "none";
         }
@@ -151,6 +164,8 @@ const Sidebar = ({ children }) => {
             // document.getElementById("inner").style.display = "none";
             // document.getElementById("subinner").style.display = "none";
             document.getElementById("subdrizzleinner").style.display = "none";
+            document.getElementById("helpinner").style.display = "none";
+            document.getElementById("shortcutinner").style.display = "none";
         } else {
             document.getElementById("subticketsinner").style.display = "none";
         }
@@ -165,13 +180,40 @@ const Sidebar = ({ children }) => {
             // document.getElementById("inner").style.display = "none";
             // document.getElementById("subinner").style.display = "none";
             document.getElementById("subdrizzleinner").style.display = "none";
+            document.getElementById("helpinner").style.display = "none";
+            document.getElementById("shortcutinner").style.display = "none";
+
         } else {
             document.getElementById("subtransationinner").style.display = "none";
         }
         setTogglesubtransation(!togglesubtransation);
     };
 
+    const handletoggleShortcut = () => {
+        if (toggleshortcut) {
+            document.getElementById("shortcutinner").style.display = "block";
+            document.getElementById("helpinner").style.display = "none";
+            document.getElementById("subhelpdeskinner").style.display = "none";
+            document.getElementById("innerdrizzle").style.display = "none";
+            document.getElementById("subdrizzleinner").style.display = "none";
+        } else {
+            document.getElementById("shortcutinner").style.display = "none";
+        }
+        setToggleshortcut(!toggleshortcut)
+    }
 
+    const handletogglehelp = () => {
+        if (togglehelp) {
+            document.getElementById("helpinner").style.display = "block";
+            document.getElementById("shortcutinner").style.display = "none";
+            document.getElementById("subhelpdeskinner").style.display = "none";
+            document.getElementById("innerdrizzle").style.display = "none";
+            document.getElementById("subdrizzleinner").style.display = "none";
+        } else {
+            document.getElementById("helpinner").style.display = "none";
+        }
+        setTogglehelp(!togglehelp)
+    }
 
     return (
         <div className="sidebarcontainer">
@@ -486,8 +528,8 @@ const Sidebar = ({ children }) => {
                     </div>
 
                     <div className="innerdiv" id="subticketsinner" style={{ display: "none" }}>
-                        <ul style={{ paddingLeft: "20px", marginBottom: "0px"}}>
-                            <li className='innerlink' style={{borderTop:'2px solid #333'}} >
+                        <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
+                            <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
                                 <NavLink to='/OpenTotalTickets' className='navlink d-flex' activeclassname="sidebaractive">
                                     <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
                                     <div style={{ display: isOpen ? "block" : "none" }} > Open Ticket</div>
@@ -501,18 +543,118 @@ const Sidebar = ({ children }) => {
                             </li>
                         </ul>
                     </div>
-
-
-
-
                 </div>
 
-                <div className="footer_section" title='Logout' id='footerdivsection'>
-                    <a className="link" activeclassname="sidebaractive" style={{ background: "rgb(222, 222, 222)", marginTop: "5px" }}>
+
+                {/*################################  Bottom Section  Start ###################################### */}
+
+                <footer className="footer_section" id='footerdivsection'>
+                    <div className='inner-sidebarfooter bg-light'>
+                        {/* ####################### Shortcut Section ###############################*/}
+                        <div title='Shortcut'>
+                            <div className="link" id='masterdrizelltitlelink' onClick={(e) => { e.preventDefault(); isOpen ? handletoggleShortcut() : toggle() }} style={{ cursor: "pointer" }}>
+                                <div className="icon" ><BsFillClockFill style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
+                                <span style={{ display: "flex" }} >
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text " >Shortcut</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
+                                </span>
+                            </div>
+                            <div className="innerdiv" id="shortcutinner" style={{ display: "none" }}>
+                                <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
+                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                        <NavLink to='/AddNewAssets' className='navlink d-flex' activeclassname="sidebaractive">
+                                            <BsFillLaptopFill style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                            <div style={{ display: isOpen ? "block" : "none" }} > Enroll New Asset</div>
+                                        </NavLink>
+                                    </li>
+                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                        <NavLink to='/AddTickets' className='navlink d-flex' activeclassname="sidebaractive">
+                                            <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                            <div style={{ display: isOpen ? "block" : "none" }} >Create a New Ticket</div>
+                                        </NavLink>
+                                    </li>
+                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                        <NavLink to='/AddVendorCode' className='navlink d-flex' activeclassname="sidebaractive">
+                                            <FaElementor style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                            <div style={{ display: isOpen ? "block" : "none" }} >Create a New Vendor</div>
+                                        </NavLink>
+                                    </li>
+                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }}>
+                                        <NavLink to='/AddVendorInvoice' className='navlink d-flex' activeclassname="sidebaractive">
+                                            <RiMoneyEuroCircleFill style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                            <div style={{ display: isOpen ? "block" : "none" }} > New Vendor Invoice</div>
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        {/* ######################################  Shortcut Section End ############################################################### */}
+                        {/* ######################################  Help Section Start ############################################################### */}
+                        <div title='Help' >
+                            <div className="link" id='masterdrizelltitlelink' onClick={(e) => { e.preventDefault(); isOpen ? handletogglehelp() : toggle() }} style={{ cursor: "pointer" }}>
+                                <div className="icon" ><MdOutlineHelp style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
+                                <span style={{ display: "flex" }} >
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text " >Help</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
+                                </span>
+                            </div>
+                            <div className="innerdiv" id="helpinner" style={{ display: "none" }}>
+                                <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
+                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                        <NavLink to='#' className='navlink d-flex' activeclassname="sidebaractive">
+                                            <BsYoutube style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                            <div style={{ display: isOpen ? "block" : "none" }} > Quick Start Video</div>
+                                        </NavLink>
+                                    </li>
+                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                        <NavLink to='#' className='navlink d-flex' activeclassname="sidebaractive">
+                                            <MdHelp style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                            <div style={{ display: isOpen ? "block" : "none" }} > Getting Started Guide</div>
+                                        </NavLink>
+                                    </li>
+                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                        <NavLink to='/AddVendorCode' className='navlink d-flex' activeclassname="sidebaractive">
+                                            <MdGroups style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                            <div style={{ display: isOpen ? "block" : "none" }} > Free Onbording Session</div>
+                                        </NavLink>
+                                    </li>
+                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }}>
+                                        <NavLink to='/HelpDescription' target="_blank" className='navlink d-flex' activeclassname="sidebaractive">
+                                            <IoMdHelp style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                            <div style={{ display: isOpen ? "block" : "none" }} > Help Guides</div>
+                                        </NavLink>
+                                    </li>
+                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }}>
+                                        <a href='mailto:drizzle.ilog@gmail.com' className='navlink d-flex' activeclassname="sidebaractive">
+                                            <MdEmail style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                            <div style={{ display: isOpen ? "block" : "none" }} > Send Email to Support</div>
+                                        </a>
+                                    </li>
+                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }}>
+                                        <NavLink to='/Contactus' className='navlink d-flex' activeclassname="sidebaractive">
+                                            <MdPermContactCalendar style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                            <div style={{ display: isOpen ? "block" : "none" }} >  Contact us</div>
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        {/* ######################################  Help Section End ############################################################### */}
+
+                        <div title='Notification'>
+                            <div className="link" onClick={(e) => { e.preventDefault(); isOpen ? window.location.href = './Dashboard' : toggle() }} id='masterdrizelltitlelink' style={{ cursor: "pointer" }}>
+                                <div className="icon" ><BsBellFill style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
+                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text " >Notification</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a title='Logout' className="link" activeclassname="sidebaractive" style={{ background: "rgb(222, 222, 222)" }}>
                         <div className="icon text-danger" onClick={toggle}><MdOutlineExitToApp style={{ fontSize: "20px" }} /></div>
                         <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text text-danger" onClick={handleLogout}>Logout</div>
                     </a>
-                </div>
+                </footer>
+                {/*################################  Bottom Section  END ###################################### */}
+
             </div>
 
             <div className={isOpen ? "mainopen" : "main"}>

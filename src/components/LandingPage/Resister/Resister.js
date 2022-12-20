@@ -90,7 +90,7 @@ export default function Resister() {
         if (password !== cnf_pass) {
 
         }
-        else if (!Orgname || !Country || !State || !City) {
+        else if (!Orgname || !Country || !State || !City || !full_name || !mobile) {
 
         }
 
