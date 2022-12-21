@@ -66,7 +66,7 @@ const Dashboard = () => {
             <div className='dashboard_container bg-light pt-2 pb-2'>
 
               <div className='dashboard_cards text-white justify-content-around'>
-                <div onClick={() => setStep(1)} className='card1 d-flex rounded curser-pointer'>
+                <div onClick={() => setStep(1)} className='card1 d-flex rounded cursor-pointer'>
                   <div>
                     <h1 className='dash_card_head mb-0'>{dashboarddetails.Assetdata}</h1>
                     <p className='dash_card_para'>Assets</p>
@@ -75,7 +75,7 @@ const Dashboard = () => {
                     <BsLaptopFill className='icon' />
                   </div>
                 </div>
-                <div onClick={() => setStep(2)} className='card1 d-flex rounded curser-pointer'>
+                <div onClick={() => setStep(2)} className='card1 d-flex rounded cursor-pointer'>
                   <div>
                     <h1 className='dash_card_head mb-0'>{dashboarddetails.Vendordata}</h1>
                     <p className='dash_card_para'>Vendors</p>
@@ -84,7 +84,7 @@ const Dashboard = () => {
                     <HiUsers className='icon' />
                   </div>
                 </div>
-                <div onClick={() => setStep(3)} className='card1 d-flex rounded curser-pointer'>
+                <div onClick={() => setStep(3)} className='card1 d-flex rounded cursor-pointer'>
                   <div>
                     <h1 className='dash_card_head mb-0'>{dashboarddetails.Invoice}</h1>
                     <p className='dash_card_para'>Invoice</p>
@@ -93,7 +93,7 @@ const Dashboard = () => {
                     <MdStickyNote2 className='icon' />
                   </div>
                 </div>
-                <div onClick={() => setStep(4)} className='card1 d-flex rounded curser-pointer'>
+                <div onClick={() => setStep(4)} className='card1 d-flex rounded cursor-pointer'>
                   <div >
                     <h1 className='dash_card_head mb-0'>{dashboarddetails.Ticket}</h1>
                     <p className='dash_card_para'>Tickets</p>

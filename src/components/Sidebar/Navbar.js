@@ -37,7 +37,7 @@ const Navbar = (propes) => {
                             <Link className="dropdown-item" to="#">Appliction</Link>
                         </div>
                     </div>
-                    <div className='d-flex align-items-center  curser-pointer '>
+                    <div className='d-flex align-items-center  cursor-pointer  '>
                         <HiDocumentText style={{ fontSize: "25px" }} />
                         <p className='mb-0' style={{ fontSize: "22px" }}>Reports</p>
                     </div>
