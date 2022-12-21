@@ -10,7 +10,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import {
     TotalCountry, TotalState,
     TotalCity,
-    AddOrganisation
+    AddOrganisation,CurrencyMaster
 } from '../../../api/index'
 
 
@@ -19,6 +19,8 @@ export default function Resister() {
     const [countrylist, setCountrylist] = useState([]);
     const [passwordshow, setPasswordshow] = useState(false);
     const [cnfpasswordshow, setCnfpasswordshow] = useState(false);
+    const [currencylist, setCurrencylist] = useState([]);
+
 
     const [statelist, setStatelist] = useState(false);
     const [citylist, setCitylist] = useState(false);
@@ -27,6 +29,10 @@ export default function Resister() {
         const fetchdata = async () => {
             const totalCountry = await TotalCountry();
             setCountrylist(totalCountry)
+            console.log(totalCountry)
+            const currency = await CurrencyMaster()
+            setCurrencylist(currency)
+            console.log(currency)
         }
         fetchdata()
 
@@ -73,9 +79,10 @@ export default function Resister() {
         }
     }
 
-    const handleClick = (e) => {
+    const handleClick = async(e) => {
         e.preventDefault()
         const Orgname = document.getElementById('org_name').value;
+        const OrgID = Orgname.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000)
         const Country = document.getElementById('country').value;
         const State = document.getElementById('state').value;
         const City = document.getElementById('city').value;
@@ -87,10 +94,17 @@ export default function Resister() {
         const user_id = document.getElementById('user_id').value;
         const password = document.getElementById('password').value;
         const cnf_pass = document.getElementById('cnf_pass').value;
+        const logo = ''
         if (password !== cnf_pass) {
+            alert("Password Not MAtch")
 
         }
         else if (!Orgname || !Country || !State || !City || !full_name || !mobile) {
+            alert("Blank Field")
+        }
+        else{
+            const result = await AddOrganisation(OrgID,Orgname,Country,State,City,currency,gst,logo)
+            console.log(result)
 
         }
 
@@ -168,7 +182,15 @@ export default function Resister() {
                                                 <label htmlFor="currency">Currency <span className='text-danger'>*</span></label>
                                                 <select id="currency" className="form-control">
                                                     <option value='' hidden>Choose...</option>
-                                                    <option>...</option>
+
+                                                    {currencylist.length?
+                                                        currencylist.map((item,index)=>(
+                                                            <option key={index} value={item.currencyCode}>{item.name} , {item.currencyCode}</option>
+
+                                                        ))
+                                                        : <option value=''> Please Select Currency</option>
+                                                    }
+                                                    {/* <option>...</option> */}
                                                 </select>
                                             </div>
                                         </div>

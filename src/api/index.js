@@ -1183,7 +1183,17 @@ export const updateUserdetails = async (org, employee_name, location, employee_e
 
 // Organisation
 export const AddOrganisation = async (org_id,org_name,org_country,org_state,org_city,org_currency,org_gst,org_logo) => {
-    const url = `http://localhost:2008/api/addorganisation`
+    const url = `https://drizzlebackend.awlworldwide.com/api/addorganisation`
     return axios.post(url, {org_id,org_name,org_country,org_state,org_city,org_currency,org_gst,org_logo}).then(response => response.data).catch(error => console.log(error));
+}
+
+export const CurrencyMaster = async() =>{
+    const url = `https://country-info.p.rapidapi.com/`
+    return axios.get(url,{
+        headers: {
+        'X-RapidAPI-Key': '86b0c2197amshffb1cfe02f00926p1f0330jsn8771bfdd86c5',
+        'X-RapidAPI-Host': 'country-info.p.rapidapi.com'
+      }
+    }).then(response =>response.data).catch(error => console.log(error)) 
 }
 
