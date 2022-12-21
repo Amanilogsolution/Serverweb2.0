@@ -1187,6 +1187,22 @@ export const AddOrganisation = async (org_id,org_name,org_country,org_state,org_
     return axios.post(url, {org_id,org_name,org_country,org_state,org_city,org_currency,org_gst,org_logo}).then(response => response.data).catch(error => console.log(error));
 }
 
+export const getOrganisation = async (org) => {
+    const url = `http://localhost:2008/api/getorganisation`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateOrganisationDetails = async (org,org_name,org_country,org_state,org_city,org_currency) => {
+    console.log(org,org_name,org_country,org_state,org_city,org_currency)
+    const url = `http://localhost:2008/api/updateorganizationdetails`
+    return axios.post(url, {org,org_name,org_country,org_state,org_city,org_currency}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+
+
+// Currency Master
+
 export const CurrencyMaster = async() =>{
     const url = `https://country-info.p.rapidapi.com/`
     return axios.get(url,{
