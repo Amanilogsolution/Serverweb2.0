@@ -88,7 +88,7 @@ function TotalVendorContract() {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
+                <select className='border-0 ' style={{ background: "rgb(222, 222, 222)"  }} onChange={async (e) => {
                     const status = e.target.value;
                     const org = localStorage.getItem('Database')
 
@@ -119,7 +119,6 @@ function TotalVendorContract() {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
             const tabledata = await TotalVendorContractapi(org);
-            console.log(tabledata)
             setData(tabledata)
             setLoading(true)
 

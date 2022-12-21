@@ -36,19 +36,26 @@
 }
 
 
+.page-type-head1 {
+    color: rgb(123, 108, 200);
+}
 
-
+.page-type-head2 {
+    font-size: 25px;
+}
 
 /* Button Start*/
 .btn-voilet {
     background-color: #5c55e1;
     color: #fff;
 }
+
 .btn-voilet:hover {
     background-color: #544ec2;
     color: #fff;
     box-shadow: 1px 1px 5px gray;
 }
+
 /* Button End*/
 
 
@@ -87,12 +94,17 @@
         min-height: 87.3vh;
 
     }
+    .page-type-head1 {
+        display: none;
+    }
 }
 
 @media screen and (min-height:735px) {
     .main_container {
         min-height: 85vh;
     }
+
+  
 }
 
 @media screen and (max-width:400px) {

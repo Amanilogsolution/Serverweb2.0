@@ -87,7 +87,7 @@ const Navbar = (propes) => {
                             <p className=' mb-0 name-text' style={{ fontSize: '18px' }}>{localStorage.getItem('UserName')}</p>
                             <MdOutlineArrowDropDown style={{ fontSize: "30px" }} />
                         </div>
-                        <div className="dropdown-menu " aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
+                        <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
                             <Link className="dropdown-item" to="/Profile">Profile</Link>
                             <Link className="dropdown-item" to="/ChangePassword">Change Password</Link>
                             <a className="dropdown-item border-top text-danger" href="#" onClick={handleLogout}>Logout <MdOutlineExitToApp style={{ fontSize: "20px" }} /></a>

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { AddLocationapi } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import { TotalState, TotalCity } from '../../../../api/index'
+import { TotalCountry, TotalState, TotalCity } from '../../../../api/index'
 import Snackbar from '../../../../Snackbar/Snackbar';
 
 
@@ -11,22 +11,9 @@ function AddLocation() {
     const [loading, setLoading] = useState(true)
     const [numcount, setNumcount] = useState();
     const [pincount, setPincount] = useState();
+    const [countrylist, setCountrylist] = useState([])
     const [states, setStates] = useState([])
     const [cities, setCities] = useState([])
-
-    useEffect(() => {
-        const fetchdata = async () => {
-            const State = await TotalState('101')
-            setStates(State)
-        }
-        fetchdata();
-    }, [])
-
-    const handleStateMaster = async (e) => {
-        e.preventDefault()
-        const city = await TotalCity(e.target.value)
-        setCities(city)
-    }
 
     const [datas, setDatas] = useState({
         message: "abc",
@@ -35,6 +22,25 @@ function AddLocation() {
         route: "#",
         toggle: "true",
     })
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            const country = await TotalCountry()
+            setCountrylist(country)
+        }
+        fetchdata();
+    }, [])
+
+    const handleStateMaster = async (e) => {
+        e.preventDefault()
+        const State = await TotalState(e.target.value)
+        setStates(State)
+    }
+    const handleCityMaster = async (e) => {
+        e.preventDefault()
+        const city = await TotalCity(e.target.value)
+        setCities(city)
+    }
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
@@ -70,7 +76,7 @@ function AddLocation() {
             setLoading(true)
             const org = localStorage.getItem('Database')
 
-            const result = await AddLocationapi(org,location_id, company, locationcode, locationname, address1, address2, city, state,
+            const result = await AddLocationapi(org, location_id, company, locationcode, locationname, address1, address2, city, state,
                 pincode, gstno, contactpersonname, email, contNum, latitude, longitude, username);
 
             if (result === 'Added') {
@@ -95,14 +101,15 @@ function AddLocation() {
             {
                 loading ?
                     <Sidebar >
-
+                        {/* ######################### Sanckbar Start ##################################### */}
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container pb-3'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 '>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Locations</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Location</span> </h2>
+                                <h2><span className='page-type-head1'>Locations</span> <MdOutlineKeyboardArrowRight /><span className='page-type-head2' >Add Location</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('seriessno'); window.location.href = '/TotalLocations' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="card card-div" style={{ width: "90%" }}>
@@ -133,11 +140,25 @@ function AddLocation() {
                                                 <input type="text" className="form-control" id='address2' />
                                             </div>
                                             <div className="col-md-4" >
+                                                <label htmlFor='country'>Country <span className='text-danger'>*</span></label>
+                                                <select id='country' className="form-select" style={{ backgroundColor: "#dcdcde" }}
+                                                    onChange={handleStateMaster}>
+                                                    <option value='' hidden>Select...</option>
+                                                    {
+                                                        countrylist.map((item, index) => (
+                                                            <option key={index} value={item.country_id}>{item.country_name}</option>
+                                                        ))
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div className="row mt-3">
+                                            <div className="col-md-4" >
                                                 <label htmlFor='state'>State <span className='text-danger'>*</span></label>
-                                                {/* <input type="text" className="form-control" id='state' /> */}
-                                                <select id='state' className="form-select" style={{backgroundColor:"#dcdcde"}}
-                                                    onChange={handleStateMaster}
-                                                >
+                                                <select id='state' className="form-select" style={{ backgroundColor: "#dcdcde" }}
+                                                    onChange={handleCityMaster}>
+
                                                     <option value='' hidden>Select...</option>
 
                                                     {
@@ -149,22 +170,15 @@ function AddLocation() {
 
                                                 </select>
                                             </div>
-                                        </div>
-                                        <div className="row mt-3">
-                                          
                                             <div className="col-md-4" >
                                                 <label htmlFor='city'>City <span className='text-danger'>*</span></label>
-                                                {/* <input type="text" className="form-control" id='city' max={10} /> */}
-                                                <select id='city' style={{backgroundColor:"#dcdcde"}} className="form-select">
+                                                <select id='city' style={{ backgroundColor: "#dcdcde" }} className="form-select">
                                                     <option value='' hidden>Select...</option>
-
                                                     {
                                                         cities.map((item, index) => (
                                                             <option key={index} value={item.city_name}>{item.city_name}</option>
                                                         ))
-
                                                     }
-
                                                 </select>
                                             </div>
                                             <div className="col-md-4" >
@@ -174,19 +188,12 @@ function AddLocation() {
                                                     onChange={(e) => { if (e.target.value.length === 7) return false; else { setPincount(e.target.value) } }}
                                                 />
                                             </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='gstno'>GST No</label>
-                                                <input type="text" className="form-control" id='gstno' />
-                                            </div>
-
                                         </div>
                                         <div className="row mt-3">
-
                                             <div className="col-md-4" >
                                                 <label htmlFor='contactpersonname'>Contact Person Name <span className='text-danger'>*</span></label>
                                                 <input type="text" className="form-control" id='contactpersonname' />
                                             </div>
-
                                             <div className="col-md-4" >
                                                 <label htmlFor='email'>Contact Email <span className='text-danger'>*</span></label>
                                                 <input type="email" className="form-control" id='email' />
@@ -201,11 +208,15 @@ function AddLocation() {
                                         </div>
 
                                         <div className="row mt-3">
-                                            <div className="col-md-6" >
+                                            <div className="col-md-4" >
+                                                <label htmlFor='gstno'>GST No</label>
+                                                <input type="text" className="form-control" id='gstno' />
+                                            </div>
+                                            <div className="col-md-4" >
                                                 <label htmlFor='latitude'>Latitude</label>
                                                 <input type="text" className="form-control" id='latitude' />
                                             </div>
-                                            <div className="col-md-6" >
+                                            <div className="col-md-4" >
                                                 <label htmlFor='longitude'>Longitude</label>
                                                 <input type="number" className="form-control" id='longitude' />
                                             </div>
