@@ -681,7 +681,7 @@ export const UpdateLocationStatus = async (org,status, sno) => {
 
 export const AddLocationapi = async (org,location_id, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id,location_country) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertLocation`
-    return axios.post(url, {org, location_id, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id }).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, {org, location_id, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id,location_country }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetLocation = async (org,sno) => {
