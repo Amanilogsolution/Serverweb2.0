@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/LandingPage/Login/Login'
 import ForgetPassword from './components/LandingPage/Forgetpassword/ForgetPassword'
 
-import Signup from './components/LandingPage/Resister/Resister'
+import Signup from './components/LandingPage/Register/Register'
 import LandingPage from './components/LandingPage/LandingPageHome/LandingPage'
 
 import PrivatRoute from './components/HOC/PrivateRoutes';
@@ -161,7 +161,7 @@ import Contactus from './components/Sidebar/Contactus/Contactus';
 import TotalRoles from './components/pages/Setting/Roles/TotalRoles';
 import AddRoles from './components/pages/Setting/Roles/AddRole';
 
-import OrganisationDetails from './components/LandingPage/Resister/Organistion';
+import OrganisationDetails from './components/LandingPage/Register/Organistion';
 
 import PageNotFound from './components/404/404';
 

@@ -81,6 +81,24 @@ export default function AddTicket() {
         document.getElementById('assetserial').value = e.target.value
     }
 
+    const handleIssueType = (e) =>{
+        console.log(e.target.value) 
+        if(e.target.value == 'Handover'){
+            document.getElementById('Handoverdetails').style.display="flex"
+            document.getElementById('AssetCondition').value = ""
+
+            // alert('Handover')
+        }
+        else if(e.target.value == 'Allocation'){
+            document.getElementById('Handoverdetails').style.display="flex"
+            document.getElementById('AssetCondition').value = "Good and Working"
+
+        }
+        else{
+            document.getElementById('Handoverdetails').style.display="none"
+        }
+    }
+
 
     const handleSaveTicket = async (e) => {
         e.preventDefault();
@@ -109,7 +127,9 @@ export default function AddTicket() {
         const priority = document.getElementById('priority').value;
         const issuedesc = document.getElementById('issuedesc').value;
         const remark = document.getElementById('remark').value;
-        const org = localStorage.getItem('Database')
+        const AssetTag = document.getElementById('AssetTag').value
+        const AssetCondition = document.getElementById('AssetCondition').value
+        const org = sessionStorage.getItem('Database')
 
         const user_id = localStorage.getItem('UserId')
 
@@ -124,7 +144,7 @@ export default function AddTicket() {
             setLoading(true)
 
             const result = await InsertTicket(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
-                priority, issuedesc, remark, user_id)
+                priority, issuedesc, remark, user_id,AssetTag,AssetCondition)
                 console.log(result)
             if (result === 'Data Added') {
                 setDatas({ ...datas, message: "Ticket Added", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })
@@ -212,7 +232,7 @@ export default function AddTicket() {
                                                 </div>
                                                 <div className="col-md-4">
                                                     <label htmlFor='typeofissue'>Type of Issue</label>
-                                                    <select id='typeofissue' className="form-select">
+                                                    <select id='typeofissue' className="form-select" onChange={handleIssueType}>
                                                         <option value='' hidden>Select...</option>
                                                         {
                                                             issuelist.map((item, index) => (
@@ -221,6 +241,25 @@ export default function AddTicket() {
                                                         }
                                                     </select>
                                                 </div>
+                                            </div>
+                                            <div id="Handoverdetails" className="row mt-3" style={{display:"none"}}>
+                                                <div className="col">
+                                                    <label htmlFor='AssetTag'>Asset Tag <span className='text-danger'>*</span></label>
+                                                    <input type="text" id='AssetTag' className="form-control" required />
+                                                </div>
+                                                <div className="col">
+                                                    <label htmlFor='priority'>Asset Condition</label>
+                                                    <select id='AssetCondition' className="form-select">
+                                                    <option value='' hidden>Select...</option>
+
+                                                        <option value='Good and Working' >Good and Working</option>
+                                                        <option value='Damaged but Working' >Damaged but Working</option>
+                                                        <option value='Damaged but Not Working' >Damaged but Not Working</option>
+
+                                                       
+                                                    </select>
+                                                </div>
+
                                             </div>
                                             <div className="row mt-3">
                                                 <div className="col-md-4" >
