@@ -21,7 +21,7 @@ function EditAssetStatus() {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
 
-            const result = await GetAssetStatusapi(org,localStorage.getItem('assetstatussno'))
+            const result = await GetAssetStatusapi(org, localStorage.getItem('assetstatussno'))
             setData(result[0]);
             setLoading(true)
 
@@ -32,7 +32,7 @@ function EditAssetStatus() {
     const handleadddevice = async (e) => {
         e.preventDefault();
         setLoading(false)
-        document.getElementById('subnitbtn').disabled ='true'
+        document.getElementById('subnitbtn').disabled = 'true'
         const asset_status = document.getElementById('asset_status').value;
         const asset_status_desc = document.getElementById('asset_status_desc').value;
         const username = localStorage.getItem('UserId');
@@ -48,7 +48,7 @@ function EditAssetStatus() {
             setLoading(true)
             const org = localStorage.getItem('Database')
 
-            const result = await UpdateAssetStatusapi(org,sno, asset_status, asset_status_desc, username);
+            const result = await UpdateAssetStatusapi(org, sno, asset_status, asset_status_desc, username);
             if (result === 'Updated') {
                 localStorage.removeItem('assetstatussno');
                 setDatas({ ...datas, message: "Asset Status Updated", title: "success", type: "success", route: "/TotalAssetStatus", toggle: "true" })
@@ -69,51 +69,47 @@ function EditAssetStatus() {
     }
 
 
-    const handlechangeassetstatus = (e) => {
-        setData({ ...data, asset_status: e.target.value })
-    }
-    const handlechangeassetstatusdesc = (e) => {
-        setData({ ...data, asset_status_description: e.target.value })
-    }
-
-
     return (
         <>
             {
                 loading ?
                     <Sidebar >
+                        {/* ############################ Snackbar ############################## */}
 
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ############################ Snackbar ############################## */}
 
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Asset Status</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Asset Status</span> </h2>
+                                <h2><span className='page-type-head1'>Asset Status <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Asset Status</span> </h2>
                                 <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('assettypesno'); window.location.href = '/TotalAssetType' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
+                            <div className="contract-div" style={{ width: "50%" }}>
+                                <div className="card inner-card">
+                                    <div className='card-header'>Edit Asset Status:</div>
 
-                                <article className="card-body" >
-                                    <form className='px-3' autoComplete='off'>
-                                        <div className="row">
-                                            <div className="form-group col-md-6" >
-                                                <label htmlFor='seriesid'> Asset Status <small className='text-danger'>*</small></label>
-                                                <input type="text" className="form-control" id='asset_status' value={data.asset_status} onChange={handlechangeassetstatus} />
+                                    <article className="card-body" >
+                                        <form className='px-3' autoComplete='off'>
+                                            <div className="row">
+                                                <div className="form-group" >
+                                                    <label htmlFor='seriesid'> Asset Status <small className='text-danger'>*</small></label>
+                                                    <input type="text" className="form-control" id='asset_status' defaultValue={data.asset_status} />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="row mt-3">
-                                            <div className="form-group col-md" >
-                                                <label htmlFor='taskid'>Description</label>
-                                                <textarea type="text" className="form-control" id='asset_status_desc' value={data.asset_status_description} onChange={handlechangeassetstatusdesc} />
+                                            <div className="row mt-3">
+                                                <div className="form-group col-md" >
+                                                    <label htmlFor='taskid'>Description</label>
+                                                    <textarea type="text" className="form-control" id='asset_status_desc' defaultValue={data.asset_status_description} />
+                                                </div>
                                             </div>
-
-                                        </div>
-                                        <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleadddevice}>Update</button>
-                                        </div>
-                                    </form>
-                                </article>
+                                            <div className="form-group mt-3" >
+                                                <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleadddevice}>Update</button>
+                                            </div>
+                                        </form>
+                                    </article>
+                                </div>
                             </div>
                         </div>
                     </Sidebar>

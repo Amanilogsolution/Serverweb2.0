@@ -1,6 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
-import { GetLocation, UpdateLocation } from '../../../../api'
+import { GetLocation, UpdateLocation, TotalCountry, TotalState, TotalCity } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
@@ -8,6 +8,10 @@ import Snackbar from '../../../../Snackbar/Snackbar';
 function EditLocation() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
+
+    const [countrylist, setCountrylist] = useState([])
+    const [states, setStates] = useState([])
+    const [cities, setCities] = useState([])
 
     const [datas, setDatas] = useState({
         message: "abc",
@@ -20,8 +24,15 @@ function EditLocation() {
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-            const result = await GetLocation(org,localStorage.getItem('locationsno'))
+            const result = await GetLocation(org, localStorage.getItem('locationsno'))
+            console.log(result)
             setData(result);
+            const country = await TotalCountry()
+            setCountrylist(country)
+            const State = await TotalState(result.location_country)
+            setStates(State)
+            const city = await TotalCity(result.location_state)
+            setCities(city)
             setLoading(true)
         }
         fetchdata()
@@ -37,8 +48,9 @@ function EditLocation() {
         const locationname = document.getElementById('locationname').value;
         const address1 = document.getElementById('address1').value;
         const address2 = document.getElementById('address2').value;
-        const city = document.getElementById('city').value;
+        const country = document.getElementById('country').value;
         const state = document.getElementById('state').value;
+        const city = document.getElementById('city').value;
         const pincode = document.getElementById('pincode').value;
         const gstno = document.getElementById('gstno').value;
 
@@ -52,15 +64,15 @@ function EditLocation() {
         const sno = localStorage.getItem('locationsno')
         setLoading(true)
 
-        if (!company || !locationcode || !locationname || !address1 || !city || !state || !pincode || !contactpersonname || !email || !contNum) {
+        if (!company || !locationcode || !locationname || !address1 || !country || !city || !state || !pincode || !contactpersonname || !email || !contNum) {
             document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
         else {
             setLoading(true)
-            const result = await UpdateLocation(org,sno, company, locationcode, locationname, address1, address2, city, state, pincode, gstno,
-                contactpersonname, email, contNum, latitude, longitude, username);
+            const result = await UpdateLocation(org, sno, company, locationcode, locationname, address1, address2, city, state, pincode, gstno,
+                contactpersonname, email, contNum, latitude, longitude, username, country);
 
             if (result === 'Updated') {
                 localStorage.removeItem('locationsno');
@@ -81,52 +93,21 @@ function EditLocation() {
 
     }
 
-
-    const handlechangeCompany = (e) => {
-        setData({ ...data, company_name: e.target.value })
-    }
-    const handleChnagelocationCode = (e) => {
-        setData({ ...data, location_code: e.target.value })
-    }
-    const handlechangeLocationName = (e) => {
-        setData({ ...data, location_name: e.target.value })
-    }
-    const handlechangeAddress1 = (e) => {
-        setData({ ...data, location_address_line1: e.target.value })
-    }
-    const handlechangeAddress2 = (e) => {
-        setData({ ...data, location_address_line2: e.target.value })
+    const handleStateMaster = async (e) => {
+        e.preventDefault()
+        const State = await TotalState(e.target.value)
+        setStates(State)
+        setData({ ...data, location_state: '', state_name: '', location_city: '' })
     }
 
-    const handlechangeCity = (e) => {
-        setData({ ...data, location_city: e.target.value })
-    }
-    const handlechangeState = (e) => {
-        setData({ ...data, location_state: e.target.value })
+    const handlechangeState = async (e) => {
+        const city = await TotalCity(e.target.value)
+        setCities(city)
+        setData({ ...data, location_city: '' })
     }
     const handlechangePincode = (e) => {
         if (e.target.value.length === 7) return false;
         setData({ ...data, location_pin_code: e.target.value })
-    }
-    const handlechangeGst = (e) => {
-        setData({ ...data, location_gst: e.target.value })
-    }
-
-    const handlechangeContactname = (e) => {
-        setData({ ...data, contact_person: e.target.value })
-    }
-    const handlechangeContactemail = (e) => {
-        setData({ ...data, contact_person_email: e.target.value })
-    }
-    const handlechangeContactnumber = (e) => {
-        if (e.target.value.length === 11) return false;
-        setData({ ...data, contact_person_number: e.target.value })
-    }
-    const handlechangeContactLatitude = (e) => {
-        setData({ ...data, location_latitude: e.target.value })
-    }
-    const handlechangeContactLongitude = (e) => {
-        setData({ ...data, location_longitude: e.target.value })
     }
 
     return (
@@ -134,96 +115,127 @@ function EditLocation() {
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
 
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
 
+                        {/* ######################### Sanckbar End ##################################### */}
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Location</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Location</span> </h2>
+                                <h2><span className='page-type-head1'>Location <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Location</span> </h2>
                                 <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('locationsno'); window.location.href = '/TotalLocations' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "90%" }}>
-                                <div className='card-header'>Edit Location:</div>
-                                <article className="card-body" >
-                                    <form className='px-3' autoComplete='off'>
-                                        <div className="row">
-                                            <div className="col-md-4">
-                                                <label htmlFor='company'> Company <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='company' value={data.company_name} onChange={handlechangeCompany} />
+                            <div className="contract-div" style={{ width: "90%" }}>
+                                <div className="card inner-card">
+                                    <div className='card-header'>Edit Location:</div>
+                                    <article className="card-body" >
+                                        <form className='px-3' autoComplete='off'>
+                                            <div className="row">
+                                                <div className="col-md-4">
+                                                    <label htmlFor='company'> Company <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='company' defaultValue={data.company_name} />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='locationcode'>Location Code <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='locationcode' defaultValue={data.location_code} />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='locationname'>Location Name <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='locationname' defaultValue={data.location_name} />
+                                                </div>
                                             </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='locationcode'>Location Code <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='locationcode' value={data.location_code} onChange={handleChnagelocationCode} />
+                                            <div className="row mt-3">
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='address1'>Address Line 1 <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='address1' defaultValue={data.location_address_line1} />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='address2'>Address Line 2</label>
+                                                    <input type="text" className="form-control" id='address2' defaultValue={data.location_address_line2} />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='country'>Country <span className='text-danger'>*</span></label>
+                                                    <select className="form-select" id='country' onChange={handleStateMaster}>
+                                                        <option value={data.location_country} hidden>{data.country_name}</option>
+                                                        {
+                                                            countrylist.map((item, index) => (
+                                                                <option key={index} value={item.country_id}>{item.country_name}</option>
+                                                            ))
+                                                        }
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='locationname'>Location Name <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='locationname' value={data.location_name} onChange={handlechangeLocationName} />
+                                            <div className="row mt-3">
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='state'>State <span className='text-danger'>*</span></label>
+                                                    <select className="form-select" id='state' onChange={handlechangeState} >
+                                                        <option value={data.location_state} hidden> {data.state_name}</option>
+                                                        {
+                                                            states.map((item, index) => (
+                                                                <option key={index} value={item.state_id}>{item.state_name}</option>
+                                                            ))
+
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='city'>City <span className='text-danger'>*</span></label>
+                                                    <select className="form-select" id='city'>
+                                                        <option value={data.location_city} hidden> {data.location_city}</option>
+                                                        {
+                                                            cities.map((item, index) => (
+                                                                <option key={index} value={item.city_name}>{item.city_name}</option>
+                                                            ))
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='pincode'>Pincode <span className='text-danger'>*</span></label>
+                                                    <input type="number" className="form-control" id='pincode' value={data.location_pin_code} onChange={handlechangePincode} />
+                                                </div>
+
                                             </div>
-                                        </div>
-                                        <div className="row mt-3">
-                                            <div className="col-md-4" >
-                                                <label htmlFor='address1'>Address Line 1 <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='address1' value={data.location_address_line1} onChange={handlechangeAddress1} />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='address2'>Address Line 2</label>
-                                                <input type="text" className="form-control" id='address2' value={data.location_address_line2} onChange={handlechangeAddress2} />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='city'>City <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='city' value={data.location_city} onChange={handlechangeCity} />
-                                            </div>
-                                        </div>
-                                        <div className="row mt-3">
-                                            <div className="col-md-4" >
-                                                <label htmlFor='state'>State <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='state' value={data.location_state} onChange={handlechangeState} />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='pincode'>Pincode <span className='text-danger'>*</span></label>
-                                                <input type="number" className="form-control" id='pincode' value={data.location_pin_code} onChange={handlechangePincode} />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='gstno'>GST No</label>
-                                                <input type="text" className="form-control" id='gstno' value={data.location_gst} onChange={handlechangeGst} />
-                                            </div>
-                                        </div>
-                                        <div className="row mt-3">
-                                            <div className="col-md-4" >
-                                                <label htmlFor='contactpersonname'>Contact Person Name <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='contactpersonname' value={data.contact_person} onChange={handlechangeContactname} />
+                                            <div className="row mt-3">
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='contactpersonname'>Contact Person Name <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='contactpersonname' defaultValue={data.contact_person} />
+                                                </div>
+
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='email'>Contact Email <span className='text-danger'>*</span></label>
+                                                    <input type="email" className="form-control" id='email' defaultValue={data.contact_person_email} />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='contNum'>Contact Number <span className='text-danger'>*</span></label>
+                                                    <input type="number" className="form-control" id='contNum' defaultValue={data.contact_person_number} />
+                                                </div>
                                             </div>
 
-                                            <div className="col-md-4" >
-                                                <label htmlFor='email'>Contact Email <span className='text-danger'>*</span></label>
-                                                <input type="email" className="form-control" id='email' value={data.contact_person_email} onChange={handlechangeContactemail} />
+                                            <div className="row mt-3">
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='gstno'>GST No</label>
+                                                    <input type="text" className="form-control" id='gstno' defaultValue={data.location_gst} />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='latitude'>Latitude</label>
+                                                    <input type="text" className="form-control" id='latitude' defaultValue={data.location_latitude} />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='longitude'>Longitude</label>
+                                                    <input type="text" className="form-control" id='longitude' defaultValue={data.location_longitude} />
+                                                </div>
                                             </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='contNum'>Contact Number <span className='text-danger'>*</span></label>
-                                                <input type="number" className="form-control" id='contNum' value={data.contact_person_number} onChange={handlechangeContactnumber} />
-                                            </div>
-                                        </div>
-
-                                        <div className="row mt-3">
-                                            <div className="col-md-6" >
-                                                <label htmlFor='latitude'>Latitude</label>
-                                                <input type="text" className="form-control" id='latitude' value={data.location_latitude} onChange={handlechangeContactLatitude} />
-                                            </div>
-                                            <div className="col-md-6" >
-                                                <label htmlFor='longitude'>Longitude</label>
-                                                <input type="number" className="form-control" id='longitude' value={data.location_longitude} onChange={handlechangeContactLongitude} />
-                                            </div>
-                                        </div>
 
 
-                                        <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleUpdateLocation}>Update</button>
-                                        </div>
-                                    </form>
-                                </article>
-                            </div>
+                                            <div className="form-group mt-3" >
+                                                <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleUpdateLocation}>Update</button>
+                                            </div>
+                                        </form>
+                                    </article>
+                                </div></div>
                         </div>
                     </Sidebar>
                     : <LoadingPage />

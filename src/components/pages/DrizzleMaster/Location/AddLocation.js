@@ -77,7 +77,7 @@ function AddLocation() {
             const org = localStorage.getItem('Database')
 
             const result = await AddLocationapi(org, location_id, company, locationcode, locationname, address1, address2, city, state,
-                pincode, gstno, contactpersonname, email, contNum, latitude, longitude, username,country);
+                pincode, gstno, contactpersonname, email, contNum, latitude, longitude, username, country);
 
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Location Added", title: "success", type: "success", route: "/TotalLocations", toggle: "true" })
@@ -102,132 +102,136 @@ function AddLocation() {
                 loading ?
                     <Sidebar >
                         {/* ######################### Sanckbar Start ##################################### */}
+
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+
                         {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container pb-3'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 '>
-                                <h2><span className='page-type-head1'>Locations</span> <MdOutlineKeyboardArrowRight /><span className='page-type-head2' >Add Location</span> </h2>
+                                <h2><span className='page-type-head1'>Locations <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2' >Add Location</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('seriessno'); window.location.href = '/TotalLocations' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "90%" }}>
-                                <div className='card-header'>Add Location:</div>
-                                <article className="card-body" >
-                                    <form className='px-3' autoComplete='off'>
-                                        <div className="row">
-                                            <div className="col-md-4">
-                                                <label htmlFor='company'> Company <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='company' />
+                            <div className="contract-div" style={{ width: "90%" }}>
+                                <div className="card inner-card">
+                                    <div className='card-header'>Add Location:</div>
+                                    <article className="card-body" >
+                                        <form className='px-3' autoComplete='off'>
+                                            <div className="row">
+                                                <div className="col-md-4">
+                                                    <label htmlFor='company'> Company <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='company' />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='locationcode'>Location Code <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='locationcode' />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='locationname'>Location Name <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='locationname' />
+                                                </div>
                                             </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='locationcode'>Location Code <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='locationcode' />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='locationname'>Location Name <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='locationname' />
-                                            </div>
-                                        </div>
-                                        <div className="row mt-3">
-                                            <div className="col-md-4" >
-                                                <label htmlFor='address1'>Address Line 1 <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='address1' />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='address2'>Address Line 2</label>
-                                                <input type="text" className="form-control" id='address2' />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='country'>Country <span className='text-danger'>*</span></label>
-                                                <select id='country' className="form-select" style={{ backgroundColor: "#dcdcde" }}
-                                                    onChange={handleStateMaster}>
-                                                    <option value='' hidden>Select...</option>
-                                                    {
-                                                        countrylist.map((item, index) => (
-                                                            <option key={index} value={item.country_id}>{item.country_name}</option>
-                                                        ))
-                                                    }
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div className="row mt-3">
-                                            <div className="col-md-4" >
-                                                <label htmlFor='state'>State <span className='text-danger'>*</span></label>
-                                                <select id='state' className="form-select" style={{ backgroundColor: "#dcdcde" }}
-                                                    onChange={handleCityMaster}>
-
-                                                    <option value='' hidden>Select...</option>
-
-                                                    {
-                                                        states.map((item, index) => (
-                                                            <option key={index} value={item.state_id}>{item.state_name}</option>
-                                                        ))
-
-                                                    }
-
-                                                </select>
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='city'>City <span className='text-danger'>*</span></label>
-                                                <select id='city' style={{ backgroundColor: "#dcdcde" }} className="form-select">
-                                                    <option value='' hidden>Select...</option>
-                                                    {
-                                                        cities.map((item, index) => (
-                                                            <option key={index} value={item.city_name}>{item.city_name}</option>
-                                                        ))
-                                                    }
-                                                </select>
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='pincode'>Pincode <span className='text-danger'>*</span></label>
-                                                <input type="number" className="form-control" id='pincode'
-                                                    value={pincount}
-                                                    onChange={(e) => { if (e.target.value.length === 7) return false; else { setPincount(e.target.value) } }}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="row mt-3">
-                                            <div className="col-md-4" >
-                                                <label htmlFor='contactpersonname'>Contact Person Name <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='contactpersonname' />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='email'>Contact Email <span className='text-danger'>*</span></label>
-                                                <input type="email" className="form-control" id='email' />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='contNum'>Contact Number <span className='text-danger'>*</span></label>
-                                                <input type="number" className="form-control" id='contNum'
-                                                    value={numcount}
-                                                    onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumcount(e.target.value) } }}
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className="row mt-3">
-                                            <div className="col-md-4" >
-                                                <label htmlFor='gstno'>GST No</label>
-                                                <input type="text" className="form-control" id='gstno' />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='latitude'>Latitude</label>
-                                                <input type="text" className="form-control" id='latitude' />
-                                            </div>
-                                            <div className="col-md-4" >
-                                                <label htmlFor='longitude'>Longitude</label>
-                                                <input type="text" className="form-control" id='longitude' />
+                                            <div className="row mt-3">
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='address1'>Address Line 1 <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='address1' />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='address2'>Address Line 2</label>
+                                                    <input type="text" className="form-control" id='address2' />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='country'>Country <span className='text-danger'>*</span></label>
+                                                    <select id='country' className="form-select"
+                                                        onChange={handleStateMaster}>
+                                                        <option value='' hidden>Select...</option>
+                                                        {
+                                                            countrylist.map((item, index) => (
+                                                                <option key={index} value={item.country_id}>{item.country_name}</option>
+                                                            ))
+                                                        }
+                                                    </select>
+                                                </div>
                                             </div>
 
-                                        </div>
-                                        <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}> Add Location</button>
-                                            <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
-                                        </div>
-                                    </form>
-                                </article>
+                                            <div className="row mt-3">
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='state'>State <span className='text-danger'>*</span></label>
+                                                    <select id='state' className="form-select"
+                                                        onChange={handleCityMaster}>
+
+                                                        <option value='' hidden>Select...</option>
+
+                                                        {
+                                                            states.map((item, index) => (
+                                                                <option key={index} value={item.state_id}>{item.state_name}</option>
+                                                            ))
+
+                                                        }
+
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='city'>City <span className='text-danger'>*</span></label>
+                                                    <select id='city' className="form-select">
+                                                        <option value='' hidden>Select...</option>
+                                                        {
+                                                            cities.map((item, index) => (
+                                                                <option key={index} value={item.city_name}>{item.city_name}</option>
+                                                            ))
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='pincode'>Pincode <span className='text-danger'>*</span></label>
+                                                    <input type="number" className="form-control" id='pincode'
+                                                        value={pincount}
+                                                        onChange={(e) => { if (e.target.value.length === 7) return false; else { setPincount(e.target.value) } }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="row mt-3">
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='contactpersonname'>Contact Person Name <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='contactpersonname' />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='email'>Contact Email <span className='text-danger'>*</span></label>
+                                                    <input type="email" className="form-control" id='email' />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='contNum'>Contact Number <span className='text-danger'>*</span></label>
+                                                    <input type="number" className="form-control" id='contNum'
+                                                        value={numcount}
+                                                        onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumcount(e.target.value) } }}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className="row mt-3">
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='gstno'>GST No</label>
+                                                    <input type="text" className="form-control" id='gstno' />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='latitude'>Latitude</label>
+                                                    <input type="text" className="form-control" id='latitude' />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='longitude'>Longitude</label>
+                                                    <input type="text" className="form-control" id='longitude' />
+                                                </div>
+
+                                            </div>
+                                            <div className="form-group mt-3" >
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}> Add Location</button>
+                                                <button type="reset" className="btn btn-secondary mx-3" >Reset</button>
+                                            </div>
+                                        </form>
+                                    </article>
+                                </div>
                             </div>
                         </div>
                     </Sidebar>

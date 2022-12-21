@@ -61,7 +61,7 @@ function TotalAssetType() {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
+                <select className='border-0' style={{background:"rgb(222, 222, 222)"}} onChange={async (e) => {
                     const status = e.target.value;
                     const org = localStorage.getItem('Database')
 
@@ -81,7 +81,7 @@ function TotalAssetType() {
             cell: (row) => [
                 <a title='Edit Series' href="/EditAssetType">
                     <p onClick={() => localStorage.setItem('assettypesno', `${row.sno}`)} >
-                    <AiFillEdit style={{fontSize:"20px",marginBottom:"-13px"}}/>
+                    <AiFillEdit className='ft-20' style={{marginBottom:"-13px"}}/>
                     </p></a>
             ]
         }
@@ -91,7 +91,6 @@ function TotalAssetType() {
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-
             const tabledata = await TotalAssetTypeapi(org);
             setData(tabledata)
             setLoading(true)
@@ -113,7 +112,7 @@ function TotalAssetType() {
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Asset Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Asset Type</span> </h2>
+                            <h2><span className='page-type-head1'>Asset Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Asset Type</span> </h2>
                             <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddAssetType' }} >Add Asset Type <MdAdd /></button>
                         </div>
                         <div >

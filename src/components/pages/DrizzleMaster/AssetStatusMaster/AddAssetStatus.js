@@ -14,7 +14,7 @@ function AddAssetStatus() {
         title: "title",
         type: "type",
         route: "#",
-        toggle:"true",
+        toggle: "true",
     })
 
 
@@ -31,25 +31,25 @@ function AddAssetStatus() {
 
         if (!asset_status) {
             document.getElementById('subnitbtn').disabled = false
-            setDatas({...datas,message:"Please enter the Asset Status",title:"Error",type:"warning",route:"#",toggle:"true"})
-            document.getElementById('snackbar').style.display="block"
+            setDatas({ ...datas, message: "Please enter the Asset Status", title: "Error", type: "warning", route: "#", toggle: "true" })
+            document.getElementById('snackbar').style.display = "block"
 
         }
         else {
             setLoading(true)
             const org = localStorage.getItem('Database')
-            const result = await AddAssetStatusapi(org,assetstatus_id, asset_status, asset_status_desc, username);
+            const result = await AddAssetStatusapi(org, assetstatus_id, asset_status, asset_status_desc, username);
             if (result === 'Added') {
-               setDatas({...datas,message:"Asset Status Added",title:"success",type:"success",route:"/TotalAssetStatus",toggle:"true"})
-               document.getElementById('snackbar').style.display="block"
+                setDatas({ ...datas, message: "Asset Status Added", title: "success", type: "success", route: "/TotalAssetStatus", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
-            else if(result === 'Already'){
-                setDatas({...datas,message:" Asset Status Already Exist",title:"warning",type:"Error",toggle:"true"})
-                document.getElementById('snackbar').style.display="block" 
+            else if (result === 'Already') {
+                setDatas({ ...datas, message: " Asset Status Already Exist", title: "warning", type: "Error", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
             else {
-                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/AddAssetStatus",toggle:"true"})
-                document.getElementById('snackbar').style.display="block"  
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddAssetStatus", toggle: "true" })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -59,37 +59,41 @@ function AddAssetStatus() {
             {
                 loading ?
                     <Sidebar >
-
+                        {/* ############################ Snackbar ############################## */}
                         <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle}/>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ############################ Snackbar ############################## */}
 
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Asset Status</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Asset Status</span> </h2>
+                                <h2><span className='page-type-head1'>Asset Status <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Asset Status</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssetStatus' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
-                                <article className="card-body" >
-                                    <form className='px-3' autoComplete='off'>
+                            <div className="contract-div" style={{ width: "50%" }}>
+                                <div className="card inner-card">
+                                    <div className='card-header'>Add Asset Status:</div>
+                                    <article className="card-body" >
+                                        <form className='px-3' autoComplete='off'>
 
-                                        <div className="col" >
-                                            <label htmlFor='asset_status'>Asset Status  <span className='text-danger'>*</span></label>
-                                            <input type="text" className="form-control" id='asset_status' />
-                                        </div>
-                                        <div className="col-md mt-3" >
-                                            <label htmlFor='asset_status_desc'>Remarks</label>
-                                            <textarea className="form-control" id='asset_status_desc' rows='3' />
-                                        </div>
+                                            <div className="col" >
+                                                <label htmlFor='asset_status'>Asset Status  <span className='text-danger'>*</span></label>
+                                                <input type="text" className="form-control" id='asset_status' />
+                                            </div>
+                                            <div className="col-md mt-3" >
+                                                <label htmlFor='asset_status_desc'>Remarks</label>
+                                                <textarea className="form-control" id='asset_status_desc' rows='3' />
+                                            </div>
 
 
-                                        <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Status</button>&nbsp;
-                                            <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                            <div className="form-group mt-3" >
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Status</button>&nbsp;
+                                                <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
 
-                                        </div>
-                                    </form>
-                                </article>
+                                            </div>
+                                        </form>
+                                    </article>
+                                </div>
                             </div>
                         </div>
                     </Sidebar>
