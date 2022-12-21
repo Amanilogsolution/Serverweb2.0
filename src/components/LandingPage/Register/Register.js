@@ -36,7 +36,6 @@ export default function Register() {
             console.log(currency)
         }
         fetchdata()
-
     }, [])
 
     //recaptcha function
