@@ -63,10 +63,10 @@ function AddLocation() {
         const contNum = document.getElementById('contNum').value;
         const latitude = document.getElementById('latitude').value;
         const longitude = document.getElementById('longitude').value;
+        const country = document.getElementById('country').value;
 
         const username = localStorage.getItem('UserId');
         setLoading(true)
-
         if (!company || !locationcode || !locationname || !address1 || !city || !state || !pincode || !contactpersonname || !email || !contNum) {
             document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter All mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
@@ -77,7 +77,7 @@ function AddLocation() {
             const org = localStorage.getItem('Database')
 
             const result = await AddLocationapi(org, location_id, company, locationcode, locationname, address1, address2, city, state,
-                pincode, gstno, contactpersonname, email, contNum, latitude, longitude, username);
+                pincode, gstno, contactpersonname, email, contNum, latitude, longitude, username,country);
 
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Location Added", title: "success", type: "success", route: "/TotalLocations", toggle: "true" })
@@ -218,7 +218,7 @@ function AddLocation() {
                                             </div>
                                             <div className="col-md-4" >
                                                 <label htmlFor='longitude'>Longitude</label>
-                                                <input type="number" className="form-control" id='longitude' />
+                                                <input type="text" className="form-control" id='longitude' />
                                             </div>
 
                                         </div>
