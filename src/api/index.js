@@ -1166,7 +1166,7 @@ export const DashboarDetails = async (org) => {
 }
 
 export const DashboarProcedure = async (type) => {
-    const url = `http://localhost:2008/api/dashboard_procedure`
+    const url = `https://drizzlebackend.awlworldwide.com/api/dashboard_procedure`
     return axios.post(url, { type }).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -1188,13 +1188,13 @@ export const AddOrganisation = async (org_id,org_name,org_country,org_state,org_
 }
 
 export const getOrganisation = async (org) => {
-    const url = `http://localhost:2008/api/getorganisation`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getorganisation`
     return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UpdateOrganisationDetails = async (org,org_name,org_country,org_state,org_city,org_currency) => {
     console.log(org,org_name,org_country,org_state,org_city,org_currency)
-    const url = `http://localhost:2008/api/updateorganizationdetails`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateorganizationdetails`
     return axios.post(url, {org,org_name,org_country,org_state,org_city,org_currency}).then(response => response.data).catch(error => console.log(error));
 }
 
