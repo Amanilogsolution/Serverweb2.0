@@ -10,7 +10,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import {
     TotalCountry, TotalState,
     TotalCity,
-    AddOrganisation,CurrencyMaster
+    AddOrganisation,CurrencyMaster,AddEmployees
 } from '../../../api/index'
 
 
@@ -94,6 +94,9 @@ export default function Register() {
         const user_id = document.getElementById('user_id').value;
         const password = document.getElementById('password').value;
         const cnf_pass = document.getElementById('cnf_pass').value;
+        
+        const employee_id = full_name.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
+
         const logo = ''
         if (password !== cnf_pass) {
             alert("Password Not MAtch")
@@ -104,6 +107,7 @@ export default function Register() {
         }
         else{
             const result = await AddOrganisation(OrgID,Orgname,Country,State,City,currency,gst,logo)
+            const Employee = await AddEmployees(Orgname,employee_id, full_name, "", email, mobile, Orgname, "")
             console.log(result)
             alert("Organisation Added")
 

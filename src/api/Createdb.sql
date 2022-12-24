@@ -545,3 +545,46 @@ CREATE TABLE IPERISCOPE.dbo.tbl_Organisation (
 	org_gst varchar(100) NULL,
 	org_logo varchar(100) NULL
 );
+
+-- // Role Master //
+
+CREATE TABLE IPERISCOPE.dbo.tbl_Roles_master (
+     sno bigint IDENTITY(1,1) NOT NULL,
+	role_id nvarchar(200) NULL,
+	remark nvarchar(200) NULL,
+	asset varchar(100) NULL,
+	asset_view nvarchar(100) NULL,
+	asset_create nvarchar(100) NULL,
+	asset_edit nvarchar(100) NULL,
+	asset_delete varchar(100) NULL,
+	vendor_contract varchar(100) NULL,
+	vendor_contract_view varchar(100) NULL,
+	vendor_contract_create varchar(100) NULL,
+	vendor_contract_edit varchar(100) NULL,
+	vendor_contract_delete varchar(100) NULL,
+	ticket varchar(100) NULL,
+	ticket_view varchar(100) NULL,
+	ticket_create varchar(100) NULL,
+	ticket_edit varchar(100) NULL,
+	ticket_delete varchar(100) NULL,
+	master varchar(100) NULL,
+	master_view varchar(100) NULL,
+	master_create varchar(100) NULL,
+	master_edit varchar(100) NULL,
+	master_delete varchar(100) NULL,
+	[transaction] varchar(100) NULL,
+	transaction_view varchar(100) NULL,
+	transaction_create varchar(100) NULL,
+	transaction_edit varchar(100) NULL,
+	transaction_delete varchar(100) NULL,
+	setting varchar(100) NULL,
+	setting_view varchar(100) NULL,
+	setting_create varchar(100) NULL,
+	setting_edit varchar(100) NULL,
+	setting_delete varchar(100) NULL,
+	reports varchar(100) NULL,
+	reports_view varchar(100) NULL,
+	reports_create varchar(100) NULL,
+	reports_edit varchar(100) NULL,
+	reports_delete varchar(100) NULL
+);

@@ -15,10 +15,6 @@ const OrganisationDetails = () => {
     const [currencylist, setCurrencylist] = useState([]);
 
 
-
-
-   
-
     useEffect(() => {
       const fetchData = async () => {
 
