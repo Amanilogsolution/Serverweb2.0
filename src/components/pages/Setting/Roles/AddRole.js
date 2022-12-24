@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
-import { ActiveAgent } from '../../../../api/index'
+import { ActiveAgent,insertRoles } from '../../../../api/index'
 
 
 function AddRoles() {
@@ -78,6 +78,10 @@ function AddRoles() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
         setLoading(false)
+
+        // const result = await insertRoles(org,role_id,remark,asset,asset_view,asset_create,asset_edit,asset_delete,vendor_contract,vendor_contract_view,vendor_contract_create,vendor_contract_edit,vendor_contract_delete,
+        //     ticket,ticket_view,ticket_create,ticket_edit,ticket_delete,master,master_view,master_create,master_edit,master_delete,transaction_details,transaction_view,transaction_create,transaction_edit,transaction_delete,
+        //     setting,setting_view,setting_create,setting_edit,setting_delete,reports,reports_view,reports_create,reports_edit,reports_delete)
         // document.getElementById('subnitbtn').disabled = 'true'
         // // const software = document.getElementById('software').checked=== true?true:false;
         // const asset_type = document.getElementById('asset_type').value;
