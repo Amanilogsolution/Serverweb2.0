@@ -71,7 +71,7 @@ const Dashboard = () => {
                     <h1 className='dash_card_head mb-0'>{dashboarddetails.Assetdata}</h1>
                     <p className='dash_card_para'>Assets</p>
                   </div>
-                  <div className='dash_card_icon_div rounded-circle'>
+                  <div className='dash_card_icon_div rounded-circle position-absolute'>
                     <BsLaptopFill className='icon' />
                   </div>
                 </div>
@@ -80,7 +80,7 @@ const Dashboard = () => {
                     <h1 className='dash_card_head mb-0'>{dashboarddetails.Vendordata}</h1>
                     <p className='dash_card_para'>Vendors</p>
                   </div>
-                  <div className='dash_card_icon_div rounded-circle'>
+                  <div className='dash_card_icon_div rounded-circle position-absolute'>
                     <HiUsers className='icon' />
                   </div>
                 </div>
@@ -89,7 +89,7 @@ const Dashboard = () => {
                     <h1 className='dash_card_head mb-0'>{dashboarddetails.Invoice}</h1>
                     <p className='dash_card_para'>Invoice</p>
                   </div>
-                  <div className='dash_card_icon_div rounded-circle'>
+                  <div className='dash_card_icon_div rounded-circle position-absolute'>
                     <MdStickyNote2 className='icon' />
                   </div>
                 </div>
@@ -98,7 +98,7 @@ const Dashboard = () => {
                     <h1 className='dash_card_head mb-0'>{dashboarddetails.Ticket}</h1>
                     <p className='dash_card_para'>Tickets</p>
                   </div>
-                  <div className='dash_card_icon_div rounded-circle'>
+                  <div className='dash_card_icon_div rounded-circle position-absolute'>
                     <FaTicketAlt className='icon' />
                   </div>
                 </div>

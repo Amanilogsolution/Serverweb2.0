@@ -21,7 +21,7 @@ function EditManufacturer() {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
 
-            const result = await GetManufacturer(org,localStorage.getItem('manufacturersno'))
+            const result = await GetManufacturer(org, localStorage.getItem('manufacturersno'))
             setData(result[0]);
             setLoading(true)
 
@@ -49,7 +49,7 @@ function EditManufacturer() {
         }
         else {
             setLoading(true)
-            const result = await UpdateManufacturer(org,sno, manufacturername, remark, username);
+            const result = await UpdateManufacturer(org, sno, manufacturername, remark, username);
             if (result === 'Updated') {
                 localStorage.removeItem('manufacturersno');
                 setDatas({ ...datas, message: "Manfacturer Updated", title: "success", type: "success", route: "/TotalManufacturer", toggle: "true" })
@@ -69,43 +69,34 @@ function EditManufacturer() {
 
     }
 
-
-    const handlechangeManufacturerName = (e) => {
-        setData({ ...data, manufacturer_name: e.target.value })
-    }
-    const handleChangeRemark = (e) => {
-        setData({ ...data, manufacturer_description: e.target.value })
-    }
-
-
-
-
     return (
         <>
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
 
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Manufacturer</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Manufacturer</span> </h2>
+                                <h2><span className='page-type-head1'>Manufacturer</span> <MdOutlineKeyboardArrowRight /><span className='page-type-head2'>Edit Manufacturer</span> </h2>
                                 <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('manufacturersno'); window.location.href = '/TotalManufacturer' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" >
-
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Edit Manufacturer:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="form-group">
                                             <label htmlFor='manufacturername'>Manufacturer Name <span className='text-danger'>*</span></label>
-                                            <input type="text" className="form-control" id='manufacturername' value={data.manufacturer_name} onChange={handlechangeManufacturerName} />
+                                            <input type="text" className="form-control" id='manufacturername' defaultValue={data.manufacturer_name} />
                                         </div>
                                         <div className="form-group mt-3">
                                             <label htmlFor='remark'>Remarks</label>
-                                            <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" value={data.manufacturer_description} onChange={handleChangeRemark} />
+                                            <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" defaultValue={data.manufacturer_description} />
                                         </div>
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleUpdateManufacturer}>Update</button>

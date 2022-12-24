@@ -29,8 +29,8 @@ function AddVendorSubCategory() {
 
 
         if (!service_action) {
+            setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-
             setDatas({ ...datas, message: "Please enter Service Action ", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
@@ -48,7 +48,6 @@ function AddVendorSubCategory() {
             }
             else {
                 document.getElementById('subnitbtn').disabled = false
-
                 setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddServiceActionType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -60,32 +59,33 @@ function AddVendorSubCategory() {
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
 
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h3><span style={{ color: "rgb(123,108,200)" }}>Service Action Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Add Service Action Type</span> </h3>
+                                <h3><span className='page-type-head1'>Service Action Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Service Action Type</span> </h3>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalServiceActionType' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Add Service Action Type:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="col">
                                             <label htmlFor='service_action'>Service Action <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='service_action' />
                                         </div>
-
                                         <div className="col-md mt-3" >
                                             <label htmlFor='remark'>Remarks</label>
                                             <textarea className="form-control" id='remark' rows='3' placeholder='Comments' />
                                         </div>
-
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleinsertdata}>Add Action Type</button>
-                                            <button type="reset" className="btn btn-secondary" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                            <button type="reset" className="btn btn-secondary mx-3">Reset</button>
                                         </div>
                                     </form>
                                 </article>

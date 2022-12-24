@@ -1,22 +1,8 @@
-.Profile_container {
-   min-height: 77vh;
-   max-width: 100%;
-   box-shadow: 2px 1px 10px gray, -3px -3px 10px gray;
-   border-radius: 10px 0px 0px 10px;
-   padding: 15px 30px;
-   /* border: 1px solid red; */
-}
-
 .Profile_container .profile {
-   /* display: flex; */
    height: 100%;
    width: 100%;
-   /* border: 1px solid red; */
-   border-radius: 10px;
    overflow: hidden;
    box-shadow: 2px 2px 6px gray;
-   /* margin-top: 40px; */
-   /* position: relative; */
 }
 
 .Profile_container .profile .photo_sec {
@@ -28,7 +14,6 @@
 
 .profile_log {
    font-size: 140px;
-   position: absolute;
    top: 50%;
    left: 50%;
    -ms-transform: translate(-50%, -50%);
@@ -62,64 +47,28 @@
 
 @media screen and (max-width: 512px) {
    .Profile_container .profile {
-      /* margin-top: 20px; */
       flex-direction: column;
    }
 
    .Profile_container .profile .photo_sec {
-      /* border: 1px solid yellow; */
       height: 90px;
-      /* border-radius: 5px; */
       text-align: justify;
       flex-direction: row;
       width: 100%;
-      /* border: 2px solid red; */
    }
 
    .profile_log {
-      position: absolute;
       top: 50%;
       right: 0%;
-      /* border: 2px solid red;/ */
       font-size: 60px;
    }
 
    .Profile_container .profile .details {
       width: 100%;
       padding: 30px 30px;
-      /* margin-top: 70px; */
 
    }
 
 }
 
 
-@media screen and (min-height:850px) {
-   .Profile_container {
-       min-height: 85vh;
-   }
-}
-
-@media screen and (min-height:1000px) {
-   .Profile_container {
-       min-height: 90vh;
-   }
-}
-
-@media screen and (min-height:735px) {
-   .Profile_container {
-       min-height: 81vh;
-   }
-}
-
-@media screen and (max-width:1200px) {
-   .Profile_container {
-       min-height: 87.3vh;
-   }
-}
-
-@media screen and (max-width:800px) {
-   .Profile_container {
-       min-height: 87.3vh;
-   }
-}

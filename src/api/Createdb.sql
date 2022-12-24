@@ -551,6 +551,7 @@ CREATE TABLE IPERISCOPE.dbo.tbl_Organisation (
 CREATE TABLE IPERISCOPE.dbo.tbl_Roles_master (
      sno bigint IDENTITY(1,1) NOT NULL,
 	role_id nvarchar(200) NULL,
+     role nvarchar(100) NULL,
 	remark nvarchar(200) NULL,
 	asset varchar(100) NULL,
 	asset_view nvarchar(100) NULL,

@@ -158,7 +158,7 @@ export default function VendorDash({setStep}) {
         </div>
       </div>
       <div className='VendorDash2'>
-        <div className='VendorDash2_card'>
+        <div className='VendorDash2_card text-center rounded text-light mb-1 pt-3'>
           <p>Reference Numbers</p>
           <h3 style={{ marginTop: "-12px" }}>164</h3>
         </div>
@@ -195,7 +195,7 @@ export default function VendorDash({setStep}) {
             <option value="3">Three</option>
           </select>
         </div>
-        <div className='select_div' id="recurring" onClick={()=>{setStep(6)}}>
+        <div className='select_div cursor-pointer text-light border-0' id="recurring" onClick={()=>{setStep(6)}}>
            <h7 >Click for Recurring Details</h7>
         </div>
       </div>

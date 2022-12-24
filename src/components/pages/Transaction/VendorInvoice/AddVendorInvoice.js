@@ -176,12 +176,16 @@ function AddVendorInvoice() {
             {
                 loading ?
                     <Sidebar>
+                        {/* ######################### Sanckbar Start ##################################### */}
+
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Invoice</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Invoice</span> </h2>
+                                <h2><span className='page-type-head1'>Vendor Invoice <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Invoice</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorInvoice' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className=" card contract-div" style={{ width: "98%", minHeight: "62vh" }}>
@@ -193,10 +197,9 @@ function AddVendorInvoice() {
                                     </div>
                                 </header>
                                 <article className="card-body" >
-                                    <form className='invoice-form' autoComplete='off' style={{ minHeight: "62vh" }}>
+                                    <form  autoComplete='off' style={{ minHeight: "62vh" }}>
                                         <table className="table table-bordered" >
                                             <thead>
-
                                                 <tr className='text-center'>
                                                     <th scope="col">Vendor <span className='text-danger'>*</span></th>
                                                     <th scope="col">Account No<span className='text-danger'>*</span></th>
@@ -220,7 +223,7 @@ function AddVendorInvoice() {
                                                                 onChange={(e) => handleChnageVendorDetail({ ...e, Index: index })}
                                                             />
 
-                                                            {/* <select type='text' id={`vendor-${index}`} className='form-select m-0 invoice-inp' onChange={(e) => handleChnageVendorDetail(index, e.target.value)} onBlur={() => savatoarry(index)}>
+                                                            {/* <select type='text' id={`vendor-${index}`} className='form-select m-0  border-0' onChange={(e) => handleChnageVendorDetail(index, e.target.value)} onBlur={() => savatoarry(index)}>
                                                                 <option value='' hidden>Select</option>
                                                                 {
                                                                     vendorcontractlist.map((item, index) =>
@@ -229,15 +232,15 @@ function AddVendorInvoice() {
 
                                                             </select> */}
                                                         </td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`accountno-${index}`} className='form-control m-0 invoice-inp' disabled onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`invno-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='number' id={`invamt-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='date' id={`invdate-${index}`} className='form-control m-0 invoice-inp' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='date' id={`invduedate-${index}`} className='form-control m-0 invoice-inp' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='date' id={`invsubdate-${index}`} className='form-control m-0 invoice-inp' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`remark-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`refno-${index}`} className='form-control m-0 invoice-inp' disabled onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`printercount-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='text' id={`accountno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='text' id={`invno-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='number' id={`invamt-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='date' id={`invdate-${index}`} className='form-control m-0  border-0' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='date' id={`invduedate-${index}`} className='form-control m-0  border-0' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='date' id={`invsubdate-${index}`} className='form-control m-0  border-0' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='text' id={`remark-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='text' id={`refno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 invoice-td'><input type='text' id={`printercount-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
                                                     </tr>
                                                 ))}
                                             </tbody>

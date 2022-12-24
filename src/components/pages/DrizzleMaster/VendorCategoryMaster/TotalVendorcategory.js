@@ -7,34 +7,7 @@ import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-
-const customStyles = {
-    title: {
-        style: {
-            fontColor: 'red',
-            fontWeight: '900',
-        }
-    },
-    rows: {
-        style: {
-            minHeight: '35px'
-        }
-    },
-    headCells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(105,59,233)',
-            color: 'white',
-        },
-    },
-    cells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(242,242,242)	',
-            borderBottom: "1px solid silver"
-        },
-    },
-};
+import customStyles from '../../../TableCustomtyle'
 
 
 function TotalVendorCategory() {
@@ -42,7 +15,6 @@ function TotalVendorCategory() {
     const [loading, setLoading] = useState(false)
 
     const columns = [
-      
         {
             name: 'Vendor Category',
             selector: 'vendor_category',
@@ -58,7 +30,7 @@ function TotalVendorCategory() {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
+                <select className='border-0' style={{ background: "rgb(222, 222, 222)"}} onChange={async (e) => {
                     const status = e.target.value;
                     const org = localStorage.getItem('Database')
 
@@ -78,7 +50,7 @@ function TotalVendorCategory() {
             cell: (row) => [
                 <a title='Edit Vendor Category' href="/EditVendorcategory">
                     <p onClick={() => localStorage.setItem('vendorcatsno', `${row.sno}`)} >
-                        <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+                        <AiFillEdit className='ft-20' style={{  marginBottom: "-13px" }} />
                     </p></a>
             ]
         }
@@ -88,7 +60,6 @@ function TotalVendorCategory() {
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-
             const tabledata = await TotalVendorCategoryapi(org);
             setData(tabledata)
             setLoading(true)
@@ -110,7 +81,7 @@ function TotalVendorCategory() {
                         <div className='main_container' >
                             <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h3><span style={{ color: "rgb(123,108,200)" }}>Vendor Category</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "21px" }}>Total Vendor Category</span> </h3>
+                                    <h3><span className='page-type-head1'>Vendor Category <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Vendor Category</span> </h3>
                                     <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorCategory' }} >Add Vendor Category <MdAdd /></button>
                                 </div>
                                 <div >

@@ -133,12 +133,16 @@ export default function EditTicket() {
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
+
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
+
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Tickets</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Tickets</span> </h2>
+                                <h2><span className='page-type-head1'>Tickets <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Tickets</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('TicketSno'); window.location.href = '/TotalTicket' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>

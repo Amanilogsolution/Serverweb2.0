@@ -2,41 +2,13 @@ import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import { TotalLocation, UpdateLocationStatus } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import customStyles from '../../../TableCustomtyle'
-import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
-// const customStyles = {
-//     title: {
-//         style: {
-//             fontColor: 'red',
-//             fontWeight: '900',
-//         }
-//     },
-//     rows: {
-//         style: {
-//             minHeight: '35px'
-//         }
-//     },
-//     headCells: {
-//         style: {
-//             fontSize: '14px',
-//             background: 'rgb(105,59,233)',
-//             color: 'white',
-//         },
-//     },
-//     cells: {
-//         style: {
-//             fontSize: '14px',
-//             // fontWeight:'600',
-//             background: 'rgb(242,242,242)',
-//             borderBottom: "1px solid silver"
-//         },
-//     },
-// };
+import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import customStyles from '../../../TableCustomtyle'
+
 
 const columns = [
     {
@@ -69,45 +41,45 @@ const columns = [
         selector: 'contact_person',
         sortable: true,
     },
-    {
-        name: 'Status',
-        sortable: true,
-        cell: (row) => [
-            <select className='border-0' style={{ background: "rgb(222, 222, 222)" }} onChange={async (e) => {
-                const status = e.target.value;
-                const org = localStorage.getItem('Database')
-                await UpdateLocationStatus(org,status, row.sno)
-                window.location.reload()
-            }}>
-                <option hidden value={row.Status}>{row.Status}</option>
-                <option value='Active'>Active</option>
-                <option value='Deactive'>Deactive</option>
-            </select>
-        ],
-    },
-    {
-        name: "Actions",
-        sortable: false,
-        selector: 'null',
-        cell: (row) => [
-            <a title='Edit Location' href="/EditLocation">
-                <p onClick={() => localStorage.setItem('locationsno', `${row.sno}`)} >
-                    <AiFillEdit className='ft-20' style={{  marginBottom: "-13px" }} />
-                </p></a>
-        ]
-    }
+    // {
+    //     name: 'Status',
+    //     sortable: true,
+    //     cell: (row) => [
+    //         <select className='border-0' style={{ background: "rgb(222, 222, 222)" }} onChange={async (e) => {
+    //             const status = e.target.value;
+    //             const org = localStorage.getItem('Database')
+    //             await UpdateLocationStatus(org,status, row.sno)
+    //             window.location.reload()
+    //         }}>
+    //             <option hidden value={row.Status}>{row.Status}</option>
+    //             <option value='Active'>Active</option>
+    //             <option value='Deactive'>Deactive</option>
+    //         </select>
+    //     ],
+    // },
+    // {
+    //     name: "Actions",
+    //     sortable: false,
+    //     selector: 'null',
+    //     cell: (row) => [
+    //         <a title='Edit Location' href="/EditAssignRole">
+    //             <p onClick={() => localStorage.setItem('locationsno', `${row.sno}`)} >
+    //                 <AiFillEdit className='ft-20' style={{  marginBottom: "-13px" }} />
+    //             </p></a>
+    //     ]
+    // }
 
 ];
 
-function TotalLocations() {
+function TotalAssignRole() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = localStorage.getItem('Database')
-            const tabledata = await TotalLocation(org);
-            setData(tabledata)
+            // const org = localStorage.getItem('Database')
+            // const tabledata = await TotalLocation(org);
+            // setData(tabledata)
             setLoading(true)
         }
         fetchdata();
@@ -123,12 +95,11 @@ function TotalLocations() {
             {
                 loading ?
                     <Sidebar>
-
                         <div className='main_container' >
                             <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span className='page-type-head1'>Locations <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Locations</span> </h2>
-                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddLocation' }} >Add Location <b><MdAdd /></b></button>
+                                    <h2><span className='page-type-head1'>Assign Role <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Assign Role</span> </h2>
+                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddAssignRole' }} >Assign Role <b><MdAdd /></b></button>
                                 </div>
                                 <div >
                                     <DataTableExtensions {...tableData}  >
@@ -151,4 +122,4 @@ function TotalLocations() {
         </>
     )
 }
-export default TotalLocations;
+export default TotalAssignRole;

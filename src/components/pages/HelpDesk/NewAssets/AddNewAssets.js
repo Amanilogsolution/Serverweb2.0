@@ -329,7 +329,7 @@ const AddNewAssets = () => {
                                             <a className='btn btn-voilet py-0 px-1 ' href='./TotalNewAssets' style={{ fontSize: "16px" }}>Submit</a></div>
                                         : null
                                     }
-{/* Changs */}
+                                    {/* Changs */}
                                 </div>
                             </div>
                         </div>
@@ -337,7 +337,7 @@ const AddNewAssets = () => {
 
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}> Assets</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Assets</span> </h2>
+                                <h2><span className='page-type-head1'> Assets <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Assets</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalNewAssets' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
@@ -345,7 +345,6 @@ const AddNewAssets = () => {
                                     <div className='card-header'>Add Assets</div>
                                     <article className="card-body" >
                                         <form className='' autoComplete='off'>
-
                                             <ul >
 
                                                 {/* #################### Device Detail  Box Start #####################*/}

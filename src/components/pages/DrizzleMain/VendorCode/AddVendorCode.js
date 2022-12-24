@@ -8,7 +8,6 @@ import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { FaMinusCircle } from 'react-icons/fa'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-// import Snackbar from '../../../../Snackbar/Snackbar';
 import { GrFormClose } from "react-icons/gr"
 
 
@@ -178,7 +177,7 @@ function AddVendorCode() {
                         {/* ################# Snackbar ##################### */}
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Code</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Master</span> </h2>
+                                <h2><span className='page-type-head1'>Vendor Code <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Master</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorCode' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
@@ -339,7 +338,7 @@ function AddVendorCode() {
                                             </ul>
                                             <div className="form-group mt-3" >
                                                 <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Vendor Master </button>
-                                                <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                                <button type="reset" className="btn btn-secondary mx-3">Reset</button>
                                             </div>
                                         </form>
                                     </article>

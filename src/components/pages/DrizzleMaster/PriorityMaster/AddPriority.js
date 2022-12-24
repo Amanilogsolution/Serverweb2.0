@@ -60,17 +60,20 @@ function AddPriority() {
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
 
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Priority</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Priority Type</span> </h2>
+                                <h2><span className='page-type-head1'>Priority <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Priority </span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalPriority' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Add Priority:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="col" >
@@ -81,10 +84,9 @@ function AddPriority() {
                                             <label htmlFor='priority_desc'>Remarks</label>
                                             <textarea className="form-control" id='priority_desc' rows='3' />
                                         </div>
-
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleaddinsert}>Add Priority</button>
-                                            <button type="reset" className="btn btn-secondary" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                            <button type="reset" className="btn btn-secondary mx-3">Reset</button>
                                         </div>
                                     </form>
                                 </article>

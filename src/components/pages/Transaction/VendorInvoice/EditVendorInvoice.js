@@ -22,7 +22,7 @@ function EditVendorInvoice() {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
 
-            const datas = await GetVendorInvoice(org,localStorage.getItem('vendorinvoicesno'))
+            const datas = await GetVendorInvoice(org, localStorage.getItem('vendorinvoicesno'))
             console.log(datas)
             setData(datas[0])
 
@@ -41,7 +41,7 @@ function EditVendorInvoice() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
-       
+
         document.getElementById('subnitbtn').disabled = 'true'
         setLoading(false)
         let vendor = document.getElementById('vendor').value;
@@ -60,7 +60,7 @@ function EditVendorInvoice() {
         const sno = localStorage.getItem('vendorinvoicesno')
         const org = localStorage.getItem('Database')
 
-        if (!vendor || !invamt || !invno ) {
+        if (!vendor || !invamt || !invno) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
             setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "warning", type: "warning", route: "#", toggle: "true" })
@@ -69,7 +69,7 @@ function EditVendorInvoice() {
         }
         else {
             setLoading(true)
-            const result = await UpdatePendingVendorInvoice(org, vendor,accountno,invno,invamt,invdate,invduedate,invsubdate,remark,refno,printercount,sno)
+            const result = await UpdatePendingVendorInvoice(org, vendor, accountno, invno, invamt, invdate, invduedate, invsubdate, remark, refno, printercount, sno)
             if (result === 'Data Updated') {
                 localStorage.removeItem('vendorinvoicesno')
                 setDatas({ ...datas, message: "Invoice Updated", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
@@ -92,13 +92,13 @@ function EditVendorInvoice() {
 
         const toindex = val.indexOf(",")
         const vebndconid = val.slice(0, toindex)
-        const detail = await VendorContractDetail(org,vebndconid);
+        const detail = await VendorContractDetail(org, vebndconid);
         document.getElementById('accountno').value = detail.customer_account_no;
         document.getElementById('refno').value = detail.reference_no;
-        
+
     }
 
-    const handleChangeremarks=(e)=>{
+    const handleChangeremarks = (e) => {
         setData({ ...data, remark: e.target.value })
     }
 
@@ -107,13 +107,17 @@ function EditVendorInvoice() {
             {
                 loading ?
                     <Sidebar>
-                    <div id="snackbar" style={{ display: "none" }}>
+                        {/* ######################### Sanckbar Start ##################################### */}
+
+                        <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Invoice</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Invoice</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('vendorinvoicesno');window.location.href = '/TotalVendorInvoice' }} >Back <MdOutlineArrowForward /></button>
+                                <h2><span className='page-type-head1'>Vendor Invoice <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Vendor Invoice</span> </h2>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('vendorinvoicesno'); window.location.href = '/TotalVendorInvoice' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className=" card contract-div" style={{ width: "90%" }}>
                                 <header className="card-header d-flex justify-content-between" >
@@ -136,7 +140,7 @@ function EditVendorInvoice() {
                                             </div>
                                             <div className="form-group col-md-4">
                                                 <label htmlFor='accountno'>Account no <span className='text-danger'>*</span></label>
-                                                <input type="text" id='accountno' className="form-control" disabled defaultValue={data.account_no}/>
+                                                <input type="text" id='accountno' className="form-control" disabled defaultValue={data.account_no} />
                                             </div>
                                             <div className="form-group col-md-4">
                                                 <label htmlFor='invno'>Invoice no <span className='text-danger'>*</span> </label>
@@ -167,7 +171,7 @@ function EditVendorInvoice() {
                                             </div>
                                             <div className="form-group col-md-4">
                                                 <label htmlFor='refno'>Reference No <span className='text-danger'>*</span></label>
-                                                <input type="text" id='refno' className="form-control" defaultValue={data.reference_no} disabled/>
+                                                <input type="text" id='refno' className="form-control" defaultValue={data.reference_no} disabled />
                                             </div>
                                             <div className="form-group col-md-4">
                                                 <label htmlFor='printercount'>Printer Counter</label>
@@ -181,7 +185,7 @@ function EditVendorInvoice() {
                                         </div>
 
                                         <div className='btn_div mt-3'>
-                                            <button className='btn btn-voilet'  id='subnitbtn' onClick={handleAddVendorIvoice}>Update Vendor Invoice</button>
+                                            <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Update Vendor Invoice</button>
                                         </div>
                                     </form>
                                 </article>

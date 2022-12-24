@@ -5,36 +5,9 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { TotalVendSubCateapi, DeleteVendSubCateStatus } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
-import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-
-const customStyles = {
-    title: {
-        style: {
-            fontColor: 'red',
-            fontWeight: '900',
-        }
-    },
-    rows: {
-        style: {
-            minHeight: '35px'
-        }
-    },
-    headCells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(105,59,233)',
-            color: 'white',
-        },
-    },
-    cells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(242,242,242)',
-            borderBottom: "1px solid silver"
-        },
-    },
-};
+import customStyles from '../../../TableCustomtyle'
 
 
 function TotalVendSubCate() {
@@ -61,7 +34,7 @@ function TotalVendSubCate() {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
+                <select className='border-0' style={{ background: "rgb(222, 222, 222)"}} onChange={async (e) => {
                     const status = e.target.value;
                     const org = localStorage.getItem('Database')
 
@@ -81,7 +54,7 @@ function TotalVendSubCate() {
             cell: (row) => [
                 <a title='Edit Vendor Sub Category' href="/EditVendorSubCategory">
                     <p onClick={() => localStorage.setItem('vendsubcatesno', `${row.sno}`)} >
-                        <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+                        <AiFillEdit className='ft-20' style={{ marginBottom: "-13px" }} />
                     </p></a>
             ]
         }
@@ -91,11 +64,9 @@ function TotalVendSubCate() {
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-
             const tabledata = await TotalVendSubCateapi(org);
             setData(tabledata)
             setLoading(true)
-
         }
         fetchdata();
     }, [])
@@ -113,8 +84,8 @@ function TotalVendSubCate() {
                         <div className='main_container' >
                             <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h3><span style={{ color: "rgb(123,108,200)" }}>Vendor Sub Category</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Total Vendor Sub Category</span> </h3>
-                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorSubCategory' }} >Add Vendor Sub Category<MdAdd /></button>
+                                    <h3><span className='page-type-head1'>Vendor Sub Category <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Vendor Sub Category</span> </h3>
+                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorSubCategory' }} >Add Vendor Sub Category +</button>
                                 </div>
                                 <div >
                                     <DataTableExtensions {...tableData}  >

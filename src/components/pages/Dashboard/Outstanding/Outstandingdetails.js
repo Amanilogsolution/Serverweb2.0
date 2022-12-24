@@ -15,20 +15,16 @@ const Outstatndingdetails = () => {
                 <div className="card1 flex-fill">
                     <p className="bg-dark text-center text-white">Search Payment Detail</p>
                     <div className="d-flex justify-content-center">
-
                         <input className=" form-control w-50" type="search" placeholder="Search ..." />
                         <BiSearchAlt2 style={{fontSize:"25px",margin:"4px 3px",cursor:"pointer"}}/>
-
                         {/* <button class="  btn btn-outline-success " type="submit">Search</button> */}
                     </div>
                 </div>
                 <div className="card1 flex-fill">
                     <p className="bg-dark text-center text-white">Search Billing Account Number</p>
                     <div className="d-flex justify-content-center">
-
                         <input className=" form-control w-50" type="search" placeholder="Search ..." />
                         <BiSearchAlt2 style={{fontSize:"25px",margin:"4px 3px",cursor:"pointer"}}/>
-
                         {/* <button class="  btn btn-outline-success " type="submit">Search</button> */}
                     </div>
                 </div>
@@ -37,8 +33,8 @@ const Outstatndingdetails = () => {
             <div className="d-flex flex-column mt-2 mx-1" style={{ minHeight: "60vh" }}>
                 <div style={{ maxHeight: "30vh" }}>
                     <p className="bg-dark text-center text-white">Vendor Invoices - Detailed</p>
-                    <div className="Outstanding_table" style={{ overflow: "auto", height: "20vh" }}>
-                        <table class="table table-striped" >
+                    <div className="Outstanding_details_table" style={{ overflow: "auto", height: "20vh" }}>
+                        <table className="table table-striped" >
                             <thead>
                                 <tr>
                                     <th scope="col">Company</th>
@@ -81,10 +77,10 @@ const Outstatndingdetails = () => {
                         </table>
                     </div>
                 </div>
-                <div style={{ minHeight: "30vh" }}>
-                    <p className="bg-dark text-center text-white">Paid Invoices - Detailed</p>
-                    <div className="Outstanding_table" style={{ overflow: "auto", height: "20vh" }}>
-                        <table class="table table-striped" >
+                <div className='border border-danger'>
+                    <p className="bg-dark text-center text-white ">Paid Invoices - Detailed</p>
+                    <div className="Outstanding_details_table " style={{ overflow: "auto", height: "20vh" }}>
+                        <table className="table table-striped " >
                             <thead>
                                 <tr>
                                     <th scope="col">Company</th>
@@ -95,6 +91,24 @@ const Outstatndingdetails = () => {
                             </thead>
                             <tbody>
                                 <tr>
+                                    <th scope="row">ILOG</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ILOG</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ILOG</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                  <tr>
                                     <th scope="row">ILOG</th>
                                     <td>Mark</td>
                                     <td>Otto</td>

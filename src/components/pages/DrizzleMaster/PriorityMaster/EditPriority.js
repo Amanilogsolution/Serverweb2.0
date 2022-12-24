@@ -21,7 +21,7 @@ function EditPriority() {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
 
-            const result = await GetPriorityapi(org,localStorage.getItem('prioritysno'))
+            const result = await GetPriorityapi(org, localStorage.getItem('prioritysno'))
             setData(result[0]);
             setLoading(true)
         }
@@ -46,7 +46,7 @@ function EditPriority() {
             document.getElementById('snackbar').style.display = "block"
         }
         else {
-            const result = await UpdatePriorityapi(org,sno, priority, priority_desc, username);
+            const result = await UpdatePriorityapi(org, sno, priority, priority_desc, username);
 
             if (result === 'Updated') {
                 localStorage.removeItem('prioritysno');
@@ -68,14 +68,6 @@ function EditPriority() {
     }
 
 
-    const handlechangeassetstatus = (e) => {
-        setData({ ...data, priority_type: e.target.value })
-    }
-    const handlechangeassetstatusdesc = (e) => {
-        setData({ ...data, priority_description: e.target.value })
-    }
-
-
     return (
         <>
             {
@@ -87,20 +79,21 @@ function EditPriority() {
 
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Priority</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Priority Type</span> </h2>
+                                <h2><span className='page-type-head1'>Priority <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Priority Type</span> </h2>
                                 <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('prioritysno'); window.location.href = '/TotalPriority' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Edit Priority:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
 
                                         <div className="form-group col" >
                                             <label htmlFor='priority'>Priority Type <span className='text-danger'>*</span></label>
-                                            <input type="text" className="form-control" id='priority' value={data.priority_type} onChange={handlechangeassetstatus} />
+                                            <input type="text" className="form-control" id='priority' defaultValue={data.priority_type} />
                                         </div>
                                         <div className="form-group col-md mt-3" >
                                             <label htmlFor='priority_desc'>Remarks</label>
-                                            <textarea type="text" className="form-control" id='priority_desc' value={data.priority_description} onChange={handlechangeassetstatusdesc} />
+                                            <textarea type="text" className="form-control" id='priority_desc' defaultValue={data.priority_description} />
                                         </div>
 
                                         <div className="form-group mt-3" >

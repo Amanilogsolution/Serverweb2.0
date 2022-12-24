@@ -1212,12 +1212,8 @@ export const CurrencyMaster = async() =>{
 
 //Role Master
 
-export const insertRoles = async(org,role_id,remark,asset,asset_view,asset_create,asset_edit,asset_delete,vendor_contract,vendor_contract_view,vendor_contract_create,vendor_contract_edit,vendor_contract_delete,
-    ticket,ticket_view,ticket_create,ticket_edit,ticket_delete,master,master_view,master_create,master_edit,master_delete,transaction_details,transaction_view,transaction_create,transaction_edit,transaction_delete,
-    setting,setting_view,setting_create,setting_edit,setting_delete,reports,reports_view,reports_create,reports_edit,reports_delete) =>{
+export const insertRoles = async(data) =>{
     const url = `http://localhost:2008/api/insertroles`
-    return axios.post(url, {org,role_id,remark,asset,asset_view,asset_create,asset_edit,asset_delete,vendor_contract,vendor_contract_view,vendor_contract_create,vendor_contract_edit,vendor_contract_delete,
-        ticket,ticket_view,ticket_create,ticket_edit,ticket_delete,master,master_view,master_create,master_edit,master_delete,transaction_details,transaction_view,transaction_create,transaction_edit,transaction_delete,
-        setting,setting_view,setting_create,setting_edit,setting_delete,reports,reports_view,reports_create,reports_edit,reports_delete}).then(response => response.data).catch(error => console.log(error));  
+    return axios.post(url, {data}).then(response => response.data).catch(error => console.log(error));  
 }
 

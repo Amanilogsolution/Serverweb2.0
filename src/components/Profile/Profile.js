@@ -80,34 +80,32 @@ const Profile = () => {
 
       }
    }
-   const handlechangeempname = (e) => {
-      setDetails({ ...details, employee_name: e.target.value })
-   }
+
 
    const handlechangeempno = (e) => {
       if (e.target.value.length === 11) return false;
       setDetails({ ...details, employee_number: e.target.value })
    }
-   const handlechangeempemail = (e) => {
-      setDetails({ ...details, employee_email: e.target.value })
-   }
+
 
    return (
       <>
          {
             loading ?
                <Sidebar>
+                  {/* ######################### Sanckbar start ##################################### */}
+
                   <div id="snackbar" style={{ display: "none" }}>
                      <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                   </div>
+                  {/* ######################### Sanckbar End ##################################### */}
 
-                  <div className='Profile_container bg-light d-flex align-items-center'>
+                  <div className='main_container Profile_container bg-light d-flex align-items-center px-5'>
 
-                     {/* <div className='pofile_card'> */}
-                     <div className='profile d-flex'>
+                     <div className='profile d-flex rounded'>
                         <div className='photo_sec d-flex  py-3 text-light position-relative'>
                            <h2 >Profile Details</h2>
-                           <HiUserCircle className='profile_log ' />
+                           <HiUserCircle className='profile_log position-absolute' />
                         </div>
                         <div className='details px-5 py-3'>
                            <form>
@@ -115,7 +113,7 @@ const Profile = () => {
                                  <div className='col-md-6'>
                                     <label>Name</label>
                                     <br />
-                                    <input className="form-control" id='employee_name' value={details.employee_name} onChange={handlechangeempname} ></input>
+                                    <input className="form-control" id='employee_name' defaultValue={details.employee_name} ></input>
                                  </div>
                                  <div className='col-md-6'>
                                     <label>Mobile</label>
@@ -127,7 +125,7 @@ const Profile = () => {
                                  <div className='col-md-6'>
                                     <label>Email</label>
                                     <br />
-                                    <input className="form-control" id='employee_email' value={details.employee_email} onChange={handlechangeempemail} ></input>
+                                    <input className="form-control" id='employee_email' defaultValue={details.employee_email}></input>
                                  </div>
                                  <div className='col-md-6'>
                                     <label>Address</label>
@@ -147,7 +145,6 @@ const Profile = () => {
                                     <input className="form-control" id="company" value={details.company} disabled></input>
                                  </div>
                               </div>
-                              {/* </div> */}
 
                               <hr />
                               <label> TOTP Authentication </label>&nbsp;
@@ -171,7 +168,6 @@ const Profile = () => {
                            </form>
                         </div>
                      </div>
-                     {/* </div> */}
                   </div>
                </Sidebar >
                : <LoadingPage />
