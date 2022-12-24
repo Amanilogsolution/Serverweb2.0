@@ -5,7 +5,6 @@ import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { FaMinusCircle } from 'react-icons/fa'
-// import Snackbar from '../../../../Snackbar/Snackbar';
 import { GrFormClose } from "react-icons/gr"
 
 
@@ -198,7 +197,6 @@ function EditVendorCode() {
                                         onClick={() => {
                                             setDatas({ ...datas, toggle: 'false' });
                                             window.location.href = datas.route
-
                                         }}
                                     >
                                         <GrFormClose />
@@ -209,7 +207,7 @@ function EditVendorCode() {
                         {/* ################# Snackbar ##################### */}
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Master</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Master</span> </h2>
+                                <h2><span className='page-type-head1'>Vendor Master <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Vendor Master</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('VendorCodeSno'); window.location.href = '/TotalVendorCode' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
@@ -366,7 +364,6 @@ function EditVendorCode() {
                                             </ul>
                                             <div className="form-group mt-3" >
                                                 <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Edit Vendor Master </button>
-                                                <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
                                             </div>
                                         </form>
                                     </article>

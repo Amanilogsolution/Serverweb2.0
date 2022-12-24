@@ -106,12 +106,16 @@ function EditVendorPayments() {
             {
                 loading ?
                     <Sidebar>
+                        {/* ######################### Sanckbar Start ##################################### */}
+
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Payment</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Payment</span> </h2>
+                                <h2><span className='page-type-head1'>Vendor Payment <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Vendor Payment</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('vendorpaymentssno'); window.location.href = '/TotalVendorPayment' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className=" card contract-div" style={{ width: "90%" }}>

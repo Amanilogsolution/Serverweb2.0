@@ -6,37 +6,8 @@ import { PendingVendorInvoice } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
-
-const customStyles = {
-    title: {
-        style: {
-            fontColor: 'red',
-            fontWeight: '900',
-        }
-    },
-    rows: {
-        style: {
-            minHeight: '35px'
-        }
-    },
-    headCells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(105,59,233)',
-            color: 'white',
-            
-        },
-    },
-    cells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(242,242,242)',
-            borderBottom: "1px solid silver"
-        },
-    },
-};
+import customStyles from '../../../TableCustomtyle'
 
 
 function TotalVendorInvoice() {
@@ -78,7 +49,7 @@ function TotalVendorInvoice() {
             cell: (row) => [
                 <a title='Edit Invoice' href="/EditVendorInvoice">
                     <p onClick={() => localStorage.setItem('vendorinvoicesno', `${row.sno}`)} >
-                        <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+                        <AiFillEdit className='ft-20' style={{  marginBottom: "-13px" }} />
                     </p></a>
             ]
         }
@@ -88,9 +59,7 @@ function TotalVendorInvoice() {
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-
             const tabledata = await PendingVendorInvoice(org);
-            console.log(tabledata)
             setData(tabledata)
             setLoading(true)
         }
@@ -110,7 +79,7 @@ function TotalVendorInvoice() {
                         <div className='main_container' >
                             <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Invoice</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Vendor Invoice</span> </h2>
+                                    <h2><span className='page-type-head1'>Vendor Invoice <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Vendor Invoice</span> </h2>
                                     <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorInvoice' }} >Add Vendor Invoice <MdAdd /></button>
                                 </div>
                                 <div >

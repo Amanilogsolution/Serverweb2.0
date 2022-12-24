@@ -3,7 +3,7 @@ import './Recurring.css'
 
 export default function Recurring() {
   return (
-    <div className='Recurring_div'>
+    <div className='Recurring_div d-flex mx-2 pt-2'>
 
       <div className='recurring_table'>
         <p className='bg-dark text-white px-4 mx-1'>Vendor Resources Details</p>
@@ -143,29 +143,29 @@ export default function Recurring() {
 
         </div>
       </div>
-      <div className='recurring_cards'>
-        <div className='recurring_card'>
-          <p>Recurring</p>
-          <h3 style={{ marginTop: "-12px" }}>54</h3>
+      <div className='recurring_cards px-2'>
+        <div className='recurring_card text-center text-light pt-2 rounded mb-2'>
+          <p className='mb-0'>Recurring</p>
+          <h3>54</h3>
         </div>
 
-        <div className='recurring_card'>
-          <p>Annual</p>
-          <h3 style={{ marginTop: "-12px" }}>4</h3>
+        <div className='recurring_card text-center text-light pt-2 rounded mb-2'>
+          <p className='mb-0'>Annual</p>
+          <h3>4</h3>
         </div>
 
-        <div className='recurring_card'>
-          <p>Quarterly</p>
-          <h3 style={{ marginTop: "-12px" }}>98</h3>
+        <div className='recurring_card text-center text-light pt-2 rounded mb-2'>
+          <p className='mb-0'>Quarterly</p>
+          <h3>98</h3>
         </div>
 
-        <div className='recurring_card'>
-          <p>Monthly</p>
-          <h3 style={{ marginTop: "-12px" }}>12</h3>
+        <div className='recurring_card text-center text-light pt-2 rounded mb-2'>
+          <p className='mb-0'>Monthly</p>
+          <h3>12</h3>
         </div>
-        <div className='recurring_card'>
-          <p>Invoice Received</p>
-          <h3 style={{ marginTop: "-12px" }}>723</h3>
+        <div className='recurring_card text-center text-light pt-2 rounded mb-2'>
+          <p className='mb-0'>Invoice Received</p>
+          <h3>723</h3>
         </div>
       </div>
     </div>

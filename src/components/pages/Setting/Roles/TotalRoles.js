@@ -6,37 +6,37 @@ import { TotalAssetTypeapi, DeleteAssetTypeapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import customStyles from '../../../TableCustomtyle'
 
-const customStyles = {
-    title: {
-      style: {
-        fontColor: 'red',
-        fontWeight: '900',
-      }
-    },
-    rows: {
-      style: {
-        minHeight: '35px'
-      }
-    },
-    headCells: {
-      style: {
-        fontSize: '14px',
-        background:'rgb(105,59,233)',
-        color:'white',
-      },
-    },
-    cells: {
-      style: {
-        fontSize: '14px',
-        // fontWeight:'600',
-        background:'rgb(242,242,242)	',
-        borderBottom:"1px solid silver"
-      },
-    },
-  };
+// const customStyles = {
+//     title: {
+//       style: {
+//         fontColor: 'red',
+//         fontWeight: '900',
+//       }
+//     },
+//     rows: {
+//       style: {
+//         minHeight: '35px'
+//       }
+//     },
+//     headCells: {
+//       style: {
+//         fontSize: '14px',
+//         background:'rgb(105,59,233)',
+//         color:'white',
+//       },
+//     },
+//     cells: {
+//       style: {
+//         fontSize: '14px',
+//         // fontWeight:'600',
+//         background:'rgb(242,242,242)	',
+//         borderBottom:"1px solid silver"
+//       },
+//     },
+//   };
   
 
 function TotalRoles() {
@@ -111,7 +111,7 @@ function TotalRoles() {
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Roles</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Roles</span> </h2>
+                            <h2><span className='page-type-head1'>Roles <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Roles</span> </h2>
                             <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './NewRoles' }} >Add Roles<MdAdd /></button>
                         </div>
                         <div >

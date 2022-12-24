@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import './VendorPayment.css'
 import { PendingVendorInvoice, UpdateVendorInvoice } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
@@ -168,12 +167,16 @@ function AddVendorPayment() {
             {
                 loading ?
                     <Sidebar>
+                        {/* ######################### Sanckbar Start ##################################### */}
+
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Payment</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Payment</span> </h2>
+                                <h2><span className='page-type-head1'>Vendor Payment <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Payment</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorPayment' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className=" card contract-div" style={{ width: "98%" }}>

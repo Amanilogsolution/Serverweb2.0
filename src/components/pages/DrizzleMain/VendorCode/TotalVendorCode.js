@@ -5,36 +5,9 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { TotalVendorCodeapi, DeleteVendorCode } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
-import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-
-const customStyles = {
-    title: {
-        style: {
-            fontColor: 'red',
-            fontWeight: '900',
-        }
-    },
-    rows: {
-        style: {
-            minHeight: '35px'
-        }
-    },
-    headCells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(105,59,233)',
-            color: 'white',
-        },
-    },
-    cells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(242,242,242)	',
-            borderBottom: "1px solid silver"
-        },
-    },
-};
+import customStyles from '../../../TableCustomtyle'
 
 
 function TotalVendorCode() {
@@ -71,7 +44,7 @@ function TotalVendorCode() {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
+                <select className='border-0' style={{ background: "rgb(222, 222, 222)"}} onChange={async (e) => {
                     const status = e.target.value;
                     const org = localStorage.getItem('Database')
 
@@ -91,7 +64,7 @@ function TotalVendorCode() {
             cell: (row) => [
                 <a title='Edit Vendor Code' href="/EditVendorCode">
                     <p onClick={() => localStorage.setItem('VendorCodeSno', `${row.sno}`)} >
-                        <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+                        <AiFillEdit className='ft-20' style={{marginBottom: "-13px" }} />
                     </p></a>
             ]
         }
@@ -101,12 +74,9 @@ function TotalVendorCode() {
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-
             const tabledata = await TotalVendorCodeapi(org);
             setData(tabledata)
-            console.log(tabledata)
             setLoading(true)
-
         }
         fetchdata();
     }, [])
@@ -124,8 +94,8 @@ function TotalVendorCode() {
                         <div className='main_container' >
                             <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Master</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Vendor Master</span> </h2>
-                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorCode' }} >Add Vendor Master <MdAdd /></button>
+                                    <h2><span className='page-type-head1'>Vendor Master <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Vendor Master</span> </h2>
+                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorCode' }} >Add Vendor Master +</button>
                                 </div>
                                 <div >
                                     <DataTableExtensions {...tableData}  >

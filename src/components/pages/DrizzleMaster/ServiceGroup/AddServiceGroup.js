@@ -61,33 +61,34 @@ function AddServiceGroup() {
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
 
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Service Group</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Service Group</span> </h2>
+                                <h2><span className='page-type-head1'>Service Group <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Service Group</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalServiceGroup' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Add Service Group:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="col">
                                             <label htmlFor='service_group_type'>Service Group Type <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='service_group_type' />
                                         </div>
-
                                         <div className="col-md mt-3" >
                                             <label htmlFor='remark'>Remarks</label>
                                             <textarea className="form-control" id='remark' rows='3' />
                                         </div>
 
-
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleinsertdata}>Add Group Type</button>
-                                            <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                            <button type="reset" className="btn btn-secondary mx-3">Reset</button>
                                         </div>
                                     </form>
                                 </article>

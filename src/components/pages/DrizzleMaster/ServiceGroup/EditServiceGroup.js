@@ -66,42 +66,36 @@ function EditServiceGroup() {
 
     }
 
-    const handleChangeGroup = (e) => {
-        setData({ ...data, service_group_type: e.target.value })
-    }
-
-    const handleChangeRemark = (e) => {
-        setData({ ...data, service_group_description: e.target.value })
-    }
-
-
     return (
         <>
 
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
 
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Service Action Group</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Service Action Group</span> </h2>
+                                <h2><span className='page-type-head1'>Service Action Group <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Service Action Group</span> </h2>
                                 <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('servicegroupsno'); window.location.href = '/TotalServiceGroup' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Edit Service Action Group:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="form-group col">
                                             <label htmlFor='service_group_type'> Service Group Type <span className='text-danger'>*</span></label>
-                                            <input type="text" className="form-control" id='service_group_type' value={data.service_group_type} onChange={handleChangeGroup} />
+                                            <input type="text" className="form-control" id='service_group_type' defaultValue={data.service_group_type} />
                                         </div>
 
                                         <div className="form-group col-md mt-3" >
                                             <label htmlFor='remark'>Remarks</label>
-                                            <textarea type="text" className="form-control" id='remark' value={data.service_group_description} onChange={handleChangeRemark} />
+                                            <textarea type="text" className="form-control" id='remark' defaultValue={data.service_group_description}  />
                                         </div>
 
                                         <div className="form-group mt-3" >

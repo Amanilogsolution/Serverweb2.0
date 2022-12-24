@@ -1,11 +1,5 @@
-.invoice-form{
-    overflow: auto;
-}
 .invoice-td
 {
     width: 120px;
 }
-.invoice-td .invoice-inp
-{
-    border: none;
-}
+

@@ -163,6 +163,10 @@ import AddRoles from './components/pages/Setting/Roles/AddRole';
 
 import OrganisationDetails from './components/LandingPage/Register/Organistion';
 
+import TotalAssignRole from './components/pages/Setting/AssignRole/TotalAssignRole';
+import AddAssignRole from './components/pages/Setting/AssignRole/AddAssignRole';
+import EditAssignRole from './components/pages/Setting/AssignRole/EditAssignRole';
+
 import PageNotFound from './components/404/404';
 
 const App = () => {
@@ -326,7 +330,10 @@ const App = () => {
           <Route path='/TotalRoles' element={<TotalRoles/>}/>
           <Route path='/NewRoles' element={<AddRoles/>}/>
           
-
+          <Route path='/TotalAssignRole' element={<TotalAssignRole/>}/>
+          <Route path='/AddAssignRole' element={<AddAssignRole/>}/>
+          <Route path='/EditAssignRole' element={<EditAssignRole/>}/>
+          
         </Route>
 
         <Route path="/HelpDescription" element={<HelpDeskSideBar/>} />

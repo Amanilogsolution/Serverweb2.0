@@ -6,36 +6,37 @@ import { TotalAssetStatusapi, DeleteAssetStatusapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import customStyles from '../../../TableCustomtyle'
 
-const customStyles = {
-    title: {
-        style: {
-            fontColor: 'red',
-            fontWeight: '900',
-        }
-    },
-    rows: {
-        style: {
-            minHeight: '35px'
-        }
-    },
-    headCells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(105,59,233)',
-            color: 'white',
-        },
-    },
-    cells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(242,242,242)',
-            borderBottom: "1px solid silver"
-        },
-    },
-};
+
+// const customStyles = {
+//     title: {
+//         style: {
+//             fontColor: 'red',
+//             fontWeight: '900',
+//         }
+//     },
+//     rows: {
+//         style: {
+//             minHeight: '35px'
+//         }
+//     },
+//     headCells: {
+//         style: {
+//             fontSize: '14px',
+//             background: 'rgb(105,59,233)',
+//             color: 'white',
+//         },
+//     },
+//     cells: {
+//         style: {
+//             fontSize: '14px',
+//             background: 'rgb(242,242,242)',
+//             borderBottom: "1px solid silver"
+//         },
+//     },
+// };
 
 
 function TotalAssetStatus() {
