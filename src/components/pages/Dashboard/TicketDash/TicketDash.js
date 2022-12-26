@@ -65,12 +65,12 @@ const TicketDash = () => {
   return (
     <div className='ticket_dash bg-white'>
       <div className="d-flex ticket_dash_inner">
-        <div id='ticket_details1' className='ticket_details d-flex justify-content-center align-items-center' onClick={() => setStep(1)} >Department</div>
-        <div id='ticket_details2' className='ticket_details d-flex justify-content-center align-items-center' onClick={() => setStep(2)} >Topics</div>
-        <div id='ticket_details3' className='ticket_details d-flex justify-content-center align-items-center' onClick={() => setStep(3)} >Staff</div>
-        <div id='ticket_details4' className='ticket_details d-flex justify-content-center align-items-center' onClick={() => setStep(4)} >Priority</div>
+        <div id='ticket_details1' className='ticket_details cursor-pointer d-flex justify-content-center align-items-center' onClick={() => setStep(1)} >Summary</div>
+        <div id='ticket_details2' className='ticket_details cursor-pointer d-flex justify-content-center align-items-center' onClick={() => setStep(2)} >Issue Type</div>
+        <div id='ticket_details4' className='ticket_details cursor-pointer d-flex justify-content-center align-items-center' onClick={() => setStep(4)} >Priority</div>
+        <div id='ticket_details3' className='ticket_details cursor-pointer d-flex justify-content-center align-items-center' onClick={() => setStep(3)} >Staff</div>
       </div>
-      <div className='half-a-border-on-top' >{showStep(currentStep)}</div>
+      <div className='half-a-border-on-top border border-dark ' >{showStep(currentStep)}</div>
 
     </div>
   )

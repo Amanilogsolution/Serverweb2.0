@@ -117,7 +117,7 @@ function TotalDevice() {
             selector: "null",
             cell: (row) => [
                 <a title='Edit Device' href="/EditDevice">
-                    <p onClick={() => sessionStorage.setItem('deviceSno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('deviceSno', `${row.sno}`)} >
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p>
                 </a>

@@ -5,38 +5,9 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { TotalBillingFreqapi, DeleteBillingFreqapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
-import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-
-const customStyles = {
-    title: {
-        style: {
-            fontColor: 'red',
-            fontWeight: '900',
-        }
-    },
-    rows: {
-        style: {
-            minHeight: '35px'
-        }
-    },
-    headCells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(105,59,233)',
-            color: 'white',
-        },
-    },
-    cells: {
-        style: {
-            fontSize: '14px',
-            // fontWeight:'600',
-            background: 'rgb(242,242,242)',
-            borderBottom: "1px solid silver"
-        },
-    },
-};
-
+import customStyles from '../../../TableCustomtyle'
 
 function TotalBillingFreq() {
     const [data, setData] = useState([])
@@ -53,14 +24,13 @@ function TotalBillingFreq() {
             selector:'billing_freq_description',
             sortable: true,
         },
-
         {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
+                <select className='border-0' style={{ background: "rgb(222, 222, 222)" }} onChange={async (e) => {
                     const status = e.target.value;
-                    const org = sessionStorage.getItem('Database')
+                    const org = localStorage.getItem('Database')
 
                      await DeleteBillingFreqapi(org,status, row.sno)
                     window.location.reload()
@@ -77,22 +47,19 @@ function TotalBillingFreq() {
             selector: row => row.null,
             cell: (row) => [
                 <a title='Edit BillingFreq' href="/EditBillingFreq">
-                    <p onClick={() => sessionStorage.setItem('billingfreqsno', `${row.sno}`)} >
-                        <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+                    <p onClick={() => localStorage.setItem('billingfreqsno', `${row.sno}`)} >
+                        <AiFillEdit className='ft-20' style={{ marginBottom: "-13px" }} />
                     </p></a>
             ]
         }
-
     ];
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
-
+            const org = localStorage.getItem('Database')
             const tabledata = await TotalBillingFreqapi(org);
             setData(tabledata)
             setLoading(true)
-
         }
         fetchdata();
     }, [])
@@ -110,10 +77,10 @@ function TotalBillingFreq() {
                         <div className='main_container' >
                             <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span style={{ color: "rgb(123,108,200)" }}>Billing Frequency</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Billing Frequency</span> </h2>
-                                    <button className='btn btn-sm btn-voilet' onClick={e => { e.preventDefault(); window.location.href = './AddBillingFreq' }} >Add Billing Frequency <MdAdd /></button>
+                                    <h2><span className='page-type-head1'>Billing Frequency <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Billing Frequency</span> </h2>
+                                    <button className='btn btn-sm btn-voilet' onClick={e => { e.preventDefault(); window.location.href = './AddBillingFreq' }} >Add Billing Frequency  +</button>
                                 </div>
-                                <div >
+                                <div>
                                     <DataTableExtensions {...tableData}  >
                                         <DataTable
                                             noHeader

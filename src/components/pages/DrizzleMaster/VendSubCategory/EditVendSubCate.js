@@ -20,9 +20,9 @@ function EditVendorSubCategory() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const result = await GetVendSubCate(org, sessionStorage.getItem('vendsubcatesno'))
+            const result = await GetVendSubCate(org, localStorage.getItem('vendsubcatesno'))
             setData(result[0]);
             const vendorCategory = await ActiveVendorCategory(org)
             setVendorcatlist(vendorCategory)
@@ -40,9 +40,9 @@ function EditVendorSubCategory() {
         const vendor_category = document.getElementById('vendor_category').value;
         const vendor_sub_category = document.getElementById('vendor_sub_category').value;
         const remark = document.getElementById('remark').value;
-        const UserId = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('vendsubcatesno')
-        const org = sessionStorage.getItem('Database')
+        const UserId = localStorage.getItem('UserId');
+        const sno = localStorage.getItem('vendsubcatesno')
+        const org = localStorage.getItem('Database')
 
         if (!vendor_category || !vendor_sub_category) {
             setLoading(true)
@@ -51,6 +51,8 @@ function EditVendorSubCategory() {
             document.getElementById('snackbar').style.display = "block"
         }
         else {
+            setLoading(true)
+
             const result = await UpdateVendSubCate(org, sno, vendor_category, vendor_sub_category, remark, UserId);
 
             if (result === 'Updated') {
@@ -71,15 +73,7 @@ function EditVendorSubCategory() {
 
     }
 
-    const handleChangeVendCate = (e) => {
-        setData({ ...data, vendor_category: e.target.value })
-    }
-    const handleChangeVendSubCate = (e) => {
-        setData({ ...data, vendor_sub_category: e.target.value })
-    }
-    const handleChangeRemark = (e) => {
-        setData({ ...data, vendor_sub_category_description: e.target.value })
-    }
+
 
 
     return (
@@ -87,22 +81,27 @@ function EditVendorSubCategory() {
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
+
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h3><span style={{ color: "rgb(123,108,200)" }}>Vendor Sub Category</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Edit Vendor Sub Category</span> </h3>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('vendsubcatesno'); window.location.href = '/TotalVendSubCate' }} >Back <MdOutlineArrowForward /></button>
+                                <h3><span className='page-type-head1'>Vendor Sub Category <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Vendor Sub Category</span> </h3>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('vendsubcatesno'); window.location.href = '/TotalVendSubCate' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Edit Vendor Sub Category:</div>
 
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="row">
                                             <div className="form-group col-md-6">
                                                 <label htmlFor='vendor_category'> Select Vendor Category <span className='text-danger'>*</span></label>
-                                                <select type="text" className="form-select" id='vendor_category' onChange={handleChangeVendCate}>
+                                                <select type="text" className="form-select" id='vendor_category' >
                                                     <option value={data.vendor_category} hidden>{data.vendor_category} </option>
                                                     {
                                                         vendorcatlist.map((item, index) =>
@@ -112,12 +111,12 @@ function EditVendorSubCategory() {
                                             </div>
                                             <div className="form-group col-md-6" >
                                                 <label htmlFor='vendor_sub_category'> Vendor Sub Category <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='vendor_sub_category' value={data.vendor_sub_category} onChange={handleChangeVendSubCate} />
+                                                <input type="text" className="form-control" id='vendor_sub_category' defaultValue={data.vendor_sub_category} />
                                             </div>
                                         </div>
                                         <div className="form-group col-md mt-3" >
                                             <label htmlFor='remark'>Remarks</label>
-                                            <textarea className="form-control" id='remark' rows='3' value={data.vendor_sub_category_description} onChange={handleChangeRemark} />
+                                            <textarea className="form-control" id='remark' rows='3' defaultValue={data.vendor_sub_category_description} />
                                         </div>
 
 

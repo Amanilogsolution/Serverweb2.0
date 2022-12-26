@@ -25,9 +25,7 @@ function AddSoftware() {
         const software = document.getElementById('software').value;
         const software_id = software.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const software_desc = document.getElementById('software_desc').value;
-
-        const username = sessionStorage.getItem('UserId');
-
+        const username = localStorage.getItem('UserId');
 
         if (!software) {
             setLoading(true)
@@ -37,7 +35,7 @@ function AddSoftware() {
         }
         else {
             setLoading(true)
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const result = await AddSoftwareapi(org, software_id, software, software_desc, username);
             if (result === 'Added') {
@@ -61,15 +59,19 @@ function AddSoftware() {
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
+
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Software</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Software</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalSoftware' }} >Back <MdOutlineArrowForward /></button>
+                                <h2><span className='page-type-head1'>Software</span> <MdOutlineKeyboardArrowRight /><span className='page-type-head2'>Add Software</span> </h2>
+                                <button className='btn btn-secondary btn' onClick={() => { window.location.href = '/TotalSoftware' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Add Software:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
 
@@ -85,7 +87,7 @@ function AddSoftware() {
 
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleaddinsert}>Add Software</button>
-                                            <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                            <button type="reset" className="btn btn-secondary mx-3" >Reset</button>
                                         </div>
                                     </form>
                                 </article>

@@ -7,34 +7,7 @@ import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { OpenTotalTicket, DeleteTickets } from '../../../../api'
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
-
-const customStyles = {
-    title: {
-        style: {
-            fontColor: 'red',
-            fontWeight: '900',
-        }
-    },
-    rows: {
-        style: {
-            minHeight: '35px'
-        }
-    },
-    headCells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(105,59,233)',
-            color: 'white',
-        },
-    },
-    cells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(242,242,242)	',
-            borderBottom: "1px solid silver"
-        },
-    },
-};
+import customStyles from '../../../TableCustomtyle'
 
 
 const columns = [
@@ -53,7 +26,7 @@ const columns = [
         selector: 'assign_ticket',
         sortable: true,
         cell: (row) => [
-            <a title="Click to Edit"  href="/EditTicket" style={{textDecoration:"none"}}  onClick={() => sessionStorage.setItem('TicketSno', `${row.sno}`)} >{row.assign_ticket}</a>
+            <a title="Click to Edit"  href="/EditTicket" style={{textDecoration:"none"}}  onClick={() => localStorage.setItem('TicketSno', `${row.sno}`)} >{row.assign_ticket}</a>
           ]
     },
     {
@@ -83,7 +56,7 @@ const columns = [
     //         <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} 
     //         onChange={async (e) => {
     //             const status = e.target.value;
-    //             const org = sessionStorage.getItem('Database')
+    //             const org = localStorage.getItem('Database')
 
     //             await DeleteTickets(org,status, row.sno)
     //             window.location.reload()
@@ -101,7 +74,7 @@ const columns = [
     //     selector: 'null',
     //     cell: (row) => [
     //         <a title='Edit Ticket' href="/EditTicket">
-    //             <p onClick={() => sessionStorage.setItem('TicketSno', `${row.sno}`)} >
+    //             <p onClick={() => localStorage.setItem('TicketSno', `${row.sno}`)} >
     //                 <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
     //             </p></a>
     //     ]
@@ -117,7 +90,7 @@ const OpenTotalTickets = () => {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await OpenTotalTicket(org);
             console.log(tabledata)
@@ -141,8 +114,8 @@ const OpenTotalTickets = () => {
                         <div className='main_container' >
                             <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h3><span style={{ color: "rgb(123,108,200)" }}> Ticket</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Open Ticket</span> </h3>
-                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddTickets' }} >Add Ticket<MdAdd /></button>
+                                    <h3><span className='page-type-head1'> Ticket <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Open Ticket</span> </h3>
+                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddTickets' }} >Add Ticket +</button>
                                 </div>
                                 <div>
                                     <DataTableExtensions {...tableData}  >

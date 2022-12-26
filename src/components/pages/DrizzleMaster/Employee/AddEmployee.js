@@ -23,8 +23,7 @@ function AddEmployee() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
-
+            const org = localStorage.getItem('Database')
             const tablelocation = await ActiveLocation(org);
             setLocationlist(tablelocation)
         }
@@ -42,7 +41,7 @@ function AddEmployee() {
         const employee_number = document.getElementById('employee_number').value;
         const company = document.getElementById('company').value;
         const location = document.getElementById('location').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
         const user_id = document.getElementById('user_id').value
         const password = document.getElementById('password').value
         setLoading(true)
@@ -54,7 +53,7 @@ function AddEmployee() {
         }
         else {
             setLoading(true)
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
             if (agentcheck == true) {
                 const inserLogin = await insertUserLogin(employee_name, user_id, password, org);
 
@@ -135,7 +134,7 @@ function AddEmployee() {
 
                         <div className='main_container pb-2'  >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Employee</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Employee</span> </h2>
+                                <h2><span className='page-type-head1'>Employee <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Employee</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalEmployee' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "70%" }}>

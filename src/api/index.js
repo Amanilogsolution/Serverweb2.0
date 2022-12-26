@@ -679,9 +679,9 @@ export const UpdateLocationStatus = async (org,status, sno) => {
     return axios.post(url, { org,status, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const AddLocationapi = async (org,location_id, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id) => {
+export const AddLocationapi = async (org,location_id, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id,location_country) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/insertLocation`
-    return axios.post(url, {org, location_id, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id }).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, {org, location_id, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id,location_country }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const GetLocation = async (org,sno) => {
@@ -689,9 +689,9 @@ export const GetLocation = async (org,sno) => {
     return axios.post(url, { org,sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateLocation = async (org,sno, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id) => {
+export const UpdateLocation = async (org,sno, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id,location_country) => {
     const url = ` https://drizzlebackend.awlworldwide.com/api/updateLocation`
-    return axios.post(url, { org,sno, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id }).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { org,sno, company_name, location_code, location_name, location_address_line1, location_address_line2, location_city, location_state, location_pin_code, location_gst, contact_person, contact_person_email, contact_person_number, location_latitude, location_longitude, user_id ,location_country}).then(response => response.data).catch(error => console.log(error));
 }
 
 export const ActiveLocation = async (org) => {
@@ -1183,7 +1183,60 @@ export const updateUserdetails = async (org, employee_name, location, employee_e
 
 // Organisation
 export const AddOrganisation = async (org_id,org_name,org_country,org_state,org_city,org_currency,org_gst,org_logo) => {
-    const url = `http://localhost:2008/api/addorganisation`
+    const url = `https://drizzlebackend.awlworldwide.com/api/addorganisation`
     return axios.post(url, {org_id,org_name,org_country,org_state,org_city,org_currency,org_gst,org_logo}).then(response => response.data).catch(error => console.log(error));
 }
+
+export const getOrganisation = async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/getorganisation`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const UpdateOrganisationDetails = async (org,org_name,org_country,org_state,org_city,org_currency) => {
+    console.log(org,org_name,org_country,org_state,org_city,org_currency)
+    const url = `https://drizzlebackend.awlworldwide.com/api/updateorganizationdetails`
+    return axios.post(url, {org,org_name,org_country,org_state,org_city,org_currency}).then(response => response.data).catch(error => console.log(error));
+}
+
+// Currency Master
+
+export const CurrencyMaster = async() =>{
+    const url = `https://country-info.p.rapidapi.com/`
+    return axios.get(url,{
+        headers: {
+        'X-RapidAPI-Key': '86b0c2197amshffb1cfe02f00926p1f0330jsn8771bfdd86c5',
+        'X-RapidAPI-Host': 'country-info.p.rapidapi.com'
+      }
+    }).then(response =>response.data).catch(error => console.log(error)) 
+}
+
+//Role Master
+
+export const totalRoles = async(org) =>{
+    const url = `http://localhost:2008/api/totalroles`
+    return axios.post(url, {org}).then(response => response.data).catch(error => console.log(error));  
+}
+
+export const insertRoles = async(data) =>{
+    const url = `http://localhost:2008/api/insertroles`
+    return axios.post(url, {data}).then(response => response.data).catch(error => console.log(error));  
+}
+
+export const getrole = async(org,sno) =>{
+    const url = `http://localhost:2008/api/getrole`
+    return axios.post(url, {org,sno}).then(response => response.data).catch(error => console.log(error));  
+}
+
+export const Updaterole = async(data) =>{
+    const url = `http://localhost:2008/api/updaterole`
+    return axios.post(url, {data}).then(response => response.data).catch(error => console.log(error));  
+}
+
+
+
+
+
+
+
+
 

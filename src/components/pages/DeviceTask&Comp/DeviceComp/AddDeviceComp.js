@@ -37,7 +37,7 @@ function AddDeviceComp() {
         const devicename = document.getElementById('devicename').value;
         const services = document.getElementById('services').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!devicename || !services || !compliance.length) {
             alert("Please enter Mandatory field")

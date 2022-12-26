@@ -42,7 +42,7 @@ const TicketTopics = () => {
     return (
 
         <div className='d-flex  justify-content-center mt-4' style={{ height: "35vh" }}>
-            <div style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", borderRadius: "3px", width: "26%" }}>
+            <div className='rounded' style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
                 <p className=' text-black text-center px-4 mx-2'>Hardware Problem</p>
 
                 <ResponsiveContainer width="100%" aspect={1.8}>
@@ -60,7 +60,7 @@ const TicketTopics = () => {
 
             </div>
 
-            <div style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", borderRadius: "3px", width: "26%" }}>
+            <div className='rounded' style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
                 <p className=' text-black text-center px-4 mx-2'>Network Problem</p>
 
                 <ResponsiveContainer width="100%" aspect={1.8}>
@@ -78,9 +78,8 @@ const TicketTopics = () => {
 
             </div>
 
-            <div style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", borderRadius: "3px", width: "26%" }}>
+            <div className='rounded' style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
                 <p className=' text-black text-center px-4 mx-2'>Other IT Issue</p>
-
                 <ResponsiveContainer width="100%" aspect={1.8}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />

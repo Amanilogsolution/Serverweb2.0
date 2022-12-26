@@ -23,8 +23,8 @@ function AddManufacturer() {
         const manufacturername = document.getElementById('manufacturername').value;
         const manufacturer_id = manufacturername.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserName');
+        const org = localStorage.getItem('Database')
 
         setLoading(true)
 
@@ -36,11 +36,11 @@ function AddManufacturer() {
         else {
             setLoading(true)
 
-            const result = await InsertManufacturer(org,manufacturer_id, manufacturername, remark, username);
+            const result = await InsertManufacturer(org, manufacturer_id, manufacturername, remark, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Manufacturer Added", title: "success", type: "success", route: "/TotalManufacturer", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
-                sessionStorage.removeItem('seriessno');
+                localStorage.removeItem('seriessno');
             }
             else if (result === 'Already') {
                 document.getElementById('subnitbtn').disabled = false
@@ -60,17 +60,19 @@ function AddManufacturer() {
             {
                 loading ?
                     <Sidebar >
-
+                        {/* ################### Snackbar ########################## */}
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ################### Snackbar ########################## */}
 
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Manufacturer</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Manufacturer</span> </h2>
+                                <h2><span className='page-type-head1'>Manufacturer <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Manufacturer</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalManufacturer' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div">
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Add Manufacturer:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <article className="card-body" >
@@ -83,8 +85,10 @@ function AddManufacturer() {
                                                     <label htmlFor='remark'>Remarks </label>
                                                     <textarea className="form-control" placeholder="Comments" id='remark' rows="3" />
                                                 </div>
-                                                <div className="form-group" >
-                                                    <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleaddinsert}>Add Manufacturer</button>
+                                                <div className="form-group mt-3" >
+                                                    <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Manufacturer</button>
+                                                    <button type="reset" className="btn btn-secondary mx-3">Reset</button>
+
                                                 </div>
                                             </form>
                                         </article>

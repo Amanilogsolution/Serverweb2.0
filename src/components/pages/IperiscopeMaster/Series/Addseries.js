@@ -17,7 +17,7 @@ function Addseries() {
         const compid = document.getElementById('compid').value;
         const deviceid = document.getElementById('deviceid').value;
         const taskcompid = document.getElementById('taskcompid').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!typeid || !seriesid || !taskid || !agentid || !groupid || !osid || !compid || !deviceid || !taskcompid) {
             alert("All field are mandatory...")
@@ -40,7 +40,7 @@ function Addseries() {
                 <div className='main_container pb-2' >
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Series</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Series</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries' }} >Back <MdOutlineArrowForward /></button>
+                        <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('seriessno'); window.location.href = '/Totalseries' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div">
                         <article className="card-body" >

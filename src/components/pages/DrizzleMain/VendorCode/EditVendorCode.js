@@ -5,7 +5,6 @@ import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { FaMinusCircle } from 'react-icons/fa'
-// import Snackbar from '../../../../Snackbar/Snackbar';
 import { GrFormClose } from "react-icons/gr"
 
 
@@ -30,9 +29,9 @@ function EditVendorCode() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const tabledata = await GetVendorCode(org, sessionStorage.getItem('VendorCodeSno'))
+            const tabledata = await GetVendorCode(org, localStorage.getItem('VendorCodeSno'))
             setData(tabledata[0])
             console.log(tabledata[0].venodr_portal)
             const totalCountry = await TotalCountry();
@@ -84,9 +83,9 @@ function EditVendorCode() {
         const contact_person = document.getElementById('contact_person').value;
         const contact_no = document.getElementById('contact_no').value;
         const contact_email = document.getElementById('contact_email').value;
-        const user_id = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('VendorCodeSno')
-        const org = sessionStorage.getItem('Database')
+        const user_id = localStorage.getItem('UserId');
+        const sno = localStorage.getItem('VendorCodeSno')
+        const org = localStorage.getItem('Database')
 
 
         if (!vendor_code || !vendor_name || !comp_country_id || !comp_city || !comp_state_id
@@ -103,7 +102,7 @@ function EditVendorCode() {
                 comp_state_id, comp_state, comp_city, comp_addr1, comp_addr2, comp_pincode, vendor_portal, contact_person, contact_no, contact_email, user_id);
 
             if (result === 'Updated') {
-                sessionStorage.removeItem('VendorCodeSno');
+                localStorage.removeItem('VendorCodeSno');
                 setDatas({ ...datas, message: "Vendor Code Updated", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -198,7 +197,6 @@ function EditVendorCode() {
                                         onClick={() => {
                                             setDatas({ ...datas, toggle: 'false' });
                                             window.location.href = datas.route
-
                                         }}
                                     >
                                         <GrFormClose />
@@ -209,8 +207,8 @@ function EditVendorCode() {
                         {/* ################# Snackbar ##################### */}
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Master</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Master</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('VendorCodeSno'); window.location.href = '/TotalVendorCode' }} >Back <MdOutlineArrowForward /></button>
+                                <h2><span className='page-type-head1'>Vendor Master <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Vendor Master</span> </h2>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('VendorCodeSno'); window.location.href = '/TotalVendorCode' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
                                 <div className="card inner-card">
@@ -366,7 +364,6 @@ function EditVendorCode() {
                                             </ul>
                                             <div className="form-group mt-3" >
                                                 <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Edit Vendor Master </button>
-                                                <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
                                             </div>
                                         </form>
                                     </article>

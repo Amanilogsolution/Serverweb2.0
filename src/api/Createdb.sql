@@ -393,29 +393,29 @@ CREATE TABLE tbl_vendor_contract_master (
                 vendor_contract_uuid nvarchar(350) NULL
 )
 
-CREATE TABLE tbl_drizzle_agent_master (
-                sno bigint IDENTITY(1,1) NOT NULL,
-                employee_name nvarchar(100) NULL,
-                mark_as_agent nvarchar(150) NULL,
-                allocate_company nvarchar(300) NULL ,
-                agent_email_id nvarchar(300) NULL ,
-                agent_contact_number nvarchar(300) NULL ,
-                allocate_location nvarchar(300) NULL ,
-                agent_role nvarchar(300) NULL ,
-                reporting_to nvarchar(300) NULL ,
+-- CREATE TABLE tbl_drizzle_agent_master (
+--                 sno bigint IDENTITY(1,1) NOT NULL,
+--                 employee_name nvarchar(100) NULL,
+--                 mark_as_agent nvarchar(150) NULL,
+--                 allocate_company nvarchar(300) NULL ,
+--                 agent_email_id nvarchar(300) NULL ,
+--                 agent_contact_number nvarchar(300) NULL ,
+--                 allocate_location nvarchar(300) NULL ,
+--                 agent_role nvarchar(300) NULL ,
+--                 reporting_to nvarchar(300) NULL ,
              
                 
-                add_user_name nvarchar(50) NULL,
-                add_system_name nvarchar(100) NULL,
-                add_ip_address nvarchar(30) NULL,
-                add_date_time datetime NULL,
-                update_user_name nvarchar(30) NULL,
-                update_system_name nvarchar(100) NULL,
-                update_ip_address nvarchar(30) NULL,
-                update_date_time datetime NULL,
-                status nvarchar(30) NULL,
-                drizzle_agent_uuid nvarchar(350) NULL
-)
+--                 add_user_name nvarchar(50) NULL,
+--                 add_system_name nvarchar(100) NULL,
+--                 add_ip_address nvarchar(30) NULL,
+--                 add_date_time datetime NULL,
+--                 update_user_name nvarchar(30) NULL,
+--                 update_system_name nvarchar(100) NULL,
+--                 update_ip_address nvarchar(30) NULL,
+--                 update_date_time datetime NULL,
+--                 status nvarchar(30) NULL,
+--                 drizzle_agent_uuid nvarchar(350) NULL
+-- )
 
 
 
@@ -433,7 +433,11 @@ CREATE TABLE IPERISCOPE.dbo.tbl_vendor_invoice (
                 reference_no  nvarchar(50) NULL ,
                 printer_counter nvarchar(50) NULL ,
                 invoice_status nvarchar(50) NULL ,
-                
+                   payment_detail nvarchar(50) NULL ,
+                 payment_amt nvarchar(50) NULL ,
+                 payment_date date NULL ,
+                 payment_remark nvarchar(250) NULL ,
+
                 add_user_name nvarchar(50) NULL,
                 add_system_name nvarchar(100) NULL,
                 add_ip_address nvarchar(30) NULL,
@@ -464,6 +468,7 @@ CREATE TABLE IPERISCOPE.dbo.tbl_new_assets (
                 purchase_date date NULL ,
                 company nvarchar(100) NULL ,
                 vendor nvarchar(100) NULL ,
+                vendor_code nvarchar(100) NULL,
                 invoice_no nvarchar(100) NULL ,
                 rent_per_month nvarchar(100) NULL ,
                 purchases_price nvarchar(100) NULL ,
@@ -539,4 +544,48 @@ CREATE TABLE IPERISCOPE.dbo.tbl_Organisation (
 	org_currency varchar(100) NULL,
 	org_gst varchar(100) NULL,
 	org_logo varchar(100) NULL
+);
+
+-- // Role Master //
+
+CREATE TABLE IPERISCOPE.dbo.tbl_Roles_master (
+     sno bigint IDENTITY(1,1) NOT NULL,
+	role_id nvarchar(200) NULL,
+     role nvarchar(100) NULL,
+	remark nvarchar(200) NULL,
+	asset varchar(100) NULL,
+	asset_view nvarchar(100) NULL,
+	asset_create nvarchar(100) NULL,
+	asset_edit nvarchar(100) NULL,
+	asset_delete varchar(100) NULL,
+	vendor_contract varchar(100) NULL,
+	vendor_contract_view varchar(100) NULL,
+	vendor_contract_create varchar(100) NULL,
+	vendor_contract_edit varchar(100) NULL,
+	vendor_contract_delete varchar(100) NULL,
+	ticket varchar(100) NULL,
+	ticket_view varchar(100) NULL,
+	ticket_create varchar(100) NULL,
+	ticket_edit varchar(100) NULL,
+	ticket_delete varchar(100) NULL,
+	master varchar(100) NULL,
+	master_view varchar(100) NULL,
+	master_create varchar(100) NULL,
+	master_edit varchar(100) NULL,
+	master_delete varchar(100) NULL,
+	[transaction] varchar(100) NULL,
+	transaction_view varchar(100) NULL,
+	transaction_create varchar(100) NULL,
+	transaction_edit varchar(100) NULL,
+	transaction_delete varchar(100) NULL,
+	setting varchar(100) NULL,
+	setting_view varchar(100) NULL,
+	setting_create varchar(100) NULL,
+	setting_edit varchar(100) NULL,
+	setting_delete varchar(100) NULL,
+	reports varchar(100) NULL,
+	reports_view varchar(100) NULL,
+	reports_create varchar(100) NULL,
+	reports_edit varchar(100) NULL,
+	reports_delete varchar(100) NULL
 );

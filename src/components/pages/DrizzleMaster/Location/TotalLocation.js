@@ -6,37 +6,37 @@ import { TotalLocation, UpdateLocationStatus } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-
+import customStyles from '../../../TableCustomtyle'
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
-const customStyles = {
-    title: {
-        style: {
-            fontColor: 'red',
-            fontWeight: '900',
-        }
-    },
-    rows: {
-        style: {
-            minHeight: '35px'
-        }
-    },
-    headCells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(105,59,233)',
-            color: 'white',
-        },
-    },
-    cells: {
-        style: {
-            fontSize: '14px',
-            // fontWeight:'600',
-            background: 'rgb(242,242,242)',
-            borderBottom: "1px solid silver"
-        },
-    },
-};
+// const customStyles = {
+//     title: {
+//         style: {
+//             fontColor: 'red',
+//             fontWeight: '900',
+//         }
+//     },
+//     rows: {
+//         style: {
+//             minHeight: '35px'
+//         }
+//     },
+//     headCells: {
+//         style: {
+//             fontSize: '14px',
+//             background: 'rgb(105,59,233)',
+//             color: 'white',
+//         },
+//     },
+//     cells: {
+//         style: {
+//             fontSize: '14px',
+//             // fontWeight:'600',
+//             background: 'rgb(242,242,242)',
+//             borderBottom: "1px solid silver"
+//         },
+//     },
+// };
 
 const columns = [
     {
@@ -73,9 +73,9 @@ const columns = [
         name: 'Status',
         sortable: true,
         cell: (row) => [
-            <select style={{ background: "rgb(222, 222, 222)", border: 'none', borderRadius: "2px" }} onChange={async (e) => {
+            <select className='border-0' style={{ background: "rgb(222, 222, 222)" }} onChange={async (e) => {
                 const status = e.target.value;
-                const org = sessionStorage.getItem('Database')
+                const org = localStorage.getItem('Database')
                 await UpdateLocationStatus(org,status, row.sno)
                 window.location.reload()
             }}>
@@ -91,8 +91,8 @@ const columns = [
         selector: 'null',
         cell: (row) => [
             <a title='Edit Location' href="/EditLocation">
-                <p onClick={() => sessionStorage.setItem('locationsno', `${row.sno}`)} >
-                    <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+                <p onClick={() => localStorage.setItem('locationsno', `${row.sno}`)} >
+                    <AiFillEdit className='ft-20' style={{  marginBottom: "-13px" }} />
                 </p></a>
         ]
     }
@@ -105,9 +105,8 @@ function TotalLocations() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
             const tabledata = await TotalLocation(org);
-            console.log(tabledata)
             setData(tabledata)
             setLoading(true)
         }
@@ -128,7 +127,7 @@ function TotalLocations() {
                         <div className='main_container' >
                             <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span style={{ color: "rgb(123,108,200)" }}>Locations</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Locations</span> </h2>
+                                    <h2><span className='page-type-head1'>Locations <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Locations</span> </h2>
                                     <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddLocation' }} >Add Location <b><MdAdd /></b></button>
                                 </div>
                                 <div >

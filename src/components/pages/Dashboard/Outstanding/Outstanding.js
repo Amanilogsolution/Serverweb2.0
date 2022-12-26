@@ -21,7 +21,7 @@ const Outstanding = ({ setStep }) => {
       selector: 'null',
       cell: (row) => [
         <a title='Edit Asset' href="/EditAsset">
-          <p onClick={() => sessionStorage.setItem('newassetsno', `${row.sno}`)} >
+          <p onClick={() => localStorage.setItem('newassetsno', `${row.sno}`)} >
             <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
           </p></a>
       ]
@@ -78,13 +78,13 @@ const Outstanding = ({ setStep }) => {
             </thead>
           </table>
         </div>
-        <div className='nextoutstanding-detail curser-pointer  text-light  mt-1 h-25 d-flex justify-content-center align-items-center' style={{cursor:"pointer"}} onClick={() => { setStep(5) }}>
+        <div className='nextoutstanding-detail cursor-pointer rounded text-light  mt-1 h-25 d-flex justify-content-center align-items-center' style={{cursor:"pointer"}} onClick={() => { setStep(5) }}>
           Click for Outstanding Details
         </div>
       </div>
       <div className='outstanding-table border border-dark'>
         <p className='bg-dark text-white d-flex justify-content-between h5 py-1 px-2'>ILOG- IT OUTSTANDING as on DATE
-          {/* <a onClick={() => { setStep(5) }} className='curser-pointer'>Outstanding details</a> */}
+          {/* <a onClick={() => { setStep(5) }} className='cursor-pointer'>Outstanding details</a> */}
         </p>
         <div>
           <DataTableExtensions {...tableData}>

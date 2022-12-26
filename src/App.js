@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import './masterCss.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/LandingPage/Login/Login'
 import ForgetPassword from './components/LandingPage/Forgetpassword/ForgetPassword'
 
-import Signup from './components/LandingPage/Resister/Resister'
+import Signup from './components/LandingPage/Register/Register'
 import LandingPage from './components/LandingPage/LandingPageHome/LandingPage'
 
 import PrivatRoute from './components/HOC/PrivateRoutes';
@@ -43,7 +44,6 @@ import TotalAgent from './components/pages/IperiscopeMaster/Agent_master/TotalAg
 import AddAgent from './components/pages/IperiscopeMaster/Agent_master/AddAgent';
 import EditAgent from './components/pages/IperiscopeMaster/Agent_master/EditAgent';
 
-
 import TotalDevice from './components/pages/Device/TotalDevice';
 import AddDevice from './components/pages/Device/AddDevice';
 import EditDevice from './components/pages/Device/EditDevice';
@@ -55,7 +55,6 @@ import EditDeviceComp from './components/pages/DeviceTask&Comp/DeviceComp/Editde
 import TotalDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/TotalDeviceTask';
 import AddDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/AddDeviceServiceTask';
 import EditDeviceServiceTask from './components/pages/DeviceTask&Comp/DeviceTask/EditDeviceServiceTask';
-
 
 import TotalOrganization from './components/pages/DrizzleMaster/organization/Totalorganization'
 
@@ -115,7 +114,6 @@ import TotalVendSubCate from './components/pages/DrizzleMaster/VendSubCategory/T
 import EditVendorSubCategory from './components/pages/DrizzleMaster/VendSubCategory/EditVendSubCate';
 import AddVendorSubCategory from './components/pages/DrizzleMaster/VendSubCategory/AddVendSubCate';
 
-
 import TotalServiceActionType from './components/pages/DrizzleMaster/ServiceActionType/TotalServiceActionType';
 import EditServiceActionType from './components/pages/DrizzleMaster/ServiceActionType/EditServiceActionType';
 import AddServiceActionType from './components/pages/DrizzleMaster/ServiceActionType/AddServiceActionType';
@@ -152,9 +150,6 @@ import EditTicket from './components/pages/HelpDesk/Tickets/EditTicket';
 import TotalTicket from './components/pages/HelpDesk/Tickets/TotalTicket';
 import OpenTotalTickets from './components/pages/HelpDesk/Tickets/OpenTicket';
 
-
-
-import PageNotFound from './components/404/404';
 import HelpDeskSideBar from './components/HelpDeskUi/HelpDeskSideBar';
 import Profile from './components/Profile/Profile';
 
@@ -165,9 +160,15 @@ import Contactus from './components/Sidebar/Contactus/Contactus';
 
 import TotalRoles from './components/pages/Setting/Roles/TotalRoles';
 import AddRoles from './components/pages/Setting/Roles/AddRole';
+import EditRole from './components/pages/Setting/Roles/EditRole'
 
-import OrganisationDetails from './components/LandingPage/Resister/Organistion';
+import OrganisationDetails from './components/LandingPage/Register/Organistion';
 
+import TotalAssignRole from './components/pages/Setting/AssignRole/TotalAssignRole';
+import AddAssignRole from './components/pages/Setting/AssignRole/AddAssignRole';
+import EditAssignRole from './components/pages/Setting/AssignRole/EditAssignRole';
+
+import PageNotFound from './components/404/404';
 
 const App = () => {
   return (
@@ -329,8 +330,14 @@ const App = () => {
           
           <Route path='/TotalRoles' element={<TotalRoles/>}/>
           <Route path='/NewRoles' element={<AddRoles/>}/>
-          
+          <Route path='/EditRole' element={<EditRole/>}/>
 
+          
+          
+          <Route path='/TotalAssignRole' element={<TotalAssignRole/>}/>
+          <Route path='/AddAssignRole' element={<AddAssignRole/>}/>
+          <Route path='/EditAssignRole' element={<EditAssignRole/>}/>
+          
         </Route>
 
         <Route path="/HelpDescription" element={<HelpDeskSideBar/>} />

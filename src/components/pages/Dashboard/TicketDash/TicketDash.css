@@ -1,56 +1,20 @@
 .ticket_dash {
-    /* border: 1px solid black; */
     width: 99%;
     margin: 10px 8px;
     min-height: 63vh;
     max-width: 100%;
     padding-top: 3px;
     padding-left: 10px;
-
-
 }
 
 .ticket_dash .ticket_dash_inner {
     width: 30%;
     height: 6vh;
 }
-
-.ticket_dash .ticket_card {
-    height: 13vh;
-    margin: 6px 10px 15px 10px;
-    width: 26%;
-    box-shadow: 1px 1px 2px 1px silver;
-    border-radius: 3px;
-    /* border: 1px solid red; */
-}
-
-.ticket_card_div {
-    display: flex;
-    justify-content: center;
-    /* border: 1px solid blue; */
-}
-
-.ticket_card_content {
-    display: flex;
-    justify-content: center;
-    /* border: 1px solid red; */
-    padding-top: 14px;
-}
-
-.tickets_icon {
-    margin-right: 6px;
-    border-radius: 50px;
-    background: linear-gradient(45deg, #dc3545, #a32e39);
-    /* color: white; */
-}
-
 .ticket_details {
-    /* border: 1px solid black; */
-    cursor: pointer;
     background: rgba(96, 58, 233, 0.4);
     width: 100%;
     border: 2px solid #333;
-    /* border-bottom: none; */
     border-radius: 10px 10px 0px 0px;
     z-index: 10;
 }
@@ -60,9 +24,28 @@
     border-bottom: none;
 }
 
+/* ########### Departmants #### */
+.ticket_card_div {
+    display: flex;
+}
+.ticket_dash .ticket_card {
+    height: 13vh;
+    margin: 6px 10px 15px 10px;
+    width: 26%;
+    box-shadow: 1px 1px 2px 1px silver;
+}
+
+.ticket_card_content {
+    padding-top: 14px;
+}
+
+.tickets_icon {
+    background: linear-gradient(45deg, #dc3545, #a32e39);
+}
+
+
 .half-a-border-on-top {
     margin-top: -1.5px;
-    border: 1px solid black;
     position: relative;
     min-height:60vh;
 }

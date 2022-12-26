@@ -19,12 +19,11 @@ function EditContractType() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const result = await GetContractType(org, sessionStorage.getItem('contracttypesno'))
+            const result = await GetContractType(org, localStorage.getItem('contracttypesno'))
             setData(result[0]);
             setLoading(true)
-
         }
         fetchdata()
     }, [])
@@ -37,10 +36,10 @@ function EditContractType() {
         const contract_type = document.getElementById('contract_type').value;
         const remark = document.getElementById('remark').value;
         setLoading(true)
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
-        const username = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('contracttypesno')
+        const username = localStorage.getItem('UserId');
+        const sno = localStorage.getItem('contracttypesno')
 
         if (!contract_type) {
             document.getElementById('subnitbtn').disabled = false
@@ -54,7 +53,7 @@ function EditContractType() {
             const result = await UpdateContractType(org, sno, contract_type, remark, username);
 
             if (result === 'Updated') {
-                sessionStorage.removeItem('contracttypesno');
+                localStorage.removeItem('contracttypesno');
                 setDatas({ ...datas, message: "Contract Type Updated", title: "success", type: "success", route: "/TotalContractType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -75,40 +74,35 @@ function EditContractType() {
     }
 
 
-    const handlechangeContractType = (e) => {
-        setData({ ...data, contract_type: e.target.value })
-    }
-    const handleChangeRemark = (e) => {
-        setData({ ...data, contract_description: e.target.value })
-    }
-
-
     return (
         <>
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
 
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
+
 
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>ContractType</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit ContractType</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('contracttypesno'); window.location.href = '/TotalContractType' }} >Back <MdOutlineArrowForward /></button>
+                                <h2><span className='page-type-head1'>Contract Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit ContractType</span> </h2>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('contracttypesno'); window.location.href = '/TotalContractType' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" >
-
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Edit Contract Type:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="form-group">
                                             <label htmlFor='contract_type'>Contract Type <span className='text-danger'>*</span></label>
-                                            <input type="text" className="form-control" id='contract_type' value={data.contract_type} onChange={handlechangeContractType} />
+                                            <input type="text" className="form-control" id='contract_type' defaultValue={data.contract_type}  />
                                         </div>
                                         <div className="form-group mt-3">
                                             <label htmlFor='remark'>Remarks </label>
-                                            <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" value={data.contract_description} onChange={handleChangeRemark} />
+                                            <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" defaultValue={data.contract_description} />
                                         </div>
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleUpdateContractType}>Update</button>

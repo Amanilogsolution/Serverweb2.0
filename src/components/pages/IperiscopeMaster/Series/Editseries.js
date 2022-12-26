@@ -8,7 +8,7 @@ function Editseries() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await Getseries(sessionStorage.getItem('seriessno'))
+            const result = await Getseries(localStorage.getItem('seriessno'))
             console.log(result)
             setData(result);
         }
@@ -26,14 +26,14 @@ function Editseries() {
         const comp_id = document.getElementById('compid').value;
         const device_id = document.getElementById('deviceid').value;
         const taskandcomp_id = document.getElementById('taskcompid').value;
-        const username = sessionStorage.getItem('UserName');
-        const sno = sessionStorage.getItem('seriessno')
+        const username = localStorage.getItem('UserName');
+        const sno = localStorage.getItem('seriessno')
 
         const result = await Updateseries(sno, type_id, services_id, task_id, agent_id, group_id, os_id, comp_id, device_id, taskandcomp_id, username);
 
         if (result === 'Updated') {
             alert('Data Updated')
-            sessionStorage.removeItem('seriessno');
+            localStorage.removeItem('seriessno');
             window.location.href = './Totalseries'
         }
         else {
@@ -79,7 +79,7 @@ function Editseries() {
                 <div className='main_container pb-2'>
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Series</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Series</span> </h2>
-                        <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/Totalseries' }} >Back <MdOutlineArrowForward /></button>
+                        <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('seriessno'); window.location.href = '/Totalseries' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div" >
 

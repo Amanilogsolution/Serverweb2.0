@@ -19,12 +19,10 @@ function EditVendorcategory() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
-
-            const result = await GetVendorCategoryapi(org, sessionStorage.getItem('vendorcatsno'))
+            const org = localStorage.getItem('Database')
+            const result = await GetVendorCategoryapi(org, localStorage.getItem('vendorcatsno'))
             setData(result[0]);
             setLoading(true)
-
         }
         fetchdata()
     }, [])
@@ -36,9 +34,9 @@ function EditVendorcategory() {
 
         const vendor_category = document.getElementById('vendor_category').value;
         const vendor_category_description = document.getElementById('vendor_category_description').value;
-        const username = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('vendorcatsno');
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserId');
+        const sno = localStorage.getItem('vendorcatsno');
+        const org = localStorage.getItem('Database')
 
         if (!vendor_category) {
             setLoading(true)
@@ -51,7 +49,7 @@ function EditVendorcategory() {
             const result = await UpdateVendorCategoryapi(org, sno, vendor_category, vendor_category_description, username);
 
             if (result === 'Updated') {
-                sessionStorage.removeItem('vendorcatsno');
+                localStorage.removeItem('vendorcatsno');
                 setDatas({ ...datas, message: "Vendor Category Updated", title: "success", type: "success", route: "/TotalVendorCategory", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -70,42 +68,37 @@ function EditVendorcategory() {
     }
 
 
-    const handlechangeassetstatus = (e) => {
-        setData({ ...data, vendor_category: e.target.value })
-    }
-    const handlechangeassetstatusdesc = (e) => {
-        setData({ ...data, vendor_category_description: e.target.value })
-    }
-
-
     return (
         <>
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
 
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
+
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h3><span style={{ color: "rgb(123,108,200)" }}>Vendor Category</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Vendor Category</span> </h3>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('vendorcatsno'); window.location.href = '/TotalVendorCategory' }} >Back <MdOutlineArrowForward /></button>
+                                <h3><span className='page-type-head1'>Vendor Category <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Vendor Category</span> </h3>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('vendorcatsno'); window.location.href = '/TotalVendorCategory' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Edit Vendor Category :</div>
 
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="row">
-
                                             <div className="form-group col" >
                                                 <label htmlFor='vendor_category'>Vendor Category  <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='vendor_category' value={data.vendor_category} onChange={handlechangeassetstatus} />
+                                                <input type="text" className="form-control" id='vendor_category' defaultValue={data.vendor_category} />
                                             </div>
                                         </div>
                                         <div className="form-group col-md mt-3" >
                                             <label htmlFor='vendor_category_description'>Remarks</label>
-                                            <textarea type="text" className="form-control" id='vendor_category_description' value={data.vendor_category_description} onChange={handlechangeassetstatusdesc} />
+                                            <textarea type="text" className="form-control" id='vendor_category_description' defaultValue={data.vendor_category_description}   />
                                         </div>
 
                                         <div className="form-group mt-3" >

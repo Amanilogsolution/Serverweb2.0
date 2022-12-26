@@ -19,9 +19,8 @@ function EditBillingFreq() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
-
-            const result = await GetBillingFreqapi(org, sessionStorage.getItem('billingfreqsno'))
+            const org = localStorage.getItem('Database')
+            const result = await GetBillingFreqapi(org, localStorage.getItem('billingfreqsno'))
             setData(result[0]);
             setLoading(true)
         }
@@ -35,9 +34,9 @@ function EditBillingFreq() {
 
         const billing_freq = document.getElementById('billing_freq').value;
         const billing_freq_desc = document.getElementById('billing_freq_desc').value;
-        const username = sessionStorage.getItem('UserId');
-        const sno = sessionStorage.getItem('billingfreqsno')
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserId');
+        const sno = localStorage.getItem('billingfreqsno')
+        const org = localStorage.getItem('Database')
 
         setLoading(true)
 
@@ -53,7 +52,7 @@ function EditBillingFreq() {
             const result = await UpdateBillingFreqapi(org, sno, billing_freq, billing_freq_desc, username);
 
             if (result === 'Updated') {
-                sessionStorage.removeItem('billingfreqsno');
+                localStorage.removeItem('billingfreqsno');
                 setDatas({ ...datas, message: "Billing Frequency Updated", title: "success", type: "success", route: "/TotalBillingFreq", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
@@ -70,18 +69,7 @@ function EditBillingFreq() {
                 document.getElementById('snackbar').style.display = "block"
             }
         }
-
-
     }
-
-
-    const handlechangeassetstatus = (e) => {
-        setData({ ...data, billing_freq: e.target.value })
-    }
-    const handlechangeassetstatusdesc = (e) => {
-        setData({ ...data, billing_freq_description: e.target.value })
-    }
-
 
 
     return (
@@ -89,30 +77,31 @@ function EditBillingFreq() {
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
 
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Billing Frequency</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Billing Frequency</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('billingfreqsno'); window.location.href = '/TotalBillingFreq' }} >Back <MdOutlineArrowForward /></button>
+                                <h2><span className='page-type-head1'>Billing Frequency <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Billing Frequency</span> </h2>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('billingfreqsno'); window.location.href = '/TotalBillingFreq' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
-
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Edit Billing Frequency:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="row">
-
                                             <div className="form-group col" >
                                                 <label htmlFor='billing_freq'>Billing Frequency  <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='billing_freq' value={data.billing_freq} onChange={handlechangeassetstatus} />
+                                                <input type="text" className="form-control" id='billing_freq' defaultValue={data.billing_freq} />
                                             </div>
                                         </div>
                                         <div className="form-group col-md mt-3" >
                                             <label htmlFor='billing_freq_desc'>Remarks</label>
-                                            <textarea className="form-control" id='billing_freq_desc' rows='3' value={data.billing_freq_description} onChange={handlechangeassetstatusdesc} />
+                                            <textarea className="form-control" id='billing_freq_desc' rows='3' defaultValue={data.billing_freq_description} />
                                         </div>
 
                                         <div className="form-group mt-3" >

@@ -27,7 +27,7 @@ function AddDevicetype() {
         // document.getElementById('subnitbtn').disabled = true;
         const devicetype = document.getElementById('devicetype').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!devicetype) {
             alert("Please enter Mandatory field")
@@ -54,7 +54,7 @@ function AddDevicetype() {
                 <div className='main_container pb-2'>
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Device Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device Type</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalDeviceType' }} >Back <MdOutlineArrowForward /></button>
+                        <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('seriessno'); window.location.href = '/TotalDeviceType' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div" style={{ width: "50%" }}>
                         <article className="card-body" >

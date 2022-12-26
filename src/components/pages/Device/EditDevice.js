@@ -34,7 +34,7 @@ function EditDevice() {
             const Agent = await ActiveAgent()
             setActiveAgent(Agent)
 
-            const getdata = await Getdevice(sessionStorage.getItem('deviceSno'))
+            const getdata = await Getdevice(localStorage.getItem('deviceSno'))
             setData(getdata);
             setLoading(true)
 
@@ -55,7 +55,7 @@ function EditDevice() {
         e.preventDefault();
         setLoading(false)
 
-        const sno = sessionStorage.getItem('deviceSno');
+        const sno = localStorage.getItem('deviceSno');
         const deviceid = document.getElementById('deviceid').value;
         const devicename = document.getElementById('devicename').value
         const devicetype = document.getElementById('devicetype').value;
@@ -68,7 +68,7 @@ function EditDevice() {
         const registerdate = document.getElementById('registerdate').value
         const agent = document.getElementById('agent').value
         const remark = document.getElementById('remark').value
-        const username = sessionStorage.getItem('UserName')
+        const username = localStorage.getItem('UserName')
 
         if (!devicename || !devicetype || !devicegroup || !createdate || !registerdate || !agent) {
             alert("Please enter Mandatory field")
@@ -78,7 +78,7 @@ function EditDevice() {
             const result = await Updatedevice(sno, deviceid, devicename, devicetype, devicegroup, deviceipaddr, devicehost, operatingsystem, services, createdate, registerdate, agent, remark, username)
             if (result === 'Updated') {
                 alert('Device Updated')
-                sessionStorage.removeItem('deviceSno');
+                localStorage.removeItem('deviceSno');
                 window.location.href = '/TotalDevice'
             }
             else {
@@ -124,7 +124,7 @@ function EditDevice() {
                         <div className='main_container' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Device</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Device</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('deviceSno'); window.location.href = '/TotalDevice' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('deviceSno'); window.location.href = '/TotalDevice' }} >Back <MdOutlineArrowForward /></button>
                             </div>
 
                             <div className="contract-div" style={{ width: "90%" }}>

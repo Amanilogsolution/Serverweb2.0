@@ -36,9 +36,9 @@ const EditAsset = () => {
     })
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            const getdata = await GetNewAssets(org, sessionStorage.getItem('newassetsno'))
+            const getdata = await GetNewAssets(org, localStorage.getItem('newassetsno'))
             setData(getdata[0])
 
             const devices = await ActiveAssetesType(org);
@@ -149,7 +149,7 @@ const EditAsset = () => {
             document.getElementById('assetetag').value = data.asset_tag
         }
         else {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const count = await CountNewAssets(org, devicetype)
             let asset_count = Number(count.count) + 1 + '';
@@ -199,8 +199,8 @@ const EditAsset = () => {
         asset_assign_empid = asset_assign_empid.value
         const remark = document.getElementById('remark').value;
 
-        const userid = sessionStorage.getItem('UserId')
-        const sno = sessionStorage.getItem('newassetsno')
+        const userid = localStorage.getItem('UserId')
+        const sno = localStorage.getItem('newassetsno')
 
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
             !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
@@ -265,7 +265,7 @@ const EditAsset = () => {
             }
 
             if (errorcount === 0) {
-                const org = sessionStorage.getItem('Database')
+                const org = localStorage.getItem('Database')
                 setLoading(true)
                 const result = await UpdateNewAssets(org, asset_type, assetetag, serialno, location, manufacture, software,
                     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
@@ -273,7 +273,7 @@ const EditAsset = () => {
 
                 if (result === 'Data Updated') {
                     setLoading(true)
-                    sessionStorage.removeItem('newassetsno')
+                    localStorage.removeItem('newassetsno')
                     setDatas({ ...datas, message: "Asset Updated", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true" })
                     document.getElementById('snackbar').style.display = "block"
                 }
@@ -313,8 +313,8 @@ const EditAsset = () => {
 
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Assets</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Asset</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('newassetsno'); window.location.href = '/TotalNewAssets' }} >Back <MdOutlineArrowForward /></button>
+                                <h2><span className='page-type-head1'>Assets <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Asset</span> </h2>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('newassetsno'); window.location.href = '/TotalNewAssets' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
                                 <div className="card inner-card">

@@ -89,7 +89,7 @@ function TotalAgentmaster() {
             selector: "null",
             cell: (row) => [
                 <a title='Edit Agent master' href="/EditAgent">
-                    <p onClick={() => sessionStorage.setItem('agentSno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('agentSno', `${row.sno}`)} >
                         {/* Edit */}
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>

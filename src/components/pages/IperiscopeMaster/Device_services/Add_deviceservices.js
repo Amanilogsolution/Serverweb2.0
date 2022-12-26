@@ -28,7 +28,7 @@ function AddDeviceservices() {
 
         const device_service = document.getElementById('deviceservices').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
 
         if (!device_service) {

@@ -21,8 +21,7 @@ function AddVendorSubCategory() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
-
+            const org = localStorage.getItem('Database')
             const vendorCategory = await ActiveVendorCategory(org)
             setVendorcatlist(vendorCategory)
 
@@ -38,8 +37,8 @@ function AddVendorSubCategory() {
         const vend_sub_cate_id = vendor_category.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
         const vendor_sub_category = document.getElementById('vendor_sub_category').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserId');
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserId');
+        const org = localStorage.getItem('Database')
 
 
         if (!vendor_category || !vendor_sub_category) {
@@ -73,15 +72,20 @@ function AddVendorSubCategory() {
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
+
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
+
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h3><span style={{ color: "rgb(123,108,200)" }}>Vendor Sub Category</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "22px" }}>Add Vendor Sub Category</span> </h3>
+                                <h3><span className='page-type-head1'>Vendor Sub Category <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Sub Category</span> </h3>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendSubCate' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
+                            <div className="card m-auto" style={{ width: "50%" }}>
+                                <div className='card-header'>Add Vendor Sub Category:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="row">
@@ -107,7 +111,7 @@ function AddVendorSubCategory() {
 
                                         <div className="form-group mt-3" >
                                             <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleinsertdata}>Add Sub Category </button>
-                                            <button type="reset" className="btn btn-secondary" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                            <button type="reset" className="btn btn-secondary mx-3">Reset</button>
                                         </div>
                                     </form>
                                 </article>

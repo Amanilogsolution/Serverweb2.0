@@ -8,7 +8,7 @@ function EditDevicetype() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const snodata = sessionStorage.getItem('devicetypeSno');
+            const snodata = localStorage.getItem('devicetypeSno');
             const getdata = await Getdevicetype(snodata);
             setData(getdata)
         }
@@ -30,11 +30,11 @@ function EditDevicetype() {
     const handlesubmitdata = async (e) => {
         e.preventDefault();
         document.getElementById('subnitbtn').disabled = true;
-        const sno = sessionStorage.getItem('devicetypeSno');
+        const sno = localStorage.getItem('devicetypeSno');
         const devicetypeid = document.getElementById('deviceid').value;
         const device_type = document.getElementById('devicetype').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!device_type) {
             alert("Please enter Mandatory field")
@@ -43,7 +43,7 @@ function EditDevicetype() {
             const updataresult = await Updatedevicetype(sno, devicetypeid, device_type, remark, username);
             if (updataresult === 'Updated') {
                 alert("Data updated")
-                sessionStorage.removeItem('devicetypeSno');
+                localStorage.removeItem('devicetypeSno');
                 window.location.href = './TotalDeviceType';
             }
             else {
@@ -57,7 +57,7 @@ function EditDevicetype() {
                 <div className='main_container pb-2'  >
                     <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                         <h2><span style={{ color: "rgb(123,108,200)" }}>Device Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Device Type</span> </h2>
-                        <button className='btn btn-secondary btn ' onClick={() => { sessionStorage.removeItem('seriessno'); window.location.href = '/TotalDeviceType' }} >Back <MdOutlineArrowForward /></button>
+                        <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('seriessno'); window.location.href = '/TotalDeviceType' }} >Back <MdOutlineArrowForward /></button>
                     </div>
                     <div className="card card-div">
                         <article className="card-body" >

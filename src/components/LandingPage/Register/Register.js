@@ -10,26 +10,32 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import {
     TotalCountry, TotalState,
     TotalCity,
-    AddOrganisation
+    AddOrganisation,CurrencyMaster,AddEmployees
 } from '../../../api/index'
 
 
-export default function Resister() {
+export default function Register() {
     const [verified, setVerified] = useState(false)
     const [countrylist, setCountrylist] = useState([]);
     const [passwordshow, setPasswordshow] = useState(false);
     const [cnfpasswordshow, setCnfpasswordshow] = useState(false);
+    const [currencylist, setCurrencylist] = useState([]);
+
 
     const [statelist, setStatelist] = useState(false);
     const [citylist, setCitylist] = useState(false);
+    const [mobileno,setMobileno]= useState('')
 
     useEffect(() => {
         const fetchdata = async () => {
             const totalCountry = await TotalCountry();
             setCountrylist(totalCountry)
+            console.log(totalCountry)
+            const currency = await CurrencyMaster()
+            setCurrencylist(currency)
+            console.log(currency)
         }
         fetchdata()
-
     }, [])
 
     //recaptcha function
@@ -73,9 +79,10 @@ export default function Resister() {
         }
     }
 
-    const handleClick = (e) => {
+    const handleClick = async(e) => {
         e.preventDefault()
         const Orgname = document.getElementById('org_name').value;
+        const OrgID = Orgname.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000)
         const Country = document.getElementById('country').value;
         const State = document.getElementById('state').value;
         const City = document.getElementById('city').value;
@@ -87,10 +94,22 @@ export default function Resister() {
         const user_id = document.getElementById('user_id').value;
         const password = document.getElementById('password').value;
         const cnf_pass = document.getElementById('cnf_pass').value;
+        
+        const employee_id = full_name.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
+
+        const logo = ''
         if (password !== cnf_pass) {
+            alert("Password Not MAtch")
 
         }
         else if (!Orgname || !Country || !State || !City || !full_name || !mobile) {
+            alert("Blank Field")
+        }
+        else{
+            const result = await AddOrganisation(OrgID,Orgname,Country,State,City,currency,gst,logo)
+            const Employee = await AddEmployees(Orgname,employee_id, full_name, "", email, mobile, Orgname, "")
+            console.log(result)
+            alert("Organisation Added")
 
         }
 
@@ -168,7 +187,15 @@ export default function Resister() {
                                                 <label htmlFor="currency">Currency <span className='text-danger'>*</span></label>
                                                 <select id="currency" className="form-control">
                                                     <option value='' hidden>Choose...</option>
-                                                    <option>...</option>
+
+                                                    {currencylist.length?
+                                                        currencylist.map((item,index)=>(
+                                                            <option key={index} value={item.currencyCode}>{item.name} , {item.currencyCode}</option>
+
+                                                        ))
+                                                        : <option value=''> Please Select Currency</option>
+                                                    }
+                                                    {/* <option>...</option> */}
                                                 </select>
                                             </div>
                                         </div>
@@ -220,7 +247,9 @@ export default function Resister() {
                                         <div className="row mt-1">
                                             <div className="form-group col-md-6">
                                                 <label htmlFor='mobile'>Mobile <span className='text-danger'>*</span></label>
-                                                <input type="number" id='mobile' className="form-control" />
+                                                <input type="number" id='mobile' className="form-control" value={mobileno}
+onChange={(e)=>{if(e.target.value===11){return false} setMobileno(e.target.value) }}
+                                                />
                                             </div>
                                             <div className="form-group col-md-6">
                                                 <label htmlFor="email">Email <span className='text-danger'>*</span></label>

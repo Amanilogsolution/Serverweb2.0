@@ -7,7 +7,7 @@ function EditAgent() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const snodata = sessionStorage.getItem('agentSno');
+            const snodata = localStorage.getItem('agentSno');
             const getdata = await Getagent(snodata);
             setData(getdata)
         }
@@ -37,13 +37,13 @@ function EditAgent() {
     const handlesubmitdata = async (e) => {
         e.preventDefault();
         document.getElementById('subnitbtn').disabled = true;
-        const sno = sessionStorage.getItem('agentSno');
+        const sno = localStorage.getItem('agentSno');
         const id = document.getElementById('id').value;
         const agentname = document.getElementById('agentname').value;
         const agentemail = document.getElementById('agentemail').value;
         const agentphone = document.getElementById('agentphone').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!agentname || !agentemail || !agentphone) {
             alert("Please enter Mandatory field")
@@ -52,7 +52,7 @@ function EditAgent() {
             const updataresult = await updateagent(sno, id, agentname, agentemail, agentphone, remark, username);
             if (updataresult === 'Updated') {
                 alert("Data updated")
-                sessionStorage.removeItem('agentSno');
+                localStorage.removeItem('agentSno');
                 window.location.href = './TotalAgent';
             }
             else {
@@ -92,7 +92,7 @@ function EditAgent() {
                                 </div>
                                 <div className="form-group" >
                                     <button type="submit" className="btn btn-primary float-right mb-4 mt-3" id="subnitbtn" onClick={handlesubmitdata}>Update</button>
-                                    <button type="button" onClick={() => { sessionStorage.removeItem('agentSno'); window.location.href = '/TotalAgent' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
+                                    <button type="button" onClick={() => { localStorage.removeItem('agentSno'); window.location.href = '/TotalAgent' }} className="btn btn-secondary mr-4 float-right mb-4 mt-3">Cancel</button>
                                 </div>
                             </form>
                         </article>

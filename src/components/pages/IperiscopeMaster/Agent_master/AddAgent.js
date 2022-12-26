@@ -30,7 +30,7 @@ function AddAgent() {
         const agentemail = document.getElementById('agentemail').value;
         const agentphone = document.getElementById('agentphone').value;
         const remark = document.getElementById('remark').value;
-        const username = sessionStorage.getItem('UserName');
+        const username = localStorage.getItem('UserName');
 
         if (!agentname || !agentemail || !agentphone) {
             alert("Please enter Mandatory field")

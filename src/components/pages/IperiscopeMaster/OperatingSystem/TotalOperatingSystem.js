@@ -78,7 +78,7 @@ function TotalOperatingSystem() {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit Device Type' href="/EditOperatingSystem">
-                    <p onClick={() => sessionStorage.setItem('OperatingSystemSno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('OperatingSystemSno', `${row.sno}`)} >
                         {/* Edit */}
                         <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
                     </p></a>

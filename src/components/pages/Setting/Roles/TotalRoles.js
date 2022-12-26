@@ -2,41 +2,41 @@ import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import { TotalAssetTypeapi, DeleteAssetTypeapi } from '../../../../api'
+import { totalRoles } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import customStyles from '../../../TableCustomtyle'
 
-const customStyles = {
-    title: {
-      style: {
-        fontColor: 'red',
-        fontWeight: '900',
-      }
-    },
-    rows: {
-      style: {
-        minHeight: '35px'
-      }
-    },
-    headCells: {
-      style: {
-        fontSize: '14px',
-        background:'rgb(105,59,233)',
-        color:'white',
-      },
-    },
-    cells: {
-      style: {
-        fontSize: '14px',
-        // fontWeight:'600',
-        background:'rgb(242,242,242)	',
-        borderBottom:"1px solid silver"
-      },
-    },
-  };
+// const customStyles = {
+//     title: {
+//       style: {
+//         fontColor: 'red',
+//         fontWeight: '900',
+//       }
+//     },
+//     rows: {
+//       style: {
+//         minHeight: '35px'
+//       }
+//     },
+//     headCells: {
+//       style: {
+//         fontSize: '14px',
+//         background:'rgb(105,59,233)',
+//         color:'white',
+//       },
+//     },
+//     cells: {
+//       style: {
+//         fontSize: '14px',
+//         // fontWeight:'600',
+//         background:'rgb(242,242,242)	',
+//         borderBottom:"1px solid silver"
+//       },
+//     },
+//   };
   
 
 function TotalRoles() {
@@ -45,15 +45,54 @@ function TotalRoles() {
 
     const columns = [
         {
-            name: 'Asset Type',
-            selector: 'asset_type',
+            name: 'Role',
+            selector: 'role',
+            sortable: true,
+            cell: (row) => [
+                <a title="Click to Edit"  href="/EditRole" style={{textDecoration:"none"}}  onClick={() => localStorage.setItem('RoleSno', `${row.sno}`)} >{row.role}</a>
+
+            ]
+        },
+        {
+            name: 'Asset',
+            selector: 'asset',
             sortable: true,
         },
         {
-            name: 'Asset Type Description',
-            selector: 'asset_description',
+            name: 'Master',
+            selector: 'master',
+            sortable: true,
+        }, 
+         {
+            name: 'Reports',
+            selector: 'reports',
             sortable: true,
         },
+          {
+            name: 'Setting',
+            selector: 'setting',
+            sortable: true,
+        },  
+        {
+            name: 'Ticket',
+            selector: 'ticket',
+            sortable: true,
+        },  
+        {
+            name: 'Setting',
+            selector: 'setting',
+            sortable: true,
+        },  
+        {
+            name: 'Transaction',
+            selector: 'transaction_details',
+            sortable: true,
+        },  
+        {
+            name: 'Vendor Contract',
+            selector: 'vendor_contract',
+            sortable: true,
+        },  
        
         // {
         //     name: 'Status',
@@ -61,7 +100,7 @@ function TotalRoles() {
         //     cell: (row) => [
         //         <select style={{background:"rgb(222, 222, 222)",border:'none',borderRadius:"2px"}} onChange={async (e) => {
         //             const status = e.target.value;
-        //             const org = sessionStorage.getItem('Database')
+        //             const org = localStorage.getItem('Database')
 
         //              await DeleteAssetTypeapi(org,status, row.sno)
         //             window.location.reload()
@@ -78,7 +117,7 @@ function TotalRoles() {
         //     selector: 'null',
         //     cell: (row) => [
         //         <a title='Edit Series' href="/EditAssetType">
-        //             <p onClick={() => sessionStorage.setItem('assettypesno', `${row.sno}`)} >
+        //             <p onClick={() => localStorage.setItem('assettypesno', `${row.sno}`)} >
         //             <AiFillEdit style={{fontSize:"20px",marginBottom:"-13px"}}/>
         //             </p></a>
         //     ]
@@ -88,10 +127,11 @@ function TotalRoles() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
-            // const tabledata = await TotalAssetTypeapi(org);
-            // setData(tabledata)
+            const tabledata = await totalRoles(org);
+            console.log(tabledata)
+            setData(tabledata)
             setLoading(true)
 
         }
@@ -111,7 +151,7 @@ function TotalRoles() {
                 <div className='main_container' >
                     <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                         <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span style={{ color: "rgb(123,108,200)" }}>Roles</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Roles</span> </h2>
+                            <h2><span className='page-type-head1'>Roles <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Roles</span> </h2>
                             <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './NewRoles' }} >Add Roles<MdAdd /></button>
                         </div>
                         <div >

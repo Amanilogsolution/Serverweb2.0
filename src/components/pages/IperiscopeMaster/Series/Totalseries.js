@@ -107,7 +107,7 @@ function Totalseries() {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit Series' href="/Editseries">
-                    <p onClick={() => sessionStorage.setItem('seriessno', `${row.sno}`)} >
+                    <p onClick={() => localStorage.setItem('seriessno', `${row.sno}`)} >
                     <AiFillEdit style={{fontSize:"20px",marginBottom:"-13px"}}/>
                     </p></a>
             ]

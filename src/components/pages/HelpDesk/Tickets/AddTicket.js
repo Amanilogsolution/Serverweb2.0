@@ -27,7 +27,7 @@ export default function AddTicket() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const employee = await ActiveEmployees(org)
             setEmployeelist(employee)
@@ -68,7 +68,7 @@ export default function AddTicket() {
 
     const handleGetEmpDetail = async (e) => {
         let employee_id = e.target.value;
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
         const detail = await EmployeesDetail(org, employee_id);
         setEmployeedetail(detail)
@@ -81,21 +81,20 @@ export default function AddTicket() {
         document.getElementById('assetserial').value = e.target.value
     }
 
-    const handleIssueType = (e) =>{
-        console.log(e.target.value) 
-        if(e.target.value == 'Handover'){
-            document.getElementById('Handoverdetails').style.display="flex"
+    const handleIssueType = (e) => {
+        if (e.target.value == 'Handover') {
+            document.getElementById('Handoverdetails').style.display = "flex"
             document.getElementById('AssetCondition').value = ""
 
             // alert('Handover')
         }
-        else if(e.target.value == 'Allocation'){
-            document.getElementById('Handoverdetails').style.display="flex"
+        else if (e.target.value == 'Allocation') {
+            document.getElementById('Handoverdetails').style.display = "flex"
             document.getElementById('AssetCondition').value = "Good and Working"
 
         }
-        else{
-            document.getElementById('Handoverdetails').style.display="none"
+        else {
+            document.getElementById('Handoverdetails').style.display = "none"
         }
     }
 
@@ -131,7 +130,7 @@ export default function AddTicket() {
         const AssetCondition = document.getElementById('AssetCondition').value
         const org = sessionStorage.getItem('Database')
 
-        const user_id = sessionStorage.getItem('UserId')
+        const user_id = localStorage.getItem('UserId')
 
         if (!employee_id || !assetval || !location || !ticketstatus || !ticketsubject) {
             setLoading(true)
@@ -144,8 +143,8 @@ export default function AddTicket() {
             setLoading(true)
 
             const result = await InsertTicket(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
-                priority, issuedesc, remark, user_id,AssetTag,AssetCondition)
-                console.log(result)
+                priority, issuedesc, remark, user_id, AssetTag, AssetCondition)
+            console.log(result)
             if (result === 'Data Added') {
                 setDatas({ ...datas, message: "Ticket Added", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
@@ -163,12 +162,16 @@ export default function AddTicket() {
             {
                 loading ?
                     <Sidebar >
+                        {/* ######################### Sanckbar Start ##################################### */}
+
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
+                        {/* ######################### Sanckbar End ##################################### */}
+
                         <div className='main_container pb-2' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Tickets</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Tickets</span> </h2>
+                                <h2><span className='page-type-head1'>Tickets <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Tickets</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = './TotalTicket' }} >Back <MdOutlineArrowForward /></button>
                             </div>
                             <div className="contract-div" style={{ width: "90%" }}>
@@ -242,7 +245,7 @@ export default function AddTicket() {
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div id="Handoverdetails" className="row mt-3" style={{display:"none"}}>
+                                            <div id="Handoverdetails" className="row mt-3" style={{ display: "none" }}>
                                                 <div className="col">
                                                     <label htmlFor='AssetTag'>Asset Tag <span className='text-danger'>*</span></label>
                                                     <input type="text" id='AssetTag' className="form-control" required />
@@ -250,13 +253,10 @@ export default function AddTicket() {
                                                 <div className="col">
                                                     <label htmlFor='priority'>Asset Condition</label>
                                                     <select id='AssetCondition' className="form-select">
-                                                    <option value='' hidden>Select...</option>
-
+                                                        <option value='' hidden>Select...</option>
                                                         <option value='Good and Working' >Good and Working</option>
                                                         <option value='Damaged but Working' >Damaged but Working</option>
                                                         <option value='Damaged but Not Working' >Damaged but Not Working</option>
-
-                                                       
                                                     </select>
                                                 </div>
 
@@ -312,6 +312,8 @@ export default function AddTicket() {
                                             </div>
                                             <div className="form-group mt-3" >
                                                 <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleSaveTicket}>Add Tickets</button>
+                                                <button type="reset" className="btn btn-secondary mx-3">Reset</button>
+
                                             </div>
                                         </form>
                                     </article>

@@ -6,36 +6,8 @@ import { TotalVendorPaymentapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-
-import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
-
-const customStyles = {
-    title: {
-        style: {
-            fontColor: 'red',
-            fontWeight: '900',
-        }
-    },
-    rows: {
-        style: {
-            minHeight: '35px'
-        }
-    },
-    headCells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(105,59,233)',
-            color: 'white',
-        },
-    },
-    cells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(242,242,242)',
-            borderBottom: "1px solid silver"
-        },
-    },
-};
+import {MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import customStyles from '../../../TableCustomtyle'
 
 
 const  TotalVendorPayment=()=> {
@@ -77,8 +49,8 @@ const  TotalVendorPayment=()=> {
             selector: 'null',
             cell: (row) => [
                 <a title='Edit VendorPayments' href="/EditVendorPayments">
-                    <p onClick={() => sessionStorage.setItem('vendorpaymentssno', `${row.sno}`)} >
-                        <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+                    <p onClick={() => localStorage.setItem('vendorpaymentssno', `${row.sno}`)} >
+                        <AiFillEdit className='ft-20' style={{marginBottom: "-13px" }} />
                     </p></a>
             ]
         }
@@ -87,7 +59,7 @@ const  TotalVendorPayment=()=> {
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
+            const org = localStorage.getItem('Database')
 
             const tabledata = await TotalVendorPaymentapi(org);
             console.log(tabledata)
@@ -110,8 +82,8 @@ const  TotalVendorPayment=()=> {
                         <div className='main_container' >
                             <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
                                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Payment</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Vendor Payment</span> </h2>
-                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorPayment' }} >Add Vendor Payment <MdAdd /></button>
+                                    <h2><span className='page-type-head1'>Vendor Payment <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Vendor Payment</span> </h2>
+                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorPayment' }} >Add Vendor Payment +</button>
                                 </div>
                                 <div >
                                     <DataTableExtensions {...tableData}  >

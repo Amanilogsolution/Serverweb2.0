@@ -9,18 +9,18 @@ import Snackbar from '../../../../Snackbar/Snackbar';
 function EditAssetType() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
-    const [datas,setDatas] = useState({
-        message:"abc",
-        title:"title",
-        type:"type",
-        route:null
+    const [datas, setDatas] = useState({
+        message: "abc",
+        title: "title",
+        type: "type",
+        route: '#',
+        toggle: "true",
     })
 
     useEffect(() => {
         const fetchdata = async () => {
-            const org = sessionStorage.getItem('Database')
-
-            const result = await GetAssetTypeapi(org,sessionStorage.getItem('assettypesno'))
+            const org = localStorage.getItem('Database')
+            const result = await GetAssetTypeapi(org, localStorage.getItem('assettypesno'))
             setData(result[0]);
             setLoading(true)
         }
@@ -33,32 +33,30 @@ function EditAssetType() {
         document.getElementById('subnitbtn').disabled = 'true'
         const asset_type = document.getElementById('asset_type').value;
         const asset_type_desc = document.getElementById('asset_type_desc').value;
-        const username = sessionStorage.getItem('UserName');
-        const sno = sessionStorage.getItem('assettypesno')
-        const org = sessionStorage.getItem('Database')
+        const username = localStorage.getItem('UserName');
+        const sno = localStorage.getItem('assettypesno')
+        const org = localStorage.getItem('Database')
 
+        setLoading(true)
 
         if (!asset_type) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({...datas,message:"Please enter the Asset Type",title:"warning",type:"Error"})
-            document.getElementById('snackbar').style.display="block"    
+            setDatas({ ...datas, message: "Please enter the Asset Type", title: "Error", type: "warning" , route: "#", toggle: "true"})
+            document.getElementById('snackbar').style.display = "block"
         }
         else {
             setLoading(true)
-
-            const result = await UpdateAssettypeapi(org,sno, asset_type, asset_type_desc, username);
-
+            const result = await UpdateAssettypeapi(org, sno, asset_type, asset_type_desc, username);
             if (result === 'Updated') {
-               setDatas({...datas,message:"Asset Type Updated",title:"success",type:"success",route:"/TotalAssetType"})
-               document.getElementById('snackbar').style.display="block"    
-               sessionStorage.removeItem('assettypesno');
-      
-              }
+                localStorage.removeItem('assettypesno');
+                setDatas({ ...datas, message: "Asset Type Updated", title: "success", type: "success", route: "/TotalAssetType", toggle: "true"  })
+                document.getElementById('snackbar').style.display = "block"
+            }
             else {
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({...datas,message:"Server Error",title:"Error",type:"danger",route:"/EditAssetType"})
-                document.getElementById('snackbar').style.display="block"   
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditAssetType",toggle: "true"  })
+                document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -76,34 +74,37 @@ function EditAssetType() {
             {
                 loading ?
                     <Sidebar >
-                        <div id="snackbar" style={{display:"none"}}>
-                                <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route}/> 
-                                </div>
+                        <div id="snackbar" style={{ display: "none" }}>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle}/>
+                        </div>
 
                         <div className='main_container pb-2'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Asset Type</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Edit Asset Type</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { sessionStorage.removeItem('assettypesno'); window.location.href = '/TotalAssetType' }} >Back <MdOutlineArrowForward /></button>
+                                <h2><span className='page-type-head1'>Asset Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Asset Type</span> </h2>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('assettypesno'); window.location.href = '/TotalAssetType' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="card card-div" style={{ width: "50%" }}>
+                            <div className="contract-div" style={{ width: "50%" }}>
+                                <div className="card inner-card">
+                                    <div className='card-header'>Edit Asset Type:</div>
 
-                                <article className="card-body" >
-                                    <form className='px-3' autoComplete='off'>
-                                        <div className="form-group col" >
-                                            <label htmlFor='asset_type'> Asset Type <span className='text-danger'>*</span></label>
-                                            <input type="text" className="form-control" id='asset_type' value={data.asset_type} onChange={handlechangeassettype} />
-                                        </div>
-                                        <div className="form-group col-md mt-3" >
-                                            <label htmlFor='asset_type_desc'>Remarks</label>
-                                            <textarea className="form-control" id='asset_type_desc' rows='3' value={data.asset_description} onChange={handlechangeassettypedesc} />
-                                        </div>
+                                    <article className="card-body" >
+                                        <form className='px-3' autoComplete='off'>
+                                            <div className="form-group col" >
+                                                <label htmlFor='asset_type'> Asset Type <span className='text-danger'>*</span></label>
+                                                <input type="text" className="form-control" id='asset_type' value={data.asset_type} onChange={handlechangeassettype} />
+                                            </div>
+                                            <div className="form-group col-md mt-3" >
+                                                <label htmlFor='asset_type_desc'>Remarks</label>
+                                                <textarea className="form-control" id='asset_type_desc' rows='3' value={data.asset_description} onChange={handlechangeassettypedesc} />
+                                            </div>
 
 
-                                        <div className="form-group" >
-                                            <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
-                                        </div>
-                                    </form>
-                                </article>
+                                            <div className="form-group" >
+                                                <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
+                                            </div>
+                                        </form>
+                                    </article>
+                                </div>
                             </div>
                         </div>
                     </Sidebar>
