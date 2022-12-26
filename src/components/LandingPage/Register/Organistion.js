@@ -4,6 +4,7 @@ import Snackbar from '../../../Snackbar/Snackbar';
 import LoadingPage from '../../LoadingPage/LoadingPage';
 import { HiUserCircle } from 'react-icons/hi';
 import {TotalCountry,TotalState,TotalCity,getOrganisation,CurrencyMaster,UpdateOrganisationDetails} from '../../../api/index'
+import './organisation.css'
 
 
 const OrganisationDetails = () => {
@@ -80,13 +81,13 @@ const handleClick = async(e) =>{
                        <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                     </div> */}
   
-                    <div className='Profile_container bg-light d-flex align-items-center'>
+                    <div className='main_container Profile_container bg-light d-flex align-items-center px-5'>
   
                        {/* <div className='pofile_card'> */}
-                       <div className='profile d-flex'>
-                          <div className='photo_sec d-flex  py-3 text-light position-relative'>
+                       <div className='profile d-flex rounded'>
+                       <div className='photo_sec d-flex  py-3 text-light position-relative'>
                              <h2 >Organisation Details</h2>
-                             <HiUserCircle className='profile_log ' />
+                             <HiUserCircle className='profile_log position-absolute' />
                           </div>
                           <div className='details px-5 py-3'>
                              <form>
