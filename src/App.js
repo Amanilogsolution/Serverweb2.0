@@ -160,6 +160,7 @@ import Contactus from './components/Sidebar/Contactus/Contactus';
 
 import TotalRoles from './components/pages/Setting/Roles/TotalRoles';
 import AddRoles from './components/pages/Setting/Roles/AddRole';
+import EditRole from './components/pages/Setting/Roles/EditRole'
 
 import OrganisationDetails from './components/LandingPage/Register/Organistion';
 
@@ -329,6 +330,9 @@ const App = () => {
           
           <Route path='/TotalRoles' element={<TotalRoles/>}/>
           <Route path='/NewRoles' element={<AddRoles/>}/>
+          <Route path='/EditRole' element={<EditRole/>}/>
+
+          
           
           <Route path='/TotalAssignRole' element={<TotalAssignRole/>}/>
           <Route path='/AddAssignRole' element={<AddAssignRole/>}/>

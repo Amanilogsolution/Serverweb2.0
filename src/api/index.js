@@ -1212,8 +1212,31 @@ export const CurrencyMaster = async() =>{
 
 //Role Master
 
+export const totalRoles = async(org) =>{
+    const url = `http://localhost:2008/api/totalroles`
+    return axios.post(url, {org}).then(response => response.data).catch(error => console.log(error));  
+}
+
 export const insertRoles = async(data) =>{
     const url = `http://localhost:2008/api/insertroles`
     return axios.post(url, {data}).then(response => response.data).catch(error => console.log(error));  
 }
+
+export const getrole = async(org,sno) =>{
+    const url = `http://localhost:2008/api/getrole`
+    return axios.post(url, {org,sno}).then(response => response.data).catch(error => console.log(error));  
+}
+
+export const Updaterole = async(data) =>{
+    const url = `http://localhost:2008/api/updaterole`
+    return axios.post(url, {data}).then(response => response.data).catch(error => console.log(error));  
+}
+
+
+
+
+
+
+
+
 

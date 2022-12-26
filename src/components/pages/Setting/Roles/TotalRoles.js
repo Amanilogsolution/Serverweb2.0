@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import { TotalAssetTypeapi, DeleteAssetTypeapi } from '../../../../api'
+import { totalRoles } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import LoadingPage from '../../../LoadingPage/LoadingPage';
@@ -45,15 +45,54 @@ function TotalRoles() {
 
     const columns = [
         {
-            name: 'Asset Type',
-            selector: 'asset_type',
+            name: 'Role',
+            selector: 'role',
+            sortable: true,
+            cell: (row) => [
+                <a title="Click to Edit"  href="/EditRole" style={{textDecoration:"none"}}  onClick={() => localStorage.setItem('RoleSno', `${row.sno}`)} >{row.role}</a>
+
+            ]
+        },
+        {
+            name: 'Asset',
+            selector: 'asset',
             sortable: true,
         },
         {
-            name: 'Asset Type Description',
-            selector: 'asset_description',
+            name: 'Master',
+            selector: 'master',
+            sortable: true,
+        }, 
+         {
+            name: 'Reports',
+            selector: 'reports',
             sortable: true,
         },
+          {
+            name: 'Setting',
+            selector: 'setting',
+            sortable: true,
+        },  
+        {
+            name: 'Ticket',
+            selector: 'ticket',
+            sortable: true,
+        },  
+        {
+            name: 'Setting',
+            selector: 'setting',
+            sortable: true,
+        },  
+        {
+            name: 'Transaction',
+            selector: 'transaction_details',
+            sortable: true,
+        },  
+        {
+            name: 'Vendor Contract',
+            selector: 'vendor_contract',
+            sortable: true,
+        },  
        
         // {
         //     name: 'Status',
@@ -90,8 +129,9 @@ function TotalRoles() {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
 
-            // const tabledata = await TotalAssetTypeapi(org);
-            // setData(tabledata)
+            const tabledata = await totalRoles(org);
+            console.log(tabledata)
+            setData(tabledata)
             setLoading(true)
 
         }
