@@ -19,11 +19,10 @@ const OrganisationDetails = () => {
   
                     <div className='Profile_container bg-light d-flex align-items-center'>
   
-                       {/* <div className='pofile_card'> */}
                        <div className='profile d-flex'>
                           <div className='photo_sec d-flex  py-3 text-light position-relative'>
                              <h2 >Organisation Details</h2>
-                             <HiUserCircle className='profile_log ' />
+                             <HiUserCircle className='profile_log'/>
                           </div>
                           <div className='details px-5 py-3'>
                              <form>
@@ -63,7 +62,7 @@ const OrganisationDetails = () => {
                                       <input className="form-control" id="company" value="" disabled></input>
                                    </div>
                                 </div>
-                                {/* </div> */}
+                               
   
                                 <hr />
                                
@@ -76,7 +75,6 @@ const OrganisationDetails = () => {
                              </form>
                           </div>
                        </div>
-                       {/* </div> */}
                     </div>
                  </Sidebar >
                  : <LoadingPage />
