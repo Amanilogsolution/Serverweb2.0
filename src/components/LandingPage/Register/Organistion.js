@@ -4,7 +4,7 @@ import Snackbar from '../../../Snackbar/Snackbar';
 import LoadingPage from '../../LoadingPage/LoadingPage';
 import { HiUserCircle } from 'react-icons/hi';
 import {TotalCountry,TotalState,TotalCity,getOrganisation,CurrencyMaster,UpdateOrganisationDetails} from '../../../api/index'
-
+import './organisation.css'
 
 const OrganisationDetails = () => {
     const [loading, setLoading] = useState(true)
@@ -14,10 +14,6 @@ const OrganisationDetails = () => {
     const [citylist, setCitylist] = useState(false);
     const [currencylist, setCurrencylist] = useState([]);
 
-
-
-
-   
 
     useEffect(() => {
       const fetchData = async () => {
@@ -84,10 +80,10 @@ const handleClick = async(e) =>{
                        <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                     </div> */}
   
-                    <div className='Profile_container bg-light d-flex align-items-center'>
+                    <div className=' main_container Profile_container bg-light d-flex align-items-center border border-danger'>
   
                        {/* <div className='pofile_card'> */}
-                       <div className='profile d-flex'>
+                       <div className='profile d-flex m-auto'>
                           <div className='photo_sec d-flex  py-3 text-light position-relative'>
                              <h2 >Organisation Details</h2>
                              <HiUserCircle className='profile_log ' />
