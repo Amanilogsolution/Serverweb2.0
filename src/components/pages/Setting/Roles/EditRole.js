@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
-import { ActiveAgent,insertRoles } from '../../../../api/index'
+import { getrole,Updaterole } from '../../../../api/index'
 
 
-function AddRoles() {
+function EditRoles() {
     const [loading, setLoading] = useState(false)
-    // const [agentlist, setAgentlist] = useState({})
+    const [rolelist, setRolelist] = useState({})
 
     const [datas, setDatas] = useState({
         message: "abc",
@@ -21,9 +21,9 @@ function AddRoles() {
 
     useEffect(() => {
         const fetchdata = async () => {
-            // const agents = await ActiveAgent()
-            // console.log(agents)
-            // setAgentlist(agents)
+            const getRoles = await getrole(localStorage.getItem('Database'),localStorage.getItem('RoleSno'))
+            console.log(getRoles)
+            setRolelist(getRoles[0])
             setLoading(true)
 
         }
@@ -106,7 +106,8 @@ function AddRoles() {
             org:localStorage.getItem('Database'),
             role: document.getElementById('role').value,
             remark: document.getElementById('remarks').value,
-            role_id: document.getElementById('role').value.substring(0,3).toUpperCase() + Math.floor(Math.random() * 10000)
+            role_id: document.getElementById('role').value.substring(0,3).toUpperCase() + Math.floor(Math.random() * 10000),
+            sno:localStorage.getItem('RoleSno')
         }
         e.preventDefault();
         // setLoading(false)
@@ -123,7 +124,10 @@ function AddRoles() {
             }
             console.log(datas)
 
-        const result = await insertRoles(datas)
+        const result = await Updaterole(datas)
+        if (result == "Updated"){
+                window.location.href = '/TotalRoles'
+        }
         // document.getElementById('subnitbtn').disabled = 'true'
         // // const software = document.getElementById('software').checked=== true?true:false;
         // const asset_type = document.getElementById('asset_type').value;
@@ -200,18 +204,18 @@ function AddRoles() {
                                         <div className='row'>
                                             <div className="col-md-5" >
                                                 <label htmlFor='role'>Role <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='role' />
+                                                <input type="text" className="form-control" id='role' defaultValue={rolelist.role}/>
                                             </div>
                                             <div className="col-md-5" >
                                                 <label htmlFor='remarks'>Remarks</label>
-                                                <input type="text" className="form-control" id='remarks' />
+                                                <input type="text" className="form-control" id='remarks' defaultValue={rolelist.remark}/>
                                             </div>
                                         </div>
                                         <br />
                                         <table className="table">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Category <input type='checkbox' id='allval' style={{ height: '20px', width: '20px' }} onChange={allaccess} /></th>
+                                                    {/* <th scope="col">Category <input type='checkbox' id='allval' style={{ height: '20px', width: '20px' }} onChange={allaccess} /></th> */}
                                                     <th scope="col">View</th>
                                                     <th scope="col">Create</th>
                                                     <th scope="col">Edit</th>
@@ -220,53 +224,53 @@ function AddRoles() {
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <th scope="row"><input type='checkbox' id='assets-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('assets')} /> Assets</th>
-                                                    <td><input type='checkbox' id='assets-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('assets')} /></td>
-                                                    <td><input type='checkbox' id='assets-create' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='assets-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='assets-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                    <th scope="row"><input type='checkbox' checked={rolelist.asset == "true" ? "true":""} id='assets-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('assets')} /> Assets</th>
+                                                    <td><input type='checkbox' checked={rolelist.asset_view == "true" ? "true":""}  id='assets-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('assets')} /></td>
+                                                    <td><input type='checkbox' checked={rolelist.asset_create == "true" ? "true":""} id='assets-create' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.asset_edit == "true" ? "true":""} id='assets-edit' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.asset_delete == "true" ? "true":""} id='assets-deactive' style={{ height: '20px', width: '20px' }}  /></td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row"><input type='checkbox' id='vendCont-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('vendCont')} /> Vendor Contract</th>
-                                                    <td><input type='checkbox' id='vendCont-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('vendCont')} /></td>
-                                                    <td><input type='checkbox' id='vendCont-create' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='vendCont-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='vendCont-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                    <th scope="row"><input type='checkbox' id='vendCont-full' checked={rolelist.vendor_contract == "true" ? "true":""}  style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('vendCont')} /> Vendor Contract</th>
+                                                    <td><input type='checkbox' checked={rolelist.vendor_contract_view == "true" ? "true":""}  id='vendCont-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('vendCont')} /></td>
+                                                    <td><input type='checkbox' checked={rolelist.vendor_contract_create == "true" ? "true":""}  id='vendCont-create' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.vendor_contract_edit == "true" ? "true":""}  id='vendCont-edit' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.vendor_contract_delete == "true" ? "true":""}  id='vendCont-deactive' style={{ height: '20px', width: '20px' }}  /></td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row"><input type='checkbox' id='ticket-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('ticket')} /> Ticket</th>
-                                                    <td><input type='checkbox' id='ticket-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('ticket')} /></td>
-                                                    <td><input type='checkbox' id='ticket-create' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='ticket-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='ticket-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                    <th scope="row"><input type='checkbox' id='ticket-full' checked={rolelist.ticket == "true" ? "true":""} style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('ticket')} /> Ticket</th>
+                                                    <td><input type='checkbox' checked={rolelist.ticket_view == "true" ? "true":""} id='ticket-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('ticket')} /></td>
+                                                    <td><input type='checkbox' checked={rolelist.ticket_create == "true" ? "true":""} id='ticket-create' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.ticket_edit == "true" ? "true":""} id='ticket-edit' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.ticket_delete == "true" ? "true":""} id='ticket-deactive' style={{ height: '20px', width: '20px' }}  /></td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row"><input type='checkbox' id='master-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('master')} /> Masters</th>
-                                                    <td><input type='checkbox' id='master-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('master')} /></td>
-                                                    <td><input type='checkbox' id='master-create' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='master-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='master-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                    <th scope="row"><input type='checkbox' id='master-full' checked={rolelist.master == "true" ? "true":""} style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('master')} /> Masters</th>
+                                                    <td><input type='checkbox' checked={rolelist.master_view == "true" ? "true":""}  id='master-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('master')} /></td>
+                                                    <td><input type='checkbox' checked={rolelist.master_create == "true" ? "true":""}  id='master-create' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.master_edit == "true" ? "true":""}  id='master-edit' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.master_delete == "true" ? "true":""}  id='master-deactive' style={{ height: '20px', width: '20px' }}  /></td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row"><input type='checkbox' id='transaction-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('transaction')} /> Transaction</th>
-                                                    <td><input type='checkbox' id='transaction-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('transaction')} /></td>
-                                                    <td><input type='checkbox' id='transaction-create' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='transaction-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='transaction-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                    <th scope="row"><input type='checkbox' id='transaction-full' checked={rolelist.transaction_details == "true" ? "true":""} style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('transaction')} /> Transaction</th>
+                                                    <td><input type='checkbox' checked={rolelist.transaction_view == "true" ? "true":""} id='transaction-view'  style={{ height: '20px', width: '20px' }} onChange={() => viewoff('transaction')} /></td>
+                                                    <td><input type='checkbox' checked={rolelist.transaction_create == "true" ? "true":""} id='transaction-create' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.transaction_edit == "true" ? "true":""} id='transaction-edit' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.transaction_delete == "true" ? "true":""} id='transaction-deactive' style={{ height: '20px', width: '20px' }}  /></td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row"><input type='checkbox' id='setting-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('setting')} /> Setting</th>
-                                                    <td><input type='checkbox' id='setting-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('setting')} /></td>
-                                                    <td><input type='checkbox' id='setting-create' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='setting-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='setting-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                    <th scope="row"><input type='checkbox' id='setting-full' checked={rolelist.setting == "true" ? "true":""} style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('setting')} /> Setting</th>
+                                                    <td><input type='checkbox' checked={rolelist.setting_view == "true" ? "true":""} id='setting-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('setting')} /></td>
+                                                    <td><input type='checkbox' checked={rolelist.setting_create == "true" ? "true":""} id='setting-create' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.setting_edit == "true" ? "true":""} id='setting-edit' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.setting_delete == "true" ? "true":""} id='setting-deactive' style={{ height: '20px', width: '20px' }}  /></td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row"><input type='checkbox' id='reports-full' style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('reports')} /> Reports</th>
-                                                    <td><input type='checkbox' id='reports-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('reports')} /></td>
-                                                    <td><input type='checkbox' id='reports-create' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='reports-edit' style={{ height: '20px', width: '20px' }} disabled /></td>
-                                                    <td><input type='checkbox' id='reports-deactive' style={{ height: '20px', width: '20px' }} disabled /></td>
+                                                    <th scope="row"><input type='checkbox' id='reports-full' checked={rolelist.reports == "true" ? "true":""}  style={{ height: '20px', width: '20px' }} onChange={() => fullaccess('reports')} /> Reports</th>
+                                                    <td><input type='checkbox' checked={rolelist.reports_view == "true" ? "true":""}  id='reports-view' style={{ height: '20px', width: '20px' }} onChange={() => viewoff('reports')} /></td>
+                                                    <td><input type='checkbox' checked={rolelist.reports_create == "true" ? "true":""}  id='reports-create' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.reports_edit == "true" ? "true":""}  id='reports-edit' style={{ height: '20px', width: '20px' }}  /></td>
+                                                    <td><input type='checkbox' checked={rolelist.reports_delete == "true" ? "true":""}  id='reports-deactive' style={{ height: '20px', width: '20px' }}  /></td>
                                                 </tr>
 
                                             </tbody>
@@ -274,7 +278,7 @@ function AddRoles() {
 
 
                                         <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Role</button>
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Update Role</button>
                                             <button type="reset" className="btn btn-secondary" style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
                                         </div>
                                     </form>
@@ -288,4 +292,4 @@ function AddRoles() {
     )
 }
 
-export default AddRoles;
+export default EditRoles;
