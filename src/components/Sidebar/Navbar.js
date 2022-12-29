@@ -10,6 +10,10 @@ import DrizzleLogo from '../../image/drizzle_logo.jpg'
 import { Link } from 'react-router-dom'
 import { VscListFilter, VscSettings } from 'react-icons/vsc'
 import { HiDocumentText } from 'react-icons/hi'
+import { TiVendorMicrosoft } from 'react-icons/ti'
+import { CgOrganisation } from 'react-icons/cg'
+import { GrUserExpert } from 'react-icons/gr'
+import { FiUserPlus } from 'react-icons/fi'
 
 
 const Navbar = (propes) => {
@@ -32,10 +36,10 @@ const Navbar = (propes) => {
                             <MdOutlineArrowDropDown style={{ fontSize: "30px", margin: "-2px 0" }} />
                         </div>
                         <div className="dropdown-menu " aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
-                            <Link className="dropdown-item" to="/TotalRoles">Role</Link>
-                            <Link className="dropdown-item" to="/TotalAssignRole">Assign Role</Link>
-                            <Link className="dropdown-item" to="/OrganisationDetails">Organisation Details</Link>
-                            <Link className="dropdown-item" to="#">Appliction</Link>
+                            <Link className="dropdown-item" to="/TotalRoles"><FiUserPlus/> Role</Link>
+                            <Link className="dropdown-item" to="/TotalAssignRole"><GrUserExpert/> AssignRole</Link>
+                            <Link className="dropdown-item" to="/OrganisationDetails"><CgOrganisation/> Organisation Details</Link>
+                            <Link className="dropdown-item" to="#"><TiVendorMicrosoft/> Appliction</Link>
                         </div>
                     </div>
                     <div className='d-flex align-items-center  cursor-pointer  '>
