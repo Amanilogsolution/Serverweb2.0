@@ -68,7 +68,7 @@ const TicketDash = () => {
         <div id='ticket_details1' className='ticket_details cursor-pointer d-flex justify-content-center align-items-center' onClick={() => setStep(1)} >Summary</div>
         <div id='ticket_details2' className='ticket_details cursor-pointer d-flex justify-content-center align-items-center' onClick={() => setStep(2)} >Issue Type</div>
         <div id='ticket_details4' className='ticket_details cursor-pointer d-flex justify-content-center align-items-center' onClick={() => setStep(4)} >Priority</div>
-        <div id='ticket_details3' className='ticket_details cursor-pointer d-flex justify-content-center align-items-center' onClick={() => setStep(3)} >Staff</div>
+        <div id='ticket_details3' className='ticket_details cursor-pointer d-flex justify-content-center align-items-center' onClick={() => setStep(3)} >My Ticket</div>
       </div>
       <div className='half-a-border-on-top border border-dark ' >{showStep(currentStep)}</div>
 

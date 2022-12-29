@@ -38,6 +38,19 @@ const TicketDepartment = () => {
   return (
     <div className='d-flex flex-column justify-content-center '>
       <div className='ticket_card_div justify-content-center'>
+
+      <div className='ticket_card rounded'>
+          <div className='ticket_card_content d-flex justify-content-center'>
+            <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "10px 11px" }}>
+              <FaUser className='m-1' style={{ fontSize: "27px" }} />
+            </div>
+            <div>
+              <p>My Tickets</p>
+              <h5 style={{ marginTop: "-13px" }}>49</h5>
+            </div>
+          </div>
+        </div>
+
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center' style={{ marginRight: "43px" }}>
             <div className='tickets_icon mx-2 text-light rounded-circle' style={{ padding: "10px 15px" }}>
@@ -50,7 +63,7 @@ const TicketDepartment = () => {
           </div>
         </div>
 
-        <div className='ticket_card rounded'>
+        {/* <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center'>
             <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "10px 11px" }}>
               <FaUserTimes className='m-1' style={{ fontSize: "30px " }} />
@@ -58,6 +71,18 @@ const TicketDepartment = () => {
             <div>
               <p>Unassigned</p>
               <h5 style={{ marginTop: "-13px" }}>13</h5>
+            </div>
+          </div>
+        </div> */}
+
+        <div className='ticket_card rounded'>
+          <div className='ticket_card_content d-flex justify-content-center' style={{ marginRight: "30px" }}>
+            <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "12px 12px" }}>
+              <FaCheck className='m-1' style={{ fontSize: "27px"}} />
+            </div>
+            <div>
+              <p>Closed</p>
+              <h5 style={{ marginTop: "-13px" }}>11</h5>
             </div>
           </div>
         </div>
@@ -68,7 +93,7 @@ const TicketDepartment = () => {
               <FaCalendarTimes className='m-1' style={{ fontSize: "30px" }} />
             </div>
             <div>
-              <p>Overdue</p>
+              <p>Over 24 hour</p>
               <h5 style={{ marginTop: "-13px" }}>26</h5>
             </div>
           </div>
@@ -77,14 +102,27 @@ const TicketDepartment = () => {
       </div>
 
       <div className='ticket_card_div justify-content-center'>
-        <div className='ticket_card rounded'>
+
+      <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center'>
             <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "10px 11px" }}>
               <FaUser className='m-1' style={{ fontSize: "27px" }} />
             </div>
             <div>
-              <p>My Tickets</p>
+              <p>Total Tickets</p>
               <h5 style={{ marginTop: "-13px" }}>49</h5>
+            </div>
+          </div>
+        </div>
+        
+        <div className='ticket_card rounded'>
+          <div className='ticket_card_content d-flex justify-content-center' style={{ marginRight: "43px" }}>
+            <div className='tickets_icon mx-2 text-light rounded-circle' style={{ padding: "10px 15px" }}>
+              <FaEnvelopeOpen style={{ fontSize: "30px" }} />
+            </div>
+            <div>
+              <p>Open</p>
+              <h5 style={{ marginTop: "-13px" }}>7</h5>
             </div>
           </div>
         </div>
@@ -100,6 +138,8 @@ const TicketDepartment = () => {
             </div>
           </div>
         </div>
+
+       
 
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center'>

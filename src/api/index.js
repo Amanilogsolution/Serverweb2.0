@@ -1213,22 +1213,22 @@ export const CurrencyMaster = async() =>{
 //Role Master
 
 export const totalRoles = async(org) =>{
-    const url = `http://localhost:2008/api/totalroles`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalroles`
     return axios.post(url, {org}).then(response => response.data).catch(error => console.log(error));  
 }
 
 export const insertRoles = async(data) =>{
-    const url = `http://localhost:2008/api/insertroles`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertroles`
     return axios.post(url, {data}).then(response => response.data).catch(error => console.log(error));  
 }
 
 export const getrole = async(org,sno) =>{
-    const url = `http://localhost:2008/api/getrole`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getrole`
     return axios.post(url, {org,sno}).then(response => response.data).catch(error => console.log(error));  
 }
 
 export const Updaterole = async(data) =>{
-    const url = `http://localhost:2008/api/updaterole`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updaterole`
     return axios.post(url, {data}).then(response => response.data).catch(error => console.log(error));  
 }
 

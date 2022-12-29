@@ -33,7 +33,7 @@ const Navbar = (propes) => {
                         </div>
                         <div className="dropdown-menu " aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
                             <Link className="dropdown-item" to="/TotalRoles">Role</Link>
-                            <Link className="dropdown-item" to="/TotalAssignRole">AssignRole</Link>
+                            <Link className="dropdown-item" to="/TotalAssignRole">Assign Role</Link>
                             <Link className="dropdown-item" to="/OrganisationDetails">Organisation Details</Link>
                             <Link className="dropdown-item" to="#">Appliction</Link>
                         </div>
