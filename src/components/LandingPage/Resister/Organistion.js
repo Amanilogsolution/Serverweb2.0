@@ -13,6 +13,7 @@ const OrganisationDetails = () => {
            {
               loading ?
                  <Sidebar>
+ 
                     {/* <div id="snackbar" style={{ display: "none" }}>
                        <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                     </div> */}

@@ -91,7 +91,7 @@ const Navbar = (propes) => {
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
                             <Link className="dropdown-item" to="/Profile">Profile</Link>
                             <Link className="dropdown-item" to="/ChangePassword">Change Password</Link>
-                            <a className="dropdown-item border-top text-danger" href="#" onClick={handleLogout}>Logout <MdOutlineExitToApp style={{ fontSize: "20px" }} /></a>
+                       <a className="dropdown-item border-top text-danger" href="#" onClick={handleLogout}>Logout <MdOutlineExitToApp style={{ fontSize: "20px" }} /></a>
                         </div>
                     </div>
                 </div>

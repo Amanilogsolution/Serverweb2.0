@@ -49,8 +49,8 @@
 
 .sidebaropen {
     /* background: #fff;
-    color: #000;
-    min-height: 100vh;
+    color: #000; 
+    min-height: 1 00vh;
     position: fixed;
     transition: all 0.5s;
     width: 240px;

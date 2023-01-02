@@ -104,13 +104,8 @@ const Profile = () => {
 
                      <div className='profile d-flex rounded'>
                         <div className='photo_sec d-flex  py-3 text-light position-relative'>
-<<<<<<< HEAD
-                           <h2 className='mt-4'>Profile Details</h2>
-                           <HiUserCircle className='profile_log ' />
-=======
                            <h2 >Profile Details</h2>
                            <HiUserCircle className='profile_log position-absolute' />
->>>>>>> d769d09415d94309c4ca97e3ecbad84c53658802
                         </div>
                         <div className='details px-5 py-3'>
                            <form>
