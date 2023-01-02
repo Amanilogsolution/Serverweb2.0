@@ -1,37 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './TicketDash.css'
 import { FaEnvelopeOpen, FaUserTimes, FaCalendarTimes, FaUser, FaCheck, FaTelegramPlane } from 'react-icons/fa';
 import { BarChart, PieChart, Pie, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, LineChart, Line, } from "recharts";
+import { Ticket_Summary } from '../../../../api/index'
 
 const TicketDepartment = () => {
+  const [ticketSummary,setTicketSummary] = useState({
+    "TotalTicket":0,
+    "TotalOpenTicket":0,
+    "TotalCloseTicket":0,
+    "MyTicket":0,
+    "MyTicketOpen":0,
+    "MyTicketClose":0
+
+  })
+
+  useEffect(() => {
+    const fetchdata = async () => {
+      const result = await Ticket_Summary(localStorage.getItem('Database'),localStorage.getItem('UserId'))
+      console.log(result)
+      setTicketSummary({...ticketSummary,TotalTicket:result.TotalTicket.totalticket,TotalOpenTicket:result.TotalTicketOpen.totalticketopen,TotalCloseTicket:result.TotalTicketClose.totalticketclose,
+        MyTicket:result.MyTicket.myticket,MyTicketOpen:result.MyTicketOpen.myticketopen,MyTicketClose:result.MyTicketClose.myticketclose})
+    }
+    fetchdata()
+  },[])
+
   const data02 = [
     {
-      "name": "Created",
-      "value": 4400,
+      "name": "Total",
+      "value": ticketSummary.TotalTicket
     },
     {
-      "name": "Assigned",
-      "value": 3567
+      "name": "Open",
+      "value": ticketSummary.TotalOpenTicket
     },
-    {
-      "name": "Overdue",
-      "value": 1398
-    },
+ 
     {
       "name": "Closed",
-      "value": 2000
-    },
-    {
-      "name": "Reopened",
-      "value": 3908
-    },
-    {
-      "name": "Deleted",
-      "value": 1800
-    },
-    {
-      "name": "Warningd",
-      "value": 800
+      "value": ticketSummary.TotalCloseTicket
     }
   ];
   const COLORS = ['#7675C4', '#DB49F2', '#F4397A', '#039B28', '#A5A704', '#014FB5'];
@@ -39,14 +45,14 @@ const TicketDepartment = () => {
     <div className='d-flex flex-column justify-content-center '>
       <div className='ticket_card_div justify-content-center'>
 
-      <div className='ticket_card rounded'>
+        <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center'>
             <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "10px 11px" }}>
               <FaUser className='m-1' style={{ fontSize: "27px" }} />
             </div>
             <div>
               <p>My Tickets</p>
-              <h5 style={{ marginTop: "-13px" }}>49</h5>
+              <h5 style={{ marginTop: "-13px" }}>{ticketSummary.MyTicket}</h5>
             </div>
           </div>
         </div>
@@ -58,7 +64,7 @@ const TicketDepartment = () => {
             </div>
             <div>
               <p>Open</p>
-              <h5 style={{ marginTop: "-13px" }}>7</h5>
+              <h5 style={{ marginTop: "-13px" }}>{ticketSummary.MyTicketOpen}</h5>
             </div>
           </div>
         </div>
@@ -78,11 +84,11 @@ const TicketDepartment = () => {
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center' style={{ marginRight: "30px" }}>
             <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "12px 12px" }}>
-              <FaCheck className='m-1' style={{ fontSize: "27px"}} />
+              <FaCheck className='m-1' style={{ fontSize: "27px" }} />
             </div>
             <div>
               <p>Closed</p>
-              <h5 style={{ marginTop: "-13px" }}>11</h5>
+              <h5 style={{ marginTop: "-13px" }}>{ticketSummary.MyTicketClose}</h5>
             </div>
           </div>
         </div>
@@ -94,7 +100,7 @@ const TicketDepartment = () => {
             </div>
             <div>
               <p>Over 24 hour</p>
-              <h5 style={{ marginTop: "-13px" }}>26</h5>
+              <h5 style={{ marginTop: "-13px" }}>0</h5>
             </div>
           </div>
         </div>
@@ -103,18 +109,18 @@ const TicketDepartment = () => {
 
       <div className='ticket_card_div justify-content-center'>
 
-      <div className='ticket_card rounded'>
+        <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center'>
             <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "10px 11px" }}>
               <FaUser className='m-1' style={{ fontSize: "27px" }} />
             </div>
             <div>
               <p>Total Tickets</p>
-              <h5 style={{ marginTop: "-13px" }}>49</h5>
+              <h5 style={{ marginTop: "-13px" }}>{ticketSummary.TotalTicket}</h5>
             </div>
           </div>
         </div>
-        
+
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center' style={{ marginRight: "43px" }}>
             <div className='tickets_icon mx-2 text-light rounded-circle' style={{ padding: "10px 15px" }}>
@@ -122,7 +128,7 @@ const TicketDepartment = () => {
             </div>
             <div>
               <p>Open</p>
-              <h5 style={{ marginTop: "-13px" }}>7</h5>
+              <h5 style={{ marginTop: "-13px" }}>{ticketSummary.TotalOpenTicket}</h5>
             </div>
           </div>
         </div>
@@ -130,16 +136,16 @@ const TicketDepartment = () => {
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center' style={{ marginRight: "30px" }}>
             <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "12px 12px" }}>
-              <FaCheck className='m-1' style={{ fontSize: "27px"}} />
+              <FaCheck className='m-1' style={{ fontSize: "27px" }} />
             </div>
             <div>
               <p>Closed</p>
-              <h5 style={{ marginTop: "-13px" }}>11</h5>
+              <h5 style={{ marginTop: "-13px" }}>{ticketSummary.TotalCloseTicket}</h5>
             </div>
           </div>
         </div>
 
-       
+
 
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center'>
@@ -148,12 +154,12 @@ const TicketDepartment = () => {
             </div>
             <div>
               <p>Answered</p>
-              <h5 style={{ marginTop: "-13px" }}>17</h5>
+              <h5 style={{ marginTop: "-13px" }}>0</h5>
             </div>
           </div>
         </div>
       </div>
-      <div className='m-auto' style={{height:'250px',width:'400px'}}>
+      <div className='m-auto' style={{ height: '250px', width: '400px' }}>
         <ResponsiveContainer width="100%" aspect={1.8}>
           <PieChart width={700} height={200}>
             <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
@@ -167,7 +173,7 @@ const TicketDepartment = () => {
           </PieChart>
         </ResponsiveContainer>
       </div>
-    </div> 
+    </div>
   )
 }
 

@@ -1,39 +1,50 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './TicketDash.css'
 import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer, Cell } from "recharts";
-
+import {Ticket_Priority} from '../../../../api/index'
 const TicketPriority = () => {
-    const data02 = [
-        {
-            "name": "Created",
-            "value": 2400,
 
-        },
-        {
-            "name": "Assigned",
-            "value": 4567
-        },
-        {
-            "name": "Overdue",
-            "value": 1398
+    const [ticketPriority,setTicketPriority] = useState({  })
+
+    useEffect(() => {
+        const fetchdata = async () => {
+          const result = await Ticket_Priority(localStorage.getItem('Database'))
+          console.log(result)
+          setTicketPriority(result)
+
+        }
+        fetchdata()
+      },[])
+    const lowdata = [
+        { "name": "Open",
+        "value": ticketPriority.TotalLowPriorityOpen,
         },
         {
             "name": "Closed",
-            "value": 9800
-        },
-        {
-            "name": "Reopened",
-            "value": 3908
-        },
-        {
-            "name": "Deleted",
-            "value": 4800
-        },
-        {
-            "name": "Warnings",
-            "value": 4800
+            "value": ticketPriority.TotalLowPriorityClose,
         }
-    ];
+    ]
+
+    const normaldata = [
+        { "name": "Open",
+        "value": ticketPriority.TotalNormalPriorityOpen,
+        },
+        {
+            "name": "Closed",
+            "value": ticketPriority.TotalNormalPriorityClose,
+        }
+    ]
+
+    const urgentdata = [
+        { "name": "Open",
+        "value": ticketPriority.TotalUrgentPriorityOpen,
+        },
+        {
+            "name": "Closed",
+            "value": ticketPriority.TotalUrgentPriorityClose,
+        }
+    ]
+       
 
     const COLORS = ['#7675C4', '#DB49F2', '#F4397A', '#039B28', '#A5A704', '#014FB5'];
     const COLORS2 = ['#0088FE', '#00C49F', '#A5A704', '#FF8042', '#FFBB28', '#00C49F'];
@@ -42,14 +53,14 @@ const TicketPriority = () => {
     return (
         <div className='d-flex  justify-content-center mt-4' style={{ height: "35vh" }}>
             <div style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", borderRadius: "3px", width: "26%" }}>
-                <p className=' text-black text-center px-4 mx-2'>Critical</p>
+                <p className=' text-black text-center px-4 mx-2'>LOW</p>
 
                 <ResponsiveContainer width="100%" aspect={1.8}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label>
-                            {data02.map((entry, index) => (
+                        <Pie data={lowdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label>
+                            {lowdata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
@@ -60,14 +71,14 @@ const TicketPriority = () => {
             </div>
 
             <div style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", borderRadius: "3px", width: "26%" }}>
-                <p className=' text-black text-center px-4 mx-2'>High</p>
+                <p className=' text-black text-center px-4 mx-2'>NORMAL</p>
 
                 <ResponsiveContainer width="100%" aspect={1.8}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label>
-                            {data02.map((entry, index) => (
+                        <Pie data={normaldata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label>
+                            {normaldata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS2[index % COLORS2.length]} />
                             ))}
                         </Pie>
@@ -78,14 +89,14 @@ const TicketPriority = () => {
             </div>
 
             <div style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", borderRadius: "3px", width: "26%" }}>
-                <p className=' text-black text-center px-4 mx-2'>Normal</p>
+                <p className=' text-black text-center px-4 mx-2'>URGENT</p>
 
                 <ResponsiveContainer width="100%" aspect={1.8}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label >
-                            {data02.map((entry, index) => (
+                        <Pie data={urgentdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label >
+                            {urgentdata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS3[index % COLORS3.length]} />
                             ))}
                         </Pie>

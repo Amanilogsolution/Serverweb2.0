@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import './AssetsDash.css'
 import { BarChart, PieChart, Pie, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, } from "recharts";
-import {DashboarProcedure} from '../../../api/index'
+import {DashboarProcedure,Dashboard_Location_Name} from '../../../api/index'
 
-export default function AssetsDash() {
+export default function AssetsDash(callback) {
+  const [chartdata,setChartData] = useState()
   const [Assetsdata,setAssetData] = useState({
     "TotalAsset":0,
     "ActiveAsset":0,
@@ -15,12 +16,23 @@ export default function AssetsDash() {
     const fetch = async() =>{
       const type = 'Asset'
       const result = await DashboarProcedure(type)
-      console.log(result)
       setAssetData({...Assetsdata,TotalAsset:result[0][0].TotalDevice,ActiveAsset:result[1][0].ActiveDevice,RentalAssets:result[2][0].RentalDevice,RentMonth:result[3][0].rent,PurchaseVal:result[4][0].purchase})
-      console.log(result)
+        datas()
+
     }
     fetch()
   },[])
+  
+  const datas = async() =>{
+    const locationname = await Dashboard_Location_Name(localStorage.getItem('Database'))
+    if(locationname.length>7){
+      setChartData(locationname)
+    }else{
+      datas()
+    }
+  }
+
+
   const data02 = [
     { 
       "name": "Group A",
@@ -47,32 +59,7 @@ export default function AssetsDash() {
       "value": 4800
     }
   ];
-  const chartData = [
-    { Location: "WH", Assets: 60 },
-    { Location: "HO", Assets: 150 },
-    { Location: "Bhiwandi", Assets: 390 },
-    { Location: "Mumbai", Assets: 231 },
-    { Location: "Nagpur", Assets: 301 },
-    { Location: "Banglore", Assets: 200 },
-    { Location: "WH", Assets: 60 },
-    { Location: "HO", Assets: 150 },
-    { Location: "Bhiwandi", Assets: 390 },
-    { Location: "Mumbai", Assets: 231 },
-    { Location: "Nagpur", Assets: 301 },
-    { Location: "Banglore", Assets: 200 },
-    { Location: "WH", Assets: 60 },
-    { Location: "HO", Assets: 150 },
-    { Location: "Bhiwandi", Assets: 390 },
-    { Location: "Mumbai", Assets: 231 },
-    { Location: "Nagpur", Assets: 301 },
-    { Location: "Banglore", Assets: 200 },
-    { Location: "WH", Assets: 60 },
-    { Location: "HO", Assets: 150 },
-    { Location: "Bhiwandi", Assets: 390 },
-    { Location: "Mumbai", Assets: 231 },
-    { Location: "Nagpur", Assets: 301 },
-    { Location: "Banglore", Assets: 200 }
-  ];
+
   const chartData2 = [
     { softwareName: "Windows", softwares: 200 },
     { softwareName: "Seqrite", softwares: 410 },
@@ -137,7 +124,7 @@ export default function AssetsDash() {
         <div className='bar_location'>
           <p className='bg-dark text-white px-4'>IT Asset Allotment Summary</p>
           <ResponsiveContainer width="100%" aspect={5.4}>
-            <BarChart data={chartData} margin={{ top: 20, right: 45 }}>
+            <BarChart data={chartdata} margin={{ top: 20, right: 45 }}>
               <CartesianGrid />
               <XAxis dataKey="Location" interval={"preserveStartEnd"} style={{ fontSize:"14px" }}/>
               <YAxis />

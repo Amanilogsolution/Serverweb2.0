@@ -1170,6 +1170,31 @@ export const DashboarProcedure = async (type) => {
     return axios.post(url, { type }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const Dashboard_Location_Name = async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/dashboard_location_name`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+
+
+
+// Ticket Dashboard
+
+export const Ticket_Summary = async (org,userid) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ticket_summary`
+    return axios.post(url, { org,userid }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const Ticket_Priority = async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ticket_priority`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const Ticket_issue_type= async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ticket_issue_type`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+
+
 // User Details
 export const getUserdetails = async (org,user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getuserdetails`
