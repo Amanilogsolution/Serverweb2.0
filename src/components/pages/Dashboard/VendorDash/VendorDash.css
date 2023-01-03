@@ -30,7 +30,7 @@
     transition: transform .2s;
   }
   .VendorDash .VendorDash1 .table1{
-    height: 27vh;
+    /* height: 27vh; */
     padding: 0 3px;
     overflow: auto;
     margin-top: -16px;
@@ -43,7 +43,7 @@
     overflow: auto;
   }
 .VendorDash tr {
-  line-height: 8px;
+  line-height: 18px;
 }
 #recurring:hover {
   -ms-transform: scale(1.02);

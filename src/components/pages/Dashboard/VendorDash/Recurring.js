@@ -3,11 +3,10 @@ import './Recurring.css'
 import ReactPaginate from 'react-paginate';
 import { Recurring_Vendor, Recurring_Frequency } from '../../../../api/index'
 import { CSVLink } from "react-csv";
-import * as FileSaver from "file-saver";
-import XLSX from 'sheetjs-style'
-import { BiExport } from 'react-icons/bi'
-import { SiMicrosoftexcel } from 'react-icons/si'
-import { GrDocumentCsv } from 'react-icons/gr'
+import {BiExport} from 'react-icons/bi'
+import {SiMicrosoftexcel} from 'react-icons/si'
+import {GrDocumentCsv} from 'react-icons/gr'
+import {ExcelConvertData} from './Excel'
 
 
 
@@ -20,18 +19,21 @@ export default function Recurring() {
   const [toogle, setToogle] = useState(false)
 
 
-  const fileType =
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
-  const fileExtension = ".xlsx";
+
 
   const exportExcel = async () => {
-    const ws = XLSX.utils.json_to_sheet(Recurringdata);
-    console.log(ws)
-    const wb = { Sheets: { 'data': ws }, SheetNames: ["data"] };
-    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-    const data = new Blob([excelBuffer], { type: fileType });
-    FileSaver.saveAs(data, "Excel Export" + fileExtension);
+    const datasss = ExcelConvertData(Recurringdata)
   }
+
+  // const handlePrint= (e) =>{
+  //   e.preventDefault()
+  //   var backup = document.body.innerHTML;
+  //   var divcontent = document.getElementById('pagination').innerHTML;
+  //   document.body.innerHTML = divcontent;
+  //   window.print();
+  //   document.body.innerHTML = backup;
+  //   window.location.reload()
+  // }
 
   useEffect(() => {
     const fetch = async () => {
@@ -49,6 +51,7 @@ export default function Recurring() {
     }
     fetch();
   }, [])
+
   const handleChange = async (e) => {
     e.preventDefault();
     console.log(e.target.value)
@@ -75,12 +78,12 @@ export default function Recurring() {
       <div className='recurring_table position-relative' >
         <p className='bg-dark text-white px-4 mx-1'>Vendor Recurring Details</p>
         <div className='recurring_table_inside'>
-          <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}>
-            <BiExport className='mx-4' style={{ fontSize: "25px" }} />
+          <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer  px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{width:'5%',float:'right'}}>
+            <BiExport style={{ fontSize: "25px" }} />
           </div>
           {
             toogle ?
-              <div className="d-flex flex-column justify-content-center align-items-center bg-light position-absolute rounded py-1" style={{ right: "2%", width: "5%", boxShadow: "3px 3px 10px black" }}>
+              <div className="d-flex flex-column justify-content-center align-items-center bg-light position-absolute rounded py-1" style={{ right: "2%",top:'12%', width: "5%", boxShadow: "3px 3px 10px black" }}>
                 <a href="#"
                   onClick={exportExcel}
                 ><SiMicrosoftexcel className='ft-20' /></a>
@@ -93,9 +96,9 @@ export default function Recurring() {
               : ''
           }
 
-
-
-          <table class="table table-striped">
+       
+          <div id="pagination">
+          <table class="table table-striped" >
             <thead>
               <tr>
                 <th scope="col">Vendor</th>
@@ -129,6 +132,7 @@ export default function Recurring() {
 
             </tbody>
           </table>
+          </div>
           <div className="d-flex justify-content-end">
             <div className="d-flex justify-content-center align-items-center mx-2">
               <label>Rows Per Page</label>

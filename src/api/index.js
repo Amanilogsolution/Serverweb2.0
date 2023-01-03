@@ -1218,6 +1218,11 @@ export const Recurring_Frequency = async (org,pageno,rowsperpage) => {
     return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const TotalVendorContract  = async (org,pageno,rowsperpage) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/TotalVendorContractDetails`
+    return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
+}
+
 // User Details
 export const getUserdetails = async (org,user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getuserdetails`
