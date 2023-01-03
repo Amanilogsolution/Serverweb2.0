@@ -5,9 +5,9 @@ import { Recurring_Vendor, Recurring_Frequency } from '../../../../api/index'
 import { CSVLink } from "react-csv";
 import * as FileSaver from "file-saver";
 import XLSX from 'sheetjs-style'
-import {BiExport} from 'react-icons/bi'
-import {SiMicrosoftexcel} from 'react-icons/si'
-import {GrDocumentCsv} from 'react-icons/gr'
+import { BiExport } from 'react-icons/bi'
+import { SiMicrosoftexcel } from 'react-icons/si'
+import { GrDocumentCsv } from 'react-icons/gr'
 
 
 
@@ -17,7 +17,7 @@ export default function Recurring() {
   const [lastval, setLastval] = useState()
   const [VendorFreq, setVendorFreq] = useState({})
   const [rowperpage, setRowPerPage] = useState(10)
-  const [toogle,setToogle] = useState(false)
+  const [toogle, setToogle] = useState(false)
 
 
   const fileType =
@@ -72,31 +72,28 @@ export default function Recurring() {
   return (
     <div className='Recurring_div d-flex mx-2 pt-2'>
 
-      <div className='recurring_table' style={{position:"relative"}}>
+      <div className='recurring_table position-relative' >
         <p className='bg-dark text-white px-4 mx-1'>Vendor Recurring Details</p>
         <div className='recurring_table_inside'>
-          <div title="Export" className="d-flex justify-content-end mr-2" onClick={(e)=>{e.preventDefault();setToogle(value => !value)}}>
-          <BiExport style={{fontSize:"25px",marginRight:"20px"}}/>
+          <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}>
+            <BiExport className='mx-4' style={{ fontSize: "25px" }} />
           </div>
-
-          <div className='bg-light position-absolute rounded' style={{right:"5%",width:"5%",boxShadow:"3px 3px 10px black"}}>
           {
-            toogle ? 
-          <div className="d-flex flex-column justify-content-center align-items-center" >
-            <a href="#"
-            onClick={exportExcel}
-            ><SiMicrosoftexcel className='ft-20'/></a>
-            <CSVLink
-              data={Recurringdata}
-              filename="RecurringData"
-            > <GrDocumentCsv className='ft-20'/>
-            </CSVLink>
-          </div>
-          :''
+            toogle ?
+              <div className="d-flex flex-column justify-content-center align-items-center bg-light position-absolute rounded py-1" style={{ right: "2%", width: "5%", boxShadow: "3px 3px 10px black" }}>
+                <a href="#"
+                  onClick={exportExcel}
+                ><SiMicrosoftexcel className='ft-20' /></a>
+                <CSVLink
+                  data={Recurringdata}
+                  filename="RecurringData"
+                > <GrDocumentCsv className='ft-20' />
+                </CSVLink>
+              </div>
+              : ''
           }
-          </div>
 
-       
+
 
           <table class="table table-striped">
             <thead>
