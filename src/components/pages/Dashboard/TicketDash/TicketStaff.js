@@ -1,44 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './TicketDash.css'
 import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer, Cell } from "recharts";
+import { Ticket_Summary } from '../../../../api/index'
+
 
 const TicketStaff = () => {
-    const data02 = [
-        {
-            "name": "Created",
-            "value": 2400,
+    const [ticketSummary,setTicketSummary] = useState({
+        "TotalTicket":0,
+        "TotalOpenTicket":0,
+        "TotalCloseTicket":0,
+        "MyTicket":0,
+        "MyTicketOpen":0,
+        "MyTicketClose":0
+    
+      })
 
-        },
-        {
-            "name": "Assigned",
-            "value": 4567
-        },
-        {
-            "name": "Overdue",
-            "value": 1398
-        },
-        {
-            "name": "Closed",
-            "value": 9800
-        },
-        {
-            "name": "Reopened",
-            "value": 3908
-        },
-        {
-            "name": "Deleted",
-            "value": 4800
-        },
-        {
-            "name": "Warnings",
-            "value": 4800
+      useEffect(() => {
+        const fetchdata = async () => {
+          const result = await Ticket_Summary(localStorage.getItem('Database'),localStorage.getItem('UserId'))
+          console.log(result)
+          setTicketSummary({...ticketSummary,TotalTicket:result.TotalTicket.totalticket,TotalOpenTicket:result.TotalTicketOpen.totalticketopen,TotalCloseTicket:result.TotalTicketClose.totalticketclose,
+            MyTicket:result.MyTicket.myticket,MyTicketOpen:result.MyTicketOpen.myticketopen,MyTicketClose:result.MyTicketClose.myticketclose})
         }
-    ];
+        fetchdata()
+      },[])
+      const data02 = [
+        {
+          "name": "Total",
+          "value": ticketSummary.MyTicket
+        },
+        {
+          "name": "Open",
+          "value": ticketSummary.MyTicketOpen
+        },
+     
+        {
+          "name": "Closed",
+          "value": ticketSummary.MyTicketClose
+        }
+      ];
     const COLORS = ['#7675C4', '#DB49F2', '#F4397A', '#039B28', '#A5A704', '#014FB5'];
 
     return (
             <div className='m-auto mt-4 pt-2 rounded' style={{ border: "2px solid silver", height: "33vh", margin: "6px 10px 15px 10px", width: "30%" }}>
-                <p className=' text-black text-center px-4 mx-2 mb-0'>Staff</p>
+                <p className=' text-black text-center px-4 mx-2 mb-0'>{localStorage.getItem('UserName')}</p>
                 <ResponsiveContainer width="100%" aspect={1.8}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
