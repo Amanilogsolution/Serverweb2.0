@@ -3,7 +3,7 @@
     margin: 12px 8px;
     min-height: 63vh;
     max-width: 100%;
-    
+
 }
 
 .AssetDash .Asset_cards {
@@ -12,7 +12,7 @@
 
 .AssetDash .Asset_inner_card1 {
     width: 50%;
-    flex-direction: column;   
+    flex-direction: column;
 }
 
 .AssetDash .Asset_card {
@@ -22,8 +22,9 @@
     background: linear-gradient(45deg, rgb(96, 58, 233), rgb(50, 15, 176));
     transition: all 0.5s linear;
 }
+
 .AssetDash .Asset_card:hover {
-transform: scale(1.05);
+    transform: scale(1.05);
 }
 
 
@@ -35,9 +36,10 @@ transform: scale(1.05);
     background: linear-gradient(45deg, rgb(164, 43, 122), rgb(106, 6, 71));
     transition: all 0.5s linear;
 }
+
 .AssetDash .Asset_card2:hover {
     transform: scale(1.05);
-    }
+}
 
 .AssetDash .for_graph {
     width: 70%;
@@ -51,19 +53,14 @@ transform: scale(1.05);
 
 .graph_2nd_row {
     height: 49%;
-    border: 2px solid rgb(0, 132, 255);
-
 }
 
 .manufacturer_graph {
     width: 39%;
-    border: 2px solid red;
 }
 
 .software_graph {
     width: 59%;
-    border: 2px solid red;
-
 }
 
 @media screen and (max-width: 1000px) {
