@@ -83,18 +83,17 @@ export default function Recurring() {
           </div>
           {/* <button onClick={handlePrint}>Print</button> */}
 
-
-          <div style={{backgroundColor:"#FCFCFC",position:"absolute",right:"0",top:"12%",width:"5%",boxShadow:"3px 3px 10px black",borderRadius:"5px"}}>
+          <div className='bg-light position-absolute rounded' style={{right:"5%",width:"5%",boxShadow:"3px 3px 10px black"}}>
           {
             toogle ? 
           <div className="d-flex flex-column justify-content-center align-items-center" >
             <a href="#"
             onClick={exportExcel}
-            ><SiMicrosoftexcel style={{fontSize:"20px"}}/></a>
+            ><SiMicrosoftexcel className='ft-20'/></a>
             <CSVLink
               data={Recurringdata}
               filename="RecurringData"
-            > <GrDocumentCsv style={{fontSize:"20px"}}/>
+            > <GrDocumentCsv className='ft-20'/>
             </CSVLink>
           </div>
           :''

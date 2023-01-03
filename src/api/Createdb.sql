@@ -539,8 +539,7 @@ CREATE TABLE IPERISCOPE.dbo.tbl_Organisation (
 	org_name varchar(300) NULL,
 	org_country varchar(100) NULL,
 	org_state varchar(100) NULL,
-		org_city varchar(100) NULL,
-
+     org_city varchar(100) NULL,
 	org_currency varchar(100) NULL,
 	org_gst varchar(100) NULL,
 	org_logo varchar(100) NULL
