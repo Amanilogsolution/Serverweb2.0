@@ -51,14 +51,19 @@ transform: scale(1.05);
 
 .graph_2nd_row {
     height: 49%;
+    border: 2px solid rgb(0, 132, 255);
+
 }
 
 .manufacturer_graph {
     width: 39%;
+    border: 2px solid red;
 }
 
 .software_graph {
     width: 59%;
+    border: 2px solid red;
+
 }
 
 @media screen and (max-width: 1000px) {
