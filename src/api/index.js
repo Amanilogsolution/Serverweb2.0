@@ -1174,6 +1174,14 @@ export const Dashboard_Location_Name = async (org) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/dashboard_location_name`
     return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
 }
+export const Dashboard_Software = async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/dashboard_software`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+export const Dashboard_Manufacture = async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/dashboard_manufacture`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
 
 
 
@@ -1194,6 +1202,21 @@ export const Ticket_issue_type= async (org) => {
     return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
 }
 
+// Vendor Dashboard
+export const Vendor_Reference_no = async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ReferanceNumber`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const Recurring_Vendor = async (org,pageno,rowsperpage) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/RecurringVendor`
+    return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const Recurring_Frequency = async (org,pageno,rowsperpage) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/RecurringFrequency`
+    return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
+}
 
 // User Details
 export const getUserdetails = async (org,user_id) => {

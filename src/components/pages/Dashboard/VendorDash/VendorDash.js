@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './VendorDash.css'
+import {Vendor_Reference_no} from '../../../../api/index'
 
 export default function VendorDash({setStep}) {
+  const [ReferabceNo ,setReferanceNo] = useState()
+  useEffect(()=>{
+    const fetchdata = async() =>{
+      const ReferanceNo = await Vendor_Reference_no(localStorage.getItem('Database'))
+      console.log(ReferanceNo.data)
+      setReferanceNo(ReferanceNo.data)
+    }
+    fetchdata()
+
+  },[])
+
   return (
     <div className='VendorDash'>
       <div className='VendorDash1'>
@@ -160,7 +172,7 @@ export default function VendorDash({setStep}) {
       <div className='VendorDash2'>
         <div className='VendorDash2_card text-center rounded text-light mb-1 pt-3'>
           <p>Reference Numbers</p>
-          <h3 style={{ marginTop: "-12px" }}>164</h3>
+          <h3 style={{ marginTop: "-12px" }}>{ReferabceNo}</h3>
         </div>
 
         <div className='select_div'>
