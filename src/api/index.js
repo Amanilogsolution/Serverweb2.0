@@ -1170,6 +1170,31 @@ export const DashboarProcedure = async (type) => {
     return axios.post(url, { type }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const Dashboard_Location_Name = async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/dashboard_location_name`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+
+
+
+// Ticket Dashboard
+
+export const Ticket_Summary = async (org,userid) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ticket_summary`
+    return axios.post(url, { org,userid }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const Ticket_Priority = async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ticket_priority`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const Ticket_issue_type= async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/ticket_issue_type`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+
+
 // User Details
 export const getUserdetails = async (org,user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getuserdetails`
@@ -1213,22 +1238,22 @@ export const CurrencyMaster = async() =>{
 //Role Master
 
 export const totalRoles = async(org) =>{
-    const url = `http://localhost:2008/api/totalroles`
+    const url = `https://drizzlebackend.awlworldwide.com/api/totalroles`
     return axios.post(url, {org}).then(response => response.data).catch(error => console.log(error));  
 }
 
 export const insertRoles = async(data) =>{
-    const url = `http://localhost:2008/api/insertroles`
+    const url = `https://drizzlebackend.awlworldwide.com/api/insertroles`
     return axios.post(url, {data}).then(response => response.data).catch(error => console.log(error));  
 }
 
 export const getrole = async(org,sno) =>{
-    const url = `http://localhost:2008/api/getrole`
+    const url = `https://drizzlebackend.awlworldwide.com/api/getrole`
     return axios.post(url, {org,sno}).then(response => response.data).catch(error => console.log(error));  
 }
 
 export const Updaterole = async(data) =>{
-    const url = `http://localhost:2008/api/updaterole`
+    const url = `https://drizzlebackend.awlworldwide.com/api/updaterole`
     return axios.post(url, {data}).then(response => response.data).catch(error => console.log(error));  
 }
 

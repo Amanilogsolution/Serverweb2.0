@@ -6,7 +6,6 @@ import { HiUserCircle } from 'react-icons/hi';
 import {TotalCountry,TotalState,TotalCity,getOrganisation,CurrencyMaster,UpdateOrganisationDetails} from '../../../api/index'
 import './organisation.css'
 
-
 const OrganisationDetails = () => {
     const [loading, setLoading] = useState(true)
     const [OrgData,setOrgdata] = useState({})

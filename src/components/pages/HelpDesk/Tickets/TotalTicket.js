@@ -35,8 +35,8 @@ const columns = [
         sortable: true,
     },
     {
-        name: 'Ticket Status',
-        selector: 'ticket_status',
+        name: 'Ticket Subject',
+        selector: 'ticket_subject',
         sortable: true,
     },
     {

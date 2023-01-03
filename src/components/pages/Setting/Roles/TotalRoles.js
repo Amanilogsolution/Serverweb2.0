@@ -54,6 +54,11 @@ function TotalRoles() {
             ]
         },
         {
+            name: 'Remarks',
+            selector: 'remark',
+            sortable: true,
+        },
+        {
             name: 'Asset',
             selector: 'asset',
             sortable: true,
