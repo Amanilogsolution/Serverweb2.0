@@ -8,10 +8,22 @@
 .Recurring_div .recurring_table .recurring_table_inside{
     overflow: auto;
     height: 59vh;
+    width: 100%;
     margin-top: -12px;
+
 }
+/* .Recurring_div .recurring_table .recurring_table_inside thead{
+    position: fixed;
+    width: 100%;
+} */
+/* .Recurring_div .recurring_table .recurring_table_inside tbody{
+    margin-top: 20%;
+    border: 2px solid red;
+   
+} */
+
 .Recurring_div .recurring_table .recurring_table_inside tr{
-    line-height: 8px;
+    line-height: 18px;
 }
 .Recurring_div .recurring_cards{
     width: 19%;
