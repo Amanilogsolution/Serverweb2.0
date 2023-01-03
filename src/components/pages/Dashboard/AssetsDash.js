@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './AssetsDash.css'
 import { BarChart, PieChart, Pie, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, } from "recharts";
-import {DashboarProcedure,Dashboard_Location_Name} from '../../../api/index'
+import {DashboarProcedure,Dashboard_Location_Name,Dashboard_Software,Dashboard_Manufacture} from '../../../api/index'
 
 export default function AssetsDash(callback) {
   const [chartdata,setChartData] = useState()
+  const [dashboardsoft,setDashboardsoft] = useState([])
+  const [dashboardmanu,setDashboardmanu] = useState([])
   const [Assetsdata,setAssetData] = useState({
     "TotalAsset":0,
     "ActiveAsset":0,
@@ -24,62 +26,23 @@ export default function AssetsDash(callback) {
   },[])
   
   const datas = async() =>{
-    const locationname = await Dashboard_Location_Name(localStorage.getItem('Database'))
-    if(locationname.length>7){
-      setChartData(locationname)
-    }else{
-      datas()
-    }
+    setTimeout(async()=>{
+      const locationname = await Dashboard_Location_Name(localStorage.getItem('Database'))
+      const dashboard_soft = await Dashboard_Software(localStorage.getItem('Database'))
+      const dashboard_manu = await Dashboard_Manufacture(localStorage.getItem('Database'))
+      setDashboardmanu(dashboard_manu)
+       setDashboardsoft(dashboard_soft)
+      if(locationname.length>7){
+        setChartData(locationname)
+      }else{
+        datas()
+      }
+    },2000)
+   
   }
 
 
-  const data02 = [
-    { 
-      "name": "Group A",
-      "value": 2400
-    },
-    {
-      "name": "Group B",
-      "value": 4567
-    },
-    {
-      "name": "Group C",
-      "value": 1398
-    },
-    {
-      "name": "Group D",
-      "value": 9800
-    },
-    {
-      "name": "Group E",
-      "value": 3908
-    },
-    {
-      "name": "Group F",
-      "value": 4800
-    }
-  ];
-
-  const chartData2 = [
-    { softwareName: "Windows", softwares: 200 },
-    { softwareName: "Seqrite", softwares: 410 },
-    { softwareName: "SQL Manag.", softwares: 300 },
-    { softwareName: "Vs Code", softwares: 325 },
-    { softwareName: "Sep14", softwares: 225 },
-    { softwareName: "Linux", softwares: 400 },
-    { softwareName: "Windows", softwares: 200 },
-    { softwareName: "Seqrite", softwares: 100 },
-    { softwareName: "SQL Manag.", softwares: 300 },
-    { softwareName: "Vs Code", softwares: 325 },
-    { softwareName: "Sep14", softwares: 590 },
-    { softwareName: "Linux", softwares: 400 },
-    { softwareName: "Windows", softwares: 200 },
-    { softwareName: "Seqrite", softwares: 410 },
-    { softwareName: "SQL Manag.", softwares: 360 },
-    { softwareName: "Vs Code", softwares: 23 },
-    { softwareName: "Sep14", softwares: 225 },
-    { softwareName: "Linux", softwares: 400 }
-  ];
+ 
   return (
     <div className='AssetDash d-flex'>
       <div className='Asset_cards text-white text-center d-flex justify-Content-center'>
@@ -135,36 +98,32 @@ export default function AssetsDash(callback) {
           </ResponsiveContainer>
         </div>
         <div className='graph_2nd_row d-flex justify-content-center' >
-          <div className='manufacturer_graph'>
+          <div className='manufacturer_graph' style={{overflow:"auto"}}>
             <p className='bg-dark text-white px-4 mx-2'>Manufacturer</p>
-            <ResponsiveContainer width="100%" aspect={2.4}>
+            <ResponsiveContainer width="100%" aspect={2.0}>
               <PieChart width={700} height={200}>
                 <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                 <Tooltip />
-                <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label />
+                <Pie data={dashboardmanu} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label />
+                <Legend layout="vertical" verticalAlign="center" align="right" />
+                <Legend layout="vertical" verticalAlign="center" align="right" />
+
               </PieChart>
             </ResponsiveContainer>
           </div>
           <div className='software_graph'>
             <p className='bg-dark text-white px-4'>Software</p>
-            <ResponsiveContainer width="100%" aspect={3.2}>
-              <LineChart data={chartData2} margin={{ top: 20, right: 45 }}>
-                <CartesianGrid />
-                <XAxis dataKey="softwareName" interval={"preserveStartEnd"} />
-                <YAxis />
-                <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
-                <Tooltip />
-                <Line
-                  type="monotone"
-                  dataKey="softwares"
-                  stroke="maroon"
-                  activeDot={{ r: 8}}
-                  strokeWidth="4px"
-                  // fillOpacity={0}
-                  dot={{r: 0}}
-                />
-              </LineChart>
-            </ResponsiveContainer>
+
+            <ResponsiveContainer width="100%" aspect={3.5}>
+            <BarChart data={dashboardsoft} margin={{ top: 2, right: 45 }}>
+              <CartesianGrid />
+              <XAxis dataKey="softwareName" interval={"preserveStartEnd"} style={{ fontSize:"14px" }}/>
+              <YAxis />
+              <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
+              <Bar dataKey="softwares" fill="maroon" barSize={30} />
+              <Tooltip />
+            </BarChart>
+          </ResponsiveContainer>
           </div>
         </div>
       </div>
