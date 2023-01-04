@@ -1223,6 +1223,19 @@ export const TotalVendorContract  = async (org,pageno,rowsperpage) => {
     return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
 }
 
+//Invoice Dashboard
+export const Invoice_Outstanding  = async (org) => {
+    const url = `http://localhost:2008/api/Invoice_Outstanding`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+export const TotalOutstanding = async (org,pageno,rowsperpage) => {
+    console.log(org,pageno,rowsperpage)
+    const url = `http://localhost:2008/api/TotalOutstanding`
+    return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
+}
+
+
+
 // User Details
 export const getUserdetails = async (org,user_id) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/getuserdetails`
