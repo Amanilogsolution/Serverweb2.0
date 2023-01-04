@@ -43,9 +43,12 @@ import Footer from './Footer/Footer';
 import Navbar from './Navbar.js';
 import './Sidebar.css'
 import logo from '../../image/drizzle_logo.jpg'
+import img from '../../image/modelimg.png'
+import { Modal, ModalBody, ModalHeader } from 'reactstrap'
 
 
 const Sidebar = ({ children }) => {
+    const [modal, setModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false);
     const [togglemain, setTogglemain] = useState(false);
     const [toggleinnermain, setToggleinnermain] = useState(false);
@@ -81,8 +84,9 @@ const Sidebar = ({ children }) => {
         marginLeft: "0%"
     }
     const handleLogout = () => {
-        localStorage.clear()
-        window.location.href = '/'
+        // localStorage.clear()
+        // window.location.href = '/'
+        setModal(true)
     }
 
     const handleinnertoggle = () => {
@@ -216,6 +220,26 @@ const Sidebar = ({ children }) => {
     }
 
     return (
+        <>
+
+         <Modal size="lg" isOpen={modal} toggle={() => setModal(!modal)} style={{width:"300px",marginTop:"50px"}}>
+                <ModalHeader style={{ background: "white" }}>
+                <img src={img} style={{width:"140px",margin:"0 70px"}}/>
+                </ModalHeader>
+                <ModalBody>
+                    <div style={{textAlign:"center",width:"100%",padding:"0 15px"}}>
+                <h5>Are you sure,</h5> 
+                <p>you want to logout your account</p><br/>
+                <div>
+                    <button style={{borderRadius:"50px"}} className='btn btn-voilet w-100 my-2' onClick={()=>{localStorage.clear() 
+                                                                                  window.location.href = '/'}}>Yah, I am sure</button><br/>
+                    <button style={{borderRadius:"50px"}} className='btn btn-secondary w-100' onClick={() => setModal(!modal)}>Cencel</button>
+                    </div>
+                    </div>
+                </ModalBody>
+            </Modal>
+
+
         <div className="sidebarcontainer">
             <div className={isOpen ? 'sidebaropen' : 'sidebar'}
             // onClick={toggle}
@@ -663,6 +687,7 @@ const Sidebar = ({ children }) => {
                 <Footer />
             </div>
         </div>
+        </>
     );
 };
 
