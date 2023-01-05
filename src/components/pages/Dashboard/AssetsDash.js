@@ -111,8 +111,6 @@ export default function AssetsDash(callback) {
                   ))}
                 </Pie>
                 <Legend layout="vertical" verticalAlign="center" align="right" />
-                <Legend layout="vertical" verticalAlign="center" align="right" />
-
               </PieChart>
             </ResponsiveContainer>
           </div>
