@@ -26,13 +26,16 @@ export default function AssetsDash(callback) {
   }, [])
 
   const datas = async () => {
+    setTimeout(async () => {
       const locationname = await Dashboard_Location_Name(localStorage.getItem('Database'))
       const dashboard_soft = await Dashboard_Software(localStorage.getItem('Database'))
       const dashboard_manu = await Dashboard_Manufacture(localStorage.getItem('Database'))
       setDashboardmanu(dashboard_manu)
       setDashboardsoft(dashboard_soft)
+      console.log(dashboard_soft)
         setChartData(locationname)
-
+  
+    }, 2000)
 
   }
 

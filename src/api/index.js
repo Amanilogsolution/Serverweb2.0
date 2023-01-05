@@ -1225,12 +1225,12 @@ export const TotalVendorContract  = async (org,pageno,rowsperpage) => {
 
 //Invoice Dashboard
 export const Invoice_Outstanding  = async (org) => {
-    const url = `http://localhost:2008/api/Invoice_Outstanding`
+    const url = `https://drizzlebackend.awlworldwide.com/api/Invoice_Outstanding`
     return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
 }
 export const TotalOutstanding = async (org,pageno,rowsperpage) => {
     console.log(org,pageno,rowsperpage)
-    const url = `http://localhost:2008/api/TotalOutstanding`
+    const url = `https://drizzlebackend.awlworldwide.com/api/TotalOutstanding`
     return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
 }
 
