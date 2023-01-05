@@ -60,11 +60,7 @@ export default function Recurring() {
     const datas = await Recurring_Vendor(localStorage.getItem('Database'), 1, e.target.value)
     setRecurringData(datas.data)
     const total = datas.TotalData[0]["Totaldata"]
-
     setLastval(Math.ceil(total / e.target.value))
-
-
-
   }
   const handlePageClick = async (data) => {
     const datas = await Recurring_Vendor(localStorage.getItem('Database'), data.selected + 1, rowperpage)
