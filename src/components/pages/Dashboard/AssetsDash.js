@@ -32,11 +32,9 @@ export default function AssetsDash(callback) {
       const dashboard_manu = await Dashboard_Manufacture(localStorage.getItem('Database'))
       setDashboardmanu(dashboard_manu)
       setDashboardsoft(dashboard_soft)
-      if (locationname.length > 7) {
+      console.log(dashboard_soft)
         setChartData(locationname)
-      } else {
-        datas()
-      }
+  
     }, 2000)
 
   }
