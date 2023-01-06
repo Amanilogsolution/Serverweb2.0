@@ -16,7 +16,7 @@ export default function Recurring() {
   const [lastval, setLastval] = useState()
   const [VendorFreq, setVendorFreq] = useState({})
   const [rowperpage, setRowPerPage] = useState(10)
-  const [toogle,setToogle] = useState(false)
+  const [toogle, setToogle] = useState(false)
 
 
 
@@ -60,11 +60,7 @@ export default function Recurring() {
     const datas = await Recurring_Vendor(localStorage.getItem('Database'), 1, e.target.value)
     setRecurringData(datas.data)
     const total = datas.TotalData[0]["Totaldata"]
-
     setLastval(Math.ceil(total / e.target.value))
-
-
-
   }
   const handlePageClick = async (data) => {
     const datas = await Recurring_Vendor(localStorage.getItem('Database'), data.selected + 1, rowperpage)
@@ -75,30 +71,26 @@ export default function Recurring() {
   return (
     <div className='Recurring_div d-flex mx-2 pt-2'>
 
-      <div className='recurring_table' style={{position:"relative"}}>
+      <div className='recurring_table position-relative' >
         <p className='bg-dark text-white px-4 mx-1'>Vendor Recurring Details</p>
         <div className='recurring_table_inside'>
-          <div  className="d-flex justify-content-end mr-2" onClick={(e)=>{e.preventDefault();setToogle(value => !value)}} style={{width:"5%",float:"right"}}>
-          <BiExport title="Export" style={{fontSize:"25px",marginRight:"20px"}}/>
+          <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer  px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{width:'5%',float:'right'}}>
+            <BiExport style={{ fontSize: "25px" }} />
           </div>
-          {/* <button onClick={handlePrint}>Print</button> */}
-
-          <div className='bg-light position-absolute rounded' style={{right:"5%",width:"5%",boxShadow:"3px 3px 10px black"}}>
           {
-            toogle ? 
-          <div className="d-flex flex-column justify-content-center align-items-center" >
-            <a href="#"
-            onClick={exportExcel}
-            ><SiMicrosoftexcel className='ft-20'/></a>
-            <CSVLink
-              data={Recurringdata}
-              filename="RecurringData"
-            > <GrDocumentCsv className='ft-20'/>
-            </CSVLink>
-          </div>
-          :''
+            toogle ?
+              <div className="d-flex flex-column justify-content-center align-items-center bg-light position-absolute rounded py-1" style={{ right: "2%",top:'12%', width: "5%", boxShadow: "3px 3px 10px black" }}>
+                <a href="#"
+                  onClick={exportExcel}
+                ><SiMicrosoftexcel className='ft-20' /></a>
+                <CSVLink
+                  data={Recurringdata}
+                  filename="RecurringData"
+                > <GrDocumentCsv className='ft-20' />
+                </CSVLink>
+              </div>
+              : ''
           }
-          </div>
 
        
           <div id="pagination">

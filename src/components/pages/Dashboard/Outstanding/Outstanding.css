@@ -1,5 +1,5 @@
 .outstanding-container .oustanding-details {
-    width: 25%;
+    width: 28%;
 }
 
 .outstanding-container .oustanding-details .outstanding-top-detail-div {
@@ -30,15 +30,17 @@
 }
 
 .outstanding-container .outstanding-table {
-    width: 71%;
+    width: 70%;
 }
 .nextoutstanding-detail{
+    height: 60px;
     transition: all 0.1s linear;
     background: linear-gradient(45deg,#de6262 , #ffb88c)
 
 }
 .nextoutstanding-detail:hover {
-    transform: scale(1.06);
+    transform: scale(1.02);
+    box-shadow: 3px 3px 10px gray;
 }
 
 @media screen and (max-width:786px){

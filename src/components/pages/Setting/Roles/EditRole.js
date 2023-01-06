@@ -1,6 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
 import { getrole, Updaterole } from '../../../../api/index'
@@ -175,11 +175,135 @@ function EditRoles() {
 
     const togglemasterdiv = () => {
         const val = document.getElementById('mastercheck').checked === true ? true : false
+        const full = ['location', 'employee', 'assettype', 'assetstatus', 'manufacturer', 'software', 'issuetype', 'purchasetype', 'contracttype', 'priority', 'ticketstatus', 'billingfrq', 'vendcate', 'vendsubcate', 'serviceactiontype', 'servicegrouptype', 'vendormaster']
+        const arry = ['full', 'view', 'create', 'edit', 'deactive']
         if (val) {
+            document.getElementById('mastercheck').checked = true
             document.getElementById('masteralldiv').style.display = 'table-row-group'
+            document.getElementById('masterarrow').style.transform = 'rotate(90deg)'
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    document.getElementById(`${full[i]}-${arry[j]}`).checked = true;
+                    document.getElementById(`${full[i]}-${arry[j]}`).disabled = false;
+                }
+            }
         }
         else {
             document.getElementById('masteralldiv').style.display = 'none'
+            document.getElementById('mastercheck').checked = false
+            document.getElementById('masterarrow').style.transform = 'rotate(0deg)'
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    if (arry[j] === 'full' || arry[j] === 'view') {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                    }
+                    else {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                        document.getElementById(`${full[i]}-${arry[j]}`).disabled = true;
+                    }
+                }
+            }
+        }
+    }
+
+    const toggletransactiondiv = () => {
+        const val = document.getElementById('transactioncheck').checked === true ? true : false
+        const full = ['vendorinv', 'vendorpay']
+        const arry = ['full', 'view', 'create', 'edit', 'deactive']
+        if (val) {
+            document.getElementById('transactioncheck').checked = true
+            document.getElementById('transactiondiv').style.display = 'table-row-group'
+            document.getElementById('tansactionarrow').style.transform = 'rotate(90deg)'
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    document.getElementById(`${full[i]}-${arry[j]}`).checked = true;
+                    document.getElementById(`${full[i]}-${arry[j]}`).disabled = false;
+                }
+            }
+        }
+        else {
+            document.getElementById('transactiondiv').style.display = 'none'
+            document.getElementById('transactioncheck').checked = false
+            document.getElementById('tansactionarrow').style.transform = 'rotate(0deg)'
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    if (arry[j] === 'full' || arry[j] === 'view') {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                    }
+                    else {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                        document.getElementById(`${full[i]}-${arry[j]}`).disabled = true;
+                    }
+                }
+            }
+        }
+    }
+    const togglehelpdeskdiv = () => {
+        const val = document.getElementById('helpdeskcheck').checked === true ? true : false
+        const full = ['tickets']
+        const arry = ['full', 'view', 'create', 'edit', 'deactive']
+        if (val) {
+            document.getElementById('helpdeskcheck').checked = true
+            document.getElementById('helpdeskarrow').style.transform = 'rotate(90deg)'
+
+            document.getElementById('helpdeskdiv').style.display = 'table-row-group'
+
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    document.getElementById(`${full[i]}-${arry[j]}`).checked = true;
+                    document.getElementById(`${full[i]}-${arry[j]}`).disabled = false;
+                }
+            }
+        }
+        else {
+            document.getElementById('helpdeskdiv').style.display = 'none'
+            document.getElementById('helpdeskcheck').checked = false
+            document.getElementById('helpdeskarrow').style.transform = 'rotate(0deg)'
+
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    if (arry[j] === 'full' || arry[j] === 'view') {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                    }
+                    else {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                        document.getElementById(`${full[i]}-${arry[j]}`).disabled = true;
+                    }
+                }
+            }
+        }
+    }
+    const toggleSettingdiv = () => {
+        const val = document.getElementById('settingcheck').checked === true ? true : false
+        const full = ['role', 'assignrole', 'orgdetails', 'application']
+        const arry = ['full', 'view', 'create', 'edit', 'deactive']
+        if (val) {
+            document.getElementById('settingcheck').checked = true
+            document.getElementById('settingdiv').style.display = 'table-row-group'
+            document.getElementById('settingarrow').style.transform = 'rotate(90deg)'
+
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    document.getElementById(`${full[i]}-${arry[j]}`).checked = true;
+                    document.getElementById(`${full[i]}-${arry[j]}`).disabled = false;
+                }
+            }
+        }
+        else {
+            document.getElementById('settingdiv').style.display = 'none'
+            document.getElementById('settingcheck').checked = false
+            document.getElementById('settingarrow').style.transform = 'rotate(0deg)'
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    if (arry[j] === 'full' || arry[j] === 'view') {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                    }
+                    else {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                        document.getElementById(`${full[i]}-${arry[j]}`).disabled = true;
+                    }
+                }
+            }
         }
     }
     return (
@@ -292,9 +416,9 @@ function EditRoles() {
 
                                                 {/* ################################## Master ################################### */}
                                                 <tr >
-                                                    <th scope="row">
-                                                        Master &nbsp; <input type='checkbox' id='mastercheck' style={checkboxStyle} onChange={togglemasterdiv} /></th>
-                                                    <th colSpan='4'></th>
+                                                    <th scope="row" colSpan='5' className='text-danger'>
+                                                        <input type='checkbox' id='mastercheck' style={{ height: '20px', width: '20px', accentColor: 'red' }} onChange={togglemasterdiv} /> Master
+                                                        <MdKeyboardArrowRight id='masterarrow' className='ft-20' style={{ marginTop: '-10px' }} /></th>
                                                 </tr>
                                             </tbody>
                                             <tbody style={{ display: 'none' }} id='masteralldiv'>
@@ -418,6 +542,87 @@ function EditRoles() {
                                                     <td><input type='checkbox' id='vendormaster-deactive' style={checkboxStyle} disabled /></td>
                                                 </tr>
 
+                                            </tbody>
+                                            {/* ################################## Transition ################################### */}
+
+                                            <tbody>
+                                                <tr >
+                                                    <th scope="row" colSpan='5' className='text-danger'>
+                                                        <input type='checkbox' id='transactioncheck' style={{ height: '20px', width: '20px', accentColor: 'red' }} onChange={toggletransactiondiv} /> Transaction <MdKeyboardArrowRight id='tansactionarrow' className='ft-20' style={{ marginTop: '-10px' }} /></th>
+                                                </tr>
+                                            </tbody>
+                                            <tbody id='transactiondiv' style={{ display: 'none' }}>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='vendorinv-full' style={checkboxStyle} onChange={() => fullaccess('vendorinv')} /> Vendor Invoice</th>
+                                                    <td><input type='checkbox' id='vendorinv-view' style={checkboxStyle} onChange={() => viewoff('vendorinv')} /></td>
+                                                    <td><input type='checkbox' id='vendorinv-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='vendorinv-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='vendorinv-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='vendorpay-full' style={checkboxStyle} onChange={() => fullaccess('vendorpay')} /> Vendor Payment</th>
+                                                    <td><input type='checkbox' id='vendorpay-view' style={checkboxStyle} onChange={() => viewoff('vendorpay')} /></td>
+                                                    <td><input type='checkbox' id='vendorpay-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='vendorpay-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='vendorpay-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
+
+                                            </tbody>
+                                            {/* ################################## Help Desk ################################### */}
+                                            <tbody>
+                                                <tr >
+                                                    <th scope="row" colSpan='5' className='text-danger' >
+                                                        <input type='checkbox' id='helpdeskcheck' style={{ height: '20px', width: '20px', accentColor: 'red' }} onChange={togglehelpdeskdiv} /> Help Desk
+                                                        &nbsp; <MdKeyboardArrowRight id='helpdeskarrow' className='ft-20' style={{ marginTop: '-10px' }} /> </th>
+
+                                                </tr>
+                                            </tbody>
+                                            <tbody id='helpdeskdiv' style={{ display: 'none' }}>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='tickets-full' style={checkboxStyle} onChange={() => fullaccess('tickets')} /> Tickets</th>
+                                                    <td><input type='checkbox' id='tickets-view' style={checkboxStyle} onChange={() => viewoff('tickets')} /></td>
+                                                    <td><input type='checkbox' id='tickets-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='tickets-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='tickets-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
+                                            </tbody>
+                                            {/* ################################## Setting ################################### */}
+                                            <tbody>
+                                                <tr >
+                                                    <th scope="row" colSpan='5' className='text-danger' >
+                                                        <input type='checkbox' id='settingcheck' style={{ height: '20px', width: '20px', accentColor: 'red' }} onChange={toggleSettingdiv} />  Setting
+                                                        &nbsp; <MdKeyboardArrowRight id='settingarrow' className='ft-20' style={{ marginTop: '-10px' }} /> </th>
+                                                </tr>
+                                            </tbody>
+                                            <tbody id='settingdiv' style={{ display: 'none' }}>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='role-full' style={checkboxStyle} onChange={() => fullaccess('role')} /> Role</th>
+                                                    <td><input type='checkbox' id='role-view' style={checkboxStyle} onChange={() => viewoff('role')} /></td>
+                                                    <td><input type='checkbox' id='role-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='role-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='role-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='assignrole-full' style={checkboxStyle} onChange={() => fullaccess('assignrole')} /> AssignRole</th>
+                                                    <td><input type='checkbox' id='assignrole-view' style={checkboxStyle} onChange={() => viewoff('assignrole')} /></td>
+                                                    <td><input type='checkbox' id='assignrole-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='assignrole-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='assignrole-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='orgdetails-full' style={checkboxStyle} onChange={() => fullaccess('orgdetails')} /> Organisation Details</th>
+                                                    <td><input type='checkbox' id='orgdetails-view' style={checkboxStyle} onChange={() => viewoff('orgdetails')} /></td>
+                                                    <td><input type='checkbox' id='orgdetails-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='orgdetails-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='orgdetails-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='application-full' style={checkboxStyle} onChange={() => fullaccess('application')} /> Application</th>
+                                                    <td><input type='checkbox' id='application-view' style={checkboxStyle} onChange={() => viewoff('application')} /></td>
+                                                    <td><input type='checkbox' id='application-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='application-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='application-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
                                             </tbody>
 
                                         </table>

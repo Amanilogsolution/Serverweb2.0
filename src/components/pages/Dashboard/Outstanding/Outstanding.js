@@ -9,12 +9,12 @@ import ReactPaginate from 'react-paginate';
 
 import 'react-data-table-component-extensions/dist/index.css';
 import { AiFillEdit } from 'react-icons/ai';
-import { Invoice_Outstanding,TotalOutstanding } from '../../../../api/index'
+import { Invoice_Outstanding, TotalOutstanding } from '../../../../api/index'
 
 const Outstanding = ({ setStep }) => {
   const [invoices, setInvoice] = useState({})
   const [outstandingAmount, setOutstandingAmount] = useState()
-  const [outstandingDatas,setOutstandingdatas] = useState([])
+  const [outstandingDatas, setOutstandingdatas] = useState([])
   const [TotalVendor, setTotalVendor] = useState([])
   const [rowperpage, setRowPerPage] = useState(10)
   const [lastval, setLastval] = useState()
@@ -36,25 +36,19 @@ const Outstanding = ({ setStep }) => {
   useEffect(() => {
     const fetchdata = async () => {
       fetch()
+      const org = localStorage.getItem('Database')
+      const datas = await TotalOutstanding(org, 1, 10)
+      setTotalVendor(datas.data)
+      const total = datas.TotalData[0]["Totaldata"]
+      setRowPerPage(10)
+      setLastval(Math.ceil(total / 10))
+    }
+    fetchdata()
 
-
-    const org = localStorage.getItem('Database')
-
-    const datas = await TotalOutstanding(org, 1, 10)
-    console.log(datas)
-    setTotalVendor(datas.data)
-    console.log(datas)
-    const total = datas.TotalData[0]["Totaldata"]
-    setRowPerPage(10)
-    setLastval(Math.ceil(total / 10))
-  }
-  fetchdata()
-   
   }, [])
 
   const handleChange = async (e) => {
     e.preventDefault();
-    console.log(e.target.value)
     setRowPerPage(e.target.value)
     const datas = await TotalOutstanding(localStorage.getItem('Database'), 1, e.target.value)
     setTotalVendor(datas.data)
@@ -65,12 +59,10 @@ const Outstanding = ({ setStep }) => {
 
   const fetch = async () => {
     const Outstanding = await Invoice_Outstanding(localStorage.getItem('Database'))
-    console.log(Outstanding.OutstandingVendor)
     setOutstandingdatas(Outstanding.OutstandingVendor)
-   
+
     setInvoice(Outstanding.Vendor)
     let money = Outstanding.OutstandingAmount.toLocaleString('en-IN');
-    console.log(money)
     setOutstandingAmount(money)
   }
 
@@ -88,7 +80,7 @@ const Outstanding = ({ setStep }) => {
       cell: (row) => [
         <a title='Edit Asset' href="/EditAsset">
           <p onClick={() => localStorage.setItem('newassetsno', `${row.sno}`)} >
-            <AiFillEdit style={{ fontSize: "20px", marginBottom: "-13px" }} />
+            <AiFillEdit className='ft-20' style={{ marginBottom: "-13px" }} />
           </p></a>
       ]
     }
@@ -112,76 +104,76 @@ const Outstanding = ({ setStep }) => {
             <p className='outstanding-value mb-2'>₹{outstandingAmount}</p>
           </div>
         </div>
-        <div style={{ width: "100%", marginTop: "4px", textAlign: "center", color: "white", background: "black" }}>ILOG- IT OUTSTANDING
-        </div>
-        <div className='company-outstatnding border border-dark' style={{ maxHeight: "40vh" }}>
-          <div className="d-flex justify-content-between" style={{ background: "white", position: "fixed", width: "380px", maxHeight: "25px" }}>
-            <p>Vedor</p>
-            <p><b>Amount</b></p>
 
-          </div>
-          <div style={{ maxHeight: "32vh", overflow: "auto",marginTop:"30px" }}>
-            <table className="table text-center table-striped" >
-              <thead className="thead-dark">
-              
-              </thead>
-              <tbody className='text-center' >
-              {
-                outstandingDatas.map(element => (
-                  <tr>
-                  <td>{element.name}</td>
-                  <th>{element.value}</th>
+        <div className='company-outstatnding border border-dark mt-2' >
+          <p className='bg-dark text-white text-center mb-0'>ILOG- IT OUTSTANDING</p>
+          
+          <div style={{ maxHeight: "34vh", overflow: "auto" }}>
+            <table className="table table-striped" >
+              <thead className="bg-white position-sticky top-0" >
+                <tr>
+                  <th>Vendor</th>
+                  <th>Amt</th>
                 </tr>
-                ))
-              } 
+              </thead>
+              <tbody >
+                {
+                  outstandingDatas.map(element => (
+                    <tr>
+                      <td>{element.name}</td>
+                      <th>{element.value}</th>
+                    </tr>
+                  ))
+                }
               </tbody>
+              <tfoot className='bg-white position-sticky bottom-0'>
+                <tr >
+                  <th>Total</th>
+                  <th>₹{outstandingAmount}</th>
+                </tr>
+              </tfoot>
             </table>
           </div>
-          <div className="d-flex justify-content-between" style={{ border: "1px solid black", background: "white", position: "fixed", width: "383px", maxHeight: "25px" }}>
-            <p>Total</p>
-            <p><b>₹{outstandingAmount}</b></p>
-
-          </div>
+          
         </div>
-        <div className='nextoutstanding-detail cursor-pointer rounded text-light  mt-5 h-25 d-flex justify-content-center align-items-center' style={{ cursor: "pointer" }} onClick={() => { setStep(5) }}>
+        <div className='nextoutstanding-detail cursor-pointer rounded text-light  mt-2 d-flex justify-content-center align-items-center' onClick={() => { setStep(5) }}>
           Click for Outstanding Details
         </div>
       </div>
-      <div className='outstanding-table border border-dark'>
+      <div className='outstanding-table border border-dark position-relative'>
         <p className='bg-dark text-white d-flex justify-content-between h5 py-1 px-2'>ILOG- IT OUTSTANDING as on DATE
         </p>
-        <div>
-        <div title="Export" className="d-flex justify-content-end mr-2" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{width:"5%",float:"right",position:"relative"}}>
+        <div className=''>
+          <div title="Export" className="d-flex justify-content-end mr-2" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{ width: "5%", float: "right" }}>
             <BiExport style={{ fontSize: "25px", marginRight: "20px" }} />
           </div>
-          <div style={{ backgroundColor: "#FCFCFC", position: "absolute", right: "2%",top:"35%", width: "5%", boxShadow: "3px 3px 10px black", borderRadius: "5px" }}>
+          <div className='bg-white position-absolute rounded' style={{ right: "2%", top: "15%", width: "5%", boxShadow: "3px 3px 10px black" }}>
             {
               toogle ?
                 <div className="d-flex flex-column justify-content-center align-items-center" >
                   <a href="#"
                     onClick={exportExcel}
-                  ><SiMicrosoftexcel style={{ fontSize: "20px" }} /></a>
+                  ><SiMicrosoftexcel className='ft-20' /></a>
                   <CSVLink
                     data={TotalVendor}
                     filename="RecurringData"
-                  > <GrDocumentCsv style={{ fontSize: "20px" }} />
+                  > <GrDocumentCsv className='ft-20' />
                   </CSVLink>
                 </div>
                 : ''
             }
           </div>
 
-          <table class="table table-striped">
+          <table className="table table-striped mb-2">
             <thead>
               <tr>
                 <th scope="col">Vendor</th>
                 <th scope="col">Invoice_no</th>
                 <th scope="col">Reference No</th>
                 <th scope="col">Invoice Amt</th>
-               
               </tr>
             </thead>
-            <tbody>
+            <tbody >
               {
                 TotalVendor.map((elements) => {
                   return (
@@ -190,7 +182,6 @@ const Outstanding = ({ setStep }) => {
                       <td>{elements.invoice_no}</td>
                       <td>{elements.reference_no}</td>
                       <td>{elements.invoice_amt}</td>
-                    
                     </tr>
                   )
                 })
@@ -199,17 +190,17 @@ const Outstanding = ({ setStep }) => {
 
             </tbody>
           </table>
-          <div className="d-flex justify-content-end">
-          <div className="d-flex justify-content-center align-items-center mx-2">
-            <label>Rows Per Page</label>
-            <select onChange={handleChange}>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
+          <div className="d-flex justify-content-end position-absolute bottom-0 w-100 bg-white" >
+            <div className="d-flex justify-content-center align-items-center mx-2 ">
+              <label>Rows Per Page</label>
+              <select onChange={handleChange}>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
 
-            </select>
-          </div>
-          <div>
+              </select>
+            </div>
+
             <ReactPaginate
               breakLabel="..."
               nextLabel="next "
@@ -229,9 +220,9 @@ const Outstanding = ({ setStep }) => {
               breakLinkClassName={'page-link'}
               activeClassName={'active'}
             />
+
           </div>
-        </div>
-          
+
 
         </div>
       </div>

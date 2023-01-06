@@ -31,19 +31,21 @@ const Navbar = (propes) => {
         <>
 
 
-            <Modal size="lg" isOpen={modal} toggle={() => setModal(!modal)} style={{width:"300px",marginTop:"150px"}}>
+            <Modal size="lg" isOpen={modal} toggle={() => setModal(!modal)} style={{ width: "300px", marginTop: "150px" }}>
                 <ModalHeader style={{ background: "white" }}>
-                <img src={img} style={{width:"140px",margin:"0 70px"}}/>
+                    <img src={img} style={{ width: "140px", margin: "0 70px" }} />
                 </ModalHeader>
                 <ModalBody>
-                    <div style={{textAlign:"center",width:"100%",padding:"0 15px"}}>
-                <h5>Are you sure,</h5> 
-                <p>you want to logout your account</p><br/>
-                <div>
-                    <button style={{borderRadius:"50px"}} className='btn btn-danger w-100 my-2' onClick={()=>{localStorage.clear(); 
-                                                                                  window.location.href = '/'}}>Logout</button><br/>
-                    <button style={{borderRadius:"50px"}} className='btn btn-secondary w-100' onClick={() => setModal(!modal)}>Cancel</button>
-                    </div>
+                    <div style={{ textAlign: "center", width: "100%", padding: "0 15px" }}>
+                        <h5>Are you sure,</h5>
+                        <p>you want to logout your account</p><br />
+                        <div>
+                            <button style={{ borderRadius: "50px" }} className='btn btn-danger w-100 my-2' onClick={() => {
+                                localStorage.clear();
+                                window.location.href = '/'
+                            }}>Logout</button><br />
+                            <button style={{ borderRadius: "50px" }} className='btn btn-secondary w-100' onClick={() => setModal(!modal)}>Cancel</button>
+                        </div>
                     </div>
                 </ModalBody>
             </Modal>
@@ -67,10 +69,10 @@ const Navbar = (propes) => {
                             <Link className="dropdown-item" to="#"><TiVendorMicrosoft /> Appliction</Link>
                         </div>
                     </div>
-                    <Link className='d-flex align-items-center  cursor-pointer' to="/reports" style={{textDecoration:"none",color:"#212529"}}>
-                    
-                            <HiDocumentText style={{ fontSize: "23px" }} />
-                            <p className='mb-0' style={{ fontSize: "18px" }}>Reports</p>
+                    <Link className='d-flex align-items-center  cursor-pointer' to="/reports" style={{ textDecoration: "none", color: "#212529" }}>
+
+                        <HiDocumentText style={{ fontSize: "23px" }} />
+                        <p className='mb-0' style={{ fontSize: "18px" }}>Reports</p>
 
                     </Link>
                 </div>
@@ -109,7 +111,7 @@ const Navbar = (propes) => {
                             </div>
                         </div>
                         <div className='d-flex  cursor-pointer'>
-                            <BsBellFill style={{ fontSize: "20px",marginTop:"3px" }} />
+                            <BsBellFill style={{ fontSize: "20px", marginTop: "3px" }} />
                         </div>
                     </div>
                     <div className='d-flex' >
