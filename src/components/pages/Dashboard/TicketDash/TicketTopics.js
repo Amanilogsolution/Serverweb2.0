@@ -73,7 +73,7 @@ const TicketTopics = () => {
             "value": ticketIssue.AllocationTicketOpen,
 
         },
-        {
+        {   
             "name": "Closed",
             "value": ticketIssue.AllocationTicketClose,
         }
@@ -113,15 +113,15 @@ const TicketTopics = () => {
     return (
         <div className='d-flex flex-column justify-content-center '>
 
-        <div className='d-flex  justify-content-center mt-4' style={{ height: "35vh" }}>
-            <div className='rounded' style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className=' text-black text-center px-4 mx-2'>Hardware Problem</p>
+        <div className='d-flex  justify-content-center mt-4' style={{ maxHeight: "42vh" }}>
+            <div className='ticket_card rounded overflow-hidden' style={{ height: "32vh", margin: "6px 10px 15px 10px", width: "26%"}}>
+                <p className='text-light text-center bg-dark'>Hardware Problem</p>
 
-                <ResponsiveContainer width="100%" aspect={1.8}>
+                <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={Hardwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label>
+                        <Pie data={Hardwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} fill="rgb(94, 4, 69)" label>
                             {Hardwaredata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
@@ -132,14 +132,14 @@ const TicketTopics = () => {
 
             </div>
 
-            <div className='rounded' style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className=' text-black text-center px-4 mx-2'>Network Problem</p>
+            <div className='ticket_card rounded overflow-hidden' style={{ height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
+                <p className='text-light text-center bg-dark'>Network Problem</p>
 
-                <ResponsiveContainer width="100%" aspect={1.8}>
+                <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={Softwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label >
+                        <Pie data={Softwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} fill="rgb(94, 4, 69)" label >
                             {Softwaredata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS2[index % COLORS2.length]} />
                             ))}
@@ -150,13 +150,13 @@ const TicketTopics = () => {
 
             </div>
 
-            <div className='rounded' style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className=' text-black text-center px-4 mx-2'>Other IT Issue</p>
-                <ResponsiveContainer width="100%" aspect={1.8}>
+            <div className='ticket_card rounded overflow-hidden' style={{ height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
+                <p className='text-light text-center bg-dark'>Other IT Issue</p>
+                <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={Otherdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={66} paddingAngle={2} label
+                        <Pie data={Otherdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} paddingAngle={2} label
                             fill="rgb(61,174,167)" >
                             {Otherdata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS3[index % COLORS3.length]} />
@@ -168,15 +168,15 @@ const TicketTopics = () => {
 
             </div>
         </div>
-        <div className='d-flex  justify-content-center mt-4' style={{ height: "35vh" }}>
-            <div className='rounded' style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className=' text-black text-center px-4 mx-2'>Server Problem</p>
+        <div className='d-flex justify-content-center mt-2' style={{ maxHeight: "42vh" }}>
+            <div className='ticket_card rounded overflow-hidden' style={{height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
+                <p className='text-light text-center bg-dark'>Server Problem</p>
 
-                <ResponsiveContainer width="100%" aspect={1.8}>
+                <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={Serverdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label>
+                        <Pie data={Serverdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} fill="rgb(94, 4, 69)" label>
                             {Serverdata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS4[index % COLORS4.length]} />
                             ))}
@@ -187,14 +187,14 @@ const TicketTopics = () => {
 
             </div>
 
-            <div className='rounded' style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className=' text-black text-center px-4 mx-2'>Allocation Problem</p>
+            <div className='ticket_card rounded overflow-hidden' style={{height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
+                <p className='text-light text-center bg-dark'>Allocation Problem</p>
 
-                <ResponsiveContainer width="100%" aspect={1.8}>
+                <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={Allocationdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label >
+                        <Pie data={Allocationdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} fill="rgb(94, 4, 69)" label >
                             {Allocationdata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS5[index % COLORS5.length]} />
                             ))}
@@ -205,13 +205,13 @@ const TicketTopics = () => {
 
             </div>
 
-            <div className='rounded' style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className=' text-black text-center px-4 mx-2'>Connectivity Problem</p>
-                <ResponsiveContainer width="100%" aspect={1.8}>
+            <div className='ticket_card rounded overflow-hidden' style={{ height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
+                <p className='text-light text-center bg-dark'>Connectivity Problem</p>
+                <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={Connectivitydata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={66} paddingAngle={2} label
+                        <Pie data={Connectivitydata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} paddingAngle={2} label
                             fill="rgb(61,174,167)" >
                             {Connectivitydata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS6[index % COLORS6.length]} />
@@ -223,14 +223,14 @@ const TicketTopics = () => {
 
             </div>
         </div>
-        <div className='d-flex  justify-content-center mt-4' style={{ height: "35vh" }}>
-        <div className='rounded' style={{ border: "2px solid silver", height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className=' text-black text-center px-4 mx-2'>New Requirement</p>
-                <ResponsiveContainer width="100%" aspect={1.8}>
+        <div className='d-flex  justify-content-center mt-2' style={{ maxHeight: "42vh" }}>
+        <div className='ticket_card rounded overflow-hidden' style={{height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
+                <p className='text-light text-center bg-dark'>New Requirement</p>
+                <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={newreqdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={66} paddingAngle={2} label
+                        <Pie data={newreqdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} paddingAngle={2} label
                             fill="rgb(61,174,167)" >
                             {newreqdata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS7[index % COLORS7.length]} />

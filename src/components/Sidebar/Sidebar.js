@@ -44,11 +44,9 @@ import Navbar from './Navbar.js';
 import './Sidebar.css'
 import logo from '../../image/drizzle_logo.jpg'
 import img from '../../image/modelimg.png'
-import { Modal, ModalBody, ModalHeader } from 'reactstrap'
 
 
 const Sidebar = ({ children }) => {
-    const [modal, setModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false);
     const [togglemain, setTogglemain] = useState(false);
     const [toggleinnermain, setToggleinnermain] = useState(false);
@@ -82,11 +80,6 @@ const Sidebar = ({ children }) => {
     }
     const iconoffstyle = {
         marginLeft: "0%"
-    }
-    const handleLogout = () => {
-        // localStorage.clear()
-        // window.location.href = '/'
-        setModal(true)
     }
 
     const handleinnertoggle = () => {
@@ -222,22 +215,28 @@ const Sidebar = ({ children }) => {
     return (
         <>
 
-         <Modal size="lg" isOpen={modal} toggle={() => setModal(!modal)} style={{width:"300px",marginTop:"50px"}}>
-                <ModalHeader style={{ background: "white" }}>
-                <img src={img} style={{width:"140px",margin:"0 70px"}}/>
-                </ModalHeader>
-                <ModalBody>
-                    <div style={{textAlign:"center",width:"100%",padding:"0 15px"}}>
-                <h5>Are you sure,</h5> 
-                <p>you want to logout your account</p><br/>
-                <div>
-                    <button style={{borderRadius:"50px"}} className='btn btn-voilet w-100 my-2' onClick={()=>{localStorage.clear() 
-                                                                                  window.location.href = '/'}}>Yah, I am sure</button><br/>
-                    <button style={{borderRadius:"50px"}} className='btn btn-secondary w-100' onClick={() => setModal(!modal)}>Cencel</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style={{ width: "300px",marginTop:"50px" }}>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <img src={img} style={{ width: "140px", margin: "0 70px" }} />
+                        </div>
+                        <div class="modal-body">
+                            <div style={{ textAlign: "center", width: "100%", padding: "0 15px" }}>
+                                <h4>Are you sure ? </h4>
+                                <p>you want to logout your account</p><br />
+                                <div>
+                                    <button style={{ borderRadius: "50px" }} className='btn btn-voilet w-100 my-2' onClick={() => {
+                                        localStorage.clear()
+                                        window.location.href = '/'
+                                    }}>Yah, I am sure</button><br />
+                                    <button style={{ borderRadius: "50px" }} className=' close btn btn-secondary w-100' data-dismiss="modal" aria-label="Close">Cencel</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </ModalBody>
-            </Modal>
+                </div>
+            </div>
 
 
         <div className="sidebarcontainer">
@@ -408,7 +407,7 @@ const Sidebar = ({ children }) => {
                                     <NavLink to='/TotalAgent' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Agent</div>
                                     </NavLink>
-                                </li> */}
+                                     </li> */}
                                     <li className='innerlink'>
                                         <NavLink to='/TotalAssetType' className='navlink d-flex' activeclassname="sidebaractive">
                                             <BsInboxesFill style={{ fill: "rgb(66, 4, 69)", fontSize: "16px", margin: "0 8px" }} />&nbsp;
@@ -674,7 +673,7 @@ const Sidebar = ({ children }) => {
                     </div>
                     <a title='Logout' className="link" activeclassname="sidebaractive" style={{ background: "rgb(222, 222, 222)" }}>
                         <div className="icon text-danger" onClick={toggle}><MdOutlineExitToApp style={{ fontSize: "20px" }} /></div>
-                        <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text text-danger" onClick={handleLogout}>Logout</div>
+                        <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text text-danger" data-toggle="modal" data-target="#exampleModal">Logout</div>
                     </a>
                 </footer>
                 {/*################################  Bottom Section  END ###################################### */}

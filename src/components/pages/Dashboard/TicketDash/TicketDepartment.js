@@ -42,10 +42,10 @@ const TicketDepartment = () => {
   ];
   const COLORS = ['#7675C4', '#DB49F2', '#F4397A', '#039B28', '#A5A704', '#014FB5'];
   return (
-    <div className='d-flex flex-column justify-content-center '>
+    <div className='d-flex flex-column justify-content-center'>
       <div className='ticket_card_div justify-content-center'>
 
-        <div className='ticket_card rounded'>
+        <div className='ticket_card rounded '>
           <div className='ticket_card_content d-flex justify-content-center'>
             <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "10px 11px" }}>
               <FaUser className='m-1' style={{ fontSize: "27px" }} />
@@ -159,8 +159,8 @@ const TicketDepartment = () => {
           </div>
         </div>
       </div>
-      <div className='m-auto' style={{ height: '250px', width: '400px' }}>
-        <ResponsiveContainer width="100%" aspect={1.8}>
+      <div className='ticket_card rounded' style={{ height: '180px', width: '400px',margin:"auto" }}>
+        <ResponsiveContainer width="100%" aspect={2}>
           <PieChart width={700} height={200}>
             <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
             <Tooltip />
