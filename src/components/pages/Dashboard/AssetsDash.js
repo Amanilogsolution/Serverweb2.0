@@ -7,6 +7,7 @@ export default function AssetsDash(callback) {
   const [chartdata, setChartData] = useState()
   const [dashboardsoft, setDashboardsoft] = useState([])
   const [dashboardmanu, setDashboardmanu] = useState([])
+  const [spinner, setSpinner] = useState(true)
   const [Assetsdata, setAssetData] = useState({
     "TotalAsset": 0,
     "ActiveAsset": 0,
@@ -26,16 +27,17 @@ export default function AssetsDash(callback) {
   }, [])
 
   const datas = async () => {
-    setTimeout(async () => {
       const locationname = await Dashboard_Location_Name(localStorage.getItem('Database'))
       const dashboard_soft = await Dashboard_Software(localStorage.getItem('Database'))
       const dashboard_manu = await Dashboard_Manufacture(localStorage.getItem('Database'))
       setDashboardmanu(dashboard_manu)
       setDashboardsoft(dashboard_soft)
-      console.log(dashboard_soft)
-        setChartData(locationname)
-  
-    }, 2000)
+      console.log(locationname)
+      setChartData(locationname ||  dashboard_soft || dashboard_manu)
+      if (locationname) {
+        setSpinner(false)
+      }
+
 
   }
 
@@ -84,20 +86,32 @@ export default function AssetsDash(callback) {
       </div>
       <div className='for_graph'>
         <div className='bar_location'>
+        {spinner?
+          <div class="spinner-border text-primary" style={{marginTop:"10%",marginLeft:"50%"}} role="status">
+            <span class="sr-only"></span>
+          </div>:
+          <div>
           <p className='bg-dark text-white px-4'>IT Asset Allotment Summary</p>
           <ResponsiveContainer width="100%" aspect={5.4}>
             <BarChart data={chartdata} margin={{ top: 20, right: 45 }}>
               <CartesianGrid />
-              <XAxis dataKey="Location" interval={"preserveStartEnd"} style={{ fontSize: "14px" }} />
+              <XAxis dataKey="location_code" interval={"preserveStartEnd"} style={{ fontSize: "14px" }} />
               <YAxis />
               <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
-              <Bar dataKey="Assets" fill="maroon" barSize={20} />
+              <Bar dataKey="asset" fill="maroon" barSize={20} />
               <Tooltip />
-             </BarChart>
+            </BarChart>
           </ResponsiveContainer>
+          </div>
+        }
         </div>
         <div className='graph_2nd_row d-flex justify-content-center' >
           <div className='manufacturer_graph'>
+          {spinner?
+          <div class="spinner-border text-success" style={{marginTop:"10%",marginLeft:"50%"}} role="status">
+            <span class="sr-only"></span>
+          </div>:
+          <div>
             <p className='bg-dark text-white px-4 mx-2 my-0'>Manufacturer</p>
             <ResponsiveContainer width="100%" height='85%' aspect={2.0} >
               <PieChart width={700} height={150}>
@@ -111,20 +125,28 @@ export default function AssetsDash(callback) {
                 <Legend layout="vertical" verticalAlign="center" align="right" />
               </PieChart>
             </ResponsiveContainer>
+            </div>}
           </div>
           <div className='software_graph'>
+          {spinner?
+          <div class="spinner-border text-warning" style={{marginTop:"10%",marginLeft:"50%"}} role="status">
+            <span class="sr-only"></span>
+          </div>:
+          <div>
             <p className='bg-dark text-white px-4'>Software</p>
 
             <ResponsiveContainer width="100%" aspect={3.5}>
               <BarChart data={dashboardsoft} margin={{ top: 2, right: 45 }}>
                 <CartesianGrid />
-                <XAxis dataKey="softwareName" interval={"preserveStartEnd"} style={{ fontSize: "14px" }} />
+                <XAxis dataKey="software_name" interval={"preserveStartEnd"} style={{ fontSize: "14px" }} />
                 <YAxis />
                 <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
-                <Bar dataKey="softwares" fill="maroon" barSize={30} />
+                <Bar dataKey="software" fill="maroon" barSize={30} />
                 <Tooltip />
               </BarChart>
             </ResponsiveContainer>
+            </div>
+          }
           </div>
         </div>
       </div>
