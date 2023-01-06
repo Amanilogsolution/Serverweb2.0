@@ -1234,6 +1234,17 @@ export const TotalOutstanding = async (org,pageno,rowsperpage) => {
     return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const VendorInvoice = async (org,pageno,rowsperpage) => {
+    console.log(org,pageno,rowsperpage)
+    const url = `https://drizzlebackend.awlworldwide.com/api/VendorInvoice`
+    return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
+}
+export const PaidInvoice = async (org,pageno,rowsperpage) => {
+    console.log(org,pageno,rowsperpage)
+    const url = `https://drizzlebackend.awlworldwide.com/api/PaidInvoice`
+    return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
+}
+
 
 
 // User Details
