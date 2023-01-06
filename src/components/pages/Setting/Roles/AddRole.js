@@ -36,14 +36,18 @@ function AddRoles() {
 
     const allaccess = () => {
         const allval = document.getElementById('allval').checked === true ? true : false;
-        const full = ['assets', 'vendCont', 'ticket', 'setting', 'reports', 'location', 'employee', 'assettype', 'assetstatus', 'manufacturer', 'software', 'issuetype', 'purchasetype', 'contracttype', 'priority', 'ticketstatus', 'billingfrq', 'vendcate', 'vendsubcate', 'serviceactiontype', 'servicegrouptype', 'vendormaster','vendorinv','vendorpay']
+        const full = ['assets', 'vendCont','reports', 'location', 'employee', 'assettype', 'assetstatus', 'manufacturer', 'software', 'issuetype', 'purchasetype', 'contracttype', 'priority', 'ticketstatus', 'billingfrq', 'vendcate', 'vendsubcate', 'serviceactiontype', 'servicegrouptype', 'vendormaster', 'vendorinv', 'vendorpay','tickets','role','assignrole','orgdetails','application']
         const arry = ['full', 'view', 'create', 'edit', 'deactive']
         if (allval) {
             document.getElementById('mastercheck').checked = true
             document.getElementById('transactioncheck').checked = true
+            document.getElementById('helpdeskcheck').checked = true
+            document.getElementById('settingcheck').checked = true
             document.getElementById('masteralldiv').style.display = 'table-row-group'
             document.getElementById('transactiondiv').style.display = 'table-row-group'
-            
+            document.getElementById('helpdeskdiv').style.display = 'table-row-group'
+            document.getElementById('settingdiv').style.display = 'table-row-group'
+
             for (let i = 0; i < full.length; i++) {
                 for (let j = 0; j < arry.length; j++) {
                     document.getElementById(`${full[i]}-${arry[j]}`).checked = true;
@@ -54,7 +58,11 @@ function AddRoles() {
         else {
             document.getElementById('masteralldiv').style.display = 'none'
             document.getElementById('transactioncheck').checked = false
+            document.getElementById('helpdeskcheck').checked = false
+            document.getElementById('settingcheck').checked = false
             document.getElementById('transactiondiv').style.display = 'none'
+            document.getElementById('helpdeskdiv').style.display = 'none'
+            document.getElementById('settingdiv').style.display = 'none'
 
             document.getElementById('mastercheck').checked = false
             for (let i = 0; i < full.length; i++) {
@@ -120,7 +128,7 @@ function AddRoles() {
             role_id: document.getElementById('role').value.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000)
         }
 
-        const full = ['assets', 'vendCont', 'ticket', 'setting', 'reports']
+        const full = ['assets', 'vendCont','reports']
         // const full = ['assets', 'vendCont', 'ticket', 'master', 'transaction', 'setting', 'reports']
         const arry = ['full', 'view', 'create', 'edit', 'deactive']
         for (let i = 0; i < full.length; i++) {
@@ -210,7 +218,7 @@ function AddRoles() {
 
     const toggletransactiondiv = () => {
         const val = document.getElementById('transactioncheck').checked == true ? true : false
-        const full = ['vendorinv','vendorpay']
+        const full = ['vendorinv', 'vendorpay']
         const arry = ['full', 'view', 'create', 'edit', 'deactive']
         if (val) {
             document.getElementById('transactioncheck').checked = true
@@ -239,6 +247,72 @@ function AddRoles() {
             }
         }
     }
+    const togglehelpdeskdiv = () => {
+        const val = document.getElementById('helpdeskcheck').checked == true ? true : false
+        const full = ['tickets']
+        const arry = ['full', 'view', 'create', 'edit', 'deactive']
+        if (val) {
+            document.getElementById('helpdeskcheck').checked = true
+            document.getElementById('helpdeskdiv').style.display = 'table-row-group'
+
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    document.getElementById(`${full[i]}-${arry[j]}`).checked = true;
+                    document.getElementById(`${full[i]}-${arry[j]}`).disabled = false;
+                }
+            }
+        }
+        else {
+            document.getElementById('helpdeskdiv').style.display = 'none'
+            document.getElementById('helpdeskcheck').checked = false
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    if (arry[j] === 'full' || arry[j] === 'view') {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                    }
+                    else {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                        document.getElementById(`${full[i]}-${arry[j]}`).disabled = true;
+                    }
+                }
+            }
+        }
+    }
+
+    const toggleSettingdiv = () => {
+        const val = document.getElementById('settingcheck').checked == true ? true : false
+        const full = ['role','assignrole','orgdetails','application']
+        const arry = ['full', 'view', 'create', 'edit', 'deactive']
+        if (val) {
+            document.getElementById('settingcheck').checked = true
+            document.getElementById('settingdiv').style.display = 'table-row-group'
+
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    document.getElementById(`${full[i]}-${arry[j]}`).checked = true;
+                    document.getElementById(`${full[i]}-${arry[j]}`).disabled = false;
+                }
+            }
+        }
+        else {
+            document.getElementById('settingdiv').style.display = 'none'
+            document.getElementById('settingcheck').checked = false
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    if (arry[j] === 'full' || arry[j] === 'view') {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                    }
+                    else {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                        document.getElementById(`${full[i]}-${arry[j]}`).disabled = true;
+                    }
+                }
+            }
+        }
+    }
+    
+
+
     return (
         <>
             {
@@ -310,13 +384,13 @@ function AddRoles() {
                                                     <td><input type='checkbox' id='vendCont-edit' style={checkboxStyle} disabled /></td>
                                                     <td><input type='checkbox' id='vendCont-deactive' style={checkboxStyle} disabled /></td>
                                                 </tr>
-                                                <tr>
+                                                {/* <tr>
                                                     <th scope="row"><input type='checkbox' id='ticket-full' style={checkboxStyle} onChange={() => fullaccess('ticket')} /> Ticket</th>
                                                     <td><input type='checkbox' id='ticket-view' style={checkboxStyle} onChange={() => viewoff('ticket')} /></td>
                                                     <td><input type='checkbox' id='ticket-create' style={checkboxStyle} disabled /></td>
                                                     <td><input type='checkbox' id='ticket-edit' style={checkboxStyle} disabled /></td>
                                                     <td><input type='checkbox' id='ticket-deactive' style={checkboxStyle} disabled /></td>
-                                                </tr>
+                                                </tr> */}
                                                 {/* <tr>
                                                     <th scope="row"><input type='checkbox' id='master-full' style={checkboxStyle} onChange={() => fullaccess('master')} /> Masters</th>
                                                     <td><input type='checkbox' id='master-view' style={checkboxStyle} onChange={() => viewoff('master')} /></td>
@@ -331,13 +405,13 @@ function AddRoles() {
                                                     <td><input type='checkbox' id='transaction-edit' style={checkboxStyle} disabled /></td>
                                                     <td><input type='checkbox' id='transaction-deactive' style={checkboxStyle} disabled /></td>
                                                 </tr> */}
-                                                <tr>
+                                                {/* <tr>
                                                     <th scope="row"><input type='checkbox' id='setting-full' style={checkboxStyle} onChange={() => fullaccess('setting')} /> Setting</th>
                                                     <td><input type='checkbox' id='setting-view' style={checkboxStyle} onChange={() => viewoff('setting')} /></td>
                                                     <td><input type='checkbox' id='setting-create' style={checkboxStyle} disabled /></td>
                                                     <td><input type='checkbox' id='setting-edit' style={checkboxStyle} disabled /></td>
                                                     <td><input type='checkbox' id='setting-deactive' style={checkboxStyle} disabled /></td>
-                                                </tr>
+                                                </tr> */}
                                                 <tr>
                                                     <th scope="row"><input type='checkbox' id='reports-full' style={checkboxStyle} onChange={() => fullaccess('reports')} /> Reports</th>
                                                     <td><input type='checkbox' id='reports-view' style={checkboxStyle} onChange={() => viewoff('reports')} /></td>
@@ -475,16 +549,17 @@ function AddRoles() {
                                                 </tr>
 
                                             </tbody>
+
+                                            {/* ################################## Transition ################################### */}
                                             <tbody>
-                                                {/* ################################## Transition ################################### */}
                                                 <tr >
                                                     <th scope="row">
-                                                        Transaction &nbsp; <input type='checkbox' id='transactioncheck' style={checkboxStyle}  onChange={toggletransactiondiv}/></th>
+                                                        Transaction &nbsp; <input type='checkbox' id='transactioncheck' style={checkboxStyle} onChange={toggletransactiondiv} /></th>
                                                     <th colSpan='4'></th>
                                                 </tr>
                                             </tbody>
-                                            <tbody id='transactiondiv' style={{display:'none'}}>
-                                            <tr>
+                                            <tbody id='transactiondiv' style={{ display: 'none' }}>
+                                                <tr>
                                                     <th scope="row"><input type='checkbox' id='vendorinv-full' style={checkboxStyle} onChange={() => fullaccess('vendorinv')} /> Vendor Invoice</th>
                                                     <td><input type='checkbox' id='vendorinv-view' style={checkboxStyle} onChange={() => viewoff('vendorinv')} /></td>
                                                     <td><input type='checkbox' id='vendorinv-create' style={checkboxStyle} disabled /></td>
@@ -499,6 +574,63 @@ function AddRoles() {
                                                     <td><input type='checkbox' id='vendorpay-deactive' style={checkboxStyle} disabled /></td>
                                                 </tr>
 
+                                            </tbody>
+
+                                            {/* ################################## Help Desk ################################### */}
+                                            <tbody>
+                                                <tr >
+                                                    <th scope="row">
+                                                        Help Desk &nbsp; <input type='checkbox' id='helpdeskcheck' style={checkboxStyle} onChange={togglehelpdeskdiv} /></th>
+                                                    <th colSpan='4'></th>
+                                                </tr>
+                                            </tbody>
+                                            <tbody id='helpdeskdiv' style={{ display: 'none' }}>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='tickets-full' style={checkboxStyle} onChange={() => fullaccess('tickets')} /> Tickets</th>
+                                                    <td><input type='checkbox' id='tickets-view' style={checkboxStyle} onChange={() => viewoff('tickets')} /></td>
+                                                    <td><input type='checkbox' id='tickets-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='tickets-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='tickets-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
+                                            </tbody>
+
+                                            {/* ################################## Setting ################################### */}
+                                            <tbody>
+                                                <tr >
+                                                    <th scope="row">
+                                                        Setting &nbsp; <input type='checkbox' id='settingcheck' style={checkboxStyle} onChange={toggleSettingdiv} /></th>
+                                                    <th colSpan='4'></th>
+                                                </tr>
+                                            </tbody>
+                                            <tbody id='settingdiv' style={{display:'none'}}>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='role-full' style={checkboxStyle} onChange={() => fullaccess('role')} /> Role</th>
+                                                    <td><input type='checkbox' id='role-view' style={checkboxStyle} onChange={() => viewoff('role')} /></td>
+                                                    <td><input type='checkbox' id='role-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='role-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='role-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='assignrole-full' style={checkboxStyle} onChange={() => fullaccess('assignrole')} /> AssignRole</th>
+                                                    <td><input type='checkbox' id='assignrole-view' style={checkboxStyle} onChange={() => viewoff('assignrole')} /></td>
+                                                    <td><input type='checkbox' id='assignrole-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='assignrole-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='assignrole-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='orgdetails-full' style={checkboxStyle} onChange={() => fullaccess('orgdetails')} /> Organisation Details</th>
+                                                    <td><input type='checkbox' id='orgdetails-view' style={checkboxStyle} onChange={() => viewoff('orgdetails')} /></td>
+                                                    <td><input type='checkbox' id='orgdetails-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='orgdetails-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='orgdetails-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='application-full' style={checkboxStyle} onChange={() => fullaccess('application')} /> Application</th>
+                                                    <td><input type='checkbox' id='application-view' style={checkboxStyle} onChange={() => viewoff('application')} /></td>
+                                                    <td><input type='checkbox' id='application-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='application-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='application-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
                                             </tbody>
                                         </table>
 
