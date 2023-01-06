@@ -11,7 +11,7 @@
 .dashboard_cards .card1 {
     width: 23.5%;
     height: 90px;
-    transition: transform 0.2s;
+    transition: transform 0.1s;
     padding: 8px 10px;
     position: relative;
 }
@@ -37,9 +37,9 @@
     background: linear-gradient(45deg, rgb(79, 205, 197), rgb(27, 114, 109));
 }
 .dashboard_cards .card1:hover {
-    -ms-transform: scale(1.06);
-    -webkit-transform: scale(1.06);
-    transform: scale(1.06);
+    -ms-transform: scale(1.03);
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
 }
 
 .dash_card_icon_div {
