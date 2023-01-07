@@ -174,12 +174,66 @@ function EditRoles() {
     }
 
     const togglemasterdiv = () => {
-        const val = document.getElementById('mastercheck').checked === true ? true : false
+        const val = document.getElementById('mastercheck').checked == true ? true : false
+        const full = ['location', 'employee', 'assettype', 'assetstatus', 'manufacturer', 'software', 'issuetype', 'purchasetype', 'contracttype', 'priority', 'ticketstatus', 'billingfrq', 'vendcate', 'vendsubcate', 'serviceactiontype', 'servicegrouptype', 'vendormaster']
+        const arry = ['full', 'view', 'create', 'edit', 'deactive']
         if (val) {
+            document.getElementById('mastercheck').checked = true
             document.getElementById('masteralldiv').style.display = 'table-row-group'
+
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    document.getElementById(`${full[i]}-${arry[j]}`).checked = true;
+                    document.getElementById(`${full[i]}-${arry[j]}`).disabled = false;
+                }
+            }
         }
         else {
             document.getElementById('masteralldiv').style.display = 'none'
+            document.getElementById('mastercheck').checked = false
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    if (arry[j] === 'full' || arry[j] === 'view') {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                    }
+                    else {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                        document.getElementById(`${full[i]}-${arry[j]}`).disabled = true;
+                    }
+                }
+            }
+        }
+    }
+
+    const toggletransactiondiv = () => {
+        const val = document.getElementById('transactioncheck').checked == true ? true : false
+        const full = ['vendorinv','vendorpay']
+        const arry = ['full', 'view', 'create', 'edit', 'deactive']
+        if (val) {
+            document.getElementById('transactioncheck').checked = true
+            document.getElementById('transactiondiv').style.display = 'table-row-group'
+
+            for (let i = 0; i < full.length; i++) {
+                for (let j = 0; j < arry.length; j++) {
+                    document.getElementById(`${full[i]}-${arry[j]}`).checked = true;
+                    document.getElementById(`${full[i]}-${arry[j]}`).disabled = false;
+                }
+            }
+        }
+        else {
+            document.getElementById('transactiondiv').style.display = 'none'
+            document.getElementById('transactioncheck').checked = false
+            for (let i = 0; i < full.length; i++) { 
+                for (let j = 0; j < arry.length; j++) {
+                    if (arry[j] === 'full' || arry[j] === 'view') {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                    }
+                    else {
+                        document.getElementById(`${full[i]}-${arry[j]}`).checked = false;
+                        document.getElementById(`${full[i]}-${arry[j]}`).disabled = true;
+                    }
+                }
+            }
         }
     }
     return (
@@ -416,6 +470,32 @@ function EditRoles() {
                                                     <td><input type='checkbox' id='vendormaster-create' style={checkboxStyle} disabled /></td>
                                                     <td><input type='checkbox' id='vendormaster-edit' style={checkboxStyle} disabled /></td>
                                                     <td><input type='checkbox' id='vendormaster-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
+
+                                            </tbody>
+                                            {/* ################################## Transition ################################### */}
+
+                                            <tbody>
+                                                <tr >
+                                                    <th scope="row">
+                                                        Transaction &nbsp; <input type='checkbox' id='transactioncheck' style={checkboxStyle} onChange={toggletransactiondiv} /></th>
+                                                    <th colSpan='4'></th>
+                                                </tr>
+                                            </tbody>
+                                            <tbody id='transactiondiv' style={{ display: 'none' }}>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='vendorinv-full' style={checkboxStyle} onChange={() => fullaccess('vendorinv')} /> Vendor Invoice</th>
+                                                    <td><input type='checkbox' id='vendorinv-view' style={checkboxStyle} onChange={() => viewoff('vendorinv')} /></td>
+                                                    <td><input type='checkbox' id='vendorinv-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='vendorinv-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='vendorinv-deactive' style={checkboxStyle} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><input type='checkbox' id='vendorpay-full' style={checkboxStyle} onChange={() => fullaccess('vendorpay')} /> Vendor Payment</th>
+                                                    <td><input type='checkbox' id='vendorpay-view' style={checkboxStyle} onChange={() => viewoff('vendorpay')} /></td>
+                                                    <td><input type='checkbox' id='vendorpay-create' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='vendorpay-edit' style={checkboxStyle} disabled /></td>
+                                                    <td><input type='checkbox' id='vendorpay-deactive' style={checkboxStyle} disabled /></td>
                                                 </tr>
 
                                             </tbody>

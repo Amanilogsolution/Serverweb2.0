@@ -101,13 +101,7 @@ const TicketTopics = () => {
             "value": ticketIssue.NewReqTicketClose,
         }
     ];
-    const COLORS = ['#7675C4', '#DB49F2'];
-    const COLORS2 = ['#F4397A', '#039B28'];
-    const COLORS3 = ['#0088FE', '#00C49F'];
-    const COLORS4 = ['#0088FE', '#00C49F'];
-    const COLORS5 = ['#0088FE', '#00C49F'];
-    const COLORS6 = ['#0088FE', '#00C49F'];
-    const COLORS7 = ['#0088FE', '#00C49F'];
+    const COLORS = ['#3a25a1', '#5f2149'];
 
 
     return (
@@ -141,7 +135,7 @@ const TicketTopics = () => {
                         <Tooltip />
                         <Pie data={Softwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} fill="rgb(94, 4, 69)" label >
                             {Softwaredata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS2[index % COLORS2.length]} />
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="center" align="right" />
@@ -159,7 +153,7 @@ const TicketTopics = () => {
                         <Pie data={Otherdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} paddingAngle={2} label
                             fill="rgb(61,174,167)" >
                             {Otherdata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS3[index % COLORS3.length]} />
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="center" align="right" />
@@ -178,7 +172,7 @@ const TicketTopics = () => {
                         <Tooltip />
                         <Pie data={Serverdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} fill="rgb(94, 4, 69)" label>
                             {Serverdata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS4[index % COLORS4.length]} />
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="center" align="right" />
@@ -196,7 +190,7 @@ const TicketTopics = () => {
                         <Tooltip />
                         <Pie data={Allocationdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} fill="rgb(94, 4, 69)" label >
                             {Allocationdata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS5[index % COLORS5.length]} />
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="center" align="right" />
@@ -214,7 +208,7 @@ const TicketTopics = () => {
                         <Pie data={Connectivitydata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} paddingAngle={2} label
                             fill="rgb(61,174,167)" >
                             {Connectivitydata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS6[index % COLORS6.length]} />
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="center" align="right" />
@@ -233,7 +227,7 @@ const TicketTopics = () => {
                         <Pie data={newreqdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} paddingAngle={2} label
                             fill="rgb(61,174,167)" >
                             {newreqdata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS7[index % COLORS7.length]} />
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="center" align="right" />

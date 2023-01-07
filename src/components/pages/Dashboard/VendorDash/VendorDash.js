@@ -79,28 +79,26 @@ export default function VendorDash({ setStep }) {
 
   return (
     <div className='VendorDash'>
-      <div className='VendorDash1' style={{ position: "relative" }}>
+      <div className='VendorDash1 ' >
         <p className='table_head bg-dark text-white px-4 mx-1'>Vendor Contract Details</p>
-        <div className='table1'>
-          <div title="Export" className="d-flex justify-content-end mr-2" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{width:"5%",float:"right"}}>
-            <BiExport style={{ fontSize: "25px", marginRight: "20px" }} />
+        <div className='table1 position-relative'>
+          <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{width:"5%",float:"right"}}>
+            <BiExport style={{ fontSize: "25px"}} />
           </div>
-          <div style={{ backgroundColor: "#FCFCFC", position: "absolute", right: "0",top:"12%", width: "5%", boxShadow: "3px 3px 10px black", borderRadius: "5px" }}>
             {
               toogle ?
-                <div className="d-flex flex-column justify-content-center align-items-center" >
+                <div className="d-flex flex-column justify-content-center align-items-center  bg-light position-absolute rounded py-1" style={{ right: "2%",top:'5%', width: "5%", boxShadow: "3px 3px 10px black" }} >
                   <a href="#"
                     onClick={exportExcel}
-                  ><SiMicrosoftexcel style={{ fontSize: "20px" }} /></a>
+                  ><SiMicrosoftexcel className='ft-20' /></a>
                   <CSVLink
                     data={TotalVendor}
                     filename="RecurringData"
-                  > <GrDocumentCsv style={{ fontSize: "20px" }} />
+                  > <GrDocumentCsv className='ft-20'/>
                   </CSVLink>
                 </div>
                 : ''
             }
-          </div>
 
 
           <table class="table table-striped">
@@ -140,7 +138,7 @@ export default function VendorDash({ setStep }) {
         </div>
         <div className="d-flex justify-content-end">
           <div className="d-flex justify-content-center align-items-center mx-2">
-            <label>Rows Per Page</label>
+            <label>Rows Per Page </label>
             <select onChange={handleChange}>
               <option value="10">10</option>
               <option value="15">15</option>
