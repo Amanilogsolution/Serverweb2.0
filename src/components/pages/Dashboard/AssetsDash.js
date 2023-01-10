@@ -85,13 +85,13 @@ export default function AssetsDash(callback) {
         </div>
       </div>
       <div className='for_graph'>
-        <div className='bar_location'>
+        <div className='bar_location bg-light rounded'>
         {spinner?
           <div class="spinner-border text-primary" style={{marginTop:"10%",marginLeft:"50%"}} role="status">
             <span class="sr-only"></span>
           </div>:
           <div>
-          <p className='bg-dark text-white px-4'>IT Asset Allotment Summary</p>
+          <p className=' px-4'>IT Asset Allotment Summary</p>
           <ResponsiveContainer width="100%" aspect={5.4}>
             <BarChart data={chartdata} margin={{ top: 20, right: 45 }}>
               <CartesianGrid />
@@ -106,13 +106,13 @@ export default function AssetsDash(callback) {
         }
         </div>
         <div className='graph_2nd_row d-flex justify-content-center' >
-          <div className='manufacturer_graph'>
+          <div className='manufacturer_graph bg-light rounded'>
           {spinner?
           <div class="spinner-border text-success" style={{marginTop:"10%",marginLeft:"50%"}} role="status">
             <span class="sr-only"></span>
           </div>:
           <div>
-            <p className='bg-dark text-white px-4 mx-2 my-0'>Manufacturer</p>
+            <p className=' px-4 mx-2 my-0'>Manufacturer</p>
             <ResponsiveContainer width="100%" height='85%' aspect={2.0} >
               <PieChart width={700} height={150}>
                 <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
@@ -127,13 +127,13 @@ export default function AssetsDash(callback) {
             </ResponsiveContainer>
             </div>}
           </div>
-          <div className='software_graph'>
+          <div className='software_graph bg-light rounded mr-1'>
           {spinner?
           <div class="spinner-border text-warning" style={{marginTop:"10%",marginLeft:"50%"}} role="status">
             <span class="sr-only"></span>
           </div>:
           <div>
-            <p className='bg-dark text-white px-4'>Software</p>
+            <p className=' px-4'>Software</p>
 
             <ResponsiveContainer width="100%" aspect={3.5}>
               <BarChart data={dashboardsoft} margin={{ top: 2, right: 45 }}>

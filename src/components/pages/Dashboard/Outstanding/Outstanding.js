@@ -8,7 +8,7 @@ import { ExcelConvertData } from '../VendorDash/Excel'
 import ReactPaginate from 'react-paginate';
 
 import 'react-data-table-component-extensions/dist/index.css';
-import { AiFillEdit } from 'react-icons/ai';
+// import { AiFillEdit } from 'react-icons/ai';
 import { Invoice_Outstanding, TotalOutstanding } from '../../../../api/index'
 
 const Outstanding = ({ setStep }) => {
@@ -66,26 +66,26 @@ const Outstanding = ({ setStep }) => {
     setOutstandingAmount(money)
   }
 
-  const columns = [
-    {
-      name: 'Asset Name',
-      selector: 'asset_name',
-      sortable: true,
-    },
+  // const columns = [
+  //   {
+  //     name: 'Asset Name',
+  //     selector: 'asset_name',
+  //     sortable: true,
+  //   },
 
-    {
-      name: "Actions",
-      sortable: false,
-      selector: 'null',
-      cell: (row) => [
-        <a title='Edit Asset' href="/EditAsset">
-          <p onClick={() => localStorage.setItem('newassetsno', `${row.sno}`)} >
-            <AiFillEdit className='ft-20' style={{ marginBottom: "-13px" }} />
-          </p></a>
-      ]
-    }
+  //   {
+  //     name: "Actions",
+  //     sortable: false,
+  //     selector: 'null',
+  //     cell: (row) => [
+  //       <a title='Edit Asset' href="/EditAsset">
+  //         <p onClick={() => localStorage.setItem('newassetsno', `${row.sno}`)} >
+  //           <AiFillEdit className='ft-20' style={{ marginBottom: "-13px" }} />
+  //         </p></a>
+  //     ]
+  //   }
 
-  ];
+  // ];
 
   // const tableData = {
   //   columns,
@@ -120,8 +120,8 @@ const Outstanding = ({ setStep }) => {
                 {
                   outstandingDatas.map(element => (
                     <tr>
-                      <td>{element.name}</td>
-                      <th>{element.value}</th>
+                      <td>{element.vendor}</td>
+                      <th>{element.total}</th>
                     </tr>
                   ))
                 }
