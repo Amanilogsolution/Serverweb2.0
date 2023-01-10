@@ -164,13 +164,13 @@ const Outstanding = ({ setStep }) => {
             }
           </div>
 
-          <table className="table table-striped mb-2">
+          <table className="table ">
             <thead>
               <tr>
-                <th scope="col">Vendor</th>
+                <th  scope="col">Vendor</th>
                 <th scope="col">Invoice_no</th>
-                <th scope="col">Reference No</th>
-                <th scope="col">Invoice Amt</th>
+                <th  scope="col">Reference No</th>
+                <th  scope="col">Invoice Amt</th>
               </tr>
             </thead>
             <tbody >

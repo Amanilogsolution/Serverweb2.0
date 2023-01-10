@@ -101,7 +101,7 @@ export default function VendorDash({ setStep }) {
             }
 
 
-          <table class="table table-striped">
+          <table class="table ">
             <thead>
               <tr>
                 <th scope="col">Vendor</th>
@@ -149,13 +149,13 @@ export default function VendorDash({ setStep }) {
           <div>
             <ReactPaginate
               breakLabel="..."
-              nextLabel="next "
+              nextLabel=">"
               onPageChange={handlePageClick}
               pageRangeDisplayed={3}
               pageCount={lastval}
-              previousLabel=" previous"
+              previousLabel="<"
               renderOnZeroPageCount={null}
-              containerClassName={'pagination justify-content-end'}
+              containerClassName={'pagination rounded '}
               pageClassName={'page-item'}
               pageLinkClassName={'page-link'}
               previousClassName={'page-item'}
