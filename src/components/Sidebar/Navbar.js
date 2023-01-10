@@ -54,6 +54,7 @@ const Navbar = (propes) => {
             <div className="innernavbarcontainer bg-white mb-3 d-flex align-items-center position-relative"  >
                 {propes.isOpen ?
                     null : <img className='navbar-brand logo-img' src={DrizzleLogo} alt='Drizzle Logo' />}
+                    
                 <div className=' setting-main-div d-flex'>
                     <div style={{ width: '130px' }}>
                         <div className='d-flex align-items-center' role="button" id="dropdownMenuLink"

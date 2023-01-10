@@ -60,7 +60,8 @@
 }
 
 .software_graph {
-    width: 59%;
+    width: 52%;
+    margin-left: 2%;
 }
 
 @media screen and (max-width: 1000px) {
