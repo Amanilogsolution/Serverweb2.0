@@ -103,7 +103,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              {showStep(currentStep)}
+              {/* {showStep(currentStep)} */}
             </div>
 
           </Sidebar>
