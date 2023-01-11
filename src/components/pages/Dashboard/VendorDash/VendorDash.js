@@ -79,13 +79,32 @@ export default function VendorDash({ setStep }) {
 
   return (
     <div className='VendorDash'>
-      <div className='VendorDash1 ' >
-        <p className='table_head bg-dark text-white px-4 mx-1'>Vendor Contract Details</p>
-        <div className='table1 position-relative'>
-          <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{width:"5%",float:"right"}}>
-            <BiExport style={{ fontSize: "25px"}} />
+      <div className='VendorDash1 bg-light rounded position-relative px-3' style={{ boxShadow: '1px 1px 10px #333' }}>
+        <div className='tableheading position-absolute d-flex justify-content-between pt-3' >
+          <p className='text-white px-4 mx-1 '>Vendor Contract Details</p>
+          <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{ width: "5%", float: "right" }}>
+            <BiExport style={{ fontSize: "25px", color: "white" }} />
           </div>
-            {
+          {
+            toogle ?
+              <div className="d-flex flex-column justify-content-center align-items-center  bg-light position-absolute rounded py-1" style={{ right: "2%", top: '80%', width: "5%", boxShadow: "3px 3px 10px gray", zIndex: "1" }} >
+                <a href="#"
+                  onClick={exportExcel}
+                ><SiMicrosoftexcel className='ft-20' /></a>
+                <CSVLink
+                  data={TotalVendor}
+                  filename="RecurringData"
+                > <GrDocumentCsv className='ft-20' />
+                </CSVLink>
+              </div>
+              : ''
+          }
+        </div>
+        <div className='table1 position-relative mt-5'>
+          {/* <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{width:"5%",float:"right"}}>
+            <BiExport style={{ fontSize: "25px"}} />
+          </div> */}
+          {/* {
               toogle ?
                 <div className="d-flex flex-column justify-content-center align-items-center  bg-light position-absolute rounded py-1" style={{ right: "2%",top:'5%', width: "5%", boxShadow: "3px 3px 10px black" }} >
                   <a href="#"
@@ -98,10 +117,10 @@ export default function VendorDash({ setStep }) {
                   </CSVLink>
                 </div>
                 : ''
-            }
+            } */}
 
 
-          <table class="table ">
+          <table class="table">
             <thead>
               <tr>
                 <th scope="col">Vendor</th>
@@ -170,7 +189,7 @@ export default function VendorDash({ setStep }) {
         </div>
 
       </div>
-      <div className='VendorDash2'>
+      <div className='VendorDash2 rounded'>
         <div className='VendorDash2_card text-center rounded text-light mb-1 pt-3'>
           <p>Reference Numbers</p>
           <h3 style={{ marginTop: "-12px" }}>{ReferabceNo}</h3>
