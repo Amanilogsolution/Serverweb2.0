@@ -1308,12 +1308,3 @@ export const Updaterole = async(data) =>{
     const url = `https://drizzlebackend.awlworldwide.com/api/updaterole`
     return axios.post(url, {data}).then(response => response.data).catch(error => console.log(error));  
 }
-
-
-
-
-
-
-
-
-
