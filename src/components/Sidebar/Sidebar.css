@@ -7,6 +7,7 @@
     display: flex;
     position: relative;
     background: rgb(240,242,245);
+    /* background: #000; */
     /* width: 100vw; */
     height: 100%;
     padding: 1.5%;
@@ -15,11 +16,12 @@
     font-family: 'Roboto'; 
 }
 
-.sidebarcontainer .innersidebar{
+/* .sidebarcontainer .innersidebar{
     border: 2px solid blue;
-}
+} */
 .sidebar {
     background: #fff;
+    /* background: #000; */
     color: #000;
     min-height: 95%;
     max-height: 95%;
@@ -30,25 +32,24 @@
     width: 50px;
     overflow: hidden;
     box-sizing: border-box;
-    box-shadow: 2px 0px 10px gray;
+    box-shadow: 1px 1px 3px rgb(138, 132, 132);
     border-radius: 10px 10px 10px 10px;
     z-index: 10000;
-  
     /* border: 2px solid rgb(0, 38, 255); */
 }
 
 
 .sidebaropen {
 
-   
+   background: #000;
     background: #fff;
-    color: #000;
+    /* color: #fff; */
     min-height: 95%;
     max-height: 95%;
     position: fixed;
     transition: all 0.5s;
     width: 244px;
-    box-shadow: 2px 0px 10px gray;
+    box-shadow: 1px 1px 3px rgb(138, 132, 132);
     border-radius: 10px 10px 10px 10px;
     z-index: 10000;
     overflow: hidden;
@@ -102,6 +103,7 @@
     padding: 5px 0px 5px 10px;
     transition: all 0.5s;
     /* border: 2px solid red; */
+    position: relative;
 
 }
 

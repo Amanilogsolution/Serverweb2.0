@@ -107,7 +107,7 @@ const Outstanding = ({ setStep }) => {
 
         <div className='company-outstatnding border border-dark mt-2' >
           <p className='bg-dark text-white text-center mb-0'>ILOG- IT OUTSTANDING</p>
-          
+
           <div style={{ maxHeight: "34vh", overflow: "auto" }}>
             <table className="table table-striped" >
               <thead className="bg-white position-sticky top-0" >
@@ -134,7 +134,7 @@ const Outstanding = ({ setStep }) => {
               </tfoot>
             </table>
           </div>
-          
+
         </div>
         <div className='nextoutstanding-detail cursor-pointer rounded text-light  mt-2 d-flex justify-content-center align-items-center' onClick={() => { setStep(5) }}>
           Click for Outstanding Details
@@ -156,8 +156,8 @@ const Outstanding = ({ setStep }) => {
                   ><SiMicrosoftexcel className='ft-20' /></a>
                   <CSVLink
                     data={TotalVendor}
-                    filename="RecurringData"
-                  > <GrDocumentCsv className='ft-20' />
+                    filename="RecurringData">
+                    <GrDocumentCsv className='ft-20' />
                   </CSVLink>
                 </div>
                 : ''

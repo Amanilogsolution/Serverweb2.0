@@ -33,7 +33,7 @@ const Dashboard = () => {
       console.log(result)
       setLoading(true)
 
-      setDashboarddetails({ ...dashboarddetails, Assetdata: result.Assets.asset, Vendordata: result.Vendor.Vendor_code,Invoice:result.Invoice.vendor, Ticket: result.Ticket.ticket })
+      setDashboarddetails({ ...dashboarddetails, Assetdata: result.Assets.asset, Vendordata: result.Vendor.Vendor_code, Invoice: result.Invoice.vendor, Ticket: result.Ticket.ticket })
     }
     fetch();
   }, [])
@@ -52,7 +52,7 @@ const Dashboard = () => {
       case 5:
         return <Outstatndingdetails />
       case 6:
-        return <Recurring/>
+        return <Recurring />
       default:
         return false
     }
@@ -63,10 +63,16 @@ const Dashboard = () => {
       {
         loading ?
           <Sidebar>
-            <div className='dashboard_container bg-light pt-2 pb-2'>
+            <div className='dashboard_container'>
 
-              <div className='dashboard_cards text-white justify-content-around'>
-                <div onClick={() => setStep(1)} className='card1 d-flex rounded cursor-pointer'>
+              <div className='dashboard_cards justify-content-end'>
+                <div className='d-flex justify-content-center  pr-2 pt-2 dash_toggle_btns'>
+                  <div className='dash_toggle_btn px-2' onClick={() => setStep(1)}>Assets</div>
+                  <div className='dash_toggle_btn px-2' onClick={() => setStep(2)}>Vendors</div>
+                  <div className='dash_toggle_btn px-2' onClick={() => setStep(3)}>Invoice</div>
+                  <div className='dash_toggle_btn px-2' onClick={() => setStep(4)}>Tickets</div>
+                </div>
+                {/* <div onClick={() => setStep(1)} className='card1 d-flex rounded cursor-pointer'>
                   <div>
                     <h1 className='dash_card_head mb-0'>{dashboarddetails.Assetdata}</h1>
                     <p className='dash_card_para'>Assets</p>
@@ -101,7 +107,7 @@ const Dashboard = () => {
                   <div className='dash_card_icon_div rounded-circle position-absolute'>
                     <FaTicketAlt className='icon' />
                   </div>
-                </div>
+                </div> */}
               </div>
               {showStep(currentStep)}
             </div>
