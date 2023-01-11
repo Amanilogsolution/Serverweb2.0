@@ -4,13 +4,16 @@
     min-height: 63vh;
     max-width: 100%;
     display: flex;
+    justify-content: space-between;
 }
 .VendorDash .VendorDash1{
-    width: 82%;
+    width: 80%;
 }
 .VendorDash .VendorDash2{
     width: 18%;
     padding: 0 3px;
+    box-shadow: 1px 1px 10px #333;
+    padding: 10px;
 }
 .VendorDash .VendorDash2 .VendorDash2_card{
     width: 100%;
@@ -49,4 +52,28 @@
   -ms-transform: scale(1.02);
   -webkit-transform: scale(1.02);
   transform: scale(1.02);
+}
+
+.tableheading {
+  top:-3%;
+  left:2.5%;
+  background:linear-gradient(45deg, #5c99e8,#2e78d7);
+  width:95%;
+  height:60px;
+  border-radius: 5px;
+  
+}
+.table th {
+  /* border:2px solid red; */
+  font-size:13px;
+  color:#184c90
+}
+.table td {
+  font-size: 14px;
+
+}
+.table tr {
+  /* border:2px solid red; */
+  line-height:25px
+
 }
