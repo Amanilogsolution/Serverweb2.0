@@ -109,12 +109,6 @@ const Navbar = (propes) => {
                                 <BsBellFill style={{ fontSize: "20px", marginTop: "3px" }} />
                             </div>
                         </div>
-<<<<<<< HEAD
-                        <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
-                            <Link className="dropdown-item" to="/Profile">Profile</Link>
-                            <Link className="dropdown-item" to="/ChangePassword">Change Password</Link>
-                            <a className="dropdown-item border-top text-danger" href="#" data-toggle="modal" data-target="#exampleModal">Logout <MdOutlineExitToApp style={{ fontSize: "20px" }} /></a>
-=======
                         <div className='d-flex' >
                             <div className='d-flex align-items-center' role="button" id="dropdownMenuLink"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -125,9 +119,8 @@ const Navbar = (propes) => {
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
                                 <Link className="dropdown-item" to="/Profile">Profile</Link>
                                 <Link className="dropdown-item" to="/ChangePassword">Change Password</Link>
-                                <a className="dropdown-item border-top text-danger" href="#" onClick={handleLogout}>Logout <MdOutlineExitToApp style={{ fontSize: "20px" }} /></a>
+                                <a className="dropdown-item border-top text-danger" href="#" >Logout <MdOutlineExitToApp style={{ fontSize: "20px" }} /></a>
                             </div>
->>>>>>> d7ff2d1ef86a84c2050078a97a83ef92546794b1
                         </div>
                     </div>
                 </div>
