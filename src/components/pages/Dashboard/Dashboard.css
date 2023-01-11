@@ -1,19 +1,43 @@
 .dashboard_container {
     min-height: 79vh;
     max-width: 100%;
-    border-radius: 10px 0px 0px 10px;
+    /* border-radius: 10px 10px 10px 10px; */
+    /* background: rgb(31,31,32); */
+    /* background: #fff; */
     /* padding: 6px 0;
     background: white; */
     /* background-size: 100% 100%; */
-    box-shadow: 2px 1px 10px gray, -3px -3px 10px gray;
-    
+    /* box-shadow: 2px 1px 10px gray, -3px -3px 10px gray; */
+
 }
-.dashboard_cards .card1 {
+
+.dashboard_cards .dash_toggle_btns {
+    width: 25%;
+    /* float: right; */
+    margin-bottom: 8px;
+    /* border: 2px solid red; */
+}
+
+.dashboard_cards .dash_toggle_btns .dash_toggle_btn {
+    border: 2px solid rgb(141, 103, 237);
+    transition:all 0.2s linear ;
+    cursor:pointer;
+}
+.dashboard_cards .dash_toggle_btns .dash_toggle_btn:hover {
+    transform: scale(1.01);
+   color: rgb(141, 103, 237);
+   letter-spacing: 1px;
+   background: #fff;
+}
+
+
+/* .dashboard_cards .card1 {
     width: 23.5%;
     height: 90px;
-    transition: transform 0.2s;
+    transition: transform 0.1s;
     padding: 8px 10px;
     position: relative;
+    background:white
 }
  
 .dash_card_head {
@@ -22,9 +46,9 @@
 
 .dash_card_para {
     font-size: 16px;
-}
+} */
 
-.dashboard_cards .card1:nth-child(1) {
+/* .dashboard_cards .card1:nth-child(1) {
     background: linear-gradient(45deg, rgb(255, 160, 27), rgb(172, 107, 14))
 }
 .dashboard_cards .card1:nth-child(2) {
@@ -35,14 +59,14 @@
 }
 .dashboard_cards .card1:nth-child(4) {
     background: linear-gradient(45deg, rgb(79, 205, 197), rgb(27, 114, 109));
-}
-.dashboard_cards .card1:hover {
-    -ms-transform: scale(1.06);
-    -webkit-transform: scale(1.06);
-    transform: scale(1.06);
-}
+} */
+/* .dashboard_cards .card1:hover {
+    -ms-transform: scale(1.03);
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+} */
 
-.dash_card_icon_div {
+/* .dash_card_icon_div {
     background: rgba(0, 0, 0, 0.4);
     height: 54px;
     width: 54px;
@@ -55,9 +79,9 @@
 }
 .dashboard_cards {
     display: flex;
-}
+} */
 
-@media only screen and (min-width: 0px) and (max-width: 970px) {
+/* @media only screen and (min-width: 0px) and (max-width: 970px) {
 
     .dashboard_cards .card1 {
         width: 22%;
@@ -73,7 +97,7 @@
     .dash_card_icon_div .icon {
         font-size: 23px;
     }
-}
+} */
 
 @media screen and (min-height:850px) {
     .dashboard_container {
@@ -106,7 +130,8 @@
 
     }
 }
-@media screen and (min-width:0) and (max-width:580px) {
+
+/* @media screen and (min-width:0) and (max-width:580px) {
     .dashboard_cards {
         display: block;
         width: 95%;
@@ -115,4 +140,4 @@
     .dashboard_cards .card1 {
         width: 95%;
     }
-}
+} */

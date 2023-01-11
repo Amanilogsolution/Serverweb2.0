@@ -1,9 +1,9 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
-import { ActiveAgent, insertRoles } from '../../../../api/index'
+import { insertRoles } from '../../../../api/index'
 
 
 function AddRoles() {
@@ -29,14 +29,13 @@ function AddRoles() {
             // console.log(agents)
             // setAgentlist(agents)
             setLoading(true)
-
         }
         fetchdata()
     }, [])
 
     const allaccess = () => {
         const allval = document.getElementById('allval').checked === true ? true : false;
-        const full = ['assets', 'vendCont','reports', 'location', 'employee', 'assettype', 'assetstatus', 'manufacturer', 'software', 'issuetype', 'purchasetype', 'contracttype', 'priority', 'ticketstatus', 'billingfrq', 'vendcate', 'vendsubcate', 'serviceactiontype', 'servicegrouptype', 'vendormaster', 'vendorinv', 'vendorpay','tickets','role','assignrole','orgdetails','application']
+        const full = ['assets', 'vendCont', 'reports', 'location', 'employee', 'assettype', 'assetstatus', 'manufacturer', 'software', 'issuetype', 'purchasetype', 'contracttype', 'priority', 'ticketstatus', 'billingfrq', 'vendcate', 'vendsubcate', 'serviceactiontype', 'servicegrouptype', 'vendormaster', 'vendorinv', 'vendorpay', 'tickets', 'role', 'assignrole', 'orgdetails', 'application']
         const arry = ['full', 'view', 'create', 'edit', 'deactive']
         if (allval) {
             document.getElementById('mastercheck').checked = true
@@ -128,7 +127,7 @@ function AddRoles() {
             role_id: document.getElementById('role').value.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000)
         }
 
-        const full = ['assets', 'vendCont','reports']
+        const full = ['assets', 'vendCont', 'reports']
         // const full = ['assets', 'vendCont', 'ticket', 'master', 'transaction', 'setting', 'reports']
         const arry = ['full', 'view', 'create', 'edit', 'deactive']
         for (let i = 0; i < full.length; i++) {
@@ -184,13 +183,13 @@ function AddRoles() {
     }
 
     const togglemasterdiv = () => {
-        const val = document.getElementById('mastercheck').checked == true ? true : false
+        const val = document.getElementById('mastercheck').checked === true ? true : false
         const full = ['location', 'employee', 'assettype', 'assetstatus', 'manufacturer', 'software', 'issuetype', 'purchasetype', 'contracttype', 'priority', 'ticketstatus', 'billingfrq', 'vendcate', 'vendsubcate', 'serviceactiontype', 'servicegrouptype', 'vendormaster']
         const arry = ['full', 'view', 'create', 'edit', 'deactive']
         if (val) {
             document.getElementById('mastercheck').checked = true
             document.getElementById('masteralldiv').style.display = 'table-row-group'
-
+            document.getElementById('masterarrow').style.transform = 'rotate(90deg)'
             for (let i = 0; i < full.length; i++) {
                 for (let j = 0; j < arry.length; j++) {
                     document.getElementById(`${full[i]}-${arry[j]}`).checked = true;
@@ -201,6 +200,7 @@ function AddRoles() {
         else {
             document.getElementById('masteralldiv').style.display = 'none'
             document.getElementById('mastercheck').checked = false
+            document.getElementById('masterarrow').style.transform = 'rotate(0deg)'
             for (let i = 0; i < full.length; i++) {
                 for (let j = 0; j < arry.length; j++) {
                     if (arry[j] === 'full' || arry[j] === 'view') {
@@ -217,13 +217,15 @@ function AddRoles() {
 
 
     const toggletransactiondiv = () => {
-        const val = document.getElementById('transactioncheck').checked == true ? true : false
+        const val = document.getElementById('transactioncheck').checked === true ? true : false
         const full = ['vendorinv', 'vendorpay']
         const arry = ['full', 'view', 'create', 'edit', 'deactive']
         if (val) {
             document.getElementById('transactioncheck').checked = true
             document.getElementById('transactiondiv').style.display = 'table-row-group'
+            document.getElementById('transationarrow').style.transform = 'rotate(90deg)'
 
+            
             for (let i = 0; i < full.length; i++) {
                 for (let j = 0; j < arry.length; j++) {
                     document.getElementById(`${full[i]}-${arry[j]}`).checked = true;
@@ -234,6 +236,8 @@ function AddRoles() {
         else {
             document.getElementById('transactiondiv').style.display = 'none'
             document.getElementById('transactioncheck').checked = false
+            document.getElementById('transationarrow').style.transform = 'rotate(0deg)'
+
             for (let i = 0; i < full.length; i++) {
                 for (let j = 0; j < arry.length; j++) {
                     if (arry[j] === 'full' || arry[j] === 'view') {
@@ -248,11 +252,13 @@ function AddRoles() {
         }
     }
     const togglehelpdeskdiv = () => {
-        const val = document.getElementById('helpdeskcheck').checked == true ? true : false
+        const val = document.getElementById('helpdeskcheck').checked === true ? true : false
         const full = ['tickets']
         const arry = ['full', 'view', 'create', 'edit', 'deactive']
         if (val) {
             document.getElementById('helpdeskcheck').checked = true
+            document.getElementById('helpdeskarrow').style.transform = 'rotate(90deg)'
+
             document.getElementById('helpdeskdiv').style.display = 'table-row-group'
 
             for (let i = 0; i < full.length; i++) {
@@ -265,6 +271,8 @@ function AddRoles() {
         else {
             document.getElementById('helpdeskdiv').style.display = 'none'
             document.getElementById('helpdeskcheck').checked = false
+            document.getElementById('helpdeskarrow').style.transform = 'rotate(0deg)'
+
             for (let i = 0; i < full.length; i++) {
                 for (let j = 0; j < arry.length; j++) {
                     if (arry[j] === 'full' || arry[j] === 'view') {
@@ -280,12 +288,13 @@ function AddRoles() {
     }
 
     const toggleSettingdiv = () => {
-        const val = document.getElementById('settingcheck').checked == true ? true : false
-        const full = ['role','assignrole','orgdetails','application']
+        const val = document.getElementById('settingcheck').checked === true ? true : false
+        const full = ['role', 'assignrole', 'orgdetails', 'application']
         const arry = ['full', 'view', 'create', 'edit', 'deactive']
         if (val) {
             document.getElementById('settingcheck').checked = true
             document.getElementById('settingdiv').style.display = 'table-row-group'
+            document.getElementById('settingarrow').style.transform = 'rotate(90deg)'
 
             for (let i = 0; i < full.length; i++) {
                 for (let j = 0; j < arry.length; j++) {
@@ -297,6 +306,7 @@ function AddRoles() {
         else {
             document.getElementById('settingdiv').style.display = 'none'
             document.getElementById('settingcheck').checked = false
+            document.getElementById('settingarrow').style.transform = 'rotate(0deg)'
             for (let i = 0; i < full.length; i++) {
                 for (let j = 0; j < arry.length; j++) {
                     if (arry[j] === 'full' || arry[j] === 'view') {
@@ -310,7 +320,7 @@ function AddRoles() {
             }
         }
     }
-    
+
 
 
     return (
@@ -421,9 +431,9 @@ function AddRoles() {
                                                 </tr>
                                                 {/* ################################## Master ################################### */}
                                                 <tr >
-                                                    <th scope="row">
-                                                        Master &nbsp; <input type='checkbox' id='mastercheck' style={checkboxStyle} onChange={togglemasterdiv} /></th>
-                                                    <th colSpan='4'></th>
+                                                    <th scope="row" colSpan='5' className='text-danger' >
+                                                    <input type='checkbox' id='mastercheck' style={{ height: '20px', width: '20px',accentColor:'red' }}  onChange={togglemasterdiv} /> Master &nbsp; 
+                                                        <MdKeyboardArrowRight id='masterarrow' className='ft-20' style={{ marginTop: '-10px' }} /></th>
                                                 </tr>
 
                                             </tbody>
@@ -553,9 +563,9 @@ function AddRoles() {
                                             {/* ################################## Transition ################################### */}
                                             <tbody>
                                                 <tr >
-                                                    <th scope="row">
-                                                        Transaction &nbsp; <input type='checkbox' id='transactioncheck' style={checkboxStyle} onChange={toggletransactiondiv} /></th>
-                                                    <th colSpan='4'></th>
+                                                    <th scope="row" colSpan='5' className='text-danger'>
+                                                    <input type='checkbox' id='transactioncheck' style={{ height: '20px', width: '20px',accentColor:'red' }} onChange={toggletransactiondiv} /> Transaction &nbsp;
+                                                    <MdKeyboardArrowRight id='transationarrow' className='ft-20' style={{ marginTop: '-10px' }} />  </th>
                                                 </tr>
                                             </tbody>
                                             <tbody id='transactiondiv' style={{ display: 'none' }}>
@@ -579,9 +589,10 @@ function AddRoles() {
                                             {/* ################################## Help Desk ################################### */}
                                             <tbody>
                                                 <tr >
-                                                    <th scope="row">
-                                                        Help Desk &nbsp; <input type='checkbox' id='helpdeskcheck' style={checkboxStyle} onChange={togglehelpdeskdiv} /></th>
-                                                    <th colSpan='4'></th>
+                                                    <th scope="row" colSpan='5' className='text-danger' >
+                                                        <input type='checkbox' id='helpdeskcheck' style={{ height: '20px', width: '20px',accentColor:'red' }} onChange={togglehelpdeskdiv} /> Help Desk
+                                                        &nbsp; <MdKeyboardArrowRight id='helpdeskarrow' className='ft-20' style={{ marginTop: '-10px' }} /> </th>
+
                                                 </tr>
                                             </tbody>
                                             <tbody id='helpdeskdiv' style={{ display: 'none' }}>
@@ -597,12 +608,12 @@ function AddRoles() {
                                             {/* ################################## Setting ################################### */}
                                             <tbody>
                                                 <tr >
-                                                    <th scope="row">
-                                                        Setting &nbsp; <input type='checkbox' id='settingcheck' style={checkboxStyle} onChange={toggleSettingdiv} /></th>
-                                                    <th colSpan='4'></th>
+                                                    <th scope="row" colSpan='5' className='text-danger' >
+                                                        <input type='checkbox' id='settingcheck' style={{  height: '20px', width: '20px',accentColor:'red' }} onChange={toggleSettingdiv} />  Setting 
+                                                        &nbsp; <MdKeyboardArrowRight id='settingarrow' className='ft-20' style={{ marginTop: '-10px' }} /> </th>
                                                 </tr>
                                             </tbody>
-                                            <tbody id='settingdiv' style={{display:'none'}}>
+                                            <tbody id='settingdiv' style={{ display: 'none' }}>
                                                 <tr>
                                                     <th scope="row"><input type='checkbox' id='role-full' style={checkboxStyle} onChange={() => fullaccess('role')} /> Role</th>
                                                     <td><input type='checkbox' id='role-view' style={checkboxStyle} onChange={() => viewoff('role')} /></td>
