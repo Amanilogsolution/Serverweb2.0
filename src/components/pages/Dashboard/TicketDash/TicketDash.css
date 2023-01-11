@@ -14,15 +14,14 @@
 .ticket_details {
     background: rgba(96, 58, 233, 0.4);
     width: 100%;
-    border: 2px solid #333;
-    border-radius: 10px 10px 0px 0px;
+    /* border-radius: 10px 10px 0px 0px; */
     z-index: 10;
 }
 
-.ticket_details:hover {
+/* .ticket_details:hover {
     background: #fff;
     border-bottom: none;
-}
+} */
 
 /* ########### Departmants #### */
 .ticket_card_div {

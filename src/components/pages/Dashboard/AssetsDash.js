@@ -94,7 +94,7 @@ export default function AssetsDash(callback) {
           <p className='bg-dark text-white px-4'>IT Asset Allotment Summary</p>
           <ResponsiveContainer width="100%" aspect={5.4}>
             <BarChart data={chartdata} margin={{ top: 20, right: 45 }}>
-              <CartesianGrid />
+              <CartesianGrid strokeDasharray="3 3"/>
               <XAxis dataKey="location_code" interval={"preserveStartEnd"} style={{ fontSize: "14px" }} />
               <YAxis />
               <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />

@@ -164,7 +164,7 @@ const TicketDepartment = () => {
           <PieChart width={700} height={200}>
             <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
             <Tooltip />
-            <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label >
+            <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={56} fill="rgb(94, 4, 69)" label >
               {data02.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
