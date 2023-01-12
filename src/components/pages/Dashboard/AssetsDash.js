@@ -49,14 +49,14 @@ export default function AssetsDash(callback) {
 
   return (
     <div className='AssetDash'>
-      <div className='Asset_cards  d-flex justify-content-between mb-2 border border-danger'>
+      <div className='Asset_cards  d-flex justify-content-between mb-2'>
         <div className='card1 d-flex justify-content-around rounded cursor-pointer'>
           <div className='position-relative  asset-inner-card'>
             <div className='dash_card_icon_div rounded position-absolute'>
               <BsLaptopFill className='icon ' />
             </div>
           </div>
-          <div>
+          <div style={{marginLeft:"-50px"}}>
             <h1 className='dash_card_head mb-0 '>{Assetsdata.TotalAsset}</h1>
             <p className='dash_card_para'>Total Devices</p>
           </div>
@@ -67,7 +67,7 @@ export default function AssetsDash(callback) {
               <HiUsers className='icon' />
             </div>
           </div>
-          <div>
+          <div style={{marginLeft:"-50px"}}>
             <h1 className='dash_card_head mb-0'>{Assetsdata.ActiveAsset}</h1>
             <p className='dash_card_para'>Active Devices</p>
           </div>
@@ -78,7 +78,7 @@ export default function AssetsDash(callback) {
               <MdStickyNote2 className='icon' />
             </div>
           </div>
-          <div>
+          <div style={{marginLeft:"-50px"}}>
             <h1 className='dash_card_head mb-0'>{Assetsdata.RentalAssets}</h1>
             <p className='dash_card_para'>Rental Devices</p>
           </div>
