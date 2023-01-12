@@ -43,7 +43,6 @@ const LandingPage = () => {
                                     <div className="col-lg-6" data-aos="fade-left"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="masthead-device-mockup">
-
                                             <div className="device-wrapper">
                                                 <div className="device" >
                                                     <div className="screen ">
@@ -58,7 +57,6 @@ const LandingPage = () => {
                             </div>
                         </header>
                     </section>
-
                     <section className='portfoliodiv'>
                         <div className="comp_name text-white" >
                             <div className="comp1 text-center "><h3 style={{ fontSize: "20px" }}>Modernize & Automate</h3></div>

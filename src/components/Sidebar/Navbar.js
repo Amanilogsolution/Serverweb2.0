@@ -14,41 +14,36 @@ import { TiVendorMicrosoft } from 'react-icons/ti'
 import { CgOrganisation } from 'react-icons/cg'
 import { GrUserExpert } from 'react-icons/gr'
 import { FiUserPlus } from 'react-icons/fi'
-import { Modal, ModalBody, ModalHeader } from 'reactstrap'
 import img from '../../image/modelimg.png'
 
 
 const Navbar = (propes) => {
 
-    const [modal, setModal] = useState(false)
-
-    const handleLogout = () => {
-        // localStorage.clear()
-        // window.location.href = '/'
-        setModal(true)
-    }
     return (
         <>
 
-
-            <Modal size="lg" isOpen={modal} toggle={() => setModal(!modal)} style={{ width: "300px", marginTop: "150px" }}>
-                <ModalHeader style={{ background: "white" }}>
-                    <img src={img} style={{ width: "140px", margin: "0 70px" }} />
-                </ModalHeader>
-                <ModalBody>
-                    <div style={{ textAlign: "center", width: "100%", padding: "0 15px" }}>
-                        <h5>Are you sure,</h5>
-                        <p>you want to logout your account</p><br />
-                        <div>
-                            <button style={{ borderRadius: "50px" }} className='btn btn-danger w-100 my-2' onClick={() => {
-                                localStorage.clear();
-                                window.location.href = '/'
-                            }}>Logout</button><br />
-                            <button style={{ borderRadius: "50px" }} className='btn btn-secondary w-100' onClick={() => setModal(!modal)}>Cancel</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style={{ width: "300px",marginTop:"50px" }}>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <img src={img} style={{ width: "140px", margin: "0 70px" }} />
+                        </div>
+                        <div class="modal-body">
+                            <div style={{ textAlign: "center", width: "100%", padding: "0 15px" }}>
+                                <h4>Are you sure ? </h4>
+                                <p>you want to logout your account</p><br />
+                                <div>
+                                    <button style={{ borderRadius: "50px" }} className='btn btn-voilet w-100 my-2' onClick={() => {
+                                        localStorage.clear()
+                                        window.location.href = '/'
+                                    }}>Yah, I am sure</button><br />
+                                    <button style={{ borderRadius: "50px" }} className=' close btn btn-secondary w-100' data-dismiss="modal" aria-label="Close">Cencel</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </ModalBody>
-            </Modal>
+                </div>
+            </div>
 
                 <div className="innernavbarcontainer bg-white mb-3 d-flex align-items-center "  >
                     {propes.isOpen ?
@@ -124,7 +119,7 @@ const Navbar = (propes) => {
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
                                 <Link className="dropdown-item" to="/Profile">Profile</Link>
                                 <Link className="dropdown-item" to="/ChangePassword">Change Password</Link>
-                                <a className="dropdown-item border-top text-danger" href="#" onClick={handleLogout}>Logout <MdOutlineExitToApp style={{ fontSize: "20px" }} /></a>
+                                <a className="dropdown-item border-top text-danger" href="#" >Logout <MdOutlineExitToApp style={{ fontSize: "20px" }} /></a>
                             </div>
                         </div>
                     </div>
