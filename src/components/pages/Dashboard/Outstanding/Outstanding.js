@@ -105,11 +105,11 @@ const Outstanding = ({ setStep }) => {
           </div>
         </div>
 
-        <div className='company-outstatnding border border-dark mt-2' >
+        <div className='company-outstatnding border border-dark mt-2'style={{ boxShadow: '1px 1px 10px #333' }} >
           <p className='bg-dark text-white text-center mb-0'>ILOG- IT OUTSTANDING</p>
 
           <div style={{ maxHeight: "34vh", overflow: "auto" }}>
-            <table className="table table-striped" >
+            <table className="table " >
               <thead className="bg-white position-sticky top-0" >
                 <tr>
                   <th>Vendor</th>

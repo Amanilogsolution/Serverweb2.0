@@ -69,17 +69,18 @@ export default function Recurring() {
     console.log(data.selected + 1)
   }
   return (
-    <div className='Recurring_div d-flex mx-2 pt-2'>
+    <div className='Recurring_div d-flex justify-content-around mx-2 pt-2 mt-2'>
 
-      <div className='recurring_table position-relative' >
-        <p className='bg-dark text-white px-4 mx-1'>Vendor Recurring Details</p>
-        <div className='recurring_table_inside'>
-          <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer  px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{width:'5%',float:'right'}}>
-            <BiExport style={{ fontSize: "25px" }} />
+      <div className='recurring_table position-relative bg-light rounded' style={{ boxShadow: '1px 1px 10px #333' }} >
+      <div className="recurringhead position-absolute  d-flex justify-content-between pt-3">
+      <p className='text-white px-4 mx-1'>Vendor Recurring Details</p>
+      <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer  px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{width:'5%',float:'right'}}>
+            <BiExport style={{ fontSize: "25px",color: "white" }} />
           </div>
+
           {
             toogle ?
-              <div className="d-flex flex-column justify-content-center align-items-center bg-light position-absolute rounded py-1" style={{ right: "2%",top:'12%', width: "5%", boxShadow: "3px 3px 10px black" }}>
+              <div className="d-flex flex-column justify-content-center align-items-center bg-light position-absolute rounded py-1" style={{ right: "4%",top:'25%', width: "5%", boxShadow: "3px 3px 10px black" }}>
                 <a href="#"
                   onClick={exportExcel}
                 ><SiMicrosoftexcel className='ft-20' /></a>
@@ -92,9 +93,15 @@ export default function Recurring() {
               : ''
           }
 
+      </div>
+
+        <div className='recurring_table_inside mt-5 px-3'>
+          
+         
+
        
           <div id="pagination">
-          <table class="table table-striped" >
+          <table class="table " >
             <thead>
               <tr>
                 <th scope="col">Vendor</th>
@@ -164,7 +171,7 @@ export default function Recurring() {
 
         </div>
       </div>
-      <div className='recurring_cards px-2'>
+      <div className='recurring_cards bg-light p-2 rounded' style={{ boxShadow: '1px 1px 10px #333' }}>
         <div className='recurring_card text-center text-light pt-2 rounded mb-2'>
           <p className='mb-0'>Recurring</p>
           <h3>{TotalRecurring}</h3>

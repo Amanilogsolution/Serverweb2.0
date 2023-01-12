@@ -81,11 +81,15 @@ const Outstatndingdetails = () => {
                 </div>
 
             </div>
-            <div className="d-flex flex-column mt-2 px-2 " >
-                <div className='border border-dark'>
-                    <p className="bg-dark text-center text-white">Vendor Invoices - Detailed</p>
-                    <div className="Outstanding_details_table " style={{ overflow: "auto", height: "20vh" }}>
-                        <table className="table table-striped" >
+            <div className="d-flex flex-row position-relative justify-content-around mt-2 px-2 rounded" style={{ minHeight:"60vh",}} >
+                <div style={{ boxShadow: '1px 1px 10px #333' }}>
+                <div className="vendorinv rounded position-absolute pt-3">
+                <p className=" text-center text-white">Vendor Invoices - Detailed</p>
+
+                </div>
+                    <div className="Outstanding_details_table mt-5 px-2" style={{ overflow: "auto", minheight: "50vh" }}>
+
+                        <table className="table" >
                             <thead>
                                 <tr className='text-danger'>
                                     <th scope="col">Vendor</th>
@@ -132,10 +136,13 @@ const Outstatndingdetails = () => {
                     </div>
 
                 </div>
-                <div className='border border-dark'>
-                    <p className="bg-dark text-center text-white ">Paid Invoices - Detailed</p>
-                    <div className="Outstanding_details_table " style={{ overflow: "auto", height: "20vh" }}>
-                        <table className="table table-striped " >
+                <div   style={{ boxShadow: '1px 1px 10px #333' }}>
+                <div className="paidinv rounded position-absolute pt-3">
+
+                    <p className=" text-center text-white ">Paid Invoices - Detailed</p>
+                    </div>
+                    <div className="Outstanding_details_table mt-5" style={{ overflow: "auto", minheight: "50vh" }}>
+                        <table className="table " >
                             <thead>
                                 <tr className='text-danger'>
                                     <th scope="col">Vendor</th>
