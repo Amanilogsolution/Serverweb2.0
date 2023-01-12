@@ -6,7 +6,7 @@ import { BsWindows,BsFillFileEarmarkCodeFill } from 'react-icons/bs';
 import Footer from '../Sidebar/Footer/Footer';
 import Helpnavbar from './HelpNevbar';
 import '../Sidebar/Sidebar'
-import logo from '../../image/drizzle_logo.jpg'
+import logo from '../../image/drizzle_logo.png'
 import './HelpDeskSideBar.css'
 import HelpEmployee from './HelpEmployee';
 import HelpLocation from './HelpLocation';

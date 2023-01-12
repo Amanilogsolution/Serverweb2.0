@@ -3,6 +3,7 @@ import { BiSearchAlt2 } from 'react-icons/bi'
 import { VendorInvoice, PaidInvoice } from '../../../../api/index'
 import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate';
+import { BsFilterLeft } from 'react-icons/bs';
 
 const Outstatndingdetails = () => {
     const [TotalVendor, setTotalVendor] = useState([])
@@ -54,11 +55,11 @@ const Outstatndingdetails = () => {
         console.log(data.selected + 1)
     }
 
-    
+
     return (
         <>
-            <div className="Outstanding_container_details d-flex justify-content-between mt-2 mx-1">
-                <div className="card1 flex-fill ">
+            <div className="Outstanding_container_details d-flex justify-content-between mx-1">
+                {/* <div className="card1 flex-fill ">
                     <p className="bg-dark text-center text-white">Search Vendor Invoice</p>
                     <div className="d-flex justify-content-center">
                         <input className=" form-control w-50" type="search" placeholder="Search ..." />
@@ -78,18 +79,56 @@ const Outstatndingdetails = () => {
                         <input className=" form-control w-50" type="search" placeholder="Search ..." />
                         <BiSearchAlt2 className='cursor-pointer mx-1 mt-2' style={{ fontSize: "25px" }} />
                     </div>
+                </div> */}
+
+                <button style={{height:"45px"}} type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                   <h5>Filter <BsFilterLeft className='cursor-pointer mx-1 mt-2' style={{fontSize:"25px"}} /></h5>  
+                </button>
+
+
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Filter <BsFilterLeft style={{fontSize:"38px",color:"#4089df"}}/></h5>
+                            </div>
+                            <div class="modal-body">
+                                <div className="d-flex justify-content-center mb-2">
+                                    
+                                        <select class="custom-select" id="inputGroupSelect01">
+                                            <option hidden >Select...</option>
+                                            <option value="1">Vendor Invoice</option>
+                                            <option value="2">Payment Detail</option>
+                                            <option value="3">Billing Account Number</option>
+                                        </select>
+                                    
+
+                                </div>
+                                <div className="d-flex justify-content-center">
+                                    <input className=" form-control w-50" type="search" placeholder="Search ..." />
+                                    <BiSearchAlt2 className='cursor-pointer mx-1 mt-2' style={{fontSize:"33px",color:"#4089df"}} />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+
 
             </div>
-            <div className="d-flex flex-row position-relative justify-content-around mt-2 px-2 rounded" style={{ minHeight:"60vh",}} >
-                <div style={{ boxShadow: '1px 1px 10px #333' }}>
-                <div className="vendorinv rounded position-absolute pt-3">
-                <p className=" text-center text-white">Vendor Invoices - Detailed</p>
+            <div className="d-flex flex-row position-relative justify-content-around mt-4 px-2 rounded" style={{ minHeight: "60vh" }} >
+                <div style={{ boxShadow: '1px 1px 10px #333', background: "white", width: "48%" }}>
+                    <div className="vendorinv rounded position-absolute pt-3">
+                        <p className=" text-center text-white">Vendor Invoices - Detailed</p>
 
-                </div>
+                    </div>
                     <div className="Outstanding_details_table mt-5 px-2" style={{ overflow: "auto", minheight: "50vh" }}>
 
-                        <table className="table" >
+                        <table className="table">
                             <thead>
                                 <tr className='text-danger'>
                                     <th scope="col">Vendor</th>
@@ -136,15 +175,15 @@ const Outstatndingdetails = () => {
                     </div>
 
                 </div>
-                <div   style={{ boxShadow: '1px 1px 10px #333' }}>
-                <div className="paidinv rounded position-absolute pt-3">
+                <div style={{ boxShadow: '1px 1px 10px #333', width: "48%", background: "white", padding: "0 10px" }}>
+                    <div className="paidinv rounded position-absolute pt-3">
 
-                    <p className=" text-center text-white ">Paid Invoices - Detailed</p>
+                        <p className=" text-center text-white ">Paid Invoices - Detailed</p>
                     </div>
-                    <div className="Outstanding_details_table mt-5" style={{ overflow: "auto", minheight: "50vh" }}>
-                        <table className="table " >
+                    <div className="Outstanding_details_table mt-5" style={{ minheight: "50vh" }}>
+                        <table className="table " style={{ minheight: "50vh" }} >
                             <thead>
-                                <tr className='text-danger'>
+                                <tr >
                                     <th scope="col">Vendor</th>
                                     <th scope="col">Invoice_no</th>
                                     <th scope="col">Reference No</th>
@@ -167,26 +206,27 @@ const Outstatndingdetails = () => {
                                 }
                             </tbody>
                         </table>
-                        <ReactPaginate
-                            breakLabel="..."
-                            nextLabel="next "
-                            onPageChange={handlePageClickpaid}
-                            pageRangeDisplayed={3}
-                            pageCount={paidlastval}
-                            previousLabel=" previous"
-                            renderOnZeroPageCount={null}
-                            containerClassName={'pagination justify-content-end'}
-                            pageClassName={'page-item'}
-                            pageLinkClassName={'page-link'}
-                            previousClassName={'page-item'}
-                            previousLinkClassName={'page-link'}
-                            nextClassName={'page-item'}
-                            nextLinkClassName={'page-link'}
-                            breakClassName={'page-item'}
-                            breakLinkClassName={'page-link'}
-                            activeClassName={'active'}
-                        />
+
                     </div>
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel="next "
+                        onPageChange={handlePageClickpaid}
+                        pageRangeDisplayed={3}
+                        pageCount={paidlastval}
+                        previousLabel=" previous"
+                        renderOnZeroPageCount={null}
+                        containerClassName={'pagination justify-content-end'}
+                        pageClassName={'page-item'}
+                        pageLinkClassName={'page-link'}
+                        previousClassName={'page-item'}
+                        previousLinkClassName={'page-link'}
+                        nextClassName={'page-item'}
+                        nextLinkClassName={'page-link'}
+                        breakClassName={'page-item'}
+                        breakLinkClassName={'page-link'}
+                        activeClassName={'active'}
+                    />
                 </div>
 
             </div>

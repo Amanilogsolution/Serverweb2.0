@@ -1,6 +1,6 @@
 import './landing.css'
 import { Link } from 'react-router-dom'
-import logo from '../../../image/drizzle_logo.jpg'
+import logo from '../../../image/drizzle_logo.png'
 
 const LandingHeader = () => {
     return (

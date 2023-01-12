@@ -2,7 +2,7 @@ import React from 'react'
 import '../Sidebar/Navbar.css'
 import { FaUserCircle } from 'react-icons/fa'
 import { IoMdLogOut } from 'react-icons/io'
-import DrizzleLogo from '../../image/drizzle_logo.jpg'
+import DrizzleLogo from '../../image/drizzle_logo.png'
 
 const Helpnavbar = (propes) => {
 
