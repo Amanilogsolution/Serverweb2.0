@@ -73,8 +73,8 @@ const Navbar = (propes) => {
                     </div>
 
 
-                    <div className='navcontainer-second position-absolute d-flex align-items-center justify-content-between'>
-                        <div className='navcontainer-innersecond'>
+                    <div className='navcontainer-second position-absolute d-flex align-items-center justify-content-end'>
+                        <div className='navcontainer-innersecond mx-5'>
                             <div className='d-flex'>
                                 <div role="button" id="dropdownMenuLink"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

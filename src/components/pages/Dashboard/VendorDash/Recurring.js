@@ -69,7 +69,7 @@ export default function Recurring() {
     console.log(data.selected + 1)
   }
   return (
-    <div className='Recurring_div d-flex justify-content-around mx-2 pt-2 mt-2'>
+    <div className='Recurring_div d-flex justify-content-around mx-2 pt-2 mt-3'>
 
       <div className='recurring_table position-relative bg-light rounded' style={{ boxShadow: '1px 1px 10px #333' }} >
       <div className="recurringhead position-absolute  d-flex justify-content-between pt-3">

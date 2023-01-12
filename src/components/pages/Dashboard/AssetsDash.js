@@ -85,14 +85,14 @@ export default function AssetsDash(callback) {
         </div>
       </div>
       
-      <div className='d-flex justify-content-between mt-3'>
+      <div className='d-flex justify-content-between my-5'>
         <div className='for_graph'>
           <div className='bar_location bg-light rounded'>
             {spinner ?
               <div class="spinner-border text-primary" style={{ marginTop: "2%", marginLeft: "50%" }} role="status">
                 <span class="sr-only"></span>
               </div> :
-              <div className=' rounded it-bar' style={{ background: 'linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))', boxShadow: '2px 2px 10px silver' }} >
+              <div className='rounded it-bar' style={{ background: 'linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))', boxShadow: '2px 2px 10px silver' }} >
                 {/* <p className=' px-4'>IT Asset Allotment Summary</p> */}
                 <ResponsiveContainer width="100%" aspect={5}>
                   <BarChart data={chartdata} margin={{ top: 20, right: 45 }}>

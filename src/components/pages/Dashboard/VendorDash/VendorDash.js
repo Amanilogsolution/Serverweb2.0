@@ -78,8 +78,8 @@ export default function VendorDash({ setStep }) {
   }
 
   return (
-    <div className='VendorDash'>
-      <div className='VendorDash1 bg-light rounded position-relative px-3' style={{ boxShadow: '1px 1px 10px #333' }}>
+    <div className='VendorDash mt-4'>
+      <div className='VendorDash1 bg-light rounded position-relative px-3 ' style={{ boxShadow: '1px 1px 10px #333' }}>
         <div className='tableheading position-absolute d-flex justify-content-between pt-3' >
           <p className='text-white px-4 mx-1 '>Vendor Contract Details</p>
           <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{ width: "5%", float: "right" }}>
