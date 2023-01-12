@@ -54,6 +54,10 @@ const Outstatndingdetails = () => {
 
         console.log(data.selected + 1)
     }
+    const handleChange = () =>{
+        document.getElementById('display').style.display ="flex"
+
+    }
 
 
     return (
@@ -95,7 +99,7 @@ const Outstatndingdetails = () => {
                             <div class="modal-body">
                                 <div className="d-flex justify-content-center mb-2">
                                     
-                                        <select class="custom-select" id="inputGroupSelect01">
+                                        <select class="custom-select" id="inputGroupSelect01" onChange={handleChange}>
                                             <option hidden >Select...</option>
                                             <option value="1">Vendor Invoice</option>
                                             <option value="2">Payment Detail</option>
@@ -104,7 +108,7 @@ const Outstatndingdetails = () => {
                                     
 
                                 </div>
-                                <div className="d-flex justify-content-center">
+                                <div id="display" style={{display:"none"}} className=" justify-content-center">
                                     <input className=" form-control w-50" type="search" placeholder="Search ..." />
                                     <BiSearchAlt2 className='cursor-pointer mx-1 mt-2' style={{fontSize:"33px",color:"#4089df"}} />
                                 </div>
