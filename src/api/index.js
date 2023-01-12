@@ -14,7 +14,6 @@ export const insertUserLogin = async (user_name, user_id,user_password,DBname) =
     return axios.post(url, { user_name, user_id,user_password,DBname }).then(response => response.data).catch(error => console.log(error));
 }
 
-
 export const TotalCountry = async () => {
     const url = `https://drizzlebackend.awlworldwide.com/api/totalcountry`
     return axios.get(url).then(response => response.data).catch(error => console.log(error));
@@ -41,7 +40,6 @@ export const UploadCity = async (datas) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/UploadCity`
     return axios.post(url,{datas}).then(response => response.data).catch(error => console.log(error));
 }
-
 
 //  Iperioscope Series start
 export const Totalseriesapi = async () => {

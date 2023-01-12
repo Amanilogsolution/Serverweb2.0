@@ -2,3 +2,23 @@
     line-height:8px
 
 }
+
+.vendorinv{
+    top:-3%;
+    width:42%;
+    left:4%;
+    height:8vh;
+    background:linear-gradient(45deg, #5c99e8,#2e78d7);
+
+}
+
+.paidinv{
+    top:-3%;
+    height:8vh;
+    /* left:4%; */
+    left:54%;
+
+    width:42%;
+    background:linear-gradient(45deg, #5c99e8,#2e78d7);
+
+}

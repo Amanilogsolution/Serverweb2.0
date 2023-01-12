@@ -161,7 +161,7 @@ export default function AssetsDash(callback) {
             </div>
           </div>
         </div>
-        <div className='asset-sidebar rounded bg-white '>
+        <div className='asset-sidebar rounded  '>
           <div className='Asset_card2 rounded'>
             <p className='mb-0'>Asset Value</p>
             <h5>₹ {Assetsdata.PurchaseVal}</h5>

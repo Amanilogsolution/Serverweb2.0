@@ -39,14 +39,29 @@ const Dashboard = () => {
     fetch();
   }, [])
 
+  const colordynamic = (step) =>{
+      // console.log(step)
+      for(let i=1; i<=4;i++){
+        if(i==step){
+          console.log("true")
+          document.getElementById(`css${i}`).style.background = "white"
+          document.getElementById(`css${i}`).style.borderBottom = "4px solid #30305f"
+
+        }else{
+          document.getElementById(`css${i}`).style.background = "#b5acf1"
+          document.getElementById(`css${i}`).style.borderBottom = "none"
+        }
+        // console.log(i)
+      }
+  }
+
   const showStep = (step) => {
     // console.log(step)
     switch (step) {
       case 1:
-        return  <AssetsDash />
-        
+        return <AssetsDash  />
       case 2:
-        return <VendorDash setStep={setStep} />
+        return <VendorDash  setStep={setStep} />
       case 3:
         return <Outstanding setStep={setStep} />
       case 4:
@@ -68,11 +83,11 @@ const Dashboard = () => {
             <div className='dashboard_container'>
 
               <div className='dashboard_cards justify-content-end'>
-                <div className='d-flex justify-content-center  pr-2 pt-2 dash_toggle_btns'>
-                  <div id='css1' className='dash_toggle_btn px-2' onClick={() => setStep(1)}>Assets</div>
-                  <div className='dash_toggle_btn px-2' onClick={() => setStep(2)}>Vendors</div>
-                  <div className='dash_toggle_btn px-2' onClick={() => setStep(3)}>Invoice</div>
-                  <div className='dash_toggle_btn px-2' onClick={() => setStep(4)}>Tickets</div>
+                <div className='d-flex justify-content-center  dash_toggle_btns'>
+                  <div className='dash_toggle_btn ' id="css1"  onClick={() => {colordynamic(1); setStep(1)}}>Assets</div>
+                  <div className='dash_toggle_btn ' id="css2" onClick={() =>{colordynamic(2); setStep(2)}}>Vendors</div>
+                  <div className='dash_toggle_btn ' id="css3" onClick={() => {colordynamic(3);setStep(3)}}>Invoice</div>
+                  <div className='dash_toggle_btn ' id="css4" onClick={() => {colordynamic(4);setStep(4)}}>Tickets</div>
                 </div>
                 {/* <div onClick={() => setStep(1)} className='card1 d-flex rounded cursor-pointer'>
                   <div>
