@@ -1,14 +1,6 @@
 .dashboard_container {
     min-height: 79vh;
     max-width: 100%;
-    /* border-radius: 10px 10px 10px 10px; */
-    /* background: rgb(31,31,32); */
-    /* background: #fff; */
-    /* padding: 6px 0;
-    background: white; */
-    /* background-size: 100% 100%; */
-    /* box-shadow: 2px 1px 10px gray, -3px -3px 10px gray; */
-
 }
 
 .dashboard_cards .dash_toggle_btns {
@@ -19,16 +11,19 @@
 }
 
 .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
-    border: 2px solid rgb(141, 103, 237);
-    transition:all 0.2s linear ;
+   background: #b5acf1;
     cursor:pointer;
+    padding:5px 10px;
 }
-.dashboard_cards .dash_toggle_btns .dash_toggle_btn:hover {
-    transform: scale(1.01);
-   color: rgb(141, 103, 237);
-   letter-spacing: 1px;
-   background: #fff;
-}
+/* .dashboard_cards .dash_toggle_btns .dash_toggle_btn:hover {
+    background: white;
+    border-bottom: 4px solid #603ae9;
+ } */
+.dashboard_cards .dash_toggle_btns .dash_toggle_btn:focus-within{
+    background: white;
+ }
+ 
+
 
 
 /* .dashboard_cards .card1 {

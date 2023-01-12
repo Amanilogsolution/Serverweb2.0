@@ -49,7 +49,7 @@ export default function AssetsDash(callback) {
 
   return (
     <div className='AssetDash'>
-      <div className='Asset_cards  d-flex justify-content-between mb-2'>
+      <div className='Asset_cards  d-flex justify-content-between mb-2 border border-danger'>
         <div className='card1 d-flex justify-content-around rounded cursor-pointer'>
           <div className='position-relative  asset-inner-card'>
             <div className='dash_card_icon_div rounded position-absolute'>
@@ -57,71 +57,34 @@ export default function AssetsDash(callback) {
             </div>
           </div>
           <div>
-            <h2 className='dash_card_head mb-0 '>{Assetsdata.TotalAsset}</h2>
+            <h1 className='dash_card_head mb-0 '>{Assetsdata.TotalAsset}</h1>
             <p className='dash_card_para'>Total Devices</p>
           </div>
         </div>
-        <div className='card1 d-flex justify-content-around rounded cursor-pointer'>
+        <div className='card1 d-flex justify-content-around rounded '>
           <div className='position-relative  asset-inner-card'>
             <div className='dash_card_icon_div activedev1 rounded position-absolute'>
               <HiUsers className='icon' />
             </div>
           </div>
           <div>
-            <h3 className='dash_card_head mb-0'>{Assetsdata.ActiveAsset}</h3>
+            <h1 className='dash_card_head mb-0'>{Assetsdata.ActiveAsset}</h1>
             <p className='dash_card_para'>Active Devices</p>
           </div>
         </div>
-        <div className='card1 d-flex justify-content-around rounded cursor-pointer'>
+        <div className='card1 d-flex justify-content-around rounded '>
           <div className='position-relative  asset-inner-card'>
             <div className='dash_card_icon_div rentdev1 rounded position-absolute'>
               <MdStickyNote2 className='icon' />
             </div>
           </div>
           <div>
-            <h3 className='dash_card_head mb-0'>{Assetsdata.RentalAssets}</h3>
+            <h1 className='dash_card_head mb-0'>{Assetsdata.RentalAssets}</h1>
             <p className='dash_card_para'>Rental Devices</p>
           </div>
         </div>
-
-
-        {/* <div className='Asset_inner_card1 d-flex justify-content-around'>
-          <div className='Asset_card rounded'>
-            <p className="mb-0">Total Devices</p>
-            <h1>{Assetsdata.TotalAsset}</h1>
-          </div>
-          <div className='Asset_card rounded'>
-            <p className="mb-0">Active Devices</p>
-            <h1 >{Assetsdata.ActiveAsset}</h1>
-          </div>
-          <div className='Asset_card rounded'>
-            <p className="mb-0">Rental Devices</p>
-            <h1 >{Assetsdata.RentalAssets}</h1>
-          </div>
-        </div> */}
-        {/* <div className='Asset_inner_card1 d-flex justify-content-around'>
-          <div className='Asset_card2 rounded'>
-            <p className='mb-0'>Asset Value</p>
-            <h5>₹ {Assetsdata.PurchaseVal}</h5>
-          </div>
-          <div className='Asset_card2 rounded'>
-            <p className='mb-0'>Rental / Month</p>
-            <h5 >₹ {Assetsdata.RentMonth}</h5>
-          </div>
-          <div className='Asset_card2 rounded'>
-            <p className='mb-0'>MS OS</p>
-            <h5 >0</h5>
-          </div>
-          <div className='Asset_card2 rounded'>
-            <p className='mb-0'>MS OS</p>
-            <h5 >0</h5>
-          </div>
-          <div className='Asset_card2 rounded'>
-            <p className='mb-0'>MS OS</p>
-            <h5 >0</h5>
-          </div>
-        </div> */}
       </div>
+      
       <div className='d-flex justify-content-between mt-3'>
         <div className='for_graph '>
           <div className='bar_location bg-light rounded' >

@@ -14,6 +14,7 @@ import TickteDash from './TicketDash/TicketDash'
 import { DashboarDetails } from '../../../api/index'
 import LoadingPage from '../../LoadingPage/LoadingPage';
 import Recurring from './VendorDash/Recurring';
+import styled from 'styled-components';
 
 
 const Dashboard = () => {
@@ -42,7 +43,8 @@ const Dashboard = () => {
     // console.log(step)
     switch (step) {
       case 1:
-        return <AssetsDash />
+        return  <AssetsDash />
+        
       case 2:
         return <VendorDash setStep={setStep} />
       case 3:
@@ -67,7 +69,7 @@ const Dashboard = () => {
 
               <div className='dashboard_cards justify-content-end'>
                 <div className='d-flex justify-content-center  pr-2 pt-2 dash_toggle_btns'>
-                  <div className='dash_toggle_btn px-2' onClick={() => setStep(1)}>Assets</div>
+                  <div id='css1' className='dash_toggle_btn px-2' onClick={() => setStep(1)}>Assets</div>
                   <div className='dash_toggle_btn px-2' onClick={() => setStep(2)}>Vendors</div>
                   <div className='dash_toggle_btn px-2' onClick={() => setStep(3)}>Invoice</div>
                   <div className='dash_toggle_btn px-2' onClick={() => setStep(4)}>Tickets</div>

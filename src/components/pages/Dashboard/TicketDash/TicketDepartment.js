@@ -40,15 +40,33 @@ const TicketDepartment = () => {
       "value": ticketSummary.TotalCloseTicket
     }
   ];
-  const COLORS = ['#7675C4', '#DB49F2', '#F4397A', '#039B28', '#A5A704', '#014FB5'];
+  const COLORS = ['#c53241', '#650582', '#4d00ab', '#039B28', '#A5A704', '#014FB5'];
   return (
-    <div className='d-flex flex-column justify-content-center'>
-      <div className='ticket_card_div justify-content-center'>
+    <div className='d-flex flex-row justify-content-between' style={{width:"100%",marginTop:"50px",background:"#f0f2f5"}}>
+
+      <div className='ticket_card rounded' style={{ width: '29%',margin:"auto"}}>
+        <p style={{width:"80%",height:"50px",marginTop:"-20px",textAlign:"center",marginLeft:"35px",borderRadius:"5px",padding:"10px",color:"white",background:" linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))"}}>Ticket Summary</p>
+        <ResponsiveContainer width="100%" aspect={1.8}>
+          <PieChart width={700} height={200}>
+            <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
+            <Tooltip />
+            <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={70} fill="rgb(94, 4, 69)" label >
+              {data02.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Legend layout="vertical" verticalAlign="center" align="right" />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div style={{width:"69%"}}>
+      <div className='ticket_card_div justify-content-center mt-5'>
 
         <div className='ticket_card rounded '>
           <div className='ticket_card_content d-flex justify-content-center'>
-            <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "10px 11px" }}>
-              <FaUser className='m-1' style={{ fontSize: "27px" }} />
+            <div className='tickets_icon text-light mx-2 ' style={{ padding: "10px 11px" }}>
+              <FaUser className='m-1' style={{ fontSize: "23px" }} />
             </div>
             <div>
               <p>My Tickets</p>
@@ -59,8 +77,8 @@ const TicketDepartment = () => {
 
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center' style={{ marginRight: "43px" }}>
-            <div className='tickets_icon mx-2 text-light rounded-circle' style={{ padding: "10px 15px" }}>
-              <FaEnvelopeOpen style={{ fontSize: "30px" }} />
+            <div className='tickets_icon mx-2 text-light ' style={{ padding: "10px 15px" }}>
+              <FaEnvelopeOpen style={{ fontSize: "23px" }} />
             </div>
             <div>
               <p>Open</p>
@@ -69,22 +87,10 @@ const TicketDepartment = () => {
           </div>
         </div>
 
-        {/* <div className='ticket_card rounded'>
-          <div className='ticket_card_content d-flex justify-content-center'>
-            <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "10px 11px" }}>
-              <FaUserTimes className='m-1' style={{ fontSize: "30px " }} />
-            </div>
-            <div>
-              <p>Unassigned</p>
-              <h5 style={{ marginTop: "-13px" }}>13</h5>
-            </div>
-          </div>
-        </div> */}
-
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center' style={{ marginRight: "30px" }}>
-            <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "12px 12px" }}>
-              <FaCheck className='m-1' style={{ fontSize: "27px" }} />
+            <div className='tickets_icon text-light mx-2 ' style={{ padding: "12px 12px" }}>
+              <FaCheck className='m-1' style={{ fontSize: "23px" }} />
             </div>
             <div>
               <p>Closed</p>
@@ -95,8 +101,8 @@ const TicketDepartment = () => {
 
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center' style={{ marginRight: "20px" }}>
-            <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "10px 11px" }}>
-              <FaCalendarTimes className='m-1' style={{ fontSize: "30px" }} />
+            <div className='tickets_icon text-light mx-2 ' style={{ padding: "10px 11px" }}>
+              <FaCalendarTimes className='m-1' style={{ fontSize: "23px" }} />
             </div>
             <div>
               <p>Over 24 hour</p>
@@ -107,12 +113,12 @@ const TicketDepartment = () => {
 
       </div>
 
-      <div className='ticket_card_div justify-content-center'>
+      <div className='ticket_card_div justify-content-center mt-4'>
 
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center'>
-            <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "10px 11px" }}>
-              <FaUser className='m-1' style={{ fontSize: "27px" }} />
+            <div className='tickets_icon text-light mx-2 ' style={{ padding: "10px 11px" }}>
+              <FaUser className='m-1' style={{ fontSize: "23px" }} />
             </div>
             <div>
               <p>Total Tickets</p>
@@ -123,8 +129,8 @@ const TicketDepartment = () => {
 
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center' style={{ marginRight: "43px" }}>
-            <div className='tickets_icon mx-2 text-light rounded-circle' style={{ padding: "10px 15px" }}>
-              <FaEnvelopeOpen style={{ fontSize: "30px" }} />
+            <div className='tickets_icon mx-2 text-light ' style={{ padding: "10px 15px" }}>
+              <FaEnvelopeOpen style={{ fontSize: "23px" }} />
             </div>
             <div>
               <p>Open</p>
@@ -135,8 +141,8 @@ const TicketDepartment = () => {
 
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center' style={{ marginRight: "30px" }}>
-            <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "12px 12px" }}>
-              <FaCheck className='m-1' style={{ fontSize: "27px" }} />
+            <div className='tickets_icon text-light mx-2 ' style={{ padding: "12px 12px" }}>
+              <FaCheck className='m-1' style={{ fontSize: "23px" }} />
             </div>
             <div>
               <p>Closed</p>
@@ -149,8 +155,8 @@ const TicketDepartment = () => {
 
         <div className='ticket_card rounded'>
           <div className='ticket_card_content d-flex justify-content-center'>
-            <div className='tickets_icon text-light mx-2 rounded-circle' style={{ padding: "12px 14px" }}>
-              <FaTelegramPlane style={{ fontSize: "27px", margin: "2px" }} />
+            <div className='tickets_icon text-light mx-2 ' style={{ padding: "12px 14px" }}>
+              <FaTelegramPlane style={{ fontSize: "23px" }} />
             </div>
             <div>
               <p>Answered</p>
@@ -159,20 +165,10 @@ const TicketDepartment = () => {
           </div>
         </div>
       </div>
-      <div className='ticket_card rounded' style={{ height: '180px', width: '400px',margin:"auto" }}>
-        <ResponsiveContainer width="100%" aspect={2}>
-          <PieChart width={700} height={200}>
-            <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
-            <Tooltip />
-            <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={56} fill="rgb(94, 4, 69)" label >
-              {data02.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-            <Legend layout="vertical" verticalAlign="center" align="right" />
-          </PieChart>
-        </ResponsiveContainer>
+
       </div>
+
+      
     </div>
   )
 }

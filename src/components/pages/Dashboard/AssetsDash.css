@@ -138,19 +138,13 @@
 
 /* cards */
 .Asset_cards .card1 {
-    width: 32%;
-    height: 90px;
-    /* transition: transform 0.1s; */
+    width: 31%;
+    height: 103px;
     padding: 8px 10px;
-    /* position: relative; */
     background:white;
     box-shadow: 2px 2px 5px silver;
 }
-.Asset_cards .card1:hover {
-    -ms-transform: scale(1.03);
-    -webkit-transform: scale(1.03);
-    transform: scale(1.03);
-}
+
  .asset-inner-card{
     width: 30%;
  }
@@ -167,11 +161,11 @@
 
 .dash_card_icon_div {
     /* background: rgba(0, 0, 0, 0.4); */
-    height: 54px;
-    width: 54px;
+    height: 66px;
+    width: 66px;
     padding: 10px;
     left: 10%;
-    top: -40%;
+    top: -27%;
     box-shadow: 2px 2px 15px silver;
 }
 .Asset_cards .card1 .asset-inner-card .dash_card_icon_div:nth-child(1) {
@@ -185,7 +179,7 @@
 }
 
 .dash_card_icon_div .icon {
-    font-size: 33px;
+    font-size: 44px;
     color: #fff;
 }
 .dashboard_cards {
