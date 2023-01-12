@@ -144,12 +144,12 @@ const TicketTopics = () => {
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={Softwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} fill="rgb(94, 4, 69)" label >
+                        <Pie data={Softwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} fill="rgb(94, 4, 69)" label >
                             {Softwaredata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
-                        <Legend layout="vertical" verticalAlign="center" align="right" />
+                        <Legend layout="horizontal" verticalAlign="bottom" align="center" />
                     </PieChart>
                 </ResponsiveContainer>
 
@@ -164,13 +164,13 @@ const TicketTopics = () => {
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={Otherdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} paddingAngle={2} label
+                        <Pie data={Otherdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} paddingAngle={2} label
                             fill="rgb(61,174,167)" >
                             {Otherdata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
-                        <Legend layout="vertical" verticalAlign="center" align="right" />
+                        <Legend layout="horizontal" verticalAlign="bottom" align="center" />
                     </PieChart>
                 </ResponsiveContainer>
 
@@ -187,12 +187,12 @@ const TicketTopics = () => {
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={Serverdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} fill="rgb(94, 4, 69)" label>
+                        <Pie data={Serverdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} fill="rgb(94, 4, 69)" label>
                             {Serverdata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
-                        <Legend layout="vertical" verticalAlign="center" align="right" />
+                        <Legend layout="horizontal" verticalAlign="bottom" align="center" />
                     </PieChart>
                 </ResponsiveContainer>
 
@@ -208,12 +208,12 @@ const TicketTopics = () => {
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={Allocationdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} fill="rgb(94, 4, 69)" label >
+                        <Pie data={Allocationdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} fill="rgb(94, 4, 69)" label >
                             {Allocationdata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
-                        <Legend layout="vertical" verticalAlign="center" align="right" />
+                        <Legend layout="horizontal" verticalAlign="bottom" align="center" />
                     </PieChart>
                 </ResponsiveContainer>
 
@@ -228,13 +228,13 @@ const TicketTopics = () => {
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={Connectivitydata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} paddingAngle={2} label
+                        <Pie data={Connectivitydata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} paddingAngle={2} label
                             fill="rgb(61,174,167)" >
                             {Connectivitydata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
-                        <Legend layout="vertical" verticalAlign="center" align="right" />
+                        <Legend layout="horizontal" verticalAlign="bottom" align="center" />
                     </PieChart>
                 </ResponsiveContainer>
 
@@ -250,13 +250,13 @@ const TicketTopics = () => {
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={newreqdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} paddingAngle={2} label
+                        <Pie data={newreqdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} paddingAngle={2} label
                             fill="rgb(61,174,167)" >
                             {newreqdata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
-                        <Legend layout="vertical" verticalAlign="center" align="right" />
+                        <Legend layout="horizontal" verticalAlign="bottom" align="center" />
                     </PieChart>
                 </ResponsiveContainer>
 
