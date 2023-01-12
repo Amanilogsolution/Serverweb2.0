@@ -158,6 +158,7 @@ export default function VendorDash({ setStep }) {
         <div className="d-flex justify-content-end">
           <div className="d-flex justify-content-center align-items-center mx-2">
             <label>Rows Per Page </label>
+            
             <select onChange={handleChange}>
               <option value="10">10</option>
               <option value="15">15</option>
@@ -174,9 +175,9 @@ export default function VendorDash({ setStep }) {
               pageCount={lastval}
               previousLabel="<"
               renderOnZeroPageCount={null}
-              containerClassName={'pagination rounded '}
-              pageClassName={'page-item'}
-              pageLinkClassName={'page-link'}
+              containerClassName={'pagination '}
+              pageClassName={'page-item  '}
+              pageLinkClassName={'page-link border-primary rounded-circle'}
               previousClassName={'page-item'}
               previousLinkClassName={'page-link'}
               nextClassName={'page-item'}

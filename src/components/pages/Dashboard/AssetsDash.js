@@ -127,7 +127,7 @@ export default function AssetsDash(callback) {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Legend layout="vertical" verticalAlign="center" align="right" />
+                      <Legend layout="horizontal" verticalAlign="bottom" align="right" />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>}
