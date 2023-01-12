@@ -92,12 +92,12 @@ export default function AssetsDash(callback) {
               <div class="spinner-border text-primary" style={{ marginTop: "2%", marginLeft: "50%" }} role="status">
                 <span class="sr-only"></span>
               </div> :
-              <div className=' rounded it-bar' style={{ background: 'linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))', boxShadow: '1px 1px 10px #333' }} >
+              <div className=' rounded it-bar' style={{ background: 'linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))', boxShadow: '2px 2px 10px silver' }} >
                 {/* <p className=' px-4'>IT Asset Allotment Summary</p> */}
-                <ResponsiveContainer width="100%" aspect={5.4}>
+                <ResponsiveContainer width="100%" aspect={5}>
                   <BarChart data={chartdata} margin={{ top: 20, right: 45 }}>
                     {/* <CartesianGrid strokeDasharray='3 3'/> */}
-                    <XAxis tick={{ fill: 'white' }} dataKey="location_code" interval={"preserveStartEnd"} style={{ fontSize: "14px" }} />
+                    <XAxis tick={{ fill: 'white' }} dataKey="location_code" interval={"preserveStartEnd"} fontSize={12}/>
                     <YAxis tick={{ fill: 'white' }} />
                     <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                     <Bar dataKey="asset" fill="white" barSize={5} radius={30} />
@@ -107,7 +107,7 @@ export default function AssetsDash(callback) {
               </div>
             }
             <div >
-              <p className='text-center'>IT Asset Allotment Summary</p>
+              <p style={{margin:"10px 0 20px 44px",color:"#6a6a6a"}}>IT Asset Allotment Summary</p>
             </div>
           </div>
           <div className='graph_2nd_row d-flex justify-content-between' >
@@ -116,7 +116,7 @@ export default function AssetsDash(callback) {
                 <div class="spinner-border text-success" style={{ marginTop: "10%", marginLeft: "50%" }} role="status">
                   <span class="sr-only"></span>
                 </div> :
-                <div className="manu_pie rounded" style={{ background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))', boxShadow: '1px 1px 10px #333' }}>
+                <div className="manu_pie rounded" style={{ background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))', boxShadow: '2px 2px 10px silver' }}>
                   {/* <p className=' px-4 mx-2 my-0'>Manufacturer</p> */}
                   <ResponsiveContainer width="100%" height='100%' aspect={2.0} >
                     <PieChart width={700} height={150}>
@@ -132,7 +132,7 @@ export default function AssetsDash(callback) {
                   </ResponsiveContainer>
                 </div>}
               <div >
-                <p className='text-center'>Manufacturer</p>
+                <p style={{margin:"10px 0 0 24px",color:"#6a6a6a"}}>Manufacturer</p>
               </div>
             </div>
             <div className='software_graph bg-light rounded '>
@@ -140,7 +140,7 @@ export default function AssetsDash(callback) {
                 <div class="spinner-border text-warning" style={{ marginTop: "5%", marginLeft: "50%" }} role="status">
                   <span class="sr-only"></span>
                 </div> :
-                <div className="soft_bar rounded mt-2 " style={{ background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))', boxShadow: '1px 1px 10px #333' }}>
+                <div className="soft_bar rounded" style={{ background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))', boxShadow: '2px 2px 10px silver' }}>
                   {/* <p className=' px-4'>Software</p> */}
 
                   <ResponsiveContainer width="100%" aspect={2.2}>
@@ -156,7 +156,7 @@ export default function AssetsDash(callback) {
                 </div>
               }
               <div >
-                <p className='text-center'>Software</p>
+                <p style={{margin:"10px 0 20px 24px",color:"#6a6a6a"}}>Software</p>
               </div>
             </div>
           </div>
