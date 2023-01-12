@@ -42,7 +42,7 @@ import { NavLink } from 'react-router-dom';
 import Footer from './Footer/Footer';
 import Navbar from './Navbar.js';
 import './Sidebar.css'
-import logo from '../../image/drizzle_logo.jpg'
+import logo from '../../image/drizzle_logo.png'
 import img from '../../image/modelimg.png'
 
 

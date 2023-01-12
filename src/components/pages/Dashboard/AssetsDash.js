@@ -86,8 +86,8 @@ export default function AssetsDash(callback) {
       </div>
       
       <div className='d-flex justify-content-between mt-3'>
-        <div className='for_graph '>
-          <div className='bar_location bg-light rounded' >
+        <div className='for_graph'>
+          <div className='bar_location bg-light rounded'>
             {spinner ?
               <div class="spinner-border text-primary" style={{ marginTop: "2%", marginLeft: "50%" }} role="status">
                 <span class="sr-only"></span>

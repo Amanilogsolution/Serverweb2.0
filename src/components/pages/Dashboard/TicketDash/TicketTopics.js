@@ -3,6 +3,11 @@ import './TicketDash.css'
 import { FaEnvelopeOpen, FaUserTimes, FaCalendarTimes, FaUser, FaCheck, FaTelegramPlane } from 'react-icons/fa';
 import { BarChart, PieChart, Pie, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, LineChart, Line, } from "recharts";
 import {Ticket_issue_type} from '../../../../api/index'
+import { MdHardware,MdOutlineSignalWifiStatusbarConnectedNoInternet4,MdEditNote } from 'react-icons/md';
+import {GoIssueOpened} from 'react-icons/go';
+import {HiServer} from 'react-icons/hi';
+import {AiTwotoneEdit} from 'react-icons/ai';
+import {ImLink} from 'react-icons/im';
 
 const TicketTopics = () => {
     const [ticketIssue,setTicketIssue] = useState({  })
@@ -108,26 +113,32 @@ const TicketTopics = () => {
         <div className='d-flex flex-column justify-content-center '>
 
         <div className='d-flex  justify-content-center mt-4' style={{ maxHeight: "42vh" }}>
-            <div className='ticket_card rounded overflow-hidden' style={{ height: "32vh", margin: "6px 10px 15px 10px", width: "26%"}}>
-                <p className='text-light text-center bg-dark'>Hardware Problem</p>
+            <div className='ticket_card rounded ' style={{ height: "32vh", margin: "6px 10px 15px 10px", width: "26%"}}>
+                <div className='d-flex'>
+                  <MdHardware style={{fontSize:"55px",padding:"8px",borderRadius:"3px",margin:"-15px 14px 0",background:"linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))",color:"white"}}/>
+                  <p style={{fontWeight:"600",color:"#6a6a6a",margin:"8px -2px"}}>Hardware Problem</p>
+                </div>
 
-                <ResponsiveContainer width="100%" aspect={2.1}>
+                <ResponsiveContainer width="100%" aspect={2}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                         <Tooltip />
-                        <Pie data={Hardwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={56} fill="rgb(94, 4, 69)" label>
+                        <Pie data={Hardwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} fill="rgb(94, 4, 69)" label>
                             {Hardwaredata.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
-                        <Legend layout="vertical" verticalAlign="center" align="right" />
+                        <Legend layout="horizontal" verticalAlign="bottom" align="center" />
                     </PieChart>
                 </ResponsiveContainer>
 
             </div>
 
-            <div className='ticket_card rounded overflow-hidden' style={{ height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className='text-light text-center bg-dark'>Network Problem</p>
+            <div className='ticket_card rounded ' style={{ height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
+            <div className='d-flex'>
+                  <MdOutlineSignalWifiStatusbarConnectedNoInternet4 style={{fontSize:"55px",padding:"8px",borderRadius:"3px",margin:"-15px 14px 0",background:"linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))",color:"white"}}/>
+                  <p style={{fontWeight:"600",color:"#6a6a6a",margin:"8px -2px"}}>Network Problem</p>
+                </div>
 
                 <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
@@ -144,8 +155,11 @@ const TicketTopics = () => {
 
             </div>
 
-            <div className='ticket_card rounded overflow-hidden' style={{ height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className='text-light text-center bg-dark'>Other IT Issue</p>
+            <div className='ticket_card rounded' style={{ height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
+                <div className='d-flex'>
+                  <GoIssueOpened style={{fontSize:"55px",padding:"8px",borderRadius:"3px",margin:"-15px 14px 0",background:"linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))",color:"white"}}/>
+                  <p style={{fontWeight:"600",color:"#6a6a6a",margin:"8px -2px"}}>Other IT Issue</p>
+                </div>
                 <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
@@ -163,8 +177,11 @@ const TicketTopics = () => {
             </div>
         </div>
         <div className='d-flex justify-content-center mt-2' style={{ maxHeight: "42vh" }}>
-            <div className='ticket_card rounded overflow-hidden' style={{height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className='text-light text-center bg-dark'>Server Problem</p>
+            <div className='ticket_card rounded' style={{height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
+                <div className='d-flex'>
+                  <HiServer style={{fontSize:"55px",padding:"8px",borderRadius:"3px",margin:"-15px 14px 0",background:"linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))",color:"white"}}/>
+                  <p style={{fontWeight:"600",color:"#6a6a6a",margin:"8px -2px"}}>Server Problem</p>
+                </div>
 
                 <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
@@ -181,8 +198,11 @@ const TicketTopics = () => {
 
             </div>
 
-            <div className='ticket_card rounded overflow-hidden' style={{height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className='text-light text-center bg-dark'>Allocation Problem</p>
+            <div className='ticket_card rounded' style={{height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
+                <div className='d-flex'>
+                  <AiTwotoneEdit style={{fontSize:"55px",padding:"8px",borderRadius:"3px",margin:"-15px 14px 0",background:"linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))",color:"white"}}/>
+                  <p style={{fontWeight:"600",color:"#6a6a6a",margin:"8px -2px"}}>Allocation</p>
+                </div>
 
                 <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
@@ -199,8 +219,11 @@ const TicketTopics = () => {
 
             </div>
 
-            <div className='ticket_card rounded overflow-hidden' style={{ height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className='text-light text-center bg-dark'>Connectivity Problem</p>
+            <div className='ticket_card rounded' style={{ height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
+            <div className='d-flex'>
+                  <ImLink style={{fontSize:"55px",padding:"8px",borderRadius:"3px",margin:"-15px 14px 0",background:"linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))",color:"white"}}/>
+                  <p style={{fontWeight:"600",color:"#6a6a6a",margin:"8px -2px"}}>Connectivity Problem</p>
+                </div>
                 <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
@@ -218,8 +241,11 @@ const TicketTopics = () => {
             </div>
         </div>
         <div className='d-flex  justify-content-center mt-2' style={{ maxHeight: "42vh" }}>
-        <div className='ticket_card rounded overflow-hidden' style={{height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
-                <p className='text-light text-center bg-dark'>New Requirement</p>
+        <div className='ticket_card rounded' style={{height: "32vh", margin: "6px 10px 15px 10px", width: "26%" }}>
+        <div className='d-flex'>
+                  <MdEditNote style={{fontSize:"55px",padding:"8px",borderRadius:"3px",margin:"-15px 14px 0",background:"linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))",color:"white"}}/>
+                  <p style={{fontWeight:"600",color:"#6a6a6a",margin:"8px -2px"}}>New Requirement</p>
+                </div>
                 <ResponsiveContainer width="100%" aspect={2.1}>
                     <PieChart width={700} height={200}>
                         <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />

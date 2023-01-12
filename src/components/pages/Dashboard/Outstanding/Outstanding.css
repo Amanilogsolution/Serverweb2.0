@@ -56,3 +56,11 @@
         margin:2%;
     }
 }
+.Outstanding_details_table th{
+   font-size: 12px;
+
+}
+.Outstanding_details_table td{
+    font-size: 12px;
+    font-weight: 400;
+ }

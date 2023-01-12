@@ -4,19 +4,19 @@
 }
 
 .dashboard_cards .dash_toggle_btns {
-    width: 19.5%;
+    width: 35%;
     /* float: right; */
     /* padding: 0%; */
     margin-bottom: 8px;
     /* border: 2px solid red; */
-    border-radius: 15px;
+    border-radius: 3px;
     overflow: hidden;
 }
 
 .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
    background: #b5acf1;
     cursor:pointer;
-    padding:5px 10px;
+    padding:5px 20px;
 }
 /* .dashboard_cards .dash_toggle_btns .dash_toggle_btn:hover {
     background: white;
