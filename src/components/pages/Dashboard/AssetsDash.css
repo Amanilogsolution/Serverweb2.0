@@ -1,7 +1,8 @@
 .AssetDash {
     width: 99%;
     margin: 18px 8px;
-    min-height: 70vh;
+    /* min-height: 70vh; */
+    /* border: 1px solid red; */
     max-width: 100%;
     /* border: 2px solid red; */
 }
@@ -86,7 +87,6 @@
     width: 48%;
     margin: 0 5px 5px 5px;
     box-shadow: 2px 2px 10px silver;
-    height: 100%;
 
 }
 
@@ -107,7 +107,6 @@
 .soft_bar {
     width: 90%;
     margin: auto;
-    height: 80%
 }
 
 @media screen and (max-width: 1000px) {

@@ -40,24 +40,42 @@ const TicketDepartment = () => {
       "value": ticketSummary.TotalCloseTicket
     }
   ];
-  const COLORS = ['#c53241', '#650582', '#4d00ab', '#039B28', '#A5A704', '#014FB5'];
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+
+    return (
+      <text x={x} y={y} fontSize='13' fill="silver" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
+  const COLORS = ['#c53241', '#14610c', '#4d00ab', '#039B28', '#A5A704', '#014FB5'];
   return (
     <div className='d-flex flex-row justify-content-between' style={{width:"100%",marginTop:"50px",background:"#f0f2f5"}}>
-
-      <div className='ticket_card rounded' style={{ width: '29%',margin:"auto",minHeight:"50vh"}}>
-        <p style={{width:"80%",height:"50px",marginTop:"-20px",textAlign:"center",marginLeft:"35px",borderRadius:"5px",padding:"10px",color:"white",background:" linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))"}}>Ticket Summary</p>
+      <div style={{ width: '30%',position:"relative",marginTop:"30px",borderRadius:"5px",background:"white",boxShadow:"1px 1px 6px silver"}}>
+      <div style={{ width: '93%',position:"absolute",top:"-10%",left:"3.5%",borderRadius:"5px",background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))', boxShadow: '2px 2px 10px silver'}}>
         <ResponsiveContainer width="100%" aspect={1.5}>
           <PieChart width={700} height={200}>
             <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
             <Tooltip />
-            <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={70} fill="rgb(94, 4, 69)" label >
+            <Pie  labelLine={false} label={renderCustomizedLabel} stroke='none' data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={42} outerRadius={85} fill="rgb(94, 4, 69)" >
               {data02.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}
+                style={{
+                  filter: `drop-shadow(0px 0px 3px black`
+                }} />
+                
               ))}
             </Pie>
-            <Legend layout="horizontal" verticalAlign="bottom" align="center" />
+            <Legend iconSize='10' iconType="rounded" layout="vertical" verticalAlign="top" align="right" />
           </PieChart>
         </ResponsiveContainer>
+      </div>
+      <p style={{ margin: "58% 0 20px 3%", color: "#6a6a6a", position: "absolute", fontSize: "14px" }}>Manufacturer</p>
       </div>
 
       <div style={{width:"69%"}}>
