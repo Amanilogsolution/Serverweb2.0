@@ -214,7 +214,7 @@ const Sidebar = ({ children }) => {
     return (
         <>
             <div className="sidebarcontainer">
-                <div className={isOpen ? 'sidebaropen' : 'sidebar'}
+                <div className={isOpen ? 'sidebaropen px-3' : 'sidebar '}
                 // onClick={toggle}
                 //  onMouseEnter={() => setIsOpen(true)}
                 //     onMouseLeave={toggle}
@@ -226,7 +226,7 @@ const Sidebar = ({ children }) => {
                         </div>
                     </div>
 
-                    <div className='sidebarinerabc'>
+                    <div className='sidebarinerabc '>
                         <span className='internalsidebar'>
                             <span className='ul'>
                                 <span className='li'>
@@ -645,7 +645,7 @@ const Sidebar = ({ children }) => {
                                 </div>
                             </div>
                         </div>
-                        <a title='Logout' className="link" activeclassname="sidebaractive" style={{ background: "rgb(222, 222, 222)" }}>
+                        <a title='Logout' className="link" activeclassname="sidebaractive" style={{ background: "rgb(222, 222, 222)",width:isOpen?'87%':''}}>
                             <div className="icon text-danger" onClick={toggle}><MdOutlineExitToApp style={{ fontSize: "20px" }} /></div>
                             <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text text-danger" data-toggle="modal" data-target="#exampleModal">Logout</div>
                         </a>

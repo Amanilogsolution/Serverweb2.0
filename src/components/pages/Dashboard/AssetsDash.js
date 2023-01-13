@@ -35,12 +35,10 @@ export default function AssetsDash(callback) {
     const dashboard_manu = await Dashboard_Manufacture(localStorage.getItem('Database'))
     setDashboardmanu(dashboard_manu)
     setDashboardsoft(dashboard_soft)
-    console.log(locationname)
     setChartData(locationname || dashboard_soft || dashboard_manu)
     if (locationname) {
       setSpinner(false)
     }
-
 
   }
 
@@ -112,7 +110,7 @@ export default function AssetsDash(callback) {
               <div className='rounded it-bar position-absolute' style={{ background: 'linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))', boxShadow: '2px 2px 10px silver', top: "-12%", width: "95%", left: '2.5%' }} >
                 <ResponsiveContainer width="100%" aspect={3.7}>
                   <BarChart data={chartdata} margin={{ top: 20, right: 45 }}>
-                    <CartesianGrid strokeDasharray='0' vertical={false} />
+                    <CartesianGrid strokeDasharray='4' vertical={false} />
                     <XAxis tick={{ fill: 'white' }} dataKey="location_code" interval={"preserveStartEnd"} fontSize={12} />
                     <YAxis tick={{ fill: 'white' }} />
                     <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
@@ -123,7 +121,7 @@ export default function AssetsDash(callback) {
               </div>
             }
             <div >
-              <p style={{ margin: "23.5% 0 20px 2.5%", color: "#6a6a6a", position: "absolute", fontSize: "14px" }}>IT Asset Allotment Summary</p>
+              <small className='text-secondary position-absolute mx-3' style={{ bottom:'8%' }}>IT Asset Allotment Summary</small>
             </div>
           </div>
           <div className='graph_2nd_row d-flex justify-content-betweenposition-relative mt-5' >
@@ -152,7 +150,7 @@ export default function AssetsDash(callback) {
                   </ResponsiveContainer>
                 </div>}
               <div >
-                <p style={{ margin: "48% 0 20px 3%", color: "#6a6a6a", position: "absolute", fontSize: "14px" }}>Manufacturer</p>
+                <small className='text-secondary position-absolute mx-3' style={{ bottom:'8%' }}>Manufacturer</small>
               </div>
             </div>
             <div className='software_graph bg-light rounded position-relative' style={{ height: "35vh" }}>
@@ -160,12 +158,10 @@ export default function AssetsDash(callback) {
                 <div class="spinner-border text-warning" style={{ marginTop: "5%", marginLeft: "50%" }} role="status">
                   <span class="sr-only"></span>
                 </div> :
-                <div className="soft_bar rounded position-absolute" style={{ background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))', boxShadow: '2px 2px 10px silver', top: "-6.5%", width: "93.5%", left: '3.2%' }}>
-                  {/* <p className=' px-4'>Software</p> */}
-
+                <div className="soft_bar rounded position-absolute" style={{ background: 'linear-gradient(45deg, #e55454, #e57272', boxShadow: '2px 2px 10px silver', top: "-6.5%", width: "93.5%", left: '3.2%' }}>
                   <ResponsiveContainer width="100%" aspect={1.9}>
                     <BarChart data={dashboardsoft} margin={{ top: 18, right: 30, left: -20,bottom:9 }}>
-                      <CartesianGrid strokeDasharray='0' vertical={false} />
+                      <CartesianGrid strokeDasharray='4' vertical={false} />
                       <XAxis tick={{ fill: 'white' }} dataKey="software_name" interval={"preserveStartEnd"} fontSize={12} />
                       <YAxis tick={{ fill: 'white' }} />
                       <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
@@ -175,30 +171,28 @@ export default function AssetsDash(callback) {
                   </ResponsiveContainer>
                 </div>
               }
-              <div >
-                <p style={{ margin: "48% 0 20px 3%", color: "#6a6a6a", position: "absolute", fontSize: "14px" }}>Software</p>
-              </div>
+                <small className='position-absolute text-secondary mx-3' style={{bottom:'8%'}}>Software</small>
             </div>
           </div>
         </div>
-        <div className='asset-sidebar rounded  '>
-          <div className='Asset_card2 rounded'>
+        <div className='asset-sidebar text-white' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px' }}>
+          <div className='Asset_card2'>
             <p className='mb-0'>Asset Value</p>
             <h5>₹ {Assetsdata.PurchaseVal}</h5>
           </div>
-          <div className='Asset_card2 rounded'>
+          <div className='Asset_card2'>
             <p className='mb-0'>Rental / Month</p>
             <h5 >₹ {Assetsdata.RentMonth}</h5>
           </div>
-          <div className='Asset_card2 rounded'>
+          <div className='Asset_card2'>
             <p className='mb-0'>MS OS</p>
             <h5 >0</h5>
           </div>
-          <div className='Asset_card2 rounded'>
+          <div className='Asset_card2'>
             <p className='mb-0'>MS OS</p>
             <h5 >0</h5>
           </div>
-          <div className='Asset_card2 rounded'>
+          <div className='Asset_card2'>
             <p className='mb-0'>MS OS</p>
             <h5 >0</h5>
           </div>
