@@ -16,8 +16,9 @@
 
 .outstanding-totalhead {
     font-size: 18px;
-    background-color: rgb(73, 0, 141);
+    /* background-color: rgb(73, 0, 141); */
 }
+
 /* .company-outstatnding tbody{
     max-height: 30vh;
 }
@@ -32,35 +33,47 @@
 .outstanding-container .outstanding-table {
     width: 70%;
 }
-.nextoutstanding-detail{
+
+.outstanding-container .outstanding-table .outstanding-table-inner{
+    min-height: 62vh;
+    max-height: 62vh;
+}
+.outstanding-container .outstanding-table .outstanding-table-inner .outstanding-table-tbody-inner{
+    overflow: auto;
+}
+.nextoutstanding-detail {
     height: 60px;
     transition: all 0.1s linear;
-    background: linear-gradient(45deg,#de6262 , #ffb88c)
-
+    background: linear-gradient(45deg, #de6262, #ffb88c)
 }
+
 .nextoutstanding-detail:hover {
     transform: scale(1.02);
     box-shadow: 3px 3px 10px gray;
 }
 
-@media screen and (max-width:786px){
-    .outstanding-container{
+@media screen and (max-width:786px) {
+    .outstanding-container {
         flex-direction: column;
     }
+
     .outstanding-container .oustanding-details {
         width: 100%;
         padding: 0px 2%;
     }
+
     .outstanding-container .outstanding-table {
         width: 96%;
-        margin:2%;
+        margin: 2%;
     }
 }
-.Outstanding_details_table th{
-   font-size: 12px;
+
+.Outstanding_details_table th {
+    font-size: 12px;
 
 }
-.Outstanding_details_table td{
+
+.Outstanding_details_table td {
     font-size: 12px;
     font-weight: 400;
- }
+}

@@ -95,18 +95,18 @@ const Outstanding = ({ setStep }) => {
     <section className='outstanding-container d-flex justify-content-around mt-2'>
       <div className='oustanding-details '>
         <div className='outstanding-top-detail-div d-flex justify-content-between text-center'>
-          <div className='outstanding-totalinv border border-dark'>
-            <p className='outstanding-totalhead text-white'>Invoices</p>
+          <div className='outstanding-totalinv bg-white ' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px' }}>
+            <p className='outstanding-totalhead '>Invoices</p>
             <p className='outstanding-value mb-2'>{invoices.TotalVendor}</p>
           </div>
-          <div className='outstanding-totalamt border border-dark'>
-            <p className='outstanding-totalhead text-white'>Outstanding Amount</p>
+          <div className='outstanding-totalamt bg-white ' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px' }}>
+            <p className='outstanding-totalhead '>Outstanding Amount</p>
             <p className='outstanding-value mb-2'>₹{outstandingAmount}</p>
           </div>
         </div>
 
-        <div className='company-outstatnding border border-dark mt-2'style={{ boxShadow: '1px 1px 10px #333' }} >
-          <p className='bg-dark text-white text-center mb-0'>ILOG- IT OUTSTANDING</p>
+        <div className='company-outstatnding  mt-2 bg-white overflow-hidden' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px' }} >
+          <p className=' px-3 pt-2 mb-0'>ILOG- IT OUTSTANDING</p>
 
           <div style={{ maxHeight: "34vh", overflow: "auto" }}>
             <table className="table " >
@@ -140,91 +140,88 @@ const Outstanding = ({ setStep }) => {
           Click for Outstanding Details
         </div>
       </div>
-      <div className='outstanding-table border border-dark position-relative'>
-        <p className='bg-dark text-white d-flex justify-content-between h5 py-1 px-2'>ILOG- IT OUTSTANDING as on DATE
-        </p>
-        <div className=''>
-          <div title="Export" className="d-flex justify-content-end mr-2" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{ width: "5%", float: "right" }}>
-            <BiExport style={{ fontSize: "25px", marginRight: "20px" }} />
-          </div>
-          <div className='bg-white position-absolute rounded' style={{ right: "2%", top: "15%", width: "5%", boxShadow: "3px 3px 10px black" }}>
-            {
-              toogle ?
-                <div className="d-flex flex-column justify-content-center align-items-center" >
-                  <a href="#"
-                    onClick={exportExcel}
-                  ><SiMicrosoftexcel className='ft-20' /></a>
-                  <CSVLink
-                    data={TotalVendor}
-                    filename="RecurringData">
-                    <GrDocumentCsv className='ft-20' />
-                  </CSVLink>
-                </div>
-                : ''
-            }
-          </div>
-
-          <table className="table ">
-            <thead>
+      <div className='outstanding-table bg-white position-relative overflow-hidden' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px' }}>
+        <div className=' d-flex justify-content-between h5 py-2 pt-2 px-3'>
+          <span> ILOG- IT OUTSTANDING as on DATE</span> <span title="Export" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}> <BiExport style={{ fontSize: "25px", marginRight: "20px" }} /></span>
+        </div>
+        <div className='bg-white position-absolute rounded ' style={{ right: "2%", top: "15%", width: "5%", boxShadow: "3px 3px 10px black" }}>
+          {
+            toogle ?
+              <div className="d-flex flex-column justify-content-center align-items-center" >
+                <a href="#"
+                  onClick={exportExcel}
+                ><SiMicrosoftexcel className='ft-20' /></a>
+                <CSVLink
+                  data={TotalVendor}
+                  filename="RecurringData">
+                  <GrDocumentCsv className='ft-20' />
+                </CSVLink>
+              </div>
+              : ''
+          }
+        </div>
+        <div className='outstanding-table-inner overflow-auto'>
+          <table className="table">
+            <thead className="position-sticky top-0 bg-white">
               <tr>
-                <th  scope="col">Vendor</th>
+                <th scope="col">Vendor</th>
                 <th scope="col">Invoice_no</th>
-                <th  scope="col">Reference No</th>
-                <th  scope="col">Invoice Amt</th>
+                <th scope="col">Reference No</th>
+                <th scope="col">Invoice Amt</th>
               </tr>
             </thead>
-            <tbody >
+            <tbody>
               {
-                TotalVendor.map((elements) => {
-                  return (
-                    <tr>
-                      <td>{elements.vendor}</td>
-                      <td>{elements.invoice_no}</td>
-                      <td>{elements.reference_no}</td>
-                      <td>{elements.invoice_amt}</td>
-                    </tr>
-                  )
-                })
+                TotalVendor.length === 0 ?
+                  <tr className='text-center'><td colSpan='4'>No Data</td></tr> :
+                  TotalVendor.map((elements) => {
+                    return (
+                      <tr>
+                        <td>{elements.vendor}</td>
+                        <td>{elements.invoice_no}</td>
+                        <td>{elements.reference_no}</td>
+                        <td>{elements.invoice_amt}</td>
+                      </tr>
+                    )
+                  })
               }
-
-
             </tbody>
           </table>
-          <div className="d-flex justify-content-end position-absolute bottom-0 w-100 bg-white" >
-            <div className="d-flex justify-content-center align-items-center mx-2 ">
-              <label>Rows Per Page</label>
-              <select onChange={handleChange}>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-
-              </select>
-            </div>
-
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel="next "
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={3}
-              pageCount={lastval}
-              previousLabel=" previous"
-              renderOnZeroPageCount={null}
-              containerClassName={'pagination justify-content-end'}
-              pageClassName={'page-item'}
-              pageLinkClassName={'page-link'}
-              previousClassName={'page-item'}
-              previousLinkClassName={'page-link'}
-              nextClassName={'page-item'}
-              nextLinkClassName={'page-link'}
-              breakClassName={'page-item'}
-              breakLinkClassName={'page-link'}
-              activeClassName={'active'}
-            />
-
+        </div>
+        <div className="d-flex justify-content-end  bottom-0 w-100 " >
+          <div className="d-flex justify-content-center">
+            <label htmlFor='rowpage' className='mt-2'>Rows Per Page </label> &nbsp;
+            <select onChange={handleChange} id='rowpage' className=' mt-1' style={{height:'30px'}}>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+             </select>
           </div>
 
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel="next "
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            pageCount={lastval}
+            previousLabel=" previous"
+            renderOnZeroPageCount={null}
+            containerClassName={'pagination justify-content-end mx-4'}
+            pageClassName={'page-item'}
+            pageLinkClassName={'page-link'}
+            previousClassName={'page-item'}
+            previousLinkClassName={'page-link'}
+            nextClassName={'page-item'}
+            nextLinkClassName={'page-link'}
+            breakClassName={'page-item'}
+            breakLinkClassName={'page-link'}
+            activeClassName={'active'}
+          />
 
         </div>
+
+
+
       </div>
     </section>
   )

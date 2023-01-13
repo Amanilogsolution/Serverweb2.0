@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Navbar.css'
 import { FaUserCircle, FaTicketAlt, FaElementor } from 'react-icons/fa'
 import { MdOutlineExitToApp, MdOutlineArrowDropDown, MdOutlineHelp, MdGroups, MdEmail, MdPermContactCalendar } from 'react-icons/md'
@@ -14,37 +14,11 @@ import { TiVendorMicrosoft } from 'react-icons/ti'
 import { CgOrganisation } from 'react-icons/cg'
 import { GrUserExpert } from 'react-icons/gr'
 import { FiUserPlus } from 'react-icons/fi'
-import img from '../../image/modelimg.png'
-
 
 const Navbar = (propes) => {
 
     return (
         <>
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document" style={{ width: "300px",marginTop:"50px" }}>
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <img src={img} style={{ width: "140px", margin: "0 70px" }} />
-                        </div>
-                        <div class="modal-body">
-                            <div style={{ textAlign: "center", width: "100%", padding: "0 15px" }}>
-                                <h4>Are you sure ? </h4>
-                                <p>you want to logout your account</p><br />
-                                <div>
-                                    <button style={{ borderRadius: "50px" }} className='btn btn-voilet w-100 my-2' onClick={() => {
-                                        localStorage.clear()
-                                        window.location.href = '/'
-                                    }}>Yah, I am sure</button><br />
-                                    <button style={{ borderRadius: "50px" }} className=' close btn btn-secondary w-100' data-dismiss="modal" aria-label="Close">Cencel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
                 <div className="innernavbarcontainer bg-white mb-3 d-flex align-items-center "  >
                     {propes.isOpen ?
                         null : <img className='navbar-brand logo-img' src={DrizzleLogo} alt='Drizzle Logo' />}
@@ -77,9 +51,9 @@ const Navbar = (propes) => {
                         <div className='navcontainer-innersecond mx-5'>
                             <div className='d-flex'>
                                 <div role="button" id="dropdownMenuLink"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <VscListFilter style={{ fontSize: "21px" }} />
-                                    <BsFillClockFill style={{ fontSize: "20px" }} />
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    <VscListFilter className='ft-20'/>
+                                    <BsFillClockFill className='ft-20'/>
                                     <MdOutlineArrowDropDown style={{ fontSize: "23px", margin: "-2px -2px" }} />
                                 </div>
                                 <div className="dropdown-menu " aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
@@ -100,13 +74,13 @@ const Navbar = (propes) => {
                                     <Link className="dropdown-item" to="#"><BsYoutube /> Quick Start Video</Link>
                                     <Link className="dropdown-item" to="#"> <MdOutlineHelp /> Getting Started Guide</Link>
                                     <Link className="dropdown-item" to="#"><MdGroups style={{ fontSize: '25px' }} /> Free Onbording Session</Link>
-                                    <Link className="dropdown-item" target="_blank" to="/HelpDescription"><IoMdHelp style={{ fontSize: '20px' }} /> Help Guides</Link>
+                                    <Link className="dropdown-item" target="_blank" to="/HelpDescription"><IoMdHelp className='ft-20'/> Help Guides</Link>
                                     <a className="dropdown-item" href="mailto:drizzle.ilog@gmail.com"><MdEmail /> Send Email to Support</a>
                                     <Link className="dropdown-item" to="/Contactus"><MdPermContactCalendar /> Contact us</Link>
                                 </div>
                             </div>
                             <div className='d-flex  cursor-pointer'>
-                                <BsBellFill style={{ fontSize: "20px", marginTop: "3px" }} />
+                                <BsBellFill className='ft-20 mt-1'/>
                             </div>
                         </div>
                         <div className='d-flex' >
@@ -119,7 +93,7 @@ const Navbar = (propes) => {
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
                                 <Link className="dropdown-item" to="/Profile">Profile</Link>
                                 <Link className="dropdown-item" to="/ChangePassword">Change Password</Link>
-                                <a className="dropdown-item border-top text-danger" href="#" >Logout <MdOutlineExitToApp style={{ fontSize: "20px" }} /></a>
+                                <a className="dropdown-item border-top text-danger" data-toggle="modal" data-target="#exampleModal" >Logout <MdOutlineExitToApp className='ft-20' /></a>
                             </div>
                         </div>
                     </div>

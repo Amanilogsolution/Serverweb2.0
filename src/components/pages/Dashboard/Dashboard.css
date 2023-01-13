@@ -17,6 +17,7 @@
    background: #b5acf1;
     cursor:pointer;
     padding:5px 20px;
+    border-right:2px solid silver;
 }
 /* .dashboard_cards .dash_toggle_btns .dash_toggle_btn:hover {
     background: white;

@@ -94,7 +94,7 @@ export default function AssetsDash(callback) {
               </div> :
               <div className='rounded it-bar' style={{ background: 'linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))', boxShadow: '2px 2px 10px silver' }} >
                 {/* <p className=' px-4'>IT Asset Allotment Summary</p> */}
-                <ResponsiveContainer width="100%" aspect={5}>
+                <ResponsiveContainer width="100%" aspect={3.5}>
                   <BarChart data={chartdata} margin={{ top: 20, right: 45 }}>
                     {/* <CartesianGrid strokeDasharray='3 3'/> */}
                     <XAxis tick={{ fill: 'white' }} dataKey="location_code" interval={"preserveStartEnd"} fontSize={12}/>

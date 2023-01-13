@@ -1,5 +1,5 @@
 import './LoadingPage.css'
-import Dlogo from '../../image/drizzle_logo.png'
+import Dlogo from '../../image/drizzle_logoD.png'
 const LoadingPage = () => {
 
     return (
@@ -7,8 +7,8 @@ const LoadingPage = () => {
             <div className="loading-container">
                 <div className='loading-inner-logo'>
                     <span  className='loading-inner-span '>
-                    <img src={Dlogo} alt='Drizzle Logo'  className='loading-inner-img' style={{border:'2px solid red',width:'170px'}}/></span>
-                   <h3 className='border border-danger'>Loading...</h3> 
+                    <img src={Dlogo} alt='Drizzle Logo'  className='loading-inner-img'/></span>
+                   <h3>Loading...</h3> 
                 </div>
             </div>
 
