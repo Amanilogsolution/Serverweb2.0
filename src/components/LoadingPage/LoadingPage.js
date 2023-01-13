@@ -6,8 +6,9 @@ const LoadingPage = () => {
         <>
             <div className="loading-container">
                 <div className='loading-inner-logo'>
-                    <span  className='loading-inner-span '><img src={Dlogo} alt='Drizzle Logo'  className='loading-inner-img'/></span>
-                   <h3>Loading...</h3> 
+                    <span  className='loading-inner-span '>
+                    <img src={Dlogo} alt='Drizzle Logo'  className='loading-inner-img' style={{border:'2px solid red',width:'170px'}}/></span>
+                   <h3 className='border border-danger'>Loading...</h3> 
                 </div>
             </div>
 

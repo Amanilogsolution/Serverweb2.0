@@ -32,7 +32,7 @@ const Dashboard = () => {
 
       const result = await DashboarDetails(org)
       console.log(result)
-      setLoading(true)
+      // setLoading(true)
 
       setDashboarddetails({ ...dashboarddetails, Assetdata: result.Assets.asset, Vendordata: result.Vendor.Vendor_code, Invoice: result.Invoice.vendor, Ticket: result.Ticket.ticket })
     }
