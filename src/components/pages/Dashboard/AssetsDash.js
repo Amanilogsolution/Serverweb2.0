@@ -194,7 +194,7 @@ export default function AssetsDash(callback) {
           </div>
           <div className='Asset_card2'>
             <p className='mb-0'>MS OS</p>
-            <h5 >0</h5>
+            <h5 >njkn0</h5>
           </div>
         </div>
       </div>
