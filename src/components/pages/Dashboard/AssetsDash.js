@@ -102,7 +102,7 @@ export default function AssetsDash(callback) {
 
       <div className='d-flex justify-content-between my-5'>
         <div className='for_graph'>
-          <div className='bar_location bg-light rounded position-relative mt-1' style={{ minHeight: "35vh" }}>
+          <div className='bar_location bg-light position-relative mt-1' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px',height: "35vh",minHeight: "35vh",maxHeight:'35vh' }}>
             {spinner ?
               <div class="spinner-border text-primary" style={{ marginTop: "2%", marginLeft: "50%" }} role="status">
                 <span class="sr-only"></span>
@@ -125,7 +125,7 @@ export default function AssetsDash(callback) {
             </div>
           </div>
           <div className='graph_2nd_row d-flex justify-content-betweenposition-relative mt-5' >
-            <div className='manufacturer_graph bg-light rounded position-relative' style={{ height: "35vh" }}>
+            <div className='manufacturer_graph bg-light position-relative' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px',height: "35vh" }}>
               {spinner ?
                 <div class="spinner-border text-success" style={{ marginTop: "10%", marginLeft: "50%" }} role="status">
                   <span class="sr-only"></span>
@@ -140,9 +140,11 @@ export default function AssetsDash(callback) {
                         {dashboardmanu.map((entry, index) => (
                         
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}
-                          style={{
-                            filter: `drop-shadow(0px 0px 3px black`
-                          }} />
+                          // style={{
+                          //   filter: `drop-shadow(0px 0px 3px black`
+                          // }} 
+
+                          />
                         ))}
                       </Pie>
                       <Legend iconSize='10' iconType="rounded" layout="vertical" verticalAlign="top" align="right" />
@@ -153,7 +155,7 @@ export default function AssetsDash(callback) {
                 <small className='text-secondary position-absolute mx-3' style={{ bottom:'8%' }}>Manufacturer</small>
               </div>
             </div>
-            <div className='software_graph bg-light rounded position-relative' style={{ height: "35vh" }}>
+            <div className='software_graph bg-light position-relative'  style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px',height: "35vh" }}>
               {spinner ?
                 <div class="spinner-border text-warning" style={{ marginTop: "5%", marginLeft: "50%" }} role="status">
                   <span class="sr-only"></span>
@@ -175,26 +177,26 @@ export default function AssetsDash(callback) {
             </div>
           </div>
         </div>
-        <div className='asset-sidebar text-white' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px' }}>
-          <div className='Asset_card2'>
+        <div className='asset-sidebar text-dark bg-white px-3 pt-2' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px' }}>
+          <div className='Asset_card2 rounded  py-2'>
             <p className='mb-0'>Asset Value</p>
-            <h5>₹ {Assetsdata.PurchaseVal}</h5>
+            <h3>₹ {Assetsdata.PurchaseVal}</h3>
           </div>
           <div className='Asset_card2'>
             <p className='mb-0'>Rental / Month</p>
-            <h5 >₹ {Assetsdata.RentMonth}</h5>
+            <h3 >₹ {Assetsdata.RentMonth}</h3>
           </div>
           <div className='Asset_card2'>
             <p className='mb-0'>MS OS</p>
-            <h5 >0</h5>
+            <h3 >0</h3>
           </div>
           <div className='Asset_card2'>
             <p className='mb-0'>MS OS</p>
-            <h5 >0</h5>
+            <h3 className='pb-0'>0</h3>
           </div>
           <div className='Asset_card2'>
             <p className='mb-0'>MS OS</p>
-            <h5 >0</h5>
+            <h3 >0</h3>
           </div>
         </div>
       </div>
