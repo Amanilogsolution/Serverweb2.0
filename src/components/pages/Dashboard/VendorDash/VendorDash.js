@@ -79,11 +79,11 @@ export default function VendorDash({ setStep }) {
 
   return (
     <div className='VendorDash mt-4'>
-      <div className='VendorDash1 bg-light rounded position-relative px-3 ' style={{ boxShadow: '1px 1px 10px #333' }}>
+      <div className='VendorDash1 bg-light rounded position-relative px-3 ' style={{ boxShadow: '1px 1px 10px silver' }}>
         <div className='tableheading position-absolute d-flex justify-content-between pt-3' >
           <p className='text-white px-4 mx-1 '>Vendor Contract Details</p>
           <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{ width: "5%", float: "right" }}>
-            <BiExport style={{ fontSize: "25px", color: "white" }} />
+            <BiExport className='text-white' style={{ fontSize: "25px"}} />
           </div>
           {
             toogle ?
@@ -100,27 +100,8 @@ export default function VendorDash({ setStep }) {
               : ''
           }
         </div>
-        <div className='table1 position-relative mt-5'>
-          {/* <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{width:"5%",float:"right"}}>
-            <BiExport style={{ fontSize: "25px"}} />
-          </div> */}
-          {/* {
-              toogle ?
-                <div className="d-flex flex-column justify-content-center align-items-center  bg-light position-absolute rounded py-1" style={{ right: "2%",top:'5%', width: "5%", boxShadow: "3px 3px 10px black" }} >
-                  <a href="#"
-                    onClick={exportExcel}
-                  ><SiMicrosoftexcel className='ft-20' /></a>
-                  <CSVLink
-                    data={TotalVendor}
-                    filename="RecurringData"
-                  > <GrDocumentCsv className='ft-20'/>
-                  </CSVLink>
-                </div>
-                : ''
-            } */}
-
-
-          <table class="table">
+        <div className='table1 position-relative mt-5' style={{minHeight:'80%'}}>
+          <table className="table" >
             <thead>
               <tr>
                 <th scope="col">Vendor</th>
@@ -135,6 +116,11 @@ export default function VendorDash({ setStep }) {
             </thead>
             <tbody>
               {
+                TotalVendor.length===0?
+                <tr className='text-center'>
+                  <td colSpan='8'>Table have not Data</td>
+                </tr>
+                :
                 TotalVendor.map((elements) => {
                   return (
                     <tr>
@@ -151,19 +137,16 @@ export default function VendorDash({ setStep }) {
                 })
               }
 
-
             </tbody>
           </table>
         </div>
-        <div className="d-flex justify-content-end">
-          <div className="d-flex justify-content-center align-items-center mx-2">
-            <label>Rows Per Page </label>
-            
-            <select onChange={handleChange}>
+        <div className="d-flex justify-content-end ">
+          <div className="d-flex justify-content-center  mx-2 pt-1">
+            <label htmlFor='pageno' className='mt-1'>Rows Per Page </label> &nbsp;
+            <select onChange={handleChange} id='pageno' style={{height:'32px'}}>
               <option value="10">10</option>
               <option value="15">15</option>
               <option value="20">20</option>
-
             </select>
           </div>
           <div>
@@ -177,7 +160,7 @@ export default function VendorDash({ setStep }) {
               renderOnZeroPageCount={null}
               containerClassName={'pagination '}
               pageClassName={'page-item  '}
-              pageLinkClassName={'page-link border-primary rounded-circle'}
+              pageLinkClassName={'page-link '}
               previousClassName={'page-item'}
               previousLinkClassName={'page-link'}
               nextClassName={'page-item'}
@@ -197,7 +180,7 @@ export default function VendorDash({ setStep }) {
         </div>
 
         <div className='select_div'>
-          <select class="form-select" aria-label="Default select example">
+          <select className="form-select" aria-label="Default select example">
             <option hidden selected>Vendor Code</option>
             {
               vendorlist.map((item, index) =>
@@ -206,7 +189,7 @@ export default function VendorDash({ setStep }) {
           </select>
         </div>
         <div className='select_div'>
-          <select class="form-select" aria-label="Default select example">
+          <select className="form-select" aria-label="Default select example">
             <option hidden selected>Category</option>
             {
               vendorcatlist.map((item, index) =>
@@ -215,7 +198,7 @@ export default function VendorDash({ setStep }) {
           </select>
         </div>
         <div className='select_div'>
-          <select class="form-select" aria-label="Default select example">
+          <select className="form-select" aria-label="Default select example">
             <option hidden selected>Location</option>
             {
               locationlist.map((item, index) =>
@@ -225,7 +208,7 @@ export default function VendorDash({ setStep }) {
           </select>
         </div>
         <div className='select_div'>
-          <select class="form-select" aria-label="Default select example">
+          <select className="form-select" aria-label="Default select example">
             <option hidden selected>Frequency</option>
             {
               billingfreqlist.map((item, index) =>

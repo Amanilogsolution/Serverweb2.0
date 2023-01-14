@@ -40,7 +40,6 @@ const Dashboard = () => {
   }, [])
 
   const colordynamic = (step) =>{
-      // console.log(step)
       for(let i=1; i<=4;i++){
         if(i==step){
           console.log("true")
@@ -51,12 +50,10 @@ const Dashboard = () => {
           document.getElementById(`css${i}`).style.background = "#b5acf1"
           document.getElementById(`css${i}`).style.borderBottom = "none"
         }
-        // console.log(i)
       }
   }
 
   const showStep = (step) => {
-    // console.log(step)
     switch (step) {
       case 1:
         return <AssetsDash  />
@@ -84,7 +81,7 @@ const Dashboard = () => {
 
               <div className='dashboard_cards justify-content-end'>
                 <div className='d-flex justify-content-center  dash_toggle_btns'>
-                  <div className='dash_toggle_btn 'style={{background:"white",borderBottom:"4px solid #30305f"}} id="css1"  onClick={() => {colordynamic(1); setStep(1)}}>Assets</div>
+                  <div className='dash_toggle_btn ' style={{background:"white",borderBottom:"4px solid #30305f"}} id="css1"  onClick={() => {colordynamic(1); setStep(1)}}>Assets</div>
                   <div className='dash_toggle_btn ' id="css2" onClick={() =>{colordynamic(2); setStep(2)}}>Vendors</div>
                   <div className='dash_toggle_btn ' id="css3" onClick={() => {colordynamic(3);setStep(3)}}>Invoice</div>
                   <div className='dash_toggle_btn ' id="css4" onClick={() => {colordynamic(4);setStep(4)}}>Tickets</div>

@@ -1,13 +1,9 @@
 .footer {
-    height: 40px;
-    background-color: #fff;
-    margin-top: 10px;
-    padding-top: 10px;
+    /* height: 40px; */
+    /* background-color: #fff; */
+    /* margin-top: 10px; */
+    /* padding-top: 10px; */
     /* margin-bottom: 0%; */
-    box-shadow: -3px -3px 10px gray;
-    border-radius: 10px 0px 0px 10px;
-}
-
-.footer .footer-head {
-    font-size: 15px;
+    /* box-shadow: -3px -3px 10px gray; */
+    /* border-radius: 10px 0px 0px 10px; */
 }

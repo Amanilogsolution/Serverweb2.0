@@ -35,16 +35,31 @@ export default function AssetsDash(callback) {
     const dashboard_manu = await Dashboard_Manufacture(localStorage.getItem('Database'))
     setDashboardmanu(dashboard_manu)
     setDashboardsoft(dashboard_soft)
-    console.log(locationname)
     setChartData(locationname || dashboard_soft || dashboard_manu)
     if (locationname) {
       setSpinner(false)
     }
 
-
   }
 
-  const COLORS = ['#3c4a5d', '#d81b60', '#0065e8', '#161616', '#5cb360', '#7675C4'];
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+
+    return (
+      <text x={x} y={y} fontSize='13' fill="silver" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
+
+  
+
+  const COLORS = ['#6e1249', '#8f4606', '#122a8a', '#065b73', '#119c03', '#20541a'];
+  
 
 
   return (
@@ -56,7 +71,7 @@ export default function AssetsDash(callback) {
               <BsLaptopFill className='icon ' />
             </div>
           </div>
-          <div style={{marginLeft:"-50px"}}>
+          <div style={{ marginLeft: "-50px" }}>
             <h1 className='dash_card_head mb-0 '>{Assetsdata.TotalAsset}</h1>
             <p className='dash_card_para'>Total Devices</p>
           </div>
@@ -67,7 +82,7 @@ export default function AssetsDash(callback) {
               <HiUsers className='icon' />
             </div>
           </div>
-          <div style={{marginLeft:"-50px"}}>
+          <div style={{ marginLeft: "-50px" }}>
             <h1 className='dash_card_head mb-0'>{Assetsdata.ActiveAsset}</h1>
             <p className='dash_card_para'>Active Devices</p>
           </div>
@@ -78,26 +93,25 @@ export default function AssetsDash(callback) {
               <MdStickyNote2 className='icon' />
             </div>
           </div>
-          <div style={{marginLeft:"-50px"}}>
+          <div style={{ marginLeft: "-50px" }}>
             <h1 className='dash_card_head mb-0'>{Assetsdata.RentalAssets}</h1>
             <p className='dash_card_para'>Rental Devices</p>
           </div>
         </div>
       </div>
-      
+
       <div className='d-flex justify-content-between my-5'>
         <div className='for_graph'>
-          <div className='bar_location bg-light rounded'>
+          <div className='bar_location bg-light position-relative mt-1' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px',height: "35vh",minHeight: "35vh",maxHeight:'35vh' }}>
             {spinner ?
               <div class="spinner-border text-primary" style={{ marginTop: "2%", marginLeft: "50%" }} role="status">
                 <span class="sr-only"></span>
               </div> :
-              <div className='rounded it-bar' style={{ background: 'linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))', boxShadow: '2px 2px 10px silver' }} >
-                {/* <p className=' px-4'>IT Asset Allotment Summary</p> */}
-                <ResponsiveContainer width="100%" aspect={5}>
+              <div className='rounded it-bar position-absolute' style={{ background: 'linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))', boxShadow: '2px 2px 10px silver', top: "-12%", width: "95%", left: '2.5%' }} >
+                <ResponsiveContainer width="100%" aspect={3.7}>
                   <BarChart data={chartdata} margin={{ top: 20, right: 45 }}>
-                    {/* <CartesianGrid strokeDasharray='3 3'/> */}
-                    <XAxis tick={{ fill: 'white' }} dataKey="location_code" interval={"preserveStartEnd"} fontSize={12}/>
+                    <CartesianGrid strokeDasharray='4' vertical={false} />
+                    <XAxis tick={{ fill: 'white' }} dataKey="location_code" interval={"preserveStartEnd"} fontSize={12} />
                     <YAxis tick={{ fill: 'white' }} />
                     <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                     <Bar dataKey="asset" fill="white" barSize={5} radius={30} />
@@ -107,80 +121,82 @@ export default function AssetsDash(callback) {
               </div>
             }
             <div >
-              <p style={{margin:"10px 0 20px 44px",color:"#6a6a6a"}}>IT Asset Allotment Summary</p>
+              <small className='text-secondary position-absolute mx-3' style={{ bottom:'8%' }}>IT Asset Allotment Summary</small>
             </div>
           </div>
-          <div className='graph_2nd_row d-flex justify-content-between' >
-            <div className='manufacturer_graph  bg-light rounded'>
+          <div className='graph_2nd_row d-flex justify-content-betweenposition-relative mt-5' >
+            <div className='manufacturer_graph bg-light position-relative' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px',height: "35vh" }}>
               {spinner ?
                 <div class="spinner-border text-success" style={{ marginTop: "10%", marginLeft: "50%" }} role="status">
                   <span class="sr-only"></span>
                 </div> :
-                <div className="manu_pie rounded" style={{ background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))', boxShadow: '2px 2px 10px silver' }}>
-                  {/* <p className=' px-4 mx-2 my-0'>Manufacturer</p> */}
-                  <ResponsiveContainer width="100%" height='100%' aspect={2.0} >
+                <div className="manu_pie rounded position-absolute" style={{ background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))', boxShadow: '2px 2px 10px silver', top: "-6.5%", width: "93.5%", left: '3.2%' }}>
+                  <ResponsiveContainer width="100%" height='100%' aspect={1.9} >
                     <PieChart width={700} height={150}>
+                      
                       <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
                       {/* <Tooltip /> */}
-                      <Pie data={dashboardmanu} dataKey="value" nameKey="name" cx="50%" cy="56%" outerRadius={56} fill="rgb(94, 4, 69)" label>
+                      <Pie fill="#8884d8" stroke="none" data={dashboardmanu} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={38} outerRadius={82} label={renderCustomizedLabel} labelLine={false}>
                         {dashboardmanu.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}
+                          // style={{
+                          //   filter: `drop-shadow(0px 0px 3px black`
+                          // }} 
+
+                          />
                         ))}
                       </Pie>
-                      <Legend layout="horizontal" verticalAlign="bottom" align="right" />
+                      <Legend iconSize='10' iconType="rounded" layout="vertical" verticalAlign="top" align="right" />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>}
               <div >
-                <p style={{margin:"10px 0 0 24px",color:"#6a6a6a"}}>Manufacturer</p>
+                <small className='text-secondary position-absolute mx-3' style={{ bottom:'8%' }}>Manufacturer</small>
               </div>
             </div>
-            <div className='software_graph bg-light rounded '>
+            <div className='software_graph bg-light position-relative'  style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px',height: "35vh" }}>
               {spinner ?
                 <div class="spinner-border text-warning" style={{ marginTop: "5%", marginLeft: "50%" }} role="status">
                   <span class="sr-only"></span>
                 </div> :
-                <div className="soft_bar rounded" style={{ background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))', boxShadow: '2px 2px 10px silver' }}>
-                  {/* <p className=' px-4'>Software</p> */}
-
-                  <ResponsiveContainer width="100%" aspect={2.2}>
-                    <BarChart data={dashboardsoft} margin={{ top: 3, right: 40 }}>
-                      {/* <CartesianGrid /> */}
-                      <XAxis tick={{ fill: 'white' }} dataKey="software_name" interval={"preserveStartEnd"} style={{ fontSize: "14px" }} />
-                      <YAxis tick={{ fill: 'white' }}/>
+                <div className="soft_bar rounded position-absolute" style={{ background: 'linear-gradient(45deg, #e55454, #e57272', boxShadow: '2px 2px 10px silver', top: "-6.5%", width: "93.5%", left: '3.2%' }}>
+                  <ResponsiveContainer width="100%" aspect={1.9}>
+                    <BarChart data={dashboardsoft} margin={{ top: 18, right: 30, left: -20,bottom:9 }}>
+                      <CartesianGrid strokeDasharray='4' vertical={false} />
+                      <XAxis tick={{ fill: 'white' }} dataKey="software_name" interval={"preserveStartEnd"} fontSize={12} />
+                      <YAxis tick={{ fill: 'white' }} />
                       <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
-                      <Bar dataKey="software" fill="white" barSize={5} radius={30}/>
+                      <Bar dataKey="software" fill="white" barSize={5} radius={30} />
                       <Tooltip />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
               }
-              <div >
-                <p style={{margin:"10px 0 20px 24px",color:"#6a6a6a"}}>Software</p>
-              </div>
+                <small className='position-absolute text-secondary mx-3' style={{bottom:'8%'}}>Software</small>
             </div>
           </div>
         </div>
-        <div className='asset-sidebar rounded  '>
-          <div className='Asset_card2 rounded'>
+        <div className='asset-sidebar text-dark bg-white px-3 pt-2' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px' }}>
+          <div className='Asset_card2 rounded  py-2'>
             <p className='mb-0'>Asset Value</p>
-            <h5>₹ {Assetsdata.PurchaseVal}</h5>
+            <h3>₹ {Assetsdata.PurchaseVal}</h3>
           </div>
-          <div className='Asset_card2 rounded'>
+          <div className='Asset_card2'>
             <p className='mb-0'>Rental / Month</p>
-            <h5 >₹ {Assetsdata.RentMonth}</h5>
+            <h3 >₹ {Assetsdata.RentMonth}</h3>
           </div>
-          <div className='Asset_card2 rounded'>
+          <div className='Asset_card2'>
             <p className='mb-0'>MS OS</p>
-            <h5 >0</h5>
+            <h3 >0</h3>
           </div>
-          <div className='Asset_card2 rounded'>
+          <div className='Asset_card2'>
             <p className='mb-0'>MS OS</p>
-            <h5 >0</h5>
+            <h3 className='pb-0'>0</h3>
           </div>
-          <div className='Asset_card2 rounded'>
+          <div className='Asset_card2'>
             <p className='mb-0'>MS OS</p>
-            <h5 >0</h5>
+            <h3 >0</h3>
           </div>
         </div>
       </div>
@@ -188,5 +204,6 @@ export default function AssetsDash(callback) {
 
   )
 }
+
 
 // export default AssetsDash;

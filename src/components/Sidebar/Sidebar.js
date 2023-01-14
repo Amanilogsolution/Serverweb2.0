@@ -43,8 +43,7 @@ import Footer from './Footer/Footer';
 import Navbar from './Navbar.js';
 import './Sidebar.css'
 import logo from '../../image/drizzle_logo.png'
-import img from '../../image/modelimg.png'
-
+import Logout from './Logout';
 
 const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -214,58 +213,33 @@ const Sidebar = ({ children }) => {
 
     return (
         <>
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document" style={{ width: "300px",marginTop:"50px" }}>
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <img src={img} style={{ width: "140px", margin: "0 70px" }} />
-                        </div>
-                        <div class="modal-body">
-                            <div style={{ textAlign: "center", width: "100%", padding: "0 15px" }}>
-                                <h4>Are you sure ? </h4>
-                                <p>you want to logout your account</p><br />
-                                <div>
-                                    <button style={{ borderRadius: "50px" }} className='btn btn-voilet w-100 my-2' onClick={() => {
-                                        localStorage.clear()
-                                        window.location.href = '/'
-                                    }}>Yah, I am sure</button><br />
-                                    <button style={{ borderRadius: "50px" }} className=' close btn btn-secondary w-100' data-dismiss="modal" aria-label="Close">Cencel</button>
-                                </div>
-                            </div>
+            <div className="sidebarcontainer">
+                <div className={isOpen ? 'sidebaropen px-3' : 'sidebar '}
+                // onClick={toggle}
+                //  onMouseEnter={() => setIsOpen(true)}
+                //     onMouseLeave={toggle}
+                >
+                    <div className="top_section">
+                        <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} />
+                        <div style={isOpen ? icononstyle : iconoffstyle} className="bars">
+                            <MdOutlineDoubleArrow onClick={toggle} />
                         </div>
                     </div>
-                </div>
-            </div>
 
-
-        <div className="sidebarcontainer">
-            <div className={isOpen ? 'sidebaropen' : 'sidebar'}
-            // onClick={toggle}
-            //  onMouseEnter={() => setIsOpen(true)}
-            //     onMouseLeave={toggle}
-            >
-                <div className="top_section">
-                    <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} />
-                    <div style={isOpen ? icononstyle : iconoffstyle} className="bars">
-                        <MdOutlineDoubleArrow onClick={toggle} />
-                    </div>
-                </div>
-
-                <div className='sidebarinerabc'>
-                    <span className='internalsidebar'>
-                        <span className='ul'>
-                            <span className='li'>
-                                <NavLink to='/Dashboard' className="link" title='Dashboard'>
-                                    <div className="icon"><FaTh /></div>
-                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Dashboard</div>
-                                </NavLink>
+                    <div className='sidebarinerabc '>
+                        <span className='internalsidebar'>
+                            <span className='ul'>
+                                <span className='li'>
+                                    <NavLink to='/Dashboard' className="link" title='Dashboard'>
+                                        <div className="icon"><FaTh /></div>
+                                        <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Dashboard</div>
+                                    </NavLink>
+                                </span>
                             </span>
                         </span>
-                    </span>
 
-                    {/* Iperiscope */}
-                    {/* <div onClick={handleinnertoggle} >
+                        {/* Iperiscope */}
+                        {/* <div onClick={handleinnertoggle} >
                         <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
                             <div className="icon" onClick={toggle}><FaUserAlt /></div>
                             <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text "> &nbsp;Iperiscope <span className="icon"><IoIosArrowDown /></span> </div>
@@ -355,337 +329,340 @@ const Sidebar = ({ children }) => {
                     </div> */}
 
 
-                    {/* ############################# Drizzle  ##############################*/}
+                        {/* ############################# Drizzle  ##############################*/}
 
 
-                    <div onClick={handleinnertoggledrizzle}>
-                        <div className="link" id='masterdrizelltitlelink' style={{ cursor: "pointer" }}>
-                            <div className="icon" onClick={toggle}><FaUserAlt /></div>
-                            <span style={{ display: "flex" }} >
-                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text ">Drizzle </div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
-                            </span>
+                        <div onClick={handleinnertoggledrizzle}>
+                            <div className="link" id='masterdrizelltitlelink' style={{ cursor: "pointer" }}>
+                                <div className="icon" onClick={toggle}><FaUserAlt /></div>
+                                <span style={{ display: "flex" }} >
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text ">Drizzle </div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div className="innerdiv" id="innerdrizzle" style={{ display: "none" }}>
-                        <ul style={{ marginBottom: "0px" }}>
-                            <li title='Assets' style={{ listStyle: "none" }}>
-                                <NavLink to='/TotalNewAssets' className="link" activeclassname="sidebaractive">
-                                    <div className="icon"><BsFillLaptopFill style={{ fontSize: "18px" }} /></div>
-                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Assets</div>
-                                </NavLink>
-                            </li>
-                            <li title='Vendor Contract' style={{ listStyle: "none" }}>
-                                <NavLink to='/TotalVendorContract' className="link" activeclassname="sidebaractive">
-                                    <div className="icon"><FaFileMedicalAlt style={{ fontSize: "17px" }} /></div>
-                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Contract</div>
-                                </NavLink>
-                            </li>
-                            <li onClick={handleinner2toggledrizzle} style={{ listStyle: "none" }}>
-                                <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
-                                    <div className="icon" onClick={toggle}><FaElementor style={{ fontSize: "17px" }} /></div>
-                                    <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text "> &nbsp; Master<span className="icon"><IoIosArrowDown /></span> </div>
-                                </div>
-                            </li>
+                        <div className="innerdiv" id="innerdrizzle" style={{ display: "none" }}>
+                            <ul style={{ marginBottom: "0px" }}>
+                                <li title='Assets' style={{ listStyle: "none" }}>
+                                    <NavLink to='/TotalNewAssets' className="link" activeclassname="sidebaractive">
+                                        <div className="icon"><BsFillLaptopFill style={{ fontSize: "18px" }} /></div>
+                                        <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Assets</div>
+                                    </NavLink>
+                                </li>
+                                <li title='Vendor Contract' style={{ listStyle: "none" }}>
+                                    <NavLink to='/TotalVendorContract' className="link" activeclassname="sidebaractive">
+                                        <div className="icon"><FaFileMedicalAlt style={{ fontSize: "17px" }} /></div>
+                                        <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Vendor Contract</div>
+                                    </NavLink>
+                                </li>
+                                <li onClick={handleinner2toggledrizzle} style={{ listStyle: "none" }}>
+                                    <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
+                                        <div className="icon" onClick={toggle}><FaElementor style={{ fontSize: "17px" }} /></div>
+                                        <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text "> &nbsp; Master<span className="icon"><IoIosArrowDown /></span> </div>
+                                    </div>
+                                </li>
 
-                            {/*################## Drizzle Master list */}
-                            <div className="innersubdiv" id="subdrizzleinner" style={{ display: "none" }}>
-                                <ul style={{ paddingLeft: "0px", marginBottom: "0px" }}>
-                                    <li className='innerlink' >
-                                        <NavLink to='/TotalLocations' style={{ borderTop: "1px solid silver" }} className='navlink d-flex' activeclassname="sidebaractive">
-                                            <MdLocationPin style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 7px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} > Location</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalEmployee' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <FaUserAlt style={{ color: "rgb(66, 4, 69)", fontSize: "16px", margin: "0 8px" }} /> &nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Employee</div>
-                                        </NavLink>
-                                    </li>
-                                    {/* <li className='innerlink'>
+                                {/*################## Drizzle Master list */}
+                                <div className="innersubdiv" id="subdrizzleinner" style={{ display: "none" }}>
+                                    <ul style={{ paddingLeft: "0px", marginBottom: "0px" }}>
+                                        <li className='innerlink' >
+                                            <NavLink to='/TotalLocations' style={{ borderTop: "1px solid silver" }} className='navlink d-flex' activeclassname="sidebaractive">
+                                                <MdLocationPin style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 7px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} > Location</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalEmployee' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <FaUserAlt style={{ color: "rgb(66, 4, 69)", fontSize: "16px", margin: "0 8px" }} /> &nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Employee</div>
+                                            </NavLink>
+                                        </li>
+                                        {/* <li className='innerlink'>
                                     <NavLink to='/TotalAgent' className='navlink' activeclassname="sidebaractive">
                                         <div style={{ display: isOpen ? "block" : "none" }} >Agent</div>
                                     </NavLink>
                                      </li> */}
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalAssetType' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <BsInboxesFill style={{ fill: "rgb(66, 4, 69)", fontSize: "16px", margin: "0 8px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Asset Type</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalAssetStatus' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <BsTriangleHalf style={{ fill: "rgb(66, 4, 69)", fontSize: "17px", margin: "0 7px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Asset Status</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalManufacturer' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <MdPrecisionManufacturing style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 6px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Manufacturer</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalSoftware' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <TiVendorMicrosoft style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 6px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Software</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalIssueType' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <GoIssueOpened style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 6px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Issue Type</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalPurchaseType' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <AiFillTag style={{ color: "rgb(66, 4, 69)", fontSize: "19px", margin: "0 5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Purchase Type</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalContractType' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <RiArrowUpDownFill style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Contract Type</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalPriority' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <BsArrowUpRightCircleFill style={{ color: "rgb(66, 4, 69)", fontSize: "16px", margin: "0 7px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Priority</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalTicketStatus' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <BsTriangleHalf style={{ fill: "rgb(66, 4, 69)", fontSize: "17px", margin: "0 6px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Ticket Status</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalBillingFreq' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <RiBillFill style={{ color: "rgb(66, 4, 69)", fontSize: "17px", margin: "0 6px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Billing Frequency</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalVendorCategory' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <HiDuplicate style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 4px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Vendor Category</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalVendSubCate' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <HiDuplicate style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 5px" }} />
-                                            <div style={{ display: isOpen ? "block" : "none", fontSize: "14px" }} >Vendor SubCategory</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalServiceActionType' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <RiServiceFill style={{ color: "rgb(66, 4, 69)", fontSize: "18px", margin: "0 4px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none", fontSize: "14px" }} >Service Action Type</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink'>
-                                        <NavLink to='/TotalServiceGroup' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <RiServiceFill style={{ color: "rgb(66, 4, 69)", fontSize: "18px", margin: "0 4px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none", fontSize: "14px" }} >Service Group Type</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink' style={{ borderBottom: "1px solid silver" }}>
-                                        <NavLink to='/TotalVendorCode' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <FaElementor style={{ color: "rgb(66, 4, 69)", fontSize: "17px", margin: "0 5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Vendor Master</div>
-                                        </NavLink>
-                                    </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalAssetType' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <BsInboxesFill style={{ fill: "rgb(66, 4, 69)", fontSize: "16px", margin: "0 8px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Asset Type</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalAssetStatus' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <BsTriangleHalf style={{ fill: "rgb(66, 4, 69)", fontSize: "17px", margin: "0 7px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Asset Status</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalManufacturer' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <MdPrecisionManufacturing style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 6px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Manufacturer</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalSoftware' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <TiVendorMicrosoft style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 6px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Software</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalIssueType' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <GoIssueOpened style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 6px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Issue Type</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalPurchaseType' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <AiFillTag style={{ color: "rgb(66, 4, 69)", fontSize: "19px", margin: "0 5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Purchase Type</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalContractType' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <RiArrowUpDownFill style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Contract Type</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalPriority' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <BsArrowUpRightCircleFill style={{ color: "rgb(66, 4, 69)", fontSize: "16px", margin: "0 7px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Priority</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalTicketStatus' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <BsTriangleHalf style={{ fill: "rgb(66, 4, 69)", fontSize: "17px", margin: "0 6px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Ticket Status</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalBillingFreq' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <RiBillFill style={{ color: "rgb(66, 4, 69)", fontSize: "17px", margin: "0 6px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Billing Frequency</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalVendorCategory' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <HiDuplicate style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 4px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Vendor Category</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalVendSubCate' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <HiDuplicate style={{ color: "rgb(66, 4, 69)", fontSize: "20px", margin: "0 5px" }} />
+                                                <div style={{ display: isOpen ? "block" : "none", fontSize: "14px" }} >Vendor SubCategory</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalServiceActionType' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <RiServiceFill style={{ color: "rgb(66, 4, 69)", fontSize: "18px", margin: "0 4px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none", fontSize: "14px" }} >Service Action Type</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink'>
+                                            <NavLink to='/TotalServiceGroup' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <RiServiceFill style={{ color: "rgb(66, 4, 69)", fontSize: "18px", margin: "0 4px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none", fontSize: "14px" }} >Service Group Type</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink' style={{ borderBottom: "1px solid silver" }}>
+                                            <NavLink to='/TotalVendorCode' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <FaElementor style={{ color: "rgb(66, 4, 69)", fontSize: "17px", margin: "0 5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Vendor Master</div>
+                                            </NavLink>
+                                        </li>
 
-                                </ul>
-                            </div>
-                            <li onClick={handleinnertoggletransation} style={{ listStyle: "none" }}>
-                                <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
-                                    <div className="icon" onClick={toggle}><RiMoneyEuroCircleFill style={{ fontSize: "22px" }} /></div>
-                                    <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text "> &nbsp; Transaction<span className="icon"><IoIosArrowDown /></span> </div>
+                                    </ul>
                                 </div>
-                            </li>
-                            <div className="innerdiv" id="subtransationinner" style={{ display: "none" }}>
-                                <ul style={{ paddingLeft: "0px" }}>
-                                    <li className='innerlink' style={{ margingLeft: "0px" }}>
-                                        <NavLink to='/TotalVendorInvoice' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <RiMoneyEuroCircleFill style={{ fill: "rgb(66, 4, 69)", fontSize: "17px", margin: "0 7px" }} />
-                                            <div style={{ display: isOpen ? "block" : "none" }} > Vendor Invoice</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink' style={{ borderBottom: "1px solid silver" }}>
-                                        <NavLink to='/TotalVendorPayment' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <RiMoneyEuroCircleFill style={{ fill: "rgb(66, 4, 69)", fontSize: "17px", margin: "0 7px" }} />
-                                            <div style={{ display: isOpen ? "block" : "none" }} > Vendor Payment</div>
-                                        </NavLink>
-                                    </li>
-                                </ul>
-                            </div>
-                        </ul>
-                    </div>
-                    {/* ####################################### Transaction ############################################### */}
+                                <li onClick={handleinnertoggletransation} style={{ listStyle: "none" }}>
+                                    <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
+                                        <div className="icon" onClick={toggle}><RiMoneyEuroCircleFill style={{ fontSize: "22px" }} /></div>
+                                        <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text "> &nbsp; Transaction<span className="icon"><IoIosArrowDown /></span> </div>
+                                    </div>
+                                </li>
+                                <div className="innerdiv" id="subtransationinner" style={{ display: "none" }}>
+                                    <ul style={{ paddingLeft: "0px" }}>
+                                        <li className='innerlink' style={{ margingLeft: "0px" }}>
+                                            <NavLink to='/TotalVendorInvoice' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <RiMoneyEuroCircleFill style={{ fill: "rgb(66, 4, 69)", fontSize: "17px", margin: "0 7px" }} />
+                                                <div style={{ display: isOpen ? "block" : "none" }} > Vendor Invoice</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink' style={{ borderBottom: "1px solid silver" }}>
+                                            <NavLink to='/TotalVendorPayment' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <RiMoneyEuroCircleFill style={{ fill: "rgb(66, 4, 69)", fontSize: "17px", margin: "0 7px" }} />
+                                                <div style={{ display: isOpen ? "block" : "none" }} > Vendor Payment</div>
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </ul>
+                        </div>
+                        {/* ####################################### Transaction ############################################### */}
 
-                    <div onClick={handleinnertogglehelpdesk} style={{ marginTop: "0px" }}>
-                        <div className="link" id='masterdrizelltitlelink' style={{ cursor: "pointer" }}>
-                            <div className="icon" onClick={toggle}><MdHelp style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
-                            <span style={{ display: "flex" }} >
-                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text ">Help Desk</div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
-                            </span>
+                        <div onClick={handleinnertogglehelpdesk} style={{ marginTop: "0px" }}>
+                            <div className="link" id='masterdrizelltitlelink' style={{ cursor: "pointer" }}>
+                                <div className="icon" onClick={toggle}><MdHelp style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
+                                <span style={{ display: "flex" }} >
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text ">Help Desk</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
+                                </span>
+                            </div>
+                        </div>
+                        <div className="innerdiv" id="subhelpdeskinner" style={{ display: "none" }}>
+                            <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
+                                <li
+                                    onClick={handleinnertoggTickets}
+                                    style={{ listStyle: "none" }}>
+                                    <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
+                                        <div className="icon" onClick={toggle}><FaTicketAlt style={{ fontSize: "17px" }} /></div>
+                                        <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text "> &nbsp; Tickets <span className="icon"><IoIosArrowDown /></span> </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div className="innerdiv" id="subticketsinner" style={{ display: "none" }}>
+                            <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
+                                <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                    <NavLink to='/OpenTotalTickets' className='navlink d-flex' activeclassname="sidebaractive">
+                                        <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                        <div style={{ display: isOpen ? "block" : "none" }} > Open Ticket</div>
+                                    </NavLink>
+                                </li>
+                                <li className='innerlink' >
+                                    <NavLink to='/TotalTicket' className='navlink d-flex' activeclassname="sidebaractive">
+                                        <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                        <div style={{ display: isOpen ? "block" : "none" }} > Close Ticket</div>
+                                    </NavLink>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div className="innerdiv" id="subhelpdeskinner" style={{ display: "none" }}>
-                        <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
-                            <li
-                                onClick={handleinnertoggTickets}
-                                style={{ listStyle: "none" }}>
-                                <div className="link" id='mastertitlelink' style={{ cursor: "pointer", paddingRight: "0px" }}>
-                                    <div className="icon" onClick={toggle}><FaTicketAlt style={{ fontSize: "17px" }} /></div>
-                                    <div style={{ display: isOpen ? "block" : "none", marginLeft: "-10px" }} className="link_text "> &nbsp; Tickets <span className="icon"><IoIosArrowDown /></span> </div>
+
+
+                    {/*################################  Bottom Section  Start ###################################### */}
+
+                    <footer className="footer_section" id='footerdivsection'>
+                        <div className='inner-sidebarfooter bg-light'>
+                            {/* ####################### Shortcut Section ###############################*/}
+                            <div title='Shortcut'>
+                                <div className="link" id='masterdrizelltitlelink' onClick={(e) => { e.preventDefault(); isOpen ? handletoggleShortcut() : toggle() }} style={{ cursor: "pointer" }}>
+                                    <div className="icon" ><BsFillClockFill style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
+                                    <span style={{ display: "flex" }} >
+                                        <div style={{ display: isOpen ? "block" : "none" }} className="link_text " >Shortcut</div>
+                                        <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
+                                    </span>
                                 </div>
-                            </li>
+                                <div className="innerdiv" id="shortcutinner" style={{ display: "none" }}>
+                                    <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
+                                        <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                            <NavLink to='/AddNewAssets' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <BsFillLaptopFill style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} > Enroll New Asset</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                            <NavLink to='/AddTickets' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Create a New Ticket</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                            <NavLink to='/AddVendorCode' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <FaElementor style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >Create a New Vendor</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink' style={{ borderTop: '2px solid #333' }}>
+                                            <NavLink to='/AddVendorInvoice' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <RiMoneyEuroCircleFill style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} > New Vendor Invoice</div>
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {/* ######################################  Shortcut Section End ############################################################### */}
+                            {/* ######################################  Help Section Start ############################################################### */}
+                            <div title='Help' >
+                                <div className="link" id='masterdrizelltitlelink' onClick={(e) => { e.preventDefault(); isOpen ? handletogglehelp() : toggle() }} style={{ cursor: "pointer" }}>
+                                    <div className="icon" ><MdOutlineHelp style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
+                                    <span style={{ display: "flex" }} >
+                                        <div style={{ display: isOpen ? "block" : "none" }} className="link_text " >Help</div>
+                                        <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
+                                    </span>
+                                </div>
+                                <div className="innerdiv" id="helpinner" style={{ display: "none" }}>
+                                    <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
+                                        <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                            <NavLink to='#' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <BsYoutube style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} > Quick Start Video</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                            <NavLink to='#' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <MdHelp style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} > Getting Started Guide</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
+                                            <NavLink to='/AddVendorCode' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <MdGroups style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} > Free Onbording Session</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink' style={{ borderTop: '2px solid #333' }}>
+                                            <NavLink to='/HelpDescription' target="_blank" className='navlink d-flex' activeclassname="sidebaractive">
+                                                <IoMdHelp style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} > Help Guides</div>
+                                            </NavLink>
+                                        </li>
+                                        <li className='innerlink' style={{ borderTop: '2px solid #333' }}>
+                                            <a href='mailto:drizzle.ilog@gmail.com' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <MdEmail style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} > Send Email to Support</div>
+                                            </a>
+                                        </li>
+                                        <li className='innerlink' style={{ borderTop: '2px solid #333' }}>
+                                            <NavLink to='/Contactus' className='navlink d-flex' activeclassname="sidebaractive">
+                                                <MdPermContactCalendar style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                                <div style={{ display: isOpen ? "block" : "none" }} >  Contact us</div>
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {/* ######################################  Help Section End ############################################################### */}
 
-                        </ul>
-                    </div>
+                            <div title='Notification'>
+                                <div className="link" onClick={(e) => { e.preventDefault(); isOpen ? window.location.href = './Dashboard' : toggle() }} id='masterdrizelltitlelink' style={{ cursor: "pointer" }}>
+                                    <div className="icon" ><BsBellFill style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text " >Notification</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a title='Logout' className="link" activeclassname="sidebaractive" style={{ background: "rgb(222, 222, 222)",width:isOpen?'87%':''}}>
+                            <div className="icon text-danger" onClick={toggle}><MdOutlineExitToApp style={{ fontSize: "20px" }} /></div>
+                            <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text text-danger" data-toggle="modal" data-target="#exampleModal">Logout</div>
+                        </a>
+                    </footer>
+                    {/*################################  Bottom Section  END ###################################### */}
 
-                    <div className="innerdiv" id="subticketsinner" style={{ display: "none" }}>
-                        <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
-                            <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
-                                <NavLink to='/OpenTotalTickets' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                    <div style={{ display: isOpen ? "block" : "none" }} > Open Ticket</div>
-                                </NavLink>
-                            </li>
-                            <li className='innerlink' >
-                                <NavLink to='/TotalTicket' className='navlink d-flex' activeclassname="sidebaractive">
-                                    <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                    <div style={{ display: isOpen ? "block" : "none" }} > Close Ticket</div>
-                                </NavLink>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
 
+                <div className={isOpen ? "mainopen" : "main"}>
+                    <Navbar isOpen={isOpen} />
+                    {children}
+                    <Footer />
+                </div>
 
-                {/*################################  Bottom Section  Start ###################################### */}
-
-                <footer className="footer_section" id='footerdivsection'>
-                    <div className='inner-sidebarfooter bg-light'>
-                        {/* ####################### Shortcut Section ###############################*/}
-                        <div title='Shortcut'>
-                            <div className="link" id='masterdrizelltitlelink' onClick={(e) => { e.preventDefault(); isOpen ? handletoggleShortcut() : toggle() }} style={{ cursor: "pointer" }}>
-                                <div className="icon" ><BsFillClockFill style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
-                                <span style={{ display: "flex" }} >
-                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text " >Shortcut</div>
-                                    <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
-                                </span>
-                            </div>
-                            <div className="innerdiv" id="shortcutinner" style={{ display: "none" }}>
-                                <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
-                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
-                                        <NavLink to='/AddNewAssets' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <BsFillLaptopFill style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} > Enroll New Asset</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
-                                        <NavLink to='/AddTickets' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Create a New Ticket</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
-                                        <NavLink to='/AddVendorCode' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <FaElementor style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >Create a New Vendor</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }}>
-                                        <NavLink to='/AddVendorInvoice' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <RiMoneyEuroCircleFill style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} > New Vendor Invoice</div>
-                                        </NavLink>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        {/* ######################################  Shortcut Section End ############################################################### */}
-                        {/* ######################################  Help Section Start ############################################################### */}
-                        <div title='Help' >
-                            <div className="link" id='masterdrizelltitlelink' onClick={(e) => { e.preventDefault(); isOpen ? handletogglehelp() : toggle() }} style={{ cursor: "pointer" }}>
-                                <div className="icon" ><MdOutlineHelp style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
-                                <span style={{ display: "flex" }} >
-                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text " >Help</div>
-                                    <div style={{ display: isOpen ? "block" : "none" }} className="icon"><IoIosArrowDown /></div>
-                                </span>
-                            </div>
-                            <div className="innerdiv" id="helpinner" style={{ display: "none" }}>
-                                <ul style={{ paddingLeft: "20px", marginBottom: "0px" }}>
-                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
-                                        <NavLink to='#' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <BsYoutube style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} > Quick Start Video</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
-                                        <NavLink to='#' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <MdHelp style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} > Getting Started Guide</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }} >
-                                        <NavLink to='/AddVendorCode' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <MdGroups style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} > Free Onbording Session</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }}>
-                                        <NavLink to='/HelpDescription' target="_blank" className='navlink d-flex' activeclassname="sidebaractive">
-                                            <IoMdHelp style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} > Help Guides</div>
-                                        </NavLink>
-                                    </li>
-                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }}>
-                                        <a href='mailto:drizzle.ilog@gmail.com' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <MdEmail style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} > Send Email to Support</div>
-                                        </a>
-                                    </li>
-                                    <li className='innerlink' style={{ borderTop: '2px solid #333' }}>
-                                        <NavLink to='/Contactus' className='navlink d-flex' activeclassname="sidebaractive">
-                                            <MdPermContactCalendar style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
-                                            <div style={{ display: isOpen ? "block" : "none" }} >  Contact us</div>
-                                        </NavLink>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        {/* ######################################  Help Section End ############################################################### */}
-
-                        <div title='Notification'>
-                            <div className="link" onClick={(e) => { e.preventDefault(); isOpen ? window.location.href = './Dashboard' : toggle() }} id='masterdrizelltitlelink' style={{ cursor: "pointer" }}>
-                                <div className="icon" ><BsBellFill style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text " >Notification</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a title='Logout' className="link" activeclassname="sidebaractive" style={{ background: "rgb(222, 222, 222)" }}>
-                        <div className="icon text-danger" onClick={toggle}><MdOutlineExitToApp style={{ fontSize: "20px" }} /></div>
-                        <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text text-danger" data-toggle="modal" data-target="#exampleModal">Logout</div>
-                    </a>
-                </footer>
-                {/*################################  Bottom Section  END ###################################### */}
-
+                {/* ############################################# Logout Section ############################################# */}
+                <Logout />
             </div>
-
-            <div className={isOpen ? "mainopen" : "main"}>
-                <Navbar isOpen={isOpen} />
-                {children}
-                <Footer />
-            </div>
-        </div>
         </>
     );
 };

@@ -1,7 +1,8 @@
 .AssetDash {
     width: 99%;
     margin: 18px 8px;
-    min-height: 70vh;
+    /* min-height: 70vh; */
+    /* border: 1px solid red; */
     max-width: 100%;
     /* border: 2px solid red; */
 }
@@ -48,19 +49,18 @@
 }
 .AssetDash  .asset-sidebar{
  width: 32%;
- color:#fff;
+ height: 50vh;
+ background: url('../../../image/graph.webp');
+ background-size: 100% 100%;
+ /* background-position: center; */
  /* border: 2px solid red; */
- box-shadow: 2px 2px 10px ;
- background: linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))
-
- 
+ /* background: linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113)) */
 }
-.AssetDash .Asset_card2 {
-    width: 35%;
-    height: 18%;
-    margin:5px  auto;
-    /* border: 2px solid red; */
 
+.AssetDash .Asset_card2 {
+    width: 90%;
+    height: 18%;
+    margin:3px  auto;
 } 
 
 
@@ -86,7 +86,6 @@
     width: 48%;
     margin: 0 5px 5px 5px;
     box-shadow: 2px 2px 10px silver;
-    height: 100%;
 
 }
 
@@ -107,7 +106,6 @@
 .soft_bar {
     width: 90%;
     margin: auto;
-    height: 80%
 }
 
 @media screen and (max-width: 1000px) {
