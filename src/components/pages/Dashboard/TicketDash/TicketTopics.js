@@ -106,7 +106,10 @@ const TicketTopics = () => {
             "value": ticketIssue.NewReqTicketClose,
         }
     ];
-    const COLORS = ['#3a25a1', '#5f2149'];
+    const COLORS = ['#e9c219', '#5f2149','#3691b2','#04719f','#c4d33c'];
+    const COLORS2 = ['#f35d5d','#43b1a6','#e9c219','#3691b2','#3691b2'];
+    const COLORS3= ['#43b1a6','#04719f','#c4d33c','#e9c219', '#5f2149'];
+    const COLORS4= ['#8bcbdf','#97b8dd','#e19f4c','#c4d33c', '#5f2149'];
 
 
     return (
@@ -125,7 +128,7 @@ const TicketTopics = () => {
                         <Tooltip />
                         <Pie stroke="none"  data={Hardwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} fill="rgb(94, 4, 69)" label labelLine={false} >
                             {Hardwaredata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}  style={{filter: `drop-shadow(0px 0px 3px gray` }}/>
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="top" align="right" />
@@ -146,7 +149,7 @@ const TicketTopics = () => {
                         <Tooltip />
                         <Pie stroke="none"  data={Softwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} fill="rgb(94, 4, 69)" label labelLine={false} >
                             {Softwaredata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}  style={{filter: `drop-shadow(0px 0px 3px gray` }}/>
+                                <Cell key={`cell-${index}`} fill={COLORS2[index % COLORS2.length]}  />
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="top" align="right" />
@@ -167,7 +170,7 @@ const TicketTopics = () => {
                         <Pie stroke="none"   data={Otherdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} paddingAngle={2} label labelLine={false}
                             fill="rgb(61,174,167)" >
                             {Otherdata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}  style={{filter: `drop-shadow(0px 0px 3px gray` }}/>
+                                <Cell key={`cell-${index}`} fill={COLORS3[index % COLORS3.length]} />
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="top" align="right" />
@@ -189,7 +192,7 @@ const TicketTopics = () => {
                         <Tooltip />
                         <Pie stroke="none"  data={Serverdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} fill="rgb(94, 4, 69)" label labelLine={false}>
                             {Serverdata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}  style={{filter: `drop-shadow(0px 0px 3px gray` }}/>
+                                <Cell key={`cell-${index}`} fill={COLORS4[index % COLORS4.length]} />
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="top" align="right" />
@@ -210,7 +213,7 @@ const TicketTopics = () => {
                         <Tooltip />
                         <Pie stroke="none"  data={Allocationdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} fill="rgb(94, 4, 69)" label labelLine={false} >
                             {Allocationdata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}  style={{filter: `drop-shadow(0px 0px 3px gray` }}/>
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="top" align="right" />
@@ -231,7 +234,7 @@ const TicketTopics = () => {
                         <Pie stroke="none"  data={Connectivitydata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} paddingAngle={2} label labelLine={false}
                             fill="rgb(61,174,167)" >
                             {Connectivitydata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}  style={{filter: `drop-shadow(0px 0px 3px gray` }}/>
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="top" align="right" />
@@ -253,7 +256,7 @@ const TicketTopics = () => {
                         <Pie stroke="none"  data={newreqdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={60} paddingAngle={2} label labelLine={false}
                             fill="rgb(61,174,167)" >
                             {newreqdata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}  style={{filter: `drop-shadow(0px 0px 3px gray` }}/>
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
                             ))}
                         </Pie>
                         <Legend layout="vertical" verticalAlign="top" align="right" />
