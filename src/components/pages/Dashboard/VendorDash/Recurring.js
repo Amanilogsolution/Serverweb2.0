@@ -152,7 +152,7 @@ export default function Recurring() {
                 breakLabel="..."
                 nextLabel={<IoMdArrowDropright style={{fontSize:"24px"}}/>}
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
+                pageRangeDisplayed={3}
                 pageCount={lastval}
                 previousLabel={<IoMdArrowDropleft style={{fontSize:"24px"}}/>}
                 renderOnZeroPageCount={null}

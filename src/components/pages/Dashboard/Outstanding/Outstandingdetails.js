@@ -45,10 +45,9 @@ const Outstatndingdetails = () => {
         const datas = await PaidInvoice(localStorage.getItem('Database'), data.selected + 1, paidrowperpage)
         setPaidInvoice(datas.data)
     }
-    const handleChange = (e) => {
-        e.preventDefault()
-        console.log(e.target.value)
+    const handleChange = () => {
         document.getElementById('display').style.display = "flex"
+
     }
 
 
@@ -90,21 +89,21 @@ const Outstatndingdetails = () => {
                         </div>
                         <div className="modal-body">
                             <div className="d-flex mb-2">
-                                {/* <input type='radio' id='vendorinvoice' className="form-check-input" value='1' name='inputGroupSelect01' defaultChecked />
+                                <input type='radio' id='vendorinvoice' className="form-check-input" value='1' name='inputGroupSelect01' defaultChecked />
                                 <label Htmlfor='vendorinvoice' > Vendor Invoice</label>&nbsp;&nbsp;
                                 <input type='radio' id='vendorinvoice' className="form-check-input" value='2' name='inputGroupSelect01' />
                                 <label Htmlfor='paymentdetail'> Payment Detail</label>&nbsp;&nbsp;
                                 <input type='radio' id='billingaccountnumber' className="form-check-input" value='3' name='inputGroupSelect01' />
-                                <label Htmlfor='billingaccountnumber'> Billing Account Number</label> */}
+                                <label Htmlfor='billingaccountnumber'> Billing Account Number</label>
 
-                                <select className="custom-select" id="inputGroupSelect01" onChange={handleChange}>
+                                {/* <select className="custom-select" id="inputGroupSelect01" onChange={handleChange}>
                                             <option hidden >Select...</option>
-                                            <option value="Vendor Invoice">Vendor Invoice</option>
-                                            <option value="Payment Detail">Payment Detail</option>
-                                            <option value="Billing Account Number">Billing Account Number</option>
-                                        </select>
+                                            <option value="1">Vendor Invoice</option>
+                                            <option value="2">Payment Detail</option>
+                                            <option value="3">Billing Account Number</option>
+                                        </select> */}
                             </div>
-                            <div id="display" style={{display:"hidden"}} className=" my-2 mt-4">
+                            <div id="display" style={{display:"hidden"}} className="d-flex justify-content-center my-2 mt-4">
                                 <input className=" form-control w-50" type="search" placeholder="Search ..." />
                                 {/* <BiSearchAlt2 className='cursor-pointer mx-1 mt-1 text-primary' style={{ fontSize: "33px" }} /> */}
                             </div>
@@ -119,11 +118,11 @@ const Outstatndingdetails = () => {
 
             {/* </div> */}
             <div className="d-flex flex-row position-relative justify-content-around mt-4 px-2 rounded" style={{ minHeight: "60vh", maxHeight: '80vh' }} >
-                <div className='bg-white rounded' style={{ boxShadow: '1px 1px 10px #333', width: "48%" }}>
+                <div className=' bg-white rounded' style={{ boxShadow: '1px 1px 10px #333', width: "48%" }}>
                     <div className="vendorinv rounded position-absolute pt-3">
                         <p className=" text-center text-white">Vendor Invoices - Detailed</p>
                     </div>
-                    <div className="Outstanding_details_table mt-2 px-2 " style={{ overflow: "auto",minHeight:'76%', maxHeight: "90%" }}>
+                    <div className="Outstanding_details_table mt-5 px-2 " style={{ overflow: "auto", minHeight: "76%" }}>
                         <table className="table" >
                             <thead>
                                 <tr className='text-danger'>
