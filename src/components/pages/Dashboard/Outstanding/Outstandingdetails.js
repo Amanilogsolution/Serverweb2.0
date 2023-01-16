@@ -45,10 +45,11 @@ const Outstatndingdetails = () => {
         const datas = await PaidInvoice(localStorage.getItem('Database'), data.selected + 1, paidrowperpage)
         setPaidInvoice(datas.data)
     }
-    // const handleChange = () => {
-    //     document.getElementById('display').style.display = "flex"
-
-    // }
+    const handleChange = (e) => {
+        e.preventDefault()
+        console.log(e.target.value)
+        document.getElementById('display').style.display = "flex"
+    }
 
 
     return (
@@ -88,24 +89,24 @@ const Outstatndingdetails = () => {
                             <h5 className="modal-title" id="exampleModalLongTitle">Filter <BsFilterLeft style={{ fontSize: "38px", color: "#4089df" }} /></h5>
                         </div>
                         <div className="modal-body">
-                            <div className="d-flex  mb-2">
-                                <input type='radio' id='vendorinvoice' className="form-check-input" value='1' name='inputGroupSelect01' defaultChecked />
+                            <div className="d-flex mb-2">
+                                {/* <input type='radio' id='vendorinvoice' className="form-check-input" value='1' name='inputGroupSelect01' defaultChecked />
                                 <label Htmlfor='vendorinvoice' > Vendor Invoice</label>&nbsp;&nbsp;
                                 <input type='radio' id='vendorinvoice' className="form-check-input" value='2' name='inputGroupSelect01' />
                                 <label Htmlfor='paymentdetail'> Payment Detail</label>&nbsp;&nbsp;
                                 <input type='radio' id='billingaccountnumber' className="form-check-input" value='3' name='inputGroupSelect01' />
-                                <label Htmlfor='billingaccountnumber'> Billing Account Number</label>
+                                <label Htmlfor='billingaccountnumber'> Billing Account Number</label> */}
 
-                                {/* <select className="custom-select" id="inputGroupSelect01" onChange={handleChange}>
+                                <select className="custom-select" id="inputGroupSelect01" onChange={handleChange}>
                                             <option hidden >Select...</option>
-                                            <option value="1">Vendor Invoice</option>
-                                            <option value="2">Payment Detail</option>
-                                            <option value="3">Billing Account Number</option>
-                                        </select> */}
+                                            <option value="Vendor Invoice">Vendor Invoice</option>
+                                            <option value="Payment Detail">Payment Detail</option>
+                                            <option value="Billing Account Number">Billing Account Number</option>
+                                        </select>
                             </div>
-                            <div id="display" className="d-flex justify-content-center my-2 mt-4">
+                            <div id="display" style={{display:"hidden"}} className=" my-2 mt-4">
                                 <input className=" form-control w-50" type="search" placeholder="Search ..." />
-                                <BiSearchAlt2 className='cursor-pointer mx-1 mt-1 text-primary' style={{ fontSize: "33px" }} />
+                                {/* <BiSearchAlt2 className='cursor-pointer mx-1 mt-1 text-primary' style={{ fontSize: "33px" }} /> */}
                             </div>
                         </div>
                         <div className="modal-footer">
