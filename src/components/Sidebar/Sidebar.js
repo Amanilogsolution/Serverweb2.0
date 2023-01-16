@@ -44,6 +44,7 @@ import Navbar from './Navbar.js';
 import './Sidebar.css'
 import logo from '../../image/drizzle_logo.png'
 import Logout from './Logout';
+import Sidebar2 from './Contactus/Sidebar2/Sidebar2';
 
 const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -56,6 +57,7 @@ const Sidebar = ({ children }) => {
     const [togglesubtransation, setTogglesubtransation] = useState(false);
     const [toggleshortcut, setToggleshortcut] = useState(true);
     const [togglehelp, setTogglehelp] = useState(true);
+    const [sidebar2toggle,setSidebar2toggle] = useState(false);
 
     const toggle = () => {
         setIsOpen(!isOpen)
@@ -211,10 +213,16 @@ const Sidebar = ({ children }) => {
         setTogglehelp(!togglehelp)
     }
 
+    const togglesidebar2=()=>{
+        setSidebar2toggle(!sidebar2toggle)
+        console.log(sidebar2toggle)
+    }
+
+
     return (
         <>
             <div className="sidebarcontainer">
-                <div className={isOpen ? 'sidebaropen px-3' : 'sidebar '}
+                <div className={isOpen ? 'sidebaropen' : 'sidebar '}
                 // onClick={toggle}
                 //  onMouseEnter={() => setIsOpen(true)}
                 //     onMouseLeave={toggle}
@@ -645,7 +653,7 @@ const Sidebar = ({ children }) => {
                                 </div>
                             </div>
                         </div>
-                        <a title='Logout' className="link" activeclassname="sidebaractive" style={{ background: "rgb(222, 222, 222)",width:isOpen?'87%':''}}>
+                        <a title='Logout' className="link" activeclassname="sidebaractive" style={{ background: "rgb(222, 222, 222)"}}>
                             <div className="icon text-danger" onClick={toggle}><MdOutlineExitToApp style={{ fontSize: "20px" }} /></div>
                             <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text text-danger" data-toggle="modal" data-target="#exampleModal">Logout</div>
                         </a>
@@ -654,9 +662,10 @@ const Sidebar = ({ children }) => {
 
                 </div>
 
-                <div className={isOpen ? "mainopen" : "main"}>
-                    <Navbar isOpen={isOpen} />
+                <div className={isOpen ? "mainopen" : "main"} style={{position:'relative'}}>
+                    <Navbar isOpen={isOpen} togglesidebar2={togglesidebar2}/>
                     {children}
+                    <Sidebar2 sidebar2toggle={sidebar2toggle} togglesidebar2={togglesidebar2}/>
                     <Footer />
                 </div>
 

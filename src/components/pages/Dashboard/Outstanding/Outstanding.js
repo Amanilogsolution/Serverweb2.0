@@ -119,7 +119,6 @@ const Outstanding = ({ setStep }) => {
 
           <div style={{overflow:"auto", height: "46vh", background: "white", borderRadius: "5px", boxShadow: "1px 1px 5px silver", padding: "1px 20px 0 20px" }}>
 
-
             <table className="table " style={{marginTop:"20px"}}>
               <thead >
                 <tr>

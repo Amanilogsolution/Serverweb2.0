@@ -36,9 +36,7 @@
     min-height: 62vh;
     max-height: 62vh;
 }
-.outstanding-container .outstanding-table .outstanding-table-inner .outstanding-table-tbody-inner{
-    overflow: auto;
-}
+
 .nextoutstanding-detail {
     height: 60px;
     transition: all 0.1s linear;

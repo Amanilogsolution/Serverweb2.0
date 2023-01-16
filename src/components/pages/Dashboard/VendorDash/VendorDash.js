@@ -217,7 +217,7 @@ export default function VendorDash({ setStep }) {
           </select>
         </div>
         <div className='select_div cursor-pointer text-light border-0' id="recurring" onClick={() => { setStep(6) }}>
-          <h7 >Click for Recurring Details</h7>
+          <h6 >Click for Recurring Details</h6>
         </div>
       </div>
     </div>
