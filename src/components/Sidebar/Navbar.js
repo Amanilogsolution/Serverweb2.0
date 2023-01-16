@@ -15,12 +15,12 @@ import { CgOrganisation } from 'react-icons/cg'
 import { GrUserExpert } from 'react-icons/gr'
 import { FiUserPlus } from 'react-icons/fi'
 
-const Navbar = (propes) => {
-    console.log(propes)
+const Navbar = (props) => {
+    console.log(props)
     return (
         <>
             <div className="innernavbarcontainer bg-white mb-3 d-flex align-items-center "  >
-                {propes.isOpen ?
+                {props.isOpen ?
                     null : <img className='navbar-brand logo-img' src={DrizzleLogo} alt='Drizzle Logo' />}
 
                 <div className=' setting-main-div d-flex'>
@@ -81,7 +81,7 @@ const Navbar = (propes) => {
                             <BsBellFill className='ft-20 mt-1' />
                         </div>
                     </div>
-                    <div className='d-flex  cursor-pointer mx-5' onClick={propes.togglesidebar2}>
+                    <div className='d-flex  cursor-pointer mx-5' onClick={props.togglesidebar2}>
                         <RiSettings3Fill className='ft-20 mt-1' />
                     </div>
                     <div className='d-flex' >
