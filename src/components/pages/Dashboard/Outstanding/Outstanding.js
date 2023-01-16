@@ -7,6 +7,7 @@ import { GrDocumentCsv } from 'react-icons/gr'
 import { ExcelConvertData } from '../VendorDash/Excel'
 import ReactPaginate from 'react-paginate';
 import { BiRupee } from 'react-icons/bi';
+import { IoMdArrowDropleft,IoMdArrowDropright } from 'react-icons/io';
 
 import 'react-data-table-component-extensions/dist/index.css';
 // import { AiFillEdit } from 'react-icons/ai';
@@ -205,9 +206,9 @@ const Outstanding = ({ setStep }) => {
           </table>
         </div>
         <div className="d-flex justify-content-end  bottom-0 w-100 " >
-          <div className="d-flex justify-content-center">
-            <label htmlFor='rowpage' className='mt-2'>Rows Per Page </label> &nbsp;
-            <select onChange={handleChange} id='rowpage' className=' mt-1' style={{ height: '30px' }}>
+          <div className='rows_per_page'>
+            <label >Rows / page </label> &nbsp;
+            <select onChange={handleChange} id='rowpage'>
               <option value="10">10</option>
               <option value="15">15</option>
               <option value="20">20</option>
@@ -216,11 +217,11 @@ const Outstanding = ({ setStep }) => {
 
           <ReactPaginate
             breakLabel="..."
-            nextLabel="next "
+            nextLabel={<IoMdArrowDropright style={{fontSize:"24px"}}/>}
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
             pageCount={lastval}
-            previousLabel=" previous"
+            previousLabel={<IoMdArrowDropleft style={{fontSize:"24px"}}/>}
             renderOnZeroPageCount={null}
             containerClassName={'pagination justify-content-end mx-4'}
             pageClassName={'page-item'}

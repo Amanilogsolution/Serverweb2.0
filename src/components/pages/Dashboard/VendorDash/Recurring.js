@@ -7,6 +7,7 @@ import {BiExport} from 'react-icons/bi'
 import {SiMicrosoftexcel} from 'react-icons/si'
 import {GrDocumentCsv} from 'react-icons/gr'
 import {ExcelConvertData} from './Excel'
+import { IoMdArrowDropleft,IoMdArrowDropright } from 'react-icons/io';
 
 
 
@@ -137,8 +138,8 @@ export default function Recurring() {
           </table>
           </div>
           <div className="d-flex justify-content-end">
-            <div className="d-flex justify-content-center align-items-center mx-2">
-              <label>Rows Per Page</label>
+            <div className='rows_per_page mx-4'>
+              <label className='mx-2'>Rows / page</label>
               <select onChange={handleChange}>
                 <option value="10">10</option>
                 <option value="15">15</option>
@@ -149,11 +150,11 @@ export default function Recurring() {
             <div>
               <ReactPaginate
                 breakLabel="..."
-                nextLabel="next "
+                nextLabel={<IoMdArrowDropright style={{fontSize:"24px"}}/>}
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={5}
                 pageCount={lastval}
-                previousLabel=" previous"
+                previousLabel={<IoMdArrowDropleft style={{fontSize:"24px"}}/>}
                 renderOnZeroPageCount={null}
                 containerClassName={'pagination justify-content-end'}
                 pageClassName={'page-item'}
