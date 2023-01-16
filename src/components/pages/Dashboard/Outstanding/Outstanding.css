@@ -72,3 +72,51 @@
     font-size: 12px;
     font-weight: 400;
 }
+
+.AnimationBtn {
+    position: relative;
+    background: transparent;
+    padding: 20px 40px;
+  /*   text-transform: uppercase; */
+  /*   text-decoration: none; */
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: #fff;
+    border:none;
+    cursor:pointer
+  }
+  .AnimationBtn:before {
+    /* border:2px solid red; */
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 50%;
+    left: 0;
+    top: -5px;
+    background: #00ed64;
+    transform: skewX(30deg);
+    z-index: -1;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  .AnimationBtn:hover:before {
+    transform: skewX(0deg);
+    left: 50%;
+    top: 0;
+  }
+  .AnimationBtn:after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 50%;
+    left: 51%;
+    top: 5px;
+    background-color: #00bfff;
+    transform: skewX(30deg);
+    z-index: -1;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  .AnimationBtn:hover:after {
+    transform: skewX(0deg);
+    left: 0%;
+    top: 0;
+  }

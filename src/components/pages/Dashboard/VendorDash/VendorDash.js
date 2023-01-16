@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './VendorDash.css'
-import { Vendor_Reference_no, TotalVendorContract, ActiveVendorCode, ActiveBillingFreq, ActiveLocation, ActiveVendorCategory } from '../../../../api/index'
+import { Vendor_Reference_no, TotalVendorContract, ActiveVendorCode, ActiveBillingFreq, ActiveLocation, ActiveVendorCategory,FilterVendorContract } from '../../../../api/index'
 import ReactPaginate from 'react-paginate';
 import { CSVLink } from "react-csv";
 import { BiExport } from 'react-icons/bi'
@@ -13,6 +13,10 @@ export default function VendorDash({ setStep }) {
   const [ReferabceNo, setReferanceNo] = useState()
   const [TotalVendor, setTotalVendor] = useState([])
   const [rowperpage, setRowPerPage] = useState(10)
+  const [filter,setFilter] = useState(false)
+  const [type,setType] = useState("")
+  const [value,setValue] = useState("")
+
   const [lastval, setLastval] = useState()
   const [toogle, setToogle] = useState(false)
   const [vendorlist, setVendorlist] = useState([])
@@ -60,20 +64,47 @@ export default function VendorDash({ setStep }) {
   }, [])
 
   const handlePageClick = async (data) => {
+    if(filter== true){
+      console.log(type,value)
+      const result = await FilterVendorContract(localStorage.getItem('Database'),type,value,data.selected + 1,rowperpage)
+      setTotalVendor(result.data)
+
+    }else{
     const datas = await TotalVendorContract(localStorage.getItem('Database'), data.selected + 1, rowperpage)
     setTotalVendor(datas.data)
+    }
 
-    console.log(data.selected + 1)
   }
 
   const handleChange = async (e) => {
     e.preventDefault();
     console.log(e.target.value)
     setRowPerPage(e.target.value)
+    if(filter== true){
+      const result = await FilterVendorContract(localStorage.getItem('Database'),type,value,1,e.target.value)
+      setTotalVendor(result.data)
+      const total = result.TotalData[0]["Totaldata"]
+      setLastval(Math.ceil(total / e.target.value))
+    }else{
     const datas = await TotalVendorContract(localStorage.getItem('Database'), 1, e.target.value)
     setTotalVendor(datas.data)
     const total = datas.TotalData[0]["Totaldata"]
     setLastval(Math.ceil(total / e.target.value))
+    }
+
+  }
+
+  const handleChangeFilter = async (data,value) => {
+    setType(data)
+    setValue(value)
+    console.log(data,value)
+    const result = await FilterVendorContract(localStorage.getItem('Database'),data,value,1,10)
+    console.log(result)
+    setFilter(true)
+    setTotalVendor(result.data)
+    const total = result.TotalData[0]["Totaldata"]
+    setLastval(Math.ceil(total / 10))
+
 
   }
 
@@ -180,16 +211,16 @@ export default function VendorDash({ setStep }) {
         </div>
 
         <div className='select_div'>
-          <select className="form-select" aria-label="Default select example">
+          <select className="form-select" aria-label="Default select example" id="Vendname" onChange={()=>{handleChangeFilter("vendor",document.getElementById('Vendname').value)}}>
             <option hidden selected>Vendor Code</option>
             {
               vendorlist.map((item, index) =>
-                <option key={index} value={[`${item.vendor_name},sno${item.sno}`]}>{item.vendor_name}</option>)
+                <option key={index} value={[`${item.vendor_name}`]}>{item.vendor_name}</option>)
             }
           </select>
         </div>
         <div className='select_div'>
-          <select className="form-select" aria-label="Default select example">
+          <select className="form-select" aria-label="Default select example" id="Category" onChange={()=>{handleChangeFilter("major_category",document.getElementById('Category').value)}}>
             <option hidden selected>Category</option>
             {
               vendorcatlist.map((item, index) =>
@@ -198,7 +229,7 @@ export default function VendorDash({ setStep }) {
           </select>
         </div>
         <div className='select_div'>
-          <select className="form-select" aria-label="Default select example">
+          <select className="form-select" aria-label="Default select example" id="Location" onChange={()=>{handleChangeFilter("location",document.getElementById('Location').value)}}>
             <option hidden selected>Location</option>
             {
               locationlist.map((item, index) =>
@@ -208,7 +239,7 @@ export default function VendorDash({ setStep }) {
           </select>
         </div>
         <div className='select_div'>
-          <select className="form-select" aria-label="Default select example">
+          <select className="form-select" aria-label="Default select example" id="frequency" onChange={()=>{handleChangeFilter("billling_freq",document.getElementById('frequency').value)}}>
             <option hidden selected>Frequency</option>
             {
               billingfreqlist.map((item, index) =>
