@@ -122,7 +122,7 @@ const Outstatndingdetails = () => {
                     <div className="vendorinv rounded position-absolute pt-3">
                         <p className=" text-center text-white">Vendor Invoices - Detailed</p>
                     </div>
-                    <div className="Outstanding_details_table mt-2 px-2 border border-danger " style={{ overflow: "auto",minHeight:'76%', maxHeight: "90%" }}>
+                    <div className="Outstanding_details_table mt-2 px-2 " style={{ overflow: "auto",minHeight:'76%', maxHeight: "90%" }}>
                         <table className="table" >
                             <thead>
                                 <tr className='text-danger'>

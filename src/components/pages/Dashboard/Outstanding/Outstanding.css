@@ -74,6 +74,50 @@
     font-size: 12px;
     font-weight: 400;
 }
+.rows_per_page{
+    /* border:1px solid red; */
+    padding: 10px;
+}
+.rows_per_page select{
+    height:20px;
+    background:#193992;
+    border:none;
+    border-radius:3px;
+    color:white;
+    font-size:13px;
+    cursor: pointer;
+}
+.rows_per_page select:hover{
+    background: #112c76;
+}
+.rows_per_page label{
+    font-size:14px;
+    color:#30305f
+}
+.pagination > li {
+    display: inline-block;
+    padding-left: 0;
+    margin-top: 7px;
+  }
+  .pagination > li {
+    list-style: none;
+  }
+  .pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 4px 12px;
+  line-height: 1.5;
+  color: #1e3992;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  height: 33px;
+}
+.pagination>li.active>a {
+    color: #fff;
+    background-color: #1e3992;
+    border-color:#1e3992;
+  }
 
 .nextoutstanding_AnimationBtn {
     /* position: relative; */
