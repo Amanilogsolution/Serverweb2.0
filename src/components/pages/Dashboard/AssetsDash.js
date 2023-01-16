@@ -130,7 +130,7 @@ export default function AssetsDash(callback) {
                 <div class="spinner-border text-success" style={{ marginTop: "10%", marginLeft: "50%" }} role="status">
                   <span class="sr-only"></span>
                 </div> :
-                <div className="manu_pie rounded position-absolute" style={{ background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))', boxShadow: '2px 2px 10px silver', top: "-6.5%", width: "93.5%", left: '3.2%' }}>
+                <div className="manu_pie rounded position-absolute text-light" style={{ background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))', boxShadow: '2px 2px 10px silver', top: "-6.5%", width: "93.5%", left: '3.2%' }}>
                   <ResponsiveContainer width="100%" height='100%' aspect={1.9} >
                     <PieChart width={700} height={150}>
                       

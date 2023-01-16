@@ -37,7 +37,7 @@ const LandingFooter = () => {
                 </div>
                 {/* ################################## Social Icon Section ############################################# */}
                 <section className='div_for_icon d-flex justify-content-center py-3 align-items-center'>
-                    <h7 className='footertitle'>Connect with Us</h7>
+                    <h6 className='footertitle'>Connect with Us</h6>
                     <span><MdFacebook className='social-icons' /></span>
                     <span> <BsYoutube className='social-icons' /></span>
                     <span> <BsLinkedin className='social-icons' /></span>
