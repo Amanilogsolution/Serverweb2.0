@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import './sidebar2.css'
 import { FiUserPlus } from 'react-icons/fi'
 import { GrUserExpert } from 'react-icons/gr'
@@ -16,22 +16,28 @@ const Sidebar2 = (props) => {
                         &#215;</span>
                 </div>
                 <section className="px-2 mt-3">
-                    <div className='sidebar2-navdiv d-flex px-2 align-items-center'>
-                        <span className="sidebar2-icons px-3 ft-20"><FiUserPlus /></span>
-                        <span> New Role</span>
-                    </div>
-                    <div className='sidebar2-navdiv d-flex px-2 align-items-center'>
-                        <span className="sidebar2-icons px-3 ft-20"><GrUserExpert /></span>
-                        <span> Assign Role</span>
-                    </div>
-                    <div className='sidebar2-navdiv d-flex px-2 align-items-center'>
-                        <span className="sidebar2-icons px-3 ft-20"><CgOrganisation /></span>
-                        <span>  Organisation Details</span>
-                    </div>
-                    <div className='sidebar2-navdiv d-flex px-2 align-items-center'>
+                    <Link to='/TotalRoles' className="text-decoration-none text-dark">
+                        <div className='sidebar2-navdiv d-flex px-2 align-items-center'>
+                            <span className="sidebar2-icons px-3 ft-20"><FiUserPlus /></span>
+                            <span> New Role</span>
+                        </div>
+                    </Link>
+                    <Link to='/TotalAssignRole' className="text-decoration-none text-dark">
+                        <div className='sidebar2-navdiv d-flex px-2 align-items-center'>
+                            <span className="sidebar2-icons px-3 ft-20"><GrUserExpert /></span>
+                            <span> Assign Role </span>
+                        </div>
+                    </Link>
+                    <Link to='/OrganisationDetails' className="text-decoration-none text-dark">
+                        <div className='sidebar2-navdiv d-flex px-2 align-items-center'>
+                            <span className="sidebar2-icons px-3 ft-20"><CgOrganisation /></span>
+                            <span>  Organisation Details </span>
+                        </div>
+                    </Link>
+                    <Link to='#' className="text-decoration-none text-dark"><div className='sidebar2-navdiv d-flex px-2 align-items-center'>
                         <span className="sidebar2-icons px-3 ft-20"><TiVendorMicrosoft /></span>
-                        <span>  Appliction</span>
-                    </div>
+                        <span>  Appliction </span>
+                    </div></Link>
                 </section>
                 <section className="sidebar2-themesec mt-2 px-4 ">
                     <h5>Theme</h5>
