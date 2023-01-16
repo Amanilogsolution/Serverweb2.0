@@ -71,13 +71,15 @@
 }
 .innerdiv .ul {
     padding: 0%;
+   
 }
 .innerdiv .ul .li {
     list-style: none;
 }
 .sidebarinerabc{
     overflow:auto;
-    max-height: 83.2vh;
+    min-height: 60vh;
+    max-height: 73.5vh;
 }
 .inner-sidebarfooter{
     z-index:100;
@@ -145,9 +147,12 @@
     overflow: hidden;
     transition: all 0.5s;
     text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px silver;
 }
 .innerlink{
     list-style: none;
+    border-radius: 10px;
 }
 .navlink{
     text-decoration: none;
@@ -157,6 +162,7 @@
 .navlink:hover{
     background: #c6b6f3;
     color: rgb(66, 4, 69);
+    border-radius: 10px;
 }
 
 

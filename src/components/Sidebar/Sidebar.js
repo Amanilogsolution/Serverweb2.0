@@ -44,7 +44,7 @@ import Navbar from './Navbar.js';
 import './Sidebar.css'
 import logo from '../../image/drizzle_logo.png'
 import Logout from './Logout';
-import Sidebar2 from './Contactus/Sidebar2/Sidebar2';
+import Sidebar2 from './Sidebar2/Sidebar2';
 
 const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -70,7 +70,6 @@ const Sidebar = ({ children }) => {
             document.getElementById('subtransationinner').style.display = "none"
             document.getElementById('shortcutinner').style.display = "none"
             document.getElementById('helpinner').style.display = "none"
-
         }
     };
 
@@ -114,8 +113,10 @@ const Sidebar = ({ children }) => {
             document.getElementById("subtransationinner").style.display = "none";
             // document.getElementById("inner").style.display = "none";
             // document.getElementById("subinner").style.display = "none";
+            document.getElementById("subhelpdeskinner").style.display = "none";
             document.getElementById("helpinner").style.display = "none";
             document.getElementById("shortcutinner").style.display = "none";
+            document.getElementById("subticketsinner").style.display = "none";
         } else {
             document.getElementById("innerdrizzle").style.display = "none";
             document.getElementById("subdrizzleinner").style.display = "none";
@@ -149,6 +150,7 @@ const Sidebar = ({ children }) => {
             document.getElementById("shortcutinner").style.display = "none";
         } else {
             document.getElementById("subhelpdeskinner").style.display = "none";
+            document.getElementById("subticketsinner").style.display = "none";
         }
         setTogglesubtickets(!togglesubtickets);
     };
@@ -234,7 +236,7 @@ const Sidebar = ({ children }) => {
                         </div>
                     </div>
 
-                    <div className='sidebarinerabc '>
+                    <div className={isOpen ?'sidebarinerabc px-2 pt-2' :'sidebarinerabc pt-2'}>
                         <span className='internalsidebar'>
                             <span className='ul'>
                                 <span className='li'>
@@ -553,7 +555,7 @@ const Sidebar = ({ children }) => {
 
                     {/*################################  Bottom Section  Start ###################################### */}
 
-                    <footer className="footer_section" id='footerdivsection'>
+                    <footer className={isOpen?'footer_section px-2':'footer_section'} id='footerdivsection'>
                         <div className='inner-sidebarfooter bg-light'>
                             {/* ####################### Shortcut Section ###############################*/}
                             <div title='Shortcut'>
