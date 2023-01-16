@@ -213,20 +213,20 @@ const Sidebar = ({ children }) => {
 
     return (
         <>
-            <div className="sidebarcontainer">
-                <div className={isOpen ? 'sidebaropen px-3' : 'sidebar '}
+            <div className="sidebarcontainer" >
+                <div style={{borderRadius:"7px"}} className={isOpen ? 'sidebaropen px-3' : 'sidebar '}
                 // onClick={toggle}
                 //  onMouseEnter={() => setIsOpen(true)}
                 //     onMouseLeave={toggle}
                 >
-                    <div className="top_section">
+                    <div className="top_section" >
                         <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} />
                         <div style={isOpen ? icononstyle : iconoffstyle} className="bars">
                             <MdOutlineDoubleArrow onClick={toggle} />
                         </div>
                     </div>
 
-                    <div className='sidebarinerabc '>
+                    <div className='sidebarinerabc ' >
                         <span className='internalsidebar'>
                             <span className='ul'>
                                 <span className='li'>

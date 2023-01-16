@@ -7,6 +7,7 @@ import { BiExport } from 'react-icons/bi'
 import { SiMicrosoftexcel } from 'react-icons/si'
 import { GrDocumentCsv } from 'react-icons/gr'
 import { ExcelConvertData } from './Excel'
+import { IoMdArrowDropleft,IoMdArrowDropright } from 'react-icons/io';
 
 
 export default function VendorDash({ setStep }) {
@@ -141,9 +142,9 @@ export default function VendorDash({ setStep }) {
           </table>
         </div>
         <div className="d-flex justify-content-end ">
-          <div className="d-flex justify-content-center  mx-2 pt-1">
-            <label htmlFor='pageno' className='mt-1'>Rows Per Page </label> &nbsp;
-            <select onChange={handleChange} id='pageno' style={{height:'32px'}}>
+          <div className='rows_per_page mx-4'>
+            <label htmlFor='pageno' >Rows / page </label> &nbsp;
+            <select onChange={handleChange} id='pageno'>
               <option value="10">10</option>
               <option value="15">15</option>
               <option value="20">20</option>
@@ -152,11 +153,11 @@ export default function VendorDash({ setStep }) {
           <div>
             <ReactPaginate
               breakLabel="..."
-              nextLabel=">"
+              nextLabel={<IoMdArrowDropright style={{fontSize:"24px"}}/>}
               onPageChange={handlePageClick}
               pageRangeDisplayed={3}
               pageCount={lastval}
-              previousLabel="<"
+              previousLabel={<IoMdArrowDropleft style={{fontSize:"24px"}}/>}
               renderOnZeroPageCount={null}
               containerClassName={'pagination '}
               pageClassName={'page-item  '}
