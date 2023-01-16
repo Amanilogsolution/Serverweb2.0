@@ -24,7 +24,7 @@ const Navbar = (props) => {
                     null : <img className='navbar-brand logo-img' src={DrizzleLogo} alt='Drizzle Logo' />}
 
                 <div className=' setting-main-div d-flex'>
-                    <div style={{ width: '130px' }}>
+                    {/* <div style={{ width: '130px' }}>
                         <div className='d-flex align-items-center' role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <RiSettings3Fill style={{ fontSize: "23px" }} />
@@ -37,7 +37,7 @@ const Navbar = (props) => {
                             <Link className="dropdown-item" to="/OrganisationDetails"><CgOrganisation /> Organisation Details</Link>
                             <Link className="dropdown-item" to="#"><TiVendorMicrosoft /> Appliction</Link>
                         </div>
-                    </div>
+                    </div> */}
                     <Link className='d-flex align-items-center  cursor-pointer' to="/reports" style={{ textDecoration: "none", color: "#212529" }}>
                         <HiDocumentText style={{ fontSize: "23px" }} />
                         <p className='mb-0' style={{ fontSize: "18px" }}>Reports</p>
