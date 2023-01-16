@@ -39,8 +39,9 @@
 
 .nextoutstanding-detail {
     height: 60px;
-    transition: all 0.1s linear;
-    background: linear-gradient(45deg, rgb(255, 107, 107), rgb(215, 62, 62));
+    border: 2px solid red;
+    /* transition: all 0.1s linear; */
+    /* background: linear-gradient(45deg, rgb(255, 107, 107), rgb(215, 62, 62)); */
 }
 
 .nextoutstanding-detail:hover {
@@ -74,6 +75,7 @@
 }
 
 .AnimationBtn {
+    border:2px solid green;
     position: relative;
     background: transparent;
     padding: 20px 40px;
