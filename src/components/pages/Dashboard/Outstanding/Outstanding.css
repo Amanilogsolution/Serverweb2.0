@@ -37,17 +37,17 @@
     max-height: 62vh;
 }
 
-.nextoutstanding-detail {
+/* .nextoutstanding-detail {
     height: 60px;
-    /* width: 100%; */
-    /* border: 2px solid red; */
+    width: 100%;
+    border: 2px solid red;
     transition: all 0.1s linear;
     background: linear-gradient(45deg, rgb(255, 107, 107), rgb(215, 62, 62));
 }
 
 .nextoutstanding-detail:hover {
     transform: scale(1.02);
-}
+} */
 
 @media screen and (max-width:786px) {
     .outstanding-container {
@@ -119,51 +119,52 @@
     border-color:#1e3992;
   }
 
-/* .nextoutstanding-AnimationBtn {
-    border:2px solid green;
-    position: relative;
-    background: transparent;
-    padding: 20px 40px;
+.nextoutstanding_AnimationBtn {
+    /* position: relative; */
+    /* background: transparent; */
+    /* padding: 20px 40px; */
     text-transform: uppercase;
-    text-decoration: none;
+    /* text-decoration: none; */
     letter-spacing: 2px;
-    font-size: 20px;
-    color: #fff;
-    color: #000;
-    border:none;
-    cursor:pointer
-  } */
-/* .nextoutstanding-AnimationBtn:before {
-    position: absolute;
+    /* font-size: 20px; */
+    /* color: #fff; */
+    /* color: #000; */
+    /* border:none; */
+    /* cursor:pointer; */
+    margin: 10px 20px 0px 30px;
+    z-index: 1;
+  }
+.nextoutstanding_AnimationBtn::before {
     content: "";
+    position: absolute;
     height: 100%;
     width: 50%;
     left: 0;
     top: -5px;
-    background: #00ed64;
+    background: #3356d1;
     transform: skewX(30deg);
     z-index: -1;
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  } */
-    /* .nextoutstanding-AnimationBtn:hover:before {
+  }
+     .nextoutstanding_AnimationBtn:hover::before {
     transform: skewX(0deg);
     left: 50%;
     top: 0;
   }
-  .nextoutstanding-AnimationBtn:after {
-    position: absolute;
+  .nextoutstanding_AnimationBtn::after {
     content: "";
+    position: absolute;
     height: 100%;
     width: 50%;
     left: 51%;
     top: 5px;
-    background-color: #00bfff;
+    background-color: #6664e9;
     transform: skewX(30deg);
     z-index: -1;
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
-  .nextoutstanding-AnimationBtn:hover:after {
+  .nextoutstanding_AnimationBtn:hover::after {
     transform: skewX(0deg);
     left: 0%;
     top: 0;
-  } */
+  } 
