@@ -152,7 +152,8 @@ const Outstanding = ({ setStep }) => {
 
 
         <div className='nextoutstanding-detail cursor-pointer rounded text-light  mt-3 d-flex justify-content-center align-items-center' onClick={() => { setStep(5) }}>
-          Click for Outstanding Details
+          <button class="AnimationBtn" > Outstanding Details</button>
+
           
         </div>
       </div>
