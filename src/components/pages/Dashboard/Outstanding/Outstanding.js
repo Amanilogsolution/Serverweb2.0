@@ -120,7 +120,6 @@ const Outstanding = ({ setStep }) => {
 
           <div style={{overflow:"auto", height: "46vh", background: "white", borderRadius: "5px", boxShadow: "1px 1px 5px silver", padding: "1px 20px 0 20px" }}>
 
-
             <table className="table " style={{marginTop:"20px"}}>
               <thead >
                 <tr>
@@ -153,9 +152,10 @@ const Outstanding = ({ setStep }) => {
 
 
 
-        <div className='nextoutstanding-detail cursor-pointer rounded text-light  mt-3 d-flex justify-content-center align-items-center' onClick={() => { setStep(5) }}>
-          Click for Outstanding Details
+        <div className='nextoutstanding-detail text-light cursor-pointer mt-3 d-flex justify-content-center align-items-center' onClick={() => { setStep(5) }}>
+          {/* <button className="nextoutstanding-AnimationBtn" > Outstanding Details</button> */}Outstanding Details
         </div>
+
       </div>
       <div className='outstanding-table bg-white position-relative mt-3' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '5px' }}>
         <div className=' d-flex justify-content-between' style={{color: "white", padding: "16px 20px", fontSize: "14px", width: "80%", marginTop: "-20px", background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginLeft:"20px", borderRadius: "5px",height:"55px"}}>

@@ -45,9 +45,11 @@ const Dashboard = () => {
           console.log("true")
           document.getElementById(`css${i}`).style.background = "white"
           document.getElementById(`css${i}`).style.borderBottom = "4px solid #30305f"
+          document.getElementById(`css${i}`).style.color = "#595859"
 
         }else{
-          document.getElementById(`css${i}`).style.background = "#b5acf1"
+          document.getElementById(`css${i}`).style.background = "linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))"
+          document.getElementById(`css${i}`).style.color = "white"
           document.getElementById(`css${i}`).style.borderBottom = "none"
         }
       }
@@ -81,47 +83,11 @@ const Dashboard = () => {
 
               <div className='dashboard_cards justify-content-end'>
                 <div className='d-flex justify-content-center  dash_toggle_btns'>
-                  <div className='dash_toggle_btn ' style={{background:"white",borderBottom:"4px solid #30305f"}} id="css1"  onClick={() => {colordynamic(1); setStep(1)}}>Assets</div>
+                  <div className='dash_toggle_btn ' style={{background:"white",borderBottom:"4px solid #30305f",color:"#595859"}} id="css1"  onClick={() => {colordynamic(1); setStep(1)}}>Assets</div>
                   <div className='dash_toggle_btn ' id="css2" onClick={() =>{colordynamic(2); setStep(2)}}>Vendors</div>
                   <div className='dash_toggle_btn ' id="css3" onClick={() => {colordynamic(3);setStep(3)}}>Invoice</div>
                   <div className='dash_toggle_btn ' id="css4" onClick={() => {colordynamic(4);setStep(4)}}>Tickets</div>
                 </div>
-                {/* <div onClick={() => setStep(1)} className='card1 d-flex rounded cursor-pointer'>
-                  <div>
-                    <h1 className='dash_card_head mb-0'>{dashboarddetails.Assetdata}</h1>
-                    <p className='dash_card_para'>Assets</p>
-                  </div>
-                  <div className='dash_card_icon_div rounded-circle position-absolute'>
-                    <BsLaptopFill className='icon' />
-                  </div>
-                </div>
-                <div onClick={() => setStep(2)} className='card1 d-flex rounded cursor-pointer'>
-                  <div>
-                    <h1 className='dash_card_head mb-0'>{dashboarddetails.Vendordata}</h1>
-                    <p className='dash_card_para'>Vendors</p>
-                  </div>
-                  <div className='dash_card_icon_div rounded-circle position-absolute'>
-                    <HiUsers className='icon' />
-                  </div>
-                </div>
-                <div onClick={() => setStep(3)} className='card1 d-flex rounded cursor-pointer'>
-                  <div>
-                    <h1 className='dash_card_head mb-0'>{dashboarddetails.Invoice}</h1>
-                    <p className='dash_card_para'>Invoice</p>
-                  </div>
-                  <div className='dash_card_icon_div rounded-circle position-absolute'>
-                    <MdStickyNote2 className='icon' />
-                  </div>
-                </div>
-                <div onClick={() => setStep(4)} className='card1 d-flex rounded cursor-pointer'>
-                  <div >
-                    <h1 className='dash_card_head mb-0'>{dashboarddetails.Ticket}</h1>
-                    <p className='dash_card_para'>Tickets</p>
-                  </div>
-                  <div className='dash_card_icon_div rounded-circle position-absolute'>
-                    <FaTicketAlt className='icon' />
-                  </div>
-                </div> */}
               </div>
               {showStep(currentStep)}
             </div>

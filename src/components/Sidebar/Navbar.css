@@ -36,7 +36,7 @@
 }
 .navcontainer-second {
     height: 80%;
-    width: 30%;
+    width: 40%;
     right: 5%;
 }
 .navcontainer-innersecond {
@@ -59,11 +59,13 @@
 @media screen and (max-width:900px) {
     .navcontainer-second {
         width: 35%;
+        border: 2px solid red;
     }
 }
 @media screen and (max-width:800px) {
     .navcontainer-second {
         width: 8%;
+        
     }
     .navcontainer-innersecond {
        display: none;
