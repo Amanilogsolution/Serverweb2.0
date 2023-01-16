@@ -37,7 +37,15 @@ const Sidebar2 = (props) => {
                     <h5>Theme</h5>
                     <div className='sidebar2-themediv px-2'>
                         <span>  Sidebar Color</span>
-                        <div className="color-sec"><span className="bg-primary"></span></div>
+                        <div className="color-div mt-2 d-flex justify-content-around">
+                            <div className="color-span bg-primary rounded-circle"></div>
+                            <div className="color-span bg-success rounded-circle"></div>
+                            <div className="color-span bg-danger rounded-circle"></div>
+                            <div className="color-span bg-dark rounded-circle"></div>
+                            <div className="color-span bg-info rounded-circle"></div>
+                            <div className="color-span bg-secondary rounded-circle"></div>
+                            <div className="color-span bg-light rounded-circle border border-dark"></div>
+                        </div>
                     </div>
                 </section>
 
