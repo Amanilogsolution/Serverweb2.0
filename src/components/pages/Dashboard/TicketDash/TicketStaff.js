@@ -48,21 +48,24 @@ const TicketStaff = () => {
       <p className=' text-black text-center px-4 mx-2 mb-0'>{localStorage.getItem('UserName')}</p>
       {
         (data02[0].value === 0 && data02[1].value === 0 && data02[2].value === 0) ?
-        <h5 className='text-center'>You have not assign any Tickets</h5> :
-        <ResponsiveContainer width="100%" aspect={1.8}>
-          <PieChart width={700} height={200}>
-            <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
-            <Tooltip />
+          <div className='d-flex align-items-center justify-content-center text-danger' style={{height:'90%'}}>
+            <h5>You have not assign any Tickets</h5>
+          </div>
+          :
+          <ResponsiveContainer width="100%" aspect={1.8}>
+            <PieChart width={700} height={200}>
+              <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
+              <Tooltip />
 
-            <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label >
-              {data02.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
+              <Pie data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" label >
+                {data02.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
 
-            <Legend layout="vertical" verticalAlign="center" align="right" />
-          </PieChart>
-        </ResponsiveContainer>
+              <Legend layout="vertical" verticalAlign="center" align="right" />
+            </PieChart>
+          </ResponsiveContainer>
       }
     </div>
   )
