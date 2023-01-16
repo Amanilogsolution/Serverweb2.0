@@ -12,26 +12,36 @@
 .VendorDash .VendorDash2{
     width: 18%;
     padding: 0 3px;
-    box-shadow: 1px 1px 10px #333;
-    padding: 10px;
+    /* box-shadow: 1px 1px 6px silver; */
+    /* padding: 10px; */
 }
 .VendorDash .VendorDash2 .VendorDash2_card{
     width: 100%;
-    height: 13.5vh;
-    background: linear-gradient(45deg, rgb(96, 58, 233), rgb(50, 15, 176));
+    height: 14vh;
+    /* border: 1px solid; */
+    background: white;
+    margin: 25px 0;
+    padding: 10px;
+    box-shadow: 1px 1px 6px 1px silver;
   }
   .VendorDash2 .select_div{
-    border: 1px solid rgb(174, 171, 171);
-    padding: 6.5% 10px;
+    padding: 6% 10px;
     border-radius: 5px;
     height: 9vh;
-    margin-bottom: 6px;
-    text-align: center
+    text-align: center;
+    background: white;
+    box-shadow: 1px 1px 6px 1px silver;
+    margin: 15px 0;
   }
-  #recurring{
+  .VendorDash2 .select_div select{
+    border: none;
+    border-bottom: 1px solid rgb(218, 218, 218);
+    border-radius: 0px;
+  }
+  /* #recurring{
     background: linear-gradient(45deg, rgb(164, 43, 122), rgb(106, 6, 71));
     transition: transform .2s;
-  }
+  } */
   .VendorDash .VendorDash1 .table1{
     /* height: 27vh; */
     padding: 0 3px;
@@ -48,11 +58,11 @@
 .VendorDash tr {
   line-height: 18px;
 }
-#recurring:hover {
+/* #recurring:hover {
   -ms-transform: scale(1.02);
   -webkit-transform: scale(1.02);
   transform: scale(1.02);
-}
+} */
 
 .tableheading {
   top:-3%;

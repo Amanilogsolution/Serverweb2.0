@@ -101,8 +101,8 @@ export default function AssetsDash(callback) {
       </div>
 
       <div className='d-flex justify-content-between my-5'>
-        <div className='for_graph'>
-          <div className='bar_location bg-light position-relative mt-1' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px',height: "35vh",minHeight: "35vh",maxHeight:'35vh' }}>
+        <div className='for_graph' >
+          <div className='bar_location bg-light position-relative mt-1' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '10px',height: "35vh",minHeight: "35vh",maxHeight:'35vh' }}>
             {spinner ?
               <div class="spinner-border text-primary" style={{ marginTop: "2%", marginLeft: "50%" }} role="status">
                 <span class="sr-only"></span>
@@ -113,7 +113,7 @@ export default function AssetsDash(callback) {
                     <CartesianGrid strokeDasharray='4' vertical={false} />
                     <XAxis tick={{ fill: 'white' }} dataKey="location_code" interval={"preserveStartEnd"} fontSize={12} />
                     <YAxis tick={{ fill: 'white' }} />
-                    <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
+                    <Tooltip contentStyle={{ backgroundColor: "rgba(41,40, 40,0.8)",color:"white",borderRadius:"4px",border:"1px solid rgba(41,40, 40)" }} />
                     <Bar dataKey="asset" fill="white" barSize={5} radius={30} />
                     <Tooltip />
                   </BarChart>
@@ -125,7 +125,7 @@ export default function AssetsDash(callback) {
             </div>
           </div>
           <div className='graph_2nd_row d-flex justify-content-betweenposition-relative mt-5' >
-            <div className='manufacturer_graph bg-light position-relative' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px',height: "35vh" }}>
+            <div className='manufacturer_graph bg-light position-relative' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '10px',height: "35vh" }}>
               {spinner ?
                 <div class="spinner-border text-success" style={{ marginTop: "10%", marginLeft: "50%" }} role="status">
                   <span class="sr-only"></span>
@@ -134,7 +134,7 @@ export default function AssetsDash(callback) {
                   <ResponsiveContainer width="100%" height='100%' aspect={1.9} >
                     <PieChart width={700} height={150}>
                       
-                      <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
+                      <Tooltip contentStyle={{ backgroundColor: "rgba(224, 224, 224,0.6)",color:"white",borderRadius:"3px" }} />
                       {/* <Tooltip /> */}
                       <Pie fill="#8884d8" stroke="none" data={dashboardmanu} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={38} outerRadius={82} label={renderCustomizedLabel} labelLine={false}>
                         {dashboardmanu.map((entry, index) => (
@@ -155,7 +155,7 @@ export default function AssetsDash(callback) {
                 <small className='text-secondary position-absolute mx-3' style={{ bottom:'8%' }}>Manufacturer</small>
               </div>
             </div>
-            <div className='software_graph bg-light position-relative'  style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px',height: "35vh" }}>
+            <div className='software_graph bg-light position-relative'  style={{ boxShadow: '1px 1px 10px silver', borderRadius: '10px',height: "35vh" }}>
               {spinner ?
                 <div class="spinner-border text-warning" style={{ marginTop: "5%", marginLeft: "50%" }} role="status">
                   <span class="sr-only"></span>
@@ -166,7 +166,7 @@ export default function AssetsDash(callback) {
                       <CartesianGrid strokeDasharray='4' vertical={false} />
                       <XAxis tick={{ fill: 'white' }} dataKey="software_name" interval={"preserveStartEnd"} fontSize={12} />
                       <YAxis tick={{ fill: 'white' }} />
-                      <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
+                      <Tooltip contentStyle={{ backgroundColor: "rgba(41,40, 40,0.8)",color:"white",borderRadius:"3px",border:"1px solid rgba(41,40, 40)" }} />
                       <Bar dataKey="software" fill="white" barSize={5} radius={30} />
                       <Tooltip />
                     </BarChart>
@@ -177,7 +177,7 @@ export default function AssetsDash(callback) {
             </div>
           </div>
         </div>
-        <div className='asset-sidebar text-dark bg-white px-3 pt-2' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '15px' }}>
+        <div className='asset-sidebar text-dark bg-white px-3 pt-2' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '10px' }}>
           <div className='Asset_card2 rounded  py-2'>
             <p className='mb-0'>Asset Value</p>
             <h3>₹ {Assetsdata.PurchaseVal}</h3>

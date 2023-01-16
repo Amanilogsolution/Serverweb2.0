@@ -229,7 +229,7 @@ const Sidebar = ({ children }) => {
                 //  onMouseEnter={() => setIsOpen(true)}
                 //     onMouseLeave={toggle}
                 >
-                    <div className="top_section">
+                    <div className="top_section" >
                         <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} />
                         <div style={isOpen ? icononstyle : iconoffstyle} className="bars">
                             <MdOutlineDoubleArrow onClick={toggle} />

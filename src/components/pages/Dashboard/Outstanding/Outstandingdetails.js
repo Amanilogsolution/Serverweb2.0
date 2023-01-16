@@ -119,11 +119,11 @@ const Outstatndingdetails = () => {
 
             {/* </div> */}
             <div className="d-flex flex-row position-relative justify-content-around mt-4 px-2 rounded" style={{ minHeight: "60vh", maxHeight: '80vh' }} >
-                <div className=' bg-white rounded' style={{ boxShadow: '1px 1px 10px #333', width: "48%" }}>
+                <div className='bg-white rounded' style={{ boxShadow: '1px 1px 10px #333', width: "48%" }}>
                     <div className="vendorinv rounded position-absolute pt-3">
                         <p className=" text-center text-white">Vendor Invoices - Detailed</p>
                     </div>
-                    <div className="Outstanding_details_table mt-5 px-2 " style={{ overflow: "auto", minHeight: "76%" }}>
+                    <div className="Outstanding_details_table mt-2 px-2 " style={{ overflow: "auto",minHeight:'76%', maxHeight: "90%" }}>
                         <table className="table" >
                             <thead>
                                 <tr className='text-danger'>

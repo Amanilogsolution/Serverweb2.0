@@ -83,7 +83,7 @@ const TicketDepartment = () => {
 
         <div className='ticket_card rounded '>
           <div className='ticket_card_content d-flex justify-content-around'>
-            <div className='tickets_icon text-light mx-2 ' style={{ padding: "10px 11px" }}>
+            <div className='tickets_icon text-light mx-2 ' style={{ padding: "10px 11px"}}>
               <FaUser className='m-1' style={{ fontSize: "23px" }} />
             </div>
             <div>

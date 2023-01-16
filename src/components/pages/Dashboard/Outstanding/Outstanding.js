@@ -7,6 +7,7 @@ import { GrDocumentCsv } from 'react-icons/gr'
 import { ExcelConvertData } from '../VendorDash/Excel'
 import ReactPaginate from 'react-paginate';
 import { BiRupee } from 'react-icons/bi';
+import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 
 import 'react-data-table-component-extensions/dist/index.css';
 // import { AiFillEdit } from 'react-icons/ai';
@@ -110,20 +111,18 @@ const Outstanding = ({ setStep }) => {
           </div>
         </div>
 
-
-
         {/* //==================================================================================================== */}
 
-        <div className='company-outstatnding bg-white' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '5px', position: "relative", marginTop: "38px" }} >
-          <p style={{ color: "white", padding: "10px 20px", fontSize: "13px", position: "absolute", width: "70%", marginTop: "-20px", background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", left: "3%", borderRadius: "5px" }}>ILOG- IT OUTSTANDING</p>
-
-          <div style={{overflow:"auto", height: "46vh", background: "white", borderRadius: "5px", boxShadow: "1px 1px 5px silver", padding: "1px 20px 0 20px" }}>
-
-            <table className="table " style={{marginTop:"20px"}}>
-              <thead >
+        <div className='company-outstatnding bg-white border  mt-4 rounded' style={{ boxShadow: '1px 1px 10px silver' }} >
+          <div className='text-white px-4 py-2  rounded' style={{ width: "80%", marginLeft: 'auto', marginRight: 'auto', background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginTop: '-20px' }}>
+            <small>ILOG- IT OUTSTANDING</small>
+          </div>
+          <div className='overflow-auto px-2 position-relative' style={{ height: "45vh" }}>
+            <table className="table">
+              <thead className='position-sticky top-0 bg-white '>
                 <tr>
-                  <th>Vendor</th>
-                  <th>Amt</th>
+                  <th className='pb-0 text-danger'>Vendor</th>
+                  <th className='pb-0 text-danger'>Amt</th>
                 </tr>
               </thead>
               <tbody>
@@ -136,7 +135,7 @@ const Outstanding = ({ setStep }) => {
                   ))
                 }
               </tbody>
-              <tfoot>
+              <tfoot className='position-sticky bottom-0 bg-white'>
                 <tr >
                   <th>Total</th>
                   <th>₹{outstandingAmount}</th>
@@ -149,16 +148,17 @@ const Outstanding = ({ setStep }) => {
 
         {/* //==================================================================================================== */}
 
-
-
-        <div className='nextoutstanding-detail text-light cursor-pointer mt-3 d-flex justify-content-center align-items-center' onClick={() => { setStep(5) }}>
-          {/* <button className="nextoutstanding-AnimationBtn" > Outstanding Details</button> */}Outstanding Details
-        </div>
+          <button  className="nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>Outstanding Details</button>
+          
+        {/* <div className='nextoutstanding-detail text-light cursor-pointer mt-3 d-flex justify-content-center align-items-center' >
+          <button className="nextoutstanding-AnimationBtn" > Outstanding Details</button>
+          Outstanding Details
+        </div> */}
 
       </div>
-      <div className='outstanding-table bg-white position-relative mt-3' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '5px' }}>
-        <div className=' d-flex justify-content-between' style={{color: "white", padding: "16px 20px", fontSize: "14px", width: "80%", marginTop: "-20px", background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginLeft:"20px", borderRadius: "5px",height:"55px"}}>
-          <span> ILOG- IT OUTSTANDING AS ON DATE</span> <span title="Export" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}> <BiExport style={{ fontSize: "25px", marginRight: "20px" }} /></span>
+      <div className='outstanding-table bg-white position-relative mt-3 rounded' style={{ boxShadow: '1px 1px 10px silver' }}>
+        <div className=' d-flex justify-content-between text-white rounded px-3 py-3 mx-auto' style={{ width: "90%", marginTop: "-20px", background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", height: "55px" }}>
+          <small> ILOG- IT OUTSTANDING AS ON DATE</small> <span title="Export" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}> <BiExport style={{ fontSize: "25px" }} /></span>
         </div>
         <div className='bg-white position-absolute rounded ' style={{ right: "2%", top: "15%", width: "5%", boxShadow: "3px 3px 10px black" }}>
           {
@@ -176,7 +176,7 @@ const Outstanding = ({ setStep }) => {
               : ''
           }
         </div>
-        <div className='outstanding-table-inner overflow-auto' style={{padding:"0 20px"}}>
+        <div className='outstanding-table-inner overflow-auto' style={{ padding: "0 20px" }}>
           <table className="table" >
             <thead className="position-sticky top-0 bg-white">
               <tr>
@@ -204,10 +204,10 @@ const Outstanding = ({ setStep }) => {
             </tbody>
           </table>
         </div>
-        <div className="d-flex justify-content-end  bottom-0 w-100 " >
-          <div className="d-flex justify-content-center">
-            <label htmlFor='rowpage' className='mt-2'>Rows Per Page </label> &nbsp;
-            <select onChange={handleChange} id='rowpage' className=' mt-1' style={{ height: '30px' }}>
+        <div className="d-flex justify-content-end align-items-center w-100 " >
+          <div className='rows_per_page'>
+            <label >Rows / page </label> &nbsp;
+            <select onChange={handleChange} id='rowpage'>
               <option value="10">10</option>
               <option value="15">15</option>
               <option value="20">20</option>
@@ -216,13 +216,13 @@ const Outstanding = ({ setStep }) => {
 
           <ReactPaginate
             breakLabel="..."
-            nextLabel="next "
+            nextLabel={<IoMdArrowDropright style={{ fontSize: "24px" }} />}
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
             pageCount={lastval}
-            previousLabel=" previous"
+            previousLabel={<IoMdArrowDropleft style={{ fontSize: "24px" }} />}
             renderOnZeroPageCount={null}
-            containerClassName={'pagination justify-content-end mx-4'}
+            containerClassName={'pagination  mx-4'}
             pageClassName={'page-item'}
             pageLinkClassName={'page-link'}
             previousClassName={'page-item'}
