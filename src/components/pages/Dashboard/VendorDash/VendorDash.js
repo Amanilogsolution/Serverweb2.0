@@ -207,56 +207,57 @@ export default function VendorDash({ setStep }) {
 
       </div>
       <div className='VendorDash2 rounded'>
-      <button  className="nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" id="recurring" onClick={() => { setStep(6) }}>Recurring Details</button>
+        <button className="nextoutstanding_AnimationBtn text-white btn px-4 py-3 position-relative" id="recurring" onClick={() => { setStep(6) }}>Recurring Details</button>
 
         {/* <div className='select_div cursor-pointer text-light border-0' id="recurring" onClick={() => { setStep(6) }}>
           <h6 >Click for Recurring Details</h6>
         </div> */}
 
-
-        <div className='select_div'>
-          <select className="form-select" aria-label="Default select example" id="Vendname" onChange={() => { handleChangeFilter("vendor", document.getElementById('Vendname').value) }}>
-            <option hidden selected>Vendor Code</option>
-            {
-              vendorlist.map((item, index) =>
-                <option key={index} value={[`${item.vendor_name}`]}>{item.vendor_name}</option>)
-            }
-          </select>
-        </div>
-        <div className='select_div'>
-          <select className="form-select" aria-label="Default select example" id="Category" onChange={() => { handleChangeFilter("major_category", document.getElementById('Category').value) }}>
-            <option hidden selected>Category</option>
-            {
-              vendorcatlist.map((item, index) =>
-                <option key={index} value={item.vendor_category}>{item.vendor_category}</option>)
-            }
-          </select>
-        </div>
-        <div className='select_div'>
-          <select className="form-select" aria-label="Default select example" id="Location" onChange={() => { handleChangeFilter("location", document.getElementById('Location').value) }}>
-            <option hidden selected>Location</option>
-            {
-              locationlist.map((item, index) =>
-                <option key={index}>{item.location_name}</option>
-              )
-            }
-          </select>
-        </div>
-        <div className='select_div'>
-          <select className="form-select" aria-label="Default select example" id="frequency" onChange={() => { handleChangeFilter("billling_freq", document.getElementById('frequency').value) }}>
-            <option hidden selected>Frequency</option>
-            {
-              billingfreqlist.map((item, index) =>
-                <option key={index} value={item.billing_freq}>{item.billing_freq}</option>)
-            }
-          </select>
-        </div>
-        <div className='VendorDash2_card text-center rounded'>
-          <div className='d-flex pt-3'>
-            <VscReferences style={{ background: "linear-gradient(45deg, rgb(255, 107, 107), rgb(215, 62, 62))", fontSize: "53px", padding: "13px", color: "white", borderRadius: "5px", margin: "-40px 20px 0 20px" }} />
-            <h1 style={{ marginTop: "-16px", fontWeight: "600", color: "#312f68" }}>{ReferabceNo}</h1>
+        <div className='bg-white px-3 py-2 rounded mt-2' style={{ boxShadow: '1px 1px 3px silver' }}>
+          <div className='select_div'>
+            <select className="form-select" aria-label="Default select example" id="Vendname" onChange={() => { handleChangeFilter("vendor", document.getElementById('Vendname').value) }}>
+              <option hidden value=''>Vendor Code</option>
+              {
+                vendorlist.map((item, index) =>
+                  <option key={index} value={[`${item.vendor_name}`]}>{item.vendor_name}</option>)
+              }
+            </select>
           </div>
-          <p className='ft-20' style={{  margin: "-2px -26px 0 0px", color: "#6a6a6a" }}>Reference Numbers</p>
+          <div className='select_div'>
+            <select className="form-select" aria-label="Default select example" id="Category" onChange={() => { handleChangeFilter("major_category", document.getElementById('Category').value) }}>
+              <option hidden value=''>Category</option>
+              {
+                vendorcatlist.map((item, index) =>
+                  <option key={index} value={item.vendor_category}>{item.vendor_category}</option>)
+              }
+            </select>
+          </div>
+          <div className='select_div'>
+            <select className="form-select" aria-label="Default select example" id="Location" onChange={() => { handleChangeFilter("location", document.getElementById('Location').value) }}>
+              <option hidden value=''>Location</option>
+              {
+                locationlist.map((item, index) =>
+                  <option key={index}>{item.location_name}</option>
+                )
+              }
+            </select>
+          </div>
+          <div className='select_div'>
+            <select className="form-select" aria-label="Default select example" id="frequency" onChange={() => { handleChangeFilter("billling_freq", document.getElementById('frequency').value) }}>
+              <option hidden value=''>Frequency</option>
+              {
+                billingfreqlist.map((item, index) =>
+                  <option key={index} value={item.billing_freq}>{item.billing_freq}</option>)
+              }
+            </select>
+          </div>
+          <div className='VendorDash2_card text-center rounded'>
+            <div className='d-flex pt-3'>
+              <VscReferences style={{ background: "linear-gradient(45deg, rgb(255, 107, 107), rgb(215, 62, 62))", fontSize: "53px", padding: "13px", color: "white", borderRadius: "5px", margin: "-40px 20px 0 20px" }} />
+              <h1 style={{ marginTop: "-16px", fontWeight: "600", color: "#312f68" }}>{ReferabceNo}</h1>
+            </div>
+            <p className='ft-20' style={{ margin: "-2px -26px 0 0px", color: "#6a6a6a" }}>Reference Numbers</p>
+          </div>
         </div>
       </div>
     </div>

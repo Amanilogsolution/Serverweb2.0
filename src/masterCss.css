@@ -6,6 +6,10 @@
     font-size: 20px;
 }
 
+.shadow1-silver{
+    box-shadow:  1px 1px 6px silver;
+}
+
 .main_container {
     background: #fff;
     background: url("./image/themeimg.png");
@@ -16,6 +20,7 @@
     box-shadow: 2px 1px 10px gray, -3px -3px 10px gray;
     border-radius: 10px 0px 0px 10px;
 }
+
 
 /* .card-div {
     width: 60%;

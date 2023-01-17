@@ -32,8 +32,8 @@
     min-height: 18vh;
     margin: 6px 10px 15px 10px;
     width: 26%;
-    box-shadow: 1px 1px 2px 1px silver;
-    background: white;
+    /* box-shadow: 1px 1px 2px 1px silver;
+    background: white; */
 }
 
 .ticket_card_content {

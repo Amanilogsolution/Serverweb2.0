@@ -10,13 +10,12 @@ import DrizzleLogo from '../../image/drizzle_logo.png'
 import { Link } from 'react-router-dom'
 import { VscListFilter } from 'react-icons/vsc'
 import { HiDocumentText } from 'react-icons/hi'
-import { TiVendorMicrosoft } from 'react-icons/ti'
-import { CgOrganisation } from 'react-icons/cg'
-import { GrUserExpert } from 'react-icons/gr'
-import { FiUserPlus } from 'react-icons/fi'
+// import { TiVendorMicrosoft } from 'react-icons/ti'
+// import { CgOrganisation } from 'react-icons/cg'
+// import { GrUserExpert } from 'react-icons/gr'
+// import { FiUserPlus } from 'react-icons/fi'
 
 const Navbar = (props) => {
-    console.log(props)
     return (
         <>
             <div className="innernavbarcontainer bg-white mb-3 d-flex align-items-center "  >

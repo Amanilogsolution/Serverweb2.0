@@ -128,7 +128,7 @@ export default function AddTicket() {
         const remark = document.getElementById('remark').value;
         const AssetTag = document.getElementById('AssetTag').value
         const AssetCondition = document.getElementById('AssetCondition').value
-        const org = sessionStorage.getItem('Database')
+        const org = localStorage.getItem('Database')
 
         const user_id = localStorage.getItem('UserId')
 
@@ -144,7 +144,6 @@ export default function AddTicket() {
 
             const result = await InsertTicket(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id, AssetTag, AssetCondition)
-            console.log(result)
             if (result === 'Data Added') {
                 setDatas({ ...datas, message: "Ticket Added", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"

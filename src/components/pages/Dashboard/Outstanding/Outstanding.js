@@ -135,10 +135,10 @@ const Outstanding = ({ setStep }) => {
                   ))
                 }
               </tbody>
-              <tfoot className='position-sticky bottom-0 bg-white'>
+              <tfoot className='position-sticky bottom-0 bg-white '>
                 <tr >
-                  <th>Total</th>
-                  <th>₹{outstandingAmount}</th>
+                  <th className='text-danger'>Total</th>
+                  <th className='text-danger'>₹{outstandingAmount}</th>
                 </tr>
               </tfoot>
             </table>
