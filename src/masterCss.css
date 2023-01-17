@@ -16,12 +16,13 @@
 .main_container {
     /* background: #fff; */
     /* background: url("./image/themeimg.png"); */
-    background-size: 100% 100%;
+    /* background-size: 100% 100%; */
     min-height: 77vh;
     font-family: 'Roboto';
-    max-width: 100%;
+    /* max-width: 100%; */
     /* box-shadow: 2px 1px 10px gray, -3px -3px 10px gray; */
     /* border-radius: 10px 0px 0px 10px; */
+    /* border: 2px solid red; */
 }
 
 
@@ -54,13 +55,16 @@
     width: 97%;
 }
 
+.main-container-head{
+    font-size: 25px;
+}
 
 .page-type-head1 {
     color: rgb(123, 108, 200);
 }
 
 .page-type-head2 {
-    font-size: 25px;
+    /* font-size: 25px; */
 }
 
 /* Button Start*/
@@ -72,7 +76,6 @@
 .btn-voilet:hover {
     background-color: #544ec2;
     color: #fff;
-    box-shadow: 1px 1px 5px gray;
 }
 
 /* Button End*/
@@ -86,8 +89,7 @@
     } */
 
     .main_container {
-        min-height: 87.3vh;
-
+        min-height: 77.3vh;
     }
 }
 
@@ -111,7 +113,6 @@
 
     .main_container {
         min-height: 87.3vh;
-
     }
 
     .page-type-head1 {
@@ -121,7 +122,7 @@
 
 @media screen and (min-height:735px) {
     .main_container {
-        min-height: 85vh;
+        min-height: 79vh;
     }
 
 

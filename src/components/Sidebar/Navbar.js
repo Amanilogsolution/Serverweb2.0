@@ -22,7 +22,7 @@ const Navbar = (props) => {
                 {props.isOpen ?
                     null : <img className='navbar-brand logo-img' src={DrizzleLogo} alt='Drizzle Logo' />}
 
-                <div className=' setting-main-div d-flex'>
+                {/* <div className=' setting-main-div d-flex'>
                     <div style={{ width: '130px' }}>
                         <div className='d-flex align-items-center' role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,7 +41,7 @@ const Navbar = (props) => {
                         <HiDocumentText style={{ fontSize: "23px" }} />
                         <p className='mb-0' style={{ fontSize: "18px" }}>Reports</p>
                     </Link>
-                </div>
+                </div> */}
 
 
                 <div className='navcontainer-second position-absolute d-flex align-items-center justify-content-end border border-dark'>

@@ -47,7 +47,7 @@ const LandingPage = () => {
                                                 <div className="device" >
                                                     <div className="screen ">
 
-                                                        <img src={Landingimg} className='landingimg' alt='Landing img' />
+                                                        <img src={Landingimg} className='landingimg' alt='Landing img' loading="lazy"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -74,7 +74,7 @@ const LandingPage = () => {
                                     <div className="col-lg-5" data-aos="fade-left"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="aboutimgdiv"  >
-                                            <img className='aboutimg' src={Services} alt='' />
+                                            <img className='aboutimg' src={Services} alt='' loading="lazy"/>
                                         </div>
                                     </div>
                                     <div className="col-lg-5" data-aos="fade-right" data-aos-offset="200"

@@ -335,14 +335,12 @@ const AddNewAssets = () => {
                         </div>
                         {/* ################# Snackbar ##################### */}
 
-                        <div className='main_container px' >
+                        <div className='main_container px-4 ' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span className='page-type-head1'> Assets <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Assets</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalNewAssets' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary btn' onClick={() => { window.location.href = '/TotalNewAssets' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="contract-div border border-danger" >
-                                <div className="card inner-card">
-                                    <div className='card-header'>Add Assets</div>
+                                <div className="bg-white rounded15 mt-4 card inner-card ">
                                     <article className="card-body" >
                                         <form className='' autoComplete='off'>
                                             <ul >
@@ -362,17 +360,13 @@ const AddNewAssets = () => {
 
                                                             <div className="col-md-4">
                                                                 <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
-
                                                                 <select id='asset_type' className="form-select" onChange={handleToggleSoftware}>
                                                                     <option value='' hidden>Select...</option>
-
                                                                     {
                                                                         assettypelist.map((item, index) => (
                                                                             <option key={index} value={item.asset_type}>{item.asset_type}</option>
                                                                         ))
-
                                                                     }
-
                                                                 </select>
                                                             </div>
 
@@ -575,7 +569,6 @@ const AddNewAssets = () => {
                                             </div>
                                         </form>
                                     </article>
-                                </div>
 
 
                             </div>

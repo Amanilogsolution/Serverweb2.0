@@ -223,14 +223,15 @@ const Sidebar = ({ children }) => {
 
     return (
         <>
-            <div className="sidebarcontainer">
-                <div className={isOpen ? 'sidebaropen' : 'sidebar '}
+            <div className="sidebarcontainer d-flex position-relative">
+                <div className={isOpen ? 'sidebaropen sidebar' : 'sidebarclose sidebar'}
                 // onClick={toggle}
                 //  onMouseEnter={() => setIsOpen(true)}
                 //     onMouseLeave={toggle}
+                // style={{display:'none'}}
                 >
                     <div className="top_section" >
-                        <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} />
+                        <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} alt='Drizzle Logo'/>
                         <div style={isOpen ? icononstyle : iconoffstyle} className="bars">
                             <MdOutlineDoubleArrow onClick={toggle} />
                         </div>
@@ -665,10 +666,10 @@ const Sidebar = ({ children }) => {
                 </div>
 
                 <div className={isOpen ? "mainopen" : "main"} style={{position:'relative'}}>
-                    <Navbar isOpen={isOpen} togglesidebar2={togglesidebar2}/>
+                     <Navbar isOpen={isOpen} togglesidebar2={togglesidebar2}/>
                     {children}
-                    <Sidebar2 sidebar2toggle={sidebar2toggle} togglesidebar2={togglesidebar2}/>
-                    <Footer />
+                    <Sidebar2 sidebar2toggle={sidebar2toggle} togglesidebar2={togglesidebar2}/> 
+                    <Footer /> 
                 </div>
 
                 {/* ############################################# Logout Section ############################################# */}

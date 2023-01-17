@@ -10,11 +10,7 @@ import customStyles from '../../../TableCustomtyle'
 
 
 const columns = [
-    {
-        name: 'Asset Name',
-        selector: 'asset_name',
-        sortable: true,
-    },
+  
     {
         name: 'Asset Tag',
         selector: 'asset_tag',
@@ -24,6 +20,11 @@ const columns = [
                 {row.asset_tag}
             </a>
         ]
+    },
+    {
+        name: 'Asset Name',
+        selector: 'asset_name',
+        sortable: true,
     },
     {
         name: 'Asset Type',
@@ -82,13 +83,12 @@ function TotalNewAssetes() {
             {
                 loading ?
                     <Sidebar>
-                        <div className='main_container px-2'>
-                            <div className='m-auto'>
-                                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span className='page-type-head1'> Asset
+                        <div className='main_container'>
+                                <div className='main-container-head d-flex justify-content-between mx-5 pb-2' >
+                                    <p><span className='page-type-head1'> Asset
                                         <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total  Asset
                                         </span>
-                                    </h2>
+                                    </p>
                                     <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddNewAssets' }} >Add Asset +</button>
                                 </div>
                                 <div className=' bg-white pb-2 pt-4 px-2 shadow1-silver rounded15'>
@@ -104,7 +104,6 @@ function TotalNewAssetes() {
                                     </DataTableExtensions>
                                 </div>
                             </div>
-                        </div>
                     </Sidebar>
                     : <LoadingPage />
             }
