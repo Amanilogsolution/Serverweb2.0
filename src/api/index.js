@@ -1248,6 +1248,12 @@ export const PaidInvoice = async (org,pageno,rowsperpage) => {
     return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const FilterInvoice = async (org,value,pageno,rowsperpage) => {
+    console.log(org,pageno,value,rowsperpage)
+    const url = `https://drizzlebackend.awlworldwide.com/api/FilterInvoice`
+    return axios.post(url, { org,value,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
+}
+
 
 
 // User Details

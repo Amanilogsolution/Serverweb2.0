@@ -28,15 +28,15 @@ import {
     BsYoutube,
     BsInboxesFill, BsTriangleHalf, BsArrowUpRightCircleFill, BsFillLaptopFill, BsBellFill, BsFillClockFill
 } from 'react-icons/bs'
-import { BiCategory, BiCategoryAlt, BiDevices } from 'react-icons/bi'
+// import { BiCategory, BiCategoryAlt, BiDevices } from 'react-icons/bi'
 
-import { HiOutlineTicket, HiDuplicate } from 'react-icons/hi'
-import { GrStatusGood, GrServices, GrCompliance } from 'react-icons/gr'
+import {  HiDuplicate } from 'react-icons/hi'
+// import { GrStatusGood, GrServices, GrCompliance } from 'react-icons/gr'
 import { GoIssueOpened } from 'react-icons/go'
-import { GiContract } from 'react-icons/gi'
+// import { GiContract } from 'react-icons/gi'
 import { RiArrowUpDownFill, RiBillFill, RiServiceFill, RiMoneyEuroCircleFill } from 'react-icons/ri'
 
-import { VscLocation, VscTypeHierarchySub } from 'react-icons/vsc'
+// import { VscLocation, VscTypeHierarchySub } from 'react-icons/vsc'
 import { TiVendorMicrosoft } from 'react-icons/ti'
 import { NavLink } from 'react-router-dom';
 import Footer from './Footer/Footer';
