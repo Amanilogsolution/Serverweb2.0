@@ -186,7 +186,7 @@ export default function VendorDash({ setStep }) {
               breakLabel="..."
               nextLabel={<IoMdArrowDropright style={{ fontSize: "24px" }} />}
               onPageChange={handlePageClick}
-              pageRangeDisplayed={3}
+              pageRangeDisplayed={2}
               pageCount={lastval}
               previousLabel={<IoMdArrowDropleft style={{ fontSize: "24px" }} />}
               renderOnZeroPageCount={null}

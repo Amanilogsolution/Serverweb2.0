@@ -1,6 +1,6 @@
 import './Outstandingdetail.css'
 import { BiSearchAlt2 } from 'react-icons/bi'
-import { VendorInvoice, PaidInvoice } from '../../../../api/index'
+import { VendorInvoice, PaidInvoice,FilterInvoice } from '../../../../api/index'
 import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate';
 import { BsFilterLeft } from 'react-icons/bs';
@@ -12,6 +12,9 @@ const Outstatndingdetails = () => {
     const [lastval, setLastval] = useState()
     const [paidrowperpage, setPaidRowPerPage] = useState(10)
     const [paidlastval, setPaidLastval] = useState()
+
+    const[filter,setFilter] = useState(false)
+    const[filterval,setFilterVal] = useState("")
 
 
 
@@ -37,18 +40,66 @@ const Outstatndingdetails = () => {
         fetchdata()
     }, [])
 
+    const filterdata = async(e) =>{
+        e.preventDefault();
+        const org = localStorage.getItem('Database')
+
+        const values = document.getElementById('filterSearch').value
+        console.log(values)
+        if(values){
+        setFilterVal(values)
+        const datas = await FilterInvoice(org,values, 1, 10)
+        console.log(datas)
+        setTotalVendor(datas.data)
+        setRowPerPage(10)
+        const total = datas.TotalData[0]["Totaldata"]
+        setLastval(Math.ceil(total / 10))
+
+        setPaidInvoice(datas.PaidInv)
+        setPaidRowPerPage(10)
+        const totalval = datas.Paiddata[0]["Totaldata"]
+        setPaidLastval(Math.ceil(totalval / 10))
+
+        setFilter(true)
+        }else{
+            return
+        }
+
+
+    }
+
     const handlePageClick = async (data) => {
-        const datas = await VendorInvoice(localStorage.getItem('Database'), data.selected + 1, rowperpage)
+        if (filter == true) {
+            const datas = await FilterInvoice(localStorage.getItem('Database'),filterval, data.selected + 1, 10)
+            console.log(datas)
+            setTotalVendor(datas.data)
+         
+            const total = datas.TotalData[0]["Totaldata"]
+            setLastval(Math.ceil(total / 10))
+        }else{
+
+            const datas = await VendorInvoice(localStorage.getItem('Database'), data.selected + 1, rowperpage)
         setTotalVendor(datas.data)
     }
+
+    }
+    
     const handlePageClickpaid = async (data) => {
+        if (filter == true) {
+            const datas = await FilterInvoice(localStorage.getItem('Database'),filterval, data.selected + 1, 10)
+            console.log(datas)
+            setPaidInvoice(datas.PaidInv)
+            const totalval = datas.Paiddata[0]["Totaldata"]
+            setPaidLastval(Math.ceil(totalval / 10))
+        }else{
         const datas = await PaidInvoice(localStorage.getItem('Database'), data.selected + 1, paidrowperpage)
         setPaidInvoice(datas.data)
+        }
     }
-    // const handleChange = () => {
-    //     document.getElementById('display').style.display = "flex"
+    const handleChange = () => {
+        document.getElementById('display').style.display = "flex"
 
-    // }
+    }
 
 
     return (
@@ -88,13 +139,13 @@ const Outstatndingdetails = () => {
                             <h5 className="modal-title" id="exampleModalLongTitle">Filter <BsFilterLeft style={{ fontSize: "38px", color: "#4089df" }} /></h5>
                         </div>
                         <div className="modal-body">
-                            <div className="d-flex  mb-2">
-                                <input type='radio' id='vendorinvoice' className="form-check-input" value='1' name='inputGroupSelect01' defaultChecked />
+                            <div className="d-flex mb-2">
+                                {/* <input type='radio' id='vendorinvoice' className="form-check-input" value='1' name='inputGroupSelect01' defaultChecked />
                                 <label Htmlfor='vendorinvoice' > Vendor Invoice</label>&nbsp;&nbsp;
                                 <input type='radio' id='vendorinvoice' className="form-check-input" value='2' name='inputGroupSelect01' />
                                 <label Htmlfor='paymentdetail'> Payment Detail</label>&nbsp;&nbsp;
                                 <input type='radio' id='billingaccountnumber' className="form-check-input" value='3' name='inputGroupSelect01' />
-                                <label Htmlfor='billingaccountnumber'> Billing Account Number</label>
+                                <label Htmlfor='billingaccountnumber'> Billing Account Number</label> */}
 
                                 {/* <select className="custom-select" id="inputGroupSelect01" onChange={handleChange}>
                                             <option hidden >Select...</option>
@@ -103,14 +154,14 @@ const Outstatndingdetails = () => {
                                             <option value="3">Billing Account Number</option>
                                         </select> */}
                             </div>
-                            <div id="display" className="d-flex justify-content-center my-2 mt-4">
-                                <input className=" form-control w-50" type="search" placeholder="Search ..." />
-                                <BiSearchAlt2 className='cursor-pointer mx-1 mt-1 text-primary' style={{ fontSize: "33px" }} />
+                            <div id="display" style={{display:"hidden"}} className="d-flex justify-content-center my-2 mt-4">
+                                <input className=" form-control w-50" type="search" id="filterSearch" placeholder="Search ..." />
+                                {/* <BiSearchAlt2 className='cursor-pointer mx-1 mt-1 text-primary' style={{ fontSize: "33px" }} /> */}
                             </div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Apply <BsFilterLeft /></button>
+                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={filterdata}>Apply <BsFilterLeft /></button>
                         </div>
                     </div>
                 </div>
@@ -118,11 +169,11 @@ const Outstatndingdetails = () => {
 
             {/* </div> */}
             <div className="d-flex flex-row position-relative justify-content-around mt-4 px-2 rounded" style={{ minHeight: "60vh", maxHeight: '80vh' }} >
-                <div className='bg-white rounded' style={{ boxShadow: '1px 1px 10px #333', width: "48%" }}>
+                <div className=' bg-white rounded' style={{ boxShadow: '1px 1px 10px #333', width: "48%" }}>
                     <div className="vendorinv rounded position-absolute pt-3">
                         <p className=" text-center text-white">Vendor Outstanding - Detailed</p>
                     </div>
-                    <div className="Outstanding_details_table mt-2 px-2 " style={{ overflow: "auto",minHeight:'76%', maxHeight: "90%" }}>
+                    <div className="Outstanding_details_table mt-5 px-2 " style={{ overflow: "auto", minHeight: "76%" }}>
                         <table className="table" >
                             <thead>
                                 <tr className='text-danger'>
