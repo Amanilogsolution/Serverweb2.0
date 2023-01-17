@@ -18,7 +18,7 @@ import { HiDocumentText } from 'react-icons/hi'
 const Navbar = (props) => {
     return (
         <>
-            <div className="innernavbarcontainer bg-white mb-3 d-flex align-items-center "  >
+            <div className="innernavbarcontainer bg-white mb-3 d-flex align-items-center " style={{border:"1px solid red"}} >
                 {props.isOpen ?
                     null : <img className='navbar-brand logo-img' src={DrizzleLogo} alt='Drizzle Logo' />}
 
@@ -44,14 +44,14 @@ const Navbar = (props) => {
                 </div>
 
 
-                <div className='navcontainer-second position-absolute d-flex align-items-center justify-content-end'>
+                <div className='navcontainer-second position-absolute d-flex align-items-center justify-content-end border border-dark'>
                     <div className='navcontainer-innersecond '>
-                        <div className='d-flex'>
+                        <div className='d-flex border border-danger'>
                             <div role="button" id="dropdownMenuLink"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                <VscListFilter className='ft-20' />
+                                <VscListFilter className='ft-19' />
                                 <BsFillClockFill className='ft-20' />
-                                <MdOutlineArrowDropDown style={{ fontSize: "23px", margin: "-2px -2px" }} />
+                                <MdOutlineArrowDropDown style={{ fontSize: "21px", margin: "-2px -2px" }} />
                             </div>
                             <div className="dropdown-menu " aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
                                 <a className="dropdown-item" href="/AddNewAssets"><BsFillLaptopFill style={{ color: "rgb(66, 4, 69)" }} /> Enroll New Asset</a>
@@ -61,7 +61,7 @@ const Navbar = (props) => {
                                 <Link className="dropdown-item" to="/AddVendorPayment"><RiMoneyEuroCircleFill style={{ color: "rgb(66, 4, 69)" }} /> Add Vendor Payment</Link>
                             </div>
                         </div>
-                        <div className='d-flex  mx-3 '>
+                        <div className='d-flex mx-3'>
                             <div role="button" id="dropdownMenuLink"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <MdOutlineHelp style={{ fontSize: "25px" }} />

@@ -107,7 +107,6 @@ export default function VendorDash({ setStep }) {
     const total = result.TotalData[0]["Totaldata"]
     setLastval(Math.ceil(total / 10))
 
-
   }
 
   return (
