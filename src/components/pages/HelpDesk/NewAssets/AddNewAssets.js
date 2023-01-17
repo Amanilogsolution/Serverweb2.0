@@ -335,18 +335,17 @@ const AddNewAssets = () => {
                         </div>
                         {/* ################# Snackbar ##################### */}
 
-                        <div className='main_container' >
+                        <div className='main_container px' >
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
                                 <h2><span className='page-type-head1'> Assets <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Assets</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalNewAssets' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="contract-div border border-danger" style={{ width: "90%" }}>
+                            <div className="contract-div border border-danger" >
                                 <div className="card inner-card">
                                     <div className='card-header'>Add Assets</div>
                                     <article className="card-body" >
                                         <form className='' autoComplete='off'>
                                             <ul >
-
                                                 {/* #################### Device Detail  Box Start #####################*/}
                                                 <li style={{ listStyle: "none" }}>
                                                     <div style={{ cursor: "pointer" }}  >
