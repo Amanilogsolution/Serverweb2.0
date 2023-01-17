@@ -115,7 +115,7 @@ const Outstanding = ({ setStep }) => {
 
         <div className='company-outstatnding bg-white border  mt-4 rounded' style={{ boxShadow: '1px 1px 10px silver' }} >
           <div className='text-white px-4 py-2  rounded' style={{ width: "80%", marginLeft: 'auto', marginRight: 'auto', background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginTop: '-20px' }}>
-            <small>ILOG- IT OUTSTANDING</small>
+            <small> OUTSTANDING</small>
           </div>
           <div className='overflow-auto px-2 position-relative' style={{ height: "45vh" }}>
             <table className="table">
@@ -157,8 +157,8 @@ const Outstanding = ({ setStep }) => {
 
       </div>
       <div className='outstanding-table bg-white position-relative mt-3 rounded' style={{ boxShadow: '1px 1px 10px silver' }}>
-        <div className=' d-flex justify-content-between text-white rounded px-3 py-3 mx-auto' style={{ width: "90%", marginTop: "-20px", background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", height: "55px" }}>
-          <small> ILOG- IT OUTSTANDING AS ON DATE</small> <span title="Export" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}> <BiExport style={{ fontSize: "25px" }} /></span>
+        <div className=' d-flex justify-content-between text-white rounded px-4 py-2 mx-auto' style={{ width: "90%", marginTop: "-20px", background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", height: "55px" }}>
+          <p className='ft-20'> Total Invoice</p> <span title="Export" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}> <BiExport style={{ fontSize: "25px" }} /></span>
         </div>
         <div className='bg-white position-absolute rounded ' style={{ right: "2%", top: "15%", width: "5%", boxShadow: "3px 3px 10px black" }}>
           {

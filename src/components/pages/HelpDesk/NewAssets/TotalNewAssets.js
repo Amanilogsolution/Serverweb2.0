@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import 'react-data-table-component-extensions/dist/index.css';
 import Sidebar from '../../../Sidebar/Sidebar';
-import { AiFillEdit } from 'react-icons/ai';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import { TotalNewAssets,DeleteNewAssets } from '../../../../api'
+import { TotalNewAssets, DeleteNewAssets } from '../../../../api'
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import customStyles from '../../../TableCustomtyle'
@@ -17,17 +16,22 @@ const columns = [
         sortable: true,
     },
     {
-        name: 'asset_tag',
+        name: 'Asset Tag',
         selector: 'asset_tag',
-        sortable: true,
+        sortable: false,
+        cell: (row) => [
+            <a title='Click to Edit Asset' href="/EditAsset" onClick={() => localStorage.setItem('newassetsno', `${row.sno}`)}>
+                {row.asset_tag}
+            </a>
+        ]
     },
     {
-        name: 'asset_type',
+        name: 'Asset Type',
         selector: 'asset_type',
         sortable: true,
     },
     {
-        name: 'asset_assign',
+        name: 'Asset Assign',
         selector: 'asset_assign',
         sortable: true,
     },
@@ -36,17 +40,17 @@ const columns = [
         selector: 'asset_status',
         sortable: true,
     },
-    {
-        name: "Actions",
-        sortable: false,
-        selector: 'null',
-        cell: (row) => [
-            <a title='Edit Asset' href="/EditAsset">
-                <p onClick={() => localStorage.setItem('newassetsno', `${row.sno}`)} >
-                    <AiFillEdit className='ft-20' style={{ marginBottom: "-13px" }} />
-                </p></a>
-        ]
-    }
+    // {
+    //     name: "Actions",
+    //     sortable: false,
+    //     selector: 'null',
+    //     cell: (row) => [
+    //         <a title='Edit Asset' href="/EditAsset">
+    //             <p onClick={() => localStorage.setItem('newassetsno', `${row.sno}`)} >
+    //                 <AiFillEdit className='ft-20' style={{ marginBottom: "-13px" }} />
+    //             </p></a>
+    //     ]
+    // }
 
 ];
 
@@ -78,14 +82,17 @@ function TotalNewAssetes() {
             {
                 loading ?
                     <Sidebar>
-                        <div className='main_container' >
-                            <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
+                        <div className='main_container px-2'>
+                            <div className='m-auto'>
                                 <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span className='page-type-head1'> Asset <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total  Asset</span> </h2>
+                                    <h2><span className='page-type-head1'> Asset
+                                        <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total  Asset
+                                        </span>
+                                    </h2>
                                     <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddNewAssets' }} >Add Asset +</button>
                                 </div>
-                                <div >
-                                <DataTableExtensions {...tableData}  >
+                                <div className=' bg-white pb-2 pt-4 px-2 shadow1-silver rounded15'>
+                                    <DataTableExtensions {...tableData}  >
                                         <DataTable
                                             noHeader
                                             defaultSortField="id"
