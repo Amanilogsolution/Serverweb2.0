@@ -134,16 +134,13 @@ export default function AssetsDash(callback) {
                   <ResponsiveContainer>
                     <PieChart width={700} height={150}>
                       
-                      <Tooltip contentStyle={{ backgroundColor: "rgba(224, 224, 224,0.6)",color:"white",borderRadius:"3px" }} />
-                      {/* <Tooltip /> */}
+                      <Tooltip contentStyle={{ backgroundColor: "rgba(41,40, 40,0.8)",color:"white",borderRadius:"3px",border:"1px solid rgba(41,40, 40)" }} />
                       <Pie fill="#8884d8" stroke="none" data={dashboardmanu} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={38} outerRadius={82} label={renderCustomizedLabel} labelLine={false}>
                         {dashboardmanu.map((entry, index) => (
-                        
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}
-                          // style={{
-                          //   filter: `drop-shadow(1px 1px 3px black`
-                          // }} 
-
+                          style={{
+                            filter: `drop-shadow(2px 2px 4px #5e5d5d`
+                          }} 
                           />
                         ))}
                       </Pie>
