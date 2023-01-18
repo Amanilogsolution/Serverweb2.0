@@ -19,10 +19,14 @@
     /* background-size: 100% 100%; */
     min-height: 77vh;
     font-family: 'Roboto';
+    padding: 0px 30px;
     /* max-width: 100%; */
     /* box-shadow: 2px 1px 10px gray, -3px -3px 10px gray; */
     /* border-radius: 10px 0px 0px 10px; */
     /* border: 2px solid red; */
+}
+.main-inner-container{
+    margin: 0px 30px;
 }
 
 
@@ -113,6 +117,10 @@
 
     .main_container {
         min-height: 87.3vh;
+        padding: 0px 15px;
+    }
+    .main-inner-container{
+        margin: 0px 15px;
     }
 
     .page-type-head1 {
@@ -128,12 +136,14 @@
 
 }
 
-/* @media screen and (max-width:400px) {
-    .card-div {
-        width: 95%;
-        margin: auto;
+@media screen and (max-width:550px) {
+    .main_container {
+        padding: 0px 5px;
     }
-} */
+    .main-inner-container{
+        margin: 0px 5px;
+    }
+}
 
 @media screen and (max-width:280px) {
     .btn-voilet {

@@ -335,53 +335,52 @@ const AddNewAssets = () => {
                         </div>
                         {/* ################# Snackbar ##################### */}
 
-                        <div className='main_container px-4 ' >
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
+                        <div className='main_container' >
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
                                 <h2><span className='page-type-head1'> Assets <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Assets</span> </h2>
                                 <button className='btn btn-secondary btn' onClick={() => { window.location.href = '/TotalNewAssets' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                                <div className="bg-white rounded15 mt-4 card inner-card ">
-                                    <article className="card-body" >
-                                        <form className='' autoComplete='off'>
-                                            <ul >
-                                                {/* #################### Device Detail  Box Start #####################*/}
-                                                <li style={{ listStyle: "none" }}>
-                                                    <div style={{ cursor: "pointer" }}  >
-                                                        <span style={{ display: "flex" }} >
-                                                            <div className="link_text " onClick={handleClickDeviceDetail}>
-                                                                {devicedetail ? <FaMinusCircle /> : <MdAddCircle />}
-                                                                &nbsp;Assets / Device Details &nbsp;
-                                                                {devicedetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                    <div id='devicedivdetail'>
-                                                        <div className="row mt-2">
+                            <div className="bg-white rounded15 mt-2 card inner-card py-3">
+                                <article className="card-body " >
+                                    <form autoComplete='off'>
+                                        <ul  className='px-1'>
+                                            {/* #################### Device Detail  Box Start #####################*/}
+                                            <li style={{ listStyle: 'none' }}>
+                                                <div className='cursor-pointer'>
+                                                    <span>
+                                                        <div className="link_text " onClick={handleClickDeviceDetail}>
+                                                            {devicedetail ? <FaMinusCircle /> : <MdAddCircle />}
+                                                            &nbsp;Assets / Device Details &nbsp;
+                                                            {devicedetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                                <div id='devicedivdetail' className='px-3'>
+                                                    <div className="row mt-1">
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
+                                                            <select id='asset_type' className="form-select" onChange={handleToggleSoftware}>
+                                                                <option value='' hidden>Select...</option>
+                                                                {
+                                                                    assettypelist.map((item, index) => (
+                                                                        <option key={index} value={item.asset_type}>{item.asset_type}</option>
+                                                                    ))
+                                                                }
+                                                            </select>
+                                                        </div>
 
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
-                                                                <select id='asset_type' className="form-select" onChange={handleToggleSoftware}>
-                                                                    <option value='' hidden>Select...</option>
-                                                                    {
-                                                                        assettypelist.map((item, index) => (
-                                                                            <option key={index} value={item.asset_type}>{item.asset_type}</option>
-                                                                        ))
-                                                                    }
-                                                                </select>
-                                                            </div>
-
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='assetetag'>Asset Tag <span className='text-danger'>*</span></label>
-                                                                <input type="text" id='assetetag' className="form-control" placeholder='Auto generated' disabled />
-                                                            </div>
-                                                            <div className="col-md-4" id='softwarediv' style={{ display: "none" }}>
-                                                                <label htmlFor='software'>Software <span className='text-danger'>*</span></label>
-                                                                <Select
-                                                                    options={options}
-                                                                    isMulti={true}
-                                                                    onChange={handleChange}
-                                                                />
-                                                                {/* <select className="form-select" id='software'>
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='assetetag'>Asset Tag <span className='text-danger'>*</span></label>
+                                                            <input type="text" id='assetetag' className="form-control" placeholder='Auto generated' disabled />
+                                                        </div>
+                                                        <div className="col-md-4" id='softwarediv' style={{ display: "none" }}>
+                                                            <label htmlFor='software'>Software <span className='text-danger'>*</span></label>
+                                                            <Select
+                                                                options={options}
+                                                                isMulti={true}
+                                                                onChange={handleChange}
+                                                            />
+                                                            {/* <select className="form-select" id='software'>
                                                                     <option value='' hidden>Select Software</option>
                                                                     {
                                                                         softwarelist.map((item, index) => (
@@ -389,186 +388,186 @@ const AddNewAssets = () => {
                                                                         ))
                                                                     }
                                                                 </select> */}
-                                                            </div>
-
-                                                        </div>
-                                                        <div className='row mt-3'>
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='serialno'>Serial No. <span className='text-danger'>*</span></label>
-                                                                <input type="text" id='serialno' className="form-control" required />
-                                                            </div>
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='location'>Location <span className='text-danger'>*</span></label>
-                                                                <select className="form-select" id='location'>
-                                                                    <option value='' hidden>Select...</option>
-                                                                    {
-                                                                        locationlist.map((item, index) =>
-                                                                            <option key={index}>{item.location_name}</option>
-                                                                        )
-                                                                    }
-                                                                </select>
-                                                            </div>
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='manufacture'>Manufacture <span className='text-danger'>*</span></label>
-                                                                <select className="form-select" id='manufacture'>
-                                                                    <option value='' hidden>Select...</option>
-                                                                    {
-                                                                        manufacturerlist.map((item, index) => (
-                                                                            <option key={index} value={item.manufacturer_name}>{item.manufacturer_name}</option>
-                                                                        ))
-                                                                    }
-                                                                </select>
-                                                            </div>
-
                                                         </div>
 
+                                                    </div>
+                                                    <div className='row mt-3'>
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='serialno'>Serial No. <span className='text-danger'>*</span></label>
+                                                            <input type="text" id='serialno' className="form-control" required />
+                                                        </div>
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='location'>Location <span className='text-danger'>*</span></label>
+                                                            <select className="form-select" id='location'>
+                                                                <option value='' hidden>Select...</option>
+                                                                {
+                                                                    locationlist.map((item, index) =>
+                                                                        <option key={index}>{item.location_name}</option>
+                                                                    )
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='manufacture'>Manufacture <span className='text-danger'>*</span></label>
+                                                            <select className="form-select" id='manufacture'>
+                                                                <option value='' hidden>Select...</option>
+                                                                {
+                                                                    manufacturerlist.map((item, index) => (
+                                                                        <option key={index} value={item.manufacturer_name}>{item.manufacturer_name}</option>
+                                                                    ))
+                                                                }
+                                                            </select>
+                                                        </div>
 
-                                                        <div className="row mt-3">
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='model'>Model <span className='text-danger'>*</span></label>
-                                                                <input type="text" id='model' className="form-control" required />
-                                                            </div>
+                                                    </div>
 
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='assetstatus'>Asset Status <span className='text-danger'>*</span></label>
-                                                                <select className="form-select" id='assetstatus'>
-                                                                    <option value='' hidden>Select...</option>
-                                                                    {
-                                                                        assetstatuslist.map((item, index) => (
-                                                                            <option key={index} value={item.asset_status}>{item.asset_status}</option>
-                                                                        ))
-                                                                    }
 
-                                                                </select>
-                                                            </div>
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='description'>Description</label>
-                                                                <input type="text" id='description' className="form-control" required />
-                                                            </div>
+                                                    <div className="row mt-3">
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='model'>Model <span className='text-danger'>*</span></label>
+                                                            <input type="text" id='model' className="form-control" required />
+                                                        </div>
+
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='assetstatus'>Asset Status <span className='text-danger'>*</span></label>
+                                                            <select className="form-select" id='assetstatus'>
+                                                                <option value='' hidden>Select...</option>
+                                                                {
+                                                                    assetstatuslist.map((item, index) => (
+                                                                        <option key={index} value={item.asset_status}>{item.asset_status}</option>
+                                                                    ))
+                                                                }
+
+                                                            </select>
+                                                        </div>
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='description'>Description</label>
+                                                            <input type="text" id='description' className="form-control" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                            {/* #################### Device Detail  Box End #####################*/}
+
+                                            {/* #################### Purchases Detail  Box Start ############### */}
+                                            <li className='mt-3' style={{ listStyle: "none" }}>
+                                                <div className='cursor-pointer' >
+                                                    <div className="icon" ></div>
+                                                    <span >
+                                                        <div className="link_text " onClick={handleClickPurchasesDetail}>
+                                                            {purchasesdetail ? <FaMinusCircle /> : <MdAddCircle />}
+                                                            &nbsp;Purchases Details &nbsp;
+                                                            {purchasesdetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                                <div id='purchasesdivdetail' className='px-3' style={{ display: 'none' }}>
+                                                    <div className="row mt-3">
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='purchase_type'>Purchase Type <span className='text-danger'>*</span></label>
+                                                            <select className="form-select" id='purchase_type' onChange={handleChnagePurType}>
+                                                                <option value='' hidden>Select...</option>
+                                                                {
+                                                                    purchaseslist.map((item, index) => (
+                                                                        <option key={index} value={item.purchase_type}>{item.purchase_type}</option>
+                                                                    ))
+                                                                }
+
+                                                            </select>
+                                                        </div>
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='purchasesdate'>Purchase Date <span className='text-danger'>*</span></label>
+                                                            <input type="date" id='purchasesdate' className="form-control" defaultValue={todatdate} required />
                                                         </div>
                                                     </div>
 
-                                                </li>
-                                                {/* #################### Device Detail  Box End #####################*/}
-
-                                                {/* #################### Purchases Detail  Box Start ############### */}
-                                                <li className='mt-3' style={{ listStyle: "none" }}>
-                                                    <div style={{ cursor: "pointer" }}  >
-                                                        <div className="icon" ></div>
-                                                        <span style={{ display: "flex" }} >
-                                                            <div className="link_text " onClick={handleClickPurchasesDetail}>
-                                                                {purchasesdetail ? <FaMinusCircle /> : <MdAddCircle />}
-                                                                &nbsp;Purchases Details &nbsp;
-                                                                {purchasesdetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                    <div id='purchasesdivdetail' style={{ display: 'none' }}>
-                                                        <div className="row mt-3">
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='purchase_type'>Purchase Type <span className='text-danger'>*</span></label>
-                                                                <select className="form-select" id='purchase_type' onChange={handleChnagePurType}>
-                                                                    <option value='' hidden>Select...</option>
-                                                                    {
-                                                                        purchaseslist.map((item, index) => (
-                                                                            <option key={index} value={item.purchase_type}>{item.purchase_type}</option>
-                                                                        ))
-                                                                    }
-
-                                                                </select>
-                                                            </div>
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='purchasesdate'>Purchase Date <span className='text-danger'>*</span></label>
-                                                                <input type="date" id='purchasesdate' className="form-control" defaultValue={todatdate} required />
-                                                            </div>
+                                                    <div className="row mt-3">
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='company'>Company <span className='text-danger'>*</span></label>
+                                                            <input type="text" id='company' className="form-control" required />
                                                         </div>
-
-                                                        <div className="row mt-3">
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='company'>Company <span className='text-danger'>*</span></label>
-                                                                <input type="text" id='company' className="form-control" required />
-                                                            </div>
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='vendor'>Vendor <span className='text-danger'>*</span></label>
-                                                                <select id='vendor' className="form-select">
-                                                                    <option value='' hidden>Select...</option>
-                                                                    {
-                                                                        vendorlist.map((item, index) => (
-                                                                            <option key={index} value={item.vendor_name}>{item.vendor_name}</option>
-                                                                        ))
-                                                                    }
-                                                                </select>
-                                                            </div>
-                                                            <div className="col-md-4" id='invoicenodiv' style={{ display: 'none' }}>
-                                                                <label htmlFor='invoiceno'>Invoice No.<span className='text-danger'>*</span></label>
-                                                                <input type="text" id='invoiceno' className="form-control" required />
-                                                            </div>
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='vendor'>Vendor <span className='text-danger'>*</span></label>
+                                                            <select id='vendor' className="form-select">
+                                                                <option value='' hidden>Select...</option>
+                                                                {
+                                                                    vendorlist.map((item, index) => (
+                                                                        <option key={index} value={item.vendor_name}>{item.vendor_name}</option>
+                                                                    ))
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                        <div className="col-md-4" id='invoicenodiv' style={{ display: 'none' }}>
+                                                            <label htmlFor='invoiceno'>Invoice No.<span className='text-danger'>*</span></label>
+                                                            <input type="text" id='invoiceno' className="form-control" required />
                                                         </div>
                                                     </div>
-                                                </li>
-                                                {/* #################### Purchases Detail  Box End ############### */}
-                                                {/* #################### Other Detail  Box Start ############### */}
+                                                </div>
+                                            </li>
+                                            {/* #################### Purchases Detail  Box End ############### */}
+                                            {/* #################### Other Detail  Box Start ############### */}
 
-                                                <li className='mt-3' style={{ listStyle: "none" }}>
-                                                    <div style={{ cursor: "pointer" }}  >
-                                                        <div className="icon" ></div>
-                                                        <span style={{ display: "flex" }} >
-                                                            <div className="link_text " onClick={handleClickOtherDetail}>
-                                                                {otherdetail ? <FaMinusCircle /> : <MdAddCircle />}
-                                                                &nbsp;Other Details &nbsp;
-                                                                {otherdetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                    <div id='otherdivdetail' style={{ display: 'none' }}>
-
-                                                        <div className="row mt-3">
-                                                            <div className="col-md-4" id='purchasespricediv' style={{ display: "none" }}>
-                                                                <label htmlFor='purchaseprice'>Purchase Price <span className='text-danger'>*</span></label>
-                                                                <input type="number" id='purchaseprice' className="form-control" required />
-                                                            </div>
-                                                            <div className="col-md-4" id='rentpermonthdiv' style={{ display: "none" }}>
-                                                                <label htmlFor='rentpermonth'>Rent Per Month <span className='text-danger'>*</span></label>
-                                                                <input type="number" id='rentpermonth' className="form-control" required />
-                                                            </div>
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='latestinventory'>Latest Inventory <span className='text-danger'>*</span></label>
-                                                                <input type="date" id='latestinventory' className="form-control" defaultValue={todatdate} required />
-                                                            </div>
+                                            <li className='mt-3' style={{ listStyle: "none" }}>
+                                                <div className='cursor-pointer' >
+                                                    <div className="icon" ></div>
+                                                    <span>
+                                                        <div className="link_text " onClick={handleClickOtherDetail}>
+                                                            {otherdetail ? <FaMinusCircle /> : <MdAddCircle />}
+                                                            &nbsp;Other Details &nbsp;
+                                                            {otherdetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
                                                         </div>
-                                                        <div className="row mt-3">
+                                                    </span>
+                                                </div>
+                                                <div id='otherdivdetail' className='px-3' style={{ display: 'none' }}>
 
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='assetname'>Asset Name<span className='text-danger'>*</span></label>
-                                                                <input type="text" id='assetname' className="form-control" required />
-                                                            </div>
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='assetassign'>Asset Assign <span className='text-danger'>*</span></label>
-                                                                <select id='assetassign' className="form-select" >
-                                                                    <option value={localStorage.getItem('UserId')} hidden>{localStorage.getItem('UserName')}</option>
-                                                                    {
-                                                                        employeelist.map((item, index) => (
-                                                                            <option key={index} value={item.employee_id}>{item.employee_name}</option>
-                                                                        ))
-                                                                    }
-                                                                </select>
-                                                            </div>
+                                                    <div className="row mt-3">
+                                                        <div className="col-md-4" id='purchasespricediv' style={{ display: "none" }}>
+                                                            <label htmlFor='purchaseprice'>Purchase Price <span className='text-danger'>*</span></label>
+                                                            <input type="number" id='purchaseprice' className="form-control" required />
                                                         </div>
-                                                        <div className="col-md-6 mt-3">
-                                                            <label htmlFor='remark'>Remarks </label>
-                                                            <textarea id='remark' className="form-control" rows='3'></textarea>
+                                                        <div className="col-md-4" id='rentpermonthdiv' style={{ display: "none" }}>
+                                                            <label htmlFor='rentpermonth'>Rent Per Month <span className='text-danger'>*</span></label>
+                                                            <input type="number" id='rentpermonth' className="form-control" required />
+                                                        </div>
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='latestinventory'>Latest Inventory <span className='text-danger'>*</span></label>
+                                                            <input type="date" id='latestinventory' className="form-control" defaultValue={todatdate} required />
                                                         </div>
                                                     </div>
-                                                </li>
-                                                {/* #################### Other Detail  Box End ############### */}
+                                                    <div className="row mt-3">
 
-                                            </ul>
-                                            <div className="form-group mt-3" >
-                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleInsertData}>Add Assets</button>&nbsp;&nbsp;
-                                                <button type="reset" className="btn btn-secondary">Reset</button>
-                                            </div>
-                                        </form>
-                                    </article>
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='assetname'>Asset Name<span className='text-danger'>*</span></label>
+                                                            <input type="text" id='assetname' className="form-control" required />
+                                                        </div>
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='assetassign'>Asset Assign <span className='text-danger'>*</span></label>
+                                                            <select id='assetassign' className="form-select" >
+                                                                <option value={localStorage.getItem('UserId')} hidden>{localStorage.getItem('UserName')}</option>
+                                                                {
+                                                                    employeelist.map((item, index) => (
+                                                                        <option key={index} value={item.employee_id}>{item.employee_name}</option>
+                                                                    ))
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-6 mt-3">
+                                                        <label htmlFor='remark'>Remarks </label>
+                                                        <textarea id='remark' className="form-control" rows='3'></textarea>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {/* #################### Other Detail  Box End ############### */}
+
+                                        </ul>
+                                        <div className="form-group mt-3 mx-4" >
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleInsertData}>Add Assets</button>&nbsp;&nbsp;
+                                            <button type="reset" className="btn btn-secondary">Reset</button>
+                                        </div>
+                                    </form>
+                                </article>
 
 
                             </div>
