@@ -50,7 +50,7 @@ export default function AssetsDash(callback) {
 
 
     return (
-      <text x={x} y={y} fontSize='13' fill="silver" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      <text x={x} y={y} fontSize='13' fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
         {`${(percent * 100).toFixed(0)}%`}
       </text>
     );
@@ -58,14 +58,14 @@ export default function AssetsDash(callback) {
 
   
 
-  const COLORS = ['#6e1249', '#8f4606', '#122a8a', '#065b73', '#119c03', '#20541a'];
+  const COLORS = ['#a82a75', '#c26411', '#122a8a', '#065b73', '#119c03', '#20541a'];
   
 
 
   return (
     <div className='AssetDash'>
-      <div className='Asset_cards  d-flex justify-content-between mb-2'>
-        <div className='card1 d-flex justify-content-around rounded cursor-pointer'>
+      <div className='Asset_cards mb-2'>
+        <div className='card1 rounded cursor-pointer'>
           <div className='position-relative  asset-inner-card'>
             <div className='dash_card_icon_div rounded position-absolute'>
               <BsLaptopFill className='icon ' />
@@ -76,7 +76,7 @@ export default function AssetsDash(callback) {
             <p className='dash_card_para'>Total Devices</p>
           </div>
         </div>
-        <div className='card1 d-flex justify-content-around rounded '>
+        <div className='card1 rounded '>
           <div className='position-relative  asset-inner-card'>
             <div className='dash_card_icon_div activedev1 rounded position-absolute'>
               <HiUsers className='icon' />
@@ -87,7 +87,7 @@ export default function AssetsDash(callback) {
             <p className='dash_card_para'>Active Devices</p>
           </div>
         </div>
-        <div className='card1 d-flex justify-content-around rounded '>
+        <div className='card1 rounded '>
           <div className='position-relative  asset-inner-card'>
             <div className='dash_card_icon_div rentdev1 rounded position-absolute'>
               <MdStickyNote2 className='icon' />
@@ -100,16 +100,16 @@ export default function AssetsDash(callback) {
         </div>
       </div>
 
-      <div className='d-flex justify-content-between my-5'>
-        <div className='for_graph' >
-          <div className='bar_location bg-light position-relative mt-1' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '10px',height: "35vh",minHeight: "35vh",maxHeight:'35vh' }}>
+      <div className='all_graph'>
+        <div className='for_graph'>
+          <div className='bar_location' >
             {spinner ?
               <div class="spinner-border text-primary" style={{ marginTop: "2%", marginLeft: "50%" }} role="status">
                 <span class="sr-only"></span>
               </div> :
-              <div className='rounded it-bar position-absolute' style={{ background: 'linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))', boxShadow: '2px 2px 10px silver', top: "-12%", width: "95%", left: '2.5%' }} >
-                <ResponsiveContainer width="100%" aspect={3.7}>
-                  <BarChart data={chartdata} margin={{ top: 20, right: 45 }}>
+              <div className='it-bar' style={{width:"95%" ,height:"95%"}}>
+                <ResponsiveContainer >
+                  <BarChart width={600} height={300} data={chartdata} margin={{ top: 20, right: 45 }}>
                     <CartesianGrid strokeDasharray='4' vertical={false} />
                     <XAxis tick={{ fill: 'white' }} dataKey="location_code" interval={"preserveStartEnd"} fontSize={12} />
                     <YAxis tick={{ fill: 'white' }} />
@@ -121,17 +121,17 @@ export default function AssetsDash(callback) {
               </div>
             }
             <div >
-              <small className='text-secondary position-absolute mx-3' style={{ bottom:'8%' }}>IT Asset Allotment Summary</small>
+              <small className='text-secondary position-absolute mx-3' style={{ bottom:'6.5%' }}>IT Asset Allotment Summary</small>
             </div>
           </div>
-          <div className='graph_2nd_row d-flex justify-content-betweenposition-relative mt-5' >
-            <div className='manufacturer_graph bg-light position-relative' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '10px',height: "35vh" }}>
+          <div className='graph_2nd_row'>
+            <div className='manufacturer_graph'>
               {spinner ?
                 <div class="spinner-border text-success" style={{ marginTop: "10%", marginLeft: "50%" }} role="status">
                   <span class="sr-only"></span>
                 </div> :
-                <div className="manu_pie rounded position-absolute text-light" style={{ background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))', boxShadow: '2px 2px 10px silver', top: "-6.5%", width: "93.5%", left: '3.2%' }}>
-                  <ResponsiveContainer width="100%" height='100%' aspect={1.9} >
+                <div className="manu_pie" style={{width:"94%" ,height:"90%"}}>
+                  <ResponsiveContainer>
                     <PieChart width={700} height={150}>
                       
                       <Tooltip contentStyle={{ backgroundColor: "rgba(224, 224, 224,0.6)",color:"white",borderRadius:"3px" }} />
@@ -141,7 +141,7 @@ export default function AssetsDash(callback) {
                         
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}
                           // style={{
-                          //   filter: `drop-shadow(0px 0px 3px black`
+                          //   filter: `drop-shadow(1px 1px 3px black`
                           // }} 
 
                           />
@@ -152,16 +152,16 @@ export default function AssetsDash(callback) {
                   </ResponsiveContainer>
                 </div>}
               <div >
-                <small className='text-secondary position-absolute mx-3' style={{ bottom:'8%' }}>Manufacturer</small>
+                <small className='text-secondary position-absolute mx-3' style={{ bottom:'6.5%' }}>Manufacturer</small>
               </div>
             </div>
-            <div className='software_graph bg-light position-relative'  style={{ boxShadow: '1px 1px 10px silver', borderRadius: '10px',height: "35vh" }}>
+            <div className='software_graph' style={{height:"35vh"}}>
               {spinner ?
                 <div class="spinner-border text-warning" style={{ marginTop: "5%", marginLeft: "50%" }} role="status">
                   <span class="sr-only"></span>
                 </div> :
-                <div className="soft_bar rounded position-absolute" style={{ background: 'linear-gradient(45deg, #e55454, #e57272', boxShadow: '2px 2px 10px silver', top: "-6.5%", width: "93.5%", left: '3.2%' }}>
-                  <ResponsiveContainer width="100%" aspect={1.9}>
+                <div className="soft_bar" style={{width:"94%" ,height:"90%"}}>
+                  <ResponsiveContainer>
                     <BarChart data={dashboardsoft} margin={{ top: 18, right: 30, left: -20,bottom:9 }}>
                       <CartesianGrid strokeDasharray='4' vertical={false} />
                       <XAxis tick={{ fill: 'white' }} dataKey="software_name" interval={"preserveStartEnd"} fontSize={12} />
@@ -173,11 +173,11 @@ export default function AssetsDash(callback) {
                   </ResponsiveContainer>
                 </div>
               }
-                <small className='position-absolute text-secondary mx-3' style={{bottom:'8%'}}>Software</small>
+                <small className='position-absolute text-secondary mx-3' style={{bottom:'6.5%'}}>Software</small>
             </div>
           </div>
         </div>
-        <div className='asset-sidebar text-dark bg-white px-3 pt-2' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '10px' }}>
+        <div className='asset-sidebar text-dark bg-white px-3 pt-2'>
           <div className='Asset_card2 rounded  py-2'>
             <p className='mb-0'>Asset Value</p>
             <h3>₹ {Assetsdata.PurchaseVal}</h3>
