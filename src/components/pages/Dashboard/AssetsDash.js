@@ -121,7 +121,7 @@ export default function AssetsDash(callback) {
               </div>
             }
             <div >
-              <small className='text-secondary position-absolute mx-3' style={{ bottom:'6.5%' }}>IT Asset Allotment Summary</small>
+              <small className='text-secondary position-absolute mx-4' style={{ bottom:'6.5%' }}>IT Asset Allotment Summary</small>
             </div>
           </div>
           <div className='graph_2nd_row'>
