@@ -30,7 +30,7 @@ import {
 } from 'react-icons/bs'
 // import { BiCategory, BiCategoryAlt, BiDevices } from 'react-icons/bi'
 
-import {  HiDuplicate } from 'react-icons/hi'
+import {  HiDuplicate ,HiDocumentText} from 'react-icons/hi'
 // import { GrStatusGood, GrServices, GrCompliance } from 'react-icons/gr'
 import { GoIssueOpened } from 'react-icons/go'
 // import { GiContract } from 'react-icons/gi'
@@ -653,6 +653,12 @@ const Sidebar = ({ children }) => {
                                 <div className="link" onClick={(e) => { e.preventDefault(); isOpen ? window.location.href = './Dashboard' : toggle() }} id='masterdrizelltitlelink' style={{ cursor: "pointer" }}>
                                     <div className="icon" ><BsBellFill style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
                                     <div style={{ display: isOpen ? "block" : "none" }} className="link_text " >Notification</div>
+                                </div>
+                            </div>
+                            <div title='Reports'>
+                                <div className="link" onClick={(e) => { e.preventDefault(); isOpen ? window.location.href = './reports' : toggle() }} id='masterdrizelltitlelink' style={{ cursor: "pointer" }}>
+                                    <div className="icon" ><HiDocumentText style={{ fontSize: "20px", marginLeft: "-3px" }} /></div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} className="link_text " >Reports</div>
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import './Navbar.css'
-import { FaUserCircle, FaTicketAlt, FaElementor } from 'react-icons/fa'
+import { FaTicketAlt, FaElementor } from 'react-icons/fa'
 import { MdOutlineExitToApp, MdOutlineArrowDropDown, MdOutlineHelp, MdGroups, MdEmail, MdPermContactCalendar } from 'react-icons/md'
 import { BsFillClockFill, BsYoutube, BsFillLaptopFill } from 'react-icons/bs'
 import { BsBellFill } from 'react-icons/bs'
@@ -42,7 +42,7 @@ const Navbar = (props) => {
                         <p className='mb-0' style={{ fontSize: "18px" }}>Reports</p>
                     </Link>
                 </div> */}
-                <div className='reports d-flex mx-4'>
+                <div className='reports mx-4'>
                     <Link className=' d-flex align-items-center  cursor-pointer' to="/reports" style={{ textDecoration: "none", color: "#212529" }}>
                         <HiDocumentText style={{ fontSize: "28px",color:"gray" }} />
                         <p className='mb-0' style={{ fontSize: "17px" }}>Reports</p>
