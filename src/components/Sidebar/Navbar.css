@@ -44,6 +44,7 @@
     
  }
 
+
 @media screen and (max-width:1350px) {
     .navcontainer-second {
         width: 45%;
@@ -68,7 +69,13 @@
     }
     .navcontainer-innersecond {
        display: none;
+       border: 2px solid red;
+
     }
+    .reports{
+        display: none;
+        border: 2px solid red;
+     }
 }
 
 
@@ -110,9 +117,9 @@
   .clock:hover .tooltiptext {
     display: block;
   }
-  .reports:hover .tooltiptext {
+  /* .reports:hover .tooltiptext {
     display: block;
-  }
+  } */
 
 .innernavbarcontainer .dropdown-menu {
     /* border: 1px solid red; */
