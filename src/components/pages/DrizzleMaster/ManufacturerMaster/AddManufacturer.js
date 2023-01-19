@@ -4,6 +4,7 @@ import { InsertManufacturer } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 function AddManufacturer() {
     const [loading, setLoading] = useState(true)
@@ -66,32 +67,27 @@ function AddManufacturer() {
                         </div>
                         {/* ################### Snackbar ########################## */}
 
-                        <div className='main_container pb-2'>
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Manufacturer <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Manufacturer</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalManufacturer' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container'>
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Manufacturer <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Manufacturer</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalManufacturer' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="card m-auto" style={{ width: "50%" }}>
+                            <div className="bg-white shadow1-silver rounded15 mt-2 card inner-card pb-3">
                                 <div className='card-header'>Add Manufacturer:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-                                        <article className="card-body" >
-                                            <form className='px-3' autoComplete='off'>
-                                                <div className="form-group">
-                                                    <label htmlFor='manufacturername'>Manufacturer Name   <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='manufacturername' />
-                                                </div>
-                                                <div className="form-group mt-3">
-                                                    <label htmlFor='remark'>Remarks </label>
-                                                    <textarea className="form-control" placeholder="Comments" id='remark' rows="3" />
-                                                </div>
-                                                <div className="form-group mt-3" >
-                                                    <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Manufacturer</button>
-                                                    <button type="reset" className="btn btn-secondary mx-3">Reset</button>
-
-                                                </div>
-                                            </form>
-                                        </article>
+                                        <div className="form-group col-md-5">
+                                            <label htmlFor='manufacturername'>Manufacturer Name   <span className='text-danger'>*</span></label>
+                                            <input type="text" className="form-control" id='manufacturername' />
+                                        </div>
+                                        <div className="form-group mt-3 col-md-7">
+                                            <label htmlFor='remark'>Remarks </label>
+                                            <textarea className="form-control" placeholder="Comments" id='remark' rows="3" />
+                                        </div>
+                                        <div className="form-group mt-3" >
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Manufacturer</button>
+                                            <button type="reset" className="btn btn-secondary mx-3">Reset</button>
+                                        </div>
                                     </form>
                                 </article>
                             </div>

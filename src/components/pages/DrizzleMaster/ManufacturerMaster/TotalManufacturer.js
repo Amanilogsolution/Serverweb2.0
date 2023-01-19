@@ -9,34 +9,6 @@ import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import customStyles from '../../../TableCustomtyle'
 
-// const customStyles = {
-//     title: {
-//         style: {
-//             fontColor: 'red',
-//             fontWeight: '900',
-//         }
-//     },
-//     rows: {
-//         style: {
-//             minHeight: '35px'
-//         }
-//     },
-//     headCells: {
-//         style: {
-//             fontSize: '14px',
-//             background: 'rgb(105,59,233)',
-//             color: 'white',
-//         },
-//     },
-//     cells: {
-//         style: {
-//             fontSize: '14px',
-//             background: 'rgb(242,242,242)',
-//             borderBottom: "1px solid silver"
-//         },
-//     },
-// };
-
 const columns = [
     {
         name: 'Manufacturer Name',
@@ -106,12 +78,11 @@ function TotalManufacturer() {
                 loading ?
                     <Sidebar>
                         <div className='main_container' >
-                            <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
-                                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span className='page-type-head1'>Manufacturer <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Manufacturer</span> </h2>
-                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddManufacturer' }} >Add Manufacturer <b><MdAdd /></b></button>
+                                <div className='main-inner-container  d-flex justify-content-between pt-4 pb-3' >
+                                    <h4><span className='page-type-head1'>Manufacturer <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Manufacturer</span> </h4>
+                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddManufacturer' }} >Add Manufacturer <b>+</b></button>
                                 </div>
-                                <div >
+                                <div className=' bg-white pt-3 mt-2 px-2 shadow1-silver rounded15'>
                                     <DataTableExtensions {...tableData}  >
                                         <DataTable
                                             noHeader
@@ -124,7 +95,6 @@ function TotalManufacturer() {
                                     </DataTableExtensions>
                                 </div>
                             </div>
-                        </div>
                     </Sidebar>
                 : <LoadingPage />
             }
