@@ -6,11 +6,11 @@ import { TotalVendorPaymentapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import {MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import customStyles from '../../../TableCustomtyle'
 
 
-const  TotalVendorPayment=()=> {
+const TotalVendorPayment = () => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -24,6 +24,12 @@ const  TotalVendorPayment=()=> {
             name: 'Invoice No',
             selector: 'invoice_no',
             sortable: true,
+            cell: (row) => [
+                <a title='Edit VendorPayments' href="/EditVendorPayments"
+                    onClick={() => localStorage.setItem('vendorpaymentssno', `${row.sno}`)}>
+                    {row.invoice_no}
+                </a>
+            ]
         },
 
         {
@@ -43,17 +49,17 @@ const  TotalVendorPayment=()=> {
                 <button className='btn btn-success'> Upload Invoice</button>
             ],
         },
-        {
-            name: "Actions",
-            sortable: false,
-            selector: 'null',
-            cell: (row) => [
-                <a title='Edit VendorPayments' href="/EditVendorPayments">
-                    <p onClick={() => localStorage.setItem('vendorpaymentssno', `${row.sno}`)} >
-                        <AiFillEdit className='ft-20' style={{marginBottom: "-13px" }} />
-                    </p></a>
-            ]
-        }
+        // {
+        //     name: "Actions",
+        //     sortable: false,
+        //     selector: 'null',
+        //     cell: (row) => [
+        //         <a title='Edit VendorPayments' href="/EditVendorPayments">
+        //             <p onClick={() => localStorage.setItem('vendorpaymentssno', `${row.sno}`)} >
+        //                 <AiFillEdit className='ft-20' style={{ marginBottom: "-13px" }} />
+        //             </p></a>
+        //     ]
+        // }
 
     ];
 
@@ -62,7 +68,6 @@ const  TotalVendorPayment=()=> {
             const org = localStorage.getItem('Database')
 
             const tabledata = await TotalVendorPaymentapi(org);
-            console.log(tabledata)
             setData(tabledata)
             setLoading(true)
         }
@@ -80,23 +85,21 @@ const  TotalVendorPayment=()=> {
                 loading ?
                     <Sidebar>
                         <div className='main_container' >
-                            <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
-                                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span className='page-type-head1'>Vendor Payment <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Vendor Payment</span> </h2>
-                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorPayment' }} >Add Vendor Payment +</button>
-                                </div>
-                                <div >
-                                    <DataTableExtensions {...tableData}  >
-                                        <DataTable
-                                            noHeader
-                                            defaultSortField="id"
-                                            defaultSortAsc={false}
-                                            pagination
-                                            highlightOnHover
-                                            customStyles={customStyles}
-                                        />
-                                    </DataTableExtensions>
-                                </div>
+                            <div className='main-inner-container  d-flex justify-content-between pt-3 pb-3'>
+                                <h4><span className='page-type-head1'>Vendor Payment <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Vendor Payment</span> </h4>
+                                <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorPayment' }} >Add Vendor Payment +</button>
+                            </div>
+                            <div className=' bg-white pb-1 pt-2 px-2 shadow1-silver rounded15'>
+                                <DataTableExtensions {...tableData}  >
+                                    <DataTable
+                                        noHeader
+                                        defaultSortField="id"
+                                        defaultSortAsc={false}
+                                        pagination
+                                        highlightOnHover
+                                        customStyles={customStyles}
+                                    />
+                                </DataTableExtensions>
                             </div>
                         </div>
                     </Sidebar>

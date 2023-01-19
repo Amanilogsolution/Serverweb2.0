@@ -2,7 +2,6 @@ import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect } from 'react';
 import { InsertVendorContract, ActiveLocation, ActiveContractType, ActiveVendorCategory, ActiveVendorCode, ActiveVendSubCate, ActiveBillingFreq } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
-import './vendorcontract.css'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { GrFormClose } from "react-icons/gr"
 
@@ -199,7 +198,6 @@ function AddVendorContract() {
                     document.getElementById('snackbar').style.display = "block"
                 }
             }
-
         }
     }
 
@@ -231,163 +229,160 @@ function AddVendorContract() {
                         </div>
                         {/* ################# Snackbar ##################### */}
 
-                        <div className='main_container pb-2' >
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Contract</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Vendor Contract</span> </h2>
+                        <div className='main_container' >
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Vendor Contract</span> <MdOutlineKeyboardArrowRight /><span className='page-type-head2'>Add Vendor Contract</span> </h4>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorContract' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-                            <div className="contract-div" style={{ width: "90%" }}>
-                                <div className="card inner-card">
-                                    <div className='card-header'>Vendor Company Details</div>
-                                    <article className="card-body" >
-                                        <form className='px-3' autoComplete='off'>
-                                            <div className="row">
-                                                <div className="col-md-4">
-                                                    <label htmlFor='vendor'>Vendor <span className='text-danger'>*</span></label>
-                                                    <select className="form-select" id='vendor' >
-                                                        <option value='' hidden>Select Vendor</option>
-                                                        {
-                                                            vendorlist.map((item, index) =>
-                                                                <option key={index} value={[`${item.vendor_name},sno${item.sno}`]}>{item.vendor_name}</option>)
-                                                        }
-                                                    </select>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card py-3">
+                                <article className="card-body" >
+                                    <form className='px-3' autoComplete='off'>
+                                        <div className="row">
+                                            <div className="col-md-4">
+                                                <label htmlFor='vendor'>Vendor <span className='text-danger'>*</span></label>
+                                                <select className="form-select" id='vendor' >
+                                                    <option value='' hidden>Select Vendor</option>
+                                                    {
+                                                        vendorlist.map((item, index) =>
+                                                            <option key={index} value={[`${item.vendor_name},sno${item.sno}`]}>{item.vendor_name}</option>)
+                                                    }
+                                                </select>
 
-                                                </div>
+                                            </div>
 
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='company'>Company <span className='text-danger'>*</span></label>
-                                                    <input className="form-control" id='company' required />
-                                                </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='company'>Company <span className='text-danger'>*</span></label>
+                                                <input className="form-control" id='company' required />
+                                            </div>
 
-                                                <div className="col-md-4">
-                                                    <label htmlFor='location'>Location</label>
-                                                    <select className="form-select" id='location' required >
-                                                        <option value='' hidden>Select Location</option>
-                                                        {
-                                                            locationlist.map((item, index) =>
-                                                                <option key={index}>{item.location_name}</option>
-                                                            )
-                                                        }
-                                                    </select>
+                                            <div className="col-md-4">
+                                                <label htmlFor='location'>Location</label>
+                                                <select className="form-select" id='location' required >
+                                                    <option value='' hidden>Select Location</option>
+                                                    {
+                                                        locationlist.map((item, index) =>
+                                                            <option key={index}>{item.location_name}</option>
+                                                        )
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="row mt-3">
+                                            <div className="col-md-4">
+                                                <label htmlFor='contract_type'>Type of Contract <span className='text-danger'>*</span></label>
+                                                <select className="form-select" id='contract_type' onChange={togglerecurrngdiv}>
+                                                    <option value='' hidden>Select Contract Type</option>
+                                                    {
+                                                        contractlist.map((item, index) =>
+                                                            <option key={index} value={item.contract_type}>{item.contract_type}</option>)
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div className="col-md-4">
+                                                <label htmlFor='vendor_category'>Vendor Category <span className='text-danger'>*</span></label>
+                                                <select type="text" className="form-select" id='vendor_category' required onChange={handleChangeCategory}>
+                                                    <option value='' hidden>Select Category</option>
+                                                    {
+                                                        vendorcatlist.map((item, index) =>
+                                                            <option key={index} value={item.vendor_category}>{item.vendor_category}</option>)
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='vendor_sub_category'>Vendor Sub Category <span className='text-danger'>*</span></label>
+                                                <select type="text" className="form-select" id='vendor_sub_category' required >
+                                                    <option value='' hidden>Select Sub Category</option>
+                                                    {
+                                                        vendorsubcatlist.map((item, index) =>
+                                                            <option key={index} value={item.vendor_sub_category}>{item.vendor_sub_category}</option>)
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div className="row mt-2">
+                                            <div className="col-md-4">
+                                                <label htmlFor='cust_ac_no'>Customer Account No <span className='text-danger'>*</span></label>
+                                                <input type="text" className="form-control" id='cust_ac_no' required />
+                                            </div>
+                                            <div className="col-md-6 d-flex align-items-center" >
+                                                <label htmlFor='ref_no' className='col-md-4' >Reference Number <span className='text-danger'>*</span></label>
+                                                <input title='Click if Reference Number is same as Account no' type="checkbox" checked={!refferenceno ? true : false} id='ref_no' required style={{ height: "20px", width: "20px", marginRight: "20px" }} onChange={handleChangeRef} />
+
+                                                <div className="col-md-7" >
+                                                    <p className='col text-danger' id='ref_no_lable'>Same as Account number </p>
+                                                    <input type="text" className="form-control" id='ref_no_input' required placeholder='Reference no.' style={{ display: "none" }} />
                                                 </div>
                                             </div>
-                                            <div className="row mt-3">
+                                        </div>
+                                        <div className="row mt-2">
+
+                                            <div className="col-md-4" >
+                                                <label htmlFor='payee_name'>Payee Name <span className='text-danger'>*</span></label>
+                                                <input type="text" className="form-control" id='payee_name' required />
+                                            </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='help_desk_no'>HelpDesk Number <span className='text-danger'>*</span></label>
+                                                <input type="number" className="form-control" id='help_desk_no' required />
+                                            </div>
+                                            <div className="col-md-3 mt-3 d-flex align-items-center" >
+                                                <label htmlFor='tds' className='col-md-3' >TDS </label>
+                                                <input type="checkbox" className="" id='tds' style={{ height: "20px", width: "20px" }} />
+                                            </div>
+                                        </div>
+
+                                        <div className='mt-2' id='recurringdiv' style={{ display: "none" }}>
+                                            <div className="row ">
                                                 <div className="col-md-4">
-                                                    <label htmlFor='contract_type'>Type of Contract <span className='text-danger'>*</span></label>
-                                                    <select className="form-select" id='contract_type' onChange={togglerecurrngdiv}>
-                                                        <option value='' hidden>Select Contract Type</option>
-                                                        {
-                                                            contractlist.map((item, index) =>
-                                                                <option key={index} value={item.contract_type}>{item.contract_type}</option>)
-                                                        }
-                                                    </select>
-                                                </div>
-                                                <div className="col-md-4">
-                                                    <label htmlFor='vendor_category'>Vendor Category <span className='text-danger'>*</span></label>
-                                                    <select type="text" className="form-select" id='vendor_category' required onChange={handleChangeCategory}>
-                                                        <option value='' hidden>Select Category</option>
-                                                        {
-                                                            vendorcatlist.map((item, index) =>
-                                                                <option key={index} value={item.vendor_category}>{item.vendor_category}</option>)
-                                                        }
-                                                    </select>
+                                                    <label htmlFor='contact_plan_detail'>Contract Plan Detail <span className='text-danger'>*</span></label>
+                                                    <input type="text" className="form-control" id='contact_plan_detail' required />
                                                 </div>
                                                 <div className="col-md-4" >
-                                                    <label htmlFor='vendor_sub_category'>Vendor Sub Category <span className='text-danger'>*</span></label>
-                                                    <select type="text" className="form-select" id='vendor_sub_category' required >
-                                                        <option value='' hidden>Select Sub Category</option>
-                                                        {
-                                                            vendorsubcatlist.map((item, index) =>
-                                                                <option key={index} value={item.vendor_sub_category}>{item.vendor_sub_category}</option>)
-                                                        }
-                                                    </select>
+                                                    <label htmlFor='rate_per_month'>Rate Per Month <span className='text-danger'>*</span></label>
+                                                    <input type="number" className="form-control" id='rate_per_month' required />
+                                                </div>
+                                                <div className="col-md-4" >
+                                                    <label htmlFor='contract_start_date'>Contract Start Date <span className='text-danger'>*</span></label>
+                                                    <input type="date" className="form-control" id='contract_start_date' defaultValue={todatdate} required />
                                                 </div>
                                             </div>
 
                                             <div className="row mt-2">
-                                                <div className="col-md-4">
-                                                    <label htmlFor='cust_ac_no'>Customer Account No <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='cust_ac_no' required />
-                                                </div>
-                                                <div className="col-md-6 d-flex align-items-center" >
-                                                    <label htmlFor='ref_no' className='col-md-4' >Reference Number <span className='text-danger'>*</span></label>
-                                                    <input title='Click if Reference Number is same as Account no' type="checkbox" checked={!refferenceno ? true : false} id='ref_no' required style={{ height: "20px", width: "20px", marginRight: "20px" }} onChange={handleChangeRef} />
-
-                                                    <div className="col-md-7" >
-                                                        <p className='col text-danger' id='ref_no_lable'>Same as Account number </p>
-                                                        <input type="text" className="form-control" id='ref_no_input' required placeholder='Reference no.' style={{ display: "none" }} />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="row mt-2">
-
                                                 <div className="col-md-4" >
-                                                    <label htmlFor='payee_name'>Payee Name <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='payee_name' required />
+                                                    <label htmlFor='invoice_generation_date'>Invoice Generation Date <span className='text-danger'>*</span></label>
+                                                    <input type="number" className="form-control" id='invoice_generation_date' value={invoicedate} required
+                                                        onChange={(e) => {
+                                                            if (e.target.value > 31) return false;
+                                                            setInvoicedate(e.target.value)
+                                                        }} />
                                                 </div>
                                                 <div className="col-md-4" >
-                                                    <label htmlFor='help_desk_no'>HelpDesk Number <span className='text-danger'>*</span></label>
-                                                    <input type="number" className="form-control" id='help_desk_no' required />
-                                                </div>
-                                                <div className="col-md-3 mt-3 d-flex align-items-center" >
-                                                    <label htmlFor='tds' className='col-md-3' >TDS </label>
-                                                    <input type="checkbox" className="" id='tds' style={{ height: "20px", width: "20px" }} />
-                                                </div>
-                                            </div>
-
-                                            <div className='mt-2' id='recurringdiv' style={{ display: "none" }}>
-                                                <div className="row ">
-                                                    <div className="col-md-4">
-                                                        <label htmlFor='contact_plan_detail'>Contract Plan Detail <span className='text-danger'>*</span></label>
-                                                        <input type="text" className="form-control" id='contact_plan_detail' required />
-                                                    </div>
-                                                    <div className="col-md-4" >
-                                                        <label htmlFor='rate_per_month'>Rate Per Month <span className='text-danger'>*</span></label>
-                                                        <input type="number" className="form-control" id='rate_per_month' required />
-                                                    </div>
-                                                    <div className="col-md-4" >
-                                                        <label htmlFor='contract_start_date'>Contract Start Date <span className='text-danger'>*</span></label>
-                                                        <input type="date" className="form-control" id='contract_start_date' defaultValue={todatdate} required />
-                                                    </div>
-                                                </div>
-
-                                                <div className="row mt-2">
-                                                    <div className="col-md-4" >
-                                                        <label htmlFor='invoice_generation_date'>Invoice Generation Date <span className='text-danger'>*</span></label>
-                                                        <input type="number" className="form-control" id='invoice_generation_date' value={invoicedate} required
-                                                            onChange={(e) => {
-                                                                if (e.target.value > 31) return false;
-                                                                setInvoicedate(e.target.value)
-                                                            }} />
-                                                    </div>
-                                                    <div className="col-md-4" >
-                                                        <label htmlFor='billing_freq'>Billing Frequency <span className='text-danger'>*</span></label>
-                                                        <select className="form-select" id='billing_freq' required >
-                                                            <option value='' hidden>Select Billing Frequency</option>
-                                                            {
-                                                                billingfreqlist.map((item, index) =>
-                                                                    <option key={index} value={item.billing_freq}>{item.billing_freq}</option>)
-                                                            }
-                                                        </select>
-                                                    </div>
+                                                    <label htmlFor='billing_freq'>Billing Frequency <span className='text-danger'>*</span></label>
+                                                    <select className="form-select" id='billing_freq' required >
+                                                        <option value='' hidden>Select Billing Frequency</option>
+                                                        {
+                                                            billingfreqlist.map((item, index) =>
+                                                                <option key={index} value={item.billing_freq}>{item.billing_freq}</option>)
+                                                        }
+                                                    </select>
                                                 </div>
                                             </div>
-                                            <div className="row mt-3 " id='link_id_div' style={{ display: "none" }}>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='link_id_no'>Link Id No <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='link_id_no' required />
-                                                </div>
+                                        </div>
+                                        <div className="row mt-3 " id='link_id_div' style={{ display: "none" }}>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='link_id_no'>Link Id No <span className='text-danger'>*</span></label>
+                                                <input type="text" className="form-control" id='link_id_no' required />
                                             </div>
+                                        </div>
 
-                                            <div className="form-group mt-3" >
-                                                <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleaddinsert}>Add Contract</button>&nbsp; &nbsp;
-                                                <button type="reset" className="btn btn-secondary ">Reset</button>
-                                            </div>
-                                        </form>
-                                    </article>
-                                </div>
-
+                                        <div className="form-group mt-3 mx-2" >
+                                            <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleaddinsert}>Add Contract</button>&nbsp; &nbsp;
+                                            <button type="reset" className="btn btn-secondary ">Reset</button>
+                                        </div>
+                                    </form>
+                                </article>
                             </div>
+
                         </div>
                     </Sidebar>
                     : <LoadingPage />

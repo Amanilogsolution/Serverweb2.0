@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
 import { UpdateVendorPayment, GetVendorPayment, PendingVendorInvoice } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 function EditVendorPayments() {
     const [loading, setLoading] = useState(false)
@@ -113,20 +114,16 @@ function EditVendorPayments() {
                         </div>
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-2'>
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Vendor Payment <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Vendor Payment</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('vendorpaymentssno'); window.location.href = '/TotalVendorPayment' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container'>
+                            <div className=' main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Vendor Payment <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Vendor Payment</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('vendorpaymentssno'); window.location.href = '/TotalVendorPayment' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className=" card contract-div" style={{ width: "90%" }}>
-                                <header className="card-header d-flex justify-content-between" >
-                                    <h5 > Vendor Payment</h5>
-                                </header>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3 py-2">
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-
                                         <div className="row">
-                                            <div className="form-group col-md-4" >
+                                            <div className="form-group col-md-4">
                                                 <label htmlFor='invno'>Invoice no <span className='text-danger'>*</span></label>
                                                 <select type='text' id='invno' className='form-select m-0 invoice-inp'
                                                     // onChange={handleChnageVendorDetail} 

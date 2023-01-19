@@ -1,9 +1,10 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState } from 'react';
 import { AddAssetTypeapi } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 
 function AddAssetType() {
@@ -66,33 +67,30 @@ function AddAssetType() {
                         </div>
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-2' >
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Asset Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Asset Type</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssetType' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container ' >
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Asset Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Asset Type</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssetType' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="contract-div" style={{ width: "50%" }}>
-                                <div className="card inner-card">
-                                    <div className='card-header'>Add Asset Type:</div>
-                                    <article className="card-body" >
-                                        <form className='px-3' autoComplete='off'>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3">
+                                <div className='card-header'>Add Asset Type:</div>
+                                <article className="card-body" >
+                                    <form className='px-3' autoComplete='off'>
+                                        <div className="col-md-5 mt-2" >
+                                            <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
+                                            <input type="text" className="form-control" id='asset_type' />
+                                        </div>
+                                        <div className="col-md-7 mt-3" >
+                                            <label htmlFor='asset_type_desc'>Remarks</label>
+                                            <textarea className="form-control" id='asset_type_desc' rows='3' />
+                                        </div>
 
-                                            <div className="col mt-2" >
-                                                <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='asset_type' />
-                                            </div>
-                                            <div className="col-md mt-3" >
-                                                <label htmlFor='asset_type_desc'>Remarks</label>
-                                                <textarea className="form-control" id='asset_type_desc' rows='3' />
-                                            </div>
-
-                                            <div className="form-group mt-3" >
-                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Asset Type</button>
-                                                <button type="reset" className="btn btn-secondary mx-3">Reset</button>
-                                            </div>
-                                        </form>
-                                    </article>
-                                </div>
+                                        <div className="form-group mt-3" >
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Asset Type</button>
+                                            <button type="reset" className="btn btn-secondary mx-3">Reset</button>
+                                        </div>
+                                    </form>
+                                </article>
                             </div>
                         </div>
                     </Sidebar>

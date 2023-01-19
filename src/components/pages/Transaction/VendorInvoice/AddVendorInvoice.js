@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import './VendorInvoice.css'
 import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import {  MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
+import {RiArrowGoBackFill} from 'react-icons/ri'
 import Select from 'react-select';
 import Snackbar from '../../../../Snackbar/Snackbar';
 
@@ -159,11 +159,8 @@ function AddVendorInvoice() {
 
     const handleChnageVendorDetail = async (e) => {
         const org = localStorage.getItem('Database')
-
-        console.log(e)
         const toindex = e.value.split(",")
         Vendorname[e.Index] = toindex[1]
-        console.log(toindex[1])
         const vebndconid = toindex[0]
         const detail = await VendorContractDetail(org, vebndconid);
         document.getElementById(`accountno-${e.Index}`).value = detail.customer_account_no;
@@ -183,21 +180,21 @@ function AddVendorInvoice() {
                         </div>
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-2'>
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Vendor Invoice <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Invoice</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorInvoice' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container'>
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Vendor Invoice <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Invoice</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorInvoice' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className=" card contract-div" style={{ width: "98%", minHeight: "62vh" }}>
-                                <header className="card-header d-flex justify-content-between" >
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3">
+                                <header className="card-header d-flex justify-content-between align-items-center px-3" >
                                     <h5 >Add Vendor Invoice</h5>
                                     <div>
                                         <button className='btn btn-voilet' onClick={addRow}>Add row</button>
                                         <button className='btn btn-secondary mx-2 ' onClick={RemoveRow}>Remove row</button>
                                     </div>
                                 </header>
-                                <article className="card-body" >
-                                    <form  autoComplete='off' style={{ minHeight: "62vh" }}>
+                                <article className="card-body">
+                                    <form  autoComplete='off'>
                                         <table className="table table-bordered" >
                                             <thead>
                                                 <tr className='text-center'>
@@ -212,41 +209,31 @@ function AddVendorInvoice() {
                                                     <th scope="col">Ref no. <span className='text-danger'>*</span></th>
                                                     <th scope="col">Reading</th>
                                                 </tr>
-
                                             </thead>
                                             <tbody>
                                                 {arry.map((item, index) => (
                                                     <tr key={index}>
-                                                        <td className='p-0 invoice-td'>
+                                                        <td className='p-0 '>
                                                             <Select options={options} className="col" isMulti={false}
                                                                 onBlur={() => savatoarry(index)}
                                                                 onChange={(e) => handleChnageVendorDetail({ ...e, Index: index })}
                                                             />
-
-                                                            {/* <select type='text' id={`vendor-${index}`} className='form-select m-0  border-0' onChange={(e) => handleChnageVendorDetail(index, e.target.value)} onBlur={() => savatoarry(index)}>
-                                                                <option value='' hidden>Select</option>
-                                                                {
-                                                                    vendorcontractlist.map((item, index) =>
-                                                                        <option key={index} value={[`${item.sno},${item.vendor}`]}>{`${item.vendor}, (${item.reference_no})`}</option>)
-                                                                }
-
-                                                            </select> */}
                                                         </td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`accountno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`invno-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='number' id={`invamt-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='date' id={`invdate-${index}`} className='form-control m-0  border-0' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='date' id={`invduedate-${index}`} className='form-control m-0  border-0' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='date' id={`invsubdate-${index}`} className='form-control m-0  border-0' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`remark-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`refno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`printercount-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 '><input type='text' id={`accountno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 '><input type='text' id={`invno-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 '><input type='number' id={`invamt-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 '><input type='date' id={`invdate-${index}`} className='form-control m-0  border-0' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 '><input type='date' id={`invduedate-${index}`} className='form-control m-0  border-0' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 '><input type='date' id={`invsubdate-${index}`} className='form-control m-0  border-0' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 '><input type='text' id={`remark-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 '><input type='text' id={`refno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 '><input type='text' id={`printercount-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
                                                     </tr>
                                                 ))}
                                             </tbody>
                                         </table>
 
-                                        <div className='btn_div '>
+                                        <div className='btn_div mx-2'>
                                             <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Add Vendor Invoice</button>
                                             <button type='reset' className='btn btn-secondary mx-2'>Reset</button>
                                         </div>

@@ -59,16 +59,16 @@
     width: 97%;
 }
 
-.main-container-head{
+/* .main-container-head{
     font-size: 25px;
-}
+} */
 
 .page-type-head1 {
     color: rgb(123, 108, 200);
 }
 
 .page-type-head2 {
-    /* font-size: 25px; */
+    font-size: 25px;
 }
 
 /* Button Start*/

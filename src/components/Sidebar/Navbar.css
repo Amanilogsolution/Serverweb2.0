@@ -58,8 +58,7 @@
 
 @media screen and (max-width:900px) {
     .navcontainer-second {
-        width: 35%;
-        border: 2px solid red;
+        width: 50%;
     }
 }
 @media screen and (max-width:800px) {
@@ -80,4 +79,45 @@
     .logo-img{
         height: 60%;
    }
+}
+
+  
+.tooltiptext {
+    visibility: hidden;
+    width: 90px;
+    background-color: rgba(0, 0, 0, 0.66);
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    padding: 10px 0;
+    position: absolute;
+    z-index: 1;
+    margin-top: 38px;
+  }
+  
+  .profileicon:hover .tooltiptext {
+    visibility: visible;
+  }
+  .settings:hover .tooltiptext {
+    visibility: visible;
+  }
+  .notifications:hover .tooltiptext {
+    visibility: visible;
+  }
+  .help:hover .tooltiptext {
+    visibility: visible;
+  }
+  .clock:hover .tooltiptext {
+    visibility: visible;
+  }
+  .reports:hover .tooltiptext {
+    visibility: visible;
+  }
+
+.innernavbarcontainer .dropdown-menu {
+    /* border: 1px solid red; */
+    border-radius: 3px;
+    border: none;
+    background: rgb(255, 255, 255);
+    padding: 10px;
 }

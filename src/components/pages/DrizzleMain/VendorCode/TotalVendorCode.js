@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
-import DataTableExtensions from 'react-data-table-component-extensions';    
+import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { TotalVendorCodeapi, DeleteVendorCode } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
@@ -19,6 +19,12 @@ function TotalVendorCode() {
             name: 'Vendor Code',
             selector: 'vendor_code',
             sortable: true,
+            cell: (row) => [
+                <a title='Click to Edit Vendor Master' href="/EditVendorCode"
+                    onClick={() => localStorage.setItem('VendorCodeSno', `${row.sno}`)} >
+                    {row.vendor_code}
+                </a>
+            ]
         },
         {
             name: 'Vendor Name',
@@ -44,11 +50,11 @@ function TotalVendorCode() {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select className='border-0' style={{ background: "rgb(222, 222, 222)"}} onChange={async (e) => {
+                <select className='border-0' style={{ background: "rgb(222, 222, 222)" }} onChange={async (e) => {
                     const status = e.target.value;
                     const org = localStorage.getItem('Database')
 
-                    await DeleteVendorCode(org,status, row.sno)
+                    await DeleteVendorCode(org, status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -57,17 +63,17 @@ function TotalVendorCode() {
                 </select>
             ],
         },
-        {
-            name: "Actions",
-            sortable: false,
-            selector:'null',
-            cell: (row) => [
-                <a title='Edit Vendor Code' href="/EditVendorCode">
-                    <p onClick={() => localStorage.setItem('VendorCodeSno', `${row.sno}`)} >
-                        <AiFillEdit className='ft-20' style={{marginBottom: "-13px" }} />
-                    </p></a>
-            ]
-        }
+        // {
+        //     name: "Actions",
+        //     sortable: false,
+        //     selector:'null',
+        //     cell: (row) => [
+        //         <a title='Edit Vendor Code' href="/EditVendorCode">
+        //             <p onClick={() => localStorage.setItem('VendorCodeSno', `${row.sno}`)} >
+        //                 <AiFillEdit className='ft-20' style={{marginBottom: "-13px" }} />
+        //             </p></a>
+        //     ]
+        // }
 
     ];
 
@@ -92,27 +98,25 @@ function TotalVendorCode() {
                 loading ?
                     <Sidebar>
                         <div className='main_container' >
-                            <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
-                                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span className='page-type-head1'>Vendor Master <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Vendor Master</span> </h2>
-                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorCode' }} >Add Vendor Master +</button>
-                                </div>
-                                <div >
-                                    <DataTableExtensions {...tableData}  >
-                                        <DataTable
-                                            noHeader
-                                            defaultSortField="id"
-                                            defaultSortAsc={false}
-                                            pagination
-                                            highlightOnHover
-                                            customStyles={customStyles}
-                                        />
-                                    </DataTableExtensions>
-                                </div>
+                            <div className='main-inner-container  d-flex justify-content-between pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Vendor Master <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Vendor Master</span> </h4>
+                                <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorCode' }} >Add Vendor Master +</button>
+                            </div>
+                            <div className=' bg-white pb-1 pt-2 px-2 shadow1-silver rounded15'>
+                                <DataTableExtensions {...tableData}  >
+                                    <DataTable
+                                        noHeader
+                                        defaultSortField="id"
+                                        defaultSortAsc={false}
+                                        pagination
+                                        highlightOnHover
+                                        customStyles={customStyles}
+                                    />
+                                </DataTableExtensions>
                             </div>
                         </div>
                     </Sidebar>
-                : <LoadingPage />
+                    : <LoadingPage />
             }
         </>
     )

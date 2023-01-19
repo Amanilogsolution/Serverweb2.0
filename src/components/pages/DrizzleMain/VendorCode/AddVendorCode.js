@@ -4,8 +4,9 @@ import {
     InsertVendorCode, TotalCountry, TotalState,
     TotalCity
 } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
+import {  MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
+import {RiArrowGoBackFill} from 'react-icons/ri'
 import { FaMinusCircle } from 'react-icons/fa'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { GrFormClose } from "react-icons/gr"
@@ -175,174 +176,166 @@ function AddVendorCode() {
                             </div>
                         </div>
                         {/* ################# Snackbar ##################### */}
-                        <div className='main_container pb-2' >
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Vendor Code <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Master</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorCode' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container' >
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Vendor Code <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Master</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorCode' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="contract-div" style={{ width: "90%" }}>
-                                <div className="card inner-card">
-                                    <header className="card-header" >Add Vendor Master</header>
-                                    <article className="card-body" >
-                                        <form className='px-3' autoComplete='off'>
-                                            <ul>
-
-                                                {/* #################### Device Detail  Box Start #####################*/}
-                                                <li style={{ listStyle: "none" }}>
-                                                    <div>
-                                                        <span style={{ display: "flex", cursor: "pointer" }} onClick={handleToggleVendorDetail}>
-                                                            <div className="link_text " >
-                                                                {vendordetail ? <FaMinusCircle /> : <MdAddCircle />}
-                                                                &nbsp;Vendor / Company Details &nbsp;
-                                                                {vendordetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
-                                                            </div>
-                                                        </span>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card py-3">
+                                <article className="card-body" >
+                                    <form className='px-3' autoComplete='off'>
+                                        <ul className='px-1'>
+                                            {/* #################### Device Detail  Box Start #####################*/}
+                                            <li style={{ listStyle: "none" }}>
+                                                <div className='cursor-pointer' onClick={handleToggleVendorDetail}>
+                                                    <div className="link_text " >
+                                                        {vendordetail ? <FaMinusCircle /> : <MdAddCircle />}
+                                                        &nbsp;Vendor / Company Details &nbsp;
+                                                        {vendordetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
                                                     </div>
+                                                </div>
 
-                                                    <div className='mx-3' id='vendordetaildiv'>
-                                                        <div className="row mt-1">
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='vendor_code'>Vendor Code <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" id='vendor_code' required />
-                                                            </div>
-                                                            <div className="col-md-4" >
-                                                                <label htmlFor='vendor_name'>Vendor Name <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" id='vendor_name' required />
-                                                            </div>
-                                                            <div className="col-md-4" >
-                                                                <label htmlFor='comp_email'>Company Email Id <span className='text-danger'>*</span></label>
-                                                                <input type="email" className="form-control" id='comp_email' required />
-                                                            </div>
+                                                <div className='mx-3' id='vendordetaildiv'>
+                                                    <div className="row mt-1">
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='vendor_code'>Vendor Code <span className='text-danger'>*</span></label>
+                                                            <input type="text" className="form-control" id='vendor_code' required />
                                                         </div>
-                                                        <div className="row mt-2">
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='comp_website'>Company website</label>
-                                                                <input type="url" className="form-control" id='comp_website' required />
-                                                            </div>
-
-                                                            <div className="col-md-4" >
-                                                                <label htmlFor='comp_gst'>Company GST no.</label>
-                                                                <input type="text" className="form-control" id='comp_gst' />
-                                                            </div>
-                                                            <div className="col-md-4" >
-                                                                <label htmlFor='comp_phone'>Phone no.</label>
-                                                                <input type="number" className="form-control" id='comp_phone'
-                                                                    value={phonenocount}
-                                                                    onChange={(e) => { if (e.target.value.length === 11) return false; else { setPhonenocount(e.target.value) } }}
-                                                                />
-                                                            </div>
-
+                                                        <div className="col-md-4" >
+                                                            <label htmlFor='vendor_name'>Vendor Name <span className='text-danger'>*</span></label>
+                                                            <input type="text" className="form-control" id='vendor_name' required />
                                                         </div>
-                                                        <div className='row mt-2'>
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='comp_country'>Country<span className='text-danger'>*</span></label>
-                                                                <select type="text" className="form-select" id='comp_country' required onChange={handleGetState}>
-                                                                    <option value='' hidden>Select Country</option>
-                                                                    {
-                                                                        countrylist.map((item, index) => (
-                                                                            <option key={index} value={item.country_id}>{item.country_name}</option>
+                                                        <div className="col-md-4" >
+                                                            <label htmlFor='comp_email'>Company Email Id <span className='text-danger'>*</span></label>
+                                                            <input type="email" className="form-control" id='comp_email' required />
+                                                        </div>
+                                                    </div>
+                                                    <div className="row mt-2">
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='comp_website'>Company website</label>
+                                                            <input type="url" className="form-control" id='comp_website' required />
+                                                        </div>
+
+                                                        <div className="col-md-4" >
+                                                            <label htmlFor='comp_gst'>Company GST no.</label>
+                                                            <input type="text" className="form-control" id='comp_gst' />
+                                                        </div>
+                                                        <div className="col-md-4" >
+                                                            <label htmlFor='comp_phone'>Phone no.</label>
+                                                            <input type="number" className="form-control" id='comp_phone'
+                                                                value={phonenocount}
+                                                                onChange={(e) => { if (e.target.value.length === 11) return false; else { setPhonenocount(e.target.value) } }}
+                                                            />
+                                                        </div>
+
+                                                    </div>
+                                                    <div className='row mt-2'>
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='comp_country'>Country<span className='text-danger'>*</span></label>
+                                                            <select type="text" className="form-select" id='comp_country' required onChange={handleGetState}>
+                                                                <option value='' hidden>Select Country</option>
+                                                                {
+                                                                    countrylist.map((item, index) => (
+                                                                        <option key={index} value={item.country_id}>{item.country_name}</option>
+                                                                    ))
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                        <div className="col-md-4" >
+                                                            <label htmlFor='comp_state'> State <span className='text-danger'>*</span></label>
+                                                            <select className="form-select" id='comp_state' required
+                                                                onChange={handleGetCity}
+                                                            >
+                                                                <option value='' hidden>Select State</option>
+                                                                {
+                                                                    statelist.length ?
+                                                                        statelist.map((item, index) => (
+                                                                            <option key={index} value={item.state_id}>{item.state_name}</option>
                                                                         ))
-                                                                    }
-                                                                </select>
-                                                            </div>
-                                                            <div className="col-md-4" >
-                                                                <label htmlFor='comp_state'> State <span className='text-danger'>*</span></label>
-                                                                <select className="form-select" id='comp_state' required
-                                                                    onChange={handleGetCity}
-                                                                >
-                                                                    <option value='' hidden>Select State</option>
-                                                                    {
-                                                                        statelist.length ?
-                                                                            statelist.map((item, index) => (
-                                                                                <option key={index} value={item.state_id}>{item.state_name}</option>
-                                                                            ))
-                                                                            : <option value=''> Please Select Country</option>
-                                                                    }
-                                                                </select>
+                                                                        : <option value=''> Please Select Country</option>
+                                                                }
+                                                            </select>
 
-                                                            </div>
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='comp_city'> City <span className='text-danger'>*</span></label>
-                                                                <select type="text" className="form-select" id='comp_city' required >
-                                                                    <option value='' hidden>Select City</option>
-                                                                    {
-                                                                        citylist.length ?
-                                                                            citylist.map((item, index) => (
-                                                                                <option key={index} value={item.city_name}>{item.city_name}</option>
-                                                                            ))
-                                                                            : <option value=''> Please Select State</option>
-                                                                    }
-                                                                </select>
-
-                                                            </div>
                                                         </div>
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='comp_city'> City <span className='text-danger'>*</span></label>
+                                                            <select type="text" className="form-select" id='comp_city' required >
+                                                                <option value='' hidden>Select City</option>
+                                                                {
+                                                                    citylist.length ?
+                                                                        citylist.map((item, index) => (
+                                                                            <option key={index} value={item.city_name}>{item.city_name}</option>
+                                                                        ))
+                                                                        : <option value=''> Please Select State</option>
+                                                                }
+                                                            </select>
 
-                                                        <div className="row mt-2">
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='comp_pincode'> Pincode </label>
-                                                                <input type="number" className="form-control" id='comp_pincode' required value={pincodecount}
-                                                                    onChange={(e) => { if (e.target.value.length === 7) return false; else { setPincodecount(e.target.value) } }} />
-                                                            </div>
-                                                            <div className=" col-md-2 d-flex align-items-center" >
-                                                                <label htmlFor='vendor_portal' className='col' >Vendor Portal</label>
-                                                                <input type="checkbox" className="" id='vendor_portal' style={{ height: "20px", width: "20px" }} />
-                                                            </div>
-                                                        </div>
-
-                                                        <div className='row mt-2'>
-                                                            <div className="col ">
-                                                                <label htmlFor='comp_addr1'>Company Address Line 1 </label>
-                                                                <input type="text" className="form-control" id='comp_addr1' required />
-                                                            </div>
-
-                                                            <div className="col">
-                                                                <label htmlFor='comp_addr2'>Company Address Line 2</label>
-                                                                <input type="text" className="form-control" id='comp_addr2' />
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                </li>
-
-                                                <li style={{ listStyle: "none" }}>
-                                                    <div>
-                                                        <span style={{ display: "flex", cursor: "pointer" }} onClick={handleTogglePersonDetail}>
-                                                            <div className="link_text mt-2" >
-                                                                {persondetail ? <FaMinusCircle /> : <MdAddCircle />}
-                                                                &nbsp;Contact Person Details &nbsp;
-                                                                {persondetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
-                                                            </div>
-                                                        </span>
-                                                    </div>
-
-                                                    <div className='mx-3' id='persondetaildiv' style={{ display: 'none' }}>
-                                                        <div className="row mt-1">
-                                                            <div className="col-md-4">
-                                                                <label htmlFor='contact_person'>Name <span className='text-danger'>*</span></label>
-                                                                <input type="text" className="form-control" id='contact_person' required />
-                                                            </div>
-                                                            <div className="col-md-4" >
-                                                                <label htmlFor='contact_no'>Contact no <span className='text-danger'>*</span></label>
-                                                                <input type="number" className="form-control" id='contact_no' required value={numbercount}
-                                                                    onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumbercount(e.target.value) } }}
-                                                                />
-                                                            </div>
-                                                            <div className="col-md-4" >
-                                                                <label htmlFor='contact_email'> Email Id <span className='text-danger'>*</span></label>
-                                                                <input type="email" className="form-control" id='contact_email' required />
-                                                            </div>
                                                         </div>
                                                     </div>
-                                                </li>
-                                            </ul>
-                                            <div className="form-group mt-3" >
-                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Vendor Master </button>
-                                                <button type="reset" className="btn btn-secondary mx-3">Reset</button>
-                                            </div>
-                                        </form>
-                                    </article>
-                                </div>
+
+                                                    <div className="row mt-2">
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='comp_pincode'> Pincode </label>
+                                                            <input type="number" className="form-control" id='comp_pincode' required value={pincodecount}
+                                                                onChange={(e) => { if (e.target.value.length === 7) return false; else { setPincodecount(e.target.value) } }} />
+                                                        </div>
+                                                        <div className=" col-md-2 d-flex align-items-center" >
+                                                            <label htmlFor='vendor_portal' className='col' >Vendor Portal</label>
+                                                            <input type="checkbox" className="" id='vendor_portal' style={{ height: "20px", width: "20px" }} />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className='row mt-2'>
+                                                        <div className="col ">
+                                                            <label htmlFor='comp_addr1'>Company Address Line 1 </label>
+                                                            <input type="text" className="form-control" id='comp_addr1' required />
+                                                        </div>
+
+                                                        <div className="col">
+                                                            <label htmlFor='comp_addr2'>Company Address Line 2</label>
+                                                            <input type="text" className="form-control" id='comp_addr2' />
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </li>
+
+                                            <li style={{ listStyle: "none" }}>
+                                                <div className='cursor-pointer' onClick={handleTogglePersonDetail}>
+                                                    <div className="link_text mt-2" >
+                                                        {persondetail ? <FaMinusCircle /> : <MdAddCircle />}
+                                                        &nbsp;Contact Person Details &nbsp;
+                                                        {persondetail ? <IoIosArrowDown /> : <IoIosArrowForward />}
+                                                    </div>
+                                                </div>
+
+                                                <div className='mx-3' id='persondetaildiv' style={{ display: 'none' }}>
+                                                    <div className="row mt-1">
+                                                        <div className="col-md-4">
+                                                            <label htmlFor='contact_person'>Name <span className='text-danger'>*</span></label>
+                                                            <input type="text" className="form-control" id='contact_person' required />
+                                                        </div>
+                                                        <div className="col-md-4" >
+                                                            <label htmlFor='contact_no'>Contact no <span className='text-danger'>*</span></label>
+                                                            <input type="number" className="form-control" id='contact_no' required value={numbercount}
+                                                                onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumbercount(e.target.value) } }}
+                                                            />
+                                                        </div>
+                                                        <div className="col-md-4" >
+                                                            <label htmlFor='contact_email'> Email Id <span className='text-danger'>*</span></label>
+                                                            <input type="email" className="form-control" id='contact_email' required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div className="form-group mt-3 mx-2" >
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Vendor Master </button>
+                                            <button type="reset" className="btn btn-secondary mx-3">Reset</button>
+                                        </div>
+                                    </form>
+                                </article>
                             </div>
                         </div>
                     </Sidebar>
