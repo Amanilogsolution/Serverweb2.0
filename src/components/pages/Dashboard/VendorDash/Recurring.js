@@ -70,9 +70,9 @@ export default function Recurring() {
     console.log(data.selected + 1)
   }
   return (
-    <div className='Recurring_div d-flex justify-content-around mx-2 pt-2 mt-3'>
+    <div className='Recurring_div justify-content-around mx-2'>
 
-      <div className='recurring_table position-relative bg-light rounded' style={{ boxShadow: '1px 1px 10px #333' }} >
+      <div className='recurring_table position-relative bg-light rounded' >
       <div className="recurringhead position-absolute  d-flex justify-content-between pt-3">
       <p className='text-white px-4 mx-1'>Vendor Recurring Details</p>
       <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer  px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{width:'5%',float:'right'}}>
@@ -96,7 +96,7 @@ export default function Recurring() {
 
       </div>
 
-        <div className='recurring_table_inside mt-5 px-3'>
+        <div className='recurring_table_inside px-3'>
           
          
 
@@ -137,7 +137,9 @@ export default function Recurring() {
             </tbody>
           </table>
           </div>
-          <div className="d-flex justify-content-end">
+         
+        </div>
+        <div className="for_pnation justify-content-end mx-3">
             <div className='rows_per_page mx-4'>
               <label className='mx-2'>Rows / page</label>
               <select onChange={handleChange}>
@@ -147,7 +149,7 @@ export default function Recurring() {
 
               </select>
             </div>
-            <div>
+            <div className='react_pagination'>
               <ReactPaginate
                 breakLabel="..."
                 nextLabel={<IoMdArrowDropright style={{fontSize:"24px"}}/>}
@@ -169,10 +171,9 @@ export default function Recurring() {
               />
             </div>
           </div>
-
-        </div>
+        
       </div>
-      <div className='recurring_cards bg-light p-2 rounded' style={{ boxShadow: '1px 1px 10px #333' }}>
+      <div className='recurring_cards bg-light p-2 rounded'>
         <div className='recurring_card text-center text-light pt-2 rounded mb-2'>
           <p className='mb-0'>Recurring</p>
           <h3>{TotalRecurring}</h3>
