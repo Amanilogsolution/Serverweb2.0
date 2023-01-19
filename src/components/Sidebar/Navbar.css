@@ -83,35 +83,35 @@
 
   
 .tooltiptext {
-    visibility: hidden;
-    width: 90px;
+    display: none;
+    min-width: 60px;
     background-color: rgba(0, 0, 0, 0.66);
     color: #fff;
     text-align: center;
     border-radius: 3px;
-    padding: 10px 0;
+    padding: 10px;
     position: absolute;
     z-index: 1;
     margin-top: 38px;
   }
   
   .profileicon:hover .tooltiptext {
-    visibility: visible;
+    display: block;
   }
   .settings:hover .tooltiptext {
-    visibility: visible;
+    display: block;
   }
   .notifications:hover .tooltiptext {
-    visibility: visible;
+    display: block;
   }
   .help:hover .tooltiptext {
-    visibility: visible;
+    display: block;
   }
   .clock:hover .tooltiptext {
-    visibility: visible;
+    display: block;
   }
   .reports:hover .tooltiptext {
-    visibility: visible;
+    display: block;
   }
 
 .innernavbarcontainer .dropdown-menu {

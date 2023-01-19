@@ -88,7 +88,7 @@ const Navbar = (props) => {
                         </div>
                         <div className='notifications d-flex  cursor-pointer mx-1'>
                             <BsBellFill className='mt-1' style={{ fontSize: "18px",color:"#404040" }} />
-                            <span class="tooltiptext">Notify</span>
+                            <span class="tooltiptext">Notifications</span>
                         </div>
                      
                     </div>
@@ -101,7 +101,7 @@ const Navbar = (props) => {
                     <span class="tooltiptext">Profile</span>
                         <div className='d-flex align-items-center' role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                            <RiUserFill className='' style={{ fontSize: "30px", marginRight: '6px',background:"#cf821d",color:"white",padding:"6px",borderRadius:"5px"}} />
+                            <RiUserFill style={{ fontSize: "30px", marginRight: '6px',background:"#f7771b",color:"white",padding:"6px",borderRadius:"5px"}} />
                             <p className=' mb-0 name-text' style={{ fontSize: '18px' }}>{localStorage.getItem('UserName')}</p>
                             <MdOutlineArrowDropDown style={{ fontSize: "30px" }} />
                         </div>
