@@ -4,9 +4,8 @@ import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
 import { PendingVendorInvoice } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
-import { AiFillEdit } from 'react-icons/ai';
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import customStyles from '../../../TableCustomtyle'
 
 
@@ -24,6 +23,11 @@ function TotalVendorInvoice() {
             name: 'Invoice_no',
             selector: 'invoice_no',
             sortable: true,
+            cell: (row) => [
+                <a title='Edit Invoice' href="/EditVendorInvoice" onClick={() => localStorage.setItem('vendorinvoicesno', `${row.sno}`)} >
+                    {row.invoice_no}
+                </a>
+            ]
         },
         {
             name: 'Reference No',
@@ -39,20 +43,20 @@ function TotalVendorInvoice() {
             name: 'Upload',
             sortable: true,
             cell: (row) => [
-               <button className='btn btn-success'> Upload Invoice</button>
+                <button className='btn btn-success'> Upload Invoice</button>
             ],
         },
-        {
-            name: "Actions",
-            sortable: false,
-            selector: 'null',
-            cell: (row) => [
-                <a title='Edit Invoice' href="/EditVendorInvoice">
-                    <p onClick={() => localStorage.setItem('vendorinvoicesno', `${row.sno}`)} >
-                        <AiFillEdit className='ft-20' style={{  marginBottom: "-13px" }} />
-                    </p></a>
-            ]
-        }
+        // {
+        //     name: "Actions",
+        //     sortable: false,
+        //     selector: 'null',
+        //     cell: (row) => [
+        //         <a title='Edit Invoice' href="/EditVendorInvoice">
+        //             <p onClick={() => localStorage.setItem('vendorinvoicesno', `${row.sno}`)} >
+        //                 <AiFillEdit className='ft-20' style={{ marginBottom: "-13px" }} />
+        //             </p></a>
+        //     ]
+        // }
 
     ];
 
@@ -77,23 +81,21 @@ function TotalVendorInvoice() {
                 loading ?
                     <Sidebar>
                         <div className='main_container' >
-                            <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
-                                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span className='page-type-head1'>Vendor Invoice <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Vendor Invoice</span> </h2>
-                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorInvoice' }} >Add Vendor Invoice <MdAdd /></button>
-                                </div>
-                                <div >
-                                    <DataTableExtensions {...tableData}  >
-                                        <DataTable
-                                            noHeader
-                                            defaultSortField="id"
-                                            defaultSortAsc={false}
-                                            pagination
-                                            highlightOnHover
-                                            customStyles={customStyles}
-                                        />
-                                    </DataTableExtensions>
-                                </div>
+                            <div className='main-inner-container  d-flex justify-content-between pt-3 pb-3'>
+                                <h4><span className='page-type-head1'>Vendor Invoice <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Vendor Invoice</span> </h4>
+                                <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorInvoice' }} >Add Vendor Invoice +</button>
+                            </div>
+                            <div className=' bg-white pb-1 pt-2 px-2 shadow1-silver rounded15'>
+                                <DataTableExtensions {...tableData}  >
+                                    <DataTable
+                                        noHeader
+                                        defaultSortField="id"
+                                        defaultSortAsc={false}
+                                        pagination
+                                        highlightOnHover
+                                        customStyles={customStyles}
+                                    />
+                                </DataTableExtensions>
                             </div>
                         </div>
                     </Sidebar>

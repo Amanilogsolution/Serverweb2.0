@@ -1,10 +1,11 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect } from 'react';
 import { AddLocationapi } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { TotalCountry, TotalState, TotalCity } from '../../../../api/index'
 import Snackbar from '../../../../Snackbar/Snackbar';
+import {RiArrowGoBackFill} from 'react-icons/ri'
 
 
 function AddLocation() {
@@ -109,129 +110,126 @@ function AddLocation() {
 
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-3'>
-                            <div className=' d-flex justify-content-between mx-5 pt-4 '>
-                                <h2><span className='page-type-head1'>Locations <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2' >Add Location</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('seriessno'); window.location.href = '/TotalLocations' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container'>
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Locations <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2' >Add Location</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('seriessno'); window.location.href = '/TotalLocations' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="contract-div" style={{ width: "90%" }}>
-                                <div className="card inner-card">
-                                    <div className='card-header'>Add Location:</div>
-                                    <article className="card-body" >
-                                        <form className='px-3' autoComplete='off'>
-                                            <div className="row">
-                                                <div className="col-md-4">
-                                                    <label htmlFor='company'> Company <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='company' />
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='locationcode'>Location Code <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='locationcode' />
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='locationname'>Location Name <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='locationname' />
-                                                </div>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card py-3">
+                                <article className="card-body" >
+                                    <form className='px-3' autoComplete='off'>
+                                        <div className="row">
+                                            <div className="col-md-4">
+                                                <label htmlFor='company'> Company <span className='text-danger'>*</span></label>
+                                                <input type="text" className="form-control" id='company' />
                                             </div>
-                                            <div className="row mt-3">
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='address1'>Address Line 1 <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='address1' />
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='address2'>Address Line 2</label>
-                                                    <input type="text" className="form-control" id='address2' />
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='country'>Country <span className='text-danger'>*</span></label>
-                                                    <select id='country' className="form-select"
-                                                        onChange={handleStateMaster}>
-                                                        <option value='' hidden>Select...</option>
-                                                        {
-                                                            countrylist.map((item, index) => (
-                                                                <option key={index} value={item.country_id}>{item.country_name}</option>
-                                                            ))
-                                                        }
-                                                    </select>
-                                                </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='locationcode'>Location Code <span className='text-danger'>*</span></label>
+                                                <input type="text" className="form-control" id='locationcode' />
+                                            </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='locationname'>Location Name <span className='text-danger'>*</span></label>
+                                                <input type="text" className="form-control" id='locationname' />
+                                            </div>
+                                        </div>
+                                        <div className="row mt-3">
+                                            <div className="col-md-4" >
+                                                <label htmlFor='address1'>Address Line 1 <span className='text-danger'>*</span></label>
+                                                <input type="text" className="form-control" id='address1' />
+                                            </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='address2'>Address Line 2</label>
+                                                <input type="text" className="form-control" id='address2' />
+                                            </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='country'>Country <span className='text-danger'>*</span></label>
+                                                <select id='country' className="form-select"
+                                                    onChange={handleStateMaster}>
+                                                    <option value='' hidden>Select...</option>
+                                                    {
+                                                        countrylist.map((item, index) => (
+                                                            <option key={index} value={item.country_id}>{item.country_name}</option>
+                                                        ))
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div className="row mt-3">
+                                            <div className="col-md-4" >
+                                                <label htmlFor='state'>State <span className='text-danger'>*</span></label>
+                                                <select id='state' className="form-select"
+                                                    onChange={handleCityMaster}>
+
+                                                    <option value='' hidden>Select...</option>
+
+                                                    {
+                                                        states.map((item, index) => (
+                                                            <option key={index} value={item.state_id}>{item.state_name}</option>
+                                                        ))
+
+                                                    }
+
+                                                </select>
+                                            </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='city'>City <span className='text-danger'>*</span></label>
+                                                <select id='city' className="form-select">
+                                                    <option value='' hidden>Select...</option>
+                                                    {
+                                                        cities.map((item, index) => (
+                                                            <option key={index} value={item.city_name}>{item.city_name}</option>
+                                                        ))
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='pincode'>Pincode <span className='text-danger'>*</span></label>
+                                                <input type="number" className="form-control" id='pincode'
+                                                    value={pincount}
+                                                    onChange={(e) => { if (e.target.value.length === 7) return false; else { setPincount(e.target.value) } }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="row mt-3">
+                                            <div className="col-md-4" >
+                                                <label htmlFor='contactpersonname'>Contact Person Name <span className='text-danger'>*</span></label>
+                                                <input type="text" className="form-control" id='contactpersonname' />
+                                            </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='email'>Contact Email <span className='text-danger'>*</span></label>
+                                                <input type="email" className="form-control" id='email' />
+                                            </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='contNum'>Contact Number <span className='text-danger'>*</span></label>
+                                                <input type="number" className="form-control" id='contNum'
+                                                    value={numcount}
+                                                    onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumcount(e.target.value) } }}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="row mt-3">
+                                            <div className="col-md-4" >
+                                                <label htmlFor='gstno'>GST No</label>
+                                                <input type="text" className="form-control" id='gstno' />
+                                            </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='latitude'>Latitude</label>
+                                                <input type="text" className="form-control" id='latitude' />
+                                            </div>
+                                            <div className="col-md-4" >
+                                                <label htmlFor='longitude'>Longitude</label>
+                                                <input type="text" className="form-control" id='longitude' />
                                             </div>
 
-                                            <div className="row mt-3">
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='state'>State <span className='text-danger'>*</span></label>
-                                                    <select id='state' className="form-select"
-                                                        onChange={handleCityMaster}>
-
-                                                        <option value='' hidden>Select...</option>
-
-                                                        {
-                                                            states.map((item, index) => (
-                                                                <option key={index} value={item.state_id}>{item.state_name}</option>
-                                                            ))
-
-                                                        }
-
-                                                    </select>
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='city'>City <span className='text-danger'>*</span></label>
-                                                    <select id='city' className="form-select">
-                                                        <option value='' hidden>Select...</option>
-                                                        {
-                                                            cities.map((item, index) => (
-                                                                <option key={index} value={item.city_name}>{item.city_name}</option>
-                                                            ))
-                                                        }
-                                                    </select>
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='pincode'>Pincode <span className='text-danger'>*</span></label>
-                                                    <input type="number" className="form-control" id='pincode'
-                                                        value={pincount}
-                                                        onChange={(e) => { if (e.target.value.length === 7) return false; else { setPincount(e.target.value) } }}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="row mt-3">
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='contactpersonname'>Contact Person Name <span className='text-danger'>*</span></label>
-                                                    <input type="text" className="form-control" id='contactpersonname' />
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='email'>Contact Email <span className='text-danger'>*</span></label>
-                                                    <input type="email" className="form-control" id='email' />
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='contNum'>Contact Number <span className='text-danger'>*</span></label>
-                                                    <input type="number" className="form-control" id='contNum'
-                                                        value={numcount}
-                                                        onChange={(e) => { if (e.target.value.length === 11) return false; else { setNumcount(e.target.value) } }}
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className="row mt-3">
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='gstno'>GST No</label>
-                                                    <input type="text" className="form-control" id='gstno' />
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='latitude'>Latitude</label>
-                                                    <input type="text" className="form-control" id='latitude' />
-                                                </div>
-                                                <div className="col-md-4" >
-                                                    <label htmlFor='longitude'>Longitude</label>
-                                                    <input type="text" className="form-control" id='longitude' />
-                                                </div>
-
-                                            </div>
-                                            <div className="form-group mt-3" >
-                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}> Add Location</button>
-                                                <button type="reset" className="btn btn-secondary mx-3" >Reset</button>
-                                            </div>
-                                        </form>
-                                    </article>
-                                </div>
+                                        </div>
+                                        <div className="form-group mt-3" >
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}> Add Location</button>
+                                            <button type="reset" className="btn btn-secondary mx-3" >Reset</button>
+                                        </div>
+                                    </form>
+                                </article>
                             </div>
                         </div>
                     </Sidebar>

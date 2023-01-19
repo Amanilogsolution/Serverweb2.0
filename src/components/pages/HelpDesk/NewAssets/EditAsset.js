@@ -1,7 +1,8 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect } from 'react';
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
+import {RiArrowGoBackFill} from 'react-icons/ri'
 import { FaMinusCircle } from 'react-icons/fa'
 
 import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, ActivePurchaseTypeapi, GetNewAssets, CountNewAssets, UpdateNewAssets } from '../../../../api'
@@ -314,7 +315,7 @@ const EditAsset = () => {
                         <div className='main_container' >
                             <div className=' d-flex justify-content-between pt-4 pb-3'>
                                 <h2><span className='page-type-head1'>Assets <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Asset</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('newassetsno'); window.location.href = '/TotalNewAssets' }} >Back <MdOutlineArrowForward /></button>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('newassetsno'); window.location.href = '/TotalNewAssets' }} >Back <RiArrowGoBackFill /></button>
                             </div>
                             <div className="card inner-card shadow1-silver rounded15  mt-3 py-2">
                                 <article className="card-body" >

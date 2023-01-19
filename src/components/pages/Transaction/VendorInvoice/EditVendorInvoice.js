@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import './VendorInvoice.css'
 import { ActiveVendorContract, VendorContractDetail, UpdatePendingVendorInvoice, GetVendorInvoice } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 function EditVendorInvoice() {
     const [loading, setLoading] = useState(false)
@@ -23,7 +23,6 @@ function EditVendorInvoice() {
             const org = localStorage.getItem('Database')
 
             const datas = await GetVendorInvoice(org, localStorage.getItem('vendorinvoicesno'))
-            console.log(datas)
             setData(datas[0])
 
             const vendorcontract = await ActiveVendorContract(org);
@@ -32,12 +31,6 @@ function EditVendorInvoice() {
         }
         fetchdata();
     }, [])
-
-
-
-
-
-
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
@@ -81,9 +74,6 @@ function EditVendorInvoice() {
                 document.getElementById('snackbar').style.display = "block"
             }
         }
-
-
-
     }
 
     const handleChnageVendorDetail = async (e) => {
@@ -95,7 +85,6 @@ function EditVendorInvoice() {
         const detail = await VendorContractDetail(org, vebndconid);
         document.getElementById('accountno').value = detail.customer_account_no;
         document.getElementById('refno').value = detail.reference_no;
-
     }
 
     const handleChangeremarks = (e) => {
@@ -108,24 +97,21 @@ function EditVendorInvoice() {
                 loading ?
                     <Sidebar>
                         {/* ######################### Sanckbar Start ##################################### */}
-
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
                         {/* ######################### Sanckbar End ##################################### */}
-
-                        <div className='main_container pb-2'>
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Vendor Invoice <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Vendor Invoice</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('vendorinvoicesno'); window.location.href = '/TotalVendorInvoice' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container'>
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Vendor Invoice <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Vendor Invoice</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('vendorinvoicesno'); window.location.href = '/TotalVendorInvoice' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className=" card contract-div" style={{ width: "90%" }}>
-                                <header className="card-header d-flex justify-content-between" >
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3 py-1">
+                                {/* <header className="card-header d-flex justify-content-between" >
                                     <h5 > Vendor Invoice</h5>
-                                </header>
+                                </header> */}
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-
                                         <div className="row">
                                             <div className="form-group col-md-4" >
                                                 <label htmlFor='vendor'>Vendor <span className='text-danger'>*</span></label>
@@ -135,7 +121,6 @@ function EditVendorInvoice() {
                                                         vendorcontractlist.map((item, index) =>
                                                             <option key={index} value={[`${item.sno},${item.vendor}`]}>{`${item.vendor}, (${item.reference_no})`}</option>)
                                                     }
-
                                                 </select>
                                             </div>
                                             <div className="form-group col-md-4">
@@ -146,7 +131,6 @@ function EditVendorInvoice() {
                                                 <label htmlFor='invno'>Invoice no <span className='text-danger'>*</span> </label>
                                                 <input type="text" className="form-control" id='invno' defaultValue={data.invoice_no} />
                                             </div>
-
                                         </div>
 
                                         <div className="row mt-3">
@@ -162,7 +146,6 @@ function EditVendorInvoice() {
                                                 <label htmlFor='invduedate'>Invoice Due date</label>
                                                 <input type="date" id='invduedate' className="form-control" defaultValue={data.InvoiceDuedate} />
                                             </div>
-
                                         </div>
                                         <div className="row mt-3">
                                             <div className="form-group col-md-4">
@@ -177,13 +160,11 @@ function EditVendorInvoice() {
                                                 <label htmlFor='printercount'>Printer Counter</label>
                                                 <input type="text" id='printercount' className="form-control" defaultValue={data.printer_counter} />
                                             </div>
-
                                         </div>
                                         <div className="form-group col-md-4 mt-3">
                                             <label htmlFor='remark'>Remarks</label>
                                             <textarea className="form-control" id='remark' rows='3' value={data.remark} onChange={handleChangeremarks}></textarea>
                                         </div>
-
                                         <div className='btn_div mt-3'>
                                             <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Update Vendor Invoice</button>
                                         </div>

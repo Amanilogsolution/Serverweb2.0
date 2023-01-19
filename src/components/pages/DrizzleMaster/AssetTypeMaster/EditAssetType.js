@@ -1,9 +1,10 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
 import { GetAssetTypeapi, UpdateAssettypeapi } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 
 function EditAssetType() {
@@ -42,7 +43,7 @@ function EditAssetType() {
         if (!asset_type) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter the Asset Type", title: "Error", type: "warning" , route: "#", toggle: "true"})
+            setDatas({ ...datas, message: "Please enter the Asset Type", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
         }
         else {
@@ -50,23 +51,16 @@ function EditAssetType() {
             const result = await UpdateAssettypeapi(org, sno, asset_type, asset_type_desc, username);
             if (result === 'Updated') {
                 localStorage.removeItem('assettypesno');
-                setDatas({ ...datas, message: "Asset Type Updated", title: "success", type: "success", route: "/TotalAssetType", toggle: "true"  })
+                setDatas({ ...datas, message: "Asset Type Updated", title: "success", type: "success", route: "/TotalAssetType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
             else {
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditAssetType",toggle: "true"  })
+                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditAssetType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
             }
         }
 
-    }
-
-    const handlechangeassettype = (e) => {
-        setData({ ...data, asset_type: e.target.value })
-    }
-    const handlechangeassettypedesc = (e) => {
-        setData({ ...data, asset_description: e.target.value })
     }
 
     return (
@@ -75,36 +69,31 @@ function EditAssetType() {
                 loading ?
                     <Sidebar >
                         <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle}/>
+                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                         </div>
 
-                        <div className='main_container pb-2'>
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Asset Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Asset Type</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('assettypesno'); window.location.href = '/TotalAssetType' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container'>
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Asset Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Asset Type</span> </h4>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('assettypesno'); window.location.href = '/TotalAssetType' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="contract-div" style={{ width: "50%" }}>
-                                <div className="card inner-card">
-                                    <div className='card-header'>Edit Asset Type:</div>
-
-                                    <article className="card-body" >
-                                        <form className='px-3' autoComplete='off'>
-                                            <div className="form-group col" >
-                                                <label htmlFor='asset_type'> Asset Type <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='asset_type' value={data.asset_type} onChange={handlechangeassettype} />
-                                            </div>
-                                            <div className="form-group col-md mt-3" >
-                                                <label htmlFor='asset_type_desc'>Remarks</label>
-                                                <textarea className="form-control" id='asset_type_desc' rows='3' value={data.asset_description} onChange={handlechangeassettypedesc} />
-                                            </div>
-
-
-                                            <div className="form-group" >
-                                                <button type="submit" className="btn btn-voilet float-right mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
-                                            </div>
-                                        </form>
-                                    </article>
-                                </div>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3">
+                                <div className='card-header'>Edit Asset Type:</div>
+                                <article className="card-body" >
+                                    <form className='px-3' autoComplete='off'>
+                                        <div className="form-group col-md-5" >
+                                            <label htmlFor='asset_type'> Asset Type <span className='text-danger'>*</span></label>
+                                            <input type="text" className="form-control" id='asset_type' defaultValue={data.asset_type}  />
+                                        </div>
+                                        <div className="form-group col-md-6 mt-3">
+                                            <label htmlFor='asset_type_desc'>Remarks</label>
+                                            <textarea className="form-control" id='asset_type_desc' rows='3' defaultValue={data.asset_description}  />
+                                        </div>
+                                        <div className="form-group" >
+                                            <button type="submit" className="btn btn-voilet mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
+                                        </div>
+                                    </form>
+                                </article>
                             </div>
                         </div>
                     </Sidebar>

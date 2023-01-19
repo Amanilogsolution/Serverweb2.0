@@ -4,7 +4,7 @@ import { FaUserCircle, FaTicketAlt, FaElementor } from 'react-icons/fa'
 import { MdOutlineExitToApp, MdOutlineArrowDropDown, MdOutlineHelp, MdGroups, MdEmail, MdPermContactCalendar } from 'react-icons/md'
 import { BsFillClockFill, BsYoutube, BsFillLaptopFill } from 'react-icons/bs'
 import { BsBellFill } from 'react-icons/bs'
-import { RiMoneyEuroCircleFill, RiSettings3Fill } from 'react-icons/ri'
+import { RiMoneyEuroCircleFill, RiSettings3Fill,RiUserFill } from 'react-icons/ri'
 import { IoMdHelp } from 'react-icons/io'
 import DrizzleLogo from '../../image/drizzle_logo.png'
 import { Link } from 'react-router-dom'
@@ -18,7 +18,7 @@ import { VscListFilter } from 'react-icons/vsc'
 const Navbar = (props) => {
     return (
         <>
-            <div className="innernavbarcontainer bg-white mb-3 d-flex align-items-center " style={{border:"1px solid red"}} >
+            <div className="innernavbarcontainer bg-white mb-3 d-flex align-items-center " >
                 {props.isOpen ?
                     null : <img className='navbar-brand logo-img' src={DrizzleLogo} alt='Drizzle Logo' />}
 
@@ -42,18 +42,27 @@ const Navbar = (props) => {
                         <p className='mb-0' style={{ fontSize: "18px" }}>Reports</p>
                     </Link>
                 </div> */}
+                <div className='reports d-flex mx-4'>
+                    <Link className=' d-flex align-items-center  cursor-pointer' to="/reports" style={{ textDecoration: "none", color: "#212529" }}>
+                        <HiDocumentText style={{ fontSize: "28px",color:"gray" }} />
+                        <p className='mb-0' style={{ fontSize: "17px" }}>Reports</p>
+                    </Link>
+                    <span class="tooltiptext ">Reports</span>
+                </div>
 
 
-                <div className='navcontainer-second position-absolute d-flex align-items-center justify-content-end border border-dark'>
-                    <div className='navcontainer-innersecond '>
-                        <div className='d-flex border border-danger'>
+                <div className='navcontainer-second position-absolute d-flex align-items-center justify-content-end '>
+                    <div className='navcontainer-innersecond mx-4'>
+                        <div className='d-flex mx-1 clock'>
+                        
                             <div role="button" id="dropdownMenuLink"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                <VscListFilter className='ft-19' />
-                                <BsFillClockFill className='ft-20' />
-                                <MdOutlineArrowDropDown style={{ fontSize: "21px", margin: "-2px -2px" }} />
+                                <VscListFilter style={{fontSize:"18px",color:"#404040"}}/>
+                                <BsFillClockFill style={{fontSize:"18px",color:"#404040"}} />
+                                <MdOutlineArrowDropDown style={{ fontSize: "21px",color:"#404040" }} />
                             </div>
-                            <div className="dropdown-menu " aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
+                            <span class="tooltiptext">Shortcut</span>
+                            <div className="dropdown-menu " aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px silver',margin:"0 -2px" }}>
                                 <a className="dropdown-item" href="/AddNewAssets"><BsFillLaptopFill style={{ color: "rgb(66, 4, 69)" }} /> Enroll New Asset</a>
                                 <Link className="dropdown-item" to="/AddTickets"><FaTicketAlt style={{ color: "rgb(66, 4, 69)" }} /> Create a New Ticket</Link>
                                 <Link className="dropdown-item" to="/AddVendorCode"><FaElementor style={{ color: "rgb(66, 4, 69)" }} />&nbsp; Create a New Vendor</Link>
@@ -61,11 +70,12 @@ const Navbar = (props) => {
                                 <Link className="dropdown-item" to="/AddVendorPayment"><RiMoneyEuroCircleFill style={{ color: "rgb(66, 4, 69)" }} /> Add Vendor Payment</Link>
                             </div>
                         </div>
-                        <div className='d-flex mx-3'>
+                        <div className='help d-flex mx-1 '>
+                        <span class="tooltiptext">Help</span>
                             <div role="button" id="dropdownMenuLink"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <MdOutlineHelp style={{ fontSize: "25px" }} />
-                                <MdOutlineArrowDropDown style={{ fontSize: "23px", margin: "-2px -2px" }} />
+                                <MdOutlineHelp style={{ fontSize: "21px",color:"#404040" }} />
+                                <MdOutlineArrowDropDown style={{ fontSize: "23px", margin: "0 -3px",color:"#404040" }} />
                             </div>
                             <div className="dropdown-menu " aria-labelledby="dropdownMenuButton" style={{ boxShadow: '1px 1px 3px gray' }}>
                                 <Link className="dropdown-item" to="#"><BsYoutube /> Quick Start Video</Link>
@@ -76,17 +86,22 @@ const Navbar = (props) => {
                                 <Link className="dropdown-item" to="/Contactus"><MdPermContactCalendar /> Contact us</Link>
                             </div>
                         </div>
-                        <div className='d-flex  cursor-pointer'>
-                            <BsBellFill className='ft-20 mt-1' />
+                        <div className='notifications d-flex  cursor-pointer mx-1'>
+                            <BsBellFill className='mt-1' style={{ fontSize: "18px",color:"#404040" }} />
+                            <span class="tooltiptext">Notifications</span>
                         </div>
+                     
                     </div>
-                    <div className='d-flex  cursor-pointer mx-5' onClick={props.togglesidebar2}>
-                        <RiSettings3Fill className='ft-20 mt-1' />
+                    <div className='settings d-flex  cursor-pointer mx-3' onClick={props.togglesidebar2}>
+                        <RiSettings3Fill style={{ fontSize: "30px",margin:"0 8px 0 0",color:"gray"}} />
+                        <span class="tooltiptext">Settings</span>
                     </div>
-                    <div className='d-flex' >
+                    
+                    <div className='d-flex profileicon'>
+                    <span class="tooltiptext">Profile</span>
                         <div className='d-flex align-items-center' role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                            <FaUserCircle className='' style={{ fontSize: "30px", marginRight: '3px' }} />
+                            <RiUserFill style={{ fontSize: "30px", marginRight: '6px',background:"#f7771b",color:"white",padding:"6px",borderRadius:"5px"}} />
                             <p className=' mb-0 name-text' style={{ fontSize: '18px' }}>{localStorage.getItem('UserName')}</p>
                             <MdOutlineArrowDropDown style={{ fontSize: "30px" }} />
                         </div>

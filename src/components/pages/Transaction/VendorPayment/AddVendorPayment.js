@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
 import { PendingVendorInvoice, UpdateVendorInvoice } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import {  MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import {RiArrowGoBackFill} from 'react-icons/ri'
 
 function AddVendorPayment() {
     const [loading, setLoading] = useState(false)
@@ -25,7 +26,6 @@ function AddVendorPayment() {
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-
             const invoice = await PendingVendorInvoice(org);
             setPendinginvoicelist(invoice)
             todaydate()
@@ -174,12 +174,12 @@ function AddVendorPayment() {
                         </div>
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-2'>
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Vendor Payment <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Payment</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorPayment' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container'>
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Vendor Payment <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Payment</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorPayment' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className=" card contract-div" style={{ width: "98%" }}>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3">
                                 <header className="card-header d-flex justify-content-between" >
                                     <h5 >Add Vendor Payment</h5>
                                     <div>
@@ -188,10 +188,9 @@ function AddVendorPayment() {
                                     </div>
                                 </header>
                                 <article className="card-body" >
-                                    <form className='invoice-form' autoComplete='off'>
+                                    <form className='invoice-form overflow-auto' autoComplete='off'>
                                         <table className="table table-bordered">
                                             <thead>
-
                                                 <tr >
                                                     <th scope="col">Invoice no  <span className='text-danger'>*</span></th>
                                                     <th scope="col">Invoice Amount  <span className='text-danger'>*</span></th>
@@ -201,18 +200,17 @@ function AddVendorPayment() {
                                                     <th scope="col">Remark</th>
                                                     <th scope="col">Ref no.  <span className='text-danger'>*</span></th>
                                                 </tr>
-
                                             </thead>
-                                            <tbody>
+                                            <tbody >
                                                 {arry.map((item, index) => (
                                                     <tr key={index}>
-                                                        <td className='p-0 invoice-td'>
+                                                        <td className='p-0'>
                                                             {/* <Select
                                                                 options={options}
                                                                 isMulti={false}
                                                                 onChange={(e) => handleChnageVendorDetail(index, e.target.value)}
                                                             /> */}
-                                                            <select type='text' id={`invno-${index}`} className='form-select m-0 invoice-inp' onChange={(e) => handleChnageVendorDetail(index, e.target.value)} onBlur={() => savatoarry(index)}>
+                                                            <select type='text' id={`invno-${index}`} className='form-select m-0 ' onChange={(e) => handleChnageVendorDetail(index, e.target.value)} onBlur={() => savatoarry(index)}>
                                                                 <option value='' hidden>Select Invoice no</option>
                                                                 {
                                                                     pendinginvoicelist.map((item, index) =>
@@ -220,12 +218,12 @@ function AddVendorPayment() {
                                                                 }
                                                             </select>
                                                         </td>
-                                                        <td className='p-0 invoice-td'><input type='number' id={`invamt-${index}`} className='form-control m-0 invoice-inp' disabled onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`ptydtl-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='number' id={`ptyamt-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='date' id={`ptydate-${index}`} className='form-control m-0 invoice-inp' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`remark-${index}`} className='form-control m-0 invoice-inp' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 invoice-td'><input type='text' id={`refno-${index}`} className='form-control m-0 invoice-inp' disabled onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0'><input type='number' id={`invamt-${index}`} className='form-control m-0 ' disabled onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0'><input type='text' id={`ptydtl-${index}`} className='form-control m-0 ' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0'><input type='number' id={`ptyamt-${index}`} className='form-control m-0 ' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0'><input type='date' id={`ptydate-${index}`} className='form-control m-0 ' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0'><input type='text' id={`remark-${index}`} className='form-control m-0 ' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0'><input type='text' id={`refno-${index}`} className='form-control m-0 ' disabled onBlur={() => savatoarry(index)} /></td>
                                                     </tr>
                                                 ))}
                                             </tbody>

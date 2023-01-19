@@ -1,9 +1,10 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState } from 'react';
 import { AddAssetStatusapi } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import {MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 
 function AddAssetStatus() {
@@ -65,35 +66,29 @@ function AddAssetStatus() {
                         </div>
                         {/* ############################ Snackbar ############################## */}
 
-                        <div className='main_container pb-2' >
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Asset Status <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Asset Status</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssetStatus' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container' >
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Asset Status <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Asset Status</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssetStatus' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="contract-div" style={{ width: "50%" }}>
-                                <div className="card inner-card">
-                                    <div className='card-header'>Add Asset Status:</div>
-                                    <article className="card-body" >
-                                        <form className='px-3' autoComplete='off'>
-
-                                            <div className="col" >
-                                                <label htmlFor='asset_status'>Asset Status  <span className='text-danger'>*</span></label>
-                                                <input type="text" className="form-control" id='asset_status' />
-                                            </div>
-                                            <div className="col-md mt-3" >
-                                                <label htmlFor='asset_status_desc'>Remarks</label>
-                                                <textarea className="form-control" id='asset_status_desc' rows='3' />
-                                            </div>
-
-
-                                            <div className="form-group mt-3" >
-                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Status</button>&nbsp;
-                                                <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
-
-                                            </div>
-                                        </form>
-                                    </article>
-                                </div>
+                            <div className="bg-white shadow1-silver rounded15 mt-2 card inner-card pb-3">
+                                <div className='card-header'>Add Asset Status:</div>
+                                <article className="card-body" >
+                                    <form className='px-3' autoComplete='off'>
+                                        <div className="col-md-5" >
+                                            <label htmlFor='asset_status'>Asset Status  <span className='text-danger'>*</span></label>
+                                            <input type="text" className="form-control" id='asset_status' />
+                                        </div>
+                                        <div className="col-md-7 mt-3" >
+                                            <label htmlFor='asset_status_desc'>Remarks</label>
+                                            <textarea className="form-control" id='asset_status_desc' rows='3' />
+                                        </div>
+                                        <div className="form-group mt-3" >
+                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Status</button>
+                                            <button type="reset" className="btn btn-secondary mx-3" >Reset</button>
+                                        </div>
+                                    </form>
+                                </article>
                             </div>
                         </div>
                     </Sidebar>

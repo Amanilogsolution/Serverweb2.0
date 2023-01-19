@@ -7,35 +7,7 @@ import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-
-const customStyles = {
-    title: {
-        style: {
-            fontColor: 'red',
-            fontWeight: '900',
-        }
-    },
-    rows: {
-        style: {
-            minHeight: '35px'
-        }
-    },
-    headCells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(105,59,233)',
-            color: 'white',
-        },
-    },
-    cells: {
-        style: {
-            fontSize: '14px',
-            background: 'rgb(242,242,242)	',
-            borderBottom: "1px solid silver"
-        },
-    },
-};
-
+import customStyles from '../../../TableCustomtyle';
 
 function TotalVendorContract() {
     const [data, setData] = useState([])
@@ -47,13 +19,13 @@ function TotalVendorContract() {
             selector: 'vendor',
             sortable: true,
         },
-      
+
         {
             name: 'Location',
-            selector:'location',
+            selector: 'location',
             sortable: true,
         },
-       
+
         {
             name: 'Major Category',
             selector: 'major_category',
@@ -88,11 +60,10 @@ function TotalVendorContract() {
             name: 'Status',
             sortable: true,
             cell: (row) => [
-                <select className='border-0 ' style={{ background: "rgb(222, 222, 222)"  }} onChange={async (e) => {
+                <select className='border-0 ' style={{ background: "rgb(222, 222, 222)" }} onChange={async (e) => {
                     const status = e.target.value;
                     const org = localStorage.getItem('Database')
-
-                     await DeleteVendorContract(org,status, row.sno)
+                    await DeleteVendorContract(org, status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -121,7 +92,6 @@ function TotalVendorContract() {
             const tabledata = await TotalVendorContractapi(org);
             setData(tabledata)
             setLoading(true)
-
         }
         fetchdata();
     }, [])
@@ -137,27 +107,25 @@ function TotalVendorContract() {
                 loading ?
                     <Sidebar>
                         <div className='main_container'>
-                            <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
-                                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span style={{ color: "rgb(123,108,200)" }}>Vendor Contract</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Total Vendor Contract</span> </h2>
-                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddVendorContract' }} >Add Vendor Contract <MdAdd /></button>
-                                </div>
-                                <div >
-                                    <DataTableExtensions {...tableData}  >
-                                        <DataTable
-                                            noHeader
-                                            defaultSortField="id"
-                                            defaultSortAsc={false}
-                                            pagination
-                                            highlightOnHover
-                                            customStyles={customStyles}
-                                        />
-                                    </DataTableExtensions>
-                                </div>
+                            <div className='main-inner-container  d-flex justify-content-between pt-4 pb-3' >
+                                <h4><span className='page-type-head1'>Vendor Contract</span> <MdOutlineKeyboardArrowRight /><span className='page-type-head2'>Total Vendor Contract</span> </h4>
+                                <button className='btn btn-sm btn-voilet pt-1' onClick={e => { e.preventDefault(); window.location.href = './AddVendorContract' }} >Add Vendor Contract <MdAdd /></button>
+                            </div>
+                            <div className=' bg-white pb-1 pt-2 px-2 shadow1-silver rounded15'>
+                                <DataTableExtensions {...tableData}  >
+                                    <DataTable
+                                        noHeader
+                                        defaultSortField="id"
+                                        defaultSortAsc={false}
+                                        pagination
+                                        highlightOnHover
+                                        customStyles={customStyles}
+                                    />
+                                </DataTableExtensions>
                             </div>
                         </div>
                     </Sidebar>
-                : <LoadingPage />
+                    : <LoadingPage />
             }
         </>
     )

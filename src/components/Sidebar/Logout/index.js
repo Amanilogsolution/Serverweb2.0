@@ -3,7 +3,7 @@ import img from '../../../image/modelimg.png'
 
 const Logout = () => {
     return (
-        <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document" style={{ width: "300px", marginTop: "50px" }}>
                 <div className="modal-content">
                     <div className="modal-header">

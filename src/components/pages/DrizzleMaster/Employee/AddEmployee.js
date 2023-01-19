@@ -1,10 +1,11 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect } from 'react';
 import { AddEmployees, ActiveLocation, insertUserLogin } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { GrFormClose } from "react-icons/gr"
+import {RiArrowGoBackFill} from 'react-icons/ri'
 
 
 function AddEmployee() {
@@ -132,14 +133,12 @@ function AddEmployee() {
                         </div>
                         {/* ################# Snackbar ##################### */}
 
-                        <div className='main_container pb-2'  >
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Employee <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Employee</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalEmployee' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container'  >
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Employee <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Employee</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalEmployee' }} >Back < RiArrowGoBackFill/></button>
                             </div>
-                            <div className="contract-div" style={{ width: "70%" }}>
-                                <div className="card inner-card">
-                                    <div className='card-header'>Add Employee</div>
+                                <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card py-3">
                                     <article className="card-body" >
                                         <form className='px-3' autoComplete='off'>
                                             <div className="row">
@@ -204,15 +203,14 @@ function AddEmployee() {
                                             </div>
 
 
-                                            <div className="form-group mt-3" >
-                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Employee</button>&nbsp;
-                                                <button type="reset" className="btn btn-secondary ">Reset</button>
+                                            <div className="form-group mt-3 mx-2" >
+                                                <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleaddinsert}>Add Employee</button>
+                                                <button type="reset" className="btn btn-secondary mx-3">Reset</button>
                                             </div>
                                         </form>
                                     </article>
                                 </div>
                             </div>
-                        </div>
                     </Sidebar>
                     : <LoadingPage />
             }

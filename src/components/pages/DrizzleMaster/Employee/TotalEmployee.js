@@ -6,44 +6,9 @@ import { TotalEmployees, DeleteEmployees } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import customStyles from '../../../TableCustomtyle'
 
-// const customStyles = {
-//     // table: {
-//     //     style: {
-//     //         border:'2px solid red',
-//     //         minHeight:'55vh'
-//     //     }
-//     // },
-//     title: {
-//       style: {
-//         fontColor: 'red',
-//         fontWeight: '900',
-//       }
-//     },
-//     rows: {
-//       style: {
-//         minHeight: '35px'
-//       }
-//     },
-//     headCells: {
-//       style: {
-//         fontSize: '14px',
-//         background:'rgb(105,59,233)',
-//         color:'white',
-//       },
-//     },
-//     cells: {
-//       style: {
-//         fontSize: '14px',
-//         // fontWeight:'600',
-//         background:'rgb(242,242,242)	',
-//         borderBottom:"1px solid silver"
-//       },
-//     },
-//   };
-  
 
 function TotalEmployee() {
     const [data, setData] = useState([])
@@ -123,12 +88,11 @@ function TotalEmployee() {
                 loading ?
             <Sidebar>
                 <div className='main_container' >
-                    <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
-                        <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                            <h2><span className='page-type-head1'>Employee <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Employee</span> </h2>
-                            <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddEmployee' }} >Add Employee <MdAdd /></button>
+                        <div className='main-inner-container  d-flex justify-content-between pt-2 pb-3' >
+                            <h4><span className='page-type-head1'>Employee <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Employee</span> </h4>
+                            <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddEmployee' }} >Add Employee <b>+</b></button>
                         </div>
-                        <div >
+                        <div className=' bg-white pb-1 pt-2 px-2 shadow1-silver rounded15'>
                             <DataTableExtensions {...tableData}  >
                                 <DataTable
                                     noHeader
@@ -141,7 +105,6 @@ function TotalEmployee() {
                             </DataTableExtensions>
                         </div>
                     </div>
-                </div>
             </Sidebar>
             : <LoadingPage />
             }
