@@ -169,7 +169,7 @@ import AddAssignRole from './components/pages/Setting/AssignRole/AddAssignRole';
 import EditAssignRole from './components/pages/Setting/AssignRole/EditAssignRole';
 
 import PageNotFound from './components/404/404';
-import Reports from './components/Sidebar/Reports/Reports';
+import Reports from './components/pages/Reports/Reports';
 
 const App = () => {
   return (

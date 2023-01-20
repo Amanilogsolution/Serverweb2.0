@@ -1,9 +1,10 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState } from 'react';
 import { AddVendorCategoryapi } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 
 function AddVendorCategory() {
@@ -67,22 +68,20 @@ function AddVendorCategory() {
                         </div>
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-2' >
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Vendor Category <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Category</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorCategory' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container' >
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Vendor Category <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Category</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorCategory' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="card m-auto" style={{ width: "50%" }}>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3">
                                 <div className='card-header'>Add Vendor Category :</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-                                        <div className="row">
-                                            <div className="col" >
-                                                <label htmlFor='vendor_category'>Vendor Category  <span className='text-danger'>*</span> </label>
-                                                <input type="text" className="form-control" id='vendor_category' />
-                                            </div>
+                                        <div className="col-md-5" >
+                                            <label htmlFor='vendor_category'>Vendor Category  <span className='text-danger'>*</span> </label>
+                                            <input type="text" className="form-control" id='vendor_category' />
                                         </div>
-                                        <div className="col-md mt-3" >
+                                        <div className="col-md-7 mt-3" >
                                             <label htmlFor='vendor_category_description'>Remarks</label>
                                             <textarea className="form-control" rows='3' id='vendor_category_description' placeholder='Comments' />
                                         </div>

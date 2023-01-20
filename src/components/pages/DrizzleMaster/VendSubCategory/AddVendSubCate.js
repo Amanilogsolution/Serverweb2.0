@@ -1,9 +1,10 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect } from 'react';
 import { InsertVendSubCate, ActiveVendorCategory } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import {MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 
 function AddVendorSubCategory() {
@@ -79,12 +80,12 @@ function AddVendorSubCategory() {
                         </div>
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-2' >
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h3><span className='page-type-head1'>Vendor Sub Category <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Sub Category</span> </h3>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendSubCate' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container' >
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Vendor Sub Category <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Sub Category</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendSubCate' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="card m-auto" style={{ width: "50%" }}>
+                            <div className="bg-white shadow1-silver rounded15 mt-2 card inner-card pb-3">
                                 <div className='card-header'>Add Vendor Sub Category:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>

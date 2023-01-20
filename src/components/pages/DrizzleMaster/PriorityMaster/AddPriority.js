@@ -1,9 +1,10 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState } from 'react';
 import { AddPriorityapi } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 
 function AddPriority() {
@@ -37,7 +38,7 @@ function AddPriority() {
 
         else {
             setLoading(true)
-            const result = await AddPriorityapi(org,priority_id, priority, priority_desc, username);
+            const result = await AddPriorityapi(org, priority_id, priority, priority_desc, username);
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Priority Type Added", title: "success", type: "success", route: "/TotalPriority", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
@@ -67,20 +68,20 @@ function AddPriority() {
                         </div>
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-2' >
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Priority <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Priority </span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalPriority' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container' >
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Priority <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Priority </span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalPriority' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="card m-auto" style={{ width: "50%" }}>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3">
                                 <div className='card-header'>Add Priority:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-                                        <div className="col" >
+                                        <div className="col-md-5" >
                                             <label htmlFor='priority'>Priority Type <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='priority' />
                                         </div>
-                                        <div className="col-md mt-3" >
+                                        <div className="col-md-7 mt-3" >
                                             <label htmlFor='priority_desc'>Remarks</label>
                                             <textarea className="form-control" id='priority_desc' rows='3' />
                                         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../Sidebar/Sidebar'
-import './Profile.css'
+import '../LandingPage/Register/organisation.css'
 import { HiUserCircle } from 'react-icons/hi';
 import Qrcode from '../../image/qrcode.png';
 import { getUserdetails, updateUserdetails } from '../../api/index'
@@ -100,54 +100,48 @@ const Profile = () => {
                   </div>
                   {/* ######################### Sanckbar End ##################################### */}
 
-                  <div className='main_container Profile_container bg-light d-flex align-items-center px-5'>
+                  <div className='main_container d-flex align-items-center'>
 
-                     <div className='profile d-flex rounded'>
+                     <div className='profile d-flex rounded15'>
                         <div className='photo_sec d-flex  py-3 text-light position-relative'>
-                           <h2 >Profile Details</h2>
+                           <h2 className='photo_sec-title'>Profile Details</h2>
                            <HiUserCircle className='profile_log position-absolute' />
                         </div>
-                        <div className='details px-5 py-3'>
+                        <div className='details bg-white px-5 py-3'>
                            <form>
                               <div className='row my-2'>
                                  <div className='col-md-6'>
-                                    <label>Name</label>
-                                    <br />
+                                    <label htmlFor='employee_name'>Name</label>
                                     <input className="form-control" id='employee_name' defaultValue={details.employee_name} ></input>
                                  </div>
                                  <div className='col-md-6'>
-                                    <label>Mobile</label>
-                                    <br />
+                                    <label htmlFor='employee_number'>Mobile</label>
                                     <input className="form-control" id='employee_number' value={details.employee_number} onChange={handlechangeempno}></input>
                                  </div>
                               </div>
                               <div className='row my-2'>
                                  <div className='col-md-6'>
-                                    <label>Email</label>
-                                    <br />
+                                    <label htmlFor='employee_email'>Email</label>
                                     <input className="form-control" id='employee_email' defaultValue={details.employee_email}></input>
                                  </div>
                                  <div className='col-md-6'>
-                                    <label>Address</label>
-                                    <br />
+                                    <label htmlFor='Address'>Address</label>
                                     <input className="form-control" id="Address" value={details.location} disabled></input>
                                  </div>
                               </div>
                               <div className='row my-2'>
                                  <div className='col-md-6'>
-                                    <label>Location</label>
-                                    <br />
+                                    <label htmlFor='location'>Location</label>
                                     <input className="form-control" id="location" value={details.location} disabled></input>
                                  </div>
                                  <div className='col-md-6'>
-                                    <label>Organization Name</label>
-                                    <br />
+                                    <label htmlFor='company'>Organization Name</label>
                                     <input className="form-control" id="company" value={details.company} disabled></input>
                                  </div>
                               </div>
 
                               <hr />
-                              <label> TOTP Authentication </label>&nbsp;
+                              <label htmlFor='authdivbox'> TOTP Authentication </label>&nbsp;
                               <input type='checkbox' id='authdivbox' style={{ height: '20px', width: '20px' }} onChange={handleToggleQr} />
                               <div className='row mt-0 auth-div' id='auth-qr' style={{ display: 'none', transition: '0.5s all linear' }}>
                                  <div className='auth-inner-div col-md-4 d-flex flex-column'>

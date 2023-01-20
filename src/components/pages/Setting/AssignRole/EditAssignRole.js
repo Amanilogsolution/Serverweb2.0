@@ -1,8 +1,9 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState } from 'react';
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 
 function EditAssignRole() {
@@ -28,26 +29,25 @@ function EditAssignRole() {
                         </div>
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-2'>
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Assign Role<MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Assign Role</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssignRole' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container'>
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Assign Role<MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Assign Role</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssignRole' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="card m-auto" style={{ width: "50%" }}>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3">
                                 <div className='card-header'>Edit Assign Role:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-
                                         <div className="col mt-2" >
                                             <label htmlFor='agent'>Agent <span className='text-danger'>*</span></label>
                                             <select type="text" className="form-select" id='agent' >
-                                                <option value='' hiden>Select Agent</option>
+                                                <option value='' hidden>Select Agent</option>
                                             </select>
                                         </div>
                                         <div className="col mt-2" >
                                             <label htmlFor='role'>Role <span className='text-danger'>*</span></label>
                                             <select type="text" className="form-select" id='role' >
-                                                <option value='' hiden>Select Role</option>
+                                                <option value='' hidden>Select Role</option>
                                             </select>
                                         </div>
                                         <div className="col-md mt-3" >
@@ -55,9 +55,7 @@ function EditAssignRole() {
                                             <textarea className="form-control" id='remarks' rows='3' />
                                         </div>
 
-                                        <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet " id="subnitbtn">Update</button>
-                                        </div>
+                                        <button type="submit" className="btn btn-voilet mt-3" id="subnitbtn">Update</button>
                                     </form>
                                 </article>
                             </div>

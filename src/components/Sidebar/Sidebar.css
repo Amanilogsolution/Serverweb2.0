@@ -160,6 +160,8 @@
 .active {
     background: #603AE9;
     color: #fff;
+    border-radius: 10px;
+
 }
 
 .inneruldiv {

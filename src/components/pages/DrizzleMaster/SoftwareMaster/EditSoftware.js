@@ -1,9 +1,10 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
 import { GetSoftwareapi, UpdateSoftwareapi } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 function EditSoftware() {
     const [data, setData] = useState({});
@@ -70,7 +71,7 @@ function EditSoftware() {
     }
 
 
-    
+
     return (
         <>
             {
@@ -83,26 +84,24 @@ function EditSoftware() {
                         </div>
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-2'>
+                        <div className='main_container'>
                             <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Software <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Software</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('softwaresno'); window.location.href = '/TotalSoftware' }} >Back <MdOutlineArrowForward /></button>
+                                <h4><span className='page-type-head1'>Software <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Software</span> </h4>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('softwaresno'); window.location.href = '/TotalSoftware' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="card m-auto" style={{ width: "50%" }}>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3">
                                 <div className='card-header'>Edit Software:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-                                        <div className="form-group col" >
+                                        <div className="form-group col-md-5" >
                                             <label htmlFor='seriesid'> Software <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='software' defaultValue={data.software_name} />
                                         </div>
-                                        <div className="form-group col-md mt-3" >
+                                        <div className="form-group col-md-7 mt-3" >
                                             <label htmlFor='software_desc'>Remarks</label>
                                             <textarea className="form-control" id='software_desc' rows='3' defaultValue={data.software_description} />
                                         </div>
-                                        <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleadddevice}>Update</button>
-                                        </div>
+                                        <button type="submit" className="btn btn-voilet mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
                                     </form>
                                 </article>
                             </div>

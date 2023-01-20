@@ -1,9 +1,10 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
 import { GetServiceGroup, UpdateServiceGroup } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 function EditServiceGroup() {
     const [data, setData] = useState({});
@@ -79,12 +80,12 @@ function EditServiceGroup() {
                         </div>
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-2'>
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span className='page-type-head1'>Service Action Group <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Service Action Group</span> </h2>
-                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('servicegroupsno'); window.location.href = '/TotalServiceGroup' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container'>
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Service Action Group <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Service Action Group</span> </h4>
+                                <button className='btn btn-secondary ' onClick={() => { localStorage.removeItem('servicegroupsno'); window.location.href = '/TotalServiceGroup' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="card m-auto" style={{ width: "50%" }}>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3">
                                 <div className='card-header'>Edit Service Action Group:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
@@ -95,12 +96,10 @@ function EditServiceGroup() {
 
                                         <div className="form-group col-md mt-3" >
                                             <label htmlFor='remark'>Remarks</label>
-                                            <textarea type="text" className="form-control" id='remark' defaultValue={data.service_group_description}  />
+                                            <textarea type="text" className="form-control" id='remark' defaultValue={data.service_group_description} />
                                         </div>
 
-                                        <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleUpdateServiceGroupType}>Update</button>
-                                        </div>
+                                        <button type="submit" className="btn btn-voilet mt-3" id="subnitbtn" onClick={handleUpdateServiceGroupType}>Update</button>
                                     </form>
                                 </article>
                             </div>

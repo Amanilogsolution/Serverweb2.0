@@ -1,9 +1,10 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState } from 'react';
 import { InsertContractType } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
 
 
 function AddContractType() {
@@ -38,7 +39,7 @@ function AddContractType() {
         else {
             setLoading(true)
             const result = await InsertContractType(org, contract_type_id, contract_type, remark, username);
-           
+
             if (result === 'Added') {
                 setDatas({ ...datas, message: "Contract Type Added", title: "success", type: "success", route: "/TotalContractType", toggle: "true" })
                 document.getElementById('snackbar').style.display = "block"
@@ -70,20 +71,20 @@ function AddContractType() {
                         </div>
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-2'>
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h2><span  className='page-type-head1'>Contract Type <MdOutlineKeyboardArrowRight /></span> <span  className='page-type-head2'>Add Contract Type</span> </h2>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalContractType' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container'>
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Contract Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Contract Type</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalContractType' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="card m-auto" style={{ width: "50%" }}>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3">
                                 <div className='card-header'> Add Contract Type:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-                                        <div className="form-group">
+                                        <div className="form-group col-md-5">
                                             <label htmlFor='contract_type'>Contract Type  <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='contract_type' />
                                         </div>
-                                        <div className="form-group mt-3">
+                                        <div className="form-group mt-3 col-md-7">
                                             <label htmlFor='remark'>Remarks </label>
                                             <textarea className="form-control" placeholder="Comments" type="text" id='remark' rows="3" />
                                         </div>
