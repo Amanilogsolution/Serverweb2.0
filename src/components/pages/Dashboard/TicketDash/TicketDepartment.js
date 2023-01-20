@@ -50,20 +50,19 @@ const TicketDepartment = () => {
 
 
     return (
-      <text x={x} y={y} fontSize='13' fill="silver" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      <text x={x} y={y} fontSize='13' fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
         {`${(percent * 100).toFixed(0)}%`}
       </text>
     );
   };
-  const COLORS = ['#c53241', '#14610c', '#4d00ab', '#039B28', '#A5A704', '#014FB5'];
+  const COLORS = ['#eb5e3b', '#d1ac06', '#5e0ec9', '#039B28', '#A5A704', '#014FB5'];
   return (
-    <div className='d-flex justify-content-between' style={{ marginTop: "50px" }}>
-      <div className='position-relative rounded bg-white mt-3 shadow1-silver' style={{ width: '30%' }}>
-        <div className='position-absolute rounded shadow1-silver' style={{ width: '93%',  top: "-10%", left: "3.5%",  background: 'linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))' }}>
-          <ResponsiveContainer width="100%" aspect={1.5}>
+    <div className='summary'>
+      <div className='pie_chart_div bg-white mt-3 shadow1-silver'>
+        <div className='pie_chart' style={{height:"92%",width:"92%"}}>
+          <ResponsiveContainer>
             <PieChart width={700} height={200}>
-              <Tooltip contentStyle={{ backgroundColor: "rgb(179, 210, 242)" }} />
-              <Tooltip />
+            <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)",borderRadius:"3px",border:"1px solid white" }} />
               <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={42} outerRadius={85} fill="rgb(94, 4, 69)" >
                 {data02.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -74,13 +73,15 @@ const TicketDepartment = () => {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <small className='position-absolute text-secondary' style={{ bottom:'10%',left:'4%'}}>Manufacturer</small>
+        <small className='position-absolute text-secondary' style={{ bottom:'7.5%',left:'4%'}}>Manufacturer</small>
       </div>
 
-      <div style={{ width: "69%" }}>
-        <div className='ticket_card_div justify-content-center mt-2'>
+      <div className='Summary_cards_div'>
+        <h6>My Tickets Summary</h6>
+        <hr/>
+        <div className='Summary_cards'>
 
-          <div className='ticket_card rounded shadow1-silver bg-white'>
+          <div className='Summary_card rounded shadow1-silver bg-white'>
             <div className='ticket_card_content d-flex justify-content-around'>
               <div className='tickets_icon text-light mx-2 ' style={{ padding: "10px 11px" }}>
                 <FaUser className='m-1' style={{ fontSize: "23px" }} />
@@ -93,7 +94,7 @@ const TicketDepartment = () => {
             </div>
           </div>
 
-          <div className='ticket_card rounded bg-white shadow1-silver'>
+          <div className='Summary_card rounded bg-white shadow1-silver'>
             <div className='ticket_card_content d-flex justify-content-around' style={{ marginRight: "43px" }}>
               <div className='tickets_icon mx-2 text-light ' style={{ padding: "10px 15px" }}>
                 <FaEnvelopeOpen style={{ fontSize: "23px" }} />
@@ -106,7 +107,7 @@ const TicketDepartment = () => {
             </div>
           </div>
 
-          <div className='ticket_card rounded bg-white shadow1-silver'>
+          <div className='Summary_card rounded bg-white shadow1-silver'>
             <div className='ticket_card_content d-flex justify-content-around' style={{ marginRight: "30px" }}>
               <div className='tickets_icon text-light mx-2 ' style={{ padding: "12px 12px" }}>
                 <FaCheck className='m-1' style={{ fontSize: "23px" }} />
@@ -120,7 +121,7 @@ const TicketDepartment = () => {
             </div>
           </div>
 
-          <div className='ticket_card rounded bg-white shadow1-silver'>
+          <div className='Summary_card rounded bg-white shadow1-silver'>
             <div className='ticket_card_content d-flex justify-content-around' style={{ marginRight: "20px" }}>
               <div className='tickets_icon text-light mx-2 ' style={{ padding: "10px 11px" }}>
                 <FaCalendarTimes className='m-1' style={{ fontSize: "23px" }} />
@@ -135,10 +136,11 @@ const TicketDepartment = () => {
           </div>
 
         </div>
-
-        <div className='ticket_card_div justify-content-around mt-3'>
-
-          <div className='ticket_card rounded bg-white shadow1-silver'>
+        <h6 className='mt-3'>Total Tickets Summary</h6>
+        <hr/>
+        <div className='Summary_cards'>
+        
+          <div className='Summary_card rounded bg-white shadow1-silver'>
             <div className='ticket_card_content d-flex justify-content-around'>
               <div className='tickets_icon text-light mx-2 ' style={{ padding: "10px 11px" }}>
                 <FaUser className='m-1' style={{ fontSize: "23px" }} />
@@ -151,7 +153,7 @@ const TicketDepartment = () => {
             </div>
           </div>
 
-          <div className='ticket_card rounded bg-white shadow1-silver'>
+          <div className='Summary_card rounded bg-white shadow1-silver'>
             <div className='ticket_card_content d-flex justify-content-around' style={{ marginRight: "43px" }}>
               <div className='tickets_icon mx-2 text-light ' style={{ padding: "10px 15px" }}>
                 <FaEnvelopeOpen style={{ fontSize: "23px" }} />
@@ -164,7 +166,7 @@ const TicketDepartment = () => {
             </div>
           </div>
 
-          <div className='ticket_card rounded bg-white shadow1-silver'>
+          <div className='Summary_card rounded bg-white shadow1-silver'>
             <div className='ticket_card_content d-flex justify-content-around' style={{ marginRight: "30px" }}>
               <div className='tickets_icon text-light mx-2 ' style={{ padding: "12px 12px" }}>
                 <FaCheck className='m-1' style={{ fontSize: "23px" }} />
@@ -179,7 +181,7 @@ const TicketDepartment = () => {
 
 
 
-          <div className='ticket_card rounded bg-white shadow1-silver'>
+          <div className='Summary_card rounded bg-white shadow1-silver'>
             <div className='ticket_card_content d-flex justify-content-around'>
               <div className='tickets_icon text-light mx-2 ' style={{ padding: "12px 14px" }}>
                 <FaTelegramPlane style={{ fontSize: "23px" }} />

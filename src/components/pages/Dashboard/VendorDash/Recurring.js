@@ -174,7 +174,7 @@ export default function Recurring() {
         
       </div>
       <div className='recurring_cards bg-light p-2 rounded'>
-        <div className='recurring_card text-center text-light pt-2 rounded mb-2'>
+        <div className='recurring_card text-center text-light pt-2 rounded mb-2 '>
           <p className='mb-0'>Recurring</p>
           <h3>{TotalRecurring}</h3>
         </div>

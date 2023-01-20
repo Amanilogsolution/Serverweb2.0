@@ -10,7 +10,7 @@
 }
 
 .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
-   background: linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113));
+   background: linear-gradient(45deg, rgb(85, 84, 82), rgb(121, 118, 113));
     cursor:pointer;
     padding:5px 20px;
     border-right:2px solid silver;
@@ -20,7 +20,26 @@
 .dashboard_cards .dash_toggle_btns .dash_toggle_btn:focus-within{
     background: white;
  }
- 
+
+@media screen and (min-width:450px) and (max-width:850px) {
+    .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
+         padding:5px 15px;
+         font-size: 14px;
+     }
+}
+@media screen and (min-width:390px) and (max-width:450px) {
+    .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
+         padding:5px 12px;
+         font-size: 12px;
+     }
+}
+@media screen and (min-width:0px) and (max-width:390px) {
+    .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
+         padding:4px 10px;
+         font-size: 10px;
+     }
+}
+
 
 @media screen and (min-height:850px) {
     .dashboard_container {
