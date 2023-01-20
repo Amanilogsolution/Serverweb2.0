@@ -83,11 +83,11 @@
 /* ####################################### About ##################################### */
 
 .about {
-    min-height: 30vh;
+    min-height: 40vh;
 }
 
 .about .aboutimgdiv {
-    height: 300px;
+    height: 330px;
 }
 
 .about .aboutimgdiv .aboutimg {
@@ -272,7 +272,7 @@
 
 .photos_content1 .img_div {
     width: 1290px;
-    height: 320px;
+    height: 350px;
     background: url('https://www.servicenow.com/content/dam/servicenow-assets/public/en-us/images/homepage/hp-now-platform.jpg.thumb.1024.1024.png');
     background-size: 100% 100%;
     border-radius: 6px;
