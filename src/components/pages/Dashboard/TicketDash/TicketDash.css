@@ -24,10 +24,7 @@
 } */
 
 /* ########### Departmants #### */
-.ticket_card_div {
-    display: flex;
 
-}
 .ticket_dash .ticket_card {
     min-height: 18vh;
     margin: 6px 10px 15px 10px;
@@ -93,4 +90,45 @@
         height: 17vh;
 
     }
+}
+
+/* summary */
+.summary{
+    /* border: 1px solid black; */
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+    
+}
+.summary .pie_chart_div {
+    position: relative;
+    border-radius: 5px;
+    width: 28%;
+    height: 45vh;
+}
+.summary .pie_chart_div .pie_chart{
+    width: 93%; 
+    top: -10%;
+    left: 3.5%;
+    background: #cfcdce;
+    position: absolute;
+    border-radius: 5px;
+}
+.Summary_cards_div{
+    width: 69%;
+    /* border: 1px solid blue; */
+    padding: 0 15px;
+}
+.Summary_cards{
+    display: flex;
+    /* border: 1px solid red; */
+
+}
+.Summary_card {
+    min-height: 10vh;
+    margin: 6px 10px 15px 10px;
+    width: 26%;
+}
+.summary h6{
+    color: rgb(81, 79, 79);
 }

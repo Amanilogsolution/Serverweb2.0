@@ -4,6 +4,7 @@ import { VendorInvoice, PaidInvoice,FilterInvoice } from '../../../../api/index'
 import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate';
 import { BsFilterLeft } from 'react-icons/bs';
+import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 
 const Outstatndingdetails = () => {
     const [TotalVendor, setTotalVendor] = useState([])
@@ -168,12 +169,10 @@ const Outstatndingdetails = () => {
             </div>
 
             {/* </div> */}
-            <div className="d-flex flex-row position-relative justify-content-around mt-4 px-2 rounded" style={{ minHeight: "60vh", maxHeight: '80vh' }} >
-                <div className=' bg-white rounded' style={{ boxShadow: '1px 1px 10px #333', width: "48%" }}>
-                    <div className="vendorinv rounded position-absolute pt-3">
-                        <p className=" text-center text-white">Vendor Outstanding - Detailed</p>
-                    </div>
-                    <div className="Outstanding_details_table mt-5 px-2 " style={{ overflow: "auto", minHeight: "76%" }}>
+            <div className="outstanding_details position-relative justify-content-around">
+                <div className='Outstanding_details_table_div'>
+                        <p>Vendor Outstanding - Detailed</p>
+                    <div className="Outstanding_details_table">
                         <table className="table" >
                             <thead>
                                 <tr className='text-danger'>
@@ -206,11 +205,11 @@ const Outstatndingdetails = () => {
                     </div>
                     <ReactPaginate
                         breakLabel="..."
-                        nextLabel="next "
+                        nextLabel={<IoMdArrowDropright style={{ fontSize: "24px" }} />}
                         onPageChange={handlePageClick}
                         pageRangeDisplayed={3}
                         pageCount={lastval}
-                        previousLabel=" prev"
+                        previousLabel={<IoMdArrowDropleft style={{ fontSize: "24px" }} />}
                         renderOnZeroPageCount={null}
                         containerClassName={'pagination justify-content-end mx-3'}
                         pageClassName={'page-item'}
@@ -224,11 +223,9 @@ const Outstatndingdetails = () => {
                         activeClassName={'active'}
                     />
                 </div>
-                <div className='bg-white rounded px-2' style={{ boxShadow: '1px 1px 10px #333', width: "48%"}}>
-                    <div className="paidinv rounded position-absolute pt-3">
-                        <p className=" text-center text-white ">Paid Invoices - Detailed</p>
-                    </div>
-                    <div className="Outstanding_details_table mt-5" style={{ minHeight: "80%",maxHeight:'80%' }}>
+                <div className='Outstanding_details_table_div'>
+                        <p style={{background:" linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))"}}>Paid Invoices - Detailed</p>
+                    <div className="Outstanding_details_table" >
                         <table className="table ">
                             <thead>
                                 <tr >
@@ -261,11 +258,11 @@ const Outstatndingdetails = () => {
                     </div>
                     <ReactPaginate
                         breakLabel="..."
-                        nextLabel="next "
+                        nextLabel={<IoMdArrowDropright style={{ fontSize: "24px" }} />}
                         onPageChange={handlePageClickpaid}
                         pageRangeDisplayed={3}
                         pageCount={paidlastval}
-                        previousLabel=" prev"
+                        previousLabel={<IoMdArrowDropleft style={{ fontSize: "24px" }} />}
                         renderOnZeroPageCount={null}
                         containerClassName={'pagination justify-content-end mx-3'}
                         pageClassName={'page-item'}

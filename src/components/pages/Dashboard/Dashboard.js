@@ -48,7 +48,7 @@ const Dashboard = () => {
           document.getElementById(`css${i}`).style.color = "#595859"
 
         }else{
-          document.getElementById(`css${i}`).style.background = "linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))"
+          document.getElementById(`css${i}`).style.background = "linear-gradient(45deg, rgb(85, 84, 82), rgb(121, 118, 113))"
           document.getElementById(`css${i}`).style.color = "white"
           document.getElementById(`css${i}`).style.borderBottom = "none"
         }
@@ -79,9 +79,9 @@ const Dashboard = () => {
       {
         loading ?
           <Sidebar>
-            <div className='dashboard_container'>
+            <div className='dashboard_container' >
 
-              <div className='dashboard_cards justify-content-end'>
+              <div className='dashboard_cards justify-content-end' >
                 <div className='d-flex justify-content-center  dash_toggle_btns'>
                   <div className='dash_toggle_btn ' style={{background:"white",borderBottom:"4px solid #30305f",color:"#595859"}} id="css1"  onClick={() => {colordynamic(1); setStep(1)}}>Assets</div>
                   <div className='dash_toggle_btn ' id="css2" onClick={() =>{colordynamic(2); setStep(2)}}>Vendors</div>
