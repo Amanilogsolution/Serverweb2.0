@@ -5,14 +5,23 @@
 .outstanding-container .oustanding-details .outstanding-top-detail-div {
     height: 100px;
 }
+.btn_for_smd{
+    display: none;
+}
 
 .outstanding-totalinv {
     width: 35%;
     padding: 10px;
+    box-shadow: 1px 1px 10px silver;
+    border-radius: 5px;
+    padding:15px
 }
 
 .outstanding-totalamt {
     width: 61%;
+    box-shadow: 1px 1px 10px silver;
+    border-radius: 5px;
+    padding: 20px
 }
 
 .outstanding-totalhead {
@@ -168,3 +177,48 @@
     left: 0%;
     top: 0;
   } 
+  @media screen and (max-width:786px) {
+    .nextoutstanding_AnimationBtn{
+        display: none;
+    }
+    
+    .outstanding-totalinv {
+        width: 23%;
+        padding: 10px;
+        box-shadow: 1px 1px 10px silver;
+        border-radius: 5px;
+        padding:15px
+    }
+    
+    .outstanding-totalamt {
+        width: 50%;
+        box-shadow: 1px 1px 10px silver;
+        border-radius: 5px;
+        padding: 20px
+    }
+    .btn_for_smd{
+        display: block;
+        width: 20%;
+        border: none;
+        border-radius: 5px;
+        background: linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196));
+        color: white;
+    }
+    
+ }
+ @media screen and (max-width:530px) {
+    .btn_for_smd{
+        font-size: 12px;
+    }
+    .outstanding-totalinv p {
+        font-size: 12px;
+    }
+    
+    .outstanding-totalamt h4 {
+       font-size: 14px;
+    }
+    .outstanding-totalamt p {
+        font-size: 12px;
+     }
+    
+ }

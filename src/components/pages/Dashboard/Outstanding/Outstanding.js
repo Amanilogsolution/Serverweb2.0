@@ -94,27 +94,31 @@ const Outstanding = ({ setStep }) => {
   //   data
   // };
   return (
-    <section className='outstanding-container d-flex justify-content-around mt-2' >
+    <section className='outstanding-container d-flex justify-content-around mt-2'>
       <div className='oustanding-details '>
         <div className='outstanding-top-detail-div d-flex justify-content-between text-center'>
-          <div className='outstanding-totalinv bg-white ' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '5px', padding: "15px" }}>
+          <div className='outstanding-totalinv bg-white '>
 
             <h2 style={{ fontWeight: "500", color: "#30305f" }}>{invoices.TotalVendor}</h2>
             <p style={{ marginTop: "-5px", color: "#6a6a6a" }}>Invoices</p>
 
           </div>
-          <div className='outstanding-totalamt bg-white ' style={{ boxShadow: '1px 1px 10px silver', borderRadius: '5px', padding: "20px" }}>
+          <div className='outstanding-totalamt bg-white ' >
 
             <h4 style={{ fontWeight: "400", color: "#30305f" }}><BiRupee style={{ fontSize: "30px", marginTop: "-3px", color: "#0f3807" }} />{outstandingAmount}</h4>
             <p style={{ color: "#6a6a6a" }}>Outstanding Amount</p>
 
           </div>
+
+         
+          <button className='btn_for_smd' onClick={() => { setStep(5) }}>Outstanding Details</button>
+
         </div>
 
         {/* //==================================================================================================== */}
 
-        <div className='company-outstatnding bg-white border  mt-4 rounded' style={{ boxShadow: '1px 1px 10px silver' }} >
-          <div className='text-white px-4 py-2  rounded' style={{ width: "80%", marginLeft: 'auto', marginRight: 'auto', background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginTop: '-20px' }}>
+        <div className='company-outstatnding bg-white border rounded' style={{ boxShadow: '1px 1px 10px silver',marginTop:"23px" }} >
+          <div className='text-white px-4 py-2 rounded' style={{ width: "80%", marginLeft: 'auto', marginRight: 'auto', background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginTop: '-10px' }}>
             <small> OUTSTANDING</small>
           </div>
           <div className='overflow-auto px-2 position-relative' style={{ height: "45vh" }}>
