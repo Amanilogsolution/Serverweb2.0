@@ -91,7 +91,7 @@ const Outstanding = ({ setStep }) => {
   //   data
   // };
   return (
-    <section className='outstanding-container d-flex justify-content-around mt-2' >
+    <section className='outstanding-container d-flex justify-content-around mt-2'>
       <div className='oustanding-details '>
         <div className='outstanding-top-detail-div d-flex justify-content-between text-center'>
 
@@ -104,6 +104,10 @@ const Outstanding = ({ setStep }) => {
             <h4 className='mb-0' style={{ color: "#30305f" }}><BiRupee style={{ fontSize: "30px", color: "#0f3807" }} />{outstandingAmount}</h4>
             <p className='text-secondary'>Outstanding Amount</p>
           </div>
+
+         
+          <button className='btn_for_smd' onClick={() => { setStep(5) }}>Outstanding Details</button>
+
         </div>
         <button className="top-upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>
           Outstanding Details</button>
