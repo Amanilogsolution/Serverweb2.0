@@ -109,9 +109,9 @@ const Outstatndingdetails = () => {
             </div>
 
             <div className="outstanding_details position-relative justify-content-around">
-                <div className='Outstanding_details_table_div'>
-                    <p>Vendor Outstanding - Detailed</p>
-                    <div className="Outstanding_details_table">
+                <div className='Outstanding_details_table_div bg-white rounded shadow1-silver'>
+                    <p className=' text-white text-white rounded'>Vendor Outstanding - Detailed</p>
+                    <div className="Outstanding_details_table rounded px-3">
                         <table className="table" >
                             <thead>
                                 <tr className='text-danger'>
@@ -149,7 +149,7 @@ const Outstatndingdetails = () => {
                         pageCount={lastval}
                         previousLabel={<IoMdArrowDropleft style={{ fontSize: "24px" }} />}
                         renderOnZeroPageCount={null}
-                        containerClassName={'outstanding-pagination pagination justify-content-end mx-3'}
+                        containerClassName={'outstanding-pagination bg-white px-3 pagination justify-content-end mx-3'}
                         pageClassName={'page-item'}
                         pageLinkClassName={'page-link'}
                         previousClassName={'page-item'}
@@ -161,9 +161,9 @@ const Outstatndingdetails = () => {
                         activeClassName={'active'}
                     />
                 </div>
-                <div className='Outstanding_details_table_div'>
-                    <p style={{ background: " linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))" }}>Paid Invoices - Detailed</p>
-                    <div className="Outstanding_details_table" >
+                <div className='Outstanding_details_table_div bg-white rounded shadow1-silver '>
+                    <p className=' text-white text-white rounded' style={{ background: " linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))" }}>Paid Invoices - Detailed</p>
+                    <div className="Outstanding_details_table px-3 rounded" >
                         <table className="table ">
                             <thead>
                                 <tr >
@@ -201,7 +201,7 @@ const Outstatndingdetails = () => {
                         pageCount={paidlastval}
                         previousLabel={<IoMdArrowDropleft style={{ fontSize: "24px" }} />}
                         renderOnZeroPageCount={null}
-                        containerClassName={'outstanding-pagination pagination justify-content-end mx-3'}
+                        containerClassName={'outstanding-pagination bg-white px-3 pagination justify-content-end mx-3'}
                         pageClassName={'page-item'}
                         pageLinkClassName={'page-link'}
                         previousClassName={'page-item'}
