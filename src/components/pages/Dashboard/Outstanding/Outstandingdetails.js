@@ -160,6 +160,7 @@ const Outstatndingdetails = () => {
                         breakLinkClassName={'page-link'}
                         activeClassName={'active'}
                     />
+                    
                 </div>
                 <div className='Outstanding_details_table_div bg-white rounded shadow1-silver '>
                     <p className=' text-white text-white rounded' style={{ background: " linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))" }}>Paid Invoices - Detailed</p>
