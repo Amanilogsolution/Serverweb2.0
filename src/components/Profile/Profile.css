@@ -2,12 +2,12 @@
     min-height: 77vh;
     font-family: 'Roboto';
     padding: 60px 150px 70px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     background: url('../../image/profilebg.jpg');
     background-size: 100% 100%;
 }
 .profile_container .profile_div{
-    border: 1px solid blue;
+    border: 1px solid rgb(227, 225, 225);
     min-height: 55vh;
     display: flex;
 }

@@ -110,7 +110,7 @@ export default function VendorDash({ setStep }) {
   }
 
   return (
-    <div className='VendorDash mt-4'>
+    <div className='VendorDash '>
       <div className='VendorDash1 bg-light rounded position-relative px-3 shadow1-silver' >
         <div className='tableheading position-absolute d-flex justify-content-between pt-3' >
           <p className='text-white px-4 mx-1 '>Vendor Contract Details</p>
@@ -206,13 +206,13 @@ export default function VendorDash({ setStep }) {
 
       </div>
       <div className='VendorDash2 rounded'>
-        <button className="nextoutstanding_AnimationBtn text-white btn px-4 py-3 position-relative" id="recurring" onClick={() => { setStep(6) }}>Recurring Details</button>
+        <button className="nextVendor_AnimationBtn text-white btn px-4 py-3 position-relative" id="recurring" onClick={() => { setStep(6) }}>Recurring Details</button>
 
         {/* <div className='select_div cursor-pointer text-light border-0' id="recurring" onClick={() => { setStep(6) }}>
           <h6 >Click for Recurring Details</h6>
         </div> */}
 
-        <div className='bg-white px-3 py-2 rounded mt-2' style={{ boxShadow: '1px 1px 3px silver' }}>
+        <div className='select_container bg-white px-3 py-2 rounded mt-2' style={{ boxShadow: '1px 1px 3px silver' }}>
           <div className='select_div'>
             <select className="form-select" aria-label="Default select example" id="Vendname" onChange={() => { handleChangeFilter("vendor", document.getElementById('Vendname').value) }}>
               <option hidden value=''>Vendor Code</option>
@@ -252,10 +252,10 @@ export default function VendorDash({ setStep }) {
           </div>
           <div className='VendorDash2_card text-center rounded'>
             <div className='d-flex pt-3'>
-              <VscReferences style={{ background: "linear-gradient(45deg, rgb(255, 107, 107), rgb(215, 62, 62))", fontSize: "53px", padding: "13px", color: "white", borderRadius: "5px", margin: "-40px 20px 0 20px" }} />
-              <h1 style={{ marginTop: "-16px", fontWeight: "600", color: "#312f68" }}>{ReferabceNo}</h1>
+              <VscReferences className='Ref_icon' />
+              <h1 >{ReferabceNo}</h1>
             </div>
-            <p className='ft-20' style={{ margin: "-2px -26px 0 0px", color: "#6a6a6a" }}>Reference Numbers</p>
+            <p >Reference Numbers</p>
           </div>
         </div>
       </div>
