@@ -104,7 +104,7 @@ export default function VendorDash({ setStep }) {
   }
 
   return (
-    <div className='VendorDash '>
+    <div className='VendorDash d-flex justify-content-between'>
       <div className='VendorDash1 bg-light rounded position-relative px-3 shadow1-silver' >
         <div className='tableheading position-absolute d-flex justify-content-between pt-3' >
           <p className='text-white px-4 mx-1 '>Vendor Contract Details</p>
@@ -199,6 +199,7 @@ export default function VendorDash({ setStep }) {
         </div>
 
       </div>
+
       <div className='VendorDash2 rounded'>
         <button className="nextVendor_AnimationBtn text-white btn px-4 py-3 position-relative" id="recurring" onClick={() => { setStep(6) }}>Recurring Details</button>
 
@@ -206,8 +207,8 @@ export default function VendorDash({ setStep }) {
           <h6 >Click for Recurring Details</h6>
         </div> */}
 
-        <div className='select_container bg-white px-3 py-2 rounded mt-2' style={{ boxShadow: '1px 1px 3px silver' }}>
-          <div className='select_div'>
+        <div className='select_container bg-white px-3 py-2 rounded mt-2 ' style={{ boxShadow: '1px 1px 3px silver' }}>
+          <div className='select_div text-center rounded bg-white'>
             <select className="form-select" aria-label="Default select example" id="Vendname" onChange={() => { handleChangeFilter("vendor", document.getElementById('Vendname').value) }}>
               <option hidden value=''>Vendor Code</option>
               {
@@ -216,7 +217,7 @@ export default function VendorDash({ setStep }) {
               }
             </select>
           </div>
-          <div className='select_div'>
+          <div className='select_div text-center rounded bg-white'>
             <select className="form-select" aria-label="Default select example" id="Category" onChange={() => { handleChangeFilter("major_category", document.getElementById('Category').value) }}>
               <option hidden value=''>Category</option>
               {
@@ -225,7 +226,7 @@ export default function VendorDash({ setStep }) {
               }
             </select>
           </div>
-          <div className='select_div'>
+          <div className='select_div text-center rounded bg-white'>
             <select className="form-select" aria-label="Default select example" id="Location" onChange={() => { handleChangeFilter("location", document.getElementById('Location').value) }}>
               <option hidden value=''>Location</option>
               {
@@ -235,7 +236,7 @@ export default function VendorDash({ setStep }) {
               }
             </select>
           </div>
-          <div className='select_div'>
+          <div className='select_div text-center rounded bg-white'>
             <select className="form-select" aria-label="Default select example" id="frequency" onChange={() => { handleChangeFilter("billling_freq", document.getElementById('frequency').value) }}>
               <option hidden value=''>Frequency</option>
               {
@@ -244,9 +245,9 @@ export default function VendorDash({ setStep }) {
               }
             </select>
           </div>
-          <div className='VendorDash2_card text-center rounded'>
+          <div className='VendorDash2_card text-center bg-white rounded'>
             <div className='d-flex pt-3'>
-              <VscReferences className='Ref_icon' />
+              <VscReferences className='Ref_icon text-white rounded' />
               <h1 >{ReferabceNo}</h1>
             </div>
             <p >Reference Numbers</p>
