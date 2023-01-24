@@ -48,7 +48,7 @@ const Navbar = (props) => {
                         <HiDocumentText style={{ fontSize: "28px",color:"gray" }} />
                         <p className='mb-0' style={{ fontSize: "17px" }}>Reports</p>
                     </Link>
-                    <span class="tooltiptext ">Reports</span>
+                    <span className="tooltiptext ">Reports</span>
                 </div>
 
 
@@ -62,7 +62,7 @@ const Navbar = (props) => {
                                 <BsFillClockFill style={{fontSize:"18px",color:"#404040"}} />
                                 <MdOutlineArrowDropDown style={{ fontSize: "21px",color:"#404040" }} />
                             </div>
-                            <span class="tooltiptext">Shortcut</span>
+                            <span className="tooltiptext">Shortcut</span>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ border: '1px solid silver',margin:"0 -2px" }}>
                                 <a className="dropdown-item" href="/AddNewAssets"> Enroll New Asset</a>
                                 <Link className="dropdown-item" to="/AddTickets">Create a New Ticket</Link>
@@ -72,7 +72,7 @@ const Navbar = (props) => {
                             </div>
                         </div>
                         <div className='help d-flex mx-1 '>
-                        <span class="tooltiptext">Help</span>
+                        <span className="tooltiptext">Help</span>
                             <div role="button" id="dropdownMenuLink"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <MdOutlineHelp style={{ fontSize: "21px",color:"#404040" }} />
@@ -89,17 +89,17 @@ const Navbar = (props) => {
                         </div>
                         <div className='notifications d-flex  cursor-pointer mx-1'>
                             <BsBellFill className='mt-1' style={{ fontSize: "18px",color:"#404040" }} />
-                            <span class="tooltiptext">Notifications</span>
+                            <span className="tooltiptext">Notifications</span>
                         </div>
                      
                     </div>
                     <div className='settings d-flex  cursor-pointer mx-3' onClick={props.togglesidebar2}>
                         <RiSettings3Fill style={{ fontSize: "30px",margin:"0 8px 0 0",color:"gray"}} />
-                        <span class="tooltiptext">Settings</span>
+                        <span className="tooltiptext">Settings</span>
                     </div>
                     
                     <div className='d-flex profileicon'>
-                    <span class="tooltiptext">Profile</span>
+                    <span className="tooltiptext">Profile</span>
                         <div className='d-flex align-items-center' role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                             <RiUserFill style={{ fontSize: "30px", marginRight: '6px',background:"#f7771b",color:"white",padding:"6px",borderRadius:"5px"}} />

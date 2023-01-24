@@ -39,11 +39,9 @@ export default function VendorDash({ setStep }) {
       const org = localStorage.getItem('Database')
 
       const ReferanceNo = await Vendor_Reference_no(localStorage.getItem('Database'))
-      console.log(ReferanceNo.data)
       setReferanceNo(ReferanceNo.data)
       const datas = await TotalVendorContract(localStorage.getItem('Database'), 1, 10)
       setTotalVendor(datas.data)
-      console.log(datas)
       const total = datas.TotalData[0]["Totaldata"]
       setRowPerPage(10)
       setLastval(Math.ceil(total / 10))
@@ -67,7 +65,6 @@ export default function VendorDash({ setStep }) {
 
   const handlePageClick = async (data) => {
     if (filter == true) {
-      console.log(type, value)
       const result = await FilterVendorContract(localStorage.getItem('Database'), type, value, data.selected + 1, rowperpage)
       setTotalVendor(result.data)
 
@@ -80,7 +77,6 @@ export default function VendorDash({ setStep }) {
 
   const handleChange = async (e) => {
     e.preventDefault();
-    console.log(e.target.value)
     setRowPerPage(e.target.value)
     if (filter == true) {
       const result = await FilterVendorContract(localStorage.getItem('Database'), type, value, 1, e.target.value)
@@ -99,9 +95,7 @@ export default function VendorDash({ setStep }) {
   const handleChangeFilter = async (data, value) => {
     setType(data)
     setValue(value)
-    console.log(data, value)
     const result = await FilterVendorContract(localStorage.getItem('Database'), data, value, 1, 10)
-    console.log(result)
     setFilter(true)
     setTotalVendor(result.data)
     const total = result.TotalData[0]["Totaldata"]
@@ -153,9 +147,9 @@ export default function VendorDash({ setStep }) {
                     <td colSpan='8'>Table have not Data</td>
                   </tr>
                   :
-                  TotalVendor.map((elements) => {
+                  TotalVendor.map((elements,index) => {
                     return (
-                      <tr>
+                      <tr key={index}>
                         <td>{elements.vendor}</td>
                         <td>{elements.location}</td>
                         <td>{elements.major_category}</td>

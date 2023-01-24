@@ -40,13 +40,11 @@ export default function Recurring() {
     const fetch = async () => {
       const VendorFreq = await Recurring_Frequency(localStorage.getItem('Database'))
       setVendorFreq(VendorFreq)
-      console.log(VendorFreq)
       const datas = await Recurring_Vendor(localStorage.getItem('Database'), 1, 10)
       setRecurringData(datas.data)
       setTotalRecurring(datas.TotalData[0].Totaldata)
       const total = datas.TotalData[0]["Totaldata"]
       setRowPerPage(10)
-      console.log(Math.ceil(total / 10))
       setLastval(Math.ceil(total / 10))
 
     }
@@ -55,7 +53,6 @@ export default function Recurring() {
 
   const handleChange = async (e) => {
     e.preventDefault();
-    console.log(e.target.value)
     setRowPerPage(e.target.value)
 
     const datas = await Recurring_Vendor(localStorage.getItem('Database'), 1, e.target.value)
@@ -66,8 +63,6 @@ export default function Recurring() {
   const handlePageClick = async (data) => {
     const datas = await Recurring_Vendor(localStorage.getItem('Database'), data.selected + 1, rowperpage)
     setRecurringData(datas.data)
-
-    console.log(data.selected + 1)
   }
   return (
     <div className='Recurring_div justify-content-around mx-2'>
@@ -98,11 +93,8 @@ export default function Recurring() {
 
         <div className='recurring_table_inside px-3'>
           
-         
-
-       
           <div id="pagination">
-          <table class="table " >
+          <table className="table " >
             <thead>
               <tr>
                 <th scope="col">Vendor</th>
@@ -117,9 +109,9 @@ export default function Recurring() {
             </thead>
             <tbody>
               {
-                Recurringdata.map((elements) => {
+                Recurringdata.map((elements,index) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td>{elements.vendor}</td>
                       <td>{elements.location}</td>
                       <td>{elements.major_category}</td>
@@ -132,8 +124,6 @@ export default function Recurring() {
                   )
                 })
               }
-
-
             </tbody>
           </table>
           </div>

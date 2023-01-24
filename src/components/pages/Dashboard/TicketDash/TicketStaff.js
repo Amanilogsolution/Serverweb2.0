@@ -18,7 +18,6 @@ const TicketStaff = () => {
   useEffect(() => {
     const fetchdata = async () => {
       const result = await Ticket_Summary(localStorage.getItem('Database'), localStorage.getItem('UserId'))
-      console.log(result)
       setTicketSummary({
         ...ticketSummary, TotalTicket: result.TotalTicket.totalticket, TotalOpenTicket: result.TotalTicketOpen.totalticketopen, TotalCloseTicket: result.TotalTicketClose.totalticketclose,
         MyTicket: result.MyTicket.myticket, MyTicketOpen: result.MyTicketOpen.myticketopen, MyTicketClose: result.MyTicketClose.myticketclose
