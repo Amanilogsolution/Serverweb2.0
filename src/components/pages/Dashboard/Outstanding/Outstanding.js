@@ -10,7 +10,6 @@ import { BiRupee } from 'react-icons/bi';
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 
 import 'react-data-table-component-extensions/dist/index.css';
-// import { AiFillEdit } from 'react-icons/ai';
 import { Invoice_Outstanding, TotalOutstanding } from '../../../../api/index'
 
 const Outstanding = ({ setStep }) => {
@@ -29,8 +28,6 @@ const Outstanding = ({ setStep }) => {
   const handlePageClick = async (data) => {
     const datas = await TotalOutstanding(localStorage.getItem('Database'), data.selected + 1, rowperpage)
     setTotalVendor(datas.data)
-
-    console.log(data.selected + 1)
   }
 
 
@@ -97,31 +94,30 @@ const Outstanding = ({ setStep }) => {
     <section className='outstanding-container d-flex justify-content-around mt-2'>
       <div className='oustanding-details '>
         <div className='outstanding-top-detail-div d-flex justify-content-between text-center'>
-          <div className='outstanding-totalinv bg-white '>
 
-            <h2 style={{ fontWeight: "500", color: "#30305f" }}>{invoices.TotalVendor}</h2>
-            <p style={{ marginTop: "-5px", color: "#6a6a6a" }}>Invoices</p>
-
+          <div className='outstanding-totalinv bg-white rounded shadow1-silver pt-3'>
+            <h2 className='mb-0' style={{ color: "#30305f" }}>{invoices.TotalVendor}</h2>
+            <p className='text-secondary'>Invoices</p>
           </div>
-          <div className='outstanding-totalamt bg-white ' >
 
-            <h4 style={{ fontWeight: "400", color: "#30305f" }}><BiRupee style={{ fontSize: "30px", marginTop: "-3px", color: "#0f3807" }} />{outstandingAmount}</h4>
-            <p style={{ color: "#6a6a6a" }}>Outstanding Amount</p>
-
+          <div className='outstanding-totalamt bg-white rounded shadow1-silver pt-3' >
+            <h4 className='mb-0' style={{ color: "#30305f" }}><BiRupee style={{ fontSize: "30px", color: "#0f3807" }} />{outstandingAmount}</h4>
+            <p className='text-secondary'>Outstanding Amount</p>
           </div>
 
          
           <button className='btn_for_smd' onClick={() => { setStep(5) }}>Outstanding Details</button>
 
         </div>
-
+        <button className="top-upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>
+          Outstanding Details</button>
         {/* //==================================================================================================== */}
 
-        <div className='company-outstatnding bg-white border rounded' style={{ boxShadow: '1px 1px 10px silver',marginTop:"23px" }} >
-          <div className='text-white px-4 py-2 rounded' style={{ width: "80%", marginLeft: 'auto', marginRight: 'auto', background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginTop: '-10px' }}>
+        <div className='company-outstatnding bg-white border  mt-4 rounded shadow1-silver'  >
+          <div className='text-white px-4 py-2  rounded' style={{ width: "80%", marginLeft: 'auto', marginRight: 'auto', background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginTop: '-20px' }}>
             <small> OUTSTANDING</small>
           </div>
-          <div className='overflow-auto px-2 position-relative' style={{ height: "45vh" }}>
+          <div className='outstanding-sub-table overflow-auto px-2 position-relative' >
             <table className="table">
               <thead className='position-sticky top-0 bg-white '>
                 <tr>
@@ -131,8 +127,8 @@ const Outstanding = ({ setStep }) => {
               </thead>
               <tbody>
                 {
-                  outstandingDatas.map(element => (
-                    <tr>
+                  outstandingDatas.map((element, index) => (
+                    <tr key={index}>
                       <td>{element.vendor}</td>
                       <th>{element.total}</th>
                     </tr>
@@ -152,22 +148,18 @@ const Outstanding = ({ setStep }) => {
 
         {/* //==================================================================================================== */}
 
-          <button  className="nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>Outstanding Details</button>
-          
-        {/* <div className='nextoutstanding-detail text-light cursor-pointer mt-3 d-flex justify-content-center align-items-center' >
-          <button className="nextoutstanding-AnimationBtn" > Outstanding Details</button>
-          Outstanding Details
-        </div> */}
+        <button className="upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>
+          Outstanding Details</button>
 
       </div>
-      <div className='outstanding-table bg-white position-relative mt-3 rounded' style={{ boxShadow: '1px 1px 10px silver' }}>
+      <div className='outstanding-table bg-white position-relative mt-3 rounded shadow1-silver'>
         <div className=' d-flex justify-content-between text-white rounded px-4 py-2 mx-auto' style={{ width: "90%", marginTop: "-20px", background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", height: "55px" }}>
           <p className='ft-20'> Total Invoice</p> <span title="Export" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}> <BiExport style={{ fontSize: "25px" }} /></span>
         </div>
-        <div className='bg-white position-absolute rounded ' style={{ right: "2%", top: "15%", width: "5%", boxShadow: "3px 3px 10px black" }}>
+        <div className='bg-white position-absolute rounded ' style={{ right: "2%", top: "5%", width: "7%", zIndex: '1', boxShadow: "3px 3px 10px black" }}>
           {
             toogle ?
-              <div className="d-flex flex-column justify-content-center align-items-center" >
+              <div className="d-flex flex-column justify-content-center align-items-center py-2" >
                 <a href="#"
                   onClick={exportExcel}
                 ><SiMicrosoftexcel className='ft-20' /></a>
@@ -180,7 +172,7 @@ const Outstanding = ({ setStep }) => {
               : ''
           }
         </div>
-        <div className='outstanding-table-inner overflow-auto' style={{ padding: "0 20px" }}>
+        <div className='outstanding-table-inner overflow-auto px-3'>
           <table className="table" >
             <thead className="position-sticky top-0 bg-white">
               <tr>
@@ -194,9 +186,9 @@ const Outstanding = ({ setStep }) => {
               {
                 TotalVendor.length === 0 ?
                   <tr className='text-center'><td colSpan='4'>No Data</td></tr> :
-                  TotalVendor.map((elements) => {
+                  TotalVendor.map((elements, index) => {
                     return (
-                      <tr>
+                      <tr key={index}>
                         <td>{elements.vendor}</td>
                         <td>{elements.invoice_no}</td>
                         <td>{elements.reference_no}</td>
@@ -243,6 +235,7 @@ const Outstanding = ({ setStep }) => {
 
 
       </div>
+
     </section>
   )
 }

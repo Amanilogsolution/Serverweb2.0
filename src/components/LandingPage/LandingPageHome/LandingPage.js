@@ -27,7 +27,7 @@ const LandingPage = () => {
                 <LandingHeader />
                 <div className='landingContent' >
                     <section className='topbottomdiv' id='topdiv'>
-                        <header className="masthead pt-2 pb-5" >
+                        <header className="masthead py-5" >
                             <div className="container px-5">
                                 <div className="row gx-5 align-items-center">
                                     <div className="col-lg-5" data-aos="fade-right"
