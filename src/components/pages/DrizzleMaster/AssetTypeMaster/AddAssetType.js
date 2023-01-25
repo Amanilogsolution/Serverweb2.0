@@ -72,7 +72,7 @@ function AddAssetType() {
                                 <h4><span className='page-type-head1'>Asset Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Asset Type</span> </h4>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalAssetType' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3">
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3 border ">
                                 <div className='card-header'>Add Asset Type:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
