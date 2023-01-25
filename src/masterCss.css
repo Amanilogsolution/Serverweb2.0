@@ -90,6 +90,7 @@
 /* Pagination and Rows per Page Start */
 .pagination-main{
     justify-content: flex-end;
+    overflow: auto;
 }
 
 .rows_per_page {
