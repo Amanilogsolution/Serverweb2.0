@@ -200,7 +200,7 @@ const Outstanding = ({ setStep }) => {
             </tbody>
           </table>
         </div>
-        <div className="d-flex justify-content-end align-items-center w-100 " >
+        <div className="pagination-main d-flex align-items-center w-100 " >
           <div className='rows_per_page'>
             <label >Rows / page </label> &nbsp;
             <select onChange={handleChange} id='rowpage'>

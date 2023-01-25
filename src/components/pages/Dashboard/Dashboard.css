@@ -16,7 +16,6 @@
    background: linear-gradient(45deg, rgba(137, 108, 224, 0.6), #4d3dad);
     padding:5px 20px;
     border: 1px solid #000;
-    /* border-right:2px solid silver; */
     font-size: 14px;
     color:white;
     border-radius: 15px;
@@ -37,13 +36,13 @@
 
     }
 }
-@media screen and (min-width:450px) and (max-width:850px) {
+@media screen and (min-width:470px) and (max-width:850px) {
     .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
          padding:5px 15px;
          font-size: 14px;
      }
 }
-@media screen and (min-width:390px) and (max-width:450px) {
+@media screen and (min-width:390px) and (max-width:470px) {
     .dashboard_cards .dash_toggle_btns {
         width: 100%;
         margin: 10px 0px 5px 0px;
@@ -54,7 +53,9 @@
      }
 }
 @media screen and (min-width:0px) and (max-width:390px) {
-   
+    .dashboard_cards .dash_toggle_btns {
+        margin: 15px 0px 2px 0px;
+    }
     .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
          padding:4px 10px;
      }

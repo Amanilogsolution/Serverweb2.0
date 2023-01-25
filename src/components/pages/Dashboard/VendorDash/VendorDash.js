@@ -104,12 +104,12 @@ export default function VendorDash({ setStep }) {
   }
 
   return (
-    <div className='VendorDash d-flex justify-content-between'>
-      <div className='VendorDash1 bg-light rounded position-relative px-3 shadow1-silver' >
-        <div className='tableheading position-absolute d-flex justify-content-between pt-3' >
-          <p className='text-white px-4 mx-1 '>Vendor Contract Details</p>
-          <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{ width: "5%", float: "right" }}>
-            <BiExport className='text-white' style={{ fontSize: "25px" }} />
+    <div className='VendorDash d-flex '>
+      <div className='VendorDash1 bg-light rounded position-relative shadow1-silver' >
+        <div className='tableheading position-absolute rounded d-flex justify-content-between pt-3 px-4'>
+          <p className='text-white px-2'>Vendor Contract Details</p>
+          <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}>
+            <BiExport className='text-white' style={{ fontSize: "25px" }}/>
           </div>
           {
             toogle ?
@@ -147,7 +147,7 @@ export default function VendorDash({ setStep }) {
                     <td colSpan='8'>Table have not Data</td>
                   </tr>
                   :
-                  TotalVendor.map((elements,index) => {
+                  TotalVendor.map((elements, index) => {
                     return (
                       <tr key={index}>
                         <td>{elements.vendor}</td>
@@ -166,8 +166,8 @@ export default function VendorDash({ setStep }) {
             </tbody>
           </table>
         </div>
-        <div className="d-flex justify-content-end ">
-          <div className='rows_per_page mx-4'>
+        <div className="pagination-main d-flex">
+          <div className='rows_per_page'>
             <label htmlFor='pageno' >Rows / page </label> &nbsp;
             <select onChange={handleChange} id='pageno'>
               <option value="10">10</option>
@@ -184,7 +184,7 @@ export default function VendorDash({ setStep }) {
               pageCount={lastval}
               previousLabel={<IoMdArrowDropleft style={{ fontSize: "24px" }} />}
               renderOnZeroPageCount={null}
-              containerClassName={'pagination '}
+              containerClassName={'pagination'}
               pageClassName={'page-item  '}
               pageLinkClassName={'page-link '}
               previousClassName={'page-item'}
@@ -200,12 +200,10 @@ export default function VendorDash({ setStep }) {
 
       </div>
 
+
+      {/* Sidevar Filter */}
       <div className='VendorDash2 rounded'>
         <button className="nextVendor_AnimationBtn text-white btn px-4 py-3 position-relative" id="recurring" onClick={() => { setStep(6) }}>Recurring Details</button>
-
-        {/* <div className='select_div cursor-pointer text-light border-0' id="recurring" onClick={() => { setStep(6) }}>
-          <h6 >Click for Recurring Details</h6>
-        </div> */}
 
         <div className='select_container bg-white px-3 py-2 rounded mt-2 ' style={{ boxShadow: '1px 1px 3px silver' }}>
           <div className='select_div text-center rounded bg-white'>
