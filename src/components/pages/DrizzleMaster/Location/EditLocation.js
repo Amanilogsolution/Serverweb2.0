@@ -1,10 +1,12 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GetLocation, UpdateLocation, TotalCountry, TotalState, TotalCity } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 import { RiArrowGoBackFill } from 'react-icons/ri'
+import Modal from '../../AlertModal/Modal';
+import { GlobalAlertInfo } from '../../../../App';
 
 function EditLocation() {
     const [data, setData] = useState({});
@@ -14,19 +16,43 @@ function EditLocation() {
     const [states, setStates] = useState([])
     const [cities, setCities] = useState([])
 
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
 
+
+    // #############################  Test ##############################
+     const {callfun,tooglevalue} = useContext(GlobalAlertInfo);
+
+    // const [tooglevalue, setTogglevalue] = useState({
+    //     modalshowval: false,
+    //     message: "",
+    //     theme: "success",
+    //     url: "self"
+    // });
+    // const callfun = (mess, thm, hrf) => {
+    //     setTogglevalue({
+    //         modalshowval: true,
+    //         message: mess,
+    //         theme: thm,
+    //         url: hrf
+    //     });
+
+    //     setInterval(() => {
+    //         setTogglevalue({ modalshowval: false });
+    //         hrf !== 'self' ? window.location.href = hrf : setTogglevalue({ modalshowval: false });
+    //     }, 3000);
+    // };
+
+    // ########################### Test ##################################
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
             const result = await GetLocation(org, localStorage.getItem('locationsno'))
-            console.log(result)
             setData(result);
             const country = await TotalCountry()
             setCountrylist(country)
@@ -63,35 +89,44 @@ function EditLocation() {
 
         const username = localStorage.getItem('UserId');
         const sno = localStorage.getItem('locationsno')
-        setLoading(true)
+
 
         if (!company || !locationcode || !locationname || !address1 || !country || !city || !state || !pincode || !contactpersonname || !email || !contNum) {
+            // document.getElementById('subnitbtn').disabled = false
+            // setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
+            setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter all mandatory fields!', 'warning', 'self')
         }
         else {
-            setLoading(true)
+
             const result = await UpdateLocation(org, sno, company, locationcode, locationname, address1, address2, city, state, pincode, gstno,
-                contactpersonname, email, contNum, latitude, longitude, username, country);
+                contactpersonname, email, contNum, latitude, longitude, username, country)
 
             if (result === 'Updated') {
+                setLoading(true)
                 localStorage.removeItem('locationsno');
-                setDatas({ ...datas, message: "Location Updated", title: "success", type: "success", route: "/TotalLocations", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Data Updated', 'success', '/TotalLocations')
+                // setDatas({ ...datas, message: "Location Updated", title: "success", type: "success", route: "/TotalLocations", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                setLoading(true)
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Location Already Exist", title: "warning", type: "Error", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Location Already Exist', 'warning', 'self')
+                // document.getElementById('subnitbtn').disabled = false
+                // setDatas({ ...datas, message: "Location Already Exist", title: "warning", type: "Error", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
+                setLoading(true)
+                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditLocation", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditLocation", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
-
     }
 
     const handleStateMaster = async (e) => {
@@ -118,9 +153,9 @@ function EditLocation() {
                     <Sidebar >
                         {/* ######################### Sanckbar Start ##################################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
 
                         {/* ######################### Sanckbar End ##################################### */}
 
@@ -230,11 +265,18 @@ function EditLocation() {
 
 
                                         <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleUpdateLocation}>Update</button>
+                                            <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleUpdateLocation}>Update Location</button>
                                         </div>
                                     </form>
                                 </article>
-                            </div></div>
+                            </div>
+                            <Modal
+                                theme={tooglevalue.theme}
+                                text={tooglevalue.message}
+                                show={tooglevalue.modalshowval}
+                                url={tooglevalue.url}
+                            />
+                        </div>
                     </Sidebar>
                     : <LoadingPage />
             }

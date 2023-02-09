@@ -19,14 +19,17 @@
 .sidebar2open {
     top: 0%;
 }
-.sidebarcontainer2 .sidebar-head{
+
+.sidebarcontainer2 .sidebar-head {
     letter-spacing: 1px;
     border-bottom: 2px solid rgb(178, 0, 254);
 }
-.sidebarcontainer2 .sidebar-head::first-letter{
-   font-size: 25px;
-   color: rgb(150, 54, 241);
+
+.sidebarcontainer2 .sidebar-head::first-letter {
+    font-size: 25px;
+    color: rgb(150, 54, 241);
 }
+
 .sidebarcontainer2 .sidebar2-navdiv {
     border-radius: 10px;
     height: 50px;
@@ -34,7 +37,7 @@
 }
 
 
-.sidebarcontainer2 .sidebar2-themesec .sidebar2-themediv .color-div .color-span{
-height: 20px;
-width: 20px;
+.sidebarcontainer2 .sidebar2-themesec .sidebar2-themediv .color-div .color-span {
+    height: 20px;
+    width: 20px;
 }
