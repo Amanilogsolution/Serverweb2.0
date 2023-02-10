@@ -1,21 +1,34 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useState } from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 import { RiArrowGoBackFill } from 'react-icons/ri'
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 
 function EditAssignRole() {
-    const [loading, setLoading] = useState(true)
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    const [loading, setLoading] = useState(false)
+   // ########################### Modal Alert #############################################
+    //    const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
 
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
+    useEffect(() => {
+        const fetch = async () => {
+            setLoading(true)
+        }
+        fetch()
+
+    }, [])
 
     return (
         <>
@@ -24,9 +37,15 @@ function EditAssignRole() {
                     <Sidebar >
                         {/* ######################### Sanckbar Start ##################################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container'>

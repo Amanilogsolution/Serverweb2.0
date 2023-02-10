@@ -1,14 +1,20 @@
 import Sidebar from '../../Sidebar/Sidebar';
-import React, { useState } from 'react';
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import React, { useState, useContext } from 'react';
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { changePassword } from '../../../api/index'
 import { RiArrowGoBackFill } from 'react-icons/ri'
+import { GlobalAlertInfo } from '../../../App';
+import Modal from '../../pages/AlertModal/Modal';
 
 function ChangePassword() {
     const [currentpass, setCurrentpass] = useState(false)
     const [newpass, setNewpass] = useState(false)
     const [cnfpass, setCnfpass] = useState(false)
+
+    // ########################### Modal Alert #############################################
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
 
     const handleToggleCurrentpass = (e) => {
         e.preventDefault();
@@ -34,26 +40,32 @@ function ChangePassword() {
         if (UpdatePassword === ConfirmPassword) {
             const result = await changePassword(userid, UpdatePassword, CurrentPassword)
             if (result === 'Password Changed') {
-                alert('Password Updated')
-                window.location.href = '/Dashboard'
+                callfun('Password Updated', 'success', '/Dashboard')
             }
             else {
+                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                alert('Something Broke')
             }
         }
         else {
+            callfun('Current Password and Confirm Password Not Match', 'warning', 'self')
             document.getElementById('subnitbtn').disabled = false
-            alert('Current Password and Confirm Password Not Match')
         }
-
     }
 
     return (
         <>
+            <Sidebar>
+                {/* ######################### Sanckbar Start ##################################### */}
+                <Modal
+                    theme={tooglevalue.theme}
+                    text={tooglevalue.message}
+                    show={tooglevalue.modalshowval}
+                    url={tooglevalue.url}
+                />
+                {/* ######################### Sanckbar End ##################################### */}
 
-            <Sidebar >
-                <div className='main_container' >
+                <div className='main_container'>
                     <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
                         <h4><span className='page-type-head1'>Profile<MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Change Password</span> </h4>
                         <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/Dashboard' }} >Back <RiArrowGoBackFill /></button>
@@ -90,10 +102,9 @@ function ChangePassword() {
                                     </div>
                                 </div>
 
-
                                 <div className="form-group mt-3 w-100 d-flex justify-content-end " >
                                     <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleClick} >Change Password </button>
-                                    <button type="reset" className="btn btn-secondary " style={{ margin: "0px 10px 0px 10px" }}>Reset</button>
+                                    <button type="reset" className="btn btn-secondary mx-3">Reset</button>
                                 </div>
                             </form>
                         </article>

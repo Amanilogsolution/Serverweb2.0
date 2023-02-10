@@ -121,8 +121,8 @@ function EditLocation() {
             }
             else {
                 setLoading(true)
-                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
+                callfun('Server Error', 'danger', 'self')
                 // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditLocation", toggle: "true" })
                 // document.getElementById('snackbar').style.display = "block"
             }

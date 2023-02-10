@@ -1,30 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
 import { ActiveVendorContract, VendorContractDetail, UpdatePendingVendorInvoice, GetVendorInvoice } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 import { RiArrowGoBackFill } from 'react-icons/ri'
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function EditVendorInvoice() {
     const [loading, setLoading] = useState(false)
 
     const [data, setData] = useState([])
     const [vendorcontractlist, setVendorcontractlist] = useState([])
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+
+    // ########################### Modal Alert #############################################
+    //    const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-
             const datas = await GetVendorInvoice(org, localStorage.getItem('vendorinvoicesno'))
             setData(datas[0])
-
             const vendorcontract = await ActiveVendorContract(org);
             setVendorcontractlist(vendorcontract)
             setLoading(true)
@@ -56,22 +62,29 @@ function EditVendorInvoice() {
         if (!vendor || !invamt || !invno) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "warning", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter the Mandatory Field', 'warning', 'self')
+
+            // setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "warning", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
-            setLoading(true)
             const result = await UpdatePendingVendorInvoice(org, vendor, accountno, invno, invamt, invdate, invduedate, invsubdate, remark, refno, printercount, sno)
+            setLoading(true)
+
             if (result === 'Data Updated') {
                 localStorage.removeItem('vendorinvoicesno')
-                setDatas({ ...datas, message: "Invoice Updated", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Invoice Updated', 'success', '/TotalVendorInvoice')
+
+                // setDatas({ ...datas, message: "Invoice Updated", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
+                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
     }
@@ -87,9 +100,6 @@ function EditVendorInvoice() {
         document.getElementById('refno').value = detail.reference_no;
     }
 
-    const handleChangeremarks = (e) => {
-        setData({ ...data, remark: e.target.value })
-    }
 
     return (
         <>
@@ -97,9 +107,15 @@ function EditVendorInvoice() {
                 loading ?
                     <Sidebar>
                         {/* ######################### Sanckbar Start ##################################### */}
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ######################### Sanckbar End ##################################### */}
                         <div className='main_container'>
                             <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
@@ -163,7 +179,7 @@ function EditVendorInvoice() {
                                         </div>
                                         <div className="form-group col-md-4 mt-3">
                                             <label htmlFor='remark'>Remarks</label>
-                                            <textarea className="form-control" id='remark' rows='3' value={data.remark} onChange={handleChangeremarks}></textarea>
+                                            <textarea className="form-control" id='remark' rows='3' defaultValue={data.remark} ></textarea>
                                         </div>
                                         <div className='btn_div mt-3'>
                                             <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Update Vendor Invoice</button>

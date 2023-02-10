@@ -1,18 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../Sidebar/Sidebar'
-import Snackbar from '../../../Snackbar/Snackbar';
+// import Snackbar from '../../../Snackbar/Snackbar';
 import LoadingPage from '../../LoadingPage/LoadingPage';
 import { HiUserCircle } from 'react-icons/hi';
 import { TotalCountry, TotalState, TotalCity, getOrganisation, CurrencyMaster, UpdateOrganisationDetails } from '../../../api/index'
 import './organisation.css'
+import { GlobalAlertInfo } from '../../../App';
+import Modal from '../../pages/AlertModal/Modal';
 
 const OrganisationDetails = () => {
-   const [loading, setLoading] = useState(true)
+   const [loading, setLoading] = useState(false)
    const [OrgData, setOrgdata] = useState({})
    const [countrylist, setCountrylist] = useState([]);
    const [statelist, setStatelist] = useState(false);
    const [citylist, setCitylist] = useState(false);
    const [currencylist, setCurrencylist] = useState([]);
+
+   // ########################### Modal Alert #############################################
+   const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+   // ########################### Modal Alert #############################################
 
 
    useEffect(() => {
@@ -31,7 +37,7 @@ const OrganisationDetails = () => {
 
          // const currency = await CurrencyMaster()
          // setCurrencylist(currency)
-
+         setLoading(true)
       }
       fetchData()
 
@@ -52,6 +58,8 @@ const OrganisationDetails = () => {
 
    const handleClick = async (e) => {
       e.preventDefault();
+      setLoading(false)
+      document.getElementById('subnitbtn').disabled = 'true'
 
       const org_name = document.getElementById('org_name').value;
       const country = document.getElementById('country').value;
@@ -59,11 +67,23 @@ const OrganisationDetails = () => {
       const city = document.getElementById('city').value;
       const currency = document.getElementById('currency').value;
 
-      const result = await UpdateOrganisationDetails(localStorage.getItem('Database'), org_name, country, state, city, currency)
+      if (!org_name) {
+         setLoading(true)
+         document.getElementById('subnitbtn').disabled = false
+         callfun('Please enter the Mandatory Field', 'warning', 'self')
+         return false;
+      }
+      else {
+         const result = await UpdateOrganisationDetails(localStorage.getItem('Database'), org_name, country, state, city, currency)
+         setLoading(true)
 
-      if (result == "Updated") {
-         alert("Updated")
-         window.location.href = '/Dashboard'
+         if (result == "Updated") {
+            callfun('Organisation Updated', 'success', '/Dashboard')
+         }
+         else {
+            callfun('Server Error', 'danger', 'self')
+            document.getElementById('subnitbtn').disabled = false
+        }
       }
 
    }
@@ -73,9 +93,18 @@ const OrganisationDetails = () => {
          {
             loading ?
                <Sidebar>
+                  {/* ######################### Sanckbar start ##################################### */}
                   {/* <div id="snackbar" style={{ display: "none" }}>
                        <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
                     </div> */}
+                  <Modal
+                     theme={tooglevalue.theme}
+                     text={tooglevalue.message}
+                     show={tooglevalue.modalshowval}
+                     url={tooglevalue.url}
+                  />
+                  {/* ######################### Sanckbar End ##################################### */}
+
 
                   <div className='main_container d-flex align-items-center '>
                      <div className='profile d-flex rounded15'>
@@ -88,7 +117,7 @@ const OrganisationDetails = () => {
                               <div className='row my-2'>
                                  <div className='col-md-6'>
                                     <label htmlFor='org_name'>Organisation Name</label>
-                                    <input className="form-control" id='org_name' defaultValue={OrgData.org_name} />
+                                    <input className="form-control" id='org_name' defaultValue={OrgData.org_name} disabled />
                                  </div>
                                  <div className='col-md-6'>
                                     <label htmlFor='country'>Country</label>

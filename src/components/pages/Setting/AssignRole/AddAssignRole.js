@@ -1,11 +1,12 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 import { totalRoles, ActiveAgent, getrole } from '../../../../api/index'
 import { RiArrowGoBackFill } from 'react-icons/ri'
-
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function AddAssignRole() {
     const [loading, setLoading] = useState(false)
@@ -13,14 +14,18 @@ function AddAssignRole() {
     const [aggentlist, setAggentlist] = useState([])
     const [rolelistdata, setRolelistData] = useState({})
 
+  // ########################### Modal Alert #############################################
+    //    const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
 
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
 
     useEffect(() => {
         const fetch = async () => {
@@ -41,9 +46,7 @@ function AddAssignRole() {
         setRolelistData(getRoles[0])
         document.getElementById('tableToggle').style.display = "flex"
         document.getElementById('subnitbtntable').style.display = "flex"
-
     }
-
 
     return (
         <>
@@ -53,9 +56,15 @@ function AddAssignRole() {
 
                         {/* ######################### Sanckbar start ##################################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container' >

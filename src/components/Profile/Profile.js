@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../Sidebar/Sidebar'
 import '../LandingPage/Register/organisation.css'
-
 import Qrcode from '../../image/qrcode.png';
 import { getUserdetails, updateUserdetails } from '../../api/index'
-import Snackbar from '../../Snackbar/Snackbar';
+// import Snackbar from '../../Snackbar/Snackbar';
 import LoadingPage from '../LoadingPage/LoadingPage';
 import { RiUserFill, RiBuilding4Fill } from 'react-icons/ri';
 import { BsFillTelephoneFill } from 'react-icons/bs';
@@ -12,21 +11,26 @@ import { MdEmail, MdSecurity, MdModeEditOutline } from 'react-icons/md';
 import { ImLocation } from 'react-icons/im';
 import { IoMdHome } from 'react-icons/io';
 import './Profile.css'
-import ilog from '../../image/ilog_logo.png';
-import awl from '../../image/awl logo.png'
-import img from '../../image/modelimg.png'
+// import img from '../../image/modelimg.png'
+import { GlobalAlertInfo } from '../../App';
+import Modal from '../pages/AlertModal/Modal';
 
 const Profile = () => {
    const [details, setDetails] = useState({})
    const [loading, setLoading] = useState(false)
 
-   const [datas, setDatas] = useState({
-      message: "abc",
-      title: "title",
-      type: "type",
-      route: "#",
-      toggle: "true",
-   })
+   // ########################### Modal Alert #############################################
+   //    const [datas, setDatas] = useState({
+   //     message: "abc",
+   //     title: "title",
+   //     type: "type",
+   //     route: "#",
+   //     toggle: "true",
+   // })
+
+   const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+   // ########################### Modal Alert #############################################
+
 
    useEffect(() => {
       const fetchdata = async () => {
@@ -36,7 +40,6 @@ const Profile = () => {
          const Userdata = await getUserdetails(org, Userdetails)
          setDetails(Userdata)
          setLoading(true)
-
       }
       fetchdata();
 
@@ -60,33 +63,37 @@ const Profile = () => {
          setLoading(true)
 
          document.getElementById('subnitbtn').disabled = false
-         setDatas({ ...datas, message: "Please enter Name", title: "Error", type: "warning", route: "#", toggle: "true" })
-         document.getElementById('snackbar').style.display = "block"
+         callfun('Please enter Name', 'warning', 'self')
 
+         // setDatas({ ...datas, message: "Please enter Name", title: "Error", type: "warning", route: "#", toggle: "true" })
+         // document.getElementById('snackbar').style.display = "block"
       }
       else {
-         setLoading(true)
          const result = await updateUserdetails(org, employee_name, location, employee_email, employee_number, company, user_id)
+         setLoading(true)
+
          if (result === 'Updated') {
-            setDatas({ ...datas, message: "Profile Updated", title: "success", type: "success", route: "/Dashboard", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Profile Updated', 'success', '/Dashboard')
+
+            // setDatas({ ...datas, message: "Profile Updated", title: "success", type: "success", route: "/Dashboard", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
          }
          else {
+            callfun('Server Error', 'danger', 'self')
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/Profile", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/Profile", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
          }
       }
    }
 
    const handleToggleQr = () => {
-      const checkboxval = document.getElementById('authdivbox').checked == true ? true : false;
+      const checkboxval = document.getElementById('authdivbox').checked === true ? true : false;
       if (checkboxval) {
          document.getElementById('auth-qr').style.display = 'flex'
       }
       else {
          document.getElementById('auth-qr').style.display = 'none'
-
       }
    }
 
@@ -104,12 +111,18 @@ const Profile = () => {
                <Sidebar>
                   {/* ######################### Sanckbar start ##################################### */}
 
-                  <div id="snackbar" style={{ display: "none" }}>
+                  {/* <div id="snackbar" style={{ display: "none" }}>
                      <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                  </div>
+                  </div> */}
+                  <Modal
+                     theme={tooglevalue.theme}
+                     text={tooglevalue.message}
+                     show={tooglevalue.modalshowval}
+                     url={tooglevalue.url}
+                  />
                   {/* ######################### Sanckbar End ##################################### */}
 
-                  <div className='profile_container' >
+                  <div className='profile_container'>
                      <h1>Profile Details</h1>
                      <div className='profile_div'>
                         <div className='profile_photo position-relative'>
@@ -150,78 +163,62 @@ const Profile = () => {
                                     </div>
                                  </div>
                               </div><br />
-                              <label className='Edit_profile' data-toggle="modal" data-target="#exampleModal2">Edit Profile<MdModeEditOutline style={{ background: "#2e77bf", fontSize: "18px", padding: "2px", color: "white", borderRadius: "3px", margin: "-2px 3px 0" }} /></label>
+                              <label className='Edit_profile' data-toggle="modal" data-target="#exampleModal2">Edit Profile<MdModeEditOutline className='text-white rounded ft-20 mx-1' style={{ background: "#2e77bf", padding: "2px" }} /></label>
                            </div>
                         </div>
                      </div>
 
-         {/* ============================== UPDATE MODAL ============================================================= */}
+                     {/* ============================== UPDATE MODAL Start============================================================= */}
 
 
-                     <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document" style={{ width: "25%" }}>
-                           <div class="modal-content" >
-                          
-                              <div class="modal-header">
-                              <img src={img} style={{ width: "140px"}} />
-                              <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+                     <div className="modal fade" id="exampleModal2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog" role="document" style={{ width: "30%" }}>
+                           <div className="modal-content" >
+                              <div className="modal-header">
+                                 <RiUserFill className='border border-dark rounded-circle p-3 text-white bg-dark' style={{ width: "110px", height: '110px' }} />
+                                 <h5 className="modal-title mx-3" id="exampleModalLabel">Update Profile</h5>
                               </div>
-                              <div class="modal-body">
-                              
-                              <form style={{padding:"0 20px"}}>
-                              
-                                 <div>
-                                    <label htmlFor='employee_name'>Name</label>
-                                    <input className="form-control" id='employee_name' defaultValue={details.employee_name} ></input>
-                             
-                                 <div>
-                                    <label htmlFor='employee_number'>Mobile</label>
-                                    <input className="form-control" id='employee_number' value={details.employee_number} onChange={handlechangeempno}></input>
-                                 </div>
+                              <div className="modal-body">
+                                 <form style={{ padding: "0 20px" }}>
+                                    <div>
+                                       <label htmlFor='employee_name'>Name</label>
+                                       <input className="form-control" id='employee_name' defaultValue={details.employee_name} ></input>
+                                       <div>
+                                          <label htmlFor='employee_number'>Mobile</label>
+                                          <input className="form-control" id='employee_number' value={details.employee_number} onChange={handlechangeempno}></input>
+                                       </div>
+                                    </div>
 
+                                    <div>
+                                       <label htmlFor='employee_email'>Email</label>
+                                       <input className="form-control" id='employee_email' defaultValue={details.employee_email}></input>
+                                    </div>
+                                    <div>
+                                       <label htmlFor='Address'>Address</label>
+                                       <input className="form-control" id="Address" value={details.location} disabled></input>
+                                    </div>
+
+                                    <div>
+                                       <label htmlFor='location'>Location</label>
+                                       <input className="form-control" id="location" value={details.location} disabled></input>
+                                    </div>
+                                    <div>
+                                       <label htmlFor='company'>Organization Name</label>
+                                       <input className="form-control" id="company" value={details.company} disabled></input>
+                                    </div>
+
+                                    <div className="form-group mt-3 d-flex justify-content-end">
+                                       <button type="submit" className="btn btn-voilet" id="subnitbtn"
+                                          onClick={handleadddevice}>Update</button>
+                                    </div>
+                                 </form>
                               </div>
-                         
-                                 <div >
-                                    <label htmlFor='employee_email'>Email</label>
-                                    <input className="form-control" id='employee_email' defaultValue={details.employee_email}></input>
-                                 </div>
-                                 <div >
-                                    <label htmlFor='Address'>Address</label>
-                                    <input className="form-control" id="Address" value={details.location} disabled></input>
-                                 </div>
-                  
-                             
-                                 <div>
-                                    <label htmlFor='location'>Location</label>
-                                    <input className="form-control" id="location" value={details.location} disabled></input>
-                                 </div>
-                                 <div>
-                                    <label htmlFor='company'>Organization Name</label>
-                                    <input className="form-control" id="company" value={details.company} disabled></input>
-                                 </div>
-                      
-
-
-
-                              <div className="form-group mt-3 d-flex justify-content-end " >
-                                 <button type="submit" className="btn btn-voilet " id="subnitbtn"
-                                    onClick={handleadddevice}
-                                 >Update</button>
-                              </div>
-
-                           </form>
-                              </div>
-
                            </div>
                         </div>
                      </div>
-
-
-
-
-
+                     {/* ============================== UPDATE MODAL END============================================================= */}
                   </div>
-               </Sidebar >
+               </Sidebar>
                : <LoadingPage />
          }
       </>

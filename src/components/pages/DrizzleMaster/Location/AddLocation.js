@@ -1,12 +1,13 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { AddLocationapi } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { TotalCountry, TotalState, TotalCity } from '../../../../api/index'
-import Snackbar from '../../../../Snackbar/Snackbar';
-import {RiArrowGoBackFill} from 'react-icons/ri'
-
+// import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function AddLocation() {
     const [loading, setLoading] = useState(true)
@@ -16,13 +17,16 @@ function AddLocation() {
     const [states, setStates] = useState([])
     const [cities, setCities] = useState([])
 
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+    // ##################################### Context Api For ModelAlert #########################
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo);
+    // ##################################### Context Api For ModelAlert #########################
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -67,32 +71,38 @@ function AddLocation() {
         const country = document.getElementById('country').value;
 
         const username = localStorage.getItem('UserId');
-        setLoading(true)
+
         if (!company || !locationcode || !locationname || !address1 || !city || !state || !pincode || !contactpersonname || !email || !contNum) {
+            setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter All mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            // setDatas({ ...datas, message: "Please enter All mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter all mandatory fields!', 'warning', 'self')
         }
         else {
-            setLoading(true)
             const org = localStorage.getItem('Database')
-
             const result = await AddLocationapi(org, location_id, company, locationcode, locationname, address1, address2, city, state,
                 pincode, gstno, contactpersonname, email, contNum, latitude, longitude, username, country);
 
             if (result === 'Added') {
-                setDatas({ ...datas, message: "Location Added", title: "success", type: "success", route: "/TotalLocations", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                setLoading(true)
+                callfun('Location Updated', 'success', '/TotalLocations')
+                // setDatas({ ...datas, message: "Location Added", title: "success", type: "success", route: "/TotalLocations", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                setLoading(true)
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Location Already Exist", title: "warning", type: "Error", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Location Already Exist', 'warning', 'self')
+                // setDatas({ ...datas, message: "Location Already Exist", title: "warning", type: "Error", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
+                setLoading(true)
+                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddLocation", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddLocation", toggle: "true" })
+                // // document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -104,10 +114,16 @@ function AddLocation() {
                     <Sidebar >
                         {/* ######################### Sanckbar Start ##################################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
 
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container'>
@@ -116,7 +132,7 @@ function AddLocation() {
                                 <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('seriessno'); window.location.href = '/TotalLocations' }} >Back <RiArrowGoBackFill /></button>
                             </div>
                             <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card py-3">
-                                <article className="card-body" >
+                                <article className="card-body">
                                     <form className='px-3' autoComplete='off'>
                                         <div className="row">
                                             <div className="col-md-4">
@@ -162,12 +178,10 @@ function AddLocation() {
                                                     onChange={handleCityMaster}>
 
                                                     <option value='' hidden>Select...</option>
-
                                                     {
                                                         states.map((item, index) => (
                                                             <option key={index} value={item.state_id}>{item.state_name}</option>
                                                         ))
-
                                                     }
 
                                                 </select>
@@ -231,7 +245,9 @@ function AddLocation() {
                                     </form>
                                 </article>
                             </div>
+
                         </div>
+
                     </Sidebar>
                     : <LoadingPage />
             }
