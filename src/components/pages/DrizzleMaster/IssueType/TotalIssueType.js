@@ -5,10 +5,10 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { TotalIssueTypeapi, UpdateIssueTypeStatus } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
-import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineFileUpload, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import customStyles from '../../../TableCustomtyle'
-
+import ExcelToJson from '../../ExcelToJson/ExcelToJson';
 
 const columns = [
     {
@@ -18,7 +18,7 @@ const columns = [
     },
     {
         name: 'Issue Description',
-        selector:'issue_description',
+        selector: 'issue_description',
         sortable: true,
     },
     {
@@ -29,7 +29,7 @@ const columns = [
                 const status = e.target.value;
                 const org = localStorage.getItem('Database')
 
-                await UpdateIssueTypeStatus(org,status, row.sno)
+                await UpdateIssueTypeStatus(org, status, row.sno)
                 window.location.reload()
             }}>
                 <option hidden value={row.status}>{row.status}</option>
@@ -55,6 +55,12 @@ const columns = [
 function TotalIssueType() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
+    const [jsondatas, setJsondatas] = useState([]);
+    const [exceldatas, setExceldatas] = useState([]);
+
+    useEffect(() => {
+        setExceldatas([]);
+    }, [jsondatas.length > 0]);
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -78,24 +84,32 @@ function TotalIssueType() {
             {
                 loading ?
                     <Sidebar>
+                        <ExcelToJson />
+
                         <div className='main_container' >
-                                <div className='main-inner-container  d-flex justify-content-between pt-4 pb-3' >
-                                    <h4><span className='page-type-head1'>IssueType <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total IssueType</span> </h4>
+                            <div className='main-inner-container  d-flex justify-content-between pt-4 pb-3' >
+                                <h4><span className='page-type-head1'>IssueType <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total IssueType</span> </h4>
+                                <div className=''>
                                     <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddIssueType' }} >Add IssueType <b>+</b></button>
-                                </div>
-                                <div className='bg-white pb-1 pt-2 px-2 shadow1-silver rounded15'>
-                                    <DataTableExtensions {...tableData}  >
-                                        <DataTable
-                                            noHeader
-                                            defaultSortField="id"
-                                            defaultSortAsc={false}
-                                            pagination
-                                            highlightOnHover
-                                            customStyles={customStyles}
-                                        />
-                                    </DataTableExtensions>
+                                    <button type="button"
+                                        className="btn btn-sm  btn-success"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" >Upload Excel <MdOutlineFileUpload className='ft-20' /></button>
                                 </div>
                             </div>
+                            <div className='bg-white pb-1 pt-2 px-2 shadow1-silver rounded15'>
+                                <DataTableExtensions {...tableData}  >
+                                    <DataTable
+                                        noHeader
+                                        defaultSortField="id"
+                                        defaultSortAsc={false}
+                                        pagination
+                                        highlightOnHover
+                                        customStyles={customStyles}
+                                    />
+                                </DataTableExtensions>
+                            </div>
+                        </div>
                     </Sidebar>
                     : <LoadingPage />
             }
