@@ -1,34 +1,38 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GetEmployees, UpdateEmployees, ActiveLocation } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 import { RiArrowGoBackFill } from 'react-icons/ri'
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function EditEmployee() {
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState({});
     const [locationlist, setLocationlist] = useState([])
 
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // ########################### Modal Alert #############################################
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
 
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
             const result = await GetEmployees(org, localStorage.getItem('employeesno'))
             setData(result[0]);
-            console.log(result[0])
             const tablelocation = await ActiveLocation(org);
             setLocationlist(tablelocation)
             setLoading(true)
-
         }
         fetchdata()
     }, [])
@@ -44,53 +48,41 @@ function EditEmployee() {
         const location = document.getElementById('location').value;
         const username = localStorage.getItem('UserName');
         const sno = localStorage.getItem('employeesno')
-        setLoading(true)
+
 
         if (!location || !employee_name || !employee_email) {
+            setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter all mandatory fields', 'warning', 'self')
+            // setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
         }
         else {
-            setLoading(true)
+
             const org = localStorage.getItem('Database')
-
             const result = await UpdateEmployees(org, sno, employee_name, location, employee_email, employee_number, company, username);
-
+            setLoading(true)
+            
             if (result === 'Updated') {
                 localStorage.removeItem('employeesno');
-                setDatas({ ...datas, message: "Employee Updated", title: "success", type: "success", route: "/TotalEmployee", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Employee Updated', 'success', '/TotalEmployee')
+                // setDatas({ ...datas, message: "Employee Updated", title: "success", type: "success", route: "/TotalEmployee", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditEmployee", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Server Error', 'danger', 'self')
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditEmployee", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
 
     }
 
-
-    // const handlechangeempname = (e) => {
-    //     setData({ ...data, employee_name: e.target.value })
-    // }
-    // const handlechangeempemail = (e) => {
-    //     setData({ ...data, employee_email: e.target.value })
-    // }
     const handlechangeempno = (e) => {
         if (e.target.value.length === 11) return false;
         setData({ ...data, employee_number: e.target.value })
     }
-    // const handlechangecompany = (e) => {
-    //     setData({ ...data, company: e.target.value })
-    // }
-
-    // const handlechangelocation = (e) => {
-    //     setData({ ...data, location: e.target.value })
-    // }
-
-
 
     return (
         <>
@@ -98,10 +90,16 @@ function EditEmployee() {
                 loading ?
                     <Sidebar >
                         {/* ################# Snackbar ##################### */}
-
+                        {/* 
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
 
                         {/* ################# Snackbar ##################### */}
 

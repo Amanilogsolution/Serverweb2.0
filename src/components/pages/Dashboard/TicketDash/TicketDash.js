@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './TicketDash.css'
-import { FaEnvelopeOpen, FaUserTimes, FaCalendarTimes, FaUser, FaCheck, FaTelegramPlane } from 'react-icons/fa';
-import TicketDepartment from './TicketDepartment';
-import TicketTopics from './TicketTopics'
+import TicketSummary from './SummaryDash/TicketSummary';
+import TicketTopics from './TicketIssue/TicketIssue'
 import TicketPriority from './TicketPriority'
 import TicketStaff from './TicketStaff'
 
@@ -23,7 +22,7 @@ const TicketDash = () => {
         document.getElementById('ticket_details3').style.borderBottom = 'none'
         document.getElementById('ticket_details4').style.background = 'rgba(96, 58, 233, 0.4)'
         document.getElementById('ticket_details4').style.borderBottom = 'none'
-        return <TicketDepartment />
+        return <TicketSummary />
       }
       case 2: {
         document.getElementById('ticket_details1').style.background = 'rgba(96, 58, 233, 0.4)'

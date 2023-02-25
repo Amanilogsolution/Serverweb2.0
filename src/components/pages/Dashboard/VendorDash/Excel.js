@@ -8,7 +8,6 @@ const fileExtension = ".xlsx";
 
 export const ExcelConvertData = async(Recurringdata) =>{
     const ws = XLSX.utils.json_to_sheet(Recurringdata);
-    console.log(ws)
     const wb = { Sheets: { 'data': ws }, SheetNames: ["data"] };
     const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
     const data = new Blob([excelBuffer], { type: fileType });

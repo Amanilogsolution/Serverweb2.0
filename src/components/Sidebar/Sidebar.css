@@ -72,6 +72,7 @@
 
 ::-webkit-scrollbar {
     width: 7px;
+    height: 7px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -160,6 +161,8 @@
 .active {
     background: #603AE9;
     color: #fff;
+    border-radius: 10px;
+
 }
 
 .inneruldiv {

@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
 import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice } from '../../../../api'
-import {  MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import {RiArrowGoBackFill} from 'react-icons/ri'
+import { RiArrowGoBackFill } from 'react-icons/ri'
 import Select from 'react-select';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 
 function AddVendorInvoice() {
@@ -17,18 +19,22 @@ function AddVendorInvoice() {
     const [arryval, setArryval] = useState([{}]);
     const [vendorcontractlist, setVendorcontractlist] = useState([])
     const [Vendorname, setVendorname] = useState([])
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // ########################### Modal Alert #############################################
+    //    const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
 
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-
             const vendorcontract = await ActiveVendorContract(org);
             setVendorcontractlist(vendorcontract)
             todaydate()
@@ -108,9 +114,11 @@ function AddVendorInvoice() {
         for (let i = 0; i < arryval.length; i++) {
             if (!arryval[i]) {
                 setLoading(true)
+                callfun('Please Select the vendor', 'warning', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Please Select the vendor", title: "warning", type: "warning", route: "#", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+
+                // setDatas({ ...datas, message: "Please Select the vendor", title: "warning", type: "warning", route: "#", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
 
@@ -118,18 +126,20 @@ function AddVendorInvoice() {
             else if (!arryval[i].vendor) {
                 setLoading(true)
                 document.getElementById('subnitbtn').disabled = false
+                callfun('Please Select the vendor', 'warning', 'self')
 
-                setDatas({ ...datas, message: "Please Select the vendor", title: "warning", type: "warning", route: "#", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                // setDatas({ ...datas, message: "Please Select the vendor", title: "warning", type: "warning", route: "#", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
             else if (!arryval[i].invno || !arryval[i].invamt) {
                 setLoading(true)
                 document.getElementById('subnitbtn').disabled = false
+                callfun('Please enter the Mandatory field', 'warning', 'self')
 
-                setDatas({ ...datas, message: "Please enter the Mandatory field", title: "warning", type: "warning", route: "#", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                // setDatas({ ...datas, message: "Please enter the Mandatory field", title: "warning", type: "warning", route: "#", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
 
@@ -141,14 +151,17 @@ function AddVendorInvoice() {
             const result = await InsertVendorInvoice(org, arryval, localStorage.getItem('UserId'))
 
             if (result === 'Data Added') {
-                setDatas({ ...datas, message: "Vendor Invoice Added", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Vendor Invoice Added', 'success', '/TotalVendorInvoice')
+
+                // setDatas({ ...datas, message: "Vendor Invoice Added", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
+                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
 
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
 
         }
@@ -175,12 +188,18 @@ function AddVendorInvoice() {
                     <Sidebar>
                         {/* ######################### Sanckbar Start ##################################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container'>
+                        <div className='main_container px-1'>
                             <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
                                 <h4><span className='page-type-head1'>Vendor Invoice <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Invoice</span> </h4>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorInvoice' }} >Back <RiArrowGoBackFill /></button>
@@ -194,7 +213,7 @@ function AddVendorInvoice() {
                                     </div>
                                 </header>
                                 <article className="card-body">
-                                    <form  autoComplete='off'>
+                                    <form autoComplete='off'>
                                         <table className="table table-bordered" >
                                             <thead>
                                                 <tr className='text-center'>

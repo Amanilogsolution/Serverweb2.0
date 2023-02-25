@@ -1,21 +1,29 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { InsertServiceActionType } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
-
+// import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function AddVendorSubCategory() {
     const [loading, setLoading] = useState(true)
 
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // ########################### Modal Alert #############################################
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
+
 
     const handleinsertdata = async (e) => {
         e.preventDefault();
@@ -31,25 +39,33 @@ function AddVendorSubCategory() {
         if (!service_action) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter Service Action ", title: "Error", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter Service Action ', 'warning', 'self')
+
+            // setDatas({ ...datas, message: "Please enter Service Action ", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
         }
         else {
-            setLoading(true)
             const result = await InsertServiceActionType(org, service_action_id, service_action, remark, username);
+            setLoading(true)
+
             if (result === 'Added') {
-                setDatas({ ...datas, message: "Service Action Type Added", title: "success", type: "success", route: "/TotalServiceActionType", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Service Action Type Added', 'success', '/TotalServiceActionType')
+
+                // setDatas({ ...datas, message: "Service Action Type Added", title: "success", type: "success", route: "/TotalServiceActionType", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                callfun('Service Action Type Already Exist', 'warning', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Service Action Type Already Exist", title: "warning", type: "Error", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+
+                // setDatas({ ...datas, message: "Service Action Type Already Exist", title: "warning", type: "Error", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
+                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddServiceActionType", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddServiceActionType", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -61,25 +77,31 @@ function AddVendorSubCategory() {
                     <Sidebar >
                         {/* ######################### Sanckbar Start ##################################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container pb-2' >
-                            <div className=' d-flex justify-content-between mx-5 pt-4 pb-3'>
-                                <h3><span className='page-type-head1'>Service Action Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Service Action Type</span> </h3>
-                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalServiceActionType' }} >Back <MdOutlineArrowForward /></button>
+                        <div className='main_container' >
+                            <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
+                                <h4><span className='page-type-head1'>Service Action Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Service Action Type</span> </h4>
+                                <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalServiceActionType' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="card m-auto" style={{ width: "50%" }}>
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3">
                                 <div className='card-header'>Add Service Action Type:</div>
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
-                                        <div className="col">
+                                        <div className="col-md-5">
                                             <label htmlFor='service_action'>Service Action <span className='text-danger'>*</span></label>
                                             <input type="text" className="form-control" id='service_action' />
                                         </div>
-                                        <div className="col-md mt-3" >
+                                        <div className="col-md-7 mt-3" >
                                             <label htmlFor='remark'>Remarks</label>
                                             <textarea className="form-control" id='remark' rows='3' placeholder='Comments' />
                                         </div>

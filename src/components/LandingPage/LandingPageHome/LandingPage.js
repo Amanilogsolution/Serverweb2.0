@@ -27,12 +27,12 @@ const LandingPage = () => {
                 <LandingHeader />
                 <div className='landingContent' >
                     <section className='topbottomdiv' id='topdiv'>
-                        <header className="masthead pb-4" >
+                        <header className="masthead py-5" >
                             <div className="container px-5">
                                 <div className="row gx-5 align-items-center">
                                     <div className="col-lg-5" data-aos="fade-right"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
-                                        <div className="mb-5 mb-lg-1 text-center text-lg-start">
+                                        <div className="mb-5 mb-lg-5 text-center text-lg-start">
                                             <h3 className="display-3 lh-1 mb-3" style={{ fontWeight: "500" }}>Uncomplicate IT Asset Management</h3>
                                             <p className="lead fw-normal text-muted mb-5">Automate and manage accounting, deployement, and maintenance of IT Assets for you and your clients on one plateform</p>
                                             <div className="d-flex flex-column flex-lg-row align-items-center">
@@ -70,7 +70,7 @@ const LandingPage = () => {
                     <section className='about pt-5' id='about' >
                         <header className="abouthead pt-2">
                             <div className="container px-0" >
-                                <div className="row align-items-center pb-3" >
+                                <div className="row align-items-center pb-5" >
                                     <div className="col-lg-5" data-aos="fade-left"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="aboutimgdiv"  >
@@ -80,7 +80,7 @@ const LandingPage = () => {
                                     <div className="col-lg-5" data-aos="fade-right" data-aos-offset="200"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="mb-5 mb-lg-0 text-center text-lg-start">
-                                            <h3 className="display-5 lh-1 mb-3" style={{ fontWeight: "500" }}>Centralize your IT Management</h3>
+                                            <h3 className="display-5 lh-2 mb-3" style={{ fontWeight: "500" }}>Centralize your IT Management</h3>
                                             <p className="lead fw-normal text-muted mb-5">Increase company-wide understanding of IT’s business value, improve communications and understanding by capturing asset data in Drizzle to maximize returns and minimize risks.</p>
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@ const LandingPage = () => {
                     <section className='chooseus' data-aos="fade-up" data-aos-offset="200"
                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                         <header className="chooseus pt-5">
-                            <div className="container px-4 pb-5">
+                            <div className="container px-2 pb-5">
                                 <h2 className='text-center'>Why Choose Drizzle</h2>
                                 <div className='parent_choose_div m-auto pt-3'>
                                     <div className="chid_choose_div chid_choose_div1  pt-1">

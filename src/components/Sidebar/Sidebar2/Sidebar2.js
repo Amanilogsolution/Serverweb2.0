@@ -44,13 +44,13 @@ const Sidebar2 = (props) => {
                     <div className='sidebar2-themediv px-2'>
                         <span>  Sidebar Color</span>
                         <div className="color-div mt-2 d-flex justify-content-around">
-                            <div className="color-span bg-primary rounded-circle"></div>
-                            <div className="color-span bg-success rounded-circle"></div>
-                            <div className="color-span bg-danger rounded-circle"></div>
-                            <div className="color-span bg-dark rounded-circle"></div>
-                            <div className="color-span bg-info rounded-circle"></div>
-                            <div className="color-span bg-secondary rounded-circle"></div>
-                            <div className="color-span bg-light rounded-circle border border-dark"></div>
+                            <div className="color-span bg-primary rounded-circle cursor-pointer"></div>
+                            <div className="color-span bg-success rounded-circle cursor-pointer "></div>
+                            <div className="color-span bg-danger rounded-circle cursor-pointer"></div>
+                            <div className="color-span bg-dark rounded-circle cursor-pointer"></div>
+                            <div className="color-span bg-info rounded-circle cursor-pointer"></div>
+                            <div className="color-span bg-secondary rounded-circle cursor-pointer"></div>
+                            <div className="color-span bg-light rounded-circle border border-dark cursor-pointer"></div>
                         </div>
                     </div>
                 </section>

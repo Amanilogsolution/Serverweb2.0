@@ -1,9 +1,11 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { InsertVendorContract, ActiveLocation, ActiveContractType, ActiveVendorCategory, ActiveVendorCode, ActiveVendSubCate, ActiveBillingFreq } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import { GrFormClose } from "react-icons/gr"
+// import { GrFormClose } from "react-icons/gr"
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function AddVendorContract() {
     const [loading, setLoading] = useState(false)
@@ -17,13 +19,18 @@ function AddVendorContract() {
     const [vendorsubcatlist, setVendorsubcatlist] = useState([])
     const [vendorlist, setVendorlist] = useState([])
     const [billingfreqlist, setBillingfreqlist] = useState([])
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // ########################### Modal Alert #############################################
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -136,8 +143,10 @@ function AddVendorContract() {
             !customer_account_no || !payee_name || !help_desk_no) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "warning", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter all mandatory fields', 'warning', 'self')
+
+            // setDatas({ ...datas, message: "Please enter all mandatory fields", title: "warning", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
         }
         else {
             const refno = document.getElementById('ref_no').checked ? true : false;
@@ -148,8 +157,10 @@ function AddVendorContract() {
                     errorcount = errorcount + 1
                     setLoading(true)
                     document.getElementById('subnitbtn').disabled = false
-                    setDatas({ ...datas, message: "Please fill the Contract Detail", title: "warning", type: "warning", route: "#", toggle: "true" })
-                    document.getElementById('snackbar').style.display = "block"
+                    callfun('Please fill the Contract Detail', 'warning', 'self')
+
+                    // setDatas({ ...datas, message: "Please fill the Contract Detail", title: "warning", type: "warning", route: "#", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
             else {
@@ -164,8 +175,10 @@ function AddVendorContract() {
                     errorcount = errorcount + 1
                     setLoading(true)
                     document.getElementById('subnitbtn').disabled = false
-                    setDatas({ ...datas, message: "Please Enter the Reference no", title: "warning", type: "Warning", route: "#", toggle: "true" })
-                    document.getElementById('snackbar').style.display = "block"
+                    callfun('Please Enter the Reference no', 'warning', 'self')
+
+                    // setDatas({ ...datas, message: "Please Enter the Reference no", title: "warning", type: "Warning", route: "#", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
             else {
@@ -176,8 +189,10 @@ function AddVendorContract() {
                     errorcount = errorcount + 1
                     setLoading(true)
                     document.getElementById('subnitbtn').disabled = false
-                    setDatas({ ...datas, message: "Please Enter the Link id no", title: "Warning", type: "warning", route: "#", toggle: "true" })
-                    document.getElementById('snackbar').style.display = "block"
+                    callfun('Please Enter the Link id no', 'warning', 'self')
+
+                    // setDatas({ ...datas, message: "Please Enter the Link id no", title: "Warning", type: "warning", route: "#", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
             else { link_id_no = '' }
@@ -188,14 +203,19 @@ function AddVendorContract() {
                     major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
                     rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
                     help_desk_no, user_id)
+
                 if (callapi === 'Added') {
-                    setDatas({ ...datas, message: "Vendor Contract Added", title: "success", type: "success", toggle: "true", route: '/TotalVendorContract' })
-                    document.getElementById('snackbar').style.display = "block"
+                    callfun('Vendor Contract Added', 'success', '/TotalVendorContract')
+
+                    // setDatas({ ...datas, message: "Vendor Contract Added", title: "success", type: "success", toggle: "true", route: '/TotalVendorContract' })
+                    // document.getElementById('snackbar').style.display = "block"
                 }
                 else {
+                    callfun('Server Error', 'danger', 'self')
                     document.getElementById('subnitbtn').disabled = false
-                    setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddVendorContract", toggle: "true" })
-                    document.getElementById('snackbar').style.display = "block"
+
+                    // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddVendorContract", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
         }
@@ -209,7 +229,7 @@ function AddVendorContract() {
 
                         {/* ################# Snackbar ##################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
                                 <div className={`notification__message message--${datas.type}`}>
                                     <h1>{datas.title}</h1>
@@ -226,7 +246,13 @@ function AddVendorContract() {
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ################# Snackbar ##################### */}
 
                         <div className='main_container' >

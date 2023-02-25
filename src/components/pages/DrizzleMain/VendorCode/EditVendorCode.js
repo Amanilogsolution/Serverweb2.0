@@ -1,13 +1,14 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { GetVendorCode, UpdateVendorCode, TotalCountry, TotalState, TotalCity } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { FaMinusCircle } from 'react-icons/fa'
-import { GrFormClose } from "react-icons/gr"
-
+// import { GrFormClose } from "react-icons/gr"
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function EditVendorCode() {
     const [data, setData] = useState({})
@@ -20,13 +21,18 @@ function EditVendorCode() {
     const [statelist, setStatelist] = useState([]);
     const [citylist, setCitylist] = useState([]);
 
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+       // ########################### Modal Alert #############################################
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -34,7 +40,6 @@ function EditVendorCode() {
 
             const tabledata = await GetVendorCode(org, localStorage.getItem('VendorCodeSno'))
             setData(tabledata[0])
-            console.log(tabledata[0].venodr_portal)
             const totalCountry = await TotalCountry();
             setCountrylist(totalCountry)
 
@@ -93,24 +98,29 @@ function EditVendorCode() {
             || !comp_email || !contact_person || !contact_no || !contact_email) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter all mandatory fields', 'warning', 'self')
+
+            // setDatas({ ...datas, message: "Please enter all mandatory fields", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
 
         }
         else {
-            setLoading(true)
             const result = await UpdateVendorCode(org, sno, vendor_code, vendor_name, comp_gst, comp_website, comp_email, comp_phone, comp_country_id, comp_country,
                 comp_state_id, comp_state, comp_city, comp_addr1, comp_addr2, comp_pincode, vendor_portal, contact_person, contact_no, contact_email, user_id);
+                setLoading(true)
 
             if (result === 'Updated') {
                 localStorage.removeItem('VendorCodeSno');
-                setDatas({ ...datas, message: "Vendor Code Updated", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Vendor Code Updated', 'success', '/TotalVendorCode')
+
+                // setDatas({ ...datas, message: "Vendor Code Updated", title: "success", type: "success", route: "/TotalVendorCode", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
+                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditVendorCode", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditVendorCode", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -183,7 +193,7 @@ function EditVendorCode() {
                     <Sidebar >
                         {/* ################# Snackbar ##################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
                                 <div className={`notification__message message--${datas.type}`}>
                                     <h1>{datas.title}</h1>
@@ -197,7 +207,13 @@ function EditVendorCode() {
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ################# Snackbar ##################### */}
                         <div className='main_container' >
                             <div className='main-inner-container d-flex justify-content-between mx-5 pt-4 pb-3'>

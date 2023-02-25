@@ -1,8 +1,6 @@
 .contact_us_card {
-    box-shadow: 1px 1px 4px 1px silver;
     width: 80%;
-    height: 250px;
-    overflow: hidden;
+    height: 300px;
 }
 
 .contact_us_logo {
@@ -14,6 +12,12 @@
 .contact_us_content {
     width: 75%;
 }
+@media screen and (min-width: 850px) and (max-width:1250px) {
+    .contact_us_content {
+        padding: 30px;
+    }
+}
+
 
 @media screen and (max-device-width: 850px) {
     .contact_us_card {

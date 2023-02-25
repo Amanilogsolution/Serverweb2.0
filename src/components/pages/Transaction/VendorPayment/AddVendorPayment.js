@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
 import { PendingVendorInvoice, UpdateVendorInvoice } from '../../../../api'
-import {  MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
-import {RiArrowGoBackFill} from 'react-icons/ri'
+// import Snackbar from '../../../../Snackbar/Snackbar';
+import { RiArrowGoBackFill } from 'react-icons/ri'
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function AddVendorPayment() {
     const [loading, setLoading] = useState(false)
@@ -15,13 +17,18 @@ function AddVendorPayment() {
     const [arryval, setArryval] = useState([{}]);
     const [pendinginvoicelist, setPendinginvoicelist] = useState([])
     // const [vendordetail, setVendordetail] = useState([])
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // ########################### Modal Alert #############################################
+    //    const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -57,7 +64,6 @@ function AddVendorPayment() {
             val.pop();
             setCount(val.length);
             setArry(val);
-
             let objval = [...arryval];
             objval.pop();
             setArryval(objval)
@@ -79,17 +85,14 @@ function AddVendorPayment() {
         let snoindex = snotext.indexOf(",")
         let sno = snotext.slice(0, snoindex)
 
-
         const ptydtl = document.getElementById(`ptydtl-${index}`).value;
         const ptyamt = document.getElementById(`ptyamt-${index}`).value;
         const ptydate = document.getElementById(`ptydate-${index}`).value;
         const remark = document.getElementById(`remark-${index}`).value;
-
         let obj = {
             sno: sno, InvoiceNo: invno, paymentDetail: ptydtl, PaymentAmt: ptyamt,
             Paymentdate: ptydate, Remark: remark
         };
-
         arryval[index] = obj;
 
     };
@@ -104,45 +107,49 @@ function AddVendorPayment() {
             if (!arryval[i].InvoiceNo) {
                 setLoading(true)
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: " Please Select the Invoice no ", title: "warning", type: "warning", route: "#", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Please Select the Invoice no', 'warning', 'self')
+
+                // setDatas({ ...datas, message: " Please Select the Invoice no ", title: "warning", type: "warning", route: "#", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
             else if (arryval[i].InvoiceNo === 'elect Invoice n') {
                 setLoading(true)
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Please Select the Invoice no", title: "warning", type: "warning", route: "#", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Please Select the Invoice no', 'warning', 'self')
+
+                // setDatas({ ...datas, message: "Please Select the Invoice no", title: "warning", type: "warning", route: "#", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
             else if (!arryval[i].paymentDetail || !arryval[i].PaymentAmt) {
                 setLoading(true)
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Please enter the Mandatory field", title: "warning", type: "warning", route: "#", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Please enter the Mandatory field', 'warning', 'self')
+
+                // setDatas({ ...datas, message: "Please enter the Mandatory field", title: "warning", type: "warning", route: "#", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
-
         }
         if (errorcount === 0) {
-            setLoading(true)
-
             const result = await UpdateVendorInvoice(org, arryval, localStorage.getItem('UserId'))
+            setLoading(true)
             if (result === 'Data Updated') {
-                setDatas({ ...datas, message: "Vendor Payment Added", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Vendor Payment Added', 'success', '/TotalVendorPayment')
+                // setDatas({ ...datas, message: "Vendor Payment Added", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
+                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
-
         }
-
     }
 
     const handleChnageVendorDetail = async (index, e) => {
@@ -155,7 +162,6 @@ function AddVendorPayment() {
         let toindex2 = text.indexOf(",")
         let refno = text.slice(0, toindex2)
         document.getElementById(`refno-${index}`).value = refno;
-
     }
 
     // let options = pendinginvoicelist.map((item) => {
@@ -169,12 +175,18 @@ function AddVendorPayment() {
                     <Sidebar>
                         {/* ######################### Sanckbar Start ##################################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div className='main_container'>
+                        <div className='main_container px-2'>
                             <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
                                 <h4><span className='page-type-head1'>Vendor Payment <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Add Vendor Payment</span> </h4>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalVendorPayment' }} >Back <RiArrowGoBackFill /></button>
@@ -229,17 +241,13 @@ function AddVendorPayment() {
                                             </tbody>
                                         </table>
 
-                                        <div className='btn_div '>
+                                        <div className='btn_div'>
                                             <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Add Vendor Payment</button>
                                             <button type='reset' className='btn btn-secondary mx-2'>Reset</button>
                                         </div>
                                     </form>
                                 </article>
                             </div>
-
-
-
-
                         </div>
                     </Sidebar>
                     : <LoadingPage />

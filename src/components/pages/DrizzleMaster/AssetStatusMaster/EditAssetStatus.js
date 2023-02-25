@@ -1,31 +1,37 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { GetAssetStatusapi, UpdateAssetStatusapi } from '../../../../api'
-import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 import { RiArrowGoBackFill } from 'react-icons/ri'
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function EditAssetStatus() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
 
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+
+    // ########################### Modal Alert #############################################
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
 
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-
             const result = await GetAssetStatusapi(org, localStorage.getItem('assetstatussno'))
             setData(result[0]);
             setLoading(true)
-
         }
         fetchdata()
     }, [])
@@ -38,32 +44,39 @@ function EditAssetStatus() {
         const asset_status_desc = document.getElementById('asset_status_desc').value;
         const username = localStorage.getItem('UserId');
         const sno = localStorage.getItem('assetstatussno')
-        setLoading(true)
 
         if (!asset_status) {
+            setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter the Asset Status", title: "Error", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter the Asset Status', 'warning', 'self')
+            // setDatas({ ...datas, message: "Please enter the Asset Status", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
         }
         else {
-            setLoading(true)
             const org = localStorage.getItem('Database')
-
             const result = await UpdateAssetStatusapi(org, sno, asset_status, asset_status_desc, username);
-            if (result === 'Updated') { 
+            setLoading(true)
+
+            if (result === 'Updated') {
                 localStorage.removeItem('assetstatussno');
-                setDatas({ ...datas, message: "Asset Status Updated", title: "success", type: "success", route: "/TotalAssetStatus", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Asset Status Updated', 'success', '/TotalAssetStatus')
+
+                // setDatas({ ...datas, message: "Asset Status Updated", title: "success", type: "success", route: "/TotalAssetStatus", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: " Asset Status Already Exist", title: "warning", type: "Error", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Asset Status Already Exist', 'warning', 'self')
+
+                // setDatas({ ...datas, message: " Asset Status Already Exist", title: "warning", type: "Error", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditAssetStatus", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Server Error', 'danger', 'self')
+
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditAssetStatus", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -77,9 +90,15 @@ function EditAssetStatus() {
                     <Sidebar >
                         {/* ############################ Snackbar ############################## */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ############################ Snackbar ############################## */}
 
                         <div className='main_container pb-2'>
@@ -100,7 +119,7 @@ function EditAssetStatus() {
                                             <textarea type="text" className="form-control" rows='3' id='asset_status_desc' defaultValue={data.asset_status_description} />
                                         </div>
                                         <div className="form-group mt-3" >
-                                            <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleadddevice}>Update</button>
+                                            <button type="submit" className="btn btn-voilet" id="subnitbtn" onClick={handleadddevice}>Update Status</button>
                                         </div>
                                     </form>
                                 </article>

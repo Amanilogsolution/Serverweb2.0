@@ -8,7 +8,7 @@ export default function Contactus() {
         <>
             <Sidebar>
                 <div className=' main_container d-flex justify-content-center align-items-center'>
-                    <div className='contact_us_card d-flex rounded '>
+                    <div className='contact_us_card d-flex rounded15 bg-white shadow1-silver overflow-hidden'>
                         <div className='contact_us_logo d-flex flex-column align-items-center justify-content-center text-light '>
                             <RiContactsBookFill />
                             <h4>Contact Us</h4>

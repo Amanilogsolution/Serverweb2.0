@@ -5,7 +5,7 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { TotalPurchaseTypeapi, DeletePurchaseTypeapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
-import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import customStyles from '../../../TableCustomtyle'
 
@@ -79,12 +79,11 @@ function TotalPurchaseType() {
                 loading ?
                     <Sidebar>
                         <div className='main_container' >
-                            <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
-                                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span className='page-type-head1'>Purchase Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Purchase Type</span> </h2>
-                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddPurchaseType' }} >Add Purchase Type <MdAdd /></button>
+                                <div className='main-inner-container  d-flex justify-content-between pt-4 pb-3' >
+                                    <h4><span className='page-type-head1'>Purchase Type <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Purchase Type</span> </h4>
+                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddPurchaseType' }} >Add Purchase Type <b>+</b></button>
                                 </div>
-                                <div >
+                                <div className='bg-white pb-1 pt-2 px-2 shadow1-silver rounded15'>
                                     <DataTableExtensions {...tableData}  >
                                         <DataTable
                                             noHeader
@@ -97,7 +96,6 @@ function TotalPurchaseType() {
                                     </DataTableExtensions>
                                 </div>
                             </div>
-                        </div>
                     </Sidebar>
                     : <LoadingPage />
             }

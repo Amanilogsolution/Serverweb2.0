@@ -1,21 +1,27 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AddAssetTypeapi } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 import { RiArrowGoBackFill } from 'react-icons/ri'
-
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function AddAssetType() {
     const [loading, setLoading] = useState(true)
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+
+    // ######################### Modal Alert ###################################
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+    const { callfun, tooglevalue } = useContext(GlobalAlertInfo);
+    // ######################### Modal Alert ###################################
+
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
@@ -30,26 +36,32 @@ function AddAssetType() {
         if (!asset_type) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter the Asset Type", title: "Error", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter the Asset Type', 'warning', 'self')
+
+            // setDatas({ ...datas, message: "Please enter the Asset Type", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
         }
         else {
-            setLoading(true)
             const org = localStorage.getItem('Database')
             const result = await AddAssetTypeapi(org, assettype_id, asset_type, asset_type_desc, username);
+
+            setLoading(true)
             if (result === 'Added') {
-                setDatas({ ...datas, message: "Asset Type Added", title: "success", type: "success", route: "/TotalAssetType", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Asset Type Added', 'success', '/TotalAssetType')
+                // setDatas({ ...datas, message: "Asset Type Added", title: "success", type: "success", route: "/TotalAssetType", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "This Asset Already Exist", title: "warning", type: "Error" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('This Asset Already Exist', 'warning', 'self')
+                // setDatas({ ...datas, message: "This Asset Already Exist", title: "warning", type: "Error" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
+                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddAssetType", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddAssetType", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -62,9 +74,15 @@ function AddAssetType() {
 
                         {/* ######################### Sanckbar End ##################################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container ' >

@@ -5,7 +5,7 @@ import 'react-data-table-component-extensions/dist/index.css';
 import { TotalPriorityapi, DeletePriorityapi } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import { AiFillEdit } from 'react-icons/ai';
-import { MdAdd, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import customStyles from '../../../TableCustomtyle'
 
@@ -33,7 +33,7 @@ function TotalPriority() {
                     const status = e.target.value;
                     const org = localStorage.getItem('Database')
 
-                     await DeletePriorityapi(org,status, row.sno)
+                    await DeletePriorityapi(org, status, row.sno)
                     window.location.reload()
                 }}>
                     <option hidden value={row.status}>{row.status}</option>
@@ -79,23 +79,21 @@ function TotalPriority() {
                 loading ?
                     <Sidebar>
                         <div className='main_container' >
-                            <div className='m-auto' style={{ overflow: "hidden", width: "97%" }}>
-                                <div className=' d-flex justify-content-between mx-5 pt-4 pb-3' >
-                                    <h2><span className='page-type-head1'>Priority <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Priority</span> </h2>
-                                    <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddPriority' }} >Add Priority <MdAdd /></button>
-                                </div>
-                                <div >
-                                    <DataTableExtensions {...tableData}  >
-                                        <DataTable
-                                            noHeader
-                                            defaultSortField="id"
-                                            defaultSortAsc={false}
-                                            pagination
-                                            highlightOnHover
-                                            customStyles={customStyles}
-                                        />
-                                    </DataTableExtensions>
-                                </div>
+                            <div className='main-inner-container  d-flex justify-content-between pt-4 pb-3' >
+                                <h4><span className='page-type-head1'>Priority <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Total Priority</span> </h4>
+                                <button className='btn btn-sm btn-voilet ' onClick={e => { e.preventDefault(); window.location.href = './AddPriority' }} >Add Priority <b>+</b></button>
+                            </div>
+                            <div className='bg-white pb-1 pt-2 px-2 mt-3 shadow1-silver rounded15'>
+                                <DataTableExtensions {...tableData}  >
+                                    <DataTable
+                                        noHeader
+                                        defaultSortField="id"
+                                        defaultSortAsc={false}
+                                        pagination
+                                        highlightOnHover
+                                        customStyles={customStyles}
+                                    />
+                                </DataTableExtensions>
                             </div>
                         </div>
                     </Sidebar>

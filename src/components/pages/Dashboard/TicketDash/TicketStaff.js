@@ -18,7 +18,6 @@ const TicketStaff = () => {
   useEffect(() => {
     const fetchdata = async () => {
       const result = await Ticket_Summary(localStorage.getItem('Database'), localStorage.getItem('UserId'))
-      console.log(result)
       setTicketSummary({
         ...ticketSummary, TotalTicket: result.TotalTicket.totalticket, TotalOpenTicket: result.TotalTicketOpen.totalticketopen, TotalCloseTicket: result.TotalTicketClose.totalticketclose,
         MyTicket: result.MyTicket.myticket, MyTicketOpen: result.MyTicketOpen.myticketopen, MyTicketClose: result.MyTicketClose.myticketclose
@@ -44,8 +43,8 @@ const TicketStaff = () => {
   const COLORS = ['#7675C4', '#DB49F2', '#F4397A', '#039B28', '#A5A704', '#014FB5'];
 
   return (
-    <div className='m-auto mt-4 pt-2 rounded bg-white border' style={{ boxShadow: '1px 1px 3px #333', height: "33vh", margin: "6px 10px 15px 10px", width: "30%" }}>
-      <p className=' text-black text-center px-4 mx-2 mb-0'>{localStorage.getItem('UserName')}</p>
+    <div className='m-auto my-tickets-container shadow1-silver mt-4 pt-2 rounded bg-white border' >
+      <h5 className=' text-black text-center mb-0'>{localStorage.getItem('UserName')}</h5>
       {
         (data02[0].value === 0 && data02[1].value === 0 && data02[2].value === 0) ?
           <div className='d-flex align-items-center justify-content-center text-danger' style={{height:'90%'}}>
