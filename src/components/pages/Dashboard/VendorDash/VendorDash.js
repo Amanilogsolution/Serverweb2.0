@@ -114,8 +114,8 @@ export default function VendorDash({ setStep }) {
       <div className='VendorDash1 bg-light rounded position-relative px-3 shadow1-silver' >
         <div className='tableheading position-absolute d-flex justify-content-between pt-3' >
           <p className='text-white px-4 mx-1 '>Vendor Contract Details</p>
-          <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer px-3" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{ width: "5%", float: "right" }}>
-            <BiExport className='text-white' style={{ fontSize: "25px" }} />
+          <div title="Export" className=" cursor-pointer mx-2" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{ width: "5%", float: "right" }}>
+            <BiExport style={{ fontSize: "25px",color:"white" }} />
           </div>
           {
             toogle ?

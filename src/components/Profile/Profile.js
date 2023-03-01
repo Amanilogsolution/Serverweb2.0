@@ -180,7 +180,7 @@ const Profile = () => {
                                  </div>
 
                               </div>
-                         
+                          
                                  <div >
                                     <label htmlFor='employee_email'>Email</label>
                                     <input className="form-control" id='employee_email' defaultValue={details.employee_email}></input>
