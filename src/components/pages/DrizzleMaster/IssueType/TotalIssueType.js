@@ -8,7 +8,7 @@ import { AiFillEdit } from 'react-icons/ai';
 import { MdOutlineFileUpload, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import customStyles from '../../../TableCustomtyle'
-import ExcelToJson from '../../ExcelToJson/ExcelToJson';
+// import ExcelToJson from '../../ExcelToJson/ExcelToJson';
 
 const columns = [
     {
@@ -84,7 +84,7 @@ function TotalIssueType() {
             {
                 loading ?
                     <Sidebar>
-                        <ExcelToJson />
+                        {/* <ExcelToJson /> */}
 
                         <div className='main_container' >
                             <div className='main-inner-container  d-flex justify-content-between pt-4 pb-3' >
@@ -111,7 +111,7 @@ function TotalIssueType() {
                             </div>
                         </div>
                     </Sidebar>
-                    : <LoadingPage />
+                : <LoadingPage />
             }
         </>
     )
