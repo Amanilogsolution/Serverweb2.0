@@ -1317,3 +1317,20 @@ export const Updaterole = async(data) =>{
     const url = `https://drizzlebackend.awlworldwide.com/api/updaterole`
     return axios.post(url, {data}).then(response => response.data).catch(error => console.log(error));  
 }
+
+//Report
+
+export const ColumnsReport = async(org,table) =>{
+    const url = `https://drizzlebackend.awlworldwide.com/api/ColumnsReport`
+    return axios.post(url, {org,table}).then(response => response.data).catch(error => console.log(error));  
+}
+
+export const TableReports = async(org,table,columns) =>{
+    const url = `https://drizzlebackend.awlworldwide.com/api/tableReports`
+    return axios.post(url, {org,table,columns}).then(response => response.data).catch(error => console.log(error));  
+}
+
+export const GraphReport = async(org,table,columns) =>{
+    const url = `https://drizzlebackend.awlworldwide.com/api/GraphReport`
+    return axios.post(url, {org,table,columns}).then(response => response.data).catch(error => console.log(error));  
+}

@@ -1,14 +1,15 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
-import {RiArrowGoBackFill} from 'react-icons/ri'
+import { RiArrowGoBackFill } from 'react-icons/ri'
 import { FaMinusCircle } from 'react-icons/fa'
 
 import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, ActivePurchaseTypeapi, GetNewAssets, CountNewAssets, UpdateNewAssets } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import { GrFormClose } from "react-icons/gr"
-
+// import { GrFormClose } from "react-icons/gr"
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 const EditAsset = () => {
     const [data, setData] = useState([])
@@ -28,19 +29,25 @@ const EditAsset = () => {
     const [purchasesdetail, setPurchasesdetail] = useState(false)
     const [otherdetail, setOtherdetail] = useState(false)
 
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // ########################### Modal Alert #############################################
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
 
             const getdata = await GetNewAssets(org, localStorage.getItem('newassetsno'))
             setData(getdata[0])
+            console.log(getdata)
 
             const devices = await ActiveAssetesType(org);
             setAssettypelist(devices)
@@ -205,10 +212,12 @@ const EditAsset = () => {
 
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
             !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
-            document.getElementById('subnitbtn').disabled = false
             setLoading(true)
-            setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            document.getElementById('subnitbtn').disabled = false
+            callfun('Please enter all mandatory fields', 'warning', 'self')
+
+            // setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
@@ -217,8 +226,11 @@ const EditAsset = () => {
                 if (!software) {
                     document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
-                    setDatas({ ...datas, message: "Please enter the Software Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-                    document.getElementById('snackbar').style.display = "block"
+                    callfun('Please enter the Software Field', 'warning', 'self')
+                    document.getElementById('subnitbtn').disabled = false
+
+                    // setDatas({ ...datas, message: "Please enter the Software Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -229,10 +241,12 @@ const EditAsset = () => {
             }
             if (purchase_type === 'Rental') {
                 if (!rentpermonth) {
-                    document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
-                    setDatas({ ...datas, message: "Please enter the Rent Per Month Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-                    document.getElementById('snackbar').style.display = "block"
+                    document.getElementById('subnitbtn').disabled = false
+                    callfun('Please enter the RentPerMonth Field', 'warning', 'self')
+
+                    // setDatas({ ...datas, message: "Please enter the Rent Per Month Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -243,18 +257,22 @@ const EditAsset = () => {
             }
             if (purchase_type === 'Owned') {
                 if (!purchaseprice) {
-                    document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
-                    setDatas({ ...datas, message: "Please enter the Purchase Price Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-                    document.getElementById('snackbar').style.display = "block"
+                    document.getElementById('subnitbtn').disabled = false
+                    callfun('Please enter the Purchase Price Field', 'warning', 'self')
+
+                    // setDatas({ ...datas, message: "Please enter the Purchase Price Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
                 if (!invoiceno) {
-                    document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
-                    setDatas({ ...datas, message: "Please enter the Invoice no.", title: "Error", type: "warning", route: "#", toggle: "true" })
-                    document.getElementById('snackbar').style.display = "block"
+                    document.getElementById('subnitbtn').disabled = false
+                    callfun('Please enter the Invoice no.', 'warning', 'self')
+
+                    // setDatas({ ...datas, message: "Please enter the Invoice no.", title: "Error", type: "warning", route: "#", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -268,21 +286,24 @@ const EditAsset = () => {
             if (errorcount === 0) {
                 const org = localStorage.getItem('Database')
                 setLoading(true)
+
                 const result = await UpdateNewAssets(org, asset_type, assetetag, serialno, location, manufacture, software,
                     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, userid, sno)
 
                 if (result === 'Data Updated') {
-                    setLoading(true)
                     localStorage.removeItem('newassetsno')
-                    setDatas({ ...datas, message: "Asset Updated", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true" })
-                    document.getElementById('snackbar').style.display = "block"
+                    callfun("Asset Updated", 'success', '/TotalNewAssets')
+
+                    // setDatas({ ...datas, message: "Asset Updated", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                 }
                 else {
                     document.getElementById('subnitbtn').disabled = false
-                    setLoading(true)
-                    setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                    document.getElementById('snackbar').style.display = "block"
+                    callfun('Server Error', 'danger', 'self')
+
+                    // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
         }
@@ -294,7 +315,7 @@ const EditAsset = () => {
                     <Sidebar >
                         {/* ############## Snackbar  ###########################*/}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
                                 <div className={`notification__message message--${datas.type}`}>
                                     <h1>{datas.title}</h1>
@@ -309,7 +330,14 @@ const EditAsset = () => {
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
+
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ############## Snackbar  ###########################*/}
 
                         <div className='main_container' >

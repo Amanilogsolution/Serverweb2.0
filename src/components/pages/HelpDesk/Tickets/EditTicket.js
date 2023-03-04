@@ -1,10 +1,12 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, ActiveLocation, ActivePriority, GetNewAssetAssign, UpdateTicket, getTickets } from '../../../../api'
-import {  MdOutlineKeyboardArrowRight } from 'react-icons/md'
-import {RiArrowGoBackFill} from 'react-icons/ri'
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { RiArrowGoBackFill } from 'react-icons/ri'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 export default function EditTicket() {
     const [data, setData] = useState({});
@@ -19,13 +21,18 @@ export default function EditTicket() {
     const [locationlist, setLocationlist] = useState([])
     const [prioritylist, setPrioritylist] = useState([])
     const [assettypelist, setAssettypelist] = useState([])
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // ########################### Modal Alert #############################################
+    //    const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
@@ -49,7 +56,6 @@ export default function EditTicket() {
             setPrioritylist(priority)
 
             setLoading(true)
-
         }
         fetchdata()
     }, [])
@@ -107,23 +113,30 @@ export default function EditTicket() {
         if (!employee_id || !assetval || !location || !ticketstatus || !ticketsubject) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter the Mandatory Field', 'warning', 'self')
+
+            // setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
-            setLoading(true)
             const result = await UpdateTicket(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id, sno)
+            setLoading(true)
+
             if (result === 'Data Updated') {
                 localStorage.removeItem('TicketSno')
-                setDatas({ ...datas, message: "Ticket Updated", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Ticket Updated', 'success', '/TotalTicket')
+
+                // setDatas({ ...datas, message: "Ticket Updated", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
+                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
     }
@@ -135,9 +148,15 @@ export default function EditTicket() {
                     <Sidebar >
                         {/* ######################### Sanckbar Start ##################################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container' >

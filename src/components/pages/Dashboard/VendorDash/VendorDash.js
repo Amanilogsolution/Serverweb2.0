@@ -27,9 +27,6 @@ export default function VendorDash({ setStep }) {
   const [vendorcatlist, setVendorcatlist] = useState([])
 
 
-
-
-
   const exportExcel = async () => {
     const datasss = ExcelConvertData(TotalVendor)
   }
@@ -39,11 +36,9 @@ export default function VendorDash({ setStep }) {
       const org = localStorage.getItem('Database')
 
       const ReferanceNo = await Vendor_Reference_no(localStorage.getItem('Database'))
-      console.log(ReferanceNo.data)
       setReferanceNo(ReferanceNo.data)
       const datas = await TotalVendorContract(localStorage.getItem('Database'), 1, 10)
       setTotalVendor(datas.data)
-      console.log(datas)
       const total = datas.TotalData[0]["Totaldata"]
       setRowPerPage(10)
       setLastval(Math.ceil(total / 10))
@@ -67,7 +62,6 @@ export default function VendorDash({ setStep }) {
 
   const handlePageClick = async (data) => {
     if (filter == true) {
-      console.log(type, value)
       const result = await FilterVendorContract(localStorage.getItem('Database'), type, value, data.selected + 1, rowperpage)
       setTotalVendor(result.data)
 
@@ -80,7 +74,6 @@ export default function VendorDash({ setStep }) {
 
   const handleChange = async (e) => {
     e.preventDefault();
-    console.log(e.target.value)
     setRowPerPage(e.target.value)
     if (filter == true) {
       const result = await FilterVendorContract(localStorage.getItem('Database'), type, value, 1, e.target.value)
@@ -99,9 +92,7 @@ export default function VendorDash({ setStep }) {
   const handleChangeFilter = async (data, value) => {
     setType(data)
     setValue(value)
-    console.log(data, value)
     const result = await FilterVendorContract(localStorage.getItem('Database'), data, value, 1, 10)
-    console.log(result)
     setFilter(true)
     setTotalVendor(result.data)
     const total = result.TotalData[0]["Totaldata"]
@@ -110,12 +101,12 @@ export default function VendorDash({ setStep }) {
   }
 
   return (
-    <div className='VendorDash '>
-      <div className='VendorDash1 bg-light rounded position-relative px-3 shadow1-silver' >
-        <div className='tableheading position-absolute d-flex justify-content-between pt-3' >
-          <p className='text-white px-4 mx-1 '>Vendor Contract Details</p>
-          <div title="Export" className=" cursor-pointer mx-2" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} style={{ width: "5%", float: "right" }}>
-            <BiExport style={{ fontSize: "25px",color:"white" }} />
+    <div className='VendorDash d-flex '>
+      <div className='VendorDash1 bg-light rounded position-relative shadow1-silver' >
+        <div className='tableheading position-absolute rounded d-flex justify-content-between pt-3 px-4'>
+          <p className='text-white px-2'>Vendor Contract Details</p>
+          <div title="Export" className="d-flex justify-content-end mr-2 cursor-pointer" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}>
+            <BiExport className='text-white' style={{ fontSize: "25px" }}/>
           </div>
           {
             toogle ?
@@ -153,9 +144,9 @@ export default function VendorDash({ setStep }) {
                     <td colSpan='8'>Table have not Data</td>
                   </tr>
                   :
-                  TotalVendor.map((elements) => {
+                  TotalVendor.map((elements, index) => {
                     return (
-                      <tr>
+                      <tr key={index}>
                         <td>{elements.vendor}</td>
                         <td>{elements.location}</td>
                         <td>{elements.major_category}</td>
@@ -172,8 +163,8 @@ export default function VendorDash({ setStep }) {
             </tbody>
           </table>
         </div>
-        <div className="d-flex justify-content-end ">
-          <div className='rows_per_page mx-4'>
+        <div className="pagination-main d-flex">
+          <div className='rows_per_page'>
             <label htmlFor='pageno' >Rows / page </label> &nbsp;
             <select onChange={handleChange} id='pageno'>
               <option value="10">10</option>
@@ -190,7 +181,7 @@ export default function VendorDash({ setStep }) {
               pageCount={lastval}
               previousLabel={<IoMdArrowDropleft style={{ fontSize: "24px" }} />}
               renderOnZeroPageCount={null}
-              containerClassName={'pagination '}
+              containerClassName={'pagination'}
               pageClassName={'page-item  '}
               pageLinkClassName={'page-link '}
               previousClassName={'page-item'}
@@ -205,15 +196,14 @@ export default function VendorDash({ setStep }) {
         </div>
 
       </div>
+
+
+      {/* Sidevar Filter */}
       <div className='VendorDash2 rounded'>
         <button className="nextVendor_AnimationBtn text-white btn px-4 py-3 position-relative" id="recurring" onClick={() => { setStep(6) }}>Recurring Details</button>
 
-        {/* <div className='select_div cursor-pointer text-light border-0' id="recurring" onClick={() => { setStep(6) }}>
-          <h6 >Click for Recurring Details</h6>
-        </div> */}
-
-        <div className='select_container bg-white px-3 py-2 rounded mt-2' style={{ boxShadow: '1px 1px 3px silver' }}>
-          <div className='select_div'>
+        <div className='select_container bg-white px-3 py-2 rounded mt-2 ' style={{ boxShadow: '1px 1px 3px silver' }}>
+          <div className='select_div text-center rounded bg-white'>
             <select className="form-select" aria-label="Default select example" id="Vendname" onChange={() => { handleChangeFilter("vendor", document.getElementById('Vendname').value) }}>
               <option hidden value=''>Vendor Code</option>
               {
@@ -222,7 +212,7 @@ export default function VendorDash({ setStep }) {
               }
             </select>
           </div>
-          <div className='select_div'>
+          <div className='select_div text-center rounded bg-white'>
             <select className="form-select" aria-label="Default select example" id="Category" onChange={() => { handleChangeFilter("major_category", document.getElementById('Category').value) }}>
               <option hidden value=''>Category</option>
               {
@@ -231,7 +221,7 @@ export default function VendorDash({ setStep }) {
               }
             </select>
           </div>
-          <div className='select_div'>
+          <div className='select_div text-center rounded bg-white'>
             <select className="form-select" aria-label="Default select example" id="Location" onChange={() => { handleChangeFilter("location", document.getElementById('Location').value) }}>
               <option hidden value=''>Location</option>
               {
@@ -241,7 +231,7 @@ export default function VendorDash({ setStep }) {
               }
             </select>
           </div>
-          <div className='select_div'>
+          <div className='select_div text-center rounded bg-white'>
             <select className="form-select" aria-label="Default select example" id="frequency" onChange={() => { handleChangeFilter("billling_freq", document.getElementById('frequency').value) }}>
               <option hidden value=''>Frequency</option>
               {
@@ -250,9 +240,9 @@ export default function VendorDash({ setStep }) {
               }
             </select>
           </div>
-          <div className='VendorDash2_card text-center rounded'>
+          <div className='VendorDash2_card text-center bg-white rounded'>
             <div className='d-flex pt-3'>
-              <VscReferences className='Ref_icon' />
+              <VscReferences className='Ref_icon text-white rounded' />
               <h1 >{ReferabceNo}</h1>
             </div>
             <p >Reference Numbers</p>

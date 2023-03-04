@@ -1,23 +1,29 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { MdOutlineKeyboardArrowRight, MdKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 import { getrole, Updaterole } from '../../../../api/index'
 import { RiArrowGoBackFill } from 'react-icons/ri';
-
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function EditRoles() {
     const [loading, setLoading] = useState(false)
     const [rolelist, setRolelist] = useState({})
 
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // ########################### Modal Alert #############################################
+    //    const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
 
     const checkboxStyle = {
         width: '20px',
@@ -29,7 +35,6 @@ function EditRoles() {
             const getRoles = await getrole(localStorage.getItem('Database'), localStorage.getItem('RoleSno'))
             setRolelist(getRoles[0])
             setLoading(true)
-
         }
         fetchdata()
     }, [])
@@ -103,9 +108,9 @@ function EditRoles() {
     }
 
     const handleaddinsert = async (e) => {
-
+        e.preventDefault();
         // const software_id = software.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
-
+        setLoading(false)
         let datas = {
             org: localStorage.getItem('Database'),
             role: document.getElementById('role').value,
@@ -113,8 +118,6 @@ function EditRoles() {
             role_id: document.getElementById('role').value.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000),
             sno: localStorage.getItem('RoleSno')
         }
-        e.preventDefault();
-        // setLoading(false)
 
         const full = ['assets', 'vendCont', 'ticket', 'master', 'transaction', 'setting', 'reports']
         const arry = ['full', 'view', 'create', 'edit', 'deactive']
@@ -127,14 +130,25 @@ function EditRoles() {
             }
         }
 
-        const result = await Updaterole(datas)
-        if (result === "Updated") {
-            localStorage.removeItem('RoleSno')
-            window.location.href = '/TotalRoles'
+        if (!datas.role) {
+            setLoading(true)
+            document.getElementById('subnitbtn').disabled = false;
+            callfun('Please enter the Role', 'warning', 'self')
         }
         else {
-            alert('server errror')
+            const result = await Updaterole(datas)
+            setLoading(true)
+
+            if (result === "Updated") {
+                localStorage.removeItem('RoleSno')
+                callfun('Role Updated', 'success', '/TotalRoles')
+            }
+            else {
+                callfun('Server Error', 'danger', 'self')
+                document.getElementById('subnitbtn').disabled = true;
+            }
         }
+
         // document.getElementById('subnitbtn').disabled = 'true'
         // // const software = document.getElementById('software').checked=== true?true:false;
         // const asset_type = document.getElementById('asset_type').value;
@@ -311,9 +325,15 @@ function EditRoles() {
                 loading ?
                     <Sidebar >
                         {/* ################## Snackbar ####################### */}
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ################## Snackbar ####################### */}
 
                         <div className='main_container' >

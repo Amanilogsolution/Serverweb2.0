@@ -1,22 +1,28 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { AddPriorityapi } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 import { RiArrowGoBackFill } from 'react-icons/ri'
-
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function AddPriority() {
     const [loading, setLoading] = useState(true)
 
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // ########################### Modal Alert #############################################
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
@@ -28,30 +34,38 @@ function AddPriority() {
         const org = localStorage.getItem('Database')
 
         const username = localStorage.getItem('UserId');
-        setLoading(true)
 
         if (!priority) {
+            setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter Priority Type", title: "Error", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter the Priority Type', 'warning', 'self')
+
+            // setDatas({ ...datas, message: "Please enter Priority Type", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
         }
 
         else {
-            setLoading(true)
             const result = await AddPriorityapi(org, priority_id, priority, priority_desc, username);
+            setLoading(true)
+
             if (result === 'Added') {
-                setDatas({ ...datas, message: "Priority Type Added", title: "success", type: "success", route: "/TotalPriority", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Priority Type Added', 'success', '/TotalPriority')
+
+                // setDatas({ ...datas, message: "Priority Type Added", title: "success", type: "success", route: "/TotalPriority", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else if (result === 'Already') {
+                callfun('Priority Type Already Exist', 'warning', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Priority Type Already Exist", title: "warning", type: "Error", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+
+                // setDatas({ ...datas, message: "Priority Type Already Exist", title: "warning", type: "Error", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
+                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddPriority", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddPriority", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
     }
@@ -63,9 +77,15 @@ function AddPriority() {
                     <Sidebar >
                         {/* ######################### Sanckbar Start ##################################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container' >

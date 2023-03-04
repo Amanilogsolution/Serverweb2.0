@@ -1,43 +1,41 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
 import { UpdateVendorPayment, GetVendorPayment, PendingVendorInvoice } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 import { RiArrowGoBackFill } from 'react-icons/ri'
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function EditVendorPayments() {
     const [loading, setLoading] = useState(false)
 
     const [data, setData] = useState([])
     const [pendinginvoicelist, setPendinginvoicelist] = useState([])
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // ########################### Modal Alert #############################################
+    //    const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-
-            const datas = await GetVendorPayment(org,localStorage.getItem('vendorpaymentssno'))
+            const datas = await GetVendorPayment(org, localStorage.getItem('vendorpaymentssno'))
             setData(datas[0])
-
             const invoice = await PendingVendorInvoice(org);
             setPendinginvoicelist(invoice)
-
             setLoading(true)
         }
         fetchdata();
     }, [])
-
-
-
-
-
-
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
@@ -65,23 +63,28 @@ function EditVendorPayments() {
         if (!paymentdetail || !paymentamt || !paymentdate) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "warning", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter the Mandatory Field', 'warning', 'self')
+
+            // setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "warning", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
+            const result = await UpdateVendorPayment(org, paymentdetail, paymentamt, paymentdate, remark, sno)
             setLoading(true)
 
-            const result = await UpdateVendorPayment(org,paymentdetail, paymentamt, paymentdate, remark, sno)
             if (result === 'Data Updated') {
                 localStorage.removeItem('vendorpaymentssno')
-                setDatas({ ...datas, message: "Vendor Payment Updated", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Vendor Payment Updated', 'success', '/TotalVendorPayment')
+
+                // setDatas({ ...datas, message: "Vendor Payment Updated", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
+                callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -98,10 +101,6 @@ function EditVendorPayments() {
     //     document.getElementById('refno').value = detail.reference_no;
     // }
 
-    const handleChangeremarks = (e) => {
-        setData({ ...data, payment_remark: e.target.value })
-    }
-
     return (
         <>
             {
@@ -109,9 +108,12 @@ function EditVendorPayments() {
                     <Sidebar>
                         {/* ######################### Sanckbar Start ##################################### */}
 
-                        <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ######################### Sanckbar End ##################################### */}
 
                         <div className='main_container'>
@@ -163,7 +165,7 @@ function EditVendorPayments() {
 
                                         <div className="form-group col-md-4 mt-3">
                                             <label htmlFor='remark'>Remarks</label>
-                                            <textarea className="form-control" id='remark' rows='3' value={data.payment_remark} onChange={handleChangeremarks}></textarea>
+                                            <textarea className="form-control" id='remark' rows='3' defaultValue={data.payment_remark}></textarea>
                                         </div>
 
                                         <div className='btn_div mt-3'>

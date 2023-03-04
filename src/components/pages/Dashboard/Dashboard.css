@@ -1,42 +1,63 @@
+
 .dashboard_container {
     min-height: 79vh;
     max-width: 100%;
 }
 
+.dashboard_cards{
+    width: 100%;
+}
 .dashboard_cards .dash_toggle_btns {
     margin: 14px 40px;
-    border-radius: 5px;
     overflow: hidden;
 }
 
 .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
-   background: linear-gradient(45deg, rgb(85, 84, 82), rgb(121, 118, 113));
-    cursor:pointer;
+   background: linear-gradient(45deg, #3d59e6, #603ae9);
     padding:5px 20px;
-    border-right:2px solid silver;
+    /* border: 1px solid #cac8d7; */
     font-size: 14px;
     color:white;
+    border-radius: 30px;
+    margin: 0px 5px;
+    
 }
-.dashboard_cards .dash_toggle_btns .dash_toggle_btn:focus-within{
-    background: white;
- }
 
-@media screen and (min-width:450px) and (max-width:850px) {
+
+@media screen and (max-width:1200px) {
+    .dashboard_container {
+        min-height: 87.3vh;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .dashboard_container {
+        min-height: 87.3vh;
+
+    }
+}
+@media screen and (min-width:470px) and (max-width:850px) {
     .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
          padding:5px 15px;
          font-size: 14px;
      }
 }
-@media screen and (min-width:390px) and (max-width:450px) {
+@media screen and (min-width:390px) and (max-width:470px) {
+    .dashboard_cards .dash_toggle_btns {
+        width: 100%;
+        margin: 10px 0px 5px 0px;
+    }
     .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
          padding:5px 12px;
          font-size: 12px;
      }
 }
 @media screen and (min-width:0px) and (max-width:390px) {
+    .dashboard_cards .dash_toggle_btns {
+        margin: 15px 0px 2px 0px;
+    }
     .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
          padding:4px 10px;
-         font-size: 10px;
      }
 }
 
@@ -59,16 +80,4 @@
     }
 }
 
-@media screen and (max-width:1200px) {
-    .dashboard_container {
-        min-height: 87.3vh;
 
-    }
-}
-
-@media screen and (max-width:800px) {
-    .dashboard_container {
-        min-height: 87.3vh;
-
-    }
-}

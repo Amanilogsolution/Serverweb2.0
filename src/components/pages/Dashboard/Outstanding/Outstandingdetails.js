@@ -35,8 +35,6 @@ const Outstatndingdetails = () => {
             setPaidRowPerPage(10)
             const totalval = paidinvoices.TotalData[0]["Totaldata"]
             setPaidLastval(Math.ceil(totalval / 10))
-
-
         }
         fetchdata()
     }, [])

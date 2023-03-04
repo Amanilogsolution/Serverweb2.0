@@ -1,22 +1,29 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { GetAssetTypeapi, UpdateAssettypeapi } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 import { RiArrowGoBackFill } from 'react-icons/ri'
-
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function EditAssetType() {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(false)
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: '#',
-        toggle: "true",
-    })
+
+    // ########################### Modal Alert #############################################
+    // const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: '#',
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -30,7 +37,7 @@ function EditAssetType() {
 
     const handleadddevice = async (e) => {
         e.preventDefault();
-        setLoading(true)
+        setLoading(false)
         document.getElementById('subnitbtn').disabled = 'true'
         const asset_type = document.getElementById('asset_type').value;
         const asset_type_desc = document.getElementById('asset_type_desc').value;
@@ -38,26 +45,31 @@ function EditAssetType() {
         const sno = localStorage.getItem('assettypesno')
         const org = localStorage.getItem('Database')
 
-        setLoading(true)
-
         if (!asset_type) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
-            setDatas({ ...datas, message: "Please enter the Asset Type", title: "Error", type: "warning", route: "#", toggle: "true" })
-            document.getElementById('snackbar').style.display = "block"
+            callfun('Please enter the Asset Type', 'warning', 'self')
+
+            // setDatas({ ...datas, message: "Please enter the Asset Type", title: "Error", type: "warning", route: "#", toggle: "true" })
+            // document.getElementById('snackbar').style.display = "block"
         }
         else {
             setLoading(true)
             const result = await UpdateAssettypeapi(org, sno, asset_type, asset_type_desc, username);
+
             if (result === 'Updated') {
                 localStorage.removeItem('assettypesno');
-                setDatas({ ...datas, message: "Asset Type Updated", title: "success", type: "success", route: "/TotalAssetType", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Asset Type Updated', 'success', '/TotalAssetType')
+
+                // setDatas({ ...datas, message: "Asset Type Updated", title: "success", type: "success", route: "/TotalAssetType", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
             else {
                 document.getElementById('subnitbtn').disabled = false
-                setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditAssetType", toggle: "true" })
-                document.getElementById('snackbar').style.display = "block"
+                callfun('Server Error', 'danger', 'self')
+
+                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditAssetType", toggle: "true" })
+                // document.getElementById('snackbar').style.display = "block"
             }
         }
 
@@ -68,9 +80,20 @@ function EditAssetType() {
             {
                 loading ?
                     <Sidebar >
+
+                        {/* ################# Snackbar ##################### */}
+                        {/* 
                         <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
+
+                        {/* ################# Snackbar ##################### */}
 
                         <div className='main_container'>
                             <div className='main-inner-container d-flex justify-content-between  pt-4 pb-3'>
@@ -83,14 +106,14 @@ function EditAssetType() {
                                     <form className='px-3' autoComplete='off'>
                                         <div className="form-group col-md-5" >
                                             <label htmlFor='asset_type'> Asset Type <span className='text-danger'>*</span></label>
-                                            <input type="text" className="form-control" id='asset_type' defaultValue={data.asset_type}  />
+                                            <input type="text" className="form-control" id='asset_type' defaultValue={data.asset_type} />
                                         </div>
                                         <div className="form-group col-md-6 mt-3">
                                             <label htmlFor='asset_type_desc'>Remarks</label>
-                                            <textarea className="form-control" id='asset_type_desc' rows='3' defaultValue={data.asset_description}  />
+                                            <textarea className="form-control" id='asset_type_desc' rows='3' defaultValue={data.asset_description} />
                                         </div>
                                         <div className="form-group" >
-                                            <button type="submit" className="btn btn-voilet mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update</button>
+                                            <button type="submit" className="btn btn-voilet mb-4 mt-3" id="subnitbtn" onClick={handleadddevice}>Update Asset Type</button>
                                         </div>
                                     </form>
                                 </article>

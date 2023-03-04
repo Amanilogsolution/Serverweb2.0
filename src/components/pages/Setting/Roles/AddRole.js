@@ -1,23 +1,29 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { MdOutlineKeyboardArrowRight, MdKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-import Snackbar from '../../../../Snackbar/Snackbar';
+// import Snackbar from '../../../../Snackbar/Snackbar';
 import { insertRoles } from '../../../../api/index'
 import { RiArrowGoBackFill } from 'react-icons/ri';
-
+import { GlobalAlertInfo } from '../../../../App';
+import Modal from '../../AlertModal/Modal';
 
 function AddRoles() {
     const [loading, setLoading] = useState(false)
     // const [agentlist, setAgentlist] = useState({})
 
-    const [datas, setDatas] = useState({
-        message: "abc",
-        title: "title",
-        type: "type",
-        route: "#",
-        toggle: "true",
-    })
+    // ########################### Modal Alert #############################################
+    //    const [datas, setDatas] = useState({
+    //     message: "abc",
+    //     title: "title",
+    //     type: "type",
+    //     route: "#",
+    //     toggle: "true",
+    // })
+
+    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
+    // ########################### Modal Alert #############################################
+
 
     const checkboxStyle = {
         width: '20px',
@@ -121,6 +127,8 @@ function AddRoles() {
     const handleaddinsert = async (e) => {
         e.preventDefault();
         document.getElementById('subnitbtn').disabled = true;
+        setLoading(false)
+
         let datas = {
             org: localStorage.getItem('Database'),
             role: document.getElementById('role').value,
@@ -138,14 +146,28 @@ function AddRoles() {
                 Object.assign(datas, datasss)
             }
         }
-        const result = await insertRoles(datas)
-        if (result === 'Added') {
-            alert(result)
+
+        if (!datas.role) {
+            setLoading(true)
+            document.getElementById('subnitbtn').disabled = false;
+            callfun('Please enter the Role', 'warning', 'self')
         }
         else {
-            document.getElementById('subnitbtn').disabled = true;
-            alert('Server Error')
+            const result = await insertRoles(datas)
+            setLoading(true)
+
+            if (result === 'Added') {
+                // alert(result)
+                callfun('Role Added', 'success', '/TotalRoles')
+            }
+            else {
+                callfun('Server Error', 'danger', 'self')
+                document.getElementById('subnitbtn').disabled = true;
+                // alert('Server Error')
+            }
         }
+
+
         // document.getElementById('subnitbtn').disabled = 'true'
         // // const software = document.getElementById('software').checked=== true?true:false;
         // const asset_type = document.getElementById('asset_type').value;
@@ -330,9 +352,15 @@ function AddRoles() {
                 loading ?
                     <Sidebar >
                         {/* ################## Snackbar ####################### */}
-                        <div id="snackbar" style={{ display: "none" }}>
+                        {/* <div id="snackbar" style={{ display: "none" }}>
                             <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div>
+                        </div> */}
+                        <Modal
+                            theme={tooglevalue.theme}
+                            text={tooglevalue.message}
+                            show={tooglevalue.modalshowval}
+                            url={tooglevalue.url}
+                        />
                         {/* ################## Snackbar ####################### */}
 
                         <div className='main_container' >

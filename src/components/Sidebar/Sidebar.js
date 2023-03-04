@@ -30,7 +30,7 @@ import {
 } from 'react-icons/bs'
 // import { BiCategory, BiCategoryAlt, BiDevices } from 'react-icons/bi'
 
-import {  HiDuplicate ,HiDocumentText} from 'react-icons/hi'
+import { HiDuplicate, HiDocumentText } from 'react-icons/hi'
 // import { GrStatusGood, GrServices, GrCompliance } from 'react-icons/gr'
 import { GoIssueOpened } from 'react-icons/go'
 // import { GiContract } from 'react-icons/gi'
@@ -45,6 +45,7 @@ import './Sidebar.css'
 import logo from '../../image/drizzle_logo.png'
 import Logout from './Logout';
 import Sidebar2 from './Sidebar2/Sidebar2';
+import UpdateModel from '../pages/AlertModal/UpdateModel';
 
 const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -57,7 +58,7 @@ const Sidebar = ({ children }) => {
     const [togglesubtransation, setTogglesubtransation] = useState(false);
     const [toggleshortcut, setToggleshortcut] = useState(true);
     const [togglehelp, setTogglehelp] = useState(true);
-    const [sidebar2toggle,setSidebar2toggle] = useState(false);
+    const [sidebar2toggle, setSidebar2toggle] = useState(false);
 
     const toggle = () => {
         setIsOpen(!isOpen)
@@ -215,15 +216,17 @@ const Sidebar = ({ children }) => {
         setTogglehelp(!togglehelp)
     }
 
-    const togglesidebar2=()=>{
+    const togglesidebar2 = () => {
         setSidebar2toggle(!sidebar2toggle)
         console.log(sidebar2toggle)
     }
 
 
     return (
-        <>
+        <> 
+           
             <div className="sidebarcontainer d-flex position-relative">
+                
                 <div className={isOpen ? 'sidebaropen sidebar' : 'sidebarclose sidebar'}
                 // onClick={toggle}
                 //  onMouseEnter={() => setIsOpen(true)}
@@ -231,13 +234,13 @@ const Sidebar = ({ children }) => {
                 // style={{display:'none'}}
                 >
                     <div className="top_section" >
-                        <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} alt='Drizzle Logo'/>
+                        <img style={{ width: "110px", display: isOpen ? "block" : "none" }} src={logo} alt='Drizzle Logo' />
                         <div style={isOpen ? icononstyle : iconoffstyle} className="bars">
                             <MdOutlineDoubleArrow onClick={toggle} />
                         </div>
                     </div>
 
-                    <div className={isOpen ?'sidebarinerabc px-2 pt-2' :'sidebarinerabc pt-2'}>
+                    <div className={isOpen ? 'sidebarinerabc px-2 pt-2' : 'sidebarinerabc pt-2'}>
                         <span className='internalsidebar'>
                             <span className='ul'>
                                 <span className='li'>
@@ -556,7 +559,7 @@ const Sidebar = ({ children }) => {
 
                     {/*################################  Bottom Section  Start ###################################### */}
 
-                    <footer className={isOpen?'footer_section px-2':'footer_section'} id='footerdivsection'>
+                    <footer className={isOpen ? 'footer_section px-2' : 'footer_section'} id='footerdivsection'>
                         <div className='inner-sidebarfooter bg-light'>
                             {/* ####################### Shortcut Section ###############################*/}
                             <div title='Shortcut'>
@@ -662,7 +665,7 @@ const Sidebar = ({ children }) => {
                                 </div>
                             </div>
                         </div>
-                        <a title='Logout' className="link" activeclassname="sidebaractive" style={{ background: "rgb(222, 222, 222)"}}>
+                        <a title='Logout' className="link" activeclassname="sidebaractive" style={{ background: "rgb(222, 222, 222)" }}>
                             <div className="icon text-danger" onClick={toggle}><MdOutlineExitToApp style={{ fontSize: "20px" }} /></div>
                             <div style={{ display: isOpen ? "block" : "none", cursor: "pointer" }} className="link_text text-danger" data-toggle="modal" data-target="#exampleModal">Logout</div>
                         </a>
@@ -670,12 +673,13 @@ const Sidebar = ({ children }) => {
                     {/*################################  Bottom Section  END ###################################### */}
 
                 </div>
-
-                <div className={isOpen ? "mainopen" : "main"} style={{position:'relative'}}>
-                     <Navbar isOpen={isOpen} togglesidebar2={togglesidebar2}/>
+                
+                <div className={isOpen ? "mainopen" : "main"} style={{ position: 'relative'}}>
+                    
+                    <Navbar isOpen={isOpen} togglesidebar2={togglesidebar2} />
                     {children}
-                    <Sidebar2 sidebar2toggle={sidebar2toggle} togglesidebar2={togglesidebar2}/> 
-                    <Footer /> 
+                    <Sidebar2 sidebar2toggle={sidebar2toggle} togglesidebar2={togglesidebar2} />
+                    <Footer />
                 </div>
 
                 {/* ############################################# Logout Section ############################################# */}
