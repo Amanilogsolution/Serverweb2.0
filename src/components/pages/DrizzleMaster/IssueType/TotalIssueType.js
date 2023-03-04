@@ -111,7 +111,7 @@ function TotalIssueType() {
                             </div>
                         </div>
                     </Sidebar>
-                    : <LoadingPage />
+                : <LoadingPage />
             }
         </>
     )

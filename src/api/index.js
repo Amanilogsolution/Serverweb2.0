@@ -1156,6 +1156,15 @@ export const UpdateVendorPayment = async (org,paymentdetail,paymentamt,paymentda
     return axios.post(url, {org, paymentdetail,paymentamt,paymentdate,remark,sno }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const UploadInvoice = async (org,type,document,sno) => {
+    // console.log(org,type,document,sno)
+    const url = `https://drizzlebackend.awlworldwide.com/api/UploadInvoice`
+    return axios.post(url, {org,type,document,sno}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+
+
 // Dashboard 
 
 export const DashboarDetails = async (org) => {
@@ -1333,4 +1342,11 @@ export const TableReports = async(org,table,columns) =>{
 export const GraphReport = async(org,table,columns) =>{
     const url = `https://drizzlebackend.awlworldwide.com/api/GraphReport`
     return axios.post(url, {org,table,columns}).then(response => response.data).catch(error => console.log(error));  
+}
+
+// Upload 
+export const FileUpload = async(images) =>{
+    // console.log(images)
+    const url = `https://drizzlebackend.awlworldwide.com/api/FileUpload`
+    return axios.post(url, images).then(response => response.data).catch(error => console.log(error));  
 }

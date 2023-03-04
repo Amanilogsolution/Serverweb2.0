@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import { TotalVendorPaymentapi } from '../../../../api'
+import { TotalVendorPaymentapi,FileUpload,UploadInvoice } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
-import { AiFillEdit } from 'react-icons/ai';
+import { GrDocumentUpload } from 'react-icons/gr';
+import {AiOutlineEye} from 'react-icons/ai'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import customStyles from '../../../TableCustomtyle'
@@ -13,6 +14,21 @@ import customStyles from '../../../TableCustomtyle'
 const TotalVendorPayment = () => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
+    const [sno,setSno] = useState()
+    const [file, setFile] = useState('');
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            const org = localStorage.getItem('Database')
+
+            const tabledata = await TotalVendorPaymentapi(org);
+            console.log(tabledata);
+            setData(tabledata)
+            setLoading(true)
+        }
+        fetchdata();
+    }, [])
+
 
     const columns = [
         {
@@ -35,7 +51,11 @@ const TotalVendorPayment = () => {
         {
             name: 'Payment Amt',
             selector: 'payment_amt',
+            // selector:  row => `₹ ${row.payment_amt}`,
             sortable: true,
+            cell: (row) => [
+                <p>{`₹ ${row.payment_amt}`}</p>
+            ]
         },
         {
             name: 'Payment Detail',
@@ -43,36 +63,30 @@ const TotalVendorPayment = () => {
             sortable: true,
         },
         {
-            name: 'Upload Documents',
+            name: 'Actions',
             sortable: true,
             cell: (row) => [
-                <button className='btn btn-success'> Upload Invoice</button>
+                <button className='btn' data-toggle="modal" data-target="#exampleModalCenter"
+                onClick={(e)=>{e.preventDefault(); setSno(row.sno)}}> <GrDocumentUpload/> </button>,
+                <a href={row.uploadpayment} target="_blank"><AiOutlineEye style={{fontSize:"20px"}}/></a>
+                
             ],
-        },
-        // {
-        //     name: "Actions",
-        //     sortable: false,
-        //     selector: 'null',
-        //     cell: (row) => [
-        //         <a title='Edit VendorPayments' href="/EditVendorPayments">
-        //             <p onClick={() => localStorage.setItem('vendorpaymentssno', `${row.sno}`)} >
-        //                 <AiFillEdit className='ft-20' style={{ marginBottom: "-13px" }} />
-        //             </p></a>
-        //     ]
-        // }
+        }
+      
 
     ];
+    const handleClick = async(e) => {
+        e.preventDefault();
+        const org = localStorage.getItem('Database')
+        console.log(org,'uploadpayment',file,sno)
 
-    useEffect(() => {
-        const fetchdata = async () => {
-            const org = localStorage.getItem('Database')
-
-            const tabledata = await TotalVendorPaymentapi(org);
-            setData(tabledata)
-            setLoading(true)
+        const result = await UploadInvoice(org,'uploadpayment',file,sno)
+        // console.log(result)
+        if(result){
+            alert('Invoice successfully uploaded')
+            window.location.reload()
         }
-        fetchdata();
-    }, [])
+    }
 
     const tableData = {
         columns,
@@ -100,6 +114,35 @@ const TotalVendorPayment = () => {
                                         customStyles={customStyles}
                                     />
                                 </DataTableExtensions>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Upload Invoice</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="file" onChange={async(event) => {
+                                            console.log(event.target.files[0])
+                                            setTimeout(async() => {
+                                                const data = new FormData();
+                                                data.append("images", event.target.files[0])
+                                                const UploadLink = await FileUpload(data)
+                                                setLoading(false)
+                                                if(UploadLink.length > 1){
+                                                    setFile(UploadLink)
+                                                    document.getElementById("uploadbutton").style.display = "flex"
+                                                    setLoading(true)
+                                                }
+                                        },2000)  
+                                        }} />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="uploadbutton" data-dismiss="modal" onClick={handleClick} style={{display:"none"}} >Upload</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </Sidebar>

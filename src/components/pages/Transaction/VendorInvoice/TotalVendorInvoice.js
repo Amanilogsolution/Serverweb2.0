@@ -2,16 +2,32 @@ import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from 'react-data-table-component-extensions';
 import 'react-data-table-component-extensions/dist/index.css';
-import { PendingVendorInvoice } from '../../../../api'
+import { PendingVendorInvoice,FileUpload,UploadInvoice } from '../../../../api'
 import Sidebar from '../../../Sidebar/Sidebar';
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { GrDocumentUpload } from 'react-icons/gr';
+import {AiOutlineEye} from 'react-icons/ai'
+
 import customStyles from '../../../TableCustomtyle'
 
 
 function TotalVendorInvoice() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
+    const [file, setFile] = useState('');
+    const [sno,setSno] = useState()
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            const org = localStorage.getItem('Database')
+            const tabledata = await PendingVendorInvoice(org);
+            console.log(tabledata)
+            setData(tabledata)
+            setLoading(true)
+        }
+        fetchdata();
+    }, [])
 
     const columns = [
         {
@@ -36,39 +52,37 @@ function TotalVendorInvoice() {
         },
         {
             name: 'Invoice Amt',
-            selector: 'invoice_amt',
+            selector:row => `₹ ${row.invoice_amt}`,
             sortable: true,
         },
         {
             name: 'Upload',
             sortable: true,
             cell: (row) => [
-                <button className='btn btn-success'> Upload Invoice</button>
+                <button className='btn btn' data-toggle="modal" data-target="#exampleModalCenter"
+                 onClick={(e)=>{e.preventDefault(); setSno(row.sno)}}><GrDocumentUpload/></button>,
+                <a href={row.uploadInvoice} target="_blank"><AiOutlineEye style={{fontSize:"20px"}}/></a>
+
             ],
-        },
-        // {
-        //     name: "Actions",
-        //     sortable: false,
-        //     selector: 'null',
-        //     cell: (row) => [
-        //         <a title='Edit Invoice' href="/EditVendorInvoice">
-        //             <p onClick={() => localStorage.setItem('vendorinvoicesno', `${row.sno}`)} >
-        //                 <AiFillEdit className='ft-20' style={{ marginBottom: "-13px" }} />
-        //             </p></a>
-        //     ]
-        // }
+        }
+       
 
     ];
 
-    useEffect(() => {
-        const fetchdata = async () => {
-            const org = localStorage.getItem('Database')
-            const tabledata = await PendingVendorInvoice(org);
-            setData(tabledata)
-            setLoading(true)
+    const handleClick = async(e) => {
+        e.preventDefault();
+        const org = localStorage.getItem('Database')
+        console.log(org,'uploadInvoice',file,sno)
+
+        const result = await UploadInvoice(org,'uploadInvoice',file,sno)
+        console.log(result)
+        if(result){
+            alert('Invoice successfully uploaded')
+            window.location.reload()
         }
-        fetchdata();
-    }, [])
+    }
+
+   
 
     const tableData = {
         columns,
@@ -96,6 +110,38 @@ function TotalVendorInvoice() {
                                         customStyles={customStyles}
                                     />
                                 </DataTableExtensions>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Upload Invoice</h5>
+
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="file" onChange={async(event) => {
+                                            console.log(event.target.files[0])
+                                            setTimeout(async() => {
+                                                const data = new FormData();
+                                                data.append("images", event.target.files[0])
+                                                const UploadLink = await FileUpload(data)
+                                                setLoading(false)
+                                                if(UploadLink.length > 1){
+                                                    setFile(UploadLink)
+                                                    document.getElementById("uploadbutton").style.display = "flex"
+                                                    setLoading(true)
+                                                }
+
+                                        },2000)
+                                        
+                                        }} />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="uploadbutton" data-dismiss="modal" onClick={handleClick} style={{display:"none"}} >Upload</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </Sidebar>
