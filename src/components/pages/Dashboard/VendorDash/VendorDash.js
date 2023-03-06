@@ -27,9 +27,6 @@ export default function VendorDash({ setStep }) {
   const [vendorcatlist, setVendorcatlist] = useState([])
 
 
-
-
-
   const exportExcel = async () => {
     const datasss = ExcelConvertData(TotalVendor)
   }

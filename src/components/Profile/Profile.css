@@ -81,9 +81,6 @@
     }
     .user_icon{
         font-size:90px;
-        color:white;
-        background:#575656;
-        border-radius:70px;
         padding:20px
     }
     .profile_container{
@@ -117,12 +114,12 @@
     .profile_photo h4{
         margin: 0 10px;
      }
-     .profile_container h1{
+     .profile_container h1{ 
         color: white;
         margin-bottom: 10px;
     }
     .Edit_profile{
-  
+
         top:95%;
         left:5%;
     }
@@ -143,5 +140,9 @@
         width: 100%;
         padding: 12px 10px;
         display: flex;
+    }
+    .user_icon{
+        font-size:70px;
+        padding:15px
     }
 }

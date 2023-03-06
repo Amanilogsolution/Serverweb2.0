@@ -13,12 +13,12 @@
 }
 
 .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
-   background: linear-gradient(45deg, rgba(137, 108, 224, 0.6), #4d3dad);
+   background: linear-gradient(45deg, #3d59e6, #603ae9);
     padding:5px 20px;
-    border: 1px solid #000;
+    /* border: 1px solid #cac8d7; */
     font-size: 14px;
     color:white;
-    border-radius: 15px;
+    border-radius: 30px;
     margin: 0px 5px;
     
 }
