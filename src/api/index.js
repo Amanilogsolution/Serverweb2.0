@@ -1346,7 +1346,11 @@ export const GraphReport = async(org,table,columns) =>{
 
 // Upload 
 export const FileUpload = async(images) =>{
-    // console.log(images)
     const url = `https://drizzlebackend.awlworldwide.com/api/FileUpload`
     return axios.post(url, images).then(response => response.data).catch(error => console.log(error));  
+}
+// Mail
+export const Mail = async(message) =>{
+    const url = `http://localhost:2008/api/Email`
+    return axios.post(url, {message}).then(response => response.data).catch(error => console.log(error));  
 }

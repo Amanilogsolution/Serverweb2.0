@@ -1,6 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect, useContext } from 'react';
-import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, ActiveLocation, ActivePriority, GetNewAssetAssign, InsertTicket, CountTickets } from '../../../../api'
+import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, ActiveLocation, ActivePriority, GetNewAssetAssign, InsertTicket, CountTickets,Mail } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
@@ -145,26 +145,39 @@ export default function AddTicket() {
             callfun('Please enter the Mandatory Field', 'warning', 'self')
 
             // setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-            // document.getElementById('snackbar').style.display = "block"
+            document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
+            const message ={
+                org : org,
+                subject :ticketsubject,
+                username : employee_name,
+                TicketNumber : assignticket,
+                Ticketdate:ticketdate,
+                TicketType:typeofissue,
+                TicketDiscription:issuedesc,
+                TicketStatus:ticketstatus,
+                mail:email
 
+            }
             const result = await InsertTicket(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id, AssetTag, AssetCondition)
-            setLoading(true)
+                console.log(result)
             
             if (result === 'Data Added') {
-                callfun('Ticket Added', 'success', '/TotalTicket')
+                const mail = await Mail(message)
+                // console.log(mail)
+                setLoading(true)
 
-                // setDatas({ ...datas, message: "Ticket Added", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
+                callfun('Ticket Added', 'success', '/TotalTicket')    
+             
+
             }
             else {
                 callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
+             
             }
         }
 

@@ -24,6 +24,7 @@ const Outstatndingdetails = () => {
             const org = localStorage.getItem('Database')
 
             const datas = await VendorInvoice(org, 1, 10)
+            // console.log(datas)
             setTotalVendor(datas.data)
             setRowPerPage(10)
             const total = datas.TotalData[0]["Totaldata"]
@@ -31,6 +32,7 @@ const Outstatndingdetails = () => {
             setLastval(Math.ceil(total / 10))
 
             const paidinvoices = await PaidInvoice(org, 1, 10)
+            console.log(paidinvoices)
             setPaidInvoice(paidinvoices.data)
             setPaidRowPerPage(10)
             const totalval = paidinvoices.TotalData[0]["Totaldata"]
@@ -117,6 +119,8 @@ const Outstatndingdetails = () => {
                                     <th scope="col">Invoice_no</th>
                                     <th scope="col">Reference No</th>
                                     <th scope="col">Invoice Amt</th>
+                                    <th scope="col">Reading</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -131,6 +135,7 @@ const Outstatndingdetails = () => {
                                                     <td>{elements.invoice_no}</td>
                                                     <td>{elements.reference_no}</td>
                                                     <td>{elements.invoice_amt}</td>
+                                                    <td>{elements.printer_counter}</td>
                                                 </tr>
                                             )
                                         })
@@ -158,7 +163,7 @@ const Outstatndingdetails = () => {
                         breakLinkClassName={'page-link'}
                         activeClassName={'active'}
                     />
-                    
+
                 </div>
                 <div className='Outstanding_details_table_div bg-white rounded shadow1-silver '>
                     <p className=' text-white text-white rounded' style={{ background: " linear-gradient(45deg, rgb(55, 55, 55), rgb(121, 118, 113))" }}>Paid Invoices - Detailed</p>
@@ -170,6 +175,8 @@ const Outstatndingdetails = () => {
                                     <th scope="col">Invoice_no</th>
                                     <th scope="col">Reference No</th>
                                     <th scope="col">Invoice Amt</th>
+                                    <th scope="col">Reading</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -184,6 +191,8 @@ const Outstatndingdetails = () => {
                                                     <td>{elements.invoice_no}</td>
                                                     <td>{elements.reference_no}</td>
                                                     <td>{elements.invoice_amt}</td>
+                                                    <td>{elements.printer_counter}</td>
+
                                                 </tr>
                                             )
                                         })

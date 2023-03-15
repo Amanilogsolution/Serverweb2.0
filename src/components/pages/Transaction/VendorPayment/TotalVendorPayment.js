@@ -63,13 +63,17 @@ const TotalVendorPayment = () => {
             sortable: true,
         },
         {
+            name: 'Date',
+            selector: 'date',
+            sortable: true,
+        },
+        {
             name: 'Actions',
             sortable: true,
             cell: (row) => [
                 <button className='btn' data-toggle="modal" data-target="#exampleModalCenter"
                 onClick={(e)=>{e.preventDefault(); setSno(row.sno)}}> <GrDocumentUpload/> </button>,
-                <a href={row.uploadpayment} target="_blank"><AiOutlineEye style={{fontSize:"20px"}}/></a>
-                
+                <button onClick = {()=>{  window.open(`${row.uploadpayment}`, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=400,left=10000,width=400,height=400");}} ><AiOutlineEye style={{fontSize:"20px"}}/></button>
             ],
         }
       
