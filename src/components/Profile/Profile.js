@@ -14,6 +14,7 @@ import './Profile.css'
 // import img from '../../image/modelimg.png'
 import { GlobalAlertInfo } from '../../App';
 import Modal from '../pages/AlertModal/Modal';
+import img from '../../image/update_profile.png'
 
 const Profile = () => {
    const [details, setDetails] = useState({})
@@ -172,14 +173,15 @@ const Profile = () => {
 
 
                      <div className="modal fade" id="exampleModal2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog" role="document" style={{ width: "30%" }}>
+                        <div className="modal-dialog" role="document" style={{ width: "25%" }}>
                            <div className="modal-content" >
-                              <div className="modal-header">
-                                 <RiUserFill className='border border-dark rounded-circle p-3 text-white bg-dark' style={{ width: "110px", height: '110px' }} />
-                                 <h5 className="modal-title mx-3" id="exampleModalLabel">Update Profile</h5>
+                              <div className="modal-header" style={{padding:"0",overflow:"hidden"}}>
+                                 {/* <RiUserFill className='border border-dark rounded-circle p-3 text-white bg-dark' style={{ width: "110px", height: '110px' }} /> */}
+                                 {/* <h5 className="modal-title mx-3" id="exampleModalLabel">Update Profile</h5> */}
+                                 <img src={img} style={{width:"440px",height:"200px"}}/>
                               </div>
                               <div className="modal-body">
-                                 <form style={{ padding: "0 20px" }}>
+                                 <form style={{ padding: "0 10px" }}>
                                     <div>
                                        <label htmlFor='employee_name'>Name</label>
                                        <input className="form-control" id='employee_name' defaultValue={details.employee_name} ></input>
@@ -207,8 +209,8 @@ const Profile = () => {
                                        <input className="form-control" id="company" value={details.company} disabled></input>
                                     </div>
 
-                                    <div className="form-group mt-3 d-flex justify-content-end">
-                                       <button type="submit" className="btn btn-voilet" id="subnitbtn"
+                                    <div className="form-group mt-3 ">
+                                       <button style={{borderRadius:"50px"}} type="submit" className="btn btn-voilet w-100" id="subnitbtn"
                                           onClick={handleadddevice}>Update</button>
                                     </div>
                                  </form>
