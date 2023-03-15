@@ -3,7 +3,7 @@
     min-height: 79vh;
     max-width: 100%;
 }
-
+/* 
 .dashboard_cards{
     width: 100%;
 }
@@ -15,13 +15,13 @@
 .dashboard_cards .dash_toggle_btns .dash_toggle_btn {
    background: linear-gradient(45deg, #3d59e6, #603ae9);
     padding:5px 20px;
-    /* border: 1px solid #cac8d7; */
+    border: 1px solid #cac8d7;
     font-size: 14px;
     color:white;
     border-radius: 30px;
     margin: 0px 5px;
     
-}
+} */
 
 
 @media screen and (max-width:1200px) {
@@ -81,3 +81,58 @@
 }
 
 
+/* ====================================================================================== */
+
+nav{
+    width: 400px;
+    height: 37px;
+    border-radius: 10px;
+    display: flex;
+    text-align: center;
+    position: relative;
+    background: #3f454f;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    /* border:1px solid green; */
+    margin-bottom: 13px;
+    
+  }
+  nav label{
+    width: 100%;
+    height: 100%;
+    line-height: 34px;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 10px;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    /* border:1px solid white; */
+  }
+  nav .slider{
+    position: absolute;
+    height: 100%;
+    width: 25%;
+    background: #dd4545;
+    /* border: 4px solid #dd4545; */
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+  }
+  #vendor:checked ~ nav .slider{
+  left: 25%;
+  }
+  #invoice:checked ~ nav .slider{
+  left: 50%;
+  }
+  #ticket:checked ~ nav .slider{
+  left: 75%;
+  }
+  
+  input[type=radio]{
+    display: none;
+  }
+  
+
+/* ========================================================================== */

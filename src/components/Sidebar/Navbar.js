@@ -60,7 +60,6 @@ const Navbar = (props) => {
                     <span className="tooltiptext ">Reports</span>
                 </div>
                 
-                <WcUser/>
 
                 <div className='navcontainer-second position-absolute d-flex align-items-center justify-content-end '>
                     <div className='navcontainer-innersecond mx-4'>
@@ -97,7 +96,7 @@ const Navbar = (props) => {
                                 <Link className="dropdown-item" to="/Contactus">Contact us</Link>
                             </div>
                         </div>
-                        <div className='notifications d-flex  cursor-pointer mx-1'>
+                        <div className='notifications d-flex cursor-pointer mx-1'>
                             <BsBellFill className='mt-1' style={{ fontSize: "18px",color:"#404040" }} />
                             <span className="tooltiptext">Notifications</span>
                         </div>
