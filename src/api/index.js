@@ -1115,6 +1115,13 @@ export const OpenTotalTicket = async (org) => {
     return axios.post(url,{org}).then(response => response.data).catch(error => console.log(error));
 }
 
+export const TotalHoldTicket = async (org) => {
+    const url = `http://localhost:2008/api/TotalHoldTicket`
+    return axios.post(url,{org}).then(response => response.data).catch(error => console.log(error));
+}
+
+
+
 //     Voice Invoice
 
 export const InsertVendorInvoice = async (org,data, userid) => {
@@ -1195,7 +1202,7 @@ export const Dashboard_Manufacture = async (org) => {
 // Ticket Dashboard
 
 export const Ticket_Summary = async (org,userid) => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/ticket_summary`
+    const url = `http://localhost:2008/api/ticket_summary`
     return axios.post(url, { org,userid }).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -1237,7 +1244,7 @@ export const FilterVendorContract = async (org,type,value,pageno,rowsperpage) =>
 
 //Invoice Dashboard
 export const Invoice_Outstanding  = async (org) => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/Invoice_Outstanding`
+    const url = `http://localhost:2008/api/Invoice_Outstanding`
     return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
 }
 export const TotalOutstanding = async (org,pageno,rowsperpage) => {

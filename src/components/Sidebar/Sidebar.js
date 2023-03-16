@@ -45,6 +45,7 @@ import './Sidebar.css'
 import logo from '../../image/drizzle_logo.png'
 import Logout from './Logout';
 import Sidebar2 from './Sidebar2/Sidebar2';
+import UpdateModel from '../pages/AlertModal/UpdateModel';
 
 const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -222,8 +223,10 @@ const Sidebar = ({ children }) => {
 
 
     return (
-        <>
+        <> 
+           
             <div className="sidebarcontainer d-flex position-relative">
+                
                 <div className={isOpen ? 'sidebaropen sidebar' : 'sidebarclose sidebar'}
                 // onClick={toggle}
                 //  onMouseEnter={() => setIsOpen(true)}
@@ -670,8 +673,9 @@ const Sidebar = ({ children }) => {
                     {/*################################  Bottom Section  END ###################################### */}
 
                 </div>
-
-                <div className={isOpen ? "mainopen" : "main"} style={{ position: 'relative' }}>
+                
+                <div className={isOpen ? "mainopen" : "main"} style={{ position: 'relative'}}>
+                    
                     <Navbar isOpen={isOpen} togglesidebar2={togglesidebar2} />
                     {children}
                     <Sidebar2 sidebar2toggle={sidebar2toggle} togglesidebar2={togglesidebar2} />

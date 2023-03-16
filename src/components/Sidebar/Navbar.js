@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Navbar.css'
 import { FaTicketAlt, FaElementor } from 'react-icons/fa'
 import { MdOutlineExitToApp, MdOutlineArrowDropDown, MdOutlineHelp, MdGroups, MdEmail, MdPermContactCalendar } from 'react-icons/md'
@@ -10,16 +10,22 @@ import DrizzleLogo from '../../image/drizzle_logo.png'
 import { Link } from 'react-router-dom'
 import { VscListFilter } from 'react-icons/vsc'
 import { HiDocumentText } from 'react-icons/hi'
+import UpdateModel from '../pages/AlertModal/UpdateModel'
 // import { TiVendorMicrosoft } from 'react-icons/ti'
 // import { CgOrganisation } from 'react-icons/cg'
 // import { GrUserExpert } from 'react-icons/gr'
 // import { FiUserPlus } from 'react-icons/fi'
 
+
+
 const Navbar = (props) => {
+    
 
     return (
-        <>
-            <div className="innernavbarcontainer bg-white mb-3 d-flex align-items-center " >
+        <>  <div className='nav_with_alert'>
+            <UpdateModel/>
+            <div className="innernavbarcontainer bg-white mb-3 d-flex align-items-center">
+            
                 {props.isOpen ?
                     null : <img className='navbar-brand logo-img' src={DrizzleLogo} alt='Drizzle Logo' />}
 
@@ -43,6 +49,8 @@ const Navbar = (props) => {
                         <p className='mb-0' style={{ fontSize: "18px" }}>Reports</p>
                     </Link>
                 </div> */}
+                
+                
                 <div className='reports mx-4'>
                     <Link className=' d-flex align-items-center  cursor-pointer' to="/reports" style={{ textDecoration: "none", color: "#212529" }}>
                         <HiDocumentText style={{ fontSize: "28px",color:"gray" }} />
@@ -50,7 +58,7 @@ const Navbar = (props) => {
                     </Link>
                     <span className="tooltiptext ">Reports</span>
                 </div>
-
+                
 
                 <div className='navcontainer-second position-absolute d-flex align-items-center justify-content-end '>
                     <div className='navcontainer-innersecond mx-4'>
@@ -87,7 +95,7 @@ const Navbar = (props) => {
                                 <Link className="dropdown-item" to="/Contactus">Contact us</Link>
                             </div>
                         </div>
-                        <div className='notifications d-flex  cursor-pointer mx-1'>
+                        <div className='notifications d-flex cursor-pointer mx-1'>
                             <BsBellFill className='mt-1' style={{ fontSize: "18px",color:"#404040" }} />
                             <span className="tooltiptext">Notifications</span>
                         </div>
@@ -114,6 +122,7 @@ const Navbar = (props) => {
                     </div>
                    
                 </div>
+            </div>
             </div>
         </>
     )

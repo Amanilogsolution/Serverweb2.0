@@ -40,12 +40,18 @@ const TotalVendorPayment = () => {
             name: 'Invoice No',
             selector: 'invoice_no',
             sortable: true,
-            cell: (row) => [
-                <a title='Edit VendorPayments' href="/EditVendorPayments"
-                    onClick={() => localStorage.setItem('vendorpaymentssno', `${row.sno}`)}>
-                    {row.invoice_no}
-                </a>
-            ]
+            // cell: (row) => [
+            //     <a title='Edit VendorPayments' href="/EditVendorPayments"
+            //         onClick={() => localStorage.setItem('vendorpaymentssno', `${row.sno}`)}>
+            //         {row.invoice_no}
+            //     </a>
+            // ]
+        },
+        {
+            name: 'Invoice Amount',
+            selector: 'invoice_amt',
+            sortable: true,
+          
         },
 
         {
@@ -61,9 +67,15 @@ const TotalVendorPayment = () => {
             name: 'Payment Detail',
             selector: 'payment_detail',
             sortable: true,
+            cell: (row) => [
+                <a title='Edit VendorPayments' href="/EditVendorPayments"
+                    onClick={() => localStorage.setItem('vendorpaymentssno', `${row.sno}`)}>
+                    {row.payment_detail}
+                </a>
+            ]
         },
         {
-            name: 'Date',
+            name: 'Payment Date',
             selector: 'date',
             sortable: true,
         },

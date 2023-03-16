@@ -175,7 +175,7 @@ const Outstatndingdetails = () => {
                                     <th scope="col">Invoice_no</th>
                                     <th scope="col">Reference No</th>
                                     <th scope="col">Invoice Amt</th>
-                                    <th scope="col">Reading</th>
+                                    {/* <th scope="col">Reading</th> */}
 
                                 </tr>
                             </thead>
@@ -191,7 +191,7 @@ const Outstatndingdetails = () => {
                                                     <td>{elements.invoice_no}</td>
                                                     <td>{elements.reference_no}</td>
                                                     <td>{elements.invoice_amt}</td>
-                                                    <td>{elements.printer_counter}</td>
+                                                    {/* <td>{elements.printer_counter}</td> */}
 
                                                 </tr>
                                             )

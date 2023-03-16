@@ -31,21 +31,21 @@ const Dashboard = () => {
     fetch();
   }, [])
 
-  const colordynamic = (step) => {
-    for (let i = 1; i <= 4; i++) {
-      if (i === step) {
-        console.log("true")
-        document.getElementById(`css${i}`).style.background = "white"
-        document.getElementById(`css${i}`).style.borderBottom = "4px solid #30305f"
-        document.getElementById(`css${i}`).style.color = "#595859"
+  // const colordynamic = (step) => {
+  //   for (let i = 1; i <= 4; i++) {
+  //     if (i === step) {
+  //       console.log("true")
+  //       document.getElementById(`css${i}`).style.background = "white"
+  //       document.getElementById(`css${i}`).style.borderBottom = "4px solid #30305f"
+  //       document.getElementById(`css${i}`).style.color = "#595859"
 
-      } else {
-        document.getElementById(`css${i}`).style.background = "linear-gradient(45deg, #3d59e6, #603ae9)"
-        document.getElementById(`css${i}`).style.color = "white"
-        document.getElementById(`css${i}`).style.borderBottom = "none"
-      }
-    }
-  }
+  //     } else {
+  //       document.getElementById(`css${i}`).style.background = "linear-gradient(45deg, #3d59e6, #603ae9)"
+  //       document.getElementById(`css${i}`).style.color = "white"
+  //       document.getElementById(`css${i}`).style.borderBottom = "none"
+  //     }
+  //   }
+  // }
 
   const showStep = (step) => {
     switch (step) {
@@ -71,15 +71,45 @@ const Dashboard = () => {
       {
         loading ?
           <Sidebar>
-            <div className='dashboard_container' >
-              <div className='dashboard_cards d-flex justify-content-end' >
+
+
+
+
+            <div className='dashboard_container ' >
+
+              {/* ================================================================ */}
+              <div class="container d-flex justify-content-end mb-4">
+                <input type="radio" name="s" id="asset"/>
+                <input type="radio" name="s" id="vendor" />
+                <input type="radio" name="s" id="invoice" />
+                <input type="radio" name="s" id="ticket" />
+                <input type="radio" name="s" id="about" />
+                <nav>
+                  <div class="slider"></div>
+                  <label for="asset" onClick={() => { setStep(1) }}>
+                    Assets
+                  </label>
+                  <label for="vendor" onClick={() => { setStep(2) }}>
+                    Vendors
+                  </label>
+                  <label for="invoice" onClick={() => { setStep(3) }}>
+                    Invoices
+                  </label>
+                  <label for="ticket" onClick={() => { setStep(4) }}>
+                    Tickets
+                  </label>
+                </nav>
+              </div>
+              {/* ================================================================ */}
+
+              {/* <div className='dashboard_cards d-flex justify-content-end' >
                 <div className='d-flex justify-content-center  dash_toggle_btns rounded'>
                   <div className='dash_toggle_btn cursor-pointer ' style={{ background: "white", borderBottom: "4px solid #30305f", color: "#595859" }} id="css1" onClick={() => { colordynamic(1); setStep(1) }}>Assets</div>
                   <div className='dash_toggle_btn cursor-pointer' id="css2" onClick={() => { colordynamic(2); setStep(2) }}>Vendors</div>
                   <div className='dash_toggle_btn cursor-pointer' id="css3" onClick={() => { colordynamic(3); setStep(3) }}>Invoice</div>
                   <div className='dash_toggle_btn cursor-pointer' id="css4" onClick={() => { colordynamic(4); setStep(4) }}>Tickets</div>
                 </div>
-              </div>
+              </div> */}
               {showStep(currentStep)}
             </div>
 

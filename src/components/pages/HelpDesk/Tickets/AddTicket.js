@@ -221,7 +221,7 @@ export default function AddTicket() {
                                                 </select>
                                             </div>
                                             <div className="col-md-4" >
-                                                <label htmlFor='assettype'>Asset Type <span className='text-danger'>*</span></label>
+                                                <label htmlFor='assettype'>Asset<span className='text-danger'>*</span></label>
                                                 <select className="form-select" id='assettype' onChange={handleAssetTypeChange}>
                                                     <option value='' hidden>Select...</option>
 

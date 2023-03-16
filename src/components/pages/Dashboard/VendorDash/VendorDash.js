@@ -27,9 +27,6 @@ export default function VendorDash({ setStep }) {
   const [vendorcatlist, setVendorcatlist] = useState([])
 
 
-
-
-
   const exportExcel = async () => {
     const datasss = ExcelConvertData(TotalVendor)
   }
@@ -200,7 +197,6 @@ export default function VendorDash({ setStep }) {
 
       </div>
 
-
       {/* Sidevar Filter */}
       <div className='VendorDash2 rounded'>
         <button className="nextVendor_AnimationBtn text-white btn px-4 py-3 position-relative" id="recurring" onClick={() => { setStep(6) }}>Recurring Details</button>
@@ -245,7 +241,7 @@ export default function VendorDash({ setStep }) {
           </div>
           <div className='VendorDash2_card text-center bg-white rounded'>
             <div className='d-flex pt-3'>
-              <VscReferences className='Ref_icon text-white rounded' />
+              <VscReferences className='Ref_icon text-white rounded'/>
               <h1 >{ReferabceNo}</h1>
             </div>
             <p >Reference Numbers</p>

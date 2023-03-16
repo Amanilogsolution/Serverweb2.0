@@ -253,7 +253,7 @@ function AddVendorInvoice() {
                                         </table>
 
                                         <div className='btn_div mx-2'>
-                                            <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Add Vendor Invoice</button>
+                                            <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Submit</button>
                                             <button type='reset' className='btn btn-secondary mx-2'>Reset</button>
                                         </div>
                                     </form>

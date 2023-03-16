@@ -49,19 +49,20 @@
   color: white;
   border-radius: 4px;
 }
-
-
-.innernavbarcontainer {
+.nav_with_alert{
   position: sticky;
   top: 2.1%;
+  z-index: 1;
+}
+/* ======================================================================================================== */
+.innernavbarcontainer {
   height: 60px;
   width: 100%;
   padding: 5px 0px 5px 15px;
   box-shadow: 2px 2px 5px silver;
   border-radius: 10px 0px 0px 10px;
   /* font-family: 'Roboto' */
-  z-index: 1;
-}
+} 
 
 .logo-img {
   height: 80%;
@@ -79,7 +80,6 @@
 
 .navcontainer-innersecond {
   display: flex;
-
 }
 
 

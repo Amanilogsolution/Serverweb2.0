@@ -37,6 +37,7 @@ const Outstanding = ({ setStep }) => {
       fetch()
       const org = localStorage.getItem('Database')
       const datas = await TotalOutstanding(org, 1, 10)
+      console.log(datas)
       setTotalVendor(datas.data)
       const total = datas.TotalData[0]["Totaldata"]
       setRowPerPage(10)
@@ -58,6 +59,7 @@ const Outstanding = ({ setStep }) => {
 
   const fetch = async () => {
     const Outstanding = await Invoice_Outstanding(localStorage.getItem('Database'))
+    console.log(Outstanding)
     setOutstandingdatas(Outstanding.OutstandingVendor)
 
     setInvoice(Outstanding.Vendor)
@@ -97,7 +99,7 @@ const Outstanding = ({ setStep }) => {
 
           <div className='outstanding-totalinv bg-white rounded shadow1-silver pt-3'>
             <h2 className='mb-0' style={{ color: "#30305f" }}>{invoices.TotalVendor}</h2>
-            <p className='text-secondary'>Invoices</p>
+            <p className='text-secondary'>Total Invoices</p>
           </div>
 
           <div className='outstanding-totalamt bg-white rounded shadow1-silver pt-3' >
@@ -110,9 +112,8 @@ const Outstanding = ({ setStep }) => {
 
         </div>
         <button className="top-upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>
-          Outstanding Details</button>
+          BILL HISTORY</button>
         {/* //==================================================================================================== */}
-
         <div className='company-outstatnding bg-white border  mt-4 rounded shadow1-silver'  >
           <div className='text-white px-4 py-2  rounded' style={{ width: "80%", marginLeft: 'auto', marginRight: 'auto', background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginTop: '-20px' }}>
             <small> OUTSTANDING</small>
@@ -122,6 +123,7 @@ const Outstanding = ({ setStep }) => {
               <thead className='position-sticky top-0 bg-white '>
                 <tr>
                   <th className='pb-0 text-danger'>Vendor</th>
+                  <th className='pb-0 text-danger'>No of Invoice</th>
                   <th className='pb-0 text-danger'>Amt</th>
                 </tr>
               </thead>
@@ -130,6 +132,7 @@ const Outstanding = ({ setStep }) => {
                   outstandingDatas.map((element, index) => (
                     <tr key={index}>
                       <td>{element.vendor}</td>
+                      <td>{element.countinvoice}</td>
                       <th>{element.total}</th>
                     </tr>
                   ))
@@ -137,7 +140,7 @@ const Outstanding = ({ setStep }) => {
               </tbody>
               <tfoot className='position-sticky bottom-0 bg-white '>
                 <tr >
-                  <th className='text-danger'>Total</th>
+                  <th className='text-danger' colSpan="2">Total</th>
                   <th className='text-danger'>₹{outstandingAmount}</th>
                 </tr>
               </tfoot>
@@ -145,12 +148,9 @@ const Outstanding = ({ setStep }) => {
           </div>
 
         </div>
-
         {/* //==================================================================================================== */}
-
         <button className="upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>
-          Outstanding Details</button>
-
+          Bill History</button>
       </div>
       <div className='outstanding-table bg-white position-relative mt-3 rounded shadow1-silver'>
         <div className=' d-flex justify-content-between text-white rounded px-4 py-2 mx-auto' style={{ width: "90%", marginTop: "-20px", background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", height: "55px" }}>
@@ -178,6 +178,7 @@ const Outstanding = ({ setStep }) => {
               <tr>
                 <th scope="col">Vendor</th>
                 <th scope="col">Invoice_no</th>
+                <th scope="col">Invoice Date</th>
                 <th scope="col">Reference No</th>
                 <th scope="col">Invoice Amt</th>
               </tr>
@@ -190,7 +191,8 @@ const Outstanding = ({ setStep }) => {
                     return (
                       <tr key={index}>
                         <td>{elements.vendor}</td>
-                        <td>{elements.invoice_no}</td>
+                        <td>{elements.invoice_no}</td>    
+                        <td>{elements.invoice_date}</td> 
                         <td>{elements.reference_no}</td>
                         <td>{elements.invoice_amt}</td>
                       </tr>
@@ -209,7 +211,6 @@ const Outstanding = ({ setStep }) => {
               <option value="20">20</option>
             </select>
           </div>
-
           <ReactPaginate
             breakLabel="..."
             nextLabel={<IoMdArrowDropright style={{ fontSize: "24px" }} />}
@@ -229,13 +230,8 @@ const Outstanding = ({ setStep }) => {
             breakLinkClassName={'page-link'}
             activeClassName={'active'}
           />
-
         </div>
-
-
-
       </div>
-
     </section>
   )
 }

@@ -8,3 +8,9 @@
     /* border-radius: 10px 0px 0px 10px; */
     border-top: 1px solid rgb(181, 176, 176);
 }
+.social_media_links {
+  /* border: 1px solid; */
+  width: 12%;
+  display: flex;
+  justify-content: space-between;
+}
