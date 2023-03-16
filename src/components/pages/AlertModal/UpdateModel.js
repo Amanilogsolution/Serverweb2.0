@@ -8,7 +8,7 @@ export default function UpdateModel() {
     }
 
     return (
-        <div id="updateModal" className="alert alert-danger alert-dismissible fade show" role="alert" style={{ height: "45px" }}>
+        <div id="updateModal" className="alert alert-danger alert-dismissible fade show" role="alert">
             <div style={{ margin: "-8px 0 0 0" }}>
                 <MdDangerous style={{ fontSize: "26px", marginRight: "5px" }} />
                 <strong>Hey User!</strong> Your plane has Expired. Upgrade your plane immediately to continue

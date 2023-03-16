@@ -10,7 +10,7 @@ import TickteDash from './TicketDash/TicketDash'
 import { DashboarDetails } from '../../../api/index'
 import LoadingPage from '../../LoadingPage/LoadingPage';
 import Recurring from './VendorDash/Recurring';
-
+import PendingRecurringInvoice from './Outstanding/PendingRecurringInvoice/PendingRecurringInvoice';
 
 const Dashboard = () => {
   const [currentStep, setStep] = useState(1);
@@ -61,6 +61,9 @@ const Dashboard = () => {
         return <Outstatndingdetails />
       case 6:
         return <Recurring />
+      case 7:
+        return <PendingRecurringInvoice
+        />
       default:
         return false
     }
@@ -78,24 +81,24 @@ const Dashboard = () => {
             <div className='dashboard_container ' >
 
               {/* ================================================================ */}
-              <div class="container d-flex justify-content-end mb-4">
-                <input type="radio" name="s" id="asset"/>
+              <div className="container d-flex justify-content-end mb-3">
+                <input type="radio" name="s" id="asset" />
                 <input type="radio" name="s" id="vendor" />
                 <input type="radio" name="s" id="invoice" />
                 <input type="radio" name="s" id="ticket" />
                 <input type="radio" name="s" id="about" />
                 <nav>
-                  <div class="slider"></div>
-                  <label for="asset" onClick={() => { setStep(1) }}>
+                  <div className="slider"></div>
+                  <label htmlFor="asset" onClick={() => { setStep(1) }}>
                     Assets
                   </label>
-                  <label for="vendor" onClick={() => { setStep(2) }}>
+                  <label htmlFor="vendor" onClick={() => { setStep(2) }}>
                     Vendors
                   </label>
-                  <label for="invoice" onClick={() => { setStep(3) }}>
+                  <label htmlFor="invoice" onClick={() => { setStep(3) }}>
                     Invoices
                   </label>
-                  <label for="ticket" onClick={() => { setStep(4) }}>
+                  <label htmlFor="ticket" onClick={() => { setStep(4) }}>
                     Tickets
                   </label>
                 </nav>

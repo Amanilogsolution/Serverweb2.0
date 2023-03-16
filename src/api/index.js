@@ -1116,7 +1116,7 @@ export const OpenTotalTicket = async (org) => {
 }
 
 export const TotalHoldTicket = async (org) => {
-    const url = `http://localhost:2008/api/TotalHoldTicket`
+    const url = `https://drizzlebackend.awlworldwide.com/api/TotalHoldTicket`
     return axios.post(url,{org}).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -1202,7 +1202,7 @@ export const Dashboard_Manufacture = async (org) => {
 // Ticket Dashboard
 
 export const Ticket_Summary = async (org,userid) => {
-    const url = `http://localhost:2008/api/ticket_summary`
+    const url = `https://drizzlebackend.awlworldwide.com/api/ticket_summary`
     return axios.post(url, { org,userid }).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -1244,7 +1244,7 @@ export const FilterVendorContract = async (org,type,value,pageno,rowsperpage) =>
 
 //Invoice Dashboard
 export const Invoice_Outstanding  = async (org) => {
-    const url = `http://localhost:2008/api/Invoice_Outstanding`
+    const url = `https://drizzlebackend.awlworldwide.com/api/Invoice_Outstanding`
     return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
 }
 export const TotalOutstanding = async (org,pageno,rowsperpage) => {
@@ -1270,7 +1270,10 @@ export const FilterInvoice = async (org,value,pageno,rowsperpage) => {
     return axios.post(url, { org,value,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
 }
 
-
+export const PendingRecurringInvoiceApi = async (org) => {
+    const url = `http://192.168.146.144:2008/api/recurringpendinginvoice`
+    return axios.post(url, { org}).then(response => response.data).catch(error => console.log(error));
+}
 
 // User Details
 export const getUserdetails = async (org,user_id) => {
@@ -1358,6 +1361,6 @@ export const FileUpload = async(images) =>{
 }
 // Mail
 export const Mail = async(message) =>{
-    const url = `http://localhost:2008/api/Email`
+    const url = `https://drizzlebackend.awlworldwide.com/api/Email`
     return axios.post(url, {message}).then(response => response.data).catch(error => console.log(error));  
 }

@@ -37,7 +37,6 @@ const Outstanding = ({ setStep }) => {
       fetch()
       const org = localStorage.getItem('Database')
       const datas = await TotalOutstanding(org, 1, 10)
-      console.log(datas)
       setTotalVendor(datas.data)
       const total = datas.TotalData[0]["Totaldata"]
       setRowPerPage(10)
@@ -59,7 +58,6 @@ const Outstanding = ({ setStep }) => {
 
   const fetch = async () => {
     const Outstanding = await Invoice_Outstanding(localStorage.getItem('Database'))
-    console.log(Outstanding)
     setOutstandingdatas(Outstanding.OutstandingVendor)
 
     setInvoice(Outstanding.Vendor)
@@ -111,8 +109,13 @@ const Outstanding = ({ setStep }) => {
           <button className='btn_for_smd' onClick={() => { setStep(5) }}>Outstanding Details</button>
 
         </div>
-        <button className="top-upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>
-          BILL HISTORY</button>
+        <div className='d-flex upper_button'>
+          <button className="top-upper-btn nextoutstanding_AnimationBtn text-white btn position-relative" onClick={() => { setStep(5) }}>
+            BILL HISTORY</button>
+            <button className="top-upper-btn nextoutstanding_AnimationBtn text-white btn position-relative" onClick={() => { setStep(7) }}>
+            Pending Recurring Invoice</button>
+        </div>
+
         {/* //==================================================================================================== */}
         <div className='company-outstatnding bg-white border  mt-4 rounded shadow1-silver'  >
           <div className='text-white px-4 py-2  rounded' style={{ width: "80%", marginLeft: 'auto', marginRight: 'auto', background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginTop: '-20px' }}>
@@ -149,8 +152,15 @@ const Outstanding = ({ setStep }) => {
 
         </div>
         {/* //==================================================================================================== */}
-        <button className="upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>
-          Bill History</button>
+        <div className='d-flex'>
+          <button className="upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-2 position-relative" onClick={() => { setStep(5) }}>
+            Bill History
+          </button>
+          <button className="upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-2 position-relative" onClick={() => { setStep(7) }}>
+            Pending Recurring Invoice
+          </button>
+        </div>
+
       </div>
       <div className='outstanding-table bg-white position-relative mt-3 rounded shadow1-silver'>
         <div className=' d-flex justify-content-between text-white rounded px-4 py-2 mx-auto' style={{ width: "90%", marginTop: "-20px", background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", height: "55px" }}>
@@ -191,8 +201,8 @@ const Outstanding = ({ setStep }) => {
                     return (
                       <tr key={index}>
                         <td>{elements.vendor}</td>
-                        <td>{elements.invoice_no}</td>    
-                        <td>{elements.invoice_date}</td> 
+                        <td>{elements.invoice_no}</td>
+                        <td>{elements.invoice_date}</td>
                         <td>{elements.reference_no}</td>
                         <td>{elements.invoice_amt}</td>
                       </tr>
