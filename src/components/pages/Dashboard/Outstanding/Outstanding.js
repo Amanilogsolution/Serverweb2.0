@@ -10,7 +10,7 @@ import { BiRupee } from 'react-icons/bi';
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 
 import 'react-data-table-component-extensions/dist/index.css';
-import { Invoice_Outstanding, TotalOutstanding } from '../../../../api/index'
+import { Invoice_Outstanding, TotalOutstanding ,VendorInvoice,Outstanding_Invoice_filter} from '../../../../api/index'
 
 const Outstanding = ({ setStep }) => {
   const [invoices, setInvoice] = useState({})
@@ -20,23 +20,21 @@ const Outstanding = ({ setStep }) => {
   const [rowperpage, setRowPerPage] = useState(10)
   const [lastval, setLastval] = useState()
   const [toogle, setToogle] = useState(false)
-
+  const [data,setData] = useState([])
 
   const exportExcel = async () => {
     const datasss = ExcelConvertData(TotalVendor)
   }
   const handlePageClick = async (data) => {
-    const datas = await TotalOutstanding(localStorage.getItem('Database'), data.selected + 1, rowperpage)
+    const datas = await VendorInvoice(localStorage.getItem('Database'), data.selected + 1, rowperpage)
     setTotalVendor(datas.data)
   }
-
-
 
   useEffect(() => {
     const fetchdata = async () => {
       fetch()
       const org = localStorage.getItem('Database')
-      const datas = await TotalOutstanding(org, 1, 10)
+      const datas = await VendorInvoice(org, 1, 10)
       console.log(datas)
       setTotalVendor(datas.data)
       const total = datas.TotalData[0]["Totaldata"]
@@ -44,7 +42,6 @@ const Outstanding = ({ setStep }) => {
       setLastval(Math.ceil(total / 10))
     }
     fetchdata()
-
   }, [])
 
   const handleChange = async (e) => {
@@ -54,44 +51,26 @@ const Outstanding = ({ setStep }) => {
     setTotalVendor(datas.data)
     const total = datas.TotalData[0]["Totaldata"]
     setLastval(Math.ceil(total / e.target.value))
-
   }
 
   const fetch = async () => {
     const Outstanding = await Invoice_Outstanding(localStorage.getItem('Database'))
     console.log(Outstanding)
     setOutstandingdatas(Outstanding.OutstandingVendor)
-
     setInvoice(Outstanding.Vendor)
     let money = Outstanding.OutstandingAmount.toLocaleString('en-IN');
     setOutstandingAmount(money)
   }
 
-  // const columns = [
-  //   {
-  //     name: 'Asset Name',
-  //     selector: 'asset_name',
-  //     sortable: true,
-  //   },
+  const handleClick = async(type,value) =>{
+    console.log(type,value)
+    const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'),type,value)
+    console.log(result[0])
+    setData(result)
 
-  //   {
-  //     name: "Actions",
-  //     sortable: false,
-  //     selector: 'null',
-  //     cell: (row) => [
-  //       <a title='Edit Asset' href="/EditAsset">
-  //         <p onClick={() => localStorage.setItem('newassetsno', `${row.sno}`)} >
-  //           <AiFillEdit className='ft-20' style={{ marginBottom: "-13px" }} />
-  //         </p></a>
-  //     ]
-  //   }
+  }
 
-  // ];
 
-  // const tableData = {
-  //   columns,
-  //   data
-  // };
   return (
     <section className='outstanding-container d-flex justify-content-around mt-2'>
       <div className='oustanding-details '>
@@ -99,7 +78,7 @@ const Outstanding = ({ setStep }) => {
 
           <div className='outstanding-totalinv bg-white rounded shadow1-silver pt-3'>
             <h2 className='mb-0' style={{ color: "#30305f" }}>{invoices.TotalVendor}</h2>
-            <p className='text-secondary'>Total Invoices</p>
+            <p className='text-secondary'>Outstanding Invoices</p>
           </div>
 
           <div className='outstanding-totalamt bg-white rounded shadow1-silver pt-3' >
@@ -107,12 +86,12 @@ const Outstanding = ({ setStep }) => {
             <p className='text-secondary'>Outstanding Amount</p>
           </div>
 
-         
           <button className='btn_for_smd' onClick={() => { setStep(5) }}>Outstanding Details</button>
 
         </div>
         <button className="top-upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>
-          BILL HISTORY</button>
+          BILL HISTORY
+          </button>
         {/* //==================================================================================================== */}
         <div className='company-outstatnding bg-white border  mt-4 rounded shadow1-silver'  >
           <div className='text-white px-4 py-2  rounded' style={{ width: "80%", marginLeft: 'auto', marginRight: 'auto', background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginTop: '-20px' }}>
@@ -154,7 +133,7 @@ const Outstanding = ({ setStep }) => {
       </div>
       <div className='outstanding-table bg-white position-relative mt-3 rounded shadow1-silver'>
         <div className=' d-flex justify-content-between text-white rounded px-4 py-2 mx-auto' style={{ width: "90%", marginTop: "-20px", background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", height: "55px" }}>
-          <p className='ft-20'> Total Invoice</p> <span title="Export" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}> <BiExport style={{ fontSize: "25px" }} /></span>
+          <p className='ft-20'> Outstanding Invoice</p> <span title="Export" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}> <BiExport style={{ fontSize: "25px" }} /></span>
         </div>
         <div className='bg-white position-absolute rounded ' style={{ right: "2%", top: "5%", width: "7%", zIndex: '1', boxShadow: "3px 3px 10px black" }}>
           {
@@ -190,10 +169,10 @@ const Outstanding = ({ setStep }) => {
                   TotalVendor.map((elements, index) => {
                     return (
                       <tr key={index}>
-                        <td>{elements.vendor}</td>
-                        <td>{elements.invoice_no}</td>    
+                        <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#vendorModal" onClick={(e)=>{e.preventDefault(); handleClick('Vendor',elements.vendor)}} >{elements.vendor}</td>
+                        <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#invoiceModal" onClick={(e)=>{e.preventDefault(); handleClick('Invoice',elements.invoice_no)}}>{elements.invoice_no}</td>    
                         <td>{elements.invoice_date}</td> 
-                        <td>{elements.reference_no}</td>
+                        <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#ReferanceModal" onClick={(e)=>{e.preventDefault(); handleClick('Referance',elements.reference_no)}}>{elements.reference_no}</td>
                         <td>{elements.invoice_amt}</td>
                       </tr>
                     )
@@ -230,6 +209,127 @@ const Outstanding = ({ setStep }) => {
             breakLinkClassName={'page-link'}
             activeClassName={'active'}
           />
+        </div>
+      </div>
+
+        {/* Vendor Modal */}
+
+        <div class="modal fade" id="vendorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Vendor Details</h5>
+            </div>
+            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+              <table className="table ">
+                <thead>
+                  <tr>
+                    <th>Vendor Name</th>
+                    <th>Company Email</th>
+                    <th>Ticket Phone</th>
+                    <th>Contact Person</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    data.length?
+                    data.map((value)=>(
+                      <tr>
+                      <td>{value.vendor_name}</td>
+                      <td>{value.company_email}</td>
+                      <td>{value.company_phone}</td>
+                      <td>{value.contact_person_name}</td>
+                      </tr>
+                    )
+                    ):""
+                  }
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Invoice Modal */}
+
+      <div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Invoice Details</h5>
+            </div>
+            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+              <table className="table ">
+                <thead>
+                  <tr>
+                    <th>Invoice Name</th>
+                    <th>Account Number</th>
+                    <th>Vendor</th>
+                    <th>Referance Number</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    data.map((value)=>(
+                      <tr>
+                      <td>{value.invoice_no}</td>
+                      <td>{value.account_no}</td>
+                      <td>{value.vendor}</td>
+                      <td>{value.reference_no}</td>
+                      </tr>
+                    )
+                    )
+                  }
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        {/* Referance Modal */}
+
+        <div class="modal fade" id="ReferanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Referance Details</h5>
+            </div>
+            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+              <table className="table ">
+                <thead>
+                  <tr>
+                    <th>Company</th>
+                    <th>Referance Number</th>
+                    <th>Location</th>
+                    <th>Payee Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    data.map((value)=>(
+                      <tr>
+                      <td>{value.company}</td>
+                      <td>{value.reference_no}</td>
+                      <td>{value.location}</td>
+                      <td>{value.payee_name}</td>
+                      </tr>
+                    )
+                    )
+                  }
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

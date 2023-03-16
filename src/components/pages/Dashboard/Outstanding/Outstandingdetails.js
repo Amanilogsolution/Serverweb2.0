@@ -1,6 +1,6 @@
 import './Outstandingdetail.css'
 import { BiSearchAlt2 } from 'react-icons/bi'
-import { VendorInvoice, PaidInvoice, FilterInvoice } from '../../../../api/index'
+import { TotalOutstanding, PaidInvoice, FilterInvoice } from '../../../../api/index'
 import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate';
 import { BsFilterLeft } from 'react-icons/bs';
@@ -23,7 +23,7 @@ const Outstatndingdetails = () => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
 
-            const datas = await VendorInvoice(org, 1, 10)
+            const datas = await TotalOutstanding(org, 1, 10)
             // console.log(datas)
             setTotalVendor(datas.data)
             setRowPerPage(10)
@@ -76,7 +76,7 @@ const Outstatndingdetails = () => {
             setLastval(Math.ceil(total / 10))
         } else {
 
-            const datas = await VendorInvoice(localStorage.getItem('Database'), data.selected + 1, rowperpage)
+            const datas = await TotalOutstanding(localStorage.getItem('Database'), data.selected + 1, rowperpage)
             setTotalVendor(datas.data)
         }
 
@@ -110,7 +110,7 @@ const Outstatndingdetails = () => {
 
             <div className="outstanding_details position-relative justify-content-around">
                 <div className='Outstanding_details_table_div bg-white rounded shadow1-silver'>
-                    <p className=' text-white text-white rounded'>Vendor Outstanding - Detailed</p>
+                    <p className=' text-white text-white rounded'>Total Invoice-Detailed</p>
                     <div className="Outstanding_details_table rounded px-3">
                         <table className="table" >
                             <thead>

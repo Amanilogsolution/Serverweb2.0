@@ -20,9 +20,6 @@ const customStyles = {
     cells: {
         style: {
             fontSize: '14px',
-            // fontWeight:'600',
-            // background: 'rgb(242,242,242)',
-            // borderBottom: "1px solid silver"
         },
     },
 };

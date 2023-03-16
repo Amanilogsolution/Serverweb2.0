@@ -80,10 +80,6 @@ function AddVendorInvoice() {
     const savatoarry = (index) => {
         let vendor = Vendorname[index];
 
-        // const val = vendor;
-        // const toindex = val.indexOf(",")
-        // vendor = val.slice(toindex + 1)
-
         const accountno = document.getElementById(`accountno-${index}`).value;
         const invno = document.getElementById(`invno-${index}`).value;
         const invamt = document.getElementById(`invamt-${index}`).value;
@@ -117,8 +113,6 @@ function AddVendorInvoice() {
                 callfun('Please Select the vendor', 'warning', 'self')
                 document.getElementById('subnitbtn').disabled = false
 
-                // setDatas({ ...datas, message: "Please Select the vendor", title: "warning", type: "warning", route: "#", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
 
@@ -128,8 +122,6 @@ function AddVendorInvoice() {
                 document.getElementById('subnitbtn').disabled = false
                 callfun('Please Select the vendor', 'warning', 'self')
 
-                // setDatas({ ...datas, message: "Please Select the vendor", title: "warning", type: "warning", route: "#", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
@@ -138,8 +130,6 @@ function AddVendorInvoice() {
                 document.getElementById('subnitbtn').disabled = false
                 callfun('Please enter the Mandatory field', 'warning', 'self')
 
-                // setDatas({ ...datas, message: "Please enter the Mandatory field", title: "warning", type: "warning", route: "#", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
 
@@ -153,15 +143,11 @@ function AddVendorInvoice() {
             if (result === 'Data Added') {
                 callfun('Vendor Invoice Added', 'success', '/TotalVendorInvoice')
 
-                // setDatas({ ...datas, message: "Vendor Invoice Added", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
             }
             else {
                 callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
 
-                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
             }
 
         }
@@ -175,6 +161,7 @@ function AddVendorInvoice() {
         const toindex = e.value.split(",")
         Vendorname[e.Index] = toindex[1]
         const vebndconid = toindex[0]
+        console.log(vebndconid)
         const detail = await VendorContractDetail(org, vebndconid);
         document.getElementById(`accountno-${e.Index}`).value = detail.customer_account_no;
         document.getElementById(`refno-${e.Index}`).value = detail.reference_no;
