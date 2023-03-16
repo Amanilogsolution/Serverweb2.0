@@ -1,6 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect,useContext } from 'react';
-import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, ActiveLocation, ActivePriority, GetNewAssetAssign, UpdateTicket, getTickets } from '../../../../api'
+import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, ActiveLocation, ActivePriority, GetNewAssetAssign, UpdateTicket, getTickets,Mail } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
@@ -120,12 +120,26 @@ export default function EditTicket() {
             return false;
         }
         else {
+            const message ={
+                org : org,
+                subject :ticketsubject,
+                username : employee_name,
+                TicketNumber : assignticket,
+                Ticketdate:ticketdate,
+                TicketType:typeofissue,
+                TicketDiscription:issuedesc,
+                TicketStatus:ticketstatus,
+                mail:email
+            }
+            
             const result = await UpdateTicket(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id, sno)
-            setLoading(true)
 
             if (result === 'Data Updated') {
                 localStorage.removeItem('TicketSno')
+                const mail = await Mail(message)
+                setLoading(true)
+
                 callfun('Ticket Updated', 'success', '/TotalTicket')
 
                 // setDatas({ ...datas, message: "Ticket Updated", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })

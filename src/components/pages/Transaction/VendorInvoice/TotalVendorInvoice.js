@@ -56,6 +56,11 @@ function TotalVendorInvoice() {
             sortable: true,
         },
         {
+            name: 'Invoice Date',
+            selector:row => `${row.date}`,
+            sortable: true,
+        },
+        {
             name: 'Upload',
             sortable: true,
             cell: (row) => [

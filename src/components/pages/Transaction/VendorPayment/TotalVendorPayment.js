@@ -40,12 +40,18 @@ const TotalVendorPayment = () => {
             name: 'Invoice No',
             selector: 'invoice_no',
             sortable: true,
-            cell: (row) => [
-                <a title='Edit VendorPayments' href="/EditVendorPayments"
-                    onClick={() => localStorage.setItem('vendorpaymentssno', `${row.sno}`)}>
-                    {row.invoice_no}
-                </a>
-            ]
+            // cell: (row) => [
+            //     <a title='Edit VendorPayments' href="/EditVendorPayments"
+            //         onClick={() => localStorage.setItem('vendorpaymentssno', `${row.sno}`)}>
+            //         {row.invoice_no}
+            //     </a>
+            // ]
+        },
+        {
+            name: 'Invoice Amount',
+            selector: 'invoice_amt',
+            sortable: true,
+          
         },
 
         {
@@ -61,6 +67,17 @@ const TotalVendorPayment = () => {
             name: 'Payment Detail',
             selector: 'payment_detail',
             sortable: true,
+            cell: (row) => [
+                <a title='Edit VendorPayments' href="/EditVendorPayments"
+                    onClick={() => localStorage.setItem('vendorpaymentssno', `${row.sno}`)}>
+                    {row.payment_detail}
+                </a>
+            ]
+        },
+        {
+            name: 'Payment Date',
+            selector: 'date',
+            sortable: true,
         },
         {
             name: 'Actions',
@@ -68,8 +85,7 @@ const TotalVendorPayment = () => {
             cell: (row) => [
                 <button className='btn' data-toggle="modal" data-target="#exampleModalCenter"
                 onClick={(e)=>{e.preventDefault(); setSno(row.sno)}}> <GrDocumentUpload/> </button>,
-                <a href={row.uploadpayment} target="_blank"><AiOutlineEye style={{fontSize:"20px"}}/></a>
-                
+                <button onClick = {()=>{  window.open(`${row.uploadpayment}`, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=400,left=10000,width=400,height=400");}} ><AiOutlineEye style={{fontSize:"20px"}}/></button>
             ],
         }
       

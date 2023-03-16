@@ -5,7 +5,7 @@ import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { FaMinusCircle } from 'react-icons/fa'
 
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi, InsertAssetSubCode } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi, InsertAssetSubCode,Mail } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Select from 'react-select';
 // import { GrFormClose } from "react-icons/gr"
