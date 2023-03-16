@@ -105,7 +105,7 @@ const Outstanding = ({ setStep }) => {
             <p className='text-secondary'>Outstanding Amount</p>
           </div>
 
-         
+
           <button className='btn_for_smd' onClick={() => { setStep(5) }}>Outstanding Details</button>
 
         </div>
@@ -147,9 +147,12 @@ const Outstanding = ({ setStep }) => {
         </div>
 
         {/* //==================================================================================================== */}
+        <div className='border border-danger'>
+          <button className="upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>
+            Outstanding Details</button>
+        </div>
 
-        <button className="upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>
-          Outstanding Details</button>
+
 
       </div>
       <div className='outstanding-table bg-white position-relative mt-3 rounded shadow1-silver'>
