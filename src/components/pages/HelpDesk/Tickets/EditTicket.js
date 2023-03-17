@@ -4,7 +4,6 @@ import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, Acti
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-// import Snackbar from '../../../../Snackbar/Snackbar';
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
 
@@ -22,14 +21,6 @@ export default function EditTicket() {
     const [prioritylist, setPrioritylist] = useState([])
     const [assettypelist, setAssettypelist] = useState([])
     // ########################### Modal Alert #############################################
-    //    const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
-
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
     // ########################### Modal Alert #############################################
 
@@ -114,9 +105,6 @@ export default function EditTicket() {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
             callfun('Please enter the Mandatory Field', 'warning', 'self')
-
-            // setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-            // document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
@@ -139,18 +127,11 @@ export default function EditTicket() {
                 localStorage.removeItem('TicketSno')
                 const mail = await Mail(message)
                 setLoading(true)
-
                 callfun('Ticket Updated', 'success', '/TotalTicket')
-
-                // setDatas({ ...datas, message: "Ticket Updated", title: "success", type: "success", route: "/TotalTicket", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
             }
             else {
                 callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-
-                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
             }
         }
     }
@@ -161,10 +142,6 @@ export default function EditTicket() {
                 loading ?
                     <Sidebar >
                         {/* ######################### Sanckbar Start ##################################### */}
-
-                        {/* <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div> */}
                         <Modal
                             theme={tooglevalue.theme}
                             text={tooglevalue.message}
@@ -228,7 +205,7 @@ export default function EditTicket() {
 
                                                     {
                                                         locationlist.map((item, index) =>
-                                                            <option key={index}>{item.location_name}</option>
+                                                            <option key={index} value={item.location_code}>{item.location_name}</option>
                                                         )
                                                     }
                                                 </select>

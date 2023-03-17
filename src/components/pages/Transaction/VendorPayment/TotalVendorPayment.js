@@ -136,6 +136,7 @@ const TotalVendorPayment = () => {
                                         defaultSortAsc={false}
                                         pagination
                                         highlightOnHover
+                                        dense
                                         customStyles={customStyles}
                                     />
                                 </DataTableExtensions>

@@ -426,7 +426,7 @@ const AddNewAssets = () => {
                                                                 <option value='' hidden>Select...</option>
                                                                 {
                                                                     locationlist.map((item, index) =>
-                                                                        <option key={index}>{item.location_name}</option>
+                                                                        <option key={index}  value={item.location_code}>{item.location_name}</option>
                                                                     )
                                                                 }
                                                             </select>

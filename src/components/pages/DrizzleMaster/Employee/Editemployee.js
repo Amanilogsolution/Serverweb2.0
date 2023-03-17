@@ -62,7 +62,7 @@ function EditEmployee() {
             const org = localStorage.getItem('Database')
             const result = await UpdateEmployees(org, sno, employee_name, location, employee_email, employee_number, company, username);
             setLoading(true)
-            
+
             if (result === 'Updated') {
                 localStorage.removeItem('employeesno');
                 callfun('Employee Updated', 'success', '/TotalEmployee')
@@ -123,7 +123,7 @@ function EditEmployee() {
                                                     <option value={data.location} hidden>{data.location}</option>
                                                     {
                                                         locationlist.map((item, index) =>
-                                                            <option key={index}>{item.location_name}</option>
+                                                            <option key={index} value={item.location_code}>{item.location_name}</option>
                                                         )
                                                     }
                                                 </select>

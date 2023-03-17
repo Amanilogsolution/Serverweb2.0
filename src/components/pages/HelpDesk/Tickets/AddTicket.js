@@ -4,7 +4,6 @@ import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, Acti
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
-// import Snackbar from '../../../../Snackbar/Snackbar';
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
 
@@ -21,14 +20,6 @@ export default function AddTicket() {
 
     const [todatdate, setTodaydate] = useState('')
     // ########################### Modal Alert #############################################
-    //    const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
-
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
     // ########################### Modal Alert #############################################
 
@@ -92,8 +83,6 @@ export default function AddTicket() {
         if (e.target.value == 'Handover') {
             document.getElementById('Handoverdetails').style.display = "flex"
             document.getElementById('AssetCondition').value = ""
-
-            // alert('Handover')
         }
         else if (e.target.value == 'Allocation') {
             document.getElementById('Handoverdetails').style.display = "flex"
@@ -144,7 +133,6 @@ export default function AddTicket() {
             document.getElementById('subnitbtn').disabled = false
             callfun('Please enter the Mandatory Field', 'warning', 'self')
 
-            // setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
             document.getElementById('snackbar').style.display = "block"
             return false;
         }
@@ -167,7 +155,6 @@ export default function AddTicket() {
             
             if (result === 'Data Added') {
                 const mail = await Mail(message)
-                // console.log(mail)
                 setLoading(true)
 
                 callfun('Ticket Added', 'success', '/TotalTicket')    
@@ -189,9 +176,6 @@ export default function AddTicket() {
                     <Sidebar >
                         {/* ######################### Sanckbar Start ##################################### */}
 
-                        {/* <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div> */}
                         <Modal
                             theme={tooglevalue.theme}
                             text={tooglevalue.message}
@@ -251,7 +235,7 @@ export default function AddTicket() {
                                                     <option value={employeedetail.location} hidden>{employeedetail.location}</option>
                                                     {
                                                         locationlist.map((item, index) =>
-                                                            <option key={index}>{item.location_name}</option>
+                                                            <option key={index} value={item.location_code}>{item.location_name}</option>
                                                         )
                                                     }
                                                 </select>

@@ -42,6 +42,11 @@ function AddEmployee() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
+
+        const ds = document.getElementById('location').value;
+        console.log(ds)
+        return 0;
+
         setLoading(false)
         document.getElementById('subnitbtn').disabled = 'true'
         const employee_name = document.getElementById('employee_name').value;
@@ -180,7 +185,7 @@ function AddEmployee() {
                                                     <option value='' hidden>Select Location</option>
                                                     {
                                                         locationlist.map((item, index) =>
-                                                            <option key={index}>{item.location_name}</option>
+                                                            <option key={index} value={item.location_code}>{item.location_name}</option>
                                                         )
                                                     }
                                                 </select>
