@@ -62,11 +62,8 @@ const Outstanding = ({ setStep }) => {
   }
 
   const handleClick = async(type,value) =>{
-    console.log(type,value)
     const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'),type,value)
-    console.log(result[0])
     setData(result)
-
   }
 
 
@@ -180,10 +177,10 @@ const Outstanding = ({ setStep }) => {
                   TotalVendor.map((elements, index) => {
                     return (
                       <tr key={index}>
-                        <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#vendorModal" onClick={(e)=>{e.preventDefault(); handleClick('Vendor',elements.vendor)}} >{elements.vendor}</td>
-                        <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#invoiceModal" onClick={(e)=>{e.preventDefault(); handleClick('Invoice',elements.invoice_no)}}>{elements.invoice_no}</td>    
+                        <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#vendorModal" onClick={(e)=>{e.preventDefault(); handleClick('Vendor',elements.vendor)}} >{elements.vendor}</td>
+                        <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#invoiceModal" onClick={(e)=>{e.preventDefault(); handleClick('Invoice',elements.invoice_no)}}>{elements.invoice_no}</td>    
                         <td>{elements.invoice_date}</td> 
-                        <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#ReferanceModal" onClick={(e)=>{e.preventDefault(); handleClick('Referance',elements.reference_no)}}>{elements.reference_no}</td>
+                        <td className="cursor-pointer text-primaryr" data-toggle="modal" data-target="#ReferanceModal" onClick={(e)=>{e.preventDefault(); handleClick('Referance',elements.reference_no)}}>{elements.reference_no}</td>
                         <td>{elements.invoice_amt}</td>
                       </tr>
                     )
@@ -225,13 +222,13 @@ const Outstanding = ({ setStep }) => {
 
         {/* Vendor Modal */}
 
-        <div class="modal fade" id="vendorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Vendor Details</h5>
+        <div className="modal fade" id="vendorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLongTitle">Vendor Details</h5>
             </div>
-            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+            <div className="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
               <table className="table ">
                 <thead>
                   <tr>
@@ -257,8 +254,8 @@ const Outstanding = ({ setStep }) => {
                 </tbody>
               </table>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -266,13 +263,13 @@ const Outstanding = ({ setStep }) => {
 
       {/* Invoice Modal */}
 
-      <div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Invoice Details</h5>
+      <div className="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLongTitle">Invoice Details</h5>
             </div>
-            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+            <div className="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
               <table className="table ">
                 <thead>
                   <tr>
@@ -297,8 +294,8 @@ const Outstanding = ({ setStep }) => {
                 </tbody>
               </table>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -306,13 +303,13 @@ const Outstanding = ({ setStep }) => {
 
         {/* Referance Modal */}
 
-        <div class="modal fade" id="ReferanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Referance Details</h5>
+        <div className="modal fade" id="ReferanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLongTitle">Referance Details</h5>
             </div>
-            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+            <div className="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
               <table className="table ">
                 <thead>
                   <tr>
@@ -337,8 +334,8 @@ const Outstanding = ({ setStep }) => {
                 </tbody>
               </table>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
