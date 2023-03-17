@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import './ticketsummary.css'
 import { FaEnvelopeOpen, FaCalendarTimes, FaUser, FaCheck, FaTelegramPlane } from 'react-icons/fa';
 import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer, Cell } from "recharts";
-import { Ticket_Summary, ActiveLocation, ActiveEmployees,OpenTotalTicket,TotalTicket,TotalHoldTicket } from '../../../../../api/index'
+import { Ticket_Summary, ActiveLocation, ActiveEmployees, OpenTotalTicket, TotalTicket, TotalHoldTicket } from '../../../../../api/index'
 
 
 const TicketSummary = () => {
   const [locationlist, setLocationlist] = useState([])
   const [employeelist, setEmployeelist] = useState([])
   const [data, setData] = useState([])
-  const [ticket,setTicket] = useState()
+  const [ticket, setTicket] = useState()
 
 
 
@@ -40,26 +40,24 @@ const TicketSummary = () => {
     fetchdata()
   }, [])
 
-  const handleChange = async(value) =>{
+  const handleChange = async (value) => {
     const org = localStorage.getItem('Database')
 
-    if(value=='Open'){
+    if (value === 'Open') {
       setTicket('Open')
       const tabledata = await OpenTotalTicket(org);
       setData(tabledata)
-    }else if(value=='Closed'){
+    } else if (value === 'Closed') {
       setTicket('Closed')
       const tabledata = await TotalTicket(org);
-      setData(tabledata)  
-      }
-      else if(value=='Hold'){
-        setTicket('Hold')
-        const tabledata = await TotalHoldTicket(org);
-        setData(tabledata)   
-      }
-
-   
-    console.log(value)
+      console.log('hii',tabledata)
+      setData(tabledata)
+    }
+    else if (value === 'Hold') {
+      setTicket('Hold')
+      const tabledata = await TotalHoldTicket(org);
+      setData(tabledata)
+    }
   }
 
 
@@ -194,7 +192,7 @@ const TicketSummary = () => {
         <hr />
         <div className='Summary_cards'>
 
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" >
+          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around'  >
             <div className='summary_icon text-light mx-2 ' >
               <FaUser className='m-1' style={{ fontSize: "23px" }} />
             </div>
@@ -204,8 +202,8 @@ const TicketSummary = () => {
             </div>
           </div>
 
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
-          style={{cursor:"pointer"}} onClick={(e)=>{e.preventDefault(); handleChange('Open')}}>
+          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around cursor-pointer' data-toggle="modal" data-target="#exampleModalCenter"
+              onClick={(e) => { e.preventDefault(); handleChange('Open') }}>
             <div className='summary_icon mx-2 text-light ' >
               <FaEnvelopeOpen style={{ fontSize: "23px" }} />
             </div>
@@ -216,8 +214,8 @@ const TicketSummary = () => {
             </div>
           </div>
 
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
-          style={{cursor:"pointer"}} onClick={(e)=>{e.preventDefault(); handleChange('Closed')}}>
+          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around cursor-pointer' data-toggle="modal" data-target="#exampleModalCenter"
+            onClick={(e) => { e.preventDefault(); handleChange('Closed') }}>
             <div className='summary_icon text-light mx-2 ' style={{ padding: "12px 12px" }}>
               <FaCheck className='m-1' style={{ fontSize: "23px" }} />
             </div>
@@ -227,8 +225,8 @@ const TicketSummary = () => {
             </div>
           </div>
 
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" 
-          style={{cursor:"pointer"}} onClick={(e)=>{e.preventDefault(); handleChange('Hold')}}>
+          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around cursor-pointer' data-toggle="modal" data-target="#exampleModalCenter"
+             onClick={(e) => { e.preventDefault(); handleChange('Hold') }}>
             <div className='summary_icon text-light mx-2 ' style={{ padding: "12px 14px" }}>
               <FaTelegramPlane style={{ fontSize: "23px" }} />
             </div>
@@ -241,15 +239,15 @@ const TicketSummary = () => {
 
       </div>
 
-       {/* Modal */}
+      {/* Modal */}
 
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">{ticket} Ticket</h5>
+      <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div className="modal-dialog modal-dialog-centered" role="document" style={{ maxWidth:'50vw'}}>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLongTitle">{ticket} Ticket</h5>
             </div>
-            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+            <div className="modal-body" style={{ maxHeight: "75vh", overflow: "auto" }}>
               <table className="table ">
                 <thead>
                   <tr>
@@ -261,12 +259,12 @@ const TicketSummary = () => {
                 </thead>
                 <tbody>
                   {
-                    data.map((value)=>(
-                      <tr>
-                      <td>{value.emp_name}</td>
-                      <td>{value.date}</td>
-                      <td>{value.ticket_subject}</td>
-                      <td>{value.add_user_name}</td>
+                    data.map((value,index) => (
+                      <tr key={index}>
+                        <td>{value.emp_name}</td>
+                        <td>{value.date}</td>
+                        <td>{value.ticket_subject}</td>
+                        <td>{value.add_user_name}</td>
                       </tr>
                     )
                     )
@@ -274,8 +272,8 @@ const TicketSummary = () => {
                 </tbody>
               </table>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>

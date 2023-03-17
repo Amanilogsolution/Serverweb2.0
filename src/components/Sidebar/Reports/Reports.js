@@ -166,7 +166,7 @@ export default function Reports() {
                                 <div className="col-md-4 mt-2" >
                                     <label htmlFor='asset_type'>Major <span className='text-danger'>*</span></label>
 
-                                    <select onChange={handleColumns} id="tableselect" class="form-control">
+                                    <select onChange={handleColumns} id="tableselect" className="form-control">
                                         <option value="" hidden>Select ...</option>
                                         <option value="tbl_new_assets">Assets</option>
                                         <option value="tbl_vendor_code_master">Vendor Contract</option>

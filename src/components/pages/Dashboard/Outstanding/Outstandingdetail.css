@@ -42,7 +42,7 @@ tbody tr {
 
 .Outstanding_details_table_div .outstanding-pagination {
     position: absolute;
-    bottom: 0px;
+    bottom: -13px;
     width: 98%;
 }
 
