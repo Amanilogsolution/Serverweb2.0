@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './VendorDash.css'
-import { Vendor_Reference_no, TotalVendorContract, ActiveVendorCode, ActiveBillingFreq, ActiveLocation, ActiveVendorCategory, FilterVendorContract } from '../../../../api/index'
+import { Vendor_Reference_no, TotalVendorContract, ActiveVendorCode, ActiveBillingFreq, ActiveLocation, ActiveVendorCategory, FilterVendorContract,Outstanding_Invoice_filter } from '../../../../api/index'
 import ReactPaginate from 'react-paginate';
 import { CSVLink } from "react-csv";
 import { BiExport } from 'react-icons/bi'
@@ -25,6 +25,7 @@ export default function VendorDash({ setStep }) {
   const [billingfreqlist, setBillingfreqlist] = useState([])
   const [locationlist, setLocationlist] = useState([])
   const [vendorcatlist, setVendorcatlist] = useState([])
+  const [data,setData] = useState([])
 
 
   const exportExcel = async () => {
@@ -100,6 +101,14 @@ export default function VendorDash({ setStep }) {
 
   }
 
+  const handleClick = async(type,value) =>{
+    console.log(type,value)
+    const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'),type,value)
+    console.log(result[0])
+    setData(result)
+
+  }
+
   return (
     <div className='VendorDash d-flex '>
       <div className='VendorDash1 bg-light rounded position-relative shadow1-silver' >
@@ -147,12 +156,12 @@ export default function VendorDash({ setStep }) {
                   TotalVendor.map((elements, index) => {
                     return (
                       <tr key={index}>
-                        <td>{elements.vendor}</td>
+                      <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#vendorModal" onClick={(e)=>{e.preventDefault(); handleClick('Vendor',elements.vendor)}} >{elements.vendor}</td>
                         <td>{elements.location}</td>
                         <td>{elements.major_category}</td>
                         <td>{elements.sub_category}</td>
                         <td>{elements.customer_account_no}</td>
-                        <td>{elements.reference_no}</td>
+                        <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#ReferanceModal" onClick={(e)=>{e.preventDefault(); handleClick('Referance',elements.reference_no)}}>{elements.reference_no}</td>
                         <td>{elements.help_desk_no}</td>
                         <td>{elements.billling_freq}</td>
                       </tr>
@@ -248,6 +257,87 @@ export default function VendorDash({ setStep }) {
           </div>
         </div>
       </div>
+         {/* Vendor Modal */}
+
+         <div class="modal fade" id="vendorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Vendor Details</h5>
+            </div>
+            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+              <table className="table ">
+                <thead>
+                  <tr>
+                    <th>Vendor Name</th>
+                    <th>Company Email</th>
+                    <th>Ticket Phone</th>
+                    <th>Contact Person</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    data.length?
+                    data.map((value)=>(
+                      <tr>
+                      <td>{value.vendor_name}</td>
+                      <td>{value.company_email}</td>
+                      <td>{value.company_phone}</td>
+                      <td>{value.contact_person_name}</td>
+                      </tr>
+                    )
+                    ):""
+                  }
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+ {/* Referance Modal */}
+
+ <div class="modal fade" id="ReferanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Referance Details</h5>
+            </div>
+            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+              <table className="table ">
+                <thead>
+                  <tr>
+                    <th>Company</th>
+                    <th>Referance Number</th>
+                    <th>Location</th>
+                    <th>Payee Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    data.map((value)=>(
+                      <tr>
+                      <td>{value.company}</td>
+                      <td>{value.reference_no}</td>
+                      <td>{value.location}</td>
+                      <td>{value.payee_name}</td>
+                      </tr>
+                    )
+                    )
+                  }
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   )
 }
