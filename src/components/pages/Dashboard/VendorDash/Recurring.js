@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Recurring.css'
 import ReactPaginate from 'react-paginate';
-import { Recurring_Vendor, Recurring_Frequency } from '../../../../api/index'
+import { Recurring_Vendor, Recurring_Frequency,Outstanding_Invoice_filter } from '../../../../api/index'
 import { CSVLink } from "react-csv";
 import { BiExport } from 'react-icons/bi'
 import { SiMicrosoftexcel } from 'react-icons/si'
@@ -18,12 +18,21 @@ export default function Recurring() {
   const [VendorFreq, setVendorFreq] = useState({})
   const [rowperpage, setRowPerPage] = useState(10)
   const [toogle, setToogle] = useState(false)
+  const [data,setData] = useState([])
 
 
 
 
   const exportExcel = async () => {
     const datasss = ExcelConvertData(Recurringdata)
+  }
+
+  const handleClick = async(type,value) =>{
+    console.log(type,value)
+    const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'),type,value)
+    console.log(result[0])
+    setData(result)
+
   }
 
   // const handlePrint= (e) =>{
@@ -112,12 +121,12 @@ export default function Recurring() {
                   Recurringdata.map((elements, index) => {
                     return (
                       <tr key={index}>
-                        <td>{elements.vendor}</td>
+                      <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#vendorModal" onClick={(e)=>{e.preventDefault(); handleClick('Vendor',elements.vendor)}} >{elements.vendor}</td>
                         <td>{elements.location}</td>
                         <td>{elements.major_category}</td>
                         <td>{elements.sub_category}</td>
                         <td>{elements.customer_account_no}</td>
-                        <td>{elements.reference_no}</td>
+                        <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#ReferanceModal" onClick={(e)=>{e.preventDefault(); handleClick('Referance',elements.reference_no)}}>{elements.reference_no}</td>
                         <td>{elements.help_desk_no}</td>
                         <td>{elements.billling_freq}</td>
                       </tr>
@@ -188,6 +197,88 @@ export default function Recurring() {
           <h3>{VendorFreq.InvoiceReceived}</h3>
         </div>
       </div>
+
+    {/* Vendor Modal */}
+
+    <div class="modal fade" id="vendorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Vendor Details</h5>
+            </div>
+            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+              <table className="table ">
+                <thead>
+                  <tr>
+                    <th>Vendor Name</th>
+                    <th>Company Email</th>
+                    <th>Ticket Phone</th>
+                    <th>Contact Person</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    data.length?
+                    data.map((value)=>(
+                      <tr>
+                      <td>{value.vendor_name}</td>
+                      <td>{value.company_email}</td>
+                      <td>{value.company_phone}</td>
+                      <td>{value.contact_person_name}</td>
+                      </tr>
+                    )
+                    ):""
+                  }
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Referance Modal */}
+
+ <div class="modal fade" id="ReferanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Referance Details</h5>
+            </div>
+            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+              <table className="table ">
+                <thead>
+                  <tr>
+                    <th>Company</th>
+                    <th>Referance Number</th>
+                    <th>Location</th>
+                    <th>Payee Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    data.map((value)=>(
+                      <tr>
+                      <td>{value.company}</td>
+                      <td>{value.reference_no}</td>
+                      <td>{value.location}</td>
+                      <td>{value.payee_name}</td>
+                      </tr>
+                    )
+                    )
+                  }
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   )
 }
