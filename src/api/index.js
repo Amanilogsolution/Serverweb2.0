@@ -1216,6 +1216,13 @@ export const Ticket_issue_type= async (org) => {
     return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const Filter_Ticket_Summary= async (org) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/filter_ticket_summary`
+    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+}
+
+
+
 // Vendor Dashboard
 export const Vendor_Reference_no = async (org) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/ReferanceNumber`
@@ -1274,6 +1281,12 @@ export const PendingRecurringInvoiceApi = async (org) => {
     const url = `http://192.168.146.144:2008/api/recurringpendinginvoice`
     return axios.post(url, { org}).then(response => response.data).catch(error => console.log(error));
 }
+export const Outstanding_Invoice_filter = async (org,type,value) => {
+    const url = `http://192.168.146.144:2008/api/outstandinginvoicefilter`
+    return axios.post(url, { org,type,value }).then(response => response.data).catch(error => console.log(error));
+}
+
+
 
 // User Details
 export const getUserdetails = async (org,user_id) => {
@@ -1316,7 +1329,6 @@ export const CurrencyMaster = async() =>{
 }
 
 //Role Master
-
 export const totalRoles = async(org) =>{
     const url = `https://drizzlebackend.awlworldwide.com/api/totalroles`
     return axios.post(url, {org}).then(response => response.data).catch(error => console.log(error));  
