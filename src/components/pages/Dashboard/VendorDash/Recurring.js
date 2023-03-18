@@ -9,8 +9,6 @@ import { GrDocumentCsv } from 'react-icons/gr'
 import { ExcelConvertData } from './Excel'
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 
-
-
 export default function Recurring() {
   const [Recurringdata, setRecurringData] = useState([])
   const [TotalRecurring, setTotalRecurring] = useState()
@@ -20,9 +18,6 @@ export default function Recurring() {
   const [toogle, setToogle] = useState(false)
   const [data,setData] = useState([])
 
-
-
-
   const exportExcel = async () => {
     const datasss = ExcelConvertData(Recurringdata)
   }
@@ -30,9 +25,7 @@ export default function Recurring() {
   const handleClick = async(type,value) =>{
     console.log(type,value)
     const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'),type,value)
-    console.log(result[0])
     setData(result)
-
   }
 
   // const handlePrint= (e) =>{
@@ -63,16 +56,17 @@ export default function Recurring() {
   const handleChange = async (e) => {
     e.preventDefault();
     setRowPerPage(e.target.value)
-
     const datas = await Recurring_Vendor(localStorage.getItem('Database'), 1, e.target.value)
     setRecurringData(datas.data)
     const total = datas.TotalData[0]["Totaldata"]
     setLastval(Math.ceil(total / e.target.value))
   }
+
   const handlePageClick = async (data) => {
     const datas = await Recurring_Vendor(localStorage.getItem('Database'), data.selected + 1, rowperpage)
     setRecurringData(datas.data)
   }
+
   return (
     <div className='Recurring_div justify-content-around mx-2'>
 
@@ -82,7 +76,6 @@ export default function Recurring() {
           <div title="Export" className="d-flex justify-content-end text-white cursor-pointer" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }} >
             <BiExport style={{ fontSize: "25px" }} />
           </div>
-
           {
             toogle ?
               <div className="d-flex flex-column justify-content-center align-items-center bg-light position-absolute rounded py-1" style={{ right: "4%", top: '25%', width: "5%", boxShadow: "3px 3px 10px black" }}>
@@ -97,11 +90,9 @@ export default function Recurring() {
               </div>
               : ''
           }
-
         </div>
 
         <div className='recurring_table_inside px-3'>
-
           <div id="pagination">
             <table className="table " >
               <thead>
@@ -145,7 +136,6 @@ export default function Recurring() {
               <option value="10">10</option>
               <option value="15">15</option>
               <option value="20">20</option>
-
             </select>
           </div>
           <div className='react_pagination'>

@@ -8,7 +8,6 @@ import LoadingPage from '../../LoadingPage/LoadingPage';
 
 function AddDevice() {
     const [loading, setLoading] = useState(false)
-
     const [activeservice, setActiveService] = useState([])
     const [activedevicetype, setActiveDeviceType] = useState([])
     const [activedevicegroup, setActiveDevicegroup] = useState([]);
@@ -32,7 +31,6 @@ function AddDevice() {
             setActiveOperatingSystem(Operatingsystem)
             const Agent = await ActiveAgent()
             setActiveAgent(Agent)
-
             const series = await ActiveSeries()
             if (!series) {
                 alert('Please add/active  the Series')
@@ -43,8 +41,6 @@ function AddDevice() {
             let countincrement = count.count + 1;
             let countnum = '' + countincrement;
             setDeviceID(ser + countnum)
-
-
         }
         fetchdata()
         Todaydate()
@@ -53,7 +49,6 @@ function AddDevice() {
 
     const Todaydate = () => {
         var date = new Date();
-
         var day = date.getDate();
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
@@ -62,8 +57,6 @@ function AddDevice() {
         var today = year + "-" + month + "-" + day;
         setCreatedate(today)
         setResisterdate(today)
-        // document.getElementById("createdate").value = today;
-        // document.getElementById("registerdate").value = today;
     }
 
     const handleadddevice = async (e) => {
@@ -80,11 +73,9 @@ function AddDevice() {
         const agent = document.getElementById('agent').value
         const remark = document.getElementById('remark').value
 
-
         if (!devicename || !devicetype || !devicegroup || !createdate || !registerdate || !agent) {
             alert("Please enter Mandatory field")
             setLoading(true)
-
         }
         else {
             const arryresult = [];
@@ -98,19 +89,12 @@ function AddDevice() {
                     alert('Device Added')
                     window.location.href = '/TotalDevice'
                 }
-
                 else {
                     alert("Server Error");
                     setLoading(true)
-
                 }
             }, 1300)
-
         }
-
-
-
-
     }
 
     let options = activeservice.map((ele) => {
@@ -131,7 +115,6 @@ function AddDevice() {
                                 <h2><span style={{ color: "rgb(123,108,200)" }}>Device</span> <MdOutlineKeyboardArrowRight /><span style={{ fontSize: "25px" }}>Add Device</span> </h2>
                                 <button className='btn btn-secondary btn ' onClick={() => { window.location.href = '/TotalDevice' }} >Back <MdOutlineArrowForward /></button>
                             </div>
-
 
                             <div className="contract-div" style={{ width: "90%" }}>
                                 <div className="card inner-card">
@@ -236,7 +219,6 @@ function AddDevice() {
                                                     <textarea className="form-control" placeholder="Comments" id='remark' rows="3" />
                                                 </div>
                                             </div>
-
                                             <div className="form-group mt-3" >
                                                 <button type="submit" className="btn btn-voilet " id="subnitbtn" onClick={handleadddevice}>Add Device</button>&nbsp;
                                                 <button type="reset" className="btn btn-secondary ">Reset</button>
@@ -245,7 +227,6 @@ function AddDevice() {
                                     </article>
                                 </div>
                             </div>
-
                         </div>
                     </Sidebar>
                     : <LoadingPage />

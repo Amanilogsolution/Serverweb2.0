@@ -10,7 +10,6 @@ import { ExcelConvertData } from './Excel'
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 import { VscReferences } from 'react-icons/vsc';
 
-
 export default function VendorDash({ setStep }) {
   const [ReferabceNo, setReferanceNo] = useState()
   const [TotalVendor, setTotalVendor] = useState([])
@@ -18,7 +17,6 @@ export default function VendorDash({ setStep }) {
   const [filter, setFilter] = useState(false)
   const [type, setType] = useState("")
   const [value, setValue] = useState("")
-
   const [lastval, setLastval] = useState()
   const [toogle, setToogle] = useState(false)
   const [vendorlist, setVendorlist] = useState([])
@@ -27,7 +25,6 @@ export default function VendorDash({ setStep }) {
   const [vendorcatlist, setVendorcatlist] = useState([])
   const [data,setData] = useState([])
 
-
   const exportExcel = async () => {
     const datasss = ExcelConvertData(TotalVendor)
   }
@@ -35,7 +32,6 @@ export default function VendorDash({ setStep }) {
   useEffect(() => {
     const fetchdata = async () => {
       const org = localStorage.getItem('Database')
-
       const ReferanceNo = await Vendor_Reference_no(localStorage.getItem('Database'))
       setReferanceNo(ReferanceNo.data)
       const datas = await TotalVendorContract(localStorage.getItem('Database'), 1, 10)
@@ -43,34 +39,26 @@ export default function VendorDash({ setStep }) {
       const total = datas.TotalData[0]["Totaldata"]
       setRowPerPage(10)
       setLastval(Math.ceil(total / 10))
-
       const vendorall = await ActiveVendorCode(localStorage.getItem('Database'));
       setVendorlist(vendorall)
-
       const billing = await ActiveBillingFreq(localStorage.getItem('Database'));
       setBillingfreqlist(billing)
-
       const tablelocation = await ActiveLocation(org);
       setLocationlist(tablelocation)
-
       const vendorCategory = await ActiveVendorCategory(org)
       setVendorcatlist(vendorCategory)
-
     }
     fetchdata()
-
   }, [])
 
   const handlePageClick = async (data) => {
     if (filter == true) {
       const result = await FilterVendorContract(localStorage.getItem('Database'), type, value, data.selected + 1, rowperpage)
       setTotalVendor(result.data)
-
     } else {
       const datas = await TotalVendorContract(localStorage.getItem('Database'), data.selected + 1, rowperpage)
       setTotalVendor(datas.data)
     }
-
   }
 
   const handleChange = async (e) => {
@@ -98,7 +86,6 @@ export default function VendorDash({ setStep }) {
     setTotalVendor(result.data)
     const total = result.TotalData[0]["Totaldata"]
     setLastval(Math.ceil(total / 10))
-
   }
 
   const handleClick = async(type,value) =>{
@@ -106,7 +93,6 @@ export default function VendorDash({ setStep }) {
     const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'),type,value)
     console.log(result[0])
     setData(result)
-
   }
 
   return (
@@ -203,13 +189,11 @@ export default function VendorDash({ setStep }) {
             />
           </div>
         </div>
-
       </div>
 
       {/* Sidevar Filter */}
       <div className='VendorDash2 rounded'>
         <button className="nextVendor_AnimationBtn text-white btn px-4 py-3 position-relative" id="recurring" onClick={() => { setStep(6) }}>Recurring Details</button>
-
         <div className='select_container bg-white px-3 py-2 rounded mt-2 ' style={{ boxShadow: '1px 1px 3px silver' }}>
           <div className='select_div text-center rounded bg-white'>
             <select className="form-select" aria-label="Default select example" id="Vendname" onChange={() => { handleChangeFilter("vendor", document.getElementById('Vendname').value) }}>
@@ -257,8 +241,8 @@ export default function VendorDash({ setStep }) {
           </div>
         </div>
       </div>
-         {/* Vendor Modal */}
 
+         {/* Vendor Modal */}
          <div class="modal fade" id="vendorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
