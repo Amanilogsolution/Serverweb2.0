@@ -1,0 +1,8 @@
+.vendor-Invoice-list{
+    padding-left: 10px;
+}
+
+.vendor-Invoice-list:hover{
+    background: #eee;
+    padding-left: 10px;
+}

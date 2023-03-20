@@ -24,6 +24,7 @@ const TotalVendorPayment = () => {
 
             const tabledata = await TotalVendorPaymentapi(org);
             setData(tabledata)
+            console.log(tabledata)
             setLoading(true)
         }
         fetchdata();
@@ -96,9 +97,10 @@ const TotalVendorPayment = () => {
             name: 'Actions',
             sortable: true,
             cell: (row) => [
-                <button className='btn' data-toggle="modal" data-target="#exampleModalCenter"
-                    onClick={(e) => { e.preventDefault(); setSno(row.sno) }}> <GrDocumentUpload /> </button>,
-                <button onClick={() => { window.open(`${row.uploadpayment}`, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=400,left=10000,width=400,height=400"); }} ><AiOutlineEye style={{ fontSize: "20px" }} /></button>
+                // <button className='btn' data-toggle="modal" data-target="#exampleModalCenter"
+                //     onClick={(e) => { e.preventDefault(); setSno(row.sno) }}> <GrDocumentUpload /> </button>,
+                <button className='bg-transparent border-0' onClick={() => { window.open(`${row.uploadpayment}`, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=400,left=10000,width=400,height=400"); }} >
+                    <AiOutlineEye style={{ fontSize: "20px",color:row.uploadpayment===''?'red':'green' }} /></button>
             ],
         }
 
@@ -148,7 +150,9 @@ const TotalVendorPayment = () => {
                                 </DataTableExtensions>
                             </div>
                         </div>
-                        <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+                        {/* Upload Model Start */}
+                        {/* <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div className="modal-dialog modal-dialog-centered" role="document">
                                 <div className="modal-content">
                                     <div className="modal-header">
@@ -176,7 +180,9 @@ const TotalVendorPayment = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
+                        {/* Upload Model End */}
+
                     </Sidebar>
                     : <LoadingPage />
             }

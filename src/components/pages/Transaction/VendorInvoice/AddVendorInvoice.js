@@ -4,11 +4,10 @@ import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice } from 
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
-import Select from 'react-select';
-// import Snackbar from '../../../../Snackbar/Snackbar';
+// import Select from 'react-select';
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
-
+import './addVendorInvoice.css'
 
 function AddVendorInvoice() {
 
@@ -19,15 +18,9 @@ function AddVendorInvoice() {
     const [arryval, setArryval] = useState([{}]);
     const [vendorcontractlist, setVendorcontractlist] = useState([])
     const [Vendorname, setVendorname] = useState([])
-    // ########################### Modal Alert #############################################
-    //    const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
+    const [indexno, setIndexno] = useState()
 
+    // ########################### Modal Alert #############################################
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
     // ########################### Modal Alert #############################################
 
@@ -43,9 +36,9 @@ function AddVendorInvoice() {
         fetchdata();
     }, [])
 
-    let options = vendorcontractlist.map((ele) => {
-        return { value: `${ele.sno},${ele.vendor}`, label: `${ele.vendor}, ${ele.reference_no}` };
-    })
+    // let options = vendorcontractlist.map((ele) => {
+    //     return { value: `${ele.sno},${ele.vendor}`, label: `${ele.vendor}, ${ele.reference_no}` };
+    // })
     const todaydate = () => {
         let date = new Date();
         let day = date.getDate();
@@ -79,7 +72,6 @@ function AddVendorInvoice() {
 
     const savatoarry = (index) => {
         let vendor = Vendorname[index];
-
         const accountno = document.getElementById(`accountno-${index}`).value;
         const invno = document.getElementById(`invno-${index}`).value;
         const invamt = document.getElementById(`invamt-${index}`).value;
@@ -102,6 +94,8 @@ function AddVendorInvoice() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
+        console.log(arryval)
+        return 0;
         document.getElementById('subnitbtn').disabled = 'true'
         setLoading(false)
         const org = localStorage.getItem('Database')
@@ -132,7 +126,6 @@ function AddVendorInvoice() {
 
                 errorcount = errorcount + 1;
                 return false;
-
             }
         }
         if (errorcount === 0) {
@@ -142,29 +135,28 @@ function AddVendorInvoice() {
 
             if (result === 'Data Added') {
                 callfun('Vendor Invoice Added', 'success', '/TotalVendorInvoice')
-
             }
             else {
                 callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-
             }
-
         }
-
-
-
     }
 
     const handleChnageVendorDetail = async (e) => {
         const org = localStorage.getItem('Database')
-        const toindex = e.value.split(",")
-        Vendorname[e.Index] = toindex[1]
-        const vebndconid = toindex[0]
-        console.log(vebndconid)
-        const detail = await VendorContractDetail(org, vebndconid);
+        Vendorname[e.Index] = e.vendor;
+        const detail = await VendorContractDetail(org, e.sno);
         document.getElementById(`accountno-${e.Index}`).value = detail.customer_account_no;
         document.getElementById(`refno-${e.Index}`).value = detail.reference_no;
+
+        // const toindex = e.value.split(",")
+        // Vendorname[e.Index] = toindex[1]
+        // const vebndconid = toindex[0]
+        // console.log(vebndconid)
+        // const detail = await VendorContractDetail(org, vebndconid);
+        // document.getElementById(`accountno-${e.Index}`).value = detail.customer_account_no;
+        // document.getElementById(`refno-${e.Index}`).value = detail.reference_no;
     }
 
 
@@ -174,10 +166,6 @@ function AddVendorInvoice() {
                 loading ?
                     <Sidebar>
                         {/* ######################### Sanckbar Start ##################################### */}
-
-                        {/* <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div> */}
                         <Modal
                             theme={tooglevalue.theme}
                             text={tooglevalue.message}
@@ -220,10 +208,15 @@ function AddVendorInvoice() {
                                                 {arry.map((item, index) => (
                                                     <tr key={index}>
                                                         <td className='p-0 '>
-                                                            <Select options={options} className="col" isMulti={false}
+                                                            {/* <Select options={options} className="col" isMulti={false}
                                                                 onBlur={() => savatoarry(index)}
                                                                 onChange={(e) => handleChnageVendorDetail({ ...e, Index: index })}
-                                                            />
+                                                            /> */}
+
+                                                            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+                                                                onClick={(e) => { setIndexno(index) }}>
+                                                                {Vendorname[index] !==undefined ? Vendorname[index] : "Select"}
+                                                            </button>
                                                         </td>
                                                         <td className='p-0 '><input type='text' id={`accountno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 '><input type='text' id={`invno-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
@@ -250,6 +243,40 @@ function AddVendorInvoice() {
                     </Sidebar>
                     : <LoadingPage />
             }
+
+            {/* ####################### Vendor  Modal  Start ################################## */}
+            <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document" style={{ minWidth: '60vw' }}>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <button type="button" className="close bg-transparent border-0" data-dismiss="modal" aria-label="Close" >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body overflow-auto" style={{ maxHeight: '60vh' }}>
+                            <ul>
+                                {
+                                    vendorcontractlist.map((item, index) => (
+                                        <li key={index} className="vendor-Invoice-list cursor-pointer" data-dismiss="modal"
+                                            value={`${item.sno},${item.vendor}`}
+                                            onClick={(e) => {
+                                                handleChnageVendorDetail({ sno: item.sno, vendor: item.vendor, reference_no: item.reference_no, Index: indexno });
+                                                savatoarry(indexno)
+                                            }}
+                                        >{item.vendor}, ({item.reference_no})</li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* ####################### Vendor  Modal  End ################################## */}
+
         </>
     )
 }
