@@ -60,7 +60,14 @@ const TotalVendorPayment = () => {
             selector: 'invoice_amt',
             sortable: true,
         },
-
+        {
+            name: 'Approved Amt',
+            selector: 'approved_payment_amt',
+            sortable: true,
+            cell: (row) => [
+                <p>{`₹ ${row.approved_payment_amt}`}</p>
+            ]
+        },
         {
             name: 'Payment Amt',
             selector: 'payment_amt',
@@ -111,7 +118,6 @@ const TotalVendorPayment = () => {
     const handleParticularData = async (type, value) => {
         const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'), type, value)
         setParticularInvoiceData(result)
-        console.log(type,result)
     }
     const tableData = {
         columns,
