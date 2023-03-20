@@ -274,7 +274,7 @@ function AddVendorPayment() {
                                         <div className="modal-footer">
                                             {/* <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button> */}
                                             {
-                                                loading2 ? null : 'Wait for a Second'
+                                                loading2 ? null : 'Wait a Second'
                                             }
                                             <button type="button" className="btn btn-primary" id="uploadbutton" data-dismiss="modal" style={{ display: "none" }}
                                                 onClick={(e) => { e.preventDefault(); savatoarry(indexno) }}>Upload</button>

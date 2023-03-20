@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice } from '../../../../api'
+import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice, FileUpload } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
@@ -12,6 +12,8 @@ import './addVendorInvoice.css'
 function AddVendorInvoice() {
 
     const [loading, setLoading] = useState(false)
+    const [loading2, setLoading2] = useState(false)
+
     const [todatdate, setTodaydate] = useState('')
     const [count, setCount] = useState(0);
     const [arry, setArry] = useState([0]);
@@ -19,6 +21,9 @@ function AddVendorInvoice() {
     const [vendorcontractlist, setVendorcontractlist] = useState([])
     const [Vendorname, setVendorname] = useState([])
     const [indexno, setIndexno] = useState()
+    const [uploadindexno, setUploadindexno] = useState()
+
+    const [file, setFile] = useState([])
 
     // ########################### Modal Alert #############################################
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
@@ -85,7 +90,7 @@ function AddVendorInvoice() {
 
         let obj = {
             vendor: vendor, accountno: accountno, invno: invno, invamt: invamt, invdate: invdate,
-            invduedate: invduedate, invsubdate: invsubdate, remark: remark, refno: refno, printercount: printercount
+            invduedate: invduedate, invsubdate: invsubdate, remark: remark, refno: refno, printercount: printercount,files:file[index]
         };
 
         arryval[index] = obj;
@@ -202,6 +207,7 @@ function AddVendorInvoice() {
                                                     <th scope="col">Remark </th>
                                                     <th scope="col">Ref no. <span className='text-danger'>*</span></th>
                                                     <th scope="col">Reading</th>
+                                                    <th scope="col">Upload</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -213,9 +219,9 @@ function AddVendorInvoice() {
                                                                 onChange={(e) => handleChnageVendorDetail({ ...e, Index: index })}
                                                             /> */}
 
-                                                            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+                                                            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#vendorModalCenter"
                                                                 onClick={(e) => { setIndexno(index) }}>
-                                                                {Vendorname[index] !==undefined ? Vendorname[index] : "Select"}
+                                                                {Vendorname[index] !== undefined ? Vendorname[index] : "Select"}
                                                             </button>
                                                         </td>
                                                         <td className='p-0 '><input type='text' id={`accountno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
@@ -227,6 +233,11 @@ function AddVendorInvoice() {
                                                         <td className='p-0 '><input type='text' id={`remark-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 '><input type='text' id={`refno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 '><input type='text' id={`printercount-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 '><button className='form-control m-0 btn btn-success border-0' data-toggle="modal" data-target="#exampleModalCenter"
+                                                            onClick={(e) => { e.preventDefault(); setUploadindexno(index); 
+                                                                document.getElementById("uploadbutton").style.display = "none";
+                                                                document.getElementById("inputfile").value = '';}}
+                                                        >Upload</button></td>
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -244,8 +255,52 @@ function AddVendorInvoice() {
                     : <LoadingPage />
             }
 
-            {/* ####################### Vendor  Modal  Start ################################## */}
+            {/* ####################### Upload  Modal  Start ################################## */}
+
             <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLongTitle">Upload Invoice</h5>
+
+                        </div>
+                        <div className="modal-body">
+                            <input type="file" id='inputfile' onChange={async (event) => {
+                                console.log(event.target.files[0])
+                                setLoading2(true)
+                                setTimeout(async () => {
+                                    const data = new FormData();
+                                    data.append("images", event.target.files[0])
+                                    const UploadLink = await FileUpload(data)
+                                    if (UploadLink.length > 1) {
+                                        file[uploadindexno] = UploadLink;
+                                        document.getElementById("uploadbutton").style.display = "flex"
+                                        setLoading2(false)
+                                    }
+
+                                }, 2000)
+
+                            }} />
+                        </div>
+                        <div className="modal-footer">
+                            {/* <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button> */}
+                            <button type="button" className="btn btn-primary" id="uploadbutton" data-dismiss="modal" style={{ display: "none" }}
+                                onClick={(e) => { e.preventDefault(); savatoarry(uploadindexno) }}
+                            >Upload</button>
+                            {
+                                loading2 ? "Wait a Sec" : null
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* ####################### Upload  Modal  ENd ################################## */}
+
+
+
+
+            {/* ####################### Vendor  Modal  Start ################################## */}
+            <div className="modal fade" id="vendorModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document" style={{ minWidth: '60vw' }}>
                     <div className="modal-content">
                         <div className="modal-header">

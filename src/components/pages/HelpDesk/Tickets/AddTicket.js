@@ -76,11 +76,12 @@ export default function AddTicket() {
         setEmployeedetail(detail)
         const assetall = await GetNewAssetAssign(org, employee_id)
         setAssettypelist(assetall)
+        console.log(assetall)
     }
 
 
     let options = assettypelist.map((ele) => {
-        return { value: ele.serial_no, label: [ele.asset_type, ' , ', ele.serial_no] };
+        return { value: ele.serial_no, label: [ele.asset_type, ' , ', ele.serial_no,'  (',ele.manufacture,') '] };
     })
     options.push({ value: 'other', label: ['other'] })
 
