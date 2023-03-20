@@ -270,11 +270,11 @@ const TicketSummary = () => {
 
       {/* Modal */}
 
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">{ticket} Ticket</h5>
+      <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div className="modal-dialog modal-dialog-centered" role="document" style={{ maxWidth:'50vw'}}>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLongTitle">{ticket} Ticket</h5>
             </div>
             <div class="modal-body" style={{ maxHeight: "80vh", overflow: "auto" }}>
               <table className="table ">
@@ -301,8 +301,8 @@ const TicketSummary = () => {
                 </tbody>
               </table>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>

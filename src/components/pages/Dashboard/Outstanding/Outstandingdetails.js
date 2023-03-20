@@ -1,6 +1,6 @@
 import './Outstandingdetail.css'
 import { BiSearchAlt2 } from 'react-icons/bi'
-import { TotalOutstanding, PaidInvoice, FilterInvoice } from '../../../../api/index'
+import { TotalOutstanding, PaidInvoice, FilterInvoice, Outstanding_Invoice_filter } from '../../../../api/index'
 import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate';
 import { BsFilterLeft } from 'react-icons/bs';
@@ -16,6 +16,7 @@ const Outstatndingdetails = () => {
 
     const [filter, setFilter] = useState(false)
     const [filterval, setFilterVal] = useState("")
+    const [data, setData] = useState([])
 
 
 
@@ -98,6 +99,11 @@ const Outstatndingdetails = () => {
         document.getElementById('display').style.display = "flex"
     }
 
+    const handleClick = async (type, value) => {
+        const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'), type, value)
+        setData(result)
+        console.log(result)
+    }
 
     return (
         <>
@@ -131,9 +137,9 @@ const Outstatndingdetails = () => {
                                         TotalVendor.map((elements, index) => {
                                             return (
                                                 <tr key={index}>
-                                                    <td>{elements.vendor}</td>
-                                                    <td>{elements.invoice_no}</td>
-                                                    <td>{elements.reference_no}</td>
+                                                    <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#vendorModal" onClick={(e) => { e.preventDefault(); handleClick('Vendor', elements.vendor) }}>{elements.vendor}</td>
+                                                    <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#invoiceModal" onClick={(e) => { e.preventDefault(); handleClick('Invoice', elements.invoice_no) }}>{elements.invoice_no}</td>
+                                                    <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#ReferanceModal" onClick={(e) => { e.preventDefault(); handleClick('Referance', elements.reference_no) }}>{elements.reference_no}</td>
                                                     <td>{elements.invoice_amt}</td>
                                                     <td>{elements.printer_counter}</td>
                                                 </tr>
@@ -152,7 +158,7 @@ const Outstatndingdetails = () => {
                         pageCount={lastval}
                         previousLabel={<IoMdArrowDropleft style={{ fontSize: "24px" }} />}
                         renderOnZeroPageCount={null}
-                        containerClassName={'outstanding-pagination bg-white px-3 pagination justify-content-end mx-3'}
+                        containerClassName={'outstanding-pagination bg-white pagination justify-content-end'}
                         pageClassName={'page-item'}
                         pageLinkClassName={'page-link'}
                         previousClassName={'page-item'}
@@ -175,24 +181,20 @@ const Outstatndingdetails = () => {
                                     <th scope="col">Invoice_no</th>
                                     <th scope="col">Reference No</th>
                                     <th scope="col">Invoice Amt</th>
-                                    {/* <th scope="col">Reading</th> */}
-
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    PaidInvoicess.length == 0 ?
+                                    PaidInvoicess.length === 0 ?
                                         <tr className='text-center'><td colSpan='4'>Table have no data</td></tr>
                                         :
                                         PaidInvoicess.map((elements, index) => {
                                             return (
                                                 <tr key={index}>
-                                                    <td>{elements.vendor}</td>
-                                                    <td>{elements.invoice_no}</td>
-                                                    <td>{elements.reference_no}</td>
+                                                    <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#vendorModal" onClick={(e) => { e.preventDefault(); handleClick('Vendor', elements.vendor) }}>{elements.vendor}</td>
+                                                    <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#invoiceModal" onClick={(e) => { e.preventDefault(); handleClick('Invoice', elements.invoice_no) }}>{elements.invoice_no}</td>
+                                                    <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#ReferanceModal" onClick={(e) => { e.preventDefault(); handleClick('Referance', elements.reference_no) }}>{elements.reference_no}</td>
                                                     <td>{elements.invoice_amt}</td>
-                                                    {/* <td>{elements.printer_counter}</td> */}
-
                                                 </tr>
                                             )
                                         })
@@ -209,7 +211,7 @@ const Outstatndingdetails = () => {
                         pageCount={paidlastval}
                         previousLabel={<IoMdArrowDropleft style={{ fontSize: "24px" }} />}
                         renderOnZeroPageCount={null}
-                        containerClassName={'outstanding-pagination bg-white px-3 pagination justify-content-end mx-3'}
+                        containerClassName={'outstanding-pagination bg-white pagination justify-content-end'}
                         pageClassName={'page-item'}
                         pageLinkClassName={'page-link'}
                         previousClassName={'page-item'}
@@ -223,7 +225,126 @@ const Outstatndingdetails = () => {
                 </div>
 
             </div>
+            {/* Vendor Modal */}
 
+            <div className="modal fade" id="vendorModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLongTitle">Vendor Details</h5>
+                        </div>
+                        <div className="modal-body" style={{ maxHeight: "80vh", overflow: "auto" }}>
+                            <table className="table ">
+                                <thead>
+                                    <tr>
+                                        <th>Vendor Name</th>
+                                        <th>Company Email</th>
+                                        <th>Ticket Phone</th>
+                                        <th>Contact Person</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        data.length ?
+                                            data.map((value, index) => (
+                                                <tr key={index}>
+                                                    <td>{value.vendor_name}</td>
+                                                    <td>{value.company_email}</td>
+                                                    <td>{value.company_phone}</td>
+                                                    <td>{value.contact_person_name}</td>
+                                                </tr>
+                                            )
+                                            ) : ""
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Invoice Modal */}
+
+            <div className="modal fade" id="invoiceModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLongTitle">Invoice Details</h5>
+                        </div>
+                        <div className="modal-body" style={{ maxHeight: "80vh", overflow: "auto" }}>
+                            <table className="table ">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice Name</th>
+                                        <th>Account Number</th>
+                                        <th>Vendor</th>
+                                        <th>Referance Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        data.map((value, index) => (
+                                            <tr key={index}>
+                                                <td>{value.invoice_no}</td>
+                                                <td>{value.account_no}</td>
+                                                <td>{value.vendor}</td>
+                                                <td>{value.reference_no}</td>
+                                            </tr>
+                                        )
+                                        )
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Referance Modal */}
+
+            <div className="modal fade" id="ReferanceModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLongTitle">Referance Details</h5>
+                        </div>
+                        <div className="modal-body" style={{ maxHeight: "80vh", overflow: "auto" }}>
+                            <table className="table ">
+                                <thead>
+                                    <tr>
+                                        <th>Company</th>
+                                        <th>Referance Number</th>
+                                        <th>Location</th>
+                                        <th>Payee Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        data.map((value, index) => (
+                                            <tr key={index}>
+                                                <td>{value.company}</td>
+                                                <td>{value.reference_no}</td>
+                                                <td>{value.location}</td>
+                                                <td>{value.payee_name}</td>
+                                            </tr>
+                                        )
+                                        )
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

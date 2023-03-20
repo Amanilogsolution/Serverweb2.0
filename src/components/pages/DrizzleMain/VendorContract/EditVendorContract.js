@@ -3,7 +3,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { GetVendorContract, ActiveLocation, ActiveContractType, ActiveVendorCategory, ActiveVendorCode, ActiveVendSubCate, UpdateVendorContract } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-// import { GrFormClose } from "react-icons/gr"
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
 
@@ -17,14 +16,6 @@ function EditVendorCode() {
     const [vendorsubcatlist, setVendorsubcatlist] = useState([])
     const [vendorlist, setVendorlist] = useState([])
     // ########################### Modal Alert #############################################
-    // const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
-
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
     // ########################### Modal Alert #############################################
 
@@ -35,7 +26,6 @@ function EditVendorCode() {
             const org = localStorage.getItem('Database')
 
             const vendcontract = await GetVendorContract(org, localStorage.getItem('VendorContractSno'));
-            console.log(vendcontract)
             setData(vendcontract[0])
 
 
@@ -132,10 +122,6 @@ function EditVendorCode() {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
             callfun('Please enter all mandatory fields', 'warning', 'self')
-
-            // setDatas({ ...datas, message: "Please enter all mandatory fields", title: "warning", type: "warning", route: "#", toggle: "true" })
-            // document.getElementById('snackbar').style.display = "block"
-
         }
         else {
             // const refno = document.getElementById('ref_no').checked ? true : false;
@@ -146,9 +132,6 @@ function EditVendorCode() {
                     setLoading(true)
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Please fill the Contract Detail', 'warning', 'self')
-
-                    // setDatas({ ...datas, message: "Please fill the Contract Detail", title: "warning", type: "warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
             else {
@@ -164,9 +147,6 @@ function EditVendorCode() {
                     setLoading(true)
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Please Enter the Link id noo', 'warning', 'self')
-
-                    // setDatas({ ...datas, message: "Please Enter the Link id no", title: "warning", type: "warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
             else { link_id_no = '' }
@@ -182,16 +162,10 @@ function EditVendorCode() {
                 if (callapi === 'Updated') {
                     localStorage.removeItem('VendorContractSno');
                     callfun('Vendor Contract Update', 'success', '/TotalVendorContract')
-
-                    // setDatas({ ...datas, message: "Vendor Contract Update", title: "success", type: "success", toggle: "true", route: '/TotalVendorContract' })
-                    // document.getElementById('snackbar').style.display = "block"
                 }
                 else {
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Server Error', 'danger', 'self')
-
-                    // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/EditVendorContract", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
         }
@@ -203,23 +177,6 @@ function EditVendorCode() {
                 loading ?
                     <Sidebar >
                         {/* ################# Snackbar ##################### */}
-                        {/* <div id="snackbar" style={{ display: "none" }}>
-                            <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
-                                <div className={`notification__message message--${datas.type}`}>
-                                    <h1>{datas.title}</h1>
-                                    <p>{datas.message}</p>
-                                    <button
-                                        onClick={() => {
-                                            setDatas({ ...datas, toggle: 'false' });
-                                            window.location.href = datas.route
-
-                                        }}
-                                    >
-                                        <GrFormClose />
-                                    </button>
-                                </div>
-                            </div>
-                        </div> */}
                         <Modal
                             theme={tooglevalue.theme}
                             text={tooglevalue.message}
@@ -260,7 +217,7 @@ function EditVendorCode() {
                                                     <option value={data.location} hidden>{data.location}</option>
                                                     {
                                                         locationlist.map((item, index) =>
-                                                            <option key={index}>{item.location_name}</option>
+                                                            <option key={index} value={item.location_code}>{item.location_name}</option>
                                                         )
                                                     }
                                                 </select>

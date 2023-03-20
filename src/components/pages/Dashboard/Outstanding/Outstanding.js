@@ -10,7 +10,7 @@ import { BiRupee } from 'react-icons/bi';
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 
 import 'react-data-table-component-extensions/dist/index.css';
-import { Invoice_Outstanding, TotalOutstanding ,VendorInvoice,Outstanding_Invoice_filter} from '../../../../api/index'
+import { Invoice_Outstanding, TotalOutstanding, VendorInvoice, Outstanding_Invoice_filter } from '../../../../api/index'
 
 const Outstanding = ({ setStep }) => {
   const [invoices, setInvoice] = useState({})
@@ -20,7 +20,7 @@ const Outstanding = ({ setStep }) => {
   const [rowperpage, setRowPerPage] = useState(10)
   const [lastval, setLastval] = useState()
   const [toogle, setToogle] = useState(false)
-  const [data,setData] = useState([])
+  const [data, setData] = useState([])
 
   const exportExcel = async () => {
     const datasss = ExcelConvertData(TotalVendor)
@@ -35,7 +35,6 @@ const Outstanding = ({ setStep }) => {
       fetch()
       const org = localStorage.getItem('Database')
       const datas = await VendorInvoice(org, 1, 10)
-      console.log(datas)
       setTotalVendor(datas.data)
       const total = datas.TotalData[0]["Totaldata"]
       setRowPerPage(10)
@@ -55,19 +54,15 @@ const Outstanding = ({ setStep }) => {
 
   const fetch = async () => {
     const Outstanding = await Invoice_Outstanding(localStorage.getItem('Database'))
-    console.log(Outstanding)
     setOutstandingdatas(Outstanding.OutstandingVendor)
     setInvoice(Outstanding.Vendor)
     let money = Outstanding.OutstandingAmount.toLocaleString('en-IN');
     setOutstandingAmount(money)
   }
 
-  const handleClick = async(type,value) =>{
-    console.log(type,value)
-    const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'),type,value)
-    console.log(result[0])
+  const handleClick = async (type, value) => {
+    const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'), type, value)
     setData(result)
-
   }
 
 
@@ -86,12 +81,17 @@ const Outstanding = ({ setStep }) => {
             <p className='text-secondary'>Outstanding Amount</p>
           </div>
 
+
           <button className='btn_for_smd' onClick={() => { setStep(5) }}>Outstanding Details</button>
 
         </div>
-        <button className="top-upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>
-          BILL HISTORY
-          </button>
+        <div className='d-flex upper_button'>
+          <button className="top-upper-btn nextoutstanding_AnimationBtn text-white btn position-relative" onClick={() => { setStep(5) }}>
+            BILL HISTORY</button>
+          <button className="top-upper-btn nextoutstanding_AnimationBtn text-white btn position-relative" onClick={() => { setStep(7) }}>
+            Pending Recurring Invoice</button>
+        </div>
+
         {/* //==================================================================================================== */}
         <div className='company-outstatnding bg-white border  mt-4 rounded shadow1-silver'  >
           <div className='text-white px-4 py-2  rounded' style={{ width: "80%", marginLeft: 'auto', marginRight: 'auto', background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginTop: '-20px' }}>
@@ -128,8 +128,15 @@ const Outstanding = ({ setStep }) => {
 
         </div>
         {/* //==================================================================================================== */}
-        <button className="upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-4 position-relative" onClick={() => { setStep(5) }}>
-          Bill History</button>
+        <div className='d-flex'>
+          <button className="upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-2 position-relative" onClick={() => { setStep(5) }}>
+            Bill History
+          </button>
+          <button className="upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-2 position-relative" onClick={() => { setStep(7) }}>
+            Pending Recurring Invoice
+          </button>
+        </div>
+
       </div>
       <div className='outstanding-table bg-white position-relative mt-3 rounded shadow1-silver'>
         <div className=' d-flex justify-content-between text-white rounded px-4 py-2 mx-auto' style={{ width: "90%", marginTop: "-20px", background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", height: "55px" }}>
@@ -169,10 +176,10 @@ const Outstanding = ({ setStep }) => {
                   TotalVendor.map((elements, index) => {
                     return (
                       <tr key={index}>
-                        <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#vendorModal" onClick={(e)=>{e.preventDefault(); handleClick('Vendor',elements.vendor)}} >{elements.vendor}</td>
-                        <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#invoiceModal" onClick={(e)=>{e.preventDefault(); handleClick('Invoice',elements.invoice_no)}}>{elements.invoice_no}</td>    
-                        <td>{elements.invoice_date}</td> 
-                        <td style={{cursor:"pointer"}} data-toggle="modal" data-target="#ReferanceModal" onClick={(e)=>{e.preventDefault(); handleClick('Referance',elements.reference_no)}}>{elements.reference_no}</td>
+                        <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#vendorModal" onClick={(e) => { e.preventDefault(); handleClick('Vendor', elements.vendor) }} >{elements.vendor}</td>
+                        <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#invoiceModal" onClick={(e) => { e.preventDefault(); handleClick('Invoice', elements.invoice_no) }}>{elements.invoice_no}</td>
+                        <td>{elements.invoice_date}</td>
+                        <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#ReferanceModal" onClick={(e) => { e.preventDefault(); handleClick('Referance', elements.reference_no) }}>{elements.reference_no}</td>
                         <td>{elements.invoice_amt}</td>
                       </tr>
                     )
@@ -212,15 +219,15 @@ const Outstanding = ({ setStep }) => {
         </div>
       </div>
 
-        {/* Vendor Modal */}
+      {/* Vendor Modal */}
 
-        <div class="modal fade" id="vendorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Vendor Details</h5>
+      <div className="modal fade" id="vendorModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLongTitle">Vendor Details</h5>
             </div>
-            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+            <div className="modal-body" style={{ maxHeight: "80vh", overflow: "auto" }}>
               <table className="table ">
                 <thead>
                   <tr>
@@ -232,22 +239,22 @@ const Outstanding = ({ setStep }) => {
                 </thead>
                 <tbody>
                   {
-                    data.length?
-                    data.map((value)=>(
-                      <tr>
-                      <td>{value.vendor_name}</td>
-                      <td>{value.company_email}</td>
-                      <td>{value.company_phone}</td>
-                      <td>{value.contact_person_name}</td>
-                      </tr>
-                    )
-                    ):""
+                    data.length ?
+                      data.map((value, index) => (
+                        <tr key={index}>
+                          <td>{value.vendor_name}</td>
+                          <td>{value.company_email}</td>
+                          <td>{value.company_phone}</td>
+                          <td>{value.contact_person_name}</td>
+                        </tr>
+                      )
+                      ) : ""
                   }
                 </tbody>
               </table>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -255,13 +262,13 @@ const Outstanding = ({ setStep }) => {
 
       {/* Invoice Modal */}
 
-      <div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Invoice Details</h5>
+      <div className="modal fade" id="invoiceModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLongTitle">Invoice Details</h5>
             </div>
-            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+            <div className="modal-body" style={{ maxHeight: "80vh", overflow: "auto" }}>
               <table className="table ">
                 <thead>
                   <tr>
@@ -273,12 +280,12 @@ const Outstanding = ({ setStep }) => {
                 </thead>
                 <tbody>
                   {
-                    data.map((value)=>(
-                      <tr>
-                      <td>{value.invoice_no}</td>
-                      <td>{value.account_no}</td>
-                      <td>{value.vendor}</td>
-                      <td>{value.reference_no}</td>
+                    data.map((value, index) => (
+                      <tr key={index}>
+                        <td>{value.invoice_no}</td>
+                        <td>{value.account_no}</td>
+                        <td>{value.vendor}</td>
+                        <td>{value.reference_no}</td>
                       </tr>
                     )
                     )
@@ -286,22 +293,22 @@ const Outstanding = ({ setStep }) => {
                 </tbody>
               </table>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
       </div>
 
-        {/* Referance Modal */}
+      {/* Referance Modal */}
 
-        <div class="modal fade" id="ReferanceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Referance Details</h5>
+      <div className="modal fade" id="ReferanceModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLongTitle">Referance Details</h5>
             </div>
-            <div class="modal-body" style={{maxHeight:"80vh",overflow:"auto"}}>
+            <div className="modal-body" style={{ maxHeight: "80vh", overflow: "auto" }}>
               <table className="table ">
                 <thead>
                   <tr>
@@ -313,12 +320,12 @@ const Outstanding = ({ setStep }) => {
                 </thead>
                 <tbody>
                   {
-                    data.map((value)=>(
-                      <tr>
-                      <td>{value.company}</td>
-                      <td>{value.reference_no}</td>
-                      <td>{value.location}</td>
-                      <td>{value.payee_name}</td>
+                    data.map((value, index) => (
+                      <tr key={index}>
+                        <td>{value.company}</td>
+                        <td>{value.reference_no}</td>
+                        <td>{value.location}</td>
+                        <td>{value.payee_name}</td>
                       </tr>
                     )
                     )
@@ -326,8 +333,8 @@ const Outstanding = ({ setStep }) => {
                 </tbody>
               </table>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>

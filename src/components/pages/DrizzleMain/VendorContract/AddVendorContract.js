@@ -3,7 +3,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { InsertVendorContract, ActiveLocation, ActiveContractType, ActiveVendorCategory, ActiveVendorCode, ActiveVendSubCate, ActiveBillingFreq } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-// import { GrFormClose } from "react-icons/gr"
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
 
@@ -20,14 +19,6 @@ function AddVendorContract() {
     const [vendorlist, setVendorlist] = useState([])
     const [billingfreqlist, setBillingfreqlist] = useState([])
     // ########################### Modal Alert #############################################
-    // const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
-
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
     // ########################### Modal Alert #############################################
 
@@ -144,9 +135,6 @@ function AddVendorContract() {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
             callfun('Please enter all mandatory fields', 'warning', 'self')
-
-            // setDatas({ ...datas, message: "Please enter all mandatory fields", title: "warning", type: "warning", route: "#", toggle: "true" })
-            // document.getElementById('snackbar').style.display = "block"
         }
         else {
             const refno = document.getElementById('ref_no').checked ? true : false;
@@ -158,9 +146,6 @@ function AddVendorContract() {
                     setLoading(true)
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Please fill the Contract Detail', 'warning', 'self')
-
-                    // setDatas({ ...datas, message: "Please fill the Contract Detail", title: "warning", type: "warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
             else {
@@ -176,9 +161,6 @@ function AddVendorContract() {
                     setLoading(true)
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Please Enter the Reference no', 'warning', 'self')
-
-                    // setDatas({ ...datas, message: "Please Enter the Reference no", title: "warning", type: "Warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
             else {
@@ -190,9 +172,6 @@ function AddVendorContract() {
                     setLoading(true)
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Please Enter the Link id no', 'warning', 'self')
-
-                    // setDatas({ ...datas, message: "Please Enter the Link id no", title: "Warning", type: "warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
             else { link_id_no = '' }
@@ -206,16 +185,10 @@ function AddVendorContract() {
 
                 if (callapi === 'Added') {
                     callfun('Vendor Contract Added', 'success', '/TotalVendorContract')
-
-                    // setDatas({ ...datas, message: "Vendor Contract Added", title: "success", type: "success", toggle: "true", route: '/TotalVendorContract' })
-                    // document.getElementById('snackbar').style.display = "block"
                 }
                 else {
                     callfun('Server Error', 'danger', 'self')
                     document.getElementById('subnitbtn').disabled = false
-
-                    // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/AddVendorContract", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
         }
@@ -228,25 +201,6 @@ function AddVendorContract() {
                     <Sidebar >
 
                         {/* ################# Snackbar ##################### */}
-
-                        {/* <div id="snackbar" style={{ display: "none" }}>
-                            <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
-                                <div className={`notification__message message--${datas.type}`}>
-                                    <h1>{datas.title}</h1>
-                                    <p>{datas.message}</p>
-
-                                    <button
-                                        onClick={() => {
-                                            setDatas({ ...datas, toggle: 'false' });
-                                            window.location.href = datas.route
-
-                                        }}
-                                    >
-                                        <GrFormClose />
-                                    </button>
-                                </div>
-                            </div>
-                        </div> */}
                         <Modal
                             theme={tooglevalue.theme}
                             text={tooglevalue.message}
@@ -287,7 +241,7 @@ function AddVendorContract() {
                                                     <option value='' hidden>Select Location</option>
                                                     {
                                                         locationlist.map((item, index) =>
-                                                            <option key={index}>{item.location_name}</option>
+                                                            <option key={index} value={item.location_code}>{item.location_name}</option>
                                                         )
                                                     }
                                                 </select>

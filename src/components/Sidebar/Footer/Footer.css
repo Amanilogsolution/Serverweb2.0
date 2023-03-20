@@ -1,16 +1,20 @@
 .footer {
-    /* height: 40px; */
-    /* background-color: #fff; */
-    /* margin-top: 10px; */
-    /* padding-top: 10px; */
-    /* margin-bottom: 0%; */
-    /* box-shadow: -3px -3px 10px gray; */
-    /* border-radius: 10px 0px 0px 10px; */
-    border-top: 1px solid rgb(181, 176, 176);
+  border-top: 1px solid rgb(181, 176, 176);
 }
+
 .social_media_links {
-  /* border: 1px solid; */
-  width: 12%;
   display: flex;
   justify-content: space-between;
+}
+
+
+@media screen and (max-width:600px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+  .social_media_links {
+    justify-content: center;
+  }
+  
 }

@@ -5,7 +5,8 @@
 .outstanding-container .oustanding-details .outstanding-top-detail-div {
     height: 100px;
 }
-.btn_for_smd{
+
+.btn_for_smd {
     display: none;
 }
 
@@ -14,7 +15,7 @@
     padding: 10px;
     box-shadow: 1px 1px 10px silver;
     border-radius: 5px;
-    padding:15px
+    padding: 15px
 }
 
 .outstanding-totalamt {
@@ -59,8 +60,9 @@
 .nextoutstanding_AnimationBtn {
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin: 10px 20px 0px 30px;
+    margin: 10px 10px 0px 4px;
     z-index: 0;
+    padding: 10px;
 }
 
 .nextoutstanding_AnimationBtn::before {
@@ -100,13 +102,14 @@
     left: 0%;
     top: 0;
 }
+
 .top-upper-btn {
     width: 350px;
-    display:none;
-    margin:30px auto 20px auto;
+    display: none;
+    margin: 30px auto 20px auto;
 }
 
-@media screen and (max-width:900px) {
+@media screen and (max-width:1000px) {
     .outstanding-container {
         flex-direction: column;
     }
@@ -124,19 +127,45 @@
     .upper-btn {
         display: none;
     }
+
     .top-upper-btn {
-        display:block;
+        display: block;
+    }
+
+    .nextoutstanding_AnimationBtn {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .nextoutstanding_AnimationBtn {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .upper_button {
+        flex-direction: column;
+    }
+
+    .top-upper-btn {
+        width: 350px;
+        margin: 14px auto 10px auto;
     }
 }
 
 @media screen and (max-width:450px) {
     .top-upper-btn {
         width: 250px;
-       
+
     }
 }
+
 @media screen and (max-width:400px) {
     .top-upper-btn {
         width: 150px;
+    }
+    .top-upper-btn {
+        width:90%;
     }
 }
