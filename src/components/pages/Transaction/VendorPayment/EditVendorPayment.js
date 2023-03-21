@@ -3,7 +3,6 @@ import Sidebar from '../../../Sidebar/Sidebar'
 import { UpdateVendorPayment, GetVendorPayment, PendingVendorInvoice } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-// import Snackbar from '../../../../Snackbar/Snackbar';
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
@@ -13,15 +12,8 @@ function EditVendorPayments() {
 
     const [data, setData] = useState([])
     const [pendinginvoicelist, setPendinginvoicelist] = useState([])
-    // ########################### Modal Alert #############################################
-    //    const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
 
+    // ########################### Modal Alert #############################################
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
     // ########################### Modal Alert #############################################
 
@@ -64,9 +56,6 @@ function EditVendorPayments() {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
             callfun('Please enter the Mandatory Field', 'warning', 'self')
-
-            // setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "warning", type: "warning", route: "#", toggle: "true" })
-            // document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
@@ -76,20 +65,12 @@ function EditVendorPayments() {
             if (result === 'Data Updated') {
                 localStorage.removeItem('vendorpaymentssno')
                 callfun('Vendor Payment Updated', 'success', '/TotalVendorPayment')
-
-                // setDatas({ ...datas, message: "Vendor Payment Updated", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
             }
             else {
                 callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
             }
         }
-
-
-
     }
 
     // const handleChnageVendorDetail = async (e) => {
@@ -107,7 +88,6 @@ function EditVendorPayments() {
                 loading ?
                     <Sidebar>
                         {/* ######################### Sanckbar Start ##################################### */}
-
                         <Modal
                             theme={tooglevalue.theme}
                             text={tooglevalue.message}
@@ -121,7 +101,7 @@ function EditVendorPayments() {
                                 <h4><span className='page-type-head1'>Vendor Payment <MdOutlineKeyboardArrowRight /></span> <span className='page-type-head2'>Edit Vendor Payment</span> </h4>
                                 <button className='btn btn-secondary btn ' onClick={() => { localStorage.removeItem('vendorpaymentssno'); window.location.href = '/TotalVendorPayment' }} >Back <RiArrowGoBackFill /></button>
                             </div>
-                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pb-3 py-2">
+                            <div className="bg-white shadow1-silver rounded15 mt-1 card inner-card pt-2">
                                 <article className="card-body" >
                                     <form className='px-3' autoComplete='off'>
                                         <div className="row">
@@ -150,6 +130,10 @@ function EditVendorPayments() {
 
                                         <div className="row mt-3">
                                             <div className="form-group col-md-4">
+                                                <label htmlFor='approvedamt'>Approved Amount </label>
+                                                <input type="number" id='approvedamt' className="form-control" defaultValue={data.approved_payment_amt} disabled />
+                                            </div>
+                                            <div className="form-group col-md-4">
                                                 <label htmlFor='paymentamt'>Payment Amount <span className='text-danger'>*</span></label>
                                                 <input type="number" id='paymentamt' className="form-control" defaultValue={data.payment_amt} />
                                             </div>
@@ -157,22 +141,23 @@ function EditVendorPayments() {
                                                 <label htmlFor='paymentdate'>Payment date <span className='text-danger'>*</span></label>
                                                 <input type="date" id='paymentdate' className="form-control" defaultValue={data.PaymentDate} />
                                             </div>
+
+                                        </div>
+                                        <div className="row mt-3">
                                             <div className="form-group col-md-4">
                                                 <label htmlFor='refno'>Reference No <span className='text-danger'>*</span></label>
                                                 <input type="text" id='refno' className="form-control" defaultValue={data.reference_no} disabled />
                                             </div>
-                                        </div>
-
-                                        <div className="form-group col-md-4 mt-3">
-                                            <label htmlFor='remark'>Remarks</label>
-                                            <textarea className="form-control" id='remark' rows='3' defaultValue={data.payment_remark}></textarea>
-                                        </div>
-
-                                        <div className='btn_div mt-3'>
-                                            <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Update Vendor Payment</button>
+                                            <div className="form-group col-md-4">
+                                                <label htmlFor='remark'>Remarks</label>
+                                                <textarea className="form-control" id='remark' rows='3' defaultValue={data.payment_remark}></textarea>
+                                            </div>
                                         </div>
                                     </form>
                                 </article>
+                                <div className='btn_div mt-3 card-footer'>
+                                    <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Update Vendor Payment</button>
+                                </div>
                             </div>
                         </div>
                     </Sidebar>

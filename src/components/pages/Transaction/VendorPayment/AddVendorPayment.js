@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { PendingVendorInvoice, UpdateVendorInvoice } from '../../../../api'
+import { PendingVendorInvoice, UpdateVendorInvoice, FileUpload } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-// import Snackbar from '../../../../Snackbar/Snackbar';
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
 
 function AddVendorPayment() {
     const [loading, setLoading] = useState(false)
+    const [loading2, setLoading2] = useState(true)
 
     const [todatdate, setTodaydate] = useState('')
     const [count, setCount] = useState(0);
@@ -17,15 +17,13 @@ function AddVendorPayment() {
     const [arryval, setArryval] = useState([{}]);
     const [pendinginvoicelist, setPendinginvoicelist] = useState([])
     // const [vendordetail, setVendordetail] = useState([])
-    // ########################### Modal Alert #############################################
-    //    const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
 
+    const [indexno, setIndexno] = useState('');
+    const [file, setFile] = useState([])
+
+
+
+    // ########################### Modal Alert #############################################
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
     // ########################### Modal Alert #############################################
 
@@ -71,6 +69,7 @@ function AddVendorPayment() {
     };
 
     const savatoarry = (index) => {
+
         let val2 = document.getElementById(`invno-${index}`);
         let text = val2.options[val2.selectedIndex].text;
         let toindex2 = text.indexOf(",")
@@ -87,11 +86,12 @@ function AddVendorPayment() {
 
         const ptydtl = document.getElementById(`ptydtl-${index}`).value;
         const ptyamt = document.getElementById(`ptyamt-${index}`).value;
+        const appramt = document.getElementById(`appramt-${index}`).value;
         const ptydate = document.getElementById(`ptydate-${index}`).value;
         const remark = document.getElementById(`remark-${index}`).value;
         let obj = {
-            sno: sno, InvoiceNo: invno, paymentDetail: ptydtl, PaymentAmt: ptyamt,
-            Paymentdate: ptydate, Remark: remark
+            sno: sno, InvoiceNo: invno, paymentDetail: ptydtl, PaymentAmt: ptyamt, ApprovedAmt: appramt,
+            Paymentdate: ptydate, Remark: remark, filedata: file[index]
         };
         arryval[index] = obj;
 
@@ -99,6 +99,8 @@ function AddVendorPayment() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
+        console.log(arryval)
+        return 0;
         setLoading(false)
         document.getElementById('subnitbtn').disabled = 'true'
         const org = localStorage.getItem('Database')
@@ -109,8 +111,6 @@ function AddVendorPayment() {
                 document.getElementById('subnitbtn').disabled = false
                 callfun('Please Select the Invoice no', 'warning', 'self')
 
-                // setDatas({ ...datas, message: " Please Select the Invoice no ", title: "warning", type: "warning", route: "#", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
@@ -119,8 +119,6 @@ function AddVendorPayment() {
                 document.getElementById('subnitbtn').disabled = false
                 callfun('Please Select the Invoice no', 'warning', 'self')
 
-                // setDatas({ ...datas, message: "Please Select the Invoice no", title: "warning", type: "warning", route: "#", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
@@ -129,8 +127,6 @@ function AddVendorPayment() {
                 document.getElementById('subnitbtn').disabled = false
                 callfun('Please enter the Mandatory field', 'warning', 'self')
 
-                // setDatas({ ...datas, message: "Please enter the Mandatory field", title: "warning", type: "warning", route: "#", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
                 errorcount = errorcount + 1;
                 return false;
             }
@@ -140,14 +136,10 @@ function AddVendorPayment() {
             setLoading(true)
             if (result === 'Data Updated') {
                 callfun('Vendor Payment Added', 'success', '/TotalVendorPayment')
-                // setDatas({ ...datas, message: "Vendor Payment Added", title: "success", type: "success", route: "/TotalVendorPayment", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
             }
             else {
                 callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
             }
         }
     }
@@ -156,6 +148,7 @@ function AddVendorPayment() {
         const val = e;
         const toindex = val.indexOf(",")
         document.getElementById(`invamt-${index}`).value = val.slice(toindex + 1)
+        document.getElementById(`appramt-${index}`).value = val.slice(toindex + 1)
 
         let val2 = document.getElementById(`invno-${index}`);
         let text = val2.options[val2.selectedIndex].text;
@@ -174,10 +167,6 @@ function AddVendorPayment() {
                 loading ?
                     <Sidebar>
                         {/* ######################### Sanckbar Start ##################################### */}
-
-                        {/* <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div> */}
                         <Modal
                             theme={tooglevalue.theme}
                             text={tooglevalue.message}
@@ -208,9 +197,11 @@ function AddVendorPayment() {
                                                     <th scope="col">Invoice Amount  <span className='text-danger'>*</span></th>
                                                     <th scope="col">Payment Detail  <span className='text-danger'>*</span></th>
                                                     <th scope="col">Payment Amount  <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Approved Amount  <span className='text-danger'>*</span></th>
                                                     <th scope="col">Payment Date  <span className='text-danger'>*</span></th>
                                                     <th scope="col">Remark</th>
                                                     <th scope="col">Ref no.  <span className='text-danger'>*</span></th>
+                                                    <th scope="col">Upload  <span className='text-danger'>*</span></th>
                                                 </tr>
                                             </thead>
                                             <tbody >
@@ -233,9 +224,16 @@ function AddVendorPayment() {
                                                         <td className='p-0'><input type='number' id={`invamt-${index}`} className='form-control m-0 ' disabled onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0'><input type='text' id={`ptydtl-${index}`} className='form-control m-0 ' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0'><input type='number' id={`ptyamt-${index}`} className='form-control m-0 ' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0'><input type='number' id={`appramt-${index}`} className='form-control m-0 ' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0'><input type='date' id={`ptydate-${index}`} className='form-control m-0 ' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0'><input type='text' id={`remark-${index}`} className='form-control m-0 ' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0'><input type='text' id={`refno-${index}`} className='form-control m-0 ' disabled onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0'><button className='form-control m-0 btn btn-success' data-toggle="modal" data-target="#exampleModalCenter"
+                                                            onClick={(e) => {
+                                                                e.preventDefault(); setIndexno(index);
+                                                                document.getElementById("uploadbutton").style.display = "none";
+                                                                document.getElementById("inputfile").value = '';
+                                                            }}>Upload</button></td>
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -248,9 +246,51 @@ function AddVendorPayment() {
                                     </form>
                                 </article>
                             </div>
+
+
+                            {/* Upload Model Start */}
+                            <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div className="modal-dialog modal-dialog-centered" role="document">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title" id="exampleModalLongTitle">Upload Invoice</h5>
+                                        </div>
+                                        <div className="modal-body">
+
+                                            <input type="file" id='inputfile' onChange={async (event) => {
+                                                setLoading2(false)
+                                                setTimeout(async () => {
+                                                    const data = new FormData();
+                                                    data.append("images", event.target.files[0])
+                                                    const UploadLink = await FileUpload(data)
+                                                    setLoading2(true)
+                                                    if (UploadLink.length > 1) {
+                                                        file[indexno] = UploadLink;
+                                                        document.getElementById("uploadbutton").style.display = "flex";
+                                                    }
+                                                }, 2000)
+                                            }} />
+                                        </div>
+                                        <div className="modal-footer">
+                                            {/* <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button> */}
+                                            {
+                                                loading2 ? null : 'Wait a Second'
+                                            }
+                                            <button type="button" className="btn btn-primary" id="uploadbutton" data-dismiss="modal" style={{ display: "none" }}
+                                                onClick={(e) => { e.preventDefault(); savatoarry(indexno) }}>Upload</button>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {/* Upload Model End */}
+
                         </div>
                     </Sidebar>
                     : <LoadingPage />
+
+
             }
         </>
     )

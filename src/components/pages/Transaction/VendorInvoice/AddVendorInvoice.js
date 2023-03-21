@@ -1,33 +1,31 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice } from '../../../../api'
+import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice, FileUpload } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
-import Select from 'react-select';
-// import Snackbar from '../../../../Snackbar/Snackbar';
+// import Select from 'react-select';
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
-
+import './addVendorInvoice.css'
 
 function AddVendorInvoice() {
 
     const [loading, setLoading] = useState(false)
+    const [loading2, setLoading2] = useState(false)
+
     const [todatdate, setTodaydate] = useState('')
     const [count, setCount] = useState(0);
     const [arry, setArry] = useState([0]);
     const [arryval, setArryval] = useState([{}]);
     const [vendorcontractlist, setVendorcontractlist] = useState([])
     const [Vendorname, setVendorname] = useState([])
-    // ########################### Modal Alert #############################################
-    //    const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
+    const [indexno, setIndexno] = useState()
+    const [uploadindexno, setUploadindexno] = useState()
 
+    const [file, setFile] = useState([])
+
+    // ########################### Modal Alert #############################################
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
     // ########################### Modal Alert #############################################
 
@@ -43,9 +41,9 @@ function AddVendorInvoice() {
         fetchdata();
     }, [])
 
-    let options = vendorcontractlist.map((ele) => {
-        return { value: `${ele.sno},${ele.vendor}`, label: `${ele.vendor}, ${ele.reference_no}` };
-    })
+    // let options = vendorcontractlist.map((ele) => {
+    //     return { value: `${ele.sno},${ele.vendor}`, label: `${ele.vendor}, ${ele.reference_no}` };
+    // })
     const todaydate = () => {
         let date = new Date();
         let day = date.getDate();
@@ -79,7 +77,6 @@ function AddVendorInvoice() {
 
     const savatoarry = (index) => {
         let vendor = Vendorname[index];
-
         const accountno = document.getElementById(`accountno-${index}`).value;
         const invno = document.getElementById(`invno-${index}`).value;
         const invamt = document.getElementById(`invamt-${index}`).value;
@@ -93,7 +90,7 @@ function AddVendorInvoice() {
 
         let obj = {
             vendor: vendor, accountno: accountno, invno: invno, invamt: invamt, invdate: invdate,
-            invduedate: invduedate, invsubdate: invsubdate, remark: remark, refno: refno, printercount: printercount
+            invduedate: invduedate, invsubdate: invsubdate, remark: remark, refno: refno, printercount: printercount,files:file[index]
         };
 
         arryval[index] = obj;
@@ -102,6 +99,8 @@ function AddVendorInvoice() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
+        console.log(arryval)
+        return 0;
         document.getElementById('subnitbtn').disabled = 'true'
         setLoading(false)
         const org = localStorage.getItem('Database')
@@ -132,7 +131,6 @@ function AddVendorInvoice() {
 
                 errorcount = errorcount + 1;
                 return false;
-
             }
         }
         if (errorcount === 0) {
@@ -142,29 +140,28 @@ function AddVendorInvoice() {
 
             if (result === 'Data Added') {
                 callfun('Vendor Invoice Added', 'success', '/TotalVendorInvoice')
-
             }
             else {
                 callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-
             }
-
         }
-
-
-
     }
 
     const handleChnageVendorDetail = async (e) => {
         const org = localStorage.getItem('Database')
-        const toindex = e.value.split(",")
-        Vendorname[e.Index] = toindex[1]
-        const vebndconid = toindex[0]
-        console.log(vebndconid)
-        const detail = await VendorContractDetail(org, vebndconid);
+        Vendorname[e.Index] = e.vendor;
+        const detail = await VendorContractDetail(org, e.sno);
         document.getElementById(`accountno-${e.Index}`).value = detail.customer_account_no;
         document.getElementById(`refno-${e.Index}`).value = detail.reference_no;
+
+        // const toindex = e.value.split(",")
+        // Vendorname[e.Index] = toindex[1]
+        // const vebndconid = toindex[0]
+        // console.log(vebndconid)
+        // const detail = await VendorContractDetail(org, vebndconid);
+        // document.getElementById(`accountno-${e.Index}`).value = detail.customer_account_no;
+        // document.getElementById(`refno-${e.Index}`).value = detail.reference_no;
     }
 
 
@@ -174,10 +171,6 @@ function AddVendorInvoice() {
                 loading ?
                     <Sidebar>
                         {/* ######################### Sanckbar Start ##################################### */}
-
-                        {/* <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div> */}
                         <Modal
                             theme={tooglevalue.theme}
                             text={tooglevalue.message}
@@ -214,16 +207,22 @@ function AddVendorInvoice() {
                                                     <th scope="col">Remark </th>
                                                     <th scope="col">Ref no. <span className='text-danger'>*</span></th>
                                                     <th scope="col">Reading</th>
+                                                    <th scope="col">Upload</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {arry.map((item, index) => (
                                                     <tr key={index}>
                                                         <td className='p-0 '>
-                                                            <Select options={options} className="col" isMulti={false}
+                                                            {/* <Select options={options} className="col" isMulti={false}
                                                                 onBlur={() => savatoarry(index)}
                                                                 onChange={(e) => handleChnageVendorDetail({ ...e, Index: index })}
-                                                            />
+                                                            /> */}
+
+                                                            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#vendorModalCenter"
+                                                                onClick={(e) => { setIndexno(index) }}>
+                                                                {Vendorname[index] !== undefined ? Vendorname[index] : "Select"}
+                                                            </button>
                                                         </td>
                                                         <td className='p-0 '><input type='text' id={`accountno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 '><input type='text' id={`invno-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
@@ -234,6 +233,11 @@ function AddVendorInvoice() {
                                                         <td className='p-0 '><input type='text' id={`remark-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 '><input type='text' id={`refno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 '><input type='text' id={`printercount-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
+                                                        <td className='p-0 '><button className='form-control m-0 btn btn-success border-0' data-toggle="modal" data-target="#exampleModalCenter"
+                                                            onClick={(e) => { e.preventDefault(); setUploadindexno(index); 
+                                                                document.getElementById("uploadbutton").style.display = "none";
+                                                                document.getElementById("inputfile").value = '';}}
+                                                        >Upload</button></td>
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -250,6 +254,84 @@ function AddVendorInvoice() {
                     </Sidebar>
                     : <LoadingPage />
             }
+
+            {/* ####################### Upload  Modal  Start ################################## */}
+
+            <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLongTitle">Upload Invoice</h5>
+
+                        </div>
+                        <div className="modal-body">
+                            <input type="file" id='inputfile' onChange={async (event) => {
+                                console.log(event.target.files[0])
+                                setLoading2(true)
+                                setTimeout(async () => {
+                                    const data = new FormData();
+                                    data.append("images", event.target.files[0])
+                                    const UploadLink = await FileUpload(data)
+                                    if (UploadLink.length > 1) {
+                                        file[uploadindexno] = UploadLink;
+                                        document.getElementById("uploadbutton").style.display = "flex"
+                                        setLoading2(false)
+                                    }
+
+                                }, 2000)
+
+                            }} />
+                        </div>
+                        <div className="modal-footer">
+                            {/* <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button> */}
+                            <button type="button" className="btn btn-primary" id="uploadbutton" data-dismiss="modal" style={{ display: "none" }}
+                                onClick={(e) => { e.preventDefault(); savatoarry(uploadindexno) }}
+                            >Upload</button>
+                            {
+                                loading2 ? "Wait a Sec" : null
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* ####################### Upload  Modal  ENd ################################## */}
+
+
+
+
+            {/* ####################### Vendor  Modal  Start ################################## */}
+            <div className="modal fade" id="vendorModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document" style={{ minWidth: '60vw' }}>
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <button type="button" className="close bg-transparent border-0" data-dismiss="modal" aria-label="Close" >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body overflow-auto" style={{ maxHeight: '60vh' }}>
+                            <ul>
+                                {
+                                    vendorcontractlist.map((item, index) => (
+                                        <li key={index} className="vendor-Invoice-list cursor-pointer" data-dismiss="modal"
+                                            value={`${item.sno},${item.vendor}`}
+                                            onClick={(e) => {
+                                                handleChnageVendorDetail({ sno: item.sno, vendor: item.vendor, reference_no: item.reference_no, Index: indexno });
+                                                savatoarry(indexno)
+                                            }}
+                                        >{item.vendor}, ({item.reference_no})</li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* ####################### Vendor  Modal  End ################################## */}
+
         </>
     )
 }

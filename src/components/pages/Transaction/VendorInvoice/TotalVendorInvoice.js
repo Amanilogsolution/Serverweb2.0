@@ -24,6 +24,7 @@ function TotalVendorInvoice() {
             const org = localStorage.getItem('Database')
             const tabledata = await PendingVendorInvoice(org);
             setData(tabledata)
+            console.log(tabledata)
             setLoading(true)
         }
         fetchdata();
@@ -77,12 +78,13 @@ function TotalVendorInvoice() {
             sortable: true,
         },
         {
-            name: 'Upload',
+            name: 'Uploaded',
             sortable: true,
             cell: (row) => [
-                <button className='btn btn' data-toggle="modal" data-target="#exampleModalCenter"
-                    onClick={(e) => { e.preventDefault(); setSno(row.sno) }}><GrDocumentUpload /></button>,
-                <a href={row.uploadInvoice} target="_blank"><AiOutlineEye style={{ fontSize: "20px" }} /></a>
+
+                // <button className='btn btn' data-toggle="modal" data-target="#exampleModalCenter"
+                //     onClick={(e) => { e.preventDefault(); setSno(row.sno) }}><GrDocumentUpload /></button>,
+                <a href={row.uploadInvoice} target="_blank"><AiOutlineEye style={{ fontSize: "20px",color:row.uploadInvoice.length>0?'green':'red' }} /></a>
 
             ],
         }
@@ -133,7 +135,7 @@ function TotalVendorInvoice() {
                                 </DataTableExtensions>
                             </div>
                         </div>
-                        <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        {/* <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div className="modal-dialog modal-dialog-centered" role="document">
                                 <div className="modal-content">
                                     <div className="modal-header">
@@ -164,7 +166,7 @@ function TotalVendorInvoice() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </Sidebar>
                     : <LoadingPage />
             }

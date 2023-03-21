@@ -1283,11 +1283,11 @@ export const FilterInvoice = async (org,value,pageno,rowsperpage) => {
 }
 
 export const PendingRecurringInvoiceApi = async (org) => {
-    const url = `http://192.168.146.144:2008/api/recurringpendinginvoice`
+    const url = `https://drizzlebackend.awlworldwide.com/api/recurringpendinginvoice`
     return axios.post(url, { org}).then(response => response.data).catch(error => console.log(error));
 }
 export const Outstanding_Invoice_filter = async (org,type,value) => {
-    const url = `http://192.168.146.144:2008/api/outstandinginvoicefilter`
+    const url = `https://drizzlebackend.awlworldwide.com/api/outstandinginvoicefilter`
     return axios.post(url, { org,type,value }).then(response => response.data).catch(error => console.log(error));
 }
 

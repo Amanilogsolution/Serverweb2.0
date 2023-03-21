@@ -1,11 +1,13 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect, useContext } from 'react';
-import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, ActiveLocation, ActivePriority, GetNewAssetAssign, InsertTicket, CountTickets,Mail } from '../../../../api'
+import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, ActiveLocation, ActivePriority, GetNewAssetAssign, InsertTicket, CountTickets, Mail } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
+import Select from 'react-select';
+
 
 export default function AddTicket() {
     const [loading, setLoading] = useState(false)
@@ -17,8 +19,10 @@ export default function AddTicket() {
     const [locationlist, setLocationlist] = useState([])
     const [prioritylist, setPrioritylist] = useState([])
     const [assettypelist, setAssettypelist] = useState([])
+    const [assettype, setAssettype] = useState('')
 
     const [todatdate, setTodaydate] = useState('')
+
     // ########################### Modal Alert #############################################
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
     // ########################### Modal Alert #############################################
@@ -70,13 +74,20 @@ export default function AddTicket() {
 
         const detail = await EmployeesDetail(org, employee_id);
         setEmployeedetail(detail)
-
         const assetall = await GetNewAssetAssign(org, employee_id)
         setAssettypelist(assetall)
+        console.log(assetall)
     }
 
-    const handleAssetTypeChange = (e) => {
-        document.getElementById('assetserial').value = e.target.value
+
+    let options = assettypelist.map((ele) => {
+        return { value: ele.serial_no, label: [ele.asset_type, ' , ', ele.serial_no,'  (',ele.manufacture,') '] };
+    })
+    options.push({ value: 'other', label: ['other'] })
+
+    const handleAssetTypeChange = (selectedOption) => {
+        document.getElementById('assetserial').value = selectedOption.value;
+        setAssettype(selectedOption.label[0])
     }
 
     const handleIssueType = (e) => {
@@ -87,7 +98,6 @@ export default function AddTicket() {
         else if (e.target.value == 'Allocation') {
             document.getElementById('Handoverdetails').style.display = "flex"
             document.getElementById('AssetCondition').value = "Good and Working"
-
         }
         else {
             document.getElementById('Handoverdetails').style.display = "none"
@@ -97,19 +107,14 @@ export default function AddTicket() {
 
     const handleSaveTicket = async (e) => {
         e.preventDefault();
-        setLoading(false)
-        document.getElementById('subnitbtn').disabled = 'true'
+        // setLoading(false)
+        // document.getElementById('subnitbtn').disabled = 'true'
 
         let employee_id = document.getElementById('employee');
         const employee_name = employee_id.options[employee_id.selectedIndex].text;
         employee_id = employee_id.value;
-
-        let assettype = document.getElementById('assettype');
-        const assetval = assettype.value;
-
-        assettype = assettype.options[assettype.selectedIndex].text;
-        assettype = assettype.split(",")
-
+        console.log(assettype)
+        return 0;
         const assetserial = document.getElementById('assetserial').value;
         const location = document.getElementById('location').value;
         const assignticket = document.getElementById('assignticket').value;
@@ -128,7 +133,7 @@ export default function AddTicket() {
 
         const user_id = localStorage.getItem('UserId')
 
-        if (!employee_id || !assetval || !location || !ticketstatus || !ticketsubject) {
+        if (!employee_id || !assetserial || !location || !ticketstatus || !ticketsubject) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
             callfun('Please enter the Mandatory Field', 'warning', 'self')
@@ -137,34 +142,34 @@ export default function AddTicket() {
             return false;
         }
         else {
-            const message ={
-                org : org,
-                subject :ticketsubject,
-                username : employee_name,
-                TicketNumber : assignticket,
-                Ticketdate:ticketdate,
-                TicketType:typeofissue,
-                TicketDiscription:issuedesc,
-                TicketStatus:ticketstatus,
-                mail:email
+            const message = {
+                org: org,
+                subject: ticketsubject,
+                username: employee_name,
+                TicketNumber: assignticket,
+                Ticketdate: ticketdate,
+                TicketType: typeofissue,
+                TicketDiscription: issuedesc,
+                TicketStatus: ticketstatus,
+                mail: email
 
             }
             const result = await InsertTicket(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id, AssetTag, AssetCondition)
-                console.log(result)
-            
+            console.log(result)
+
             if (result === 'Data Added') {
                 const mail = await Mail(message)
                 setLoading(true)
 
-                callfun('Ticket Added', 'success', '/TotalTicket')    
-             
+                callfun('Ticket Added', 'success', '/TotalTicket')
+
 
             }
             else {
                 callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-             
+
             }
         }
 
@@ -205,8 +210,18 @@ export default function AddTicket() {
                                                 </select>
                                             </div>
                                             <div className="col-md-4" >
-                                                <label htmlFor='assettype'>Asset<span className='text-danger'>*</span></label>
-                                                <select className="form-select" id='assettype' onChange={handleAssetTypeChange}>
+                                                <label htmlFor='assettype'>Asset <span className='text-danger'>*</span></label>
+                                                <Select
+                                                    id='assettype'
+                                                    options={options.length > 1 ? options : [{ value: '', label: 'Select Employee' }]}
+                                                    isMulti={false}
+                                                    className="basic-single"
+                                                    classNamePrefix="select"
+                                                    isClearable='true'
+                                                    isSearchable='true'
+                                                    onChange={handleAssetTypeChange}
+                                                />
+                                                {/* <select className="form-select" id='assettype' onChange={handleAssetTypeChange}>
                                                     <option value='' hidden>Select...</option>
 
                                                     {
@@ -219,7 +234,7 @@ export default function AddTicket() {
                                                     }
                                                     <option value='Other' >Other</option>
 
-                                                </select>
+                                                </select> */}
                                             </div>
                                             <div className="col-md-4">
                                                 <label htmlFor='assetserial'>Asset Serial</label>

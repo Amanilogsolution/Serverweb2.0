@@ -74,12 +74,7 @@ const Dashboard = () => {
       {
         loading ?
           <Sidebar>
-
-
-
-
             <div className='dashboard_container ' >
-
               {/* ================================================================ */}
               <div className="container d-flex justify-content-end mb-3">
                 <input type="radio" name="s" id="asset" />
@@ -87,18 +82,18 @@ const Dashboard = () => {
                 <input type="radio" name="s" id="invoice" />
                 <input type="radio" name="s" id="ticket" />
                 <input type="radio" name="s" id="about" />
-                <nav>
+                <nav className='mini-nav d-flex text-center position-relative'>
                   <div className="slider"></div>
-                  <label htmlFor="asset" onClick={() => { setStep(1) }}>
+                  <label htmlFor="asset" className='text-white position-relative cursor-pointer' onClick={() => { setStep(1) }}>
                     Assets
                   </label>
-                  <label htmlFor="vendor" onClick={() => { setStep(2) }}>
+                  <label htmlFor="vendor" className='text-white position-relative cursor-pointer' onClick={() => { setStep(2) }}>
                     Vendors
                   </label>
-                  <label htmlFor="invoice" onClick={() => { setStep(3) }}>
+                  <label htmlFor="invoice" className='text-white position-relative cursor-pointer' onClick={() => { setStep(3) }}>
                     Invoices
                   </label>
-                  <label htmlFor="ticket" onClick={() => { setStep(4) }}>
+                  <label htmlFor="ticket" className='text-white position-relative cursor-pointer' onClick={() => { setStep(4) }}>
                     Tickets
                   </label>
                 </nav>
