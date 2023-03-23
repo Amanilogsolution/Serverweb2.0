@@ -25,7 +25,6 @@ const Outstatndingdetails = () => {
             const org = localStorage.getItem('Database')
 
             const datas = await TotalOutstanding(org, 1, 10)
-            // console.log(datas)
             setTotalVendor(datas.data)
             setRowPerPage(10)
             const total = datas.TotalData[0]["Totaldata"]
@@ -33,7 +32,6 @@ const Outstatndingdetails = () => {
             setLastval(Math.ceil(total / 10))
 
             const paidinvoices = await PaidInvoice(org, 1, 10)
-            console.log(paidinvoices)
             setPaidInvoice(paidinvoices.data)
             setPaidRowPerPage(10)
             const totalval = paidinvoices.TotalData[0]["Totaldata"]
@@ -86,7 +84,6 @@ const Outstatndingdetails = () => {
     const handlePageClickpaid = async (data) => {
         if (filter == true) {
             const datas = await FilterInvoice(localStorage.getItem('Database'), filterval, data.selected + 1, 10)
-            console.log(datas)
             setPaidInvoice(datas.PaidInv)
             const totalval = datas.Paiddata[0]["Totaldata"]
             setPaidLastval(Math.ceil(totalval / 10))
@@ -102,7 +99,6 @@ const Outstatndingdetails = () => {
     const handleClick = async (type, value) => {
         const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'), type, value)
         setData(result)
-        console.log(result)
     }
 
     return (

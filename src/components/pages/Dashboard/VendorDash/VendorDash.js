@@ -89,9 +89,7 @@ export default function VendorDash({ setStep }) {
   }
 
   const handleClick = async (type, value) => {
-    console.log(type, value)
     const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'), type, value)
-    console.log(result[0])
     setData(result)
   }
 
