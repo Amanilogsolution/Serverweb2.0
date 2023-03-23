@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './ticketsummary.css'
 import { FaEnvelopeOpen, FaCalendarTimes, FaUser, FaCheck, FaTelegramPlane } from 'react-icons/fa';
 import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer, Cell } from "recharts";
-import { Ticket_Summary, ActiveLocation, ActiveEmployees, OpenTotalTicket, TotalTicket, TotalHoldTicket } from '../../../../../api/index'
+import { Ticket_Summary, ActiveLocation, ActiveEmployees, OpenTotalTicket, TotalTicket, TotalHoldTicket,Filter_Ticket_Summary_Count,Filter_Ticket_Summary } from '../../../../../api/index'
 
 
 const TicketSummary = () => {
@@ -10,6 +10,7 @@ const TicketSummary = () => {
   const [employeelist, setEmployeelist] = useState([])
   const [data, setData] = useState([])
   const [ticket, setTicket] = useState()
+  const [filter,setFilter] = useState()
 
 
 
@@ -40,24 +41,52 @@ const TicketSummary = () => {
     fetchdata()
   }, [])
 
-  const handleChange = async (value) => {
+  const handleChange  = async (value) => {
     const org = localStorage.getItem('Database')
 
-    if (value === 'Open') {
+    console.log(filter)
+    if(!filter){
+
+    if (value == 'Open') {
       setTicket('Open')
       const tabledata = await OpenTotalTicket(org);
       setData(tabledata)
-    } else if (value === 'Closed') {
+    } else if (value == 'Closed') {
       setTicket('Closed')
       const tabledata = await TotalTicket(org);
-      console.log('hii',tabledata)
       setData(tabledata)
     }
-    else if (value === 'Hold') {
+    else if (value == 'Hold') {
       setTicket('Hold')
       const tabledata = await TotalHoldTicket(org);
       setData(tabledata)
     }
+  }else{
+    if(filter=="emp_name"){
+      const data = document.getElementById('employee').value
+      setTicket(value)
+      const tabledata = await Filter_Ticket_Summary(org,value,filter,data);
+      console.log(tabledata)
+      setData(tabledata)
+    }else{
+      const data = document.getElementById('locations').value
+      setTicket(value)
+      const tabledata = await Filter_Ticket_Summary(org,value,filter,data);
+      console.log(tabledata)
+      setData(tabledata)
+    }
+  }
+
+  }
+
+  const handleChangefilter = async(type,value) => {
+    const org = localStorage.getItem('Database')
+    console.log(org,type,value)
+    setFilter(type)
+    const result = await Filter_Ticket_Summary_Count(org,type,value)
+    setTicketSummary({
+      ...ticketSummary, TotalTicket: result.TotalTicket.totalticket, TotalOpenTicket: result.TotalTicketOpen.totalticketopen, TotalCloseTicket: result.TotalTicketClose.totalticketclose,
+      TotalHoldTicket: result.TotalTicketHold.totaltickethold})
   }
 
 
@@ -80,6 +109,7 @@ const TicketSummary = () => {
       "value": ticketSummary.TotalHoldTicket
     }
   ];
+
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -117,21 +147,21 @@ const TicketSummary = () => {
       <div className='Summary_cards_div'>
         <div className='d-flex justify-content-end'>
           <div className='text-center rounded '>
-            <select className="form-select">
+            <select className="form-select" id="employee" onChange={(e)=>{handleChangefilter("emp_name",e.target.value)}}>
               <option value='' hidden >Select Employee</option>
               {
                 employeelist.map((item, index) => (
-                  <option key={index} value={item.employee_id}>{item.employee_name}</option>
+                  <option key={index} value={item.employee_name}>{item.employee_name}</option>
                 ))
               }
             </select>
           </div>
           <div className='mx-3 text-center rounded '>
-            <select className="form-select">
+            <select className="form-select" id="locations" onChange={(e)=>{handleChangefilter("location",e.target.value)}}>
               <option hidden value=''>Select Location</option>
               {
                 locationlist.map((item, index) =>
-                  <option key={index}>{item.location_name}</option>
+                  <option key={index} value={item.location_code}>{item.location_name}</option>
                 )
               }
             </select>
@@ -192,7 +222,7 @@ const TicketSummary = () => {
         <hr />
         <div className='Summary_cards'>
 
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around'  >
+          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange( '') }} >
             <div className='summary_icon text-light mx-2 ' >
               <FaUser className='m-1' style={{ fontSize: "23px" }} />
             </div>
@@ -202,8 +232,8 @@ const TicketSummary = () => {
             </div>
           </div>
 
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around cursor-pointer' data-toggle="modal" data-target="#exampleModalCenter"
-              onClick={(e) => { e.preventDefault(); handleChange('Open') }}>
+          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
+            style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange( 'Open') }}>
             <div className='summary_icon mx-2 text-light ' >
               <FaEnvelopeOpen style={{ fontSize: "23px" }} />
             </div>
@@ -214,8 +244,8 @@ const TicketSummary = () => {
             </div>
           </div>
 
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around cursor-pointer' data-toggle="modal" data-target="#exampleModalCenter"
-            onClick={(e) => { e.preventDefault(); handleChange('Closed') }}>
+          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
+            style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange( 'Closed') }}>
             <div className='summary_icon text-light mx-2 ' style={{ padding: "12px 12px" }}>
               <FaCheck className='m-1' style={{ fontSize: "23px" }} />
             </div>
@@ -225,8 +255,8 @@ const TicketSummary = () => {
             </div>
           </div>
 
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around cursor-pointer' data-toggle="modal" data-target="#exampleModalCenter"
-             onClick={(e) => { e.preventDefault(); handleChange('Hold') }}>
+          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
+            style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange( 'Hold') }}>
             <div className='summary_icon text-light mx-2 ' style={{ padding: "12px 14px" }}>
               <FaTelegramPlane style={{ fontSize: "23px" }} />
             </div>
@@ -236,7 +266,6 @@ const TicketSummary = () => {
             </div>
           </div>
         </div>
-
       </div>
 
       {/* Modal */}
@@ -247,7 +276,7 @@ const TicketSummary = () => {
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLongTitle">{ticket} Ticket</h5>
             </div>
-            <div className="modal-body" style={{ maxHeight: "75vh", overflow: "auto" }}>
+            <div class="modal-body" style={{ maxHeight: "80vh", overflow: "auto" }}>
               <table className="table ">
                 <thead>
                   <tr>
@@ -259,8 +288,8 @@ const TicketSummary = () => {
                 </thead>
                 <tbody>
                   {
-                    data.map((value,index) => (
-                      <tr key={index}>
+                    data.map((value) => (
+                      <tr>
                         <td>{value.emp_name}</td>
                         <td>{value.date}</td>
                         <td>{value.ticket_subject}</td>

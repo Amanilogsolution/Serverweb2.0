@@ -21,7 +21,6 @@ const TotalVendorPayment = () => {
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-
             const tabledata = await TotalVendorPaymentapi(org);
             setData(tabledata)
             console.log(tabledata)

@@ -1225,9 +1225,14 @@ export const Ticket_issue_type= async (org) => {
     return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const Filter_Ticket_Summary= async (org) => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/filter_ticket_summary`
-    return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
+export const Filter_Ticket_Summary= async (org,statustype,filterby,value) => {
+    const url = `http://localhost:2008/api/filter_ticket_summary`
+    return axios.post(url, { org,statustype,filterby,value }).then(response => response.data).catch(error => console.log(error));
+}
+
+export const Filter_Ticket_Summary_Count= async (org,type,value) => {
+    const url = `http://localhost:2008/api/filter_ticket_summary_count`
+    return axios.post(url, { org,type,value }).then(response => response.data).catch(error => console.log(error));
 }
 
 
