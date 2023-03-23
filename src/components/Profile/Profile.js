@@ -3,7 +3,6 @@ import Sidebar from '../Sidebar/Sidebar'
 import '../LandingPage/Register/organisation.css'
 import Qrcode from '../../image/qrcode.png';
 import { getUserdetails, updateUserdetails } from '../../api/index'
-// import Snackbar from '../../Snackbar/Snackbar';
 import LoadingPage from '../LoadingPage/LoadingPage';
 import { RiUserFill, RiBuilding4Fill } from 'react-icons/ri';
 import { BsFillTelephoneFill } from 'react-icons/bs';
@@ -21,14 +20,6 @@ const Profile = () => {
    const [loading, setLoading] = useState(false)
 
    // ########################### Modal Alert #############################################
-   //    const [datas, setDatas] = useState({
-   //     message: "abc",
-   //     title: "title",
-   //     type: "type",
-   //     route: "#",
-   //     toggle: "true",
-   // })
-
    const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
    // ########################### Modal Alert #############################################
 
@@ -65,9 +56,6 @@ const Profile = () => {
 
          document.getElementById('subnitbtn').disabled = false
          callfun('Please enter Name', 'warning', 'self')
-
-         // setDatas({ ...datas, message: "Please enter Name", title: "Error", type: "warning", route: "#", toggle: "true" })
-         // document.getElementById('snackbar').style.display = "block"
       }
       else {
          const result = await updateUserdetails(org, employee_name, location, employee_email, employee_number, company, user_id)
@@ -75,15 +63,10 @@ const Profile = () => {
 
          if (result === 'Updated') {
             callfun('Profile Updated', 'success', '/Dashboard')
-
-            // setDatas({ ...datas, message: "Profile Updated", title: "success", type: "success", route: "/Dashboard", toggle: "true" })
-            // document.getElementById('snackbar').style.display = "block"
          }
          else {
             callfun('Server Error', 'danger', 'self')
             document.getElementById('subnitbtn').disabled = false
-            // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "/Profile", toggle: "true" })
-            // document.getElementById('snackbar').style.display = "block"
          }
       }
    }
@@ -111,10 +94,6 @@ const Profile = () => {
             loading ?
                <Sidebar>
                   {/* ######################### Sanckbar start ##################################### */}
-
-                  {/* <div id="snackbar" style={{ display: "none" }}>
-                     <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                  </div> */}
                   <Modal
                      theme={tooglevalue.theme}
                      text={tooglevalue.message}

@@ -1,27 +1,22 @@
-import React, { useEffect, useState,useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { ActiveVendorContract, VendorContractDetail, UpdatePendingVendorInvoice, GetVendorInvoice } from '../../../../api'
+import { ActiveVendorContract, VendorContractDetail, UpdatePendingVendorInvoice, GetVendorInvoice,FileUpload } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-// import Snackbar from '../../../../Snackbar/Snackbar';
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
 
 function EditVendorInvoice() {
     const [loading, setLoading] = useState(false)
+    const [loading2, setLoading2] = useState(true)
 
     const [data, setData] = useState([])
     const [vendorcontractlist, setVendorcontractlist] = useState([])
+    const [filedata, setFiledata] = useState('')
 
     // ########################### Modal Alert #############################################
-    //    const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
+
 
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
     // ########################### Modal Alert #############################################
@@ -63,28 +58,19 @@ function EditVendorInvoice() {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
             callfun('Please enter the Mandatory Field', 'warning', 'self')
-
-            // setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "warning", type: "warning", route: "#", toggle: "true" })
-            // document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
-            const result = await UpdatePendingVendorInvoice(org, vendor, accountno, invno, invamt, invdate, invduedate, invsubdate, remark, refno, printercount, sno)
+            const result = await UpdatePendingVendorInvoice(org, vendor, accountno, invno, invamt, invdate, invduedate, invsubdate, remark, refno, printercount, sno,filedata)
             setLoading(true)
 
             if (result === 'Data Updated') {
                 localStorage.removeItem('vendorinvoicesno')
                 callfun('Invoice Updated', 'success', '/TotalVendorInvoice')
-
-                // setDatas({ ...datas, message: "Invoice Updated", title: "success", type: "success", route: "/TotalVendorInvoice", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
             }
             else {
                 callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
-
-                // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                // document.getElementById('snackbar').style.display = "block"
             }
         }
     }
@@ -107,9 +93,7 @@ function EditVendorInvoice() {
                 loading ?
                     <Sidebar>
                         {/* ######################### Sanckbar Start ##################################### */}
-                        {/* <div id="snackbar" style={{ display: "none" }}>
-                            <Snackbar message={datas.message} title={datas.title} type={datas.type} Route={datas.route} toggle={datas.toggle} />
-                        </div> */}
+
                         <Modal
                             theme={tooglevalue.theme}
                             text={tooglevalue.message}
@@ -177,9 +161,26 @@ function EditVendorInvoice() {
                                                 <input type="text" id='printercount' className="form-control" defaultValue={data.printer_counter} />
                                             </div>
                                         </div>
-                                        <div className="form-group col-md-4 mt-3">
-                                            <label htmlFor='remark'>Remarks</label>
-                                            <textarea className="form-control" id='remark' rows='3' defaultValue={data.remark} ></textarea>
+                                        <div className="row mt-3">
+                                            <div className="form-group col-md-4 mt-3">
+                                                <label htmlFor='remark'>Remarks</label>
+                                                <textarea className="form-control" id='remark' rows='3' defaultValue={data.remark} ></textarea>
+                                            </div>
+                                            {
+                                                data.uploadInvoice ?
+                                                    <div className="form-group col-md-4 mt-3">
+                                                        <label htmlFor='remark'>Preview</label>
+                                                        <div className='row'>
+                                                            <iframe src={data.uploadInvoice} style={{ height: '280px' }} title='invoice preview'/>
+                                                        </div>
+                                                    </div> : null
+                                            }
+                                            <div className="form-group col-md-4 mt-3">
+                                                <label htmlFor='upload'>Upload</label>
+                                                <div className='row'>
+                                                    <button type="button" id='upload' className='btn btn-success col-md-4' data-toggle="modal" data-target="#documentModalCenter" >Upload</button>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div className='btn_div mt-3'>
                                             <button className='btn btn-voilet' id='subnitbtn' onClick={handleAddVendorIvoice}>Update Vendor Invoice</button>
@@ -188,6 +189,41 @@ function EditVendorInvoice() {
                                 </article>
                             </div>
                         </div>
+                        {/* Upload Model Start */}
+                        <div className="modal fade" id="documentModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div className="modal-dialog modal-dialog-centered" role="document">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="exampleModalLongTitle">Upload Document</h5>
+                                    </div>
+                                    <div className="modal-body">
+
+                                        <input type="file" id='inputfile' onChange={async (event) => {
+                                            setLoading2(false)
+                                            setTimeout(async () => {
+                                                const data = new FormData();
+                                                data.append("images", event.target.files[0])
+                                                const UploadLink = await FileUpload(data)
+                                                setLoading2(true)
+                                                if (UploadLink.length > 1) {
+                                                    setFiledata(UploadLink);
+                                                    document.getElementById("uploadbutton").style.display = "flex";
+                                                }
+                                            }, 2000)
+                                        }} />
+                                    </div>
+                                    <div className="modal-footer">
+                                        {
+                                            loading2 ? null : 'Wait a Second'
+                                        }
+                                        <button type="button" className="btn btn-primary" id="uploadbutton" data-dismiss="modal" style={{ display: "none" }}
+                                            onClick={(e) => { e.preventDefault(); }}>Upload</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* Upload Model End */}
                     </Sidebar>
                     : <LoadingPage />
             }

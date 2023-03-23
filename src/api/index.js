@@ -1011,6 +1011,11 @@ export const VendorContractDetail = async (org,sno) => {
     return axios.post(url, {org, sno }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const VendorContractOnChange = async (org,value) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/vendorcontractonchange`
+    return axios.post(url, {org, value }).then(response => response.data).catch(error => console.log(error));
+}
+
 
 //  #########################   New Assets ##############################
 
@@ -1039,7 +1044,6 @@ export const DeleteNewAssets = async (org,status, sno) => {
 }
 export const GetNewAssets = async (org,sno) => {
     const url =`https://drizzlebackend.awlworldwide.com/api/GetNewAssets`
-    console.log(org,sno )
     return axios.post(url, {org,sno }).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -1139,13 +1143,19 @@ export const PendingVendorInvoice = async (org) => {
     return axios.post(url,{org}).then(response => response.data).catch(error => console.log(error));
 }
 
+export const PendingVendorInvoiceOnChnage = async (org,value) => {
+    const url = `https://drizzlebackend.awlworldwide.com/api/vendorinvoiceonchange`
+    return axios.post(url,{org,value}).then(response => response.data).catch(error => console.log(error));
+}
+
+
 export const UpdateVendorInvoice = async (org,data, userid) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/UpdateVendorInvoice`
     return axios.post(url, {org, data, userid }).then(response => response.data).catch(error => console.log(error));
 }
-export const UpdatePendingVendorInvoice = async (org,vendor,accountno,invno,invamt,invdate,invduedate,invsubdate,remark,refno,printercount,sno) => {
+export const UpdatePendingVendorInvoice = async (org,vendor,accountno,invno,invamt,invdate,invduedate,invsubdate,remark,refno,printercount,sno,filedata) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/UpdatePendingVendorInvoice`
-    return axios.post(url, { org,vendor,accountno,invno,invamt,invdate,invduedate,invsubdate,remark,refno,printercount,sno }).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, { org,vendor,accountno,invno,invamt,invdate,invduedate,invsubdate,remark,refno,printercount,sno,filedata }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const TotalVendorPaymentapi = async (org) => {
@@ -1158,13 +1168,12 @@ export const GetVendorPayment = async (org,sno) => {
     return axios.post(url, { org,sno }).then(response => response.data).catch(error => console.log(error));
 }
 
-export const UpdateVendorPayment = async (org,paymentdetail,paymentamt,paymentdate,remark,sno) => {
+export const UpdateVendorPayment = async (org,paymentdetail,paymentamt,paymentdate,remark,sno,filedata) => {
     const url = `https://drizzlebackend.awlworldwide.com/api/UpdateVendorPayment`
-    return axios.post(url, {org, paymentdetail,paymentamt,paymentdate,remark,sno }).then(response => response.data).catch(error => console.log(error));
+    return axios.post(url, {org, paymentdetail,paymentamt,paymentdate,remark,sno,filedata }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const UploadInvoice = async (org,type,document,sno) => {
-    // console.log(org,type,document,sno)
     const url = `https://drizzlebackend.awlworldwide.com/api/UploadInvoice`
     return axios.post(url, {org,type,document,sno}).then(response => response.data).catch(error => console.log(error));
 }
@@ -1255,24 +1264,20 @@ export const Invoice_Outstanding  = async (org) => {
     return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
 }
 export const TotalOutstanding = async (org,pageno,rowsperpage) => {
-    console.log(org,pageno,rowsperpage)
     const url = `https://drizzlebackend.awlworldwide.com/api/TotalOutstanding`
     return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const VendorInvoice = async (org,pageno,rowsperpage) => {
-    console.log(org,pageno,rowsperpage)
     const url = `https://drizzlebackend.awlworldwide.com/api/VendorInvoice`
     return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
 }
 export const PaidInvoice = async (org,pageno,rowsperpage) => {
-    console.log(org,pageno,rowsperpage)
     const url = `https://drizzlebackend.awlworldwide.com/api/PaidInvoice`
     return axios.post(url, { org,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const FilterInvoice = async (org,value,pageno,rowsperpage) => {
-    console.log(org,pageno,value,rowsperpage)
     const url = `https://drizzlebackend.awlworldwide.com/api/FilterInvoice`
     return axios.post(url, { org,value,pageno,rowsperpage }).then(response => response.data).catch(error => console.log(error));
 }
@@ -1311,7 +1316,6 @@ export const getOrganisation = async (org) => {
 }
 
 export const UpdateOrganisationDetails = async (org,org_name,org_country,org_state,org_city,org_currency) => {
-    console.log(org,org_name,org_country,org_state,org_city,org_currency)
     const url = `https://drizzlebackend.awlworldwide.com/api/updateorganizationdetails`
     return axios.post(url, {org,org_name,org_country,org_state,org_city,org_currency}).then(response => response.data).catch(error => console.log(error));
 }

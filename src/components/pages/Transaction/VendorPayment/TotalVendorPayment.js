@@ -99,23 +99,24 @@ const TotalVendorPayment = () => {
             cell: (row) => [
                 // <button className='btn' data-toggle="modal" data-target="#exampleModalCenter"
                 //     onClick={(e) => { e.preventDefault(); setSno(row.sno) }}> <GrDocumentUpload /> </button>,
-                <button className='bg-transparent border-0' onClick={() => { window.open(`${row.uploadpayment}`, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=400,left=10000,width=400,height=400"); }} >
+                <button className='bg-transparent border-0'
+                 onClick={() => { window.open(`${row.uploadpayment}`, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=400,left=10000,width=400,height=400"); }} >
                     <AiOutlineEye style={{ fontSize: "20px",color:row.uploadpayment===''?'red':'green' }} /></button>
             ],
         }
 
 
     ];
-    const handleClick = async (e) => {
-        e.preventDefault();
-        const org = localStorage.getItem('Database')
+    // const handleClick = async (e) => {
+    //     e.preventDefault();
+    //     const org = localStorage.getItem('Database')
 
-        const result = await UploadInvoice(org, 'uploadpayment', file, sno)
-        if (result) {
-            alert('Invoice successfully uploaded')
-            window.location.reload()
-        }
-    }
+    //     const result = await UploadInvoice(org, 'uploadpayment', file, sno)
+    //     if (result) {
+    //         alert('Invoice successfully uploaded')
+    //         window.location.reload()
+    //     }
+    // }
 
     const handleParticularData = async (type, value) => {
         const result = await Outstanding_Invoice_filter(localStorage.getItem('Database'), type, value)

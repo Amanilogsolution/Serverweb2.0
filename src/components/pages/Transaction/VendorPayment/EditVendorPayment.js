@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { UpdateVendorPayment, GetVendorPayment, PendingVendorInvoice } from '../../../../api'
+import { UpdateVendorPayment, GetVendorPayment, PendingVendorInvoice, FileUpload } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
@@ -9,9 +9,12 @@ import Modal from '../../AlertModal/Modal';
 
 function EditVendorPayments() {
     const [loading, setLoading] = useState(false)
+    const [loading2, setLoading2] = useState(true)
 
     const [data, setData] = useState([])
     const [pendinginvoicelist, setPendinginvoicelist] = useState([])
+    const [filedata, setFiledata] = useState('')
+
 
     // ########################### Modal Alert #############################################
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
@@ -34,17 +37,6 @@ function EditVendorPayments() {
         setLoading(false)
         document.getElementById('subnitbtn').disabled = 'true'
 
-        // let val2 = document.getElementById('invno');
-        // let text = val2.options[val2.selectedIndex].text;
-        // let toindex2 = text.indexOf(",")
-
-        // const middletext = text.slice(toindex2 + 2)
-        // const middle = middletext.slice(
-        //     middletext.indexOf('(') + 1,
-        //     middletext.lastIndexOf(')'),
-        // );
-        // const invno = middle;
-
         const paymentdetail = document.getElementById('paymentdetail').value;
         const paymentamt = document.getElementById('paymentamt').value;
         const paymentdate = document.getElementById('paymentdate').value;
@@ -59,7 +51,7 @@ function EditVendorPayments() {
             return false;
         }
         else {
-            const result = await UpdateVendorPayment(org, paymentdetail, paymentamt, paymentdate, remark, sno)
+            const result = await UpdateVendorPayment(org, paymentdetail, paymentamt, paymentdate, remark, sno, filedata)
             setLoading(true)
 
             if (result === 'Data Updated') {
@@ -152,6 +144,17 @@ function EditVendorPayments() {
                                                 <label htmlFor='remark'>Remarks</label>
                                                 <textarea className="form-control" id='remark' rows='3' defaultValue={data.payment_remark}></textarea>
                                             </div>
+                                            <div className="form-group col-md-4">
+                                                <label htmlFor='upload'>Uploaded Document</label>
+                                                <div className='row'>
+                                                    {
+                                                        data.uploadpayment ? <>
+                                                            <iframe src={data.uploadpayment} style={{ height: '280px' }} title='Payment Preview' />
+                                                            <button type="button" className='btn btn-success ' >Upload</button></>
+                                                            : <button type="button" className='btn btn-success col-md-4' data-toggle="modal" data-target="#documentModalCenter" >Upload</button>
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
                                     </form>
                                 </article>
@@ -160,6 +163,42 @@ function EditVendorPayments() {
                                 </div>
                             </div>
                         </div>
+
+                        {/* Upload Model Start */}
+                        <div className="modal fade" id="documentModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div className="modal-dialog modal-dialog-centered" role="document">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="exampleModalLongTitle">Upload Document</h5>
+                                    </div>
+                                    <div className="modal-body">
+
+                                        <input type="file" id='inputfile' onChange={async (event) => {
+                                            setLoading2(false)
+                                            setTimeout(async () => {
+                                                const data = new FormData();
+                                                data.append("images", event.target.files[0])
+                                                const UploadLink = await FileUpload(data)
+                                                setLoading2(true)
+                                                if (UploadLink.length > 1) {
+                                                    setFiledata(UploadLink);
+                                                    document.getElementById("uploadbutton").style.display = "flex";
+                                                }
+                                            }, 2000)
+                                        }} />
+                                    </div>
+                                    <div className="modal-footer">
+                                        {
+                                            loading2 ? null : 'Wait a Second'
+                                        }
+                                        <button type="button" className="btn btn-primary" id="uploadbutton" data-dismiss="modal" style={{ display: "none" }}
+                                            onClick={(e) => { e.preventDefault(); }}>Upload</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* Upload Model End */}
                     </Sidebar>
                     : <LoadingPage />
             }
