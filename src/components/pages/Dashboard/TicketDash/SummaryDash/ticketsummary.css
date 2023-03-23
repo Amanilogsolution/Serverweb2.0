@@ -36,10 +36,23 @@
     grid-template-rows: 1fr;
 }
 
+.Summary_cards_issuetype {
+    margin-top: 30px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+}
+
 .Summary_card {
     height: 90px;
     width: 190px;
     margin: auto;
+}
+.Summary_card_issuetype{
+    height: 210px;
+    width: 290px;
+    margin: 12px auto;
 }
 
 .summary-dash .Summary_cards_div h6 {

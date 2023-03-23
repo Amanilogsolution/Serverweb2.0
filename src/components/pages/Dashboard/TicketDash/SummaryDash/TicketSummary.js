@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './ticketsummary.css'
 import { FaEnvelopeOpen, FaCalendarTimes, FaUser, FaCheck, FaTelegramPlane } from 'react-icons/fa';
 import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer, Cell } from "recharts";
-import { Ticket_Summary, ActiveLocation, ActiveEmployees, OpenTotalTicket, TotalTicket, TotalHoldTicket,Filter_Ticket_Summary_Count,Filter_Ticket_Summary } from '../../../../../api/index'
+import { Ticket_Summary, ActiveLocation, ActiveEmployees, OpenTotalTicket, TotalTicket, TotalHoldTicket, Filter_Ticket_Summary_Count, Filter_Ticket_Summary } from '../../../../../api/index'
 
 
 const TicketSummary = () => {
@@ -10,7 +10,8 @@ const TicketSummary = () => {
   const [employeelist, setEmployeelist] = useState([])
   const [data, setData] = useState([])
   const [ticket, setTicket] = useState()
-  const [filter,setFilter] = useState()
+  const [filter, setFilter] = useState()
+  const [ticketIssue, setTicketIssue] = useState({})
 
 
 
@@ -41,53 +42,131 @@ const TicketSummary = () => {
     fetchdata()
   }, [])
 
-  const handleChange  = async (value) => {
+  const handleChange = async (value) => {
     const org = localStorage.getItem('Database')
 
-    console.log(filter)
-    if(!filter){
-
-    if (value == 'Open') {
-      setTicket('Open')
-      const tabledata = await OpenTotalTicket(org);
-      setData(tabledata)
-    } else if (value == 'Closed') {
-      setTicket('Closed')
-      const tabledata = await TotalTicket(org);
-      setData(tabledata)
+    if (!filter) {
+      if (value == 'Open') {
+        setTicket('Open')
+        const tabledata = await OpenTotalTicket(org);
+        setData(tabledata)
+      } else if (value == 'Closed') {
+        setTicket('Closed')
+        const tabledata = await TotalTicket(org);
+        setData(tabledata)
+      }
+      else if (value == 'Hold') {
+        setTicket('Hold')
+        const tabledata = await TotalHoldTicket(org);
+        setData(tabledata)
+      }
+    } else {
+      if (filter == "emp_name") {
+        const data = document.getElementById('employee').value
+        setTicket(value)
+        const tabledata = await Filter_Ticket_Summary(org, value, filter, data);
+        setData(tabledata)
+      } else {
+        const data = document.getElementById('locations').value
+        setTicket(value)
+        const tabledata = await Filter_Ticket_Summary(org, value, filter, data);
+        setData(tabledata)
+      }
     }
-    else if (value == 'Hold') {
-      setTicket('Hold')
-      const tabledata = await TotalHoldTicket(org);
-      setData(tabledata)
-    }
-  }else{
-    if(filter=="emp_name"){
-      const data = document.getElementById('employee').value
-      setTicket(value)
-      const tabledata = await Filter_Ticket_Summary(org,value,filter,data);
-      console.log(tabledata)
-      setData(tabledata)
-    }else{
-      const data = document.getElementById('locations').value
-      setTicket(value)
-      const tabledata = await Filter_Ticket_Summary(org,value,filter,data);
-      console.log(tabledata)
-      setData(tabledata)
-    }
-  }
 
   }
 
-  const handleChangefilter = async(type,value) => {
+  const handleChangefilter = async (type, value) => {
+    document.getElementById('issuetypetoogle').style.display='grid';
     const org = localStorage.getItem('Database')
-    console.log(org,type,value)
+    console.log(org, type, value)
     setFilter(type)
-    const result = await Filter_Ticket_Summary_Count(org,type,value)
+    const result = await Filter_Ticket_Summary_Count(org, type, value)
+    console.log(result)
+    setTicketIssue(result)
+
     setTicketSummary({
       ...ticketSummary, TotalTicket: result.TotalTicket.totalticket, TotalOpenTicket: result.TotalTicketOpen.totalticketopen, TotalCloseTicket: result.TotalTicketClose.totalticketclose,
-      TotalHoldTicket: result.TotalTicketHold.totaltickethold})
+      TotalHoldTicket: result.TotalTicketHold.totaltickethold
+    })
   }
+
+  const Hardwaredata = [
+    {
+        "name": "Open",
+        "value": ticketIssue.HardwareTicketopen,
+    },
+    {
+        "name": "Closed",
+        "value": ticketIssue.HardwareTicketClose,
+    }
+];
+
+const Softwaredata = [
+    {
+        "name": "Open",
+        "value": ticketIssue.SoftwareTicketOpen,
+    },
+    {
+        "name": "Closed",
+        "value": ticketIssue.SoftwareTicketClose,
+    }
+];
+
+
+const Otherdata = [
+    {
+        "name": "Open",
+        "value": ticketIssue.OtherTicketOpen,
+    },
+    {
+        "name": "Closed",
+        "value": ticketIssue.OtherTicketClose,
+    }
+];
+
+const Serverdata = [
+    {
+        "name": "Open",
+        "value": ticketIssue.ServerTicketOpen,
+    },
+    {
+        "name": "Closed",
+        "value": ticketIssue.ServerTicketClose,
+    }
+];
+
+const Allocationdata = [
+    {
+        "name": "Open",
+        "value": ticketIssue.AllocationTicketOpen,
+    },
+    {
+        "name": "Closed",
+        "value": ticketIssue.AllocationTicketClose,
+    }
+];
+const Connectivitydata = [
+    {
+        "name": "Open",
+        "value": ticketIssue.ConnectivityTicketOpen,
+    },
+    {
+        "name": "Closed",
+        "value": ticketIssue.ConnectivityTicketClose,
+    }
+];
+
+const newreqdata = [
+    {
+        "name": "Open",
+        "value": ticketIssue.NewReqTicketOpen,
+    },
+    {
+        "name": "Closed",
+        "value": ticketIssue.NewReqTicketClose,
+    }
+];
 
 
   const data02 = [
@@ -147,7 +226,7 @@ const TicketSummary = () => {
       <div className='Summary_cards_div'>
         <div className='d-flex justify-content-end'>
           <div className='text-center rounded '>
-            <select className="form-select" id="employee" onChange={(e)=>{handleChangefilter("emp_name",e.target.value)}}>
+            <select className="form-select" id="employee" onChange={(e) => { handleChangefilter("emp_name", e.target.value) }}>
               <option value='' hidden >Select Employee</option>
               {
                 employeelist.map((item, index) => (
@@ -157,7 +236,7 @@ const TicketSummary = () => {
             </select>
           </div>
           <div className='mx-3 text-center rounded '>
-            <select className="form-select" id="locations" onChange={(e)=>{handleChangefilter("location",e.target.value)}}>
+            <select className="form-select" id="locations" onChange={(e) => { handleChangefilter("location", e.target.value) }}>
               <option hidden value=''>Select Location</option>
               {
                 locationlist.map((item, index) =>
@@ -222,7 +301,7 @@ const TicketSummary = () => {
         <hr />
         <div className='Summary_cards'>
 
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange( '') }} >
+          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
             <div className='summary_icon text-light mx-2 ' >
               <FaUser className='m-1' style={{ fontSize: "23px" }} />
             </div>
@@ -233,7 +312,7 @@ const TicketSummary = () => {
           </div>
 
           <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
-            style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange( 'Open') }}>
+            style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange('Open') }}>
             <div className='summary_icon mx-2 text-light ' >
               <FaEnvelopeOpen style={{ fontSize: "23px" }} />
             </div>
@@ -245,7 +324,7 @@ const TicketSummary = () => {
           </div>
 
           <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
-            style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange( 'Closed') }}>
+            style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange('Closed') }}>
             <div className='summary_icon text-light mx-2 ' style={{ padding: "12px 12px" }}>
               <FaCheck className='m-1' style={{ fontSize: "23px" }} />
             </div>
@@ -256,7 +335,7 @@ const TicketSummary = () => {
           </div>
 
           <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
-            style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange( 'Hold') }}>
+            style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange('Hold') }}>
             <div className='summary_icon text-light mx-2 ' style={{ padding: "12px 14px" }}>
               <FaTelegramPlane style={{ fontSize: "23px" }} />
             </div>
@@ -266,12 +345,143 @@ const TicketSummary = () => {
             </div>
           </div>
         </div>
+
+        <hr />
+        <div className='Summary_cards_issuetype' id="issuetypetoogle" style={{display:"none"}}>
+          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+            <p className='mx-2'>Hardware Problem</p>
+            <div className='' style={{ width: "88%", height: "200px" }}>
+              <ResponsiveContainer aspect={1.0}>
+                <PieChart width={700} height={200}>
+                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Hardwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                    {Hardwaredata.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+
+                    ))}
+                  </Pie>
+                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+            <p className='mx-2'>Network Problem</p>
+            <div className='' style={{ width: "88%", height: "200px" }}>
+              <ResponsiveContainer aspect={1.0}>
+                <PieChart width={700} height={200}>
+                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Softwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                    {Softwaredata.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+
+                    ))}
+                  </Pie>
+                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+            <p className='mx-2'>Other IT Issue</p>
+            <div className='' style={{ width: "88%", height: "200px" }}>
+              <ResponsiveContainer aspect={1.0}>
+                <PieChart width={700} height={200}>
+                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Otherdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                    {Otherdata.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+
+                    ))}
+                  </Pie>
+                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+            <p className='mx-2'>Server Problem</p>
+            <div className='' style={{ width: "88%", height: "200px" }}>
+              <ResponsiveContainer aspect={1.0}>
+                <PieChart width={700} height={200}>
+                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Serverdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                    {Serverdata.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+          
+          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+            <p className='mx-2'>Allocation</p>
+            <div className='' style={{ width: "88%", height: "200px" }}>
+              <ResponsiveContainer aspect={1.0}>
+                <PieChart width={700} height={200}>
+                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Allocationdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                    {Allocationdata.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+
+                    ))}
+                  </Pie>
+                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+            <p className='mx-2'>Connection Problem</p>
+            <div className='' style={{ width: "88%", height: "200px" }}>
+              <ResponsiveContainer aspect={1.0}>
+                <PieChart width={700} height={200}>
+                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Connectivitydata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                    {Connectivitydata.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+
+                    ))}
+                  </Pie>
+                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+            <p className='mx-2'>New Requirement</p>
+            <div className='' style={{ width: "88%", height: "200px" }}>
+              <ResponsiveContainer aspect={1.0}>
+                <PieChart width={700} height={200}>
+                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={newreqdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                    {newreqdata.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+
+                    ))}
+                  </Pie>
+                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+
+        </div>
       </div>
+
 
       {/* Modal */}
 
       <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-        <div className="modal-dialog modal-dialog-centered" role="document" style={{ maxWidth:'50vw'}}>
+        <div className="modal-dialog modal-dialog-centered" role="document" style={{ maxWidth: '50vw' }}>
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLongTitle">{ticket} Ticket</h5>
