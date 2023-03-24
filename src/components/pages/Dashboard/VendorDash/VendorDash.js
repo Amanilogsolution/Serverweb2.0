@@ -11,7 +11,7 @@ import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 import { VscReferences } from 'react-icons/vsc';
 
 
-export default function VendorDash({ setStep }) {
+export default function VendorDash({setStep}) {
   const [ReferabceNo, setReferanceNo] = useState()
   const [TotalVendor, setTotalVendor] = useState([])
   const [rowperpage, setRowPerPage] = useState(10)
