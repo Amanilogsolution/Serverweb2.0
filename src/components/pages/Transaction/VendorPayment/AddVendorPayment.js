@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
 import { PendingVendorInvoice, UpdateVendorInvoice, FileUpload, PendingVendorInvoiceOnChnage } from '../../../../api'
-import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight,MdFileUpload } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { GlobalAlertInfo } from '../../../../App';
@@ -232,12 +232,12 @@ function AddVendorPayment() {
                                                         <td className='p-0'><input type='date' id={`ptydate-${index}`} className='form-control m-0 ' defaultValue={todatdate} onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0'><input type='text' id={`remark-${index}`} className='form-control m-0 ' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0'><input type='text' id={`refno-${index}`} className='form-control m-0 ' disabled onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0'><button className='form-control m-0 btn btn-success' data-toggle="modal" data-target="#exampleModalCenter"
+                                                        <td className='p-0'><button className='form-control m-0 ' data-toggle="modal" data-target="#exampleModalCenter"
                                                             onClick={(e) => {
                                                                 e.preventDefault(); setIndexno(index);
                                                                 document.getElementById("uploadbutton").style.display = "none";
                                                                 document.getElementById("inputfile").value = '';
-                                                            }}>Upload</button></td>
+                                                            }}><MdFileUpload style={{fontSize:'25px',color:file[index]?'green':''}}/></button></td>
                                                     </tr>
                                                 ))}
                                             </tbody>
