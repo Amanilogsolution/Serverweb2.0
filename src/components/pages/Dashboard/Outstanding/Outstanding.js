@@ -3,6 +3,8 @@ import './Outstanding.css'
 import { CSVLink } from "react-csv";
 import { BiExport } from 'react-icons/bi'
 import { SiMicrosoftexcel } from 'react-icons/si'
+import { MdDownload } from 'react-icons/md'
+
 import { GrDocumentCsv } from 'react-icons/gr'
 import { ExcelConvertData } from '../VendorDash/Excel'
 import ReactPaginate from 'react-paginate';
@@ -37,6 +39,7 @@ const Outstanding = ({ setStep }) => {
       const org = localStorage.getItem('Database')
       const datas = await VendorInvoice(org, 1, 10)
       setTotalVendor(datas.data)
+
       const total = datas.TotalData[0]["Totaldata"]
       setRowPerPage(10)
       setLastval(Math.ceil(total / 10))
@@ -165,6 +168,7 @@ const Outstanding = ({ setStep }) => {
               <tr>
                 <th scope="col">Vendor</th>
                 <th scope="col">Invoice_no</th>
+                <th scope="col">Download Invoice</th>
                 <th scope="col">Invoice Date</th>
                 <th scope="col">Reference No</th>
                 <th scope="col">Invoice Amt</th>
@@ -180,6 +184,14 @@ const Outstanding = ({ setStep }) => {
                         <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#vendorModal" onClick={(e) => { e.preventDefault(); handleClick('Vendor', elements.vendor) }} >{elements.vendor}</td>
                         <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#invoiceModal" onClick={(e) => { e.preventDefault(); handleClick('Invoice', elements.invoice_no) }}>{elements.invoice_no}</td>
                         <td>{elements.date}</td>
+                        <td className="cursor-pointer " style={{ fontSize: '22px' }}>{
+                          elements.uploadInvoice ?
+                            <a href={elements.uploadInvoice} className='text-success' target="_blank" download ><MdDownload title='Download Invoice' /></a>
+                            :
+                            <MdDownload className='text-danger' title='Invoice Not Uploaded' />
+                        }
+
+                        </td>
                         <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#ReferanceModal" onClick={(e) => { e.preventDefault(); handleClick('Referance', elements.reference_no) }}>{elements.reference_no}</td>
                         <td>{elements.invoice_amt}</td>
                       </tr>

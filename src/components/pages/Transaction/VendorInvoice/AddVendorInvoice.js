@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice, FileUpload } from '../../../../api'
+import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice, FileUpload, VendorContractOnChange } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
-// import Select from 'react-select';
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
 import './addVendorInvoice.css'
@@ -41,9 +40,6 @@ function AddVendorInvoice() {
         fetchdata();
     }, [])
 
-    // let options = vendorcontractlist.map((ele) => {
-    //     return { value: `${ele.sno},${ele.vendor}`, label: `${ele.vendor}, ${ele.reference_no}` };
-    // })
     const todaydate = () => {
         let date = new Date();
         let day = date.getDate();
@@ -90,7 +86,7 @@ function AddVendorInvoice() {
 
         let obj = {
             vendor: vendor, accountno: accountno, invno: invno, invamt: invamt, invdate: invdate,
-            invduedate: invduedate, invsubdate: invsubdate, remark: remark, refno: refno, printercount: printercount,files:file[index]
+            invduedate: invduedate, invsubdate: invsubdate, remark: remark, refno: refno, printercount: printercount, filedata: file[index]
         };
 
         arryval[index] = obj;
@@ -99,8 +95,6 @@ function AddVendorInvoice() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
-        console.log(arryval)
-        return 0;
         document.getElementById('subnitbtn').disabled = 'true'
         setLoading(false)
         const org = localStorage.getItem('Database')
@@ -137,7 +131,7 @@ function AddVendorInvoice() {
             setLoading(true)
 
             const result = await InsertVendorInvoice(org, arryval, localStorage.getItem('UserId'))
-
+            console.log(result)
             if (result === 'Data Added') {
                 callfun('Vendor Invoice Added', 'success', '/TotalVendorInvoice')
             }
@@ -154,16 +148,12 @@ function AddVendorInvoice() {
         const detail = await VendorContractDetail(org, e.sno);
         document.getElementById(`accountno-${e.Index}`).value = detail.customer_account_no;
         document.getElementById(`refno-${e.Index}`).value = detail.reference_no;
-
-        // const toindex = e.value.split(",")
-        // Vendorname[e.Index] = toindex[1]
-        // const vebndconid = toindex[0]
-        // console.log(vebndconid)
-        // const detail = await VendorContractDetail(org, vebndconid);
-        // document.getElementById(`accountno-${e.Index}`).value = detail.customer_account_no;
-        // document.getElementById(`refno-${e.Index}`).value = detail.reference_no;
     }
 
+    const handleGetVendorName = async (e) => {
+        const getname = await VendorContractOnChange(localStorage.getItem('Database'), e.target.value)
+        setVendorcontractlist(getname)
+    }
 
     return (
         <>
@@ -214,13 +204,14 @@ function AddVendorInvoice() {
                                                 {arry.map((item, index) => (
                                                     <tr key={index}>
                                                         <td className='p-0 '>
-                                                            {/* <Select options={options} className="col" isMulti={false}
-                                                                onBlur={() => savatoarry(index)}
-                                                                onChange={(e) => handleChnageVendorDetail({ ...e, Index: index })}
-                                                            /> */}
 
                                                             <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#vendorModalCenter"
-                                                                onClick={(e) => { setIndexno(index) }}>
+                                                                onClick={(e) => {
+                                                                    setIndexno(index);
+                                                                    setTimeout(() => {
+                                                                        document.getElementById('searchInvoice').focus();
+                                                                    }, 600)
+                                                                }}>
                                                                 {Vendorname[index] !== undefined ? Vendorname[index] : "Select"}
                                                             </button>
                                                         </td>
@@ -234,9 +225,11 @@ function AddVendorInvoice() {
                                                         <td className='p-0 '><input type='text' id={`refno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 '><input type='text' id={`printercount-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 '><button className='form-control m-0 btn btn-success border-0' data-toggle="modal" data-target="#exampleModalCenter"
-                                                            onClick={(e) => { e.preventDefault(); setUploadindexno(index); 
+                                                            onClick={(e) => {
+                                                                e.preventDefault(); setUploadindexno(index);
                                                                 document.getElementById("uploadbutton").style.display = "none";
-                                                                document.getElementById("inputfile").value = '';}}
+                                                                document.getElementById("inputfile").value = '';
+                                                            }}
                                                         >Upload</button></td>
                                                     </tr>
                                                 ))}
@@ -283,7 +276,6 @@ function AddVendorInvoice() {
                             }} />
                         </div>
                         <div className="modal-footer">
-                            {/* <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button> */}
                             <button type="button" className="btn btn-primary" id="uploadbutton" data-dismiss="modal" style={{ display: "none" }}
                                 onClick={(e) => { e.preventDefault(); savatoarry(uploadindexno) }}
                             >Upload</button>
@@ -301,13 +293,13 @@ function AddVendorInvoice() {
 
             {/* ####################### Vendor  Modal  Start ################################## */}
             <div className="modal fade" id="vendorModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered" role="document" style={{ minWidth: '60vw' }}>
+                <div className="modal-dialog modal-dialog-centered" role="document" style={{ minWidth: '48vw' }}>
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                            <button type="button" className="close bg-transparent border-0" data-dismiss="modal" aria-label="Close" >
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <h5 className="modal-title" id="exampleModalLongTitle">Select Vendor Name</h5>
+                            <div className="form-group col-md-5">
+                                <input type="text" className='form-control col' placeholder='Enter vendor name to search ' id="searchInvoice" onChange={handleGetVendorName} />
+                            </div>
                         </div>
                         <div className="modal-body overflow-auto" style={{ maxHeight: '60vh' }}>
                             <ul>
