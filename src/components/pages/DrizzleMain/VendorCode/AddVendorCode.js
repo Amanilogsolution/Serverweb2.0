@@ -2,7 +2,7 @@ import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect, useContext } from 'react';
 import {
     InsertVendorCode, TotalCountry, TotalState,
-    TotalCity
+    TotalCity,VendorCreateEmail
 } from '../../../../api'
 import { MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
@@ -49,8 +49,8 @@ function AddVendorCode() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        setLoading(false)
-        document.getElementById('subnitbtn').disabled = 'true'
+        // setLoading(false)
+        // document.getElementById('subnitbtn').disabled = 'true'
 
         const vendor_code = document.getElementById('vendor_code').value;
         const vendor_name = document.getElementById('vendor_name').value;
@@ -83,6 +83,15 @@ function AddVendorCode() {
         const user_id = localStorage.getItem('UserId');
         // setLoading(true)
 
+        const message = {
+            vendor_name : vendor_name,
+            vendor_code : vendor_code,
+            vendor_city : comp_city,
+            contact_person : contact_person,
+            contact_person_name : contact_no
+        }
+
+
         if (!vendor_code || !vendor_name || !company_country_id || !comp_city || !comp_state_id
             || !comp_email || !contact_person || !contact_no || !contact_email) {
             setLoading(true)
@@ -96,6 +105,8 @@ function AddVendorCode() {
             const result = await InsertVendorCode(org, vendor_code_id, vendor_code, vendor_name, comp_email, comp_website, comp_gst,
                 comp_phone, company_country_id, comp_country, comp_state_id, comp_state, comp_city, comp_pincode, comp_addr1, comp_addr2,
                 vendor_portal, contact_person, contact_no, contact_email, user_id);
+                const result1 = await VendorCreateEmail(message)
+
             setLoading(true)
 
             if (result === 'Added') {

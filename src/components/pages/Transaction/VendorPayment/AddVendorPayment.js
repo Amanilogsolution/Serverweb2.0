@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { PendingVendorInvoice, UpdateVendorInvoice, FileUpload, PendingVendorInvoiceOnChnage } from '../../../../api'
+import { PendingVendorInvoice, UpdateVendorInvoice, FileUpload, PendingVendorInvoiceOnChnage,VendorPaymentEmail } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
@@ -36,6 +36,7 @@ function AddVendorPayment() {
             const org = localStorage.getItem('Database')
             const invoice = await PendingVendorInvoice(org);
             setPendinginvoicelist(invoice)
+            console.log(invoice)
             todaydate()
             setLoading(true)
         }
@@ -151,7 +152,6 @@ function AddVendorPayment() {
         invoiceno[e.Index] = e.invoice_no;
         document.getElementById(`invamt-${e.Index}`).value = e.InvoiceAmt
         document.getElementById(`appramt-${e.Index}`).value = e.InvoiceAmt
-
         document.getElementById(`refno-${e.Index}`).value = e.refno;
     }
 
