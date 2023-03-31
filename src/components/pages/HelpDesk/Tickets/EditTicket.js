@@ -1,6 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
-import React, { useState, useEffect,useContext } from 'react';
-import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, ActiveLocation, ActivePriority, GetNewAssetAssign, UpdateTicket, getTickets,Mail } from '../../../../api'
+import React, { useState, useEffect, useContext } from 'react';
+import { ActiveEmployees, EmployeesDetail, ActiveIssue, ActiveTicketStatus, ActiveLocation, ActivePriority, GetNewAssetAssign, UpdateTicket, getTickets, Mail } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
@@ -105,21 +105,20 @@ export default function EditTicket() {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
             callfun('Please enter the Mandatory Field', 'warning', 'self')
-            return false;
         }
         else {
-            const message ={
-                org : org,
-                subject :ticketsubject,
-                username : employee_name,
-                TicketNumber : assignticket,
-                Ticketdate:ticketdate,
-                TicketType:typeofissue,
-                TicketDiscription:issuedesc,
-                TicketStatus:ticketstatus,
-                mail:email
+            const message = {
+                org: org,
+                subject: ticketsubject,
+                username: employee_name,
+                TicketNumber: assignticket,
+                Ticketdate: ticketdate,
+                TicketType: typeofissue,
+                TicketDiscription: issuedesc,
+                TicketStatus: ticketstatus,
+                mail: email
             }
-            
+
             const result = await UpdateTicket(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id, sno)
 
@@ -130,6 +129,7 @@ export default function EditTicket() {
                 callfun('Ticket Updated', 'success', '/TotalTicket')
             }
             else {
+                setLoading(true)
                 callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
             }

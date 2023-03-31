@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice, FileUpload, VendorContractOnChange,InvoiceEmail } from '../../../../api'
-import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight, MdFileUpload } from 'react-icons/md'
+import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice, FileUpload, VendorContractOnChange, InvoiceEmail } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { GlobalAlertInfo } from '../../../../App';
@@ -34,6 +34,7 @@ function AddVendorInvoice() {
             const org = localStorage.getItem('Database')
             const vendorcontract = await ActiveVendorContract(org);
             setVendorcontractlist(vendorcontract)
+            console.log(vendorcontract)
             todaydate()
             setLoading(true)
         }
@@ -95,23 +96,9 @@ function AddVendorInvoice() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
-        console.log(arryval)
 
-        for(let i=0;i<arryval.length;i++){
-            const message = {
-                type : 'Add',
-                invoiceno : arryval[i].invno,
-                vendorname: arryval[i].vendor,
-                reference_no:arryval[i].refno,
-                invoice_date: arryval[i].invdate,
-                invoice_receive_date:arryval[i].invsubdate,
-                invoice_amount:arryval[i].invamt,
-                upload:file[i]
-            }
-    
-            const result = await InvoiceEmail(message)
-        }
-     
+
+
         document.getElementById('subnitbtn').disabled = 'true'
         setLoading(false)
         const org = localStorage.getItem('Database')
@@ -148,8 +135,21 @@ function AddVendorInvoice() {
             setLoading(true)
 
             const result = await InsertVendorInvoice(org, arryval, localStorage.getItem('UserId'))
-            console.log(result)
             if (result === 'Data Added') {
+                for (let i = 0; i < arryval.length; i++) {
+                    const message = {
+                        type: 'Add',
+                        invoiceno: arryval[i].invno,
+                        vendorname: arryval[i].vendor,
+                        reference_no: arryval[i].refno,
+                        invoice_date: arryval[i].invdate,
+                        invoice_receive_date: arryval[i].invsubdate,
+                        invoice_amount: arryval[i].invamt,
+                        upload: file[i] || ''
+                    }
+
+                    const result = await InvoiceEmail(message)
+                }
                 callfun('Vendor Invoice Added', 'success', '/TotalVendorInvoice')
             }
             else {
@@ -241,13 +241,13 @@ function AddVendorInvoice() {
                                                         <td className='p-0 '><input type='text' id={`remark-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 '><input type='text' id={`refno-${index}`} className='form-control m-0  border-0' disabled onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0 '><input type='text' id={`printercount-${index}`} className='form-control m-0  border-0' onBlur={() => savatoarry(index)} /></td>
-                                                        <td className='p-0 '><button className='form-control m-0 btn btn-success border-0' data-toggle="modal" data-target="#exampleModalCenter"
+                                                        <td className='p-0 '><button className='form-control m-0  border-0' data-toggle="modal" data-target="#exampleModalCenter"
                                                             onClick={(e) => {
                                                                 e.preventDefault(); setUploadindexno(index);
                                                                 document.getElementById("uploadbutton").style.display = "none";
                                                                 document.getElementById("inputfile").value = '';
                                                             }}
-                                                        >Upload</button></td>
+                                                        ><MdFileUpload style={{ fontSize: '25px', color: file[index] ? 'green' : '' }} /></button></td>
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -310,7 +310,7 @@ function AddVendorInvoice() {
 
             {/* ####################### Vendor  Modal  Start ################################## */}
             <div className="modal fade" id="vendorModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered" role="document" style={{ minWidth: '48vw' }}>
+                <div className="modal-dialog modal-dialog-centered" role="document" style={{ minWidth: '53vw' }}>
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLongTitle">Select Vendor Name</h5>
@@ -318,17 +318,19 @@ function AddVendorInvoice() {
                                 <input type="text" className='form-control col' placeholder='Enter vendor name to search ' id="searchInvoice" onChange={handleGetVendorName} />
                             </div>
                         </div>
-                        <div className="modal-body overflow-auto" style={{ maxHeight: '60vh' }}>
+                        <div className="modal-body overflow-auto position-relative p-0" style={{ maxHeight: '60vh' }}>
+                            <div className='mt-0 d-flex justify-content-between px-5 text-danger border-bottom border-dark position-sticky top-0  bg-white '
+                                style={{ zIndex: '2' }}><span>Vendor Name(Reference  no)</span><span>Account no</span></div>
                             <ul>
                                 {
                                     vendorcontractlist.map((item, index) => (
-                                        <li key={index} className="vendor-Invoice-list cursor-pointer" data-dismiss="modal"
+                                        <li key={index} className="vendor-Invoice-list cursor-pointer d-flex justify-content-between" data-dismiss="modal"
                                             value={`${item.sno},${item.vendor}`}
                                             onClick={(e) => {
                                                 handleChnageVendorDetail({ sno: item.sno, vendor: item.vendor, reference_no: item.reference_no, Index: indexno });
                                                 savatoarry(indexno)
                                             }}
-                                        >{item.vendor}, ({item.reference_no})</li>
+                                        ><span>{item.vendor}, ({item.reference_no})</span> <span>{item.customer_account_no}</span></li>
                                     ))
                                 }
                             </ul>

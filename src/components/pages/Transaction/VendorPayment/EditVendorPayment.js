@@ -38,6 +38,7 @@ function EditVendorPayments() {
         document.getElementById('subnitbtn').disabled = 'true'
 
         const paymentdetail = document.getElementById('paymentdetail').value;
+        const approved_payment_amt = document.getElementById('approvedamt').value;
         const paymentamt = document.getElementById('paymentamt').value;
         const paymentdate = document.getElementById('paymentdate').value;
         const remark = document.getElementById('remark').value;
@@ -51,7 +52,7 @@ function EditVendorPayments() {
             return false;
         }
         else {
-            const result = await UpdateVendorPayment(org, paymentdetail, paymentamt, paymentdate, remark, sno, filedata)
+            const result = await UpdateVendorPayment(org, paymentdetail, paymentamt, paymentdate, remark, sno, filedata,approved_payment_amt)
             setLoading(true)
 
             if (result === 'Data Updated') {
@@ -123,7 +124,7 @@ function EditVendorPayments() {
                                         <div className="row mt-3">
                                             <div className="form-group col-md-4">
                                                 <label htmlFor='approvedamt'>Approved Amount </label>
-                                                <input type="number" id='approvedamt' className="form-control" defaultValue={data.approved_payment_amt} disabled />
+                                                <input type="number" id='approvedamt' className="form-control" defaultValue={data.approved_payment_amt}  />
                                             </div>
                                             <div className="form-group col-md-4">
                                                 <label htmlFor='paymentamt'>Payment Amount <span className='text-danger'>*</span></label>

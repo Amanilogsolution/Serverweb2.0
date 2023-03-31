@@ -23,8 +23,6 @@ const Login = (props) => {
   }
 
   const handlelogin = async (e) => {
-
-    
     e.preventDefault();
     // setLoading(false)
     const user_id = document.getElementById('user-id').value;
@@ -90,7 +88,7 @@ const Login = (props) => {
                       </div>
                     </div>
 
-                  
+
 
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="form-check mb-0">

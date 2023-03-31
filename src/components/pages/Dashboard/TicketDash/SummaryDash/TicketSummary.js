@@ -77,12 +77,10 @@ const TicketSummary = () => {
   }
 
   const handleChangefilter = async (type, value) => {
-    document.getElementById('issuetypetoogle').style.display='grid';
+    document.getElementById('issuetypetoogle').style.display = 'grid';
     const org = localStorage.getItem('Database')
-    console.log(org, type, value)
     setFilter(type)
     const result = await Filter_Ticket_Summary_Count(org, type, value)
-    console.log(result)
     setTicketIssue(result)
 
     setTicketSummary({
@@ -93,80 +91,80 @@ const TicketSummary = () => {
 
   const Hardwaredata = [
     {
-        "name": "Open",
-        "value": ticketIssue.HardwareTicketopen,
+      "name": "Open",
+      "value": ticketIssue.HardwareTicketopen,
     },
     {
-        "name": "Closed",
-        "value": ticketIssue.HardwareTicketClose,
+      "name": "Closed",
+      "value": ticketIssue.HardwareTicketClose,
     }
-];
+  ];
 
-const Softwaredata = [
+  const Softwaredata = [
     {
-        "name": "Open",
-        "value": ticketIssue.SoftwareTicketOpen,
+      "name": "Open",
+      "value": ticketIssue.SoftwareTicketOpen,
     },
     {
-        "name": "Closed",
-        "value": ticketIssue.SoftwareTicketClose,
+      "name": "Closed",
+      "value": ticketIssue.SoftwareTicketClose,
     }
-];
+  ];
 
 
-const Otherdata = [
+  const Otherdata = [
     {
-        "name": "Open",
-        "value": ticketIssue.OtherTicketOpen,
+      "name": "Open",
+      "value": ticketIssue.OtherTicketOpen,
     },
     {
-        "name": "Closed",
-        "value": ticketIssue.OtherTicketClose,
+      "name": "Closed",
+      "value": ticketIssue.OtherTicketClose,
     }
-];
+  ];
 
-const Serverdata = [
+  const Serverdata = [
     {
-        "name": "Open",
-        "value": ticketIssue.ServerTicketOpen,
+      "name": "Open",
+      "value": ticketIssue.ServerTicketOpen,
     },
     {
-        "name": "Closed",
-        "value": ticketIssue.ServerTicketClose,
+      "name": "Closed",
+      "value": ticketIssue.ServerTicketClose,
     }
-];
+  ];
 
-const Allocationdata = [
+  const Allocationdata = [
     {
-        "name": "Open",
-        "value": ticketIssue.AllocationTicketOpen,
+      "name": "Open",
+      "value": ticketIssue.AllocationTicketOpen,
     },
     {
-        "name": "Closed",
-        "value": ticketIssue.AllocationTicketClose,
+      "name": "Closed",
+      "value": ticketIssue.AllocationTicketClose,
     }
-];
-const Connectivitydata = [
+  ];
+  const Connectivitydata = [
     {
-        "name": "Open",
-        "value": ticketIssue.ConnectivityTicketOpen,
+      "name": "Open",
+      "value": ticketIssue.ConnectivityTicketOpen,
     },
     {
-        "name": "Closed",
-        "value": ticketIssue.ConnectivityTicketClose,
+      "name": "Closed",
+      "value": ticketIssue.ConnectivityTicketClose,
     }
-];
+  ];
 
-const newreqdata = [
+  const newreqdata = [
     {
-        "name": "Open",
-        "value": ticketIssue.NewReqTicketOpen,
+      "name": "Open",
+      "value": ticketIssue.NewReqTicketOpen,
     },
     {
-        "name": "Closed",
-        "value": ticketIssue.NewReqTicketClose,
+      "name": "Closed",
+      "value": ticketIssue.NewReqTicketClose,
     }
-];
+  ];
 
 
   const data02 = [
@@ -204,277 +202,279 @@ const newreqdata = [
   };
   const COLORS = ['#eb5e3b', '#d1ac06', '#5e0ec9', '#039B28', '#A5A704', '#014FB5'];
   return (
-    <div className='summary-dash d-flex'>
-      <div className='pie_chart_div bg-white mt-3 shadow1-silver rounded m-auto position-relative'>
-        <div className='pie_chart position-absolute rounded'>
-          <ResponsiveContainer aspect={1.5}>
-            <PieChart width={700} height={200}>
-              <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
-              <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={42} outerRadius={85} fill="rgb(94, 4, 69)" >
-                {data02.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+    <>
+      <div className='summary-dash d-flex'>
+        <div className='pie_chart_div bg-white mt-3 shadow1-silver rounded m-auto position-relative'>
+          <div className='pie_chart position-absolute rounded'>
+            <ResponsiveContainer aspect={1.5}>
+              <PieChart width={700} height={200}>
+                <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={data02} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={42} outerRadius={85} fill="rgb(94, 4, 69)" >
+                  {data02.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
 
-                ))}
-              </Pie>
-              <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
-            </PieChart>
-          </ResponsiveContainer>
+                  ))}
+                </Pie>
+                <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+          <small className='position-absolute text-muted' style={{ bottom: '7.5%', left: '4%' }}>Manufacturer</small>
         </div>
-        <small className='position-absolute text-muted' style={{ bottom: '7.5%', left: '4%' }}>Manufacturer</small>
+
+        <div className='Summary_cards_div '>
+          <div className='d-flex justify-content-end'>
+            <div className='text-center rounded '>
+              <select className="form-select" id="employee" onChange={(e) => { handleChangefilter("emp_name", e.target.value) }}>
+                <option value='' hidden >Select Employee</option>
+                {
+                  employeelist.map((item, index) => (
+                    <option key={index} value={item.employee_name}>{item.employee_name}</option>
+                  ))
+                }
+              </select>
+            </div>
+            <div className='mx-3 text-center rounded '>
+              <select className="form-select" id="locations" onChange={(e) => { handleChangefilter("location", e.target.value) }}>
+                <option hidden value=''>Select Location</option>
+                {
+                  locationlist.map((item, index) =>
+                    <option key={index} value={item.location_code}>{item.location_name}</option>
+                  )
+                }
+              </select>
+            </div>
+            <div>
+              <select className="form-select">
+                <option>Date</option>
+              </select>
+            </div>
+          </div>
+          <h6>My Tickets Summary</h6>
+          <hr />
+          <div className='Summary_cards'>
+
+            <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around'>
+              <div className='summary_icon text-light mx-2 '>
+                <FaUser className='m-1' style={{ fontSize: "23px" }} />
+              </div>
+              <div>
+                <h2 className=' mb-0' style={{ fontWeight: "600", color: "#30305f" }}>{ticketSummary.MyTicket}</h2>
+                <p style={{ color: '#6a6a6a' }}>My Tickets</p>
+              </div>
+            </div>
+
+            <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' >
+              <div className='summary_icon mx-2 text-light ' >
+                <FaEnvelopeOpen style={{ fontSize: "23px" }} />
+              </div>
+              <div>
+                <h2 className='mb-0' style={{ fontWeight: "600", color: "#30305f" }}>{ticketSummary.MyTicketOpen}</h2>
+                <p style={{ color: '#6a6a6a' }}>Open</p>
+
+              </div>
+            </div>
+
+            <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around'>
+              <div className='summary_icon text-light mx-2 ' style={{ padding: "12px 12px" }}>
+                <FaCheck className='m-1' style={{ fontSize: "23px" }} />
+              </div>
+              <div>
+                <h2 className='mb-0' style={{ fontWeight: "600", color: "#30305f" }}>{ticketSummary.MyTicketClose}</h2>
+                <p style={{ color: '#6a6a6a' }}>Closed</p>
+              </div>
+            </div>
+
+            <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around'>
+              <div className='summary_icon text-light mx-2 ' >
+                <FaCalendarTimes className='m-1' style={{ fontSize: "23px" }} />
+              </div>
+              <div>
+                <h2 className='mb-0' style={{ fontWeight: "600", color: "#30305f" }}>0</h2>
+                <p style={{ color: '#6a6a6a' }}>Over 24 hour</p>
+              </div>
+            </div>
+          </div>
+
+          <h6 className='mt-2'>Total Tickets Summary</h6>
+          <hr />
+          <div className='Summary_cards'>
+
+            <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+              <div className='summary_icon text-light mx-2 ' >
+                <FaUser className='m-1' style={{ fontSize: "23px" }} />
+              </div>
+              <div>
+                <h2 className='mb-0' style={{ fontWeight: "600", color: "#30305f" }}>{ticketSummary.TotalTicket}</h2>
+                <p style={{ color: '#6a6a6a' }}>Total Tickets</p>
+              </div>
+            </div>
+
+            <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
+              style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange('Open') }}>
+              <div className='summary_icon mx-2 text-light ' >
+                <FaEnvelopeOpen style={{ fontSize: "23px" }} />
+              </div>
+              <div>
+
+                <h2 className='mb-0' style={{ fontWeight: "600", color: "#30305f" }}>{ticketSummary.TotalOpenTicket}</h2>
+                <p style={{ color: '#6a6a6a' }}>Open</p>
+              </div>
+            </div>
+
+            <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
+              style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange('Closed') }}>
+              <div className='summary_icon text-light mx-2 ' style={{ padding: "12px 12px" }}>
+                <FaCheck className='m-1' style={{ fontSize: "23px" }} />
+              </div>
+              <div>
+                <h2 className='mb-0' style={{ fontWeight: "600", color: "#30305f" }}>{ticketSummary.TotalCloseTicket}</h2>
+                <p style={{ color: '#6a6a6a' }}>Closed</p>
+              </div>
+            </div>
+
+            <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
+              style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange('Hold') }}>
+              <div className='summary_icon text-light mx-2 ' style={{ padding: "12px 14px" }}>
+                <FaTelegramPlane style={{ fontSize: "23px" }} />
+              </div>
+              <div>
+                <h2 className='mb-0' style={{ color: "#30305f" }}>{ticketSummary.TotalHoldTicket}</h2>
+                <p style={{ color: '#6a6a6a' }}>Hold</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className='Summary_cards_div'>
-        <div className='d-flex justify-content-end'>
-          <div className='text-center rounded '>
-            <select className="form-select" id="employee" onChange={(e) => { handleChangefilter("emp_name", e.target.value) }}>
-              <option value='' hidden >Select Employee</option>
-              {
-                employeelist.map((item, index) => (
-                  <option key={index} value={item.employee_name}>{item.employee_name}</option>
-                ))
-              }
-            </select>
-          </div>
-          <div className='mx-3 text-center rounded '>
-            <select className="form-select" id="locations" onChange={(e) => { handleChangefilter("location", e.target.value) }}>
-              <option hidden value=''>Select Location</option>
-              {
-                locationlist.map((item, index) =>
-                  <option key={index} value={item.location_code}>{item.location_name}</option>
-                )
-              }
-            </select>
-          </div>
-          <div>
-            <select className="form-select">
-              <option>Date</option>
-            </select>
-          </div>
-        </div>
-        <h6>My Tickets Summary</h6>
-        <hr />
-        <div className='Summary_cards'>
+      <hr />
+      <div className='Summary_cards_issuetype' id="issuetypetoogle" style={{ display: "none" }}>
+        <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex  justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+          <p className='mx-2'>Hardware Problem</p>
+          <div className='' style={{ width: "88%", height: "200px" }}>
+            <ResponsiveContainer aspect={1.0}>
+              <PieChart width={700} height={200}>
+                <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Hardwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                  {Hardwaredata.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
 
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around'>
-            <div className='summary_icon text-light mx-2 '>
-              <FaUser className='m-1' style={{ fontSize: "23px" }} />
-            </div>
-            <div>
-              <h2 className=' mb-0' style={{ fontWeight: "600", color: "#30305f" }}>{ticketSummary.MyTicket}</h2>
-              <p style={{ color: '#6a6a6a' }}>My Tickets</p>
-            </div>
-          </div>
-
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' >
-            <div className='summary_icon mx-2 text-light ' >
-              <FaEnvelopeOpen style={{ fontSize: "23px" }} />
-            </div>
-            <div>
-              <h2 className='mb-0' style={{ fontWeight: "600", color: "#30305f" }}>{ticketSummary.MyTicketOpen}</h2>
-              <p style={{ color: '#6a6a6a' }}>Open</p>
-
-            </div>
-          </div>
-
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around'>
-            <div className='summary_icon text-light mx-2 ' style={{ padding: "12px 12px" }}>
-              <FaCheck className='m-1' style={{ fontSize: "23px" }} />
-            </div>
-            <div>
-              <h2 className='mb-0' style={{ fontWeight: "600", color: "#30305f" }}>{ticketSummary.MyTicketClose}</h2>
-              <p style={{ color: '#6a6a6a' }}>Closed</p>
-            </div>
-          </div>
-
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around'>
-            <div className='summary_icon text-light mx-2 ' >
-              <FaCalendarTimes className='m-1' style={{ fontSize: "23px" }} />
-            </div>
-            <div>
-              <h2 className='mb-0' style={{ fontWeight: "600", color: "#30305f" }}>0</h2>
-              <p style={{ color: '#6a6a6a' }}>Over 24 hour</p>
-            </div>
+                  ))}
+                </Pie>
+                <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </div>
 
-        <h6 className='mt-2'>Total Tickets Summary</h6>
-        <hr />
-        <div className='Summary_cards'>
+        <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+          <p className='mx-2'>Network Problem</p>
+          <div className='' style={{ width: "88%", height: "200px" }}>
+            <ResponsiveContainer aspect={1.0}>
+              <PieChart width={700} height={200}>
+                <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Softwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                  {Softwaredata.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
 
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
-            <div className='summary_icon text-light mx-2 ' >
-              <FaUser className='m-1' style={{ fontSize: "23px" }} />
-            </div>
-            <div>
-              <h2 className='mb-0' style={{ fontWeight: "600", color: "#30305f" }}>{ticketSummary.TotalTicket}</h2>
-              <p style={{ color: '#6a6a6a' }}>Total Tickets</p>
-            </div>
-          </div>
-
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
-            style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange('Open') }}>
-            <div className='summary_icon mx-2 text-light ' >
-              <FaEnvelopeOpen style={{ fontSize: "23px" }} />
-            </div>
-            <div>
-
-              <h2 className='mb-0' style={{ fontWeight: "600", color: "#30305f" }}>{ticketSummary.TotalOpenTicket}</h2>
-              <p style={{ color: '#6a6a6a' }}>Open</p>
-            </div>
-          </div>
-
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
-            style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange('Closed') }}>
-            <div className='summary_icon text-light mx-2 ' style={{ padding: "12px 12px" }}>
-              <FaCheck className='m-1' style={{ fontSize: "23px" }} />
-            </div>
-            <div>
-              <h2 className='mb-0' style={{ fontWeight: "600", color: "#30305f" }}>{ticketSummary.TotalCloseTicket}</h2>
-              <p style={{ color: '#6a6a6a' }}>Closed</p>
-            </div>
-          </div>
-
-          <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter"
-            style={{ cursor: "pointer" }} onClick={(e) => { e.preventDefault(); handleChange('Hold') }}>
-            <div className='summary_icon text-light mx-2 ' style={{ padding: "12px 14px" }}>
-              <FaTelegramPlane style={{ fontSize: "23px" }} />
-            </div>
-            <div>
-              <h2 className='mb-0' style={{ color: "#30305f" }}>{ticketSummary.TotalHoldTicket}</h2>
-              <p style={{ color: '#6a6a6a' }}>Hold</p>
-            </div>
+                  ))}
+                </Pie>
+                <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </div>
 
-        <hr />
-        <div className='Summary_cards_issuetype' id="issuetypetoogle" style={{display:"none"}}>
-          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
-            <p className='mx-2'>Hardware Problem</p>
-            <div className='' style={{ width: "88%", height: "200px" }}>
-              <ResponsiveContainer aspect={1.0}>
-                <PieChart width={700} height={200}>
-                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
-                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Hardwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
-                    {Hardwaredata.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+        <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+          <p className='mx-2'>Other IT Issue</p>
+          <div className='' style={{ width: "88%", height: "200px" }}>
+            <ResponsiveContainer aspect={1.0}>
+              <PieChart width={700} height={200}>
+                <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Otherdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                  {Otherdata.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
 
-                    ))}
-                  </Pie>
-                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
+                  ))}
+                </Pie>
+                <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
-
-          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
-            <p className='mx-2'>Network Problem</p>
-            <div className='' style={{ width: "88%", height: "200px" }}>
-              <ResponsiveContainer aspect={1.0}>
-                <PieChart width={700} height={200}>
-                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
-                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Softwaredata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
-                    {Softwaredata.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-
-                    ))}
-                  </Pie>
-                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
-            <p className='mx-2'>Other IT Issue</p>
-            <div className='' style={{ width: "88%", height: "200px" }}>
-              <ResponsiveContainer aspect={1.0}>
-                <PieChart width={700} height={200}>
-                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
-                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Otherdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
-                    {Otherdata.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-
-                    ))}
-                  </Pie>
-                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
-            <p className='mx-2'>Server Problem</p>
-            <div className='' style={{ width: "88%", height: "200px" }}>
-              <ResponsiveContainer aspect={1.0}>
-                <PieChart width={700} height={200}>
-                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
-                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Serverdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
-                    {Serverdata.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-          
-          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
-            <p className='mx-2'>Allocation</p>
-            <div className='' style={{ width: "88%", height: "200px" }}>
-              <ResponsiveContainer aspect={1.0}>
-                <PieChart width={700} height={200}>
-                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
-                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Allocationdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
-                    {Allocationdata.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-
-                    ))}
-                  </Pie>
-                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
-            <p className='mx-2'>Connection Problem</p>
-            <div className='' style={{ width: "88%", height: "200px" }}>
-              <ResponsiveContainer aspect={1.0}>
-                <PieChart width={700} height={200}>
-                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
-                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Connectivitydata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
-                    {Connectivitydata.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-
-                    ))}
-                  </Pie>
-                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
-            <p className='mx-2'>New Requirement</p>
-            <div className='' style={{ width: "88%", height: "200px" }}>
-              <ResponsiveContainer aspect={1.0}>
-                <PieChart width={700} height={200}>
-                  <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
-                  <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={newreqdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
-                    {newreqdata.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-
-                    ))}
-                  </Pie>
-                  <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-
         </div>
+
+        <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+          <p className='mx-2'>Server Problem</p>
+          <div className='' style={{ width: "88%", height: "200px" }}>
+            <ResponsiveContainer aspect={1.0}>
+              <PieChart width={700} height={200}>
+                <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Serverdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                  {Serverdata.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+          <p className='mx-2'>Allocation</p>
+          <div className='' style={{ width: "88%", height: "200px" }}>
+            <ResponsiveContainer aspect={1.0}>
+              <PieChart width={700} height={200}>
+                <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Allocationdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                  {Allocationdata.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+
+                  ))}
+                </Pie>
+                <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+          <p className='mx-2'>Connection Problem</p>
+          <div className='' style={{ width: "88%", height: "200px" }}>
+            <ResponsiveContainer aspect={1.0}>
+              <PieChart width={700} height={200}>
+                <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={Connectivitydata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                  {Connectivitydata.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+
+                  ))}
+                </Pie>
+                <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className='Summary_card_issuetype rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+          <p className='mx-2'>New Requirement</p>
+          <div className='' style={{ width: "88%", height: "200px" }}>
+            <ResponsiveContainer aspect={1.0}>
+              <PieChart width={700} height={200}>
+                <Tooltip contentStyle={{ backgroundColor: "rgba(255,255, 255,0.7)", borderRadius: "3px", border: "1px solid white" }} />
+                <Pie labelLine={false} label={renderCustomizedLabel} stroke='none' data={newreqdata} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={35} outerRadius={56} fill="rgb(94, 4, 69)" >
+                  {newreqdata.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+
+                  ))}
+                </Pie>
+                <Legend iconSize='10' iconType="rounded" layout="horizontal" verticalAlign="bottom" align="center" />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+
       </div>
 
 
@@ -486,7 +486,7 @@ const newreqdata = [
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLongTitle">{ticket} Ticket</h5>
             </div>
-            <div class="modal-body" style={{ maxHeight: "80vh", overflow: "auto" }}>
+            <div className="modal-body" style={{ maxHeight: "80vh", overflow: "auto" }}>
               <table className="table ">
                 <thead>
                   <tr>
@@ -519,8 +519,8 @@ const newreqdata = [
       </div>
 
 
-    </div>
 
+    </>
   )
 }
 

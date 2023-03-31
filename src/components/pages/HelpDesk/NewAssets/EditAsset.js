@@ -251,8 +251,6 @@ const EditAsset = () => {
             document.getElementById('subnitbtn').disabled = false
             callfun('Please enter all mandatory fields', 'warning', 'self')
 
-            // setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-            // document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
@@ -263,9 +261,6 @@ const EditAsset = () => {
                     setLoading(true)
                     callfun('Please enter the Software Field', 'warning', 'self')
                     document.getElementById('subnitbtn').disabled = false
-
-                    // setDatas({ ...datas, message: "Please enter the Software Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -280,8 +275,6 @@ const EditAsset = () => {
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Please enter the RentPerMonth Field', 'warning', 'self')
 
-                    // setDatas({ ...datas, message: "Please enter the Rent Per Month Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -296,8 +289,6 @@ const EditAsset = () => {
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Please enter the Purchase Price Field', 'warning', 'self')
 
-                    // setDatas({ ...datas, message: "Please enter the Purchase Price Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -306,8 +297,6 @@ const EditAsset = () => {
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Please enter the Invoice no.', 'warning', 'self')
 
-                    // setDatas({ ...datas, message: "Please enter the Invoice no.", title: "Error", type: "warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -330,15 +319,11 @@ const EditAsset = () => {
                     localStorage.removeItem('newassetsno')
                     callfun("Asset Updated", 'success', '/TotalNewAssets')
 
-                    // setDatas({ ...datas, message: "Asset Updated", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                 }
                 else {
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Server Error', 'danger', 'self')
 
-                    // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                 }
             }
         }
@@ -349,23 +334,6 @@ const EditAsset = () => {
                 loading ?
                     <Sidebar >
                         {/* ############## Snackbar  ###########################*/}
-
-                        {/* <div id="snackbar" style={{ display: "none" }}>
-                            <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
-                                <div className={`notification__message message--${datas.type}`}>
-                                    <h1>{datas.title}</h1>
-                                    <p>{datas.message}</p>
-
-                                    <button
-                                        onClick={() => {
-                                            setDatas({ ...datas, toggle: 'false' });
-                                            window.location.href = datas.route
-                                        }}>
-                                        <GrFormClose />
-                                    </button>
-                                </div>
-                            </div>
-                        </div> */}
 
                         <Modal
                             theme={tooglevalue.theme}
