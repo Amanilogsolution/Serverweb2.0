@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { MdOutlineKeyboardArrowRight,MdFileUpload } from 'react-icons/md'
-import { PendingVendorInvoice, UpdateVendorInvoice, FileUpload, PendingVendorInvoiceOnChnage,VendorPaymentEmail } from '../../../../api'
+import { MdOutlineKeyboardArrowRight, MdFileUpload } from 'react-icons/md'
+import { PendingVendorInvoice, UpdateVendorInvoice, FileUpload, PendingVendorInvoiceOnChnage, VendorPaymentEmail, GetVendorDetails } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { GlobalAlertInfo } from '../../../../App';
@@ -22,9 +22,9 @@ function AddVendorPayment() {
     const [invoceindexno, setInvoiceindexno] = useState('');
     const [file, setFile] = useState([])
     const [invoiceno, setInvoiceno] = useState([])
-    const [sno, setSno] = useState([])
+    const [sno, setSno] = useState([]);
 
-
+    const [maildata, setMaildata] = useState([]);
 
     // ########################### Modal Alert #############################################
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
@@ -103,7 +103,8 @@ function AddVendorPayment() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
-
+        console.log(maildata);
+        return 0
         setLoading(false)
         document.getElementById('subnitbtn').disabled = 'true'
         const org = localStorage.getItem('Database')
@@ -153,6 +154,12 @@ function AddVendorPayment() {
         document.getElementById(`invamt-${e.Index}`).value = e.InvoiceAmt
         document.getElementById(`appramt-${e.Index}`).value = e.InvoiceAmt
         document.getElementById(`refno-${e.Index}`).value = e.refno;
+
+        console.log(e)
+        const vendordetails = await GetVendorDetails(localStorage.getItem('Database'), e.vendor_name);
+        console.log(vendordetails)
+        maildata[e.Index] = { invoce_no: e.invoice_no, invoice_date: e.invoice_date, receiving_date: e.invoice_date, invoice_url: e.invoice_url, vendor_name: vendordetails[0].vendor_name }
+
     }
 
     const handleGetInvoiceno = async (e) => {
@@ -237,7 +244,7 @@ function AddVendorPayment() {
                                                                 e.preventDefault(); setIndexno(index);
                                                                 document.getElementById("uploadbutton").style.display = "none";
                                                                 document.getElementById("inputfile").value = '';
-                                                            }}><MdFileUpload style={{fontSize:'25px',color:file[index]?'green':''}}/></button></td>
+                                                            }}><MdFileUpload style={{ fontSize: '25px', color: file[index] ? 'green' : '' }} /></button></td>
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -308,7 +315,7 @@ function AddVendorPayment() {
                                                         <li key={index} className="vendor-Invoice-list cursor-pointer" data-dismiss="modal"
                                                             onClick={(e) => {
                                                                 e.preventDefault();
-                                                                handleChangeInvoiceDetail({ sno: item.sno, invoice_no: item.invoice_no, InvoiceAmt: item.invoice_amt, Index: invoceindexno, refno: item.reference_no });
+                                                                handleChangeInvoiceDetail({ sno: item.sno, invoice_no: item.invoice_no, InvoiceAmt: item.invoice_amt, Index: invoceindexno, refno: item.reference_no, invoice_date: item.date, invoice_url: item.uploadInvoice, vendor_name: item.vendor });
                                                                 savatoarry(invoceindexno)
                                                             }}
                                                         >{item.reference_no}, ({item.invoice_no})</li>
