@@ -70,13 +70,13 @@ export default function AddTicket() {
 
     const handleGetEmpDetail = async (e) => {
         let employee_id = e.target.value;
+        console.log(employee_id)
         const org = localStorage.getItem('Database')
 
         const detail = await EmployeesDetail(org, employee_id);
         setEmployeedetail(detail)
         const assetall = await GetNewAssetAssign(org, employee_id)
         setAssettypelist(assetall)
-        console.log(assetall)
     }
 
 
@@ -90,7 +90,7 @@ export default function AddTicket() {
         // document.getElementById('assetserial').value = selectedOption.value;
         // setAssettype(selectedOption.value)
 
-          document.getElementById('assetserial').value = selectedOption.target.value
+        document.getElementById('assetserial').value = selectedOption.target.value
         setAssettype(selectedOption.target.value)
     }
 
@@ -145,7 +145,6 @@ export default function AddTicket() {
             document.getElementById('subnitbtn').disabled = false
             callfun('Please enter the Mandatory Field', 'warning', 'self')
 
-            document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
@@ -163,17 +162,14 @@ export default function AddTicket() {
             }
             const result = await InsertTicket(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
                 priority, issuedesc, remark, user_id, AssetTag, AssetCondition)
-            console.log(result)
 
             if (result === 'Data Added') {
+                 await Mail(message)
                 setLoading(true)
-
                 callfun('Ticket Added', 'success', '/TotalTicket')
-                const mail = await Mail(message)
-
-
             }
             else {
+                setLoading(true)
                 callfun('Server Error', 'danger', 'self')
                 document.getElementById('subnitbtn').disabled = false
 
@@ -220,11 +216,7 @@ export default function AddTicket() {
                                                 <label htmlFor='assettype'>Asset <span className='text-danger'>*</span></label>
                                                 {/* <Select
                                                     id='assettype'
-<<<<<<< HEAD
-                                                    options={options.length > 1 ? options : [{ value: '', label: 'Other' }]}
-=======
                                                     options={options.length > 1 ? options : [{ value: 'Other', label: 'Other' }]}
->>>>>>> 13f20fd8acf4c13ddb147b0c89fcebd63f4edc14
                                                     isMulti={false}
                                                     className="basic-single"
                                                     classNamePrefix="select"

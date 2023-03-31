@@ -4,11 +4,9 @@ import { MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { FaMinusCircle } from 'react-icons/fa'
-
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi, InsertAssetSubCode,AssetEmail } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi, InsertAssetSubCode, AssetEmail,EmployeesDetail } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Select from 'react-select';
-// import { GrFormClose } from "react-icons/gr"
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
 
@@ -31,21 +29,15 @@ const AddNewAssets = () => {
     const [otherdetail, setOtherdetail] = useState(false)
 
     // ########################### Modal Alert #############################################
-    // const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
-
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
     // ########################### Modal Alert #############################################
 
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-
+            // const detail = await EmployeesDetail(org, localStorage.getItem('UserId'));
+            // console.log(detail)
+            // setEmployeedetail(detail)
             const devices = await ActiveAssetesType(org);
             setAssettypelist(devices)
             const vendor = await ActiveVendorCode(org)
@@ -64,7 +56,6 @@ const AddNewAssets = () => {
             setSoftwarelist(software)
 
             const employee = await ActiveEmployees(org)
-            console.log(employee)
             setEmployeelist(employee)
 
             const purchase = await ActivePurchaseTypeapi(org)
@@ -201,34 +192,32 @@ const AddNewAssets = () => {
         asset_assign_empid = asset_assign_empid.value.split('^')
         // let Asset_assign_empid = asset_assign_empid[0]
         let Asset_assign_email = asset_assign_empid[1]
-         asset_assign_empid = asset_assign_empid[0]
+        asset_assign_empid = asset_assign_empid[0]
 
 
         console.log(asset_assign_empid);
 
         const remark = document.getElementById('remark').value;
-        
+
         const message = {
-            type : 'Add',
-            Asset_Type : asset_type,
-            Asset_Tag : assetetag,
+            type: 'Add',
+            Asset_Type: asset_type,
+            Asset_Tag: assetetag,
             Manufacture: manufacture,
-            Model:model,
-            Serial_No:serialno,
-            Location:location,
-            Date_of_Entry:todatdate,
-            Name:assetassign,
-            mailid:Asset_assign_email
-        } 
-        
+            Model: model,
+            Serial_No: serialno,
+            Location: location,
+            Date_of_Entry: todatdate,
+            Name: assetassign,
+            mailid: Asset_assign_email
+        }
+
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
             !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
             callfun('Please enter all mandatory fields', 'warning', 'self')
 
-            // setDatas({ ...datas, message: "Please enter the Mandatory Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-            // document.getElementById('snackbar').style.display = "block"
             return false;
         }
         else {
@@ -239,8 +228,6 @@ const AddNewAssets = () => {
                     callfun('Please enter the Software Field', 'warning', 'self')
                     document.getElementById('subnitbtn').disabled = false
 
-                    // setDatas({ ...datas, message: "Please enter the Software Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -254,9 +241,6 @@ const AddNewAssets = () => {
                     setLoading(true)
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Please enter the RentPerMonth Field', 'warning', 'self')
-
-                    // setDatas({ ...datas, message: "Please enter the RentPerMonth Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -271,8 +255,6 @@ const AddNewAssets = () => {
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Please enter the Purchase Price Field', 'warning', 'self')
 
-                    // setDatas({ ...datas, message: "Please enter the Purchase Price Field", title: "Error", type: "warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -281,8 +263,6 @@ const AddNewAssets = () => {
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Please enter the Invoice no.', 'warning', 'self')
 
-                    // setDatas({ ...datas, message: "Please enter the Invoice no.", title: "Error", type: "warning", route: "#", toggle: "true" })
-                    // document.getElementById('snackbar').style.display = "block"
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -309,9 +289,6 @@ const AddNewAssets = () => {
 
                     callfun('Asset Added', 'success', '/TotalNewAssets')
 
-                    // setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true", showbtn: 'true' })
-                    // document.getElementById('snackbar').style.display = "block"
-
                 } else {
 
                     setLoading(true)
@@ -325,15 +302,10 @@ const AddNewAssets = () => {
                         document.getElementById('subnitbtn').disabled = false
                         callfun('Asset Added', 'success', '/TotalNewAssets')
 
-                        // setDatas({ ...datas, message: "Asset Added", title: "success", type: "success", route: "/TotalNewAssets", toggle: "true", showbtn: 'true' })
-                        // document.getElementById('snackbar').style.display = "block"
                     }
                     else {
                         document.getElementById('subnitbtn').disabled = false
                         callfun('Server Error', 'danger', 'self')
-
-                        // setDatas({ ...datas, message: "Server Error", title: "Error", type: "danger", route: "#", toggle: "true" })
-                        // document.getElementById('snackbar').style.display = "block"
                     }
                 }
             }
@@ -345,32 +317,9 @@ const AddNewAssets = () => {
             {
                 loading ?
                     <Sidebar >
+
                         {/* ################# Snackbar ##################### */}
 
-                        {/* <div id="snackbar" style={{ display: "none" }}>
-                            <div className={`${datas.toggle === "true" ? "received" : ""} notification`}>
-                                <div className={`notification__message message--${datas.type}`}>
-                                    <h1 className='mb-0'>{datas.title}</h1>
-                                    <p className='mb-0'>{datas.message}</p>
-                                    <button
-                                        onClick={() => {
-                                            setDatas({ ...datas, toggle: 'false' });
-                                            window.location.href = datas.route
-
-                                        }}
-                                    >
-                                        <GrFormClose />
-                                    </button>
-                                    {datas.showbtn === 'true' ?
-                                        <div >
-                                            <a className='btn btn-primary py-0 px-1 ' href='./AddNewAssets' style={{ fontSize: "16px" }}>Add more</a>&nbsp;
-                                            <a className='btn btn-voilet py-0 px-1 ' href='./TotalNewAssets' style={{ fontSize: "16px" }}>Submit</a></div>
-                                        : null
-                                    }
-                                    
-                                </div>
-                            </div>
-                        </div> */}
                         <Modal
                             theme={tooglevalue.theme}
                             text={tooglevalue.message}
@@ -446,7 +395,7 @@ const AddNewAssets = () => {
                                                                 <option value='' hidden>Select...</option>
                                                                 {
                                                                     locationlist.map((item, index) =>
-                                                                        <option key={index}  value={item.location_code}>{item.location_name}</option>
+                                                                        <option key={index} value={item.location_code}>{item.location_name}</option>
                                                                     )
                                                                 }
                                                             </select>
