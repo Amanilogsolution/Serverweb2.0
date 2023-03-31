@@ -1419,3 +1419,8 @@ export const VendorCreateEmail = async (message) => {
     return axios.post(url, { message }).then(response => response.data).catch(error => console.log(error));
 }
 
+export const EmployeeCreateEmail = async (message) => {
+    const url = `http://192.168.146.144:2008/api/employeecreateemail`
+    return axios.post(url, { message }).then(response => response.data).catch(error => console.log(error));
+}
+

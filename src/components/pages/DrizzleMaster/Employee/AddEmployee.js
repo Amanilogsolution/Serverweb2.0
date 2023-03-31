@@ -1,6 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect, useContext } from 'react';
-import { AddEmployees, ActiveLocation, insertUserLogin } from '../../../../api'
+import { AddEmployees, ActiveLocation, insertUserLogin,EmployeeCreateEmail } from '../../../../api'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
@@ -44,10 +44,7 @@ function AddEmployee() {
         e.preventDefault();
 
         const ds = document.getElementById('location').value;
-        console.log(ds)
-        return 0;
-
-        setLoading(false)
+        // setLoading(false)
         document.getElementById('subnitbtn').disabled = 'true'
         const employee_name = document.getElementById('employee_name').value;
         const employee_id = employee_name.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 10000);
@@ -59,6 +56,14 @@ function AddEmployee() {
         const user_id = document.getElementById('user_id').value
         const password = document.getElementById('password').value
 
+        const message = {
+            employee_name: employee_name,
+            company: company,
+            email_id:employee_email,
+            phone_no : employee_number,
+            location :location
+        }
+        
 
         if (!location || !employee_name || !employee_email) {
             setLoading(true)
@@ -74,6 +79,7 @@ function AddEmployee() {
                 const inserLogin = await insertUserLogin(employee_name, user_id, password, org);
 
                 const result = await AddEmployees(org, employee_id, employee_name, location, employee_email, employee_number, company, username);
+                const result1 = await EmployeeCreateEmail(message)
 
                 setLoading(true)
 
@@ -97,6 +103,8 @@ function AddEmployee() {
             }
             else {
                 const result = await AddEmployees(org, employee_id, employee_name, location, employee_email, employee_number, company, username);
+                const result1 = await EmployeeCreateEmail(message)
+
                 setLoading(true)
                 if (result === 'Added') {
                     callfun('Employee Added', 'success', '/TotalEmployee')
