@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Sidebar from '../../../Sidebar/Sidebar'
-import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice, FileUpload, VendorContractOnChange } from '../../../../api'
 import { MdOutlineKeyboardArrowRight,MdFileUpload } from 'react-icons/md'
+import { ActiveVendorContract, VendorContractDetail, InsertVendorInvoice, FileUpload, VendorContractOnChange,InvoiceEmail } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { GlobalAlertInfo } from '../../../../App';
@@ -96,6 +96,23 @@ function AddVendorInvoice() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
+        console.log(arryval)
+
+        for(let i=0;i<arryval.length;i++){
+            const message = {
+                type : 'Add',
+                invoiceno : arryval[i].invno,
+                vendorname: arryval[i].vendor,
+                reference_no:arryval[i].refno,
+                invoice_date: arryval[i].invdate,
+                invoice_receive_date:arryval[i].invsubdate,
+                invoice_amount:arryval[i].invamt,
+                upload:file[i]
+            }
+    
+            const result = await InvoiceEmail(message)
+        }
+     
         document.getElementById('subnitbtn').disabled = 'true'
         setLoading(false)
         const org = localStorage.getItem('Database')

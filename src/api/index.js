@@ -1390,3 +1390,18 @@ export const AssetEmail = async(message) =>{
     const url = `http://localhost:2008/api/assetemail`
     return axios.post(url, {message}).then(response => response.data).catch(error => console.log(error));  
 }
+export const InvoiceEmail = async(message) =>{
+    const url = `http://localhost:2008/api/invoiceemail`
+    return axios.post(url, {message}).then(response => response.data).catch(error => console.log(error));  
+}
+
+export const VendorPaymentEmail = async(message) =>{
+    const url = `http://localhost:2008/api/vendorpaymentemail`
+    return axios.post(url, {message}).then(response => response.data).catch(error => console.log(error));  
+}
+
+export const VendorCreateEmail = async(message) =>{
+    const url = `http://localhost:2008/api/vendorcreateemail`
+    return axios.post(url, {message}).then(response => response.data).catch(error => console.log(error));  
+}
+
