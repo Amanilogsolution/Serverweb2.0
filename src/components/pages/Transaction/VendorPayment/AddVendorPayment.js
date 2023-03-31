@@ -158,7 +158,7 @@ function AddVendorPayment() {
         console.log(e)
         const vendordetails = await GetVendorDetails(localStorage.getItem('Database'), e.vendor_name);
         console.log(vendordetails)
-        maildata[e.Index] = { invoce_no: e.invoice_no, invoice_date: e.invoice_date, receiving_date: e.invoice_date, invoice_url: e.invoice_url, vendor_name: vendordetails[0].vendor_name }
+        maildata[e.Index] = { invoce_no: e.invoice_no, invoice_date: e.invoice_date, receiving_date: e.invoice_date, invoice_url: e.invoice_url, vendor_name: vendordetails[0].vendor_name,company_mailId:vendordetails[0].company_email }
 
     }
 
