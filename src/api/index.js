@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const UserLogin = async (userid, password) => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/login`
+    const url = `http://localhost:2008/api/login`
     return axios.post(url, { userid, password }).then(response => response.data).catch(error => console.log(error));
 }
 

@@ -26,21 +26,23 @@ const Login = (props) => {
 
     
     e.preventDefault();
-    setLoading(false)
+    // setLoading(false)
     const user_id = document.getElementById('user-id').value;
     const password = document.getElementById('password').value;
     if (!user_id || !password) {
-      setLoading(true)
+      // setLoading(true)
       document.getElementById('emptyVal').style.display = 'flex'
     }
     else {
       const result = await UserLogin(user_id, password);
+      console.log(result)
       if (result.status === 'Success') {
         localStorage.setItem('UserName', result.name);
         localStorage.setItem('UserId', result.user_id);
         localStorage.setItem('Token', result.token);
         localStorage.setItem('Permission', result.permission)
         localStorage.setItem('Database', result.database)
+        localStorage.setItem('EmployId', result.employee_id)
         window.location.href = './Dashboard'
       }
       else {
