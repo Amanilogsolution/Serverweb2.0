@@ -81,13 +81,17 @@ export default function AddTicket() {
 
 
     let options = assettypelist.map((ele) => {
-        return { value: ele.serial_no, label: [ele.asset_type, ' , ', ele.serial_no,'  (',ele.manufacture,') '] };
+        return { value: ele.serial_no, label: [ele.asset_type, ' , ', ele.serial_no, '  (', ele.manufacture, ') '] };
     })
     options.push({ value: 'other', label: ['other'] })
 
     const handleAssetTypeChange = (selectedOption) => {
-        document.getElementById('assetserial').value = selectedOption.value;
-        setAssettype(selectedOption.label[0])
+        console.log(selectedOption.target.value)
+        // document.getElementById('assetserial').value = selectedOption.value;
+        // setAssettype(selectedOption.value)
+
+          document.getElementById('assetserial').value = selectedOption.target.value
+        setAssettype(selectedOption.target.value)
     }
 
     const handleIssueType = (e) => {
@@ -107,14 +111,14 @@ export default function AddTicket() {
 
     const handleSaveTicket = async (e) => {
         e.preventDefault();
-        // setLoading(false)
-        // document.getElementById('subnitbtn').disabled = 'true'
+
+        setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
 
         let employee_id = document.getElementById('employee');
         const employee_name = employee_id.options[employee_id.selectedIndex].text;
         employee_id = employee_id.value;
-        console.log(assettype)
-        return 0;
+        const assettype = document.getElementById('assettype').value
         const assetserial = document.getElementById('assetserial').value;
         const location = document.getElementById('location').value;
         const assignticket = document.getElementById('assignticket').value;
@@ -132,6 +136,9 @@ export default function AddTicket() {
         const org = localStorage.getItem('Database')
 
         const user_id = localStorage.getItem('UserId')
+
+        // console.log(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
+        //     priority, issuedesc, remark, user_id, AssetTag, AssetCondition)
 
         if (!employee_id || !assetserial || !location || !ticketstatus || !ticketsubject) {
             setLoading(true)
@@ -159,10 +166,10 @@ export default function AddTicket() {
             console.log(result)
 
             if (result === 'Data Added') {
-                const mail = await Mail(message)
                 setLoading(true)
 
                 callfun('Ticket Added', 'success', '/TotalTicket')
+                const mail = await Mail(message)
 
 
             }
@@ -211,17 +218,17 @@ export default function AddTicket() {
                                             </div>
                                             <div className="col-md-4" >
                                                 <label htmlFor='assettype'>Asset <span className='text-danger'>*</span></label>
-                                                <Select
+                                                {/* <Select
                                                     id='assettype'
-                                                    options={options.length > 1 ? options : [{ value: '', label: 'Select Employee' }]}
+                                                    options={options.length > 1 ? options : [{ value: 'Other', label: 'Other' }]}
                                                     isMulti={false}
                                                     className="basic-single"
                                                     classNamePrefix="select"
                                                     isClearable='true'
                                                     isSearchable='true'
                                                     onChange={handleAssetTypeChange}
-                                                />
-                                                {/* <select className="form-select" id='assettype' onChange={handleAssetTypeChange}>
+                                                /> */}
+                                                <select className="form-select" id='assettype' onChange={handleAssetTypeChange}>
                                                     <option value='' hidden>Select...</option>
 
                                                     {
@@ -234,7 +241,7 @@ export default function AddTicket() {
                                                     }
                                                     <option value='Other' >Other</option>
 
-                                                </select> */}
+                                                </select>
                                             </div>
                                             <div className="col-md-4">
                                                 <label htmlFor='assetserial'>Asset Serial</label>

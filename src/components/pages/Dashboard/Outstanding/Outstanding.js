@@ -168,8 +168,8 @@ const Outstanding = ({ setStep }) => {
               <tr>
                 <th scope="col">Vendor</th>
                 <th scope="col">Invoice_no</th>
-                <th scope="col">Download Invoice</th>
                 <th scope="col">Invoice Date</th>
+                <th scope="col">Download Invoice</th>
                 <th scope="col">Reference No</th>
                 <th scope="col">Invoice Amt</th>
               </tr>

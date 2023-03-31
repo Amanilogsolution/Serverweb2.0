@@ -1226,12 +1226,12 @@ export const Ticket_issue_type= async (org) => {
 }
 
 export const Filter_Ticket_Summary= async (org,statustype,filterby,value) => {
-    const url = `http://localhost:2008/api/filter_ticket_summary`
+    const url = `https://drizzlebackend.awlworldwide.com/api/filter_ticket_summary`
     return axios.post(url, { org,statustype,filterby,value }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const Filter_Ticket_Summary_Count= async (org,type,value) => {
-    const url = `http://localhost:2008/api/filter_ticket_summary_count`
+    const url = `https://drizzlebackend.awlworldwide.com/api/filter_ticket_summary_count`
     return axios.post(url, { org,type,value }).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -1265,7 +1265,7 @@ export const FilterVendorContract = async (org,type,value,pageno,rowsperpage) =>
 
 //Invoice Dashboard
 export const Invoice_Outstanding  = async (org) => {
-    const url = `https://drizzlebackend.awlworldwide.com/api/Invoice_Outstanding`
+    const url = `http://localhost:2008/api/Invoice_Outstanding`
     return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
 }
 export const TotalOutstanding = async (org,pageno,rowsperpage) => {
@@ -1383,5 +1383,10 @@ export const FileUpload = async(images) =>{
 // Mail
 export const Mail = async(message) =>{
     const url = `https://drizzlebackend.awlworldwide.com/api/Email`
+    return axios.post(url, {message}).then(response => response.data).catch(error => console.log(error));  
+}
+
+export const AssetEmail = async(message) =>{
+    const url = `http://localhost:2008/api/assetemail`
     return axios.post(url, {message}).then(response => response.data).catch(error => console.log(error));  
 }
