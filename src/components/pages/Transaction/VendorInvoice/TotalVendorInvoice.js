@@ -23,6 +23,7 @@ function TotalVendorInvoice() {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
             const tabledata = await PendingVendorInvoice(org);
+            console.log(tabledata)
             setData(tabledata)
             console.log(tabledata)
             setLoading(true)

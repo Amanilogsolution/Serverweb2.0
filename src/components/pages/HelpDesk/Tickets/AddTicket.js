@@ -83,7 +83,7 @@ export default function AddTicket() {
     let options = assettypelist.map((ele) => {
         return { value: ele.serial_no, label: [ele.asset_type, ' , ', ele.serial_no,'  (',ele.manufacture,') '] };
     })
-    options.push({ value: 'other', label: ['other'] })
+    // options.push({ value: 'other', label: ['other'] })
 
     const handleAssetTypeChange = (selectedOption) => {
         document.getElementById('assetserial').value = selectedOption.value;
@@ -213,7 +213,7 @@ export default function AddTicket() {
                                                 <label htmlFor='assettype'>Asset <span className='text-danger'>*</span></label>
                                                 <Select
                                                     id='assettype'
-                                                    options={options.length > 1 ? options : [{ value: '', label: 'Select Employee' }]}
+                                                    options={options.length > 1 ? options : [{ value: '', label: 'Other' }]}
                                                     isMulti={false}
                                                     className="basic-single"
                                                     classNamePrefix="select"
