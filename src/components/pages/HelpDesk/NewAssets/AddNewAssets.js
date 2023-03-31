@@ -5,7 +5,7 @@ import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { FaMinusCircle } from 'react-icons/fa'
 
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi, InsertAssetSubCode,Mail } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi, InsertAssetSubCode,AssetEmail } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Select from 'react-select';
 // import { GrFormClose } from "react-icons/gr"
@@ -25,8 +25,6 @@ const AddNewAssets = () => {
     const [employeelist, setEmployeelist] = useState([])
     const [purchaseslist, setPurchaseslist] = useState([])
     let [softwares, setSoftwares] = useState([])
-
-
 
     const [devicedetail, setDevicedetail] = useState(true)
     const [purchasesdetail, setPurchasesdetail] = useState(false)
@@ -66,6 +64,7 @@ const AddNewAssets = () => {
             setSoftwarelist(software)
 
             const employee = await ActiveEmployees(org)
+            console.log(employee)
             setEmployeelist(employee)
 
             const purchase = await ActivePurchaseTypeapi(org)
@@ -173,8 +172,8 @@ const AddNewAssets = () => {
 
     const handleInsertData = async (e) => {
         e.preventDefault();
-        document.getElementById('subnitbtn').disabled = 'true'
-        setLoading(false)
+        // document.getElementById('subnitbtn').disabled = 'true'
+        // setLoading(false)
 
         const org = localStorage.getItem('Database')
         const asset_type = document.getElementById('asset_type').value;
@@ -197,10 +196,31 @@ const AddNewAssets = () => {
         const latestinventory = document.getElementById('latestinventory').value;
         const assetname = document.getElementById('assetname').value;
         let asset_assign_empid = document.getElementById('assetassign');
-        const assetassign = asset_assign_empid.options[asset_assign_empid.selectedIndex].text;
-        asset_assign_empid = asset_assign_empid.value
-        const remark = document.getElementById('remark').value;
 
+        const assetassign = asset_assign_empid.options[asset_assign_empid.selectedIndex].text;
+        asset_assign_empid = asset_assign_empid.value.split('^')
+        // let Asset_assign_empid = asset_assign_empid[0]
+        let Asset_assign_email = asset_assign_empid[1]
+         asset_assign_empid = asset_assign_empid[0]
+
+
+        console.log(asset_assign_empid);
+
+        const remark = document.getElementById('remark').value;
+        
+        const message = {
+            type : 'Add',
+            Asset_Type : asset_type,
+            Asset_Tag : assetetag,
+            Manufacture: manufacture,
+            Model:model,
+            Serial_No:serialno,
+            Location:location,
+            Date_of_Entry:todatdate,
+            Name:assetassign,
+            mailid:Asset_assign_email
+        } 
+        
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
             !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
             setLoading(true)
@@ -276,7 +296,7 @@ const AddNewAssets = () => {
             if (errorcount === 0) {
                 if (asset_type === 'Laptop') {
                     setLoading(true)
-
+                    const mail = await AssetEmail(message)
                     const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
                         model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                         rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, localStorage.getItem('UserId'))
@@ -571,7 +591,7 @@ const AddNewAssets = () => {
                                                                 <option value={localStorage.getItem('UserId')} hidden>{localStorage.getItem('UserName')}</option>
                                                                 {
                                                                     employeelist.map((item, index) => (
-                                                                        <option key={index} value={item.employee_id}>{item.employee_name}</option>
+                                                                        <option key={index} value={`${item.employee_id}^${item.employee_email}`}>{item.employee_name}</option>
                                                                     ))
                                                                 }
                                                             </select>

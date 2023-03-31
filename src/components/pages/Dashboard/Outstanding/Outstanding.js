@@ -29,6 +29,7 @@ const Outstanding = ({ setStep }) => {
   }
   const handlePageClick = async (data) => {
     const datas = await VendorInvoice(localStorage.getItem('Database'), data.selected + 1, rowperpage)
+    console.log(datas.data)
     setTotalVendor(datas.data)
   }
 
@@ -167,8 +168,8 @@ const Outstanding = ({ setStep }) => {
               <tr>
                 <th scope="col">Vendor</th>
                 <th scope="col">Invoice_no</th>
-                <th scope="col">Download Invoice</th>
                 <th scope="col">Invoice Date</th>
+                <th scope="col">Download Invoice</th>
                 <th scope="col">Reference No</th>
                 <th scope="col">Invoice Amt</th>
               </tr>
@@ -182,6 +183,7 @@ const Outstanding = ({ setStep }) => {
                       <tr key={index}>
                         <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#vendorModal" onClick={(e) => { e.preventDefault(); handleClick('Vendor', elements.vendor) }} >{elements.vendor}</td>
                         <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#invoiceModal" onClick={(e) => { e.preventDefault(); handleClick('Invoice', elements.invoice_no) }}>{elements.invoice_no}</td>
+                        <td>{elements.date}</td>
                         <td className="cursor-pointer " style={{ fontSize: '22px' }}>{
                           elements.uploadInvoice ?
                             <a href={elements.uploadInvoice} className='text-success' target="_blank" download ><MdDownload title='Download Invoice' /></a>
@@ -190,7 +192,6 @@ const Outstanding = ({ setStep }) => {
                         }
 
                         </td>
-                        <td>{elements.invoice_date}</td>
                         <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#ReferanceModal" onClick={(e) => { e.preventDefault(); handleClick('Referance', elements.reference_no) }}>{elements.reference_no}</td>
                         <td>{elements.invoice_amt}</td>
                       </tr>

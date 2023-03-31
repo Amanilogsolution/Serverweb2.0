@@ -5,7 +5,7 @@ import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { FaMinusCircle } from 'react-icons/fa'
 
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, ActivePurchaseTypeapi, GetNewAssets, CountNewAssets, UpdateNewAssets } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, ActivePurchaseTypeapi, GetNewAssets, CountNewAssets, UpdateNewAssets,AssetEmail } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 // import { GrFormClose } from "react-icons/gr"
 import { GlobalAlertInfo } from '../../../../App';
@@ -24,6 +24,7 @@ const EditAsset = () => {
     const [employeelist, setEmployeelist] = useState([])
     const [purchaseslist, setPurchaseslist] = useState([])
 
+    const [todatdate, setTodaydate] = useState('')
 
     const [devicedetail, setDevicedetail] = useState(true)
     const [purchasesdetail, setPurchasesdetail] = useState(false)
@@ -71,6 +72,7 @@ const EditAsset = () => {
 
             const purchase = await ActivePurchaseTypeapi(org)
             setPurchaseslist(purchase)
+            todaydate()
 
 
             setLoading(true)
@@ -95,6 +97,17 @@ const EditAsset = () => {
         }
         fetchdata();
     }, [])
+
+    const todaydate = () => {
+        let date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        let today = year + "-" + month + "-" + day;
+        setTodaydate(today)
+    }
 
 
     const handleClickDeviceDetail = () => {
@@ -182,8 +195,8 @@ const EditAsset = () => {
 
     const handleUpdateData = async (e) => {
         e.preventDefault();
-        setLoading(false)
-        document.getElementById('subnitbtn').disabled = 'true'
+        // setLoading(false)
+        // document.getElementById('subnitbtn').disabled = 'true'
         const asset_type = document.getElementById('asset_type').value;
         const assetetag = document.getElementById('assetetag').value;
         let software = document.getElementById('software').value;
@@ -204,11 +217,33 @@ const EditAsset = () => {
         const assetname = document.getElementById('assetname').value;
         let asset_assign_empid = document.getElementById('assetassign');
         const assetassign = asset_assign_empid.options[asset_assign_empid.selectedIndex].text;
+
+        asset_assign_empid = asset_assign_empid.value.split('^')
+        let Asset_assign_email = asset_assign_empid[1]
+        asset_assign_empid = asset_assign_empid[0]
+
         asset_assign_empid = asset_assign_empid.value
         const remark = document.getElementById('remark').value;
+        
 
         const userid = localStorage.getItem('UserId')
         const sno = localStorage.getItem('newassetsno')
+
+        const message = {
+            type : 'Update',
+            Asset_Type : asset_type,
+            Asset_Tag : assetetag,
+            Manufacture: manufacture,
+            Model:model,
+            Serial_No:serialno,
+            Location:location,
+            Date_of_Entry:todatdate,
+            Name:assetassign,
+            mailid:Asset_assign_email
+        } 
+        const mail = await AssetEmail(message)
+
+        return false
 
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
             !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
@@ -549,7 +584,7 @@ const EditAsset = () => {
                                                                 <option value={data.asset_assign_empid} hidden>{data.asset_assign}</option>
                                                                 {
                                                                     employeelist.map((item, index) => (
-                                                                        <option key={index} value={item.employee_id}>{item.employee_name}</option>
+                                                                        <option key={index} value={`${item.employee_id}^${item.employee_email}`}>{item.employee_name}</option>
                                                                     ))
                                                                 }
                                                             </select>
