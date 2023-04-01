@@ -34,7 +34,6 @@ function AddVendorInvoice() {
             const org = localStorage.getItem('Database')
             const vendorcontract = await ActiveVendorContract(org);
             setVendorcontractlist(vendorcontract)
-            console.log(vendorcontract)
             todaydate()
             setLoading(true)
         }
@@ -97,8 +96,6 @@ function AddVendorInvoice() {
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
 
-
-
         document.getElementById('subnitbtn').disabled = 'true'
         setLoading(false)
         const org = localStorage.getItem('Database')
@@ -148,7 +145,7 @@ function AddVendorInvoice() {
                         upload: file[i] || ''
                     }
 
-                    const result = await InvoiceEmail(message)
+                    const sendmailresult=await InvoiceEmail(message)
                 }
                 callfun('Vendor Invoice Added', 'success', '/TotalVendorInvoice')
             }

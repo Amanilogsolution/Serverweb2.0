@@ -137,14 +137,10 @@ export default function AddTicket() {
 
         const user_id = localStorage.getItem('UserId')
 
-        // console.log(org, employee_id, employee_name, assettype, assetserial, location, assignticket, typeofissue, email, ticketdate, ticketstatus, ticketsubject,
-        //     priority, issuedesc, remark, user_id, AssetTag, AssetCondition)
-
         if (!employee_id || !assetserial || !location || !ticketstatus || !ticketsubject) {
             setLoading(true)
             document.getElementById('subnitbtn').disabled = false
             callfun('Please enter the Mandatory Field', 'warning', 'self')
-
             return false;
         }
         else {
@@ -164,7 +160,7 @@ export default function AddTicket() {
                 priority, issuedesc, remark, user_id, AssetTag, AssetCondition)
 
             if (result === 'Data Added') {
-                 await Mail(message)
+                const resnk = await Mail(message)
                 setLoading(true)
                 callfun('Ticket Added', 'success', '/TotalTicket')
             }

@@ -36,7 +36,6 @@ function AddVendorPayment() {
             const org = localStorage.getItem('Database')
             const invoice = await PendingVendorInvoice(org);
             setPendinginvoicelist(invoice)
-            console.log(invoice)
             todaydate()
             setLoading(true)
         }
@@ -103,7 +102,6 @@ function AddVendorPayment() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
-        console.log(maildata,arryval);
         for(let i=0;i<arryval.length;i++){
             var message = {
                 invoice_number:maildata[i].invoce_no,
@@ -118,7 +116,6 @@ function AddVendorPayment() {
                 mailid:maildata[i].company_mailId,
                 vendor_name:maildata[i].vendor_name,
                 referance_no:maildata[i].referance_no
-
             }
            
 
@@ -175,9 +172,7 @@ function AddVendorPayment() {
         document.getElementById(`appramt-${e.Index}`).value = e.InvoiceAmt
         document.getElementById(`refno-${e.Index}`).value = e.refno;
 
-        console.log(e)
         const vendordetails = await GetVendorDetails(localStorage.getItem('Database'), e.vendor_name);
-        console.log(vendordetails)
         maildata[e.Index] = { invoce_no: e.invoice_no, invoice_date: e.invoice_date, receiving_date: e.invoice_date, invoice_url: e.invoice_url, vendor_name: vendordetails[0].vendor_name,company_mailId:vendordetails[0].company_email,invoice_amount:e.InvoiceAmt,referance_no:e.refno }
 
     }

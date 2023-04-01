@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const UserLogin = async (userid, password) => {
-    const url = `http://localhost:2008/api/login`
+    const url = `https://drizzlebackend.awlworldwide.com/api/login`
     return axios.post(url, { userid, password }).then(response => response.data).catch(error => console.log(error));
 }
 
@@ -1279,7 +1279,7 @@ export const FilterVendorContract = async (org, type, value, pageno, rowsperpage
 
 //Invoice Dashboard
 export const Invoice_Outstanding = async (org) => {
-    const url = `http://192.168.146.144:2008/api/Invoice_Outstanding`
+    const url = `https://drizzlebackend.awlworldwide.com/api/Invoice_Outstanding`
     return axios.post(url, { org }).then(response => response.data).catch(error => console.log(error));
 }
 export const TotalOutstanding = async (org, pageno, rowsperpage) => {
@@ -1401,31 +1401,31 @@ export const Mail = async (message) => {
 }
 
 export const AssetEmail = async (message) => {
-    const url = `http://192.168.146.144:2008/api/assetemail`
+    const url = `https://drizzlebackend.awlworldwide.com/api/assetemail`
     return axios.post(url, { message }).then(response => response.data).catch(error => console.log(error));
 }
 export const InvoiceEmail = async (message) => {
-    const url = `http://192.168.146.144:2008/api/invoiceemail`
+    const url = `https://drizzlebackend.awlworldwide.com/api/invoiceemail`
     return axios.post(url, { message }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const VendorPaymentEmail = async (message) => {
-    const url = `http://192.168.146.144:2008/api/vendorpaymentemail`
+    const url = `https://drizzlebackend.awlworldwide.com/api/vendorpaymentemail`
     return axios.post(url, { message }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const VendorCreateEmail = async (message) => {
-    const url = `http://192.168.146.144:2008/api/vendorcreateemail`
+    const url = `https://drizzlebackend.awlworldwide.com/api/vendorcreateemail`
     return axios.post(url, { message }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const EmployeeCreateEmail = async (message) => {
-    const url = `http://192.168.146.144:2008/api/employeecreateemail`
+    const url = `https://drizzlebackend.awlworldwide.com/api/employeecreateemail`
     return axios.post(url, { message }).then(response => response.data).catch(error => console.log(error));
 }
 
 export const VendorContractEmail = async (message) => {
-    const url = `http://192.168.146.144:2008/api/vendorcontractemail`
+    const url = `https://drizzlebackend.awlworldwide.com/api/vendorcontractemail`
     return axios.post(url, { message }).then(response => response.data).catch(error => console.log(error));
 }
 

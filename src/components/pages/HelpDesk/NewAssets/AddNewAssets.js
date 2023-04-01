@@ -4,7 +4,7 @@ import { MdOutlineKeyboardArrowRight, MdAddCircle } from 'react-icons/md'
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { FaMinusCircle } from 'react-icons/fa'
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi, InsertAssetSubCode, AssetEmail,EmployeesDetail } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, InsertNewAssets, CountNewAssets, ActivePurchaseTypeapi, InsertAssetSubCode, AssetEmail, EmployeesDetail } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import Select from 'react-select';
 import { GlobalAlertInfo } from '../../../../App';
@@ -27,6 +27,7 @@ const AddNewAssets = () => {
     const [devicedetail, setDevicedetail] = useState(true)
     const [purchasesdetail, setPurchasesdetail] = useState(false)
     const [otherdetail, setOtherdetail] = useState(false)
+    const [employeedetail, setEmployeedetail] = useState([])
 
     // ########################### Modal Alert #############################################
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
@@ -35,9 +36,9 @@ const AddNewAssets = () => {
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-            // const detail = await EmployeesDetail(org, localStorage.getItem('UserId'));
-            // console.log(detail)
-            // setEmployeedetail(detail)
+            const detail = await EmployeesDetail(org, localStorage.getItem('EmployId'));
+            console.log(detail)
+            setEmployeedetail(detail)
             const devices = await ActiveAssetesType(org);
             setAssettypelist(devices)
             const vendor = await ActiveVendorCode(org)
@@ -276,14 +277,16 @@ const AddNewAssets = () => {
             if (errorcount === 0) {
                 if (asset_type === 'Laptop') {
                     setLoading(true)
-                    const mail = await AssetEmail(message)
+
                     const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
                         model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                         rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, localStorage.getItem('UserId'))
+
                     softwares.forEach(async (datas) => {
                         const software = datas.value
                         await InsertAssetSubCode(org, asset_id, assetetag, software)
                     })
+                    const mail = await AssetEmail(message)
                     document.getElementById('subnitbtn').disabled = false
                     // setLoading(true)
 
@@ -292,12 +295,11 @@ const AddNewAssets = () => {
                 } else {
 
                     setLoading(true)
-                    // const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
-                    //     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
-                    //     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, localStorage.getItem('UserId'))
-                    // document.getElementById('subnitbtn').disabled = false
-
-                    const result = 'Data Added'
+                    const result = await InsertNewAssets(org, asset_id, asset_type, assetetag, serialno, location, manufacture, '',
+                        model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
+                        rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, localStorage.getItem('UserId'))
+                    document.getElementById('subnitbtn').disabled = false
+                    const mail = await AssetEmail(message)
                     if (result === 'Data Added') {
                         document.getElementById('subnitbtn').disabled = false
                         callfun('Asset Added', 'success', '/TotalNewAssets')
@@ -537,7 +539,7 @@ const AddNewAssets = () => {
                                                         <div className="col-md-4">
                                                             <label htmlFor='assetassign'>Asset Assign <span className='text-danger'>*</span></label>
                                                             <select id='assetassign' className="form-select" >
-                                                                <option value={localStorage.getItem('UserId')} hidden>{localStorage.getItem('UserName')}</option>
+                                                                <option value={`${localStorage.getItem('EmployId')}^${employeedetail.employee_email}`} hidden>{localStorage.getItem('UserName')}</option>
                                                                 {
                                                                     employeelist.map((item, index) => (
                                                                         <option key={index} value={`${item.employee_id}^${item.employee_email}`}>{item.employee_name}</option>

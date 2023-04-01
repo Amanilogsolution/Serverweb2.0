@@ -1,6 +1,6 @@
 import Sidebar from '../../../Sidebar/Sidebar';
 import React, { useState, useEffect, useContext } from 'react';
-import { InsertVendorContract, ActiveLocation, ActiveContractType, ActiveVendorCategory, ActiveVendorCode, ActiveVendSubCate, ActiveBillingFreq,VendorContractEmail } from '../../../../api'
+import { InsertVendorContract, ActiveLocation, ActiveContractType, ActiveVendorCategory, ActiveVendorCode, ActiveVendSubCate, ActiveBillingFreq, VendorContractEmail } from '../../../../api'
 import { MdOutlineArrowForward, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
 import { GlobalAlertInfo } from '../../../../App';
@@ -100,8 +100,8 @@ function AddVendorContract() {
 
     const handleaddinsert = async (e) => {
         e.preventDefault();
-        // setLoading(false)
-        // document.getElementById('subnitbtn').disabled = 'true'
+        document.getElementById('subnitbtn').disabled = 'true'
+        setLoading(false)
 
         let vendor = document.getElementById('vendor').value;
         let vendorlast = vendor.indexOf("sno");
@@ -129,17 +129,15 @@ function AddVendorContract() {
         const org = localStorage.getItem('Database')
 
         let message = {
-            vendor_name:vendor,
-            vendor_code:vendor_contract_id,
-            referance_no:reference_no,
-            company:company,
-            location:location,
-            vendor_category:major_category,
-            contract_category:type_of_contract,
-            frequency:billing_freq || 'one time'
+            vendor_name: vendor,
+            vendor_code: vendor_contract_id,
+            referance_no: reference_no || customer_account_no,
+            company: company,
+            location: location,
+            vendor_category: major_category,
+            contract_category: sub_category,
+            frequency: billing_freq || 'one time'
         }
-        
-
 
 
         if (!vendor || !company || !type_of_contract || !major_category || !sub_category ||
@@ -189,13 +187,14 @@ function AddVendorContract() {
             else { link_id_no = '' }
 
             if (errorcount === 0) {
-                setLoading(true)
+                
                 const callapi = await InsertVendorContract(org, vendor_contract_id, vendor, type_of_contract,
                     major_category, sub_category, location, company, customer_account_no, reference_no, contact_plain_details,
                     rate_per_month, contract_start_date, invoice_generation_date, billing_freq, payee_name, tds, link_id_no,
                     help_desk_no, user_id)
-                    const mail = await VendorContractEmail(message)
 
+                const mail = await VendorContractEmail(message)
+                setLoading(true)
 
                 if (callapi === 'Added') {
                     callfun('Vendor Contract Added', 'success', '/TotalVendorContract')
