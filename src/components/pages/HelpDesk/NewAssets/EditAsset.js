@@ -5,9 +5,8 @@ import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { RiArrowGoBackFill } from 'react-icons/ri'
 import { FaMinusCircle } from 'react-icons/fa'
 
-import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, ActivePurchaseTypeapi, GetNewAssets, CountNewAssets, UpdateNewAssets,AssetEmail } from '../../../../api'
+import { ActiveAssetesType, ActiveVendorCode, ActiveManufacturer, ActiveLocation, ActiveAssetStatus, ActiveSoftware, ActiveEmployees, ActivePurchaseTypeapi, GetNewAssets, CountNewAssets, UpdateNewAssets, AssetEmail, EmployeesDetail } from '../../../../api'
 import LoadingPage from '../../../LoadingPage/LoadingPage';
-// import { GrFormClose } from "react-icons/gr"
 import { GlobalAlertInfo } from '../../../../App';
 import Modal from '../../AlertModal/Modal';
 
@@ -29,16 +28,9 @@ const EditAsset = () => {
     const [devicedetail, setDevicedetail] = useState(true)
     const [purchasesdetail, setPurchasesdetail] = useState(false)
     const [otherdetail, setOtherdetail] = useState(false)
+    const [employeedetail, setEmployeedetail] = useState([])
 
     // ########################### Modal Alert #############################################
-    // const [datas, setDatas] = useState({
-    //     message: "abc",
-    //     title: "title",
-    //     type: "type",
-    //     route: "#",
-    //     toggle: "true",
-    // })
-
     const { tooglevalue, callfun } = useContext(GlobalAlertInfo)
     // ########################### Modal Alert #############################################
 
@@ -49,6 +41,10 @@ const EditAsset = () => {
             const getdata = await GetNewAssets(org, localStorage.getItem('newassetsno'))
             setData(getdata[0])
             console.log(getdata)
+
+            const detail = await EmployeesDetail(org, getdata[0].asset_assign_empid);
+            console.log(detail)
+            setEmployeedetail(detail)
 
             const devices = await ActiveAssetesType(org);
             setAssettypelist(devices)
@@ -195,8 +191,8 @@ const EditAsset = () => {
 
     const handleUpdateData = async (e) => {
         e.preventDefault();
-        // setLoading(false)
-        // document.getElementById('subnitbtn').disabled = 'true'
+        document.getElementById('subnitbtn').disabled = 'true'
+        setLoading(false)
         const asset_type = document.getElementById('asset_type').value;
         const assetetag = document.getElementById('assetetag').value;
         let software = document.getElementById('software').value;
@@ -224,26 +220,24 @@ const EditAsset = () => {
 
         asset_assign_empid = asset_assign_empid.value
         const remark = document.getElementById('remark').value;
-        
+
 
         const userid = localStorage.getItem('UserId')
         const sno = localStorage.getItem('newassetsno')
 
         const message = {
-            type : 'Update',
-            Asset_Type : asset_type,
-            Asset_Tag : assetetag,
+            type: 'Update',
+            Asset_Type: asset_type,
+            Asset_Tag: assetetag,
             Manufacture: manufacture,
-            Model:model,
-            Serial_No:serialno,
-            Location:location,
-            Date_of_Entry:todatdate,
-            Name:assetassign,
-            mailid:Asset_assign_email
-        } 
-        const mail = await AssetEmail(message)
+            Model: model,
+            Serial_No: serialno,
+            Location: location,
+            Date_of_Entry: todatdate,
+            Name: assetassign,
+            mailid: Asset_assign_email
+        }
 
-        return false
 
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
             !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
@@ -309,21 +303,21 @@ const EditAsset = () => {
 
             if (errorcount === 0) {
                 const org = localStorage.getItem('Database')
-                setLoading(true)
 
                 const result = await UpdateNewAssets(org, asset_type, assetetag, serialno, location, manufacture, software,
                     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, userid, sno)
 
+                const mail = await AssetEmail(message)
+
+                setLoading(true)
                 if (result === 'Data Updated') {
                     localStorage.removeItem('newassetsno')
                     callfun("Asset Updated", 'success', '/TotalNewAssets')
-
                 }
                 else {
                     document.getElementById('subnitbtn').disabled = false
                     callfun('Server Error', 'danger', 'self')
-
                 }
             }
         }
@@ -549,7 +543,7 @@ const EditAsset = () => {
                                                         <div className="col-md-4">
                                                             <label htmlFor='assetassign'>Asset Assign <span className='text-danger'>*</span></label>
                                                             <select id='assetassign' className="form-select" >
-                                                                <option value={data.asset_assign_empid} hidden>{data.asset_assign}</option>
+                                                                <option value={`${data.asset_assign_empid}}^${employeedetail.employee_email}`} hidden>{data.asset_assign}</option>
                                                                 {
                                                                     employeelist.map((item, index) => (
                                                                         <option key={index} value={`${item.employee_id}^${item.employee_email}`}>{item.employee_name}</option>
