@@ -103,8 +103,26 @@ function AddVendorPayment() {
 
     const handleAddVendorIvoice = async (e) => {
         e.preventDefault();
-        console.log(maildata);
-        return 0
+        console.log(maildata,arryval);
+        for(let i=0;i<arryval.length;i++){
+            var message = {
+                invoice_number:maildata[i].invoce_no,
+                invoice_date : maildata[i].invoice_date,
+                invoice_receive_date : maildata[i].invoice_date,
+                invoice_amount:maildata[i].invoice_amount,
+                invoice_upload:maildata[i].filedata || "",
+                payment_date:arryval[i].Paymentdate,
+                payment_details:arryval[i].paymentDetail,
+                payment_amount:arryval[i].PaymentAmt,
+                payment_link:arryval[i].filedata || "",
+                mailid:maildata[i].company_mailId,
+                vendor_name:maildata[i].vendor_name,
+                referance_no:maildata[i].referance_no
+
+            }
+           
+
+        }
         setLoading(false)
         document.getElementById('subnitbtn').disabled = 'true'
         const org = localStorage.getItem('Database')
@@ -137,6 +155,8 @@ function AddVendorPayment() {
         }
         if (errorcount === 0) {
             const result = await UpdateVendorInvoice(org, arryval, localStorage.getItem('UserId'))
+            let mail = await VendorPaymentEmail(message)
+
             setLoading(true)
             if (result === 'Data Updated') {
                 callfun('Vendor Payment Added', 'success', '/TotalVendorPayment')
@@ -158,7 +178,7 @@ function AddVendorPayment() {
         console.log(e)
         const vendordetails = await GetVendorDetails(localStorage.getItem('Database'), e.vendor_name);
         console.log(vendordetails)
-        maildata[e.Index] = { invoce_no: e.invoice_no, invoice_date: e.invoice_date, receiving_date: e.invoice_date, invoice_url: e.invoice_url, vendor_name: vendordetails[0].vendor_name,company_mailId:vendordetails[0].company_email }
+        maildata[e.Index] = { invoce_no: e.invoice_no, invoice_date: e.invoice_date, receiving_date: e.invoice_date, invoice_url: e.invoice_url, vendor_name: vendordetails[0].vendor_name,company_mailId:vendordetails[0].company_email,invoice_amount:e.InvoiceAmt,referance_no:e.refno }
 
     }
 
