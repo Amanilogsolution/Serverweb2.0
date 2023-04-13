@@ -71,14 +71,14 @@ const EditAsset = () => {
             todaydate()
 
 
-            
 
-            if (getdata[0].asset_type === 'Laptop') {
-                document.getElementById('softwarediv').style.display = 'block'
-            }
-            else {
-                document.getElementById('softwarediv').style.display = 'none'
-            }
+
+            // if (getdata[0].asset_type === 'Laptop') {
+            //     document.getElementById('softwarediv').style.display = 'block'
+            // }
+            // else {
+            //     document.getElementById('softwarediv').style.display = 'none'
+            // }
 
             if (getdata[0].purchase_type === 'Rental') {
                 document.getElementById('purchasespricediv').style.display = 'none'
@@ -156,12 +156,12 @@ const EditAsset = () => {
 
     const handleToggleSoftware = async (e) => {
         const devicetype = e.target.value;
-        if (devicetype === 'Laptop') {
-            document.getElementById('softwarediv').style.display = 'block'
-        }
-        else {
-            document.getElementById('softwarediv').style.display = 'none'
-        }
+        // if (devicetype === 'Laptop') {
+        //     document.getElementById('softwarediv').style.display = 'block'
+        // }
+        // else {
+        //     document.getElementById('softwarediv').style.display = 'none'
+        // }
         if (devicetype === data.asset_type) {
             document.getElementById('assetetag').value = data.asset_tag
         }
@@ -195,7 +195,7 @@ const EditAsset = () => {
         setLoading(false)
         const asset_type = document.getElementById('asset_type').value;
         const assetetag = document.getElementById('assetetag').value;
-        let software = document.getElementById('software').value;
+        // let software = document.getElementById('software').value;
         const serialno = document.getElementById('serialno').value;
         const location = document.getElementById('location').value;
         const manufacture = document.getElementById('manufacture').value;
@@ -212,15 +212,15 @@ const EditAsset = () => {
         const latestinventory = document.getElementById('latestinventory').value;
         const assetname = document.getElementById('assetname').value;
         let asset_assign_empid = document.getElementById('assetassign');
-        
+
         const assetassign = asset_assign_empid.options[asset_assign_empid.selectedIndex].text;
-        
+
         asset_assign_empid = asset_assign_empid.value.split('^')
-        
+
         let Asset_assign_email = asset_assign_empid[1]
         asset_assign_empid = asset_assign_empid[0]
         // asset_assign_empid = asset_assign_empid
-       
+
         const remark = document.getElementById('remark').value;
 
 
@@ -239,7 +239,7 @@ const EditAsset = () => {
             Name: assetassign,
             mailid: Asset_assign_email
         }
-     
+
 
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
             !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
@@ -251,20 +251,20 @@ const EditAsset = () => {
         }
         else {
             let errorcount = 0;
-            if (asset_type === 'Laptop') {
-                if (!software) {
-                    document.getElementById('subnitbtn').disabled = false
-                    setLoading(true)
-                    callfun('Please enter the Software Field', 'warning', 'self')
-                    document.getElementById('subnitbtn').disabled = false
-                    errorcount = errorcount + 1;
-                    return false;
-                }
+            // if (asset_type === 'Laptop') {
+            //     if (!software) {
+            //         document.getElementById('subnitbtn').disabled = false
+            //         setLoading(true)
+            //         callfun('Please enter the Software Field', 'warning', 'self')
+            //         document.getElementById('subnitbtn').disabled = false
+            //         errorcount = errorcount + 1;
+            //         return false;
+            //     }
 
-            }
-            else {
-                software = '';
-            }
+            // }
+            // else {
+            //     software = '';
+            // }
             if (purchase_type === 'Rental') {
                 if (!rentpermonth) {
                     setLoading(true)
@@ -305,7 +305,7 @@ const EditAsset = () => {
 
             if (errorcount === 0) {
                 const org = localStorage.getItem('Database')
-
+                let software = ''
                 const result = await UpdateNewAssets(org, asset_type, assetetag, serialno, location, manufacture, software,
                     model, assetstatus, description, purchase_type, purchasesdate, company, vendor, invoiceno,
                     rentpermonth, purchaseprice, latestinventory, assetname, assetassign, asset_assign_empid, remark, userid, sno)
@@ -365,7 +365,7 @@ const EditAsset = () => {
 
                                                         <div className="col-md-4">
                                                             <label htmlFor='asset_type'>Asset Type <span className='text-danger'>*</span></label>
-                                                            <select id='asset_type' className="form-select" onChange={handleToggleSoftware}>
+                                                            <select id='asset_type' className="form-select" onChange={handleToggleSoftware} disabled>
                                                                 <option value={data.asset_type} hidden>{data.asset_type}</option>
                                                                 {
                                                                     assettypelist.map((item, index) => (
@@ -379,7 +379,7 @@ const EditAsset = () => {
                                                             <label htmlFor='assetetag'>Asset Tag <span className='text-danger'>*</span></label>
                                                             <input type="text" id='assetetag' className="form-control" placeholder='Auto generated' defaultValue={data.asset_tag} disabled />
                                                         </div>
-                                                        <div className="col-md-4" id='softwarediv' style={{ display: "none" }}>
+                                                        {/* <div className="col-md-4" id='softwarediv' style={{ display: "none" }}>
                                                             <label htmlFor='software'>Software <span className='text-danger'>*</span></label>
                                                             <select className="form-select" id='software'>
                                                                 <option value={data.software} hidden>{data.software}</option>
@@ -389,7 +389,7 @@ const EditAsset = () => {
                                                                     ))
                                                                 }
                                                             </select>
-                                                        </div>
+                                                        </div> */}
 
                                                     </div>
                                                     <div className='row mt-3'>
