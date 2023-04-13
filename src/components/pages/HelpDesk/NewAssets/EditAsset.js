@@ -59,7 +59,7 @@ const EditAsset = () => {
 
             const assetstatus = await ActiveAssetStatus(org);
             setAssetstatuslist(assetstatus)
-
+            setLoading(true)
             const software = await ActiveSoftware(org);
             setSoftwarelist(software)
 
@@ -71,7 +71,7 @@ const EditAsset = () => {
             todaydate()
 
 
-            setLoading(true)
+            
 
             if (getdata[0].asset_type === 'Laptop') {
                 document.getElementById('softwarediv').style.display = 'block'
@@ -212,13 +212,15 @@ const EditAsset = () => {
         const latestinventory = document.getElementById('latestinventory').value;
         const assetname = document.getElementById('assetname').value;
         let asset_assign_empid = document.getElementById('assetassign');
+        
         const assetassign = asset_assign_empid.options[asset_assign_empid.selectedIndex].text;
-
+        
         asset_assign_empid = asset_assign_empid.value.split('^')
+        
         let Asset_assign_email = asset_assign_empid[1]
         asset_assign_empid = asset_assign_empid[0]
-
-        asset_assign_empid = asset_assign_empid.value
+        // asset_assign_empid = asset_assign_empid
+       
         const remark = document.getElementById('remark').value;
 
 
@@ -237,7 +239,7 @@ const EditAsset = () => {
             Name: assetassign,
             mailid: Asset_assign_email
         }
-
+     
 
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
             !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
@@ -543,7 +545,7 @@ const EditAsset = () => {
                                                         <div className="col-md-4">
                                                             <label htmlFor='assetassign'>Asset Assign <span className='text-danger'>*</span></label>
                                                             <select id='assetassign' className="form-select" >
-                                                                <option value={`${data.asset_assign_empid}}^${employeedetail.employee_email}`} hidden>{data.asset_assign}</option>
+                                                                <option value={`${data.asset_assign_empid}^${employeedetail.employee_email}`} hidden>{data.asset_assign}</option>
                                                                 {
                                                                     employeelist.map((item, index) => (
                                                                         <option key={index} value={`${item.employee_id}^${item.employee_email}`}>{item.employee_name}</option>

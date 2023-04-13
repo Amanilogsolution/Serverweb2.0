@@ -164,8 +164,8 @@ const AddNewAssets = () => {
 
     const handleInsertData = async (e) => {
         e.preventDefault();
-        // document.getElementById('subnitbtn').disabled = 'true'
-        // setLoading(false)
+        document.getElementById('subnitbtn').disabled = 'true'
+        setLoading(false)
 
         const org = localStorage.getItem('Database')
         const asset_type = document.getElementById('asset_type').value;
@@ -195,8 +195,6 @@ const AddNewAssets = () => {
         let Asset_assign_email = asset_assign_empid[1]
         asset_assign_empid = asset_assign_empid[0]
 
-
-        console.log(asset_assign_empid);
 
         const remark = document.getElementById('remark').value;
 
@@ -288,7 +286,7 @@ const AddNewAssets = () => {
                     })
                     const mail = await AssetEmail(message)
                     document.getElementById('subnitbtn').disabled = false
-                    // setLoading(true)
+                    setLoading(true)
 
                     callfun('Asset Added', 'success', '/TotalNewAssets')
 
