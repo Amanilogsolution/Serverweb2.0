@@ -27,6 +27,11 @@ const columns = [
         sortable: true,
     },
     {
+        name: 'Serial Number',
+        selector: 'serial_no',
+        sortable: true,
+    },
+    {
         name: 'Asset Type',
         selector: 'asset_type',
         sortable: true,
@@ -66,6 +71,7 @@ function TotalNewAssetes() {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
             const datas = await TotalNewAssets(org)
+            console.log(datas)
             setdata(datas)
             setLoading(true)
         }
