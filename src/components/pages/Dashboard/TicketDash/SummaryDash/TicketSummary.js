@@ -300,7 +300,8 @@ const TicketSummary = () => {
           <hr />
           <div className='Summary_cards'>
 
-            <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around' data-toggle="modal" data-target="#exampleModalCenter" onClick={(e) => { e.preventDefault(); handleChange('') }} >
+            <div className='Summary_card rounded shadow1-silver bg-white d-flex justify-content-around cursor-pointer' data-toggle="modal" data-target="#exampleModalCenter" 
+            onClick={(e) => { e.preventDefault(); handleChange('') }} >
               <div className='summary_icon text-light mx-2 ' >
                 <FaUser className='m-1' style={{ fontSize: "23px" }} />
               </div>

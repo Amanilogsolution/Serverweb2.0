@@ -12,10 +12,9 @@
 
 .outstanding-totalinv {
     width: 35%;
-    padding: 10px;
     box-shadow: 1px 1px 10px silver;
     border-radius: 5px;
-    padding: 15px
+    padding: 5px
 }
 
 .outstanding-totalamt {
@@ -30,7 +29,7 @@
     border: 2px solid red;
 } */
 .outstanding-sub-table {
-    max-height: 47vh;
+    max-height: 55vh;
 }
 
 .outstanding-container .outstanding-table {

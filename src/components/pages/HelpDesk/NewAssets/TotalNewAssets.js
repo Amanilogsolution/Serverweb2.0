@@ -12,6 +12,11 @@ import customStyles from '../../../TableCustomtyle'
 const columns = [
   
     {
+        name: 'Vendor',
+        selector: 'vendor',
+        sortable: true,
+    },
+    {
         name: 'Asset Tag',
         selector: 'asset_tag',
         sortable: false,
@@ -32,6 +37,16 @@ const columns = [
         sortable: true,
     },
     {
+        name: 'Purchase Type',
+        selector: 'purchase_type',
+        sortable: true,
+    },
+    {
+        name: 'Purchase Date',
+        selector: 'Assetdate',
+        sortable: true,
+    },
+    {
         name: 'Asset Type',
         selector: 'asset_type',
         sortable: true,
@@ -41,6 +56,11 @@ const columns = [
         selector: 'asset_assign',
         sortable: true,
     },
+    {
+        name: 'Location',
+        selector: 'location',
+        sortable: true,
+    }, 
     {
         name: 'Asset Status',
         selector: 'asset_status',
@@ -70,10 +90,19 @@ function TotalNewAssetes() {
     useEffect(() => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
-            const datas = await TotalNewAssets(org)
+
+            if(localStorage.getItem('Location') ){
+                const datas = await TotalNewAssets(org,localStorage.getItem('Location'))
+                console.log(datas)
+                setdata(datas)
+                setLoading(true)
+                localStorage.removeItem('Location')
+            }else{
+            const datas = await TotalNewAssets(org,"")
             console.log(datas)
             setdata(datas)
             setLoading(true)
+            }
         }
         fetchdata();
     }, [])

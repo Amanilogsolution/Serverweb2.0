@@ -1,6 +1,7 @@
 .AssetDash {
     width: 99%;
     height: 100%;
+    /* border: 2px solid red; */
 }
 
 .AssetDash .Asset_cards .card1 {

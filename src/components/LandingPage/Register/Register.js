@@ -30,8 +30,8 @@ export default function Register() {
         const fetchdata = async () => {
             const totalCountry = await TotalCountry();
             setCountrylist(totalCountry)
-            const currency = await CurrencyMaster()
-            setCurrencylist(currency)
+            // const currency = await CurrencyMaster()
+            // setCurrencylist(currency)
         }
         fetchdata()
     }, [])
@@ -176,7 +176,7 @@ export default function Register() {
                                                     }
                                                 </select>
                                             </div>
-                                            <div className="form-group col">
+                                            {/* <div className="form-group col">
                                                 <label htmlFor="currency">Currency <span className='text-danger'>*</span></label>
                                                 <select id="currency" className="form-control">
                                                     <option value='' hidden>Choose...</option>
@@ -188,9 +188,8 @@ export default function Register() {
                                                         ))
                                                         : <option value=''> Please Select Currency</option>
                                                     }
-                                                    {/* <option>...</option> */}
                                                 </select>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className="form-group mt-3 d-flex" >
                                             <p>Is this Business registered for GST &nbsp;&nbsp;

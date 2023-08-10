@@ -79,6 +79,11 @@ function TotalVendorInvoice() {
             sortable: true,
         },
         {
+            name: 'Account Number',
+            selector: row => `${row.account_no}`,
+            sortable: true,
+        },
+        {
             name: 'Uploaded',
             sortable: true,
             cell: (row) => [

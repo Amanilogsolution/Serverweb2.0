@@ -24,6 +24,7 @@ function EditVendorPayments() {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
             const datas = await GetVendorPayment(org, localStorage.getItem('vendorpaymentssno'))
+            setFiledata(datas[0].uploadpayment)
             setData(datas[0])
             const invoice = await PendingVendorInvoice(org);
             setPendinginvoicelist(invoice)
@@ -44,6 +45,8 @@ function EditVendorPayments() {
         const remark = document.getElementById('remark').value;
         const sno = localStorage.getItem('vendorpaymentssno')
         const org = localStorage.getItem('Database')
+
+ 
 
         if (!paymentdetail || !paymentamt || !paymentdate) {
             setLoading(true)
@@ -151,8 +154,9 @@ function EditVendorPayments() {
                                                     {
                                                         data.uploadpayment ? <>
                                                             <iframe src={data.uploadpayment} style={{ height: '280px' }} title='Payment Preview' />
-                                                            <button type="button" className='btn btn-success ' >Upload</button></>
-                                                            : <button type="button" className='btn btn-success col-md-4' data-toggle="modal" data-target="#documentModalCenter" >Upload</button>
+                                                            <button type="button" className='btn btn-success ' data-toggle="modal" data-target="#documentModalCenter" >Upload</button></>
+                                                            : 
+                                                            <button type="button" className='btn btn-success col-md-4' data-toggle="modal" data-target="#documentModalCenter" >Upload</button>
                                                     }
                                                 </div>
                                             </div>

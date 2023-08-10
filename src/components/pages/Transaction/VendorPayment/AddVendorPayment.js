@@ -35,6 +35,7 @@ function AddVendorPayment() {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
             const invoice = await PendingVendorInvoice(org);
+            console.log(invoice)
             setPendinginvoicelist(invoice)
             todaydate()
             setLoading(true)
@@ -65,6 +66,7 @@ function AddVendorPayment() {
             val.pop();
             setCount(val.length);
             setArry(val);
+        }else{
             let objval = [...arryval];
             objval.pop();
             setArryval(objval)
@@ -117,8 +119,6 @@ function AddVendorPayment() {
                 vendor_name:maildata[i].vendor_name,
                 referance_no:maildata[i].referance_no
             }
-           
-
         }
         setLoading(false)
         document.getElementById('subnitbtn').disabled = 'true'
@@ -171,6 +171,7 @@ function AddVendorPayment() {
         document.getElementById(`invamt-${e.Index}`).value = e.InvoiceAmt
         document.getElementById(`appramt-${e.Index}`).value = e.InvoiceAmt
         document.getElementById(`refno-${e.Index}`).value = e.refno;
+        document.getElementById(`button${e.Index}`).innerHTML = e.invoice_no;
 
         const vendordetails = await GetVendorDetails(localStorage.getItem('Database'), e.vendor_name);
         maildata[e.Index] = { invoce_no: e.invoice_no, invoice_date: e.invoice_date, receiving_date: e.invoice_date, invoice_url: e.invoice_url, vendor_name: vendordetails[0].vendor_name,company_mailId:vendordetails[0].company_email,invoice_amount:e.InvoiceAmt,referance_no:e.refno }
@@ -178,6 +179,7 @@ function AddVendorPayment() {
     }
 
     const handleGetInvoiceno = async (e) => {
+        console.log(e.target.value)
         const getInvoiceno = await PendingVendorInvoiceOnChnage(localStorage.getItem('Database'), e.target.value)
         setPendinginvoicelist(getInvoiceno)
     }
@@ -237,15 +239,13 @@ function AddVendorPayment() {
                                                                         <option key={index} value={[`${item.sno},${item.invoice_amt}`]}>{`${item.reference_no}, (${item.invoice_no})`}</option>)
                                                                 }
                                                             </select> */}
-                                                            <button className='form-control m-0 btn btn-success' data-toggle="modal" data-target="#invoiceModalCenter"
+                                                            <button className='form-control m-0 btn btn-success' data-toggle="modal" id={`button${index}`} data-target="#invoiceModalCenter"
                                                                 onClick={(e) => {
                                                                     e.preventDefault(); setInvoiceindexno(index);
                                                                     setTimeout(() => {
                                                                         document.getElementById('searchInvoice').focus();
                                                                     }, 550)
-                                                                }}>
-                                                                {invoiceno[index] !== undefined ? invoiceno[index] : "Select"}
-                                                            </button>
+                                                                }}>Select</button>
                                                         </td>
                                                         <td className='p-0'><input type='number' id={`invamt-${index}`} className='form-control m-0 ' disabled onBlur={() => savatoarry(index)} /></td>
                                                         <td className='p-0'><input type='text' id={`ptydtl-${index}`} className='form-control m-0 ' onBlur={() => savatoarry(index)} /></td>
@@ -303,8 +303,6 @@ function AddVendorPayment() {
                                             }
                                             <button type="button" className="btn btn-primary" id="uploadbutton" data-dismiss="modal" style={{ display: "none" }}
                                                 onClick={(e) => { e.preventDefault(); savatoarry(indexno) }}>Upload</button>
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -324,7 +322,33 @@ function AddVendorPayment() {
                                             </div>
                                         </div>
                                         <div className="modal-body overflow-auto" style={{ maxHeight: '60vh' }}>
-                                            <ul>
+                                        <table className="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Account Number</th>
+                                    <th>Invoice Number</th> 
+                                    <th>Referance Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                pendinginvoicelist.map((item, index) => (
+                                        <tr key={index}className="vendor-Invoice-list cursor-pointer" data-dismiss="modal" value={`${item.sno},${item.invoice_no}`}  onClick={(e) => {
+                                                                handleChangeInvoiceDetail({ sno: item.sno, invoice_no: item.invoice_no, InvoiceAmt: item.invoice_amt, Index: invoceindexno, refno: item.reference_no, invoice_date: item.date, invoice_url: item.uploadInvoice, vendor_name: item.vendor });
+                                                                savatoarry(invoceindexno)
+                                            }}>
+                                            <td>{item.account_no}</td>
+                                    <td>{item.invoice_no}</td>
+                                    <td>{item.reference_no}</td>
+                                    
+                                </tr>
+
+                                    ))
+                                    }
+                              
+                            </tbody>
+                        </table>
+                                            {/* <ul>
                                                 {
                                                     pendinginvoicelist.map((item, index) => (
                                                         <li key={index} className="vendor-Invoice-list cursor-pointer" data-dismiss="modal"
@@ -336,7 +360,7 @@ function AddVendorPayment() {
                                                         >{item.reference_no}, ({item.invoice_no})</li>
                                                     ))
                                                 }
-                                            </ul>
+                                            </ul> */}
                                         </div>
                                         <div className="modal-footer">
                                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

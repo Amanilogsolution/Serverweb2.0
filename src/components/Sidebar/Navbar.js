@@ -24,19 +24,39 @@ const Navbar = (props) => {
     return (
         <>
             <div className='nav_with_alert'>
-                <UpdateModel />
+                {/* <UpdateModel /> */}
                 <div className="innernavbarcontainer bg-white mb-3 d-flex align-items-center">
 
                     {props.isOpen ?
                         null : <img className='navbar-brand logo-img' src={DrizzleLogo} alt='Drizzle Logo' />}
 
-                    <div className='reports mx-4'>
+                    {/* <div className='reports mx-4'>
                         <Link className=' d-flex align-items-center  cursor-pointer' to="/reports" style={{ textDecoration: "none", color: "#212529" }}>
                             <HiDocumentText style={{ fontSize: "28px", color: "gray" }} />
                             <p className='mb-0' style={{ fontSize: "17px" }}>Reports</p>
                         </Link>
                         <span className="tooltiptext ">Reports</span>
-                    </div>
+                    </div> */}
+                    <div className='help d-flex mx-4 '>
+                                <span className="tooltiptext">Reports</span>
+                                <div role="button" id="dropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   
+                                    Report
+                                    <MdOutlineArrowDropDown style={{ fontSize: "23px", margin: "0 -3px", color: "#404040" }} />
+                                </div>
+                                <div className="dropdown-menu " aria-labelledby="dropdownMenuButton" style={{ border: '1px solid silver', margin: "0 -2px" }}>
+                                    <Link className="dropdown-item" to="/assetreports"> Asset Reports</Link>
+                                </div>
+                            </div>
+
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ border: '1px solid silver', margin: "0 -2px" }}>
+                                    <a className="dropdown-item" href="/AddNewAssets"> Enroll New Asset</a>
+                                    <Link className="dropdown-item" to="/AddTickets">Create a New Ticket</Link>
+                                    <Link className="dropdown-item" to="/AddVendorCode"> Create a New Vendor</Link>
+                                    <Link className="dropdown-item" to="/AddVendorInvoice"> New Vendor Invoice</Link>
+                                    <Link className="dropdown-item" to="/AddVendorPayment"> Add Vendor Payment</Link>
+                                </div>
 
 
                     <div className='navcontainer-second position-absolute d-flex align-items-center justify-content-end '>

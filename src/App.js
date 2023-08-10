@@ -149,6 +149,7 @@ import AddTicket from './components/pages/HelpDesk/Tickets/AddTicket';
 import EditTicket from './components/pages/HelpDesk/Tickets/EditTicket';
 import TotalTicket from './components/pages/HelpDesk/Tickets/TotalTicket';
 import OpenTotalTickets from './components/pages/HelpDesk/Tickets/OpenTicket';
+import HoldTotalTickets from './components/pages/HelpDesk/Tickets/HoldTicket';
 
 import HelpDeskSideBar from './components/HelpDeskUi/HelpDeskSideBar';
 import Profile from './components/Profile/Profile';
@@ -170,6 +171,8 @@ import EditAssignRole from './components/pages/Setting/AssignRole/EditAssignRole
 
 import PageNotFound from './components/404/404';
 import Reports from './components/pages/Reports/Reports';
+import AssetReports from './components/Sidebar/Reports/AssetReport';
+
 
 export const GlobalAlertInfo = createContext();
 
@@ -310,6 +313,10 @@ const App = () => {
             <Route path="/AddTicketStatus" element={<AddTicketStatus />} />
             <Route path="/EditTicketStatus" element={<EditTicketStatus />} />
             <Route path="/OpenTotalTickets" element={<OpenTotalTickets />} />
+            <Route path="/HoldTotalTickets" element={<HoldTotalTickets />} />
+
+
+            
 
             <Route path="/TotalVendSubCate" element={<TotalVendSubCate />} />
             <Route path="/AddVendorSubCategory" element={<AddVendorSubCategory />} />
@@ -355,6 +362,7 @@ const App = () => {
 
             <Route path='/Contactus' element={<Contactus />} />
             <Route path='/reports' element={<Reports />} />
+            <Route path='/assetreports' element={<AssetReports />} />
 
             <Route path='/TotalRoles' element={<TotalRoles />} />
             <Route path='/NewRoles' element={<AddRoles />} />

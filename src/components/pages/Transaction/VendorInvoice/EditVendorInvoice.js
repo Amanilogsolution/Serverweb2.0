@@ -26,6 +26,7 @@ function EditVendorInvoice() {
             const org = localStorage.getItem('Database')
             const datas = await GetVendorInvoice(org, localStorage.getItem('vendorinvoicesno'))
             setData(datas[0])
+            setFiledata(datas[0]["uploadInvoice"])
             const vendorcontract = await ActiveVendorContract(org);
             setVendorcontractlist(vendorcontract)
             setLoading(true)

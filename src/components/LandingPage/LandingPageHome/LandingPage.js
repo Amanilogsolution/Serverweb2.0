@@ -43,7 +43,7 @@ const LandingPage = () => {
                                     <div className="col-lg-6" data-aos="fade-left"
                                         data-aos-delay="50" data-aos-duration="1000" data-aos-once="true">
                                         <div className="masthead-device-mockup">
-                                            <div className="device-wrapper">
+                                            <div classNapropsme="device-wrapper">
                                                 <div className="device" >
                                                     <div className="screen ">
 

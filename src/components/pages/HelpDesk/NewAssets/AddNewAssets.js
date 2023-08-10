@@ -37,10 +37,11 @@ const AddNewAssets = () => {
         const fetchdata = async () => {
             const org = localStorage.getItem('Database')
             const detail = await EmployeesDetail(org, localStorage.getItem('EmployId'));
-            console.log(detail)
             setEmployeedetail(detail)
+
             const devices = await ActiveAssetesType(org);
             setAssettypelist(devices)
+            
             const vendor = await ActiveVendorCode(org)
             setVendorlist(vendor)
 
@@ -171,7 +172,7 @@ const AddNewAssets = () => {
         const asset_type = document.getElementById('asset_type').value;
         const asset_id = asset_type.substring(0, 3).toUpperCase() + Math.floor(Math.random() * 100000);
         const assetetag = document.getElementById('assetetag').value;
-        // let software = document.getElementById('software').value;
+    
         const serialno = document.getElementById('serialno').value;
         const location = document.getElementById('location').value;
         const manufacture = document.getElementById('manufacture').value;
@@ -214,8 +215,9 @@ const AddNewAssets = () => {
         if (!asset_type || !serialno || !location || !manufacture || !model || !assetstatus || !purchase_type || !purchasesdate ||
             !company || !vendor || !latestinventory || !assetname || !asset_assign_empid) {
             setLoading(true)
-            document.getElementById('subnitbtn').disabled = false
             callfun('Please enter all mandatory fields', 'warning', 'self')
+            document.getElementById('subnitbtn').disabled = false
+
 
             return false;
         }
@@ -238,8 +240,9 @@ const AddNewAssets = () => {
             if (purchase_type === 'Rental') {
                 if (!rentpermonth) {
                     setLoading(true)
-                    document.getElementById('subnitbtn').disabled = false
                     callfun('Please enter the RentPerMonth Field', 'warning', 'self')
+                    document.getElementById('subnitbtn').disabled = false
+
                     errorcount = errorcount + 1;
                     return false;
                 }
@@ -251,16 +254,18 @@ const AddNewAssets = () => {
             if (purchase_type === 'Owned') {
                 if (!purchaseprice) {
                     setLoading(true)
-                    document.getElementById('subnitbtn').disabled = false
                     callfun('Please enter the Purchase Price Field', 'warning', 'self')
+                    document.getElementById('subnitbtn').disabled = false
+
 
                     errorcount = errorcount + 1;
                     return false;
                 }
                 if (!invoiceno) {
                     setLoading(true)
-                    document.getElementById('subnitbtn').disabled = false
                     callfun('Please enter the Invoice no.', 'warning', 'self')
+                    document.getElementById('subnitbtn').disabled = false
+
 
                     errorcount = errorcount + 1;
                     return false;
@@ -285,7 +290,7 @@ const AddNewAssets = () => {
                         await InsertAssetSubCode(org, asset_id, assetetag, software)
                     })
                     const mail = await AssetEmail(message)
-                    document.getElementById('subnitbtn').disabled = false
+                    // document.getElementById('subnitbtn').disabled = false
                     setLoading(true)
 
                     callfun('Asset Added', 'success', '/TotalNewAssets')
@@ -299,13 +304,14 @@ const AddNewAssets = () => {
                     document.getElementById('subnitbtn').disabled = false
                     const mail = await AssetEmail(message)
                     if (result === 'Data Added') {
-                        document.getElementById('subnitbtn').disabled = false
+                        // document.getElementById('subnitbtn').disabled = false
                         callfun('Asset Added', 'success', '/TotalNewAssets')
 
                     }
                     else {
-                        document.getElementById('subnitbtn').disabled = false
                         callfun('Server Error', 'danger', 'self')
+                        document.getElementById('subnitbtn').disabled = false
+
                     }
                 }
             }

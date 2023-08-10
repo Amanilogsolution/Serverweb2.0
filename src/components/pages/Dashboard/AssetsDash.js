@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import './AssetsDash.css'
 import { BarChart, PieChart, Pie, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, Line, } from "recharts";
-import { DashboarProcedure, Dashboard_Location_Name, Dashboard_Software, Dashboard_Manufacture } from '../../../api/index'
+import { DashboarProcedure, Dashboard_Location_Name, Dashboard_Software, Dashboard_Manufacture, dashboard_asset_data } from '../../../api/index'
 import { BsLaptopFill } from 'react-icons/bs';
 import { HiUsers } from 'react-icons/hi';
 import { MdStickyNote2 } from 'react-icons/md';
+import { SiMicrosoftexcel } from 'react-icons/si'
+import { ExcelConvertData } from './VendorDash/Excel'
+
+
 export default function AssetsDash(callback) {
   const [chartdata, setChartData] = useState()
   const [dashboardsoft, setDashboardsoft] = useState([])
@@ -15,22 +19,36 @@ export default function AssetsDash(callback) {
     "ActiveAsset": 0,
     "RentalAssets": 0,
     "RentMonth": 0,
-    "PurchaseVal": 0
+    "PurchaseVal": 0,
+    "OwnedAsset": 0
   })
+  const [assetlocation, setAssetLocation] = useState([])
+  const [exportdata,setExportData] = useState([])
+
+
   useEffect(() => {
     const fetch = async () => {
       const type = 'Asset'
       const result = await DashboarProcedure(type)
-      setAssetData({ ...Assetsdata, TotalAsset: result[0][0].TotalDevice, ActiveAsset: result[1][0].ActiveDevice, RentalAssets: result[2][0].RentalDevice, RentMonth: result[3][0].rent, PurchaseVal: result[4][0].purchase })
+      console.log(result)
+      setAssetData({ ...Assetsdata, TotalAsset: result[0][0].TotalDevice, ActiveAsset: result[1][0].ActiveDevice, RentalAssets: result[2][0].RentalDevice, OwnedAsset: result[3][0].OwnedDevice, RentMonth: result[4][0].rent,PurchaseVal: result[5][0].purchase })
       datas()
     }
     fetch()
   }, [])
 
+  const exportExcel = async () => {
+    const datasss = ExcelConvertData(exportdata)
+  }
+
   const datas = async () => {
     const locationname = await Dashboard_Location_Name(localStorage.getItem('Database'))
     const dashboard_soft = await Dashboard_Software(localStorage.getItem('Database'))
     const dashboard_manu = await Dashboard_Manufacture(localStorage.getItem('Database'))
+    const Assetdata = await dashboard_asset_data()
+    console.log(Assetdata)
+    setAssetLocation(Assetdata)
+    setExportData(Assetdata)
     setDashboardmanu(dashboard_manu)
     setDashboardsoft(dashboard_soft)
     setChartData(locationname || dashboard_soft || dashboard_manu)
@@ -79,14 +97,19 @@ export default function AssetsDash(callback) {
           </div>
           <div className=' asset-inner-card2'>
             <h1 className='dash_card_head mb-0'>{Assetsdata.ActiveAsset}</h1>
-            <p className='dash_card_para'>Active Devices</p>
+            <p className='dash_card_para'>In Use  Devices</p>
           </div>
         </div>
+        
         <div className='card1 bg-white d-flex justify-content-around  rounded shadow1-silver py-1'>
           <div className='position-relative  asset-inner-card'>
             <div className='dash_card_icon_div rentdev1 rounded position-absolute'>
               <MdStickyNote2 className='icon text-white' />
             </div>
+          </div>
+          <div className=' asset-inner-card2'>
+            <h1 className='dash_card_head mb-0'>{Assetsdata.OwnedAsset}</h1>
+            <p className='dash_card_para'>Owned Devices</p>
           </div>
           <div className=' asset-inner-card2'>
             <h1 className='dash_card_head mb-0'>{Assetsdata.RentalAssets}</h1>
@@ -104,7 +127,7 @@ export default function AssetsDash(callback) {
               </div> :
               <div className='it-bar rounded position-absolute'>
                 <ResponsiveContainer >
-                  <BarChart width={600} height={300} data={chartdata} margin={{ top: 20, right: 45 }}>
+                  <BarChart width={600} height={300} data={chartdata} margin={{ top: 20, right: 45 }} onClick={(e)=>{window.location.href = "/TotalNewAssets"; localStorage.setItem('Location',e.activeLabel)}}>
                     <CartesianGrid strokeDasharray='4' vertical={false} />
                     <XAxis tick={{ fill: 'white' }} dataKey="location_code" interval={"preserveStartEnd"} fontSize={12} />
                     <YAxis tick={{ fill: 'white' }} />
@@ -167,6 +190,49 @@ export default function AssetsDash(callback) {
               }
               <small className='position-absolute text-secondary mx-3' style={{ bottom: '6.5%' }}>Software</small>
             </div>
+
+            
+          </div>
+          <div className=' bg-white position-relative rounded overflow-auto' style={{height:"35vh"}} >
+            {spinner ?
+              <div className="spinner-border text-primary" style={{ marginTop: "2%", marginLeft: "50%" }} role="status">
+                <span className="sr-only"></span>
+              </div> :
+              <div>
+              <div className='d-flex'>
+              <p>Export</p>
+              <a href="#"
+                  onClick={exportExcel}
+                ><SiMicrosoftexcel className='ft-20' /></a>
+                </div>
+
+              <table className='table'>
+                <thead className='position-sticky top-0 bg-dark'>
+                  <tr>
+                    <th>Location</th>
+                    <th>Desktop</th>
+                    <th>Laptop</th>
+                    <th>Printer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {
+                  assetlocation?.map((ele)=>(
+                    <tr>
+                      <td>{ele.location}</td>
+                      <td>{ele.Desktop}</td>
+                      <td>{ele.Laptop}</td>
+                      <td>{ele.Printer}</td>
+                    </tr>
+                  ))
+                }
+
+                </tbody>
+              </table>
+              </div>
+             
+            }
+           
           </div>
         </div>
 

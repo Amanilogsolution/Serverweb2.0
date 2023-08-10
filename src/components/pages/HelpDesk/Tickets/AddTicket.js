@@ -137,13 +137,13 @@ export default function AddTicket() {
 
         const user_id = localStorage.getItem('UserId')
 
-        if (!employee_id || !assetserial || !location || !ticketstatus || !ticketsubject) {
-            setLoading(true)
-            document.getElementById('subnitbtn').disabled = false
-            callfun('Please enter the Mandatory Field', 'warning', 'self')
-            return false;
-        }
-        else {
+        // if (!employee_id || !assetserial || !location || !ticketstatus || !ticketsubject) {
+        //     setLoading(true)
+        //     document.getElementById('subnitbtn').disabled = false
+        //     callfun('Please enter the Mandatory Field', 'warning', 'self')
+        //     return false;
+        // }
+        // else {
             const message = {
                 org: org,
                 subject: ticketsubject,
@@ -170,7 +170,7 @@ export default function AddTicket() {
                 document.getElementById('subnitbtn').disabled = false
 
             }
-        }
+        // }
 
     }
     return (

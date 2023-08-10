@@ -552,6 +552,12 @@ const Sidebar = ({ children }) => {
                                         <div style={{ display: isOpen ? "block" : "none" }} > Close Ticket</div>
                                     </NavLink>
                                 </li>
+                                <li className='innerlink' >
+                                    <NavLink to='/HoldTotalTickets' className='navlink d-flex' activeclassname="sidebaractive">
+                                        <FaTicketAlt style={{ color: "rgb(66, 4, 69)", marginTop: "5px" }} />&nbsp;
+                                        <div style={{ display: isOpen ? "block" : "none" }} > Hold Ticket</div>
+                                    </NavLink>
+                                </li>
                             </ul>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ import { CSVLink } from "react-csv";
 import { BiExport } from 'react-icons/bi'
 import { SiMicrosoftexcel } from 'react-icons/si'
 import { MdDownload } from 'react-icons/md'
+import { BsFilterLeft } from 'react-icons/bs';
 
 import { GrDocumentCsv } from 'react-icons/gr'
 import { ExcelConvertData } from '../VendorDash/Excel'
@@ -12,7 +13,7 @@ import { BiRupee } from 'react-icons/bi';
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 
 import 'react-data-table-component-extensions/dist/index.css';
-import { Invoice_Outstanding, TotalOutstanding, VendorInvoice, Outstanding_Invoice_filter } from '../../../../api/index'
+import { Invoice_Outstanding, TotalOutstanding, VendorInvoice, Outstanding_Invoice_filter,ExportOutstandingInvoiceData } from '../../../../api/index'
 
 const Outstanding = ({ setStep }) => {
   const [invoices, setInvoice] = useState({})
@@ -23,22 +24,32 @@ const Outstanding = ({ setStep }) => {
   const [lastval, setLastval] = useState()
   const [toogle, setToogle] = useState(false)
   const [data, setData] = useState([])
+  const [exportdata,setExportData] = useState([])
 
   const exportExcel = async () => {
-    const datasss = ExcelConvertData(TotalVendor)
+    const datasss = ExcelConvertData(exportdata)
   }
   const handlePageClick = async (data) => {
-    const datas = await VendorInvoice(localStorage.getItem('Database'), data.selected + 1, rowperpage)
-    console.log(datas.data)
+    console.log()
+    if(document.getElementById('filterSearch').value.length >0){
+      const datas = await VendorInvoice(localStorage.getItem('Database'), data.selected + 1, rowperpage,document.getElementById('filterSearch').value)
+      setTotalVendor(datas.data)
+    }else{
+    const datas = await VendorInvoice(localStorage.getItem('Database'), data.selected + 1, rowperpage,'all')
     setTotalVendor(datas.data)
+    }
   }
 
   useEffect(() => {
     const fetchdata = async () => {
       fetch()
       const org = localStorage.getItem('Database')
-      const datas = await VendorInvoice(org, 1, 10)
+      const datas = await VendorInvoice(org, 1, 10,'all')
+      console.log(datas)
       setTotalVendor(datas.data)
+      const ExportData = await ExportOutstandingInvoiceData(org)
+      setExportData(ExportData.data)
+      console.log(ExportData.data)
 
       const total = datas.TotalData[0]["Totaldata"]
       setRowPerPage(10)
@@ -56,6 +67,18 @@ const Outstanding = ({ setStep }) => {
     setLastval(Math.ceil(total / e.target.value))
   }
 
+  const handleClickSearch = async(data) =>{
+    const org = localStorage.getItem('Database')
+
+    document.getElementById('filterSearch').value = data
+    const datas = await VendorInvoice(org, 1, 10,data)
+    setTotalVendor(datas.data)
+    const total = datas.TotalData[0]["Totaldata"]
+    setRowPerPage(10)
+    setLastval(Math.ceil(total / 10))
+
+  }
+
   const fetch = async () => {
     const Outstanding = await Invoice_Outstanding(localStorage.getItem('Database'))
     setOutstandingdatas(Outstanding.OutstandingVendor)
@@ -69,13 +92,43 @@ const Outstanding = ({ setStep }) => {
     setData(result)
   }
 
+  const handleChangeSearch = async(e) => {
+    e.preventDefault()
+    const org = localStorage.getItem('Database')
+    const datas = await VendorInvoice(org, 1, 10,e.target.value)
+    setTotalVendor(datas.data)
+    const total = datas.TotalData[0]["Totaldata"]
+    setRowPerPage(10)
+    setLastval(Math.ceil(total / 10))
+  }
+  
 
   return (
     <section className='outstanding-container d-flex justify-content-around mt-2'>
       <div className='oustanding-details '>
+      <div className='d-flex   justify-content-around'>
+          <button
+          //  className="upper-btn nextoutstanding_AnimationBtn text-white btn px-6 py-2 position-relative"
+          className='btn btn-primary btn-lg'
+            onClick={() => { setStep(5) }}>
+            Bill History
+          </button>
+          <button
+          //  className="upper-btn nextoutstanding_AnimationBtn text-white btn px-6 py-2 position-relative"
+          className='btn btn-danger'
+            onClick={() => { setStep(7) }}>
+            Pending Recurring Invoice
+          </button>
+      </div>
+
+      <div className='text-white px-4 py-2 mb-1 text-center  rounded' style={{ width: "100%", marginLeft: 'auto', marginRight: 'auto', background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginTop: '20px' }}>
+            <small> OUTSTANDING</small>
+        </div>
+
+
         <div className='outstanding-top-detail-div d-flex justify-content-between text-center'>
 
-          <div className='outstanding-totalinv bg-white rounded shadow1-silver pt-3'>
+          <div className='outstanding-totalinv bg-white rounded shadow1-silver border border-primary'>
             <h2 className='mb-0' style={{ color: "#30305f" }}>{invoices.TotalVendor}</h2>
             <p className='text-secondary'>Outstanding Invoices</p>
           </div>
@@ -84,23 +137,23 @@ const Outstanding = ({ setStep }) => {
             <h4 className='mb-0' style={{ color: "#30305f" }}><BiRupee style={{ fontSize: "30px", color: "#0f3807" }} />{outstandingAmount}</h4>
             <p className='text-secondary'>Outstanding Amount</p>
           </div>
-
-
           <button className='btn_for_smd' onClick={() => { setStep(5) }}>Outstanding Details</button>
 
         </div>
-        <div className='d-flex upper_button'>
+
+      
+
+
+        {/* <div className='d-flex upper_button'>
           <button className="top-upper-btn nextoutstanding_AnimationBtn text-white btn position-relative" onClick={() => { setStep(5) }}>
             BILL HISTORY</button>
           <button className="top-upper-btn nextoutstanding_AnimationBtn text-white btn position-relative" onClick={() => { setStep(7) }}>
             Pending Recurring Invoice</button>
-        </div>
+        </div> */}
 
         {/* //==================================================================================================== */}
-        <div className='company-outstatnding bg-white border  mt-4 rounded shadow1-silver'  >
-          <div className='text-white px-4 py-2  rounded' style={{ width: "80%", marginLeft: 'auto', marginRight: 'auto', background: "linear-gradient(45deg, rgb(68, 97, 240), rgb(37, 63, 196))", marginTop: '-20px' }}>
-            <small> OUTSTANDING</small>
-          </div>
+        <div className='company-outstatnding bg-white border  mt-2 rounded shadow1-silver'  >
+          
           <div className='outstanding-sub-table overflow-auto px-2 position-relative' >
             <table className="table">
               <thead className='position-sticky top-0 bg-white '>
@@ -114,7 +167,7 @@ const Outstanding = ({ setStep }) => {
                 {
                   outstandingDatas.map((element, index) => (
                     <tr key={index}>
-                      <td>{element.vendor}</td>
+                      <td><a href='' onClick={(e)=>{e.preventDefault(); handleClickSearch(element.vendor)}}>{element.vendor}</a></td>
                       <td>{element.countinvoice}</td>
                       <th>{element.total}</th>
                     </tr>
@@ -132,14 +185,7 @@ const Outstanding = ({ setStep }) => {
 
         </div>
         {/* //==================================================================================================== */}
-        <div className='d-flex'>
-          <button className="upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-2 position-relative" onClick={() => { setStep(5) }}>
-            Bill History
-          </button>
-          <button className="upper-btn nextoutstanding_AnimationBtn text-white btn px-4 py-2 position-relative" onClick={() => { setStep(7) }}>
-            Pending Recurring Invoice
-          </button>
-        </div>
+      
 
       </div>
       <div className='outstanding-table bg-white position-relative mt-3 rounded shadow1-silver'>
@@ -147,6 +193,7 @@ const Outstanding = ({ setStep }) => {
           <p className='ft-20'> Outstanding Invoice</p> <span title="Export" onClick={(e) => { e.preventDefault(); setToogle(value => !value) }}> <BiExport style={{ fontSize: "25px" }} /></span>
         </div>
         <div className='bg-white position-absolute rounded ' style={{ right: "2%", top: "5%", width: "7%", zIndex: '1', boxShadow: "3px 3px 10px black" }}>
+
           {
             toogle ?
               <div className="d-flex flex-column justify-content-center align-items-center py-2" >
@@ -154,7 +201,7 @@ const Outstanding = ({ setStep }) => {
                   onClick={exportExcel}
                 ><SiMicrosoftexcel className='ft-20' /></a>
                 <CSVLink
-                  data={TotalVendor}
+                  data={exportdata}
                   filename="RecurringData">
                   <GrDocumentCsv className='ft-20' />
                 </CSVLink>
@@ -162,12 +209,22 @@ const Outstanding = ({ setStep }) => {
               : ''
           }
         </div>
+        <form className='d-flex m-2' style={{width:"30%"}}>
+                    <input className="form-control" 
+                    type="search" 
+                    id="filterSearch" 
+                    placeholder="Search ..." onChange={handleChangeSearch}/>
+                    {/* <button type="button" className="btn btn-voilet"  style={{ width: '120px' }}>Apply <BsFilterLeft /></button> */}
+                </form>
+
         <div className='outstanding-table-inner overflow-auto px-3'>
-          <table className="table" >
+          <table className="table">
             <thead className="position-sticky top-0 bg-white">
               <tr>
+              <th scope="col">Org</th>
                 <th scope="col">Vendor</th>
-                <th scope="col">Invoice_no</th>
+                <th scope="col">Invoice No</th>
+                <th scope="col">Account No</th>
                 <th scope="col">Invoice Date</th>
                 <th scope="col">Download Invoice</th>
                 <th scope="col">Reference No</th>
@@ -181,8 +238,10 @@ const Outstanding = ({ setStep }) => {
                   TotalVendor.map((elements, index) => {
                     return (
                       <tr key={index}>
+                      <td>{elements.company}</td>
                         <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#vendorModal" onClick={(e) => { e.preventDefault(); handleClick('Vendor', elements.vendor) }} >{elements.vendor}</td>
                         <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#invoiceModal" onClick={(e) => { e.preventDefault(); handleClick('Invoice', elements.invoice_no) }}>{elements.invoice_no}</td>
+                        <td>{elements.account_no}</td>
                         <td>{elements.date}</td>
                         <td className="cursor-pointer " style={{ fontSize: '22px' }}>{
                           elements.uploadInvoice ?
@@ -190,7 +249,6 @@ const Outstanding = ({ setStep }) => {
                             :
                             <MdDownload className='text-danger' title='Invoice Not Uploaded' />
                         }
-
                         </td>
                         <td className="cursor-pointer text-primary" data-toggle="modal" data-target="#ReferanceModal" onClick={(e) => { e.preventDefault(); handleClick('Referance', elements.reference_no) }}>{elements.reference_no}</td>
                         <td>{elements.invoice_amt}</td>

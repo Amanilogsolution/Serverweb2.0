@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './VendorDash.css'
-import { Vendor_Reference_no, TotalVendorContract, ActiveVendorCode, ActiveBillingFreq, ActiveLocation, ActiveVendorCategory, FilterVendorContract, Outstanding_Invoice_filter } from '../../../../api/index'
+import { Vendor_Reference_no, TotalVendorContract, ActiveVendorCode, ActiveBillingFreq, ActiveLocation, ActiveVendorCategory, FilterVendorContract, Outstanding_Invoice_filter,ExportTotalVendorContract } from '../../../../api/index'
 import ReactPaginate from 'react-paginate';
 import { CSVLink } from "react-csv";
 import { BiExport } from 'react-icons/bi'
@@ -24,18 +24,23 @@ export default function VendorDash({ setStep }) {
   const [locationlist, setLocationlist] = useState([])
   const [vendorcatlist, setVendorcatlist] = useState([])
   const [data, setData] = useState([])
+  const [exportData,setExportData] = useState([])
 
   const exportExcel = async () => {
-    const datasss = ExcelConvertData(TotalVendor)
+    const datasss = ExcelConvertData(exportData)
   }
 
   useEffect(() => {
     const fetchdata = async () => {
       const org = localStorage.getItem('Database')
+      const exportdata = await ExportTotalVendorContract(org)
+      setExportData(exportdata.data)
+
       const ReferanceNo = await Vendor_Reference_no(localStorage.getItem('Database'))
       setReferanceNo(ReferanceNo.data)
       const datas = await TotalVendorContract(localStorage.getItem('Database'), 1, 10)
       setTotalVendor(datas.data)
+
       const total = datas.TotalData[0]["Totaldata"]
       setRowPerPage(10)
       setLastval(Math.ceil(total / 10))
@@ -75,7 +80,6 @@ export default function VendorDash({ setStep }) {
       const total = datas.TotalData[0]["Totaldata"]
       setLastval(Math.ceil(total / e.target.value))
     }
-
   }
 
   const handleChangeFilter = async (data, value) => {
@@ -108,7 +112,7 @@ export default function VendorDash({ setStep }) {
                   onClick={exportExcel}
                 ><SiMicrosoftexcel className='ft-20' /></a>
                 <CSVLink
-                  data={TotalVendor}
+                  data={exportData}
                   filename="RecurringData"
                 > <GrDocumentCsv className='ft-20' />
                 </CSVLink>
@@ -116,7 +120,19 @@ export default function VendorDash({ setStep }) {
               : ''
           }
         </div>
-        <div className='table1 position-relative mt-5' style={{ minHeight: '80%' }}>
+        <div className="search-field mt-5">
+        <form className="d-flex h-100">
+          <input
+            className="form-control"
+            type="search"
+            id="filterSearch"
+            // onChange={(e) => filterdata(e.target.value)}
+            placeholder="Search ..."
+          />
+          {/* <button type="button" className="btn btn-voilet" onClick={filterdata} style={{ width: '120px' }}>Apply <BsFilterLeft /></button> */}
+        </form>
+      </div>
+        <div className='table1 position-relative mt-2' style={{ minHeight: '80%' }}>
           <table className="table" >
             <thead>
               <tr>
